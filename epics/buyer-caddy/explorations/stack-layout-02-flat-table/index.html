@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stack Layout Variant 2 — Flat Table · BuyerCaddy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../shared/styles.css">
+  <style>
+    /* ============================================================
+       ELEVATE DESIGN SYSTEM TOKENS
+       ============================================================ */
+    :root {
+      --n-0:   #ffffff;
+      --n-1:   #fcfcfd;
+      --n-5:   #fafafa;
+      --n-10:  #f2f2f3;
+      --n-20:  #dfdfe2;
+      --n-30:  #cacace;
+      --n-40:  #b0afb6;
+      --n-50:  #9b99a3;
+      --n-70:  #6f6d78;
+      --n-80:  #4c4b53;
+      --n-90:  #2f2e33;
+      --n-100: #201f23;
+      --p-5:   #f5f4fb;
+      --p-10:  #f2f0f9;
+      --p-20:  #ebe9f6;
+      --p-30:  #dedaf1;
+      --p-40:  #c3bde5;
+      --p-60:  #988ed2;
+      --p-80:  #7769c4;
+      --p:     #5746b2;
+      --p-120: #45388f;
+      --ro:    #ff492c;
+      --ro-20: #fff6f5;
+      --ro-40: #FFD7D1;
+      --ro-120:#eb2000;
+      --ro-140:#b21800;
+      --blue:      #0073f5;
+      --green-20:  #d0f6f1;
+      --green-40:  #a9efe5;
+      --green-120: #1fa896;
+      --green-160: #0f5249;
+      --yellow-20: #fff9e5;
+      --yellow-100:#ffc800;
+    }
+
+    html, body {
+      font-family: 'Figtree', system-ui, sans-serif;
+      font-size: 14px;
+      color: var(--n-100);
+      background: var(--n-10);
+      min-width: 1200px;
+      margin: 0;
+    }
+
+    a { color: var(--p); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ============================================================
+       CONCEPT BANNER (green-120 — stack layout series)
+       ============================================================ */
+    .concept-banner {
+      background: #1fa896;
+      color: white;
+      font-size: 12px;
+      font-family: 'Figtree', sans-serif;
+      padding: 7px 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .concept-banner a {
+      color: rgba(255,255,255,0.75);
+      font-size: 12px;
+      text-decoration: underline;
+    }
+    .concept-banner a:hover { color: white; }
+    .concept-banner-label {
+      font-weight: 600;
+      letter-spacing: 0.01em;
+    }
+    .concept-banner-spacer { flex: 1; }
+
+    /* ============================================================
+       HEADER
+       ============================================================ */
+    .elv-header {
+      height: 60px;
+      background: var(--n-0);
+      border-bottom: 1px solid var(--n-20);
+      display: flex;
+      align-items: center;
+      padding: 0 24px;
+      gap: 10px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .elv-header-back { color: var(--n-70); font-size: 18px; line-height: 1; padding: 4px; margin-right: 2px; cursor: pointer; }
+    .elv-logo {
+      width: 32px; height: 32px; background: var(--ro); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: white; font-weight: 800; font-size: 16px; flex-shrink: 0;
+    }
+    .elv-brand { font-weight: 700; font-size: 15px; color: var(--n-100); }
+    .elv-header-spacer { flex: 1; }
+    .elv-header-actions { display: flex; align-items: center; gap: 10px; }
+    .elv-header-icon {
+      width: 32px; height: 32px; border-radius: 50%;
+      border: 1px solid var(--n-20); display: flex; align-items: center;
+      justify-content: center; color: var(--n-70); font-size: 15px; cursor: pointer;
+    }
+    .elv-header-avatar {
+      width: 32px; height: 32px; border-radius: 50%; background: var(--n-20);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--n-80); font-weight: 600; font-size: 12px; cursor: pointer;
+    }
+
+    /* ============================================================
+       PAGE LAYOUT
+       ============================================================ */
+    .page-outer {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 24px 64px;
+    }
+
+    /* ============================================================
+       TABS
+       ============================================================ */
+    .elv-tabs {
+      display: flex;
+      border-bottom: 1px solid var(--n-20);
+      margin-bottom: 22px;
+      padding-top: 2px;
+    }
+    .elv-tab {
+      padding: 13px 18px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--n-70);
+      cursor: pointer;
+      border: none;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -1px;
+      background: none;
+      font-family: 'Figtree', sans-serif;
+    }
+    .elv-tab.active { color: var(--p); border-bottom-color: var(--p); font-weight: 600; }
+
+    /* ============================================================
+       CARD
+       ============================================================ */
+    .elv-card {
+      background: var(--n-0);
+      border: 1px solid var(--n-20);
+      border-radius: 0.75rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+      overflow: hidden;
+    }
+    .elv-divider { border: none; border-top: 1px solid var(--n-20); margin: 0; }
+
+    /* ============================================================
+       BUTTONS
+       ============================================================ */
+    .elv-btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      gap: 6px; height: 34px; padding: 0 14px;
+      font-family: 'Figtree', sans-serif; font-size: 13px; font-weight: 600;
+      border-radius: 6px; border: 1px solid transparent; cursor: pointer;
+      white-space: nowrap; text-decoration: none;
+    }
+    .elv-btn-primary { background: var(--p); color: white; border-color: var(--p); }
+    .elv-btn-secondary { background: var(--p-10); color: var(--p); border: 1px solid var(--p-40); }
+    .elv-btn-ghost { background: transparent; color: var(--n-80); border: 1px solid var(--n-20); }
+    .ai-icon { color: var(--ro); font-size: 13px; }
+
+    /* ============================================================
+       PAGE HEADER AREA
+       ============================================================ */
+    .back-link-row { padding: 16px 0 6px; }
+    .back-link {
+      display: inline-flex; align-items: center; gap: 5px;
+      font-size: 13px; color: var(--n-70); cursor: pointer; text-decoration: none;
+    }
+    .back-link:hover { color: var(--p); text-decoration: underline; }
+    .prospect-h1 { font-size: 24px; font-weight: 700; color: var(--n-100); margin-bottom: 16px; }
+
+    /* ============================================================
+       COMPANY HEADER
+       ============================================================ */
+    .company-header-inner {
+      padding: 20px 22px;
+      display: flex; gap: 20px; align-items: flex-start;
+    }
+    .company-logo {
+      width: 60px; height: 60px; border-radius: 10px;
+      background: linear-gradient(135deg, var(--p) 0%, var(--p-80) 100%);
+      display: flex; align-items: center; justify-content: center;
+      color: white; font-size: 22px; font-weight: 700; flex-shrink: 0;
+    }
+    .company-main { flex: 1; }
+    .company-name-lg { font-size: 20px; font-weight: 700; color: var(--n-100); margin-bottom: 2px; }
+    .visit-link {
+      font-size: 13px; color: var(--blue);
+      display: inline-flex; align-items: center; gap: 3px;
+      margin-bottom: 10px; text-decoration: none;
+    }
+    .visit-link:hover { text-decoration: underline; }
+    .company-badges-row { display: flex; align-items: center; gap: 7px; margin-bottom: 12px; }
+    .dark-pill {
+      display: inline-flex; align-items: center; gap: 5px;
+      padding: 4px 10px; border-radius: 999px; font-size: 12px;
+      font-weight: 500; background: var(--n-10); color: var(--n-80);
+    }
+    .company-desc-label { font-size: 12px; font-weight: 600; color: var(--n-70); margin-bottom: 4px; }
+    .company-desc { font-size: 13px; color: var(--n-80); line-height: 1.6; max-width: 580px; }
+    .company-right-stats {
+      min-width: 200px; display: flex; flex-direction: column; gap: 12px; padding-top: 4px;
+    }
+    .stat-label { font-size: 11px; font-weight: 600; color: var(--n-70); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 2px; }
+    .stat-value { font-size: 14px; font-weight: 600; color: var(--n-100); }
+
+    /* ============================================================
+       CONTACTS SECTION
+       ============================================================ */
+    .contacts-section { padding: 16px 20px; border-top: 1px solid var(--n-10); }
+    .contacts-section-header { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+    .contacts-section-title { font-size: 15px; font-weight: 700; color: var(--n-100); flex: 1; }
+    .contact-cards-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .contact-card { background: var(--n-0); border: 1px solid var(--n-20); border-radius: 10px; padding: 14px 16px; }
+    .contact-card-top { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; }
+    .contact-avatar {
+      width: 38px; height: 38px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 14px; color: white; flex-shrink: 0;
+    }
+    .avatar-purple { background: var(--p); }
+    .avatar-blue { background: var(--blue); }
+    .avatar-neutral { background: var(--n-40); }
+    .contact-card-name { font-size: 13px; font-weight: 600; color: var(--n-100); line-height: 1.3; }
+    .contact-card-email { font-size: 11px; color: var(--n-70); margin-bottom: 1px; }
+    .contact-card-title { font-size: 12px; color: var(--n-70); margin-bottom: 8px; line-height: 1.4; }
+    .contact-match-badges { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 10px; }
+    .match-badge { display: inline-flex; align-items: center; padding: 2px 8px; border-radius: 999px; font-size: 11px; font-weight: 500; background: var(--p-20); color: var(--p); }
+    .copy-email-btn {
+      display: inline-flex; align-items: center; gap: 4px;
+      font-size: 12px; color: var(--n-70); cursor: pointer;
+      padding: 3px 8px; border-radius: 4px; border: 1px solid var(--n-20);
+      background: var(--n-0); font-family: 'Figtree', sans-serif;
+    }
+
+    /* ============================================================
+       NEW ELEMENT HIGHLIGHT
+       ============================================================ */
+    .new-highlight {
+      border: 2px solid var(--p);
+      border-radius: 8px;
+      position: relative;
+    }
+    .new-badge {
+      background: var(--p);
+      color: white;
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+
+    /* ============================================================
+       TECH STACK SECTION — FLAT TABLE (Layout B)
+       ============================================================ */
+    .tech-stack-section {
+      padding: 16px 20px;
+      border-top: 1px solid var(--n-10);
+    }
+    .tech-stack-heading-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+    .tech-stack-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--n-100);
+    }
+    .tech-stack-meta {
+      font-size: 13px;
+      color: var(--n-70);
+    }
+    .tech-stack-spacer { flex: 1; }
+
+    /* Table */
+    .stack-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .stack-table thead tr {
+      background: var(--n-5);
+      border-bottom: 2px solid var(--n-20);
+    }
+    .stack-table thead th {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--n-70);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      padding: 8px 12px;
+      text-align: left;
+      white-space: nowrap;
+    }
+    .stack-table thead th.center { text-align: center; }
+
+    .stack-table tbody tr {
+      height: 44px;
+      border-bottom: 1px solid var(--n-10);
+      transition: background 0.1s;
+    }
+    .stack-table tbody tr:last-child { border-bottom: none; }
+    .stack-table tbody tr:hover { background: var(--n-5); }
+
+    .stack-table td {
+      padding: 0 12px;
+      vertical-align: middle;
+    }
+
+    /* Col: Product */
+    .td-product { min-width: 180px; }
+    .td-product-inner { display: flex; align-items: center; gap: 9px; }
+    .tbl-logo-sq {
+      width: 14px; height: 14px; border-radius: 3px;
+      background: var(--p-20); flex-shrink: 0;
+    }
+    .tbl-product-name { font-size: 13px; font-weight: 500; color: var(--n-100); line-height: 1.3; }
+    .tbl-product-domain { font-size: 11px; color: var(--n-70); line-height: 1.3; }
+
+    /* Col: Category */
+    .td-category { min-width: 120px; }
+    .tbl-category { font-size: 12px; color: var(--n-70); }
+
+    /* Col: G2 Rating */
+    .td-rating { width: 100px; text-align: center; }
+    .star-row { display: flex; align-items: center; justify-content: center; gap: 3px; white-space: nowrap; }
+    .stars-text { font-size: 13px; line-height: 1; }
+    .star-score { font-size: 12px; font-weight: 600; color: var(--n-80); margin-left: 2px; }
+
+    /* Col: Cohort Adoption */
+    .td-cohort { width: 130px; }
+    .cohort-inner { display: flex; align-items: center; gap: 7px; }
+    .cohort-bar-track {
+      width: 72px; height: 5px; border-radius: 3px;
+      background: var(--n-20); flex-shrink: 0; overflow: hidden;
+    }
+    .cohort-bar-fill { height: 100%; border-radius: 3px; background: var(--p-60); }
+    .cohort-pct { font-size: 12px; color: var(--n-70); white-space: nowrap; }
+
+    /* Col: Using Since */
+    .td-since { width: 100px; }
+    .tbl-since { font-size: 12px; color: var(--n-70); }
+
+    /* Col: Last Verified */
+    .td-verified { width: 110px; }
+    .tbl-verified { font-size: 12px; color: var(--n-70); }
+
+    /* ============================================================
+       INFO PANEL (fixed bottom-right)
+       ============================================================ */
+    .info-panel {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      width: 300px;
+      background: var(--n-0);
+      border: 1px solid var(--n-20);
+      border-top: 3px solid #1fa896;
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+      padding: 20px;
+      z-index: 200;
+    }
+    .info-panel-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+    .info-panel-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--green-120);
+      line-height: 1.3;
+    }
+    .info-panel-dismiss {
+      color: var(--n-70);
+      font-size: 18px;
+      cursor: pointer;
+      line-height: 1;
+      background: none;
+      border: none;
+      padding: 0;
+      font-family: inherit;
+      flex-shrink: 0;
+      margin-left: 8px;
+    }
+    .info-panel-dismiss:hover { color: var(--n-100); }
+    .info-panel-body {
+      font-size: 13px;
+      color: var(--n-70);
+      line-height: 1.6;
+    }
+  </style>
+  <script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+</head>
+<body>
+
+<!-- CONCEPT BANNER -->
+<div class="concept-banner">
+  <a href="../../index.html">← Back to Index</a>
+  <span class="concept-banner-spacer"></span>
+  <span class="concept-banner-label">Stack Layout Variant 2 of 3 — Flat Table · BuyerCaddy Integration</span>
+  <span class="concept-banner-spacer"></span>
+</div>
+
+<!-- HEADER -->
+<header class="elv-header">
+  <span class="elv-header-back">←</span>
+  <div class="elv-logo">G</div>
+  <span class="elv-brand">MyG2</span>
+  <div class="elv-header-spacer"></div>
+  <div class="elv-header-actions">
+    <div class="elv-header-icon" title="Help">?</div>
+    <div class="elv-header-avatar" title="Harvey Mustache">HM</div>
+  </div>
+</header>
+
+<!-- PAGE WRAPPER -->
+<div class="page-outer">
+
+  <!-- BACK LINK -->
+  <div class="back-link-row">
+    <a class="back-link" href="#">← Unlocked Prospects</a>
+  </div>
+
+  <h1 class="prospect-h1">Prospect Details: Predictive</h1>
+
+  <!-- TABS -->
+  <div class="elv-tabs">
+    <button class="elv-tab">Available Prospects</button>
+    <button class="elv-tab">Unlocked Prospects</button>
+    <button class="elv-tab">Emails</button>
+  </div>
+
+  <!-- MAIN COMPANY CARD -->
+  <div class="elv-card" style="margin-bottom: 14px;">
+
+    <!-- Company Header -->
+    <div class="company-header-inner">
+      <div class="company-logo">P</div>
+      <div class="company-main">
+        <div class="company-name-lg">Predictive</div>
+        <a href="#" class="visit-link">Visit website ↗</a>
+        <div class="company-badges-row">
+          <span class="dark-pill">↑ High Activity (99)</span>
+          <span class="dark-pill">Dec 2025</span>
+        </div>
+        <div class="company-desc-label">Description</div>
+        <div class="company-desc">Predictive is a revenue intelligence platform helping enterprise sales teams identify and act on the highest-value opportunities in their pipeline. Headquartered in Port Saint Lucie, FL.</div>
+      </div>
+      <div class="company-right-stats">
+        <div>
+          <div class="stat-label">Company Size</div>
+          <div class="stat-value">40.3K</div>
+        </div>
+        <div>
+          <div class="stat-label">Est. Annual Revenue</div>
+          <div class="stat-value">$21.4M</div>
+        </div>
+        <div>
+          <div class="stat-label">Headquarters Location</div>
+          <div class="stat-value" style="font-size:13px; font-weight:500;">Port Saint Lucie, FL</div>
+        </div>
+        <div>
+          <div class="stat-label">Visitor Locations</div>
+          <div class="stat-value" style="font-size:13px; font-weight:500;">United States</div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="elv-divider">
+
+    <!-- ================================================================
+         NEW: TECH STACK SECTION — FLAT TABLE
+         ================================================================ -->
+    <div class="tech-stack-section">
+      <div class="new-highlight" style="padding: 14px 18px;">
+
+        <!-- Heading row -->
+        <div class="tech-stack-heading-row">
+          <span class="tech-stack-title">Tech Stack</span>
+          <span class="tech-stack-meta">11 products · 6 categories</span>
+          <span class="tech-stack-meta">Last verified Dec 2025</span>
+          <span class="tech-stack-spacer"></span>
+          <span class="new-badge">NEW</span>
+          <button class="elv-btn elv-btn-secondary" style="font-size: 12px; height: 32px;">
+            <span class="ai-icon">✦</span> Refresh Stack
+          </button>
+        </div>
+
+        <!-- Data table — sorted by hitCount desc -->
+        <table class="stack-table">
+          <thead>
+            <tr>
+              <th class="td-product">Product</th>
+              <th class="td-category">Category</th>
+              <th class="td-rating center">G2 Rating</th>
+              <th class="td-cohort">Cohort Adoption</th>
+              <th class="td-since">Using Since</th>
+              <th class="td-verified">Last Verified</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <!-- 1. Salesforce — hitCount 94 -->
+            <tr>
+              <td class="td-product">
+                <div class="td-product-inner">
+                  <div class="tbl-logo-sq"></div>
+                  <div>
+                    <div class="tbl-product-name">Salesforce Sales Cloud</div>
+                    <div class="tbl-product-domain">salesforce.com</div>
+                  </div>
+                </div>
+              </td>
+              <td class="td-category"><span class="tbl-category">CRM</span></td>
+              <td class="td-rating">
+                <div class="star-row">
+                  <span class="stars-text" style="color:#ffc800;">★★★★</span><span class="stars-text" style="color:var(--n-20);">★</span>
+                  <span class="star-score">4.3</span>
+                </div>
+              </td>
+              <td class="td-cohort">
+                <div class="cohort-inner">
+                  <div class="cohort-bar-track"><div class="cohort-bar-fill" style="width:78%;"></div></div>
+                  <span class="cohort-pct">78%</span>
+                </div>
+              </td>
+              <td class="td-since"><span class="tbl-since">5+ yrs</span></td>
+              <td class="td-verified"><span class="tbl-verified">Dec 2025</span></td>
+            </tr>
+
+            <!-- 2. Outreach — hitCount 88 -->
+            <tr>
+              <td class="td-product">
+                <div class="td-product-inner">
+                  <div class="tbl-logo-sq"></div>
+                  <div>
+                    <div class="tbl-product-name">Outreach</div>
+                    <div class="tbl-product-domain">outreach.io</div>
+                  </div>
+                </div>
+              </td>
+              <td class="td-category"><span class="tbl-category">Sales Engagement</span></td>
+              <td class="td-rating">
+                <div class="star-row">
+                  <span class="stars-text" style="color:#ffc800;">★★★★</span><span class="stars-text" style="color:var(--n-20);">★</span>
+                  <span class="star-score">4.3</span>
+                </div>
+              </td>
+              <td class="td-cohort">
+                <div class="cohort-inner">
+                  <div class="cohort-bar-track"><div class="cohort-bar-fill" style="width:62%;"></div></div>
+                  <span class="cohort-pct">62%</span>
+                </div>
+              </td>
+              <td class="td-since"><span class="tbl-since">4+ yrs</span></td>
+              <td class="td-verified"><span class="tbl-verified">Dec 2025</span></td>
+            </tr>
+
+            <!-- 3. Snowflake — hitCount 83 -->
+            <tr>
+              <td class="td-product">
+                <div class="td-product-inner">
+                  <div class="tbl-logo-sq"></div>
+                  <div>
+                    <div class="tbl-product-name">Snowflake</div>
+                    <div class="tbl-product-domain">snowflake.com</div>
+                  </div>
+                </div>
+              </td>
+              <td class="td-category"><span class="tbl-category">Data Integration</span></td>
+              <td class="td-rating">
+                <div class="star-row">
+                  <span class="stars-text" style="color:#ffc800;">★★★★★</span>
+                  <span class="star-score">4.6</span>
+                </div>
+              </td>
+              <td class="td-cohort">
+                <div class="cohort-inner">
+                  <div class="cohort-bar-track"><div class="cohort-bar-fill" style="width:59%;"></div></div>
+                  <span class="cohort-pct">59%</span>
+                </div>
+              </td>
+              <td class="td-since"><span class="tbl-since">4+ yrs</span></td>
+              <td class="td-verified"><span class="tbl-verified">Dec 2025</span></td>
+            </tr>
+
+            <!-- 4. Gong — hitCount 77 -->
+            <tr>
+              <td class="td-product">
+                <div class="td-product-inner">
+                  <div class="tbl-logo-sq"></div>
+                  <div>
+                    <div class="tbl-product-name">Gong</div>
+                    <div class="tbl-product-domain">gong.io</div>
+                  </div>
+                </div>
+              </td>
+              <td class="td-category"><span class="tbl-category">Sales Intelligence</span></td>
+              <td class="td-rating">
+                <div class="star-row">
+                  <span class="stars-text" style="color:#ffc800;">★★★★★</span>
+                  <span class="star-score">4.8</span>
+                </div>
+              </td>
+              <td class="td-cohort">
+                <div class="cohort-inner">
+                  <div class="cohort-bar-track"><div class="cohort-bar-fill" style="width:51%;"></div></div>
+                  <span class="cohort-pct">51%</span>
+                </div>
+              </td>
+              <td class="td-since"><span class="tbl-since">4 yrs</span></td>
+              <td class="td-verified"><span class="tbl-verified">Dec 2025</span></td>
+            </tr>
+
+            <!-- 5. Looker — hitCount 72 -->
+            <tr>
+              <td class="td-product">
+                <div class="td-product-inner">
+                  <div class="tbl-logo-sq"></div>
+                  <div>
+                    <div class="tbl-product-name">Looker</div>
+                    <div class="tbl-product-domain">looker.com</div>
+                  </div>
+                </div>
+              </td>
+              <td class="td-category"><span class="tbl-category">BI &amp; Analytics</span></td>
+              <td class="td-rating">
+                <div class="star-row">
+                  <span class="stars-text" style="color:#ffc800;">★★★★</span><span class="stars-text" style="color:var(--n-20);">★</span>
+                  <span class="star-score">4.4</span>
+                </div>
+              </td>
+              <td class="td-cohort">
+                <div class="cohort-inner">
+                  <div class="cohort-bar-track"><div class="cohort-bar-fill" style="width:31%;"></div></div>
+                  <span class="cohort-pct">31%</span>
+                </div>
+              </td>
+              <td class="td-since"><span class="tbl-since">3 yrs</span></td>
+              <td class="td-verified"><span class="tbl-verified">Dec 2025</span></td>
+            </tr>
+
+            <!-- 6. HubSpot — hitCount 61 -->
+            <tr>
+              <td class="td-product">
+                <div class="td-product-inner">
+                  <div class="tbl-logo-sq"></div>
+                  <div>
+                    <div class="tbl-product-name">HubSpot CRM</div>
+                    <div class="tbl-product-domain">hubspot.com</div>
+                  </div>
+                </div>
+              </td>
+              <td class="td-category"><span class="tbl-category">CRM</span></td>
+              <td class="td-rating">
+                <div class="star-row">
+                  <span class="stars-text" style="color:#ffc800;">★★★★</span><span class="stars-text" style="color:var(--n-20);">★</span>
+                  <span class="star-score">4.4</span>
+                </div>
+              </td>
+              <td class="td-cohort">
+                <div class="cohort-inner">
+                  <div class="cohort-bar-track"><div class="cohort-bar-fill" style="width:54%;"></div></div>
+                  <span class="cohort-pct">54%</span>
+                </div>
+              </td>
+              <td class="td-since"><span class="tbl-since">4 yrs</span></td>
+              <td class="td-verified"><span class="tbl-verified">Nov 2025</span></td>
+            </tr>
+
+            <!-- 7. Marketo — hitCount 58 -->
+            <tr>
+              <td class="td-product">
+                <div class="td-product-inner">
+                  <div class="tbl-logo-sq"></div>
+                  <div>
+                    <div class="tbl-product-name">Marketo Engage</div>
+                    <div class="tbl-product-domain">marketo.com</div>
+                  </div>
+                </div>
+              </td>
+              <td class="td-category"><span class="tbl-category">Mktg Automation</span></td>
+              <td class="td-rating">
+                <div class="star-row">
+                  <span class="stars-text" style="color:#ffc800;">★★★★</span><span class="stars-text" style="color:var(--n-20);">★</span>
+                  <span class="star-score">4.1</span>
+                </div>
+              </td>
+              <td class="td-cohort">
+                <div class="cohort-inner">
+                  <div class="cohort-bar-track"><div class="cohort-bar-fill" style="width:44%;"></div></div>
+                  <span class="cohort-pct">44%</span>
+                </div>
+              </td>
+              <td class="td-since"><span class="tbl-since">5+ yrs</span></td>
+              <td class="td-verified"><span class="tbl-verified">Nov 2025</span></td>
+            </tr>
+
+            <!-- 8. Fivetran — hitCount 55 -->
+            <tr>
+              <td class="td-product">
+                <div class="td-product-inner">
+                  <div class="tbl-logo-sq"></div>
+                  <div>
+                    <div class="tbl-product-name">Fivetran</div>
+                    <div class="tbl-product-domain">fivetran.com</div>
+                  </div>
+                </div>
+              </td>
+              <td class="td-category"><span class="tbl-category">Data Integration</span></td>
+              <td class="td-rating">
+                <div class="star-row">
+                  <span class="stars-text" style="color:#ffc800;">★★★★</span><span class="stars-text" style="color:var(--n-20);">★</span>
+                  <span class="star-score">4.2</span>
+                </div>
+              </td>
+              <td class="td-cohort">
+                <div class="cohort-inner">
+                  <div class="cohort-bar-track"><div class="cohort-bar-fill" style="width:27%;"></div></div>
+                  <span class="cohort-pct">27%</span>
+                </div>
+              </td>
+              <td class="td-since"><span class="tbl-since">3+ yrs</span></td>
+              <td class="td-verified"><span class="tbl-verified">Nov 2025</span></td>
+            </tr>
+
+            <!-- 9. Tableau — hitCount 49 -->
+            <tr>
+              <td class="td-product">
+                <div class="td-product-inner">
+                  <div class="tbl-logo-sq"></div>
+                  <div>
+                    <div class="tbl-product-name">Tableau</div>
+                    <div class="tbl-product-domain">tableau.com</div>
+                  </div>
+                </div>
+              </td>
+              <td class="td-category"><span class="tbl-category">BI &amp; Analytics</span></td>
+              <td class="td-rating">
+                <div class="star-row">
+                  <span class="stars-text" style="color:#ffc800;">★★★★</span><span class="stars-text" style="color:var(--n-20);">★</span>
+                  <span class="star-score">4.4</span>
+                </div>
+              </td>
+              <td class="td-cohort">
+                <div class="cohort-inner">
+                  <div class="cohort-bar-track"><div class="cohort-bar-fill" style="width:38%;"></div></div>
+                  <span class="cohort-pct">38%</span>
+                </div>
+              </td>
+              <td class="td-since"><span class="tbl-since">6+ yrs</span></td>
+              <td class="td-verified"><span class="tbl-verified">Oct 2025</span></td>
+            </tr>
+
+            <!-- 10. Salesloft — hitCount 42 -->
+            <tr>
+              <td class="td-product">
+                <div class="td-product-inner">
+                  <div class="tbl-logo-sq"></div>
+                  <div>
+                    <div class="tbl-product-name">Salesloft</div>
+                    <div class="tbl-product-domain">salesloft.com</div>
+                  </div>
+                </div>
+              </td>
+              <td class="td-category"><span class="tbl-category">Sales Engagement</span></td>
+              <td class="td-rating">
+                <div class="star-row">
+                  <span class="stars-text" style="color:#ffc800;">★★★★★</span>
+                  <span class="star-score">4.5</span>
+                </div>
+              </td>
+              <td class="td-cohort">
+                <div class="cohort-inner">
+                  <div class="cohort-bar-track"><div class="cohort-bar-fill" style="width:29%;"></div></div>
+                  <span class="cohort-pct">29%</span>
+                </div>
+              </td>
+              <td class="td-since"><span class="tbl-since">2 yrs</span></td>
+              <td class="td-verified"><span class="tbl-verified">Oct 2025</span></td>
+            </tr>
+
+            <!-- 11. Chorus — hitCount 31 -->
+            <tr>
+              <td class="td-product">
+                <div class="td-product-inner">
+                  <div class="tbl-logo-sq"></div>
+                  <div>
+                    <div class="tbl-product-name">Chorus</div>
+                    <div class="tbl-product-domain">chorus.ai</div>
+                  </div>
+                </div>
+              </td>
+              <td class="td-category"><span class="tbl-category">Sales Intelligence</span></td>
+              <td class="td-rating">
+                <div class="star-row">
+                  <span class="stars-text" style="color:#ffc800;">★★★★★</span>
+                  <span class="star-score">4.5</span>
+                </div>
+              </td>
+              <td class="td-cohort">
+                <div class="cohort-inner">
+                  <div class="cohort-bar-track"><div class="cohort-bar-fill" style="width:18%;"></div></div>
+                  <span class="cohort-pct">18%</span>
+                </div>
+              </td>
+              <td class="td-since"><span class="tbl-since">2 yrs</span></td>
+              <td class="td-verified"><span class="tbl-verified">Sep 2025</span></td>
+            </tr>
+
+          </tbody>
+        </table>
+
+      </div><!-- /new-highlight -->
+    </div><!-- /tech-stack-section -->
+
+    <hr class="elv-divider">
+
+    <!-- Contacts Section -->
+    <div class="contacts-section">
+      <div class="contacts-section-header">
+        <span class="contacts-section-title">Predictive Contacts (3)</span>
+        <button class="elv-btn elv-btn-ghost" style="font-size:12px; height:32px;">Download CSV ↓</button>
+        <button class="elv-btn elv-btn-secondary" style="font-size:12px; height:32px;">
+          <span class="ai-icon">✦</span> Generate Emails
+        </button>
+      </div>
+
+      <div class="contact-cards-grid">
+
+        <!-- Card 1: Lilly Pad -->
+        <div class="contact-card">
+          <div class="contact-card-top">
+            <div class="contact-avatar avatar-purple">LP</div>
+            <div>
+              <div class="contact-card-name">Lilly Pad</div>
+              <div class="contact-card-email">l.pad@company.com</div>
+            </div>
+          </div>
+          <div class="contact-card-title">Chief Operating Officer</div>
+          <div class="contact-match-badges">
+            <span class="match-badge">Department Level</span>
+          </div>
+          <button class="copy-email-btn">📋 Copy Email</button>
+        </div>
+
+        <!-- Card 2: John Doe -->
+        <div class="contact-card">
+          <div class="contact-card-top">
+            <div class="contact-avatar avatar-blue">JD</div>
+            <div>
+              <div class="contact-card-name">John Doe</div>
+              <div class="contact-card-email">j.doe@company.com</div>
+            </div>
+          </div>
+          <div class="contact-card-title">Manager, Communications &amp; CEO</div>
+          <div class="contact-match-badges">
+            <span class="match-badge">Department</span>
+          </div>
+          <button class="copy-email-btn">📋 Copy Email</button>
+        </div>
+
+        <!-- Card 3: Jane Smith -->
+        <div class="contact-card">
+          <div class="contact-card-top">
+            <div class="contact-avatar avatar-neutral">JS</div>
+            <div>
+              <div class="contact-card-name">Jane Smith</div>
+              <div class="contact-card-email">j.smith@company.com</div>
+            </div>
+          </div>
+          <div class="contact-card-title">Chief Executive Officer &amp; Founder</div>
+          <div class="contact-match-badges"></div>
+          <button class="copy-email-btn">📋 Copy Email</button>
+        </div>
+
+      </div><!-- /contact-cards-grid -->
+    </div><!-- /contacts-section -->
+
+  </div><!-- /elv-card -->
+
+</div><!-- /page-outer -->
+
+<!-- INFO PANEL -->
+<div class="info-panel" id="info-panel">
+  <div class="info-panel-header">
+    <div class="info-panel-title">Layout B — Flat Table</div>
+    <button class="info-panel-dismiss" onclick="document.getElementById('info-panel').style.display='none'">×</button>
+  </div>
+  <p class="info-panel-body">Maximum data density. Every BuyerCaddy field is surfaced: signal strength (hitCount), G2 product rating, cohort adoption among similar companies, tenure from first detection, and last verified date. Best for analytical users comparing across tools.</p>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Concept 1: Tech Stack Filter — BuyerCaddy × G2 Activate</title>
+  <link rel="stylesheet" href="../../shared/styles.css">
+  <style>
+    /* Concept Banner */
+    .concept-banner {
+      background: var(--indigo);
+      color: white;
+      padding: 0 24px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      font-size: 13px;
+      font-weight: 500;
+      gap: 12px;
+    }
+
+    .concept-banner a {
+      color: rgba(255,255,255,0.75);
+      font-size: 13px;
+    }
+
+    .concept-banner a:hover {
+      color: white;
+      text-decoration: none;
+    }
+
+    .banner-divider {
+      color: rgba(255,255,255,0.35);
+    }
+
+    /* NEW highlight treatment */
+    .new-highlight {
+      border: 2px solid #F59E0B;
+      border-radius: 6px;
+      position: relative;
+    }
+
+    .new-badge {
+      position: absolute;
+      top: -10px;
+      right: 10px;
+      background: #F59E0B;
+      color: #78350F;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 2px 7px;
+      border-radius: 999px;
+      line-height: 1.4;
+    }
+
+    .table-container {
+      overflow-x: auto;
+    }
+
+    .header-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+      gap: 12px;
+    }
+
+    .header-left { display: flex; align-items: center; gap: 10px; }
+
+    .companies-count {
+      font-size: 20px;
+      font-weight: 700;
+    }
+    .companies-count span {
+      font-weight: 400;
+      color: var(--gray-500);
+      font-size: 16px;
+    }
+
+    .filter-section-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px;
+    }
+
+    .sidebar-section-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--gray-500);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 14px;
+    }
+
+    .filter-field { margin-bottom: 12px; }
+    .filter-field:last-child { margin-bottom: 0; }
+
+    .section-clear-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+
+    .clear-link {
+      font-size: 12px;
+      color: var(--purple);
+      cursor: pointer;
+    }
+
+    .clear-link:hover { text-decoration: underline; }
+
+    /* Info panel */
+    .info-panel {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      width: 300px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+      z-index: 999;
+      overflow: hidden;
+    }
+
+    .info-panel-header {
+      background: var(--indigo);
+      color: white;
+      padding: 12px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .info-panel-title {
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .info-panel-dismiss {
+      background: rgba(255,255,255,0.2);
+      border: none;
+      color: white;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font);
+    }
+
+    .info-panel-dismiss:hover { background: rgba(255,255,255,0.3); }
+
+    .info-panel-body {
+      padding: 14px;
+    }
+
+    .info-panel-endpoint {
+      display: inline-flex;
+      align-items: center;
+      background: #F0FDF4;
+      border: 1px solid #BBF7D0;
+      border-radius: var(--radius-xs);
+      padding: 3px 8px;
+      font-size: 11px;
+      font-weight: 500;
+      color: #15803D;
+      font-family: 'Monaco', 'Menlo', monospace;
+      margin-bottom: 10px;
+    }
+
+    .info-panel-text {
+      font-size: 13px;
+      color: var(--gray-600);
+      line-height: 1.55;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Concept Banner -->
+<div class="concept-banner">
+  <span>Concept 1 of 5 — Tech Stack Filter</span>
+  <span class="banner-divider">·</span>
+  <span>BuyerCaddy Integration</span>
+  <span class="banner-divider">·</span>
+  <a href="../../index.html">← Back to Index</a>
+</div>
+
+<!-- G2 Header -->
+<header class="g2-header">
+  <div class="g2-logo">G</div>
+  <span class="g2-brand">MyG2</span>
+  <div class="header-spacer"></div>
+  <div class="header-actions">
+    <div class="header-icon">?</div>
+    <div class="header-avatar">HM</div>
+  </div>
+</header>
+
+<div class="page-wrapper">
+  <div class="page-header">
+    <h1 class="page-title">G2 Activate</h1>
+    <p class="page-subtitle">Transform Buyer Intent data into ready-to-use leads. Identify and connect with companies researching solutions like yours on G2.</p>
+    <div class="page-meta">
+      <span class="status-active"><span class="status-dot"></span>Active</span>
+      <a href="#" class="manage-plan-link">Manage Plan</a>
+    </div>
+  </div>
+
+  <div class="tabs">
+    <button class="tab active">Available Prospects</button>
+    <button class="tab">Unlocked Prospects</button>
+    <button class="tab">Emails</button>
+  </div>
+
+  <div class="content-area">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+
+      <!-- Contact Filters (existing) -->
+      <div class="filter-section-card">
+        <div class="sidebar-section-title">Contact Filters</div>
+        <div class="filter-field">
+          <label class="filter-label">Departments</label>
+          <select><option>All Departments</option></select>
+        </div>
+        <div class="filter-field">
+          <label class="filter-label">Management Levels</label>
+          <select><option>All Levels</option></select>
+        </div>
+        <div class="filter-field">
+          <label class="filter-label">Job Functions</label>
+          <select><option>All Functions</option></select>
+        </div>
+      </div>
+
+      <!-- Company Filters (existing) -->
+      <div class="filter-section-card">
+        <div class="sidebar-section-title">Company Filters</div>
+        <div class="filter-field">
+          <label class="filter-label">Employee Count Range</label>
+          <div class="input-row">
+            <input type="number" placeholder="Min">
+            <input type="number" placeholder="Max">
+          </div>
+        </div>
+        <div class="filter-field">
+          <label class="filter-label">Company Headquarters Location</label>
+          <select><option>All Locations</option></select>
+        </div>
+      </div>
+
+      <!-- NEW: Tech Stack Filters -->
+      <div class="filter-section-card new-highlight" style="position:relative;">
+        <div class="new-badge">NEW</div>
+        <div class="section-clear-row">
+          <div class="sidebar-section-title" style="margin-bottom:0; padding-bottom:0; border-bottom:none;">Tech Stack Filters</div>
+          <a href="#" class="clear-link">Clear All</a>
+        </div>
+        <hr style="border:none; border-top:1px solid var(--border); margin: 10px 0 14px;">
+
+        <!-- Uses Vendor -->
+        <div class="filter-field">
+          <label class="filter-label">Uses Vendor</label>
+          <div class="tag-input-wrapper">
+            <span class="tag-pill">Salesforce <span class="tag-pill-remove">×</span></span>
+            <span class="tag-pill">HubSpot <span class="tag-pill-remove">×</span></span>
+            <input type="text" placeholder="Add vendor..." style="border:none; outline:none; padding:0; height:auto; min-width:80px; font-size:13px; background:transparent;">
+          </div>
+        </div>
+
+        <!-- Uses Category -->
+        <div class="filter-field">
+          <label class="filter-label">Uses Category</label>
+          <div class="checklist">
+            <label class="checklist-item">
+              <input type="checkbox" checked> CRM
+            </label>
+            <label class="checklist-item">
+              <input type="checkbox" checked> Sales Engagement
+            </label>
+            <label class="checklist-item">
+              <input type="checkbox"> Marketing Automation
+            </label>
+            <label class="checklist-item">
+              <input type="checkbox"> BI &amp; Analytics
+            </label>
+            <label class="checklist-item">
+              <input type="checkbox"> Data Integration
+            </label>
+          </div>
+        </div>
+
+        <!-- Excludes Vendor (Competitive) -->
+        <div class="filter-field" style="margin-bottom:0;">
+          <label class="filter-label">Excludes Vendor <span style="font-weight:400; color:var(--gray-500); font-size:12px;">(Competitive)</span></label>
+          <div class="tag-input-wrapper">
+            <span class="tag-pill competitive">Competitor Co. <span class="tag-pill-remove competitive">×</span></span>
+            <input type="text" placeholder="Add vendor..." style="border:none; outline:none; padding:0; height:auto; min-width:80px; font-size:13px; background:transparent;">
+          </div>
+        </div>
+      </div>
+
+    </aside>
+
+    <!-- Main Content -->
+    <div class="main-area">
+      <div class="card" style="padding:0; overflow:hidden;">
+        <div style="padding: 20px 20px 0;">
+          <div class="header-row">
+            <div class="header-left">
+              <span class="companies-count">Companies <span>(113)</span></span>
+            </div>
+            <div class="time-filters">
+              <button class="time-pill active">7 Days</button>
+              <button class="time-pill">30 Days</button>
+              <button class="time-pill">90 Days</button>
+              <button class="time-pill">1 Year</button>
+              <button class="time-pill">📅 Custom</button>
+            </div>
+          </div>
+          <div class="credits-bar">
+            <span>My credits: <strong>5,000 ⭐</strong></span>
+            <span class="credits-divider">|</span>
+            <span>Total: <strong>0 credits</strong></span>
+            <div class="credits-bar-spacer"></div>
+            <button class="btn btn-disabled">Unlock Selected (0)</button>
+          </div>
+        </div>
+        <div class="table-container">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th style="width:36px;"><input type="checkbox"></th>
+                <th>Credits ⭐</th>
+                <th>Company</th>
+                <th>Intent Level</th>
+                <th>Company Size</th>
+                <th>Industry</th>
+                <th>Headquarters Location</th>
+                <th>Contacts</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td><input type="checkbox"></td><td>100</td><td class="table-company-name blurred">Acme Corp International</td><td><span class="badge badge-high">High</span></td><td>900</td><td>Software Publishers</td><td>United States</td><td>3</td></tr>
+              <tr><td><input type="checkbox"></td><td>250</td><td class="table-company-name blurred">TechStream Solutions</td><td><span class="badge badge-high">High</span></td><td>1,300</td><td class="blurred">Data Analytics Firms</td><td>United States</td><td>3</td></tr>
+              <tr><td><input type="checkbox"></td><td>400</td><td class="table-company-name blurred">Nexus Systems Group</td><td><span class="badge badge-high">High</span></td><td>1,700</td><td class="blurred">Enterprise Software</td><td>United States</td><td>3</td></tr>
+              <tr><td><input type="checkbox"></td><td>125</td><td class="table-company-name blurred">Orbital Dynamics Inc</td><td><span class="badge badge-high">High</span></td><td>2,100</td><td class="blurred">Cloud Services</td><td>United States</td><td>3</td></tr>
+              <tr><td><input type="checkbox"></td><td>275</td><td class="table-company-name blurred">Vertex Capital Partners</td><td><span class="badge badge-high">High</span></td><td>2,500</td><td class="blurred">Financial Technology</td><td>United States</td><td>0</td></tr>
+              <tr><td><input type="checkbox"></td><td>425</td><td class="table-company-name blurred">Pinnacle Growth Co</td><td><span class="badge badge-high">High</span></td><td>1,000</td><td class="blurred">Marketing Platforms</td><td>United States</td><td>1</td></tr>
+              <tr><td><input type="checkbox"></td><td>150</td><td class="table-company-name blurred">Luminary Tech Works</td><td><span class="badge badge-medium">Medium</span></td><td>1,400</td><td class="blurred">HR Technology</td><td>United States</td><td>3</td></tr>
+              <tr><td><input type="checkbox"></td><td>300</td><td class="table-company-name blurred">Cascade Revenue Group</td><td><span class="badge badge-medium">Medium</span></td><td>1,800</td><td class="blurred">Revenue Operations</td><td>United States</td><td>0</td></tr>
+              <tr><td><input type="checkbox"></td><td>450</td><td class="table-company-name blurred">Meridian Data Labs</td><td><span class="badge badge-medium">Medium</span></td><td>2,200</td><td class="blurred">Data Infrastructure</td><td>United States</td><td>0</td></tr>
+              <tr><td><input type="checkbox"></td><td>175</td><td class="table-company-name blurred">Solstice Ventures LLC</td><td><span class="badge badge-medium">Medium</span></td><td>2,600</td><td class="blurred">Venture Capital</td><td>United States</td><td>3</td></tr>
+              <tr><td><input type="checkbox"></td><td>325</td><td class="table-company-name blurred">Ironclad Software Inc</td><td><span class="badge badge-medium">Medium</span></td><td>1,100</td><td class="blurred">Legal Technology</td><td>United States</td><td>3</td></tr>
+              <tr><td><input type="checkbox"></td><td>475</td><td class="table-company-name blurred">Wavefront Analytics</td><td><span class="badge badge-medium">Medium</span></td><td>1,500</td><td class="blurred">Business Intelligence</td><td>United States</td><td>2</td></tr>
+              <tr><td><input type="checkbox"></td><td>200</td><td class="table-company-name blurred">Axiom Cloud Systems</td><td><span class="badge badge-medium">Medium</span></td><td>1,900</td><td class="blurred">Cloud Computing</td><td>United States</td><td>3</td></tr>
+              <tr><td><input type="checkbox"></td><td>350</td><td class="table-company-name blurred">Frontier Networks Ltd</td><td><span class="badge badge-medium">Medium</span></td><td>2,300</td><td class="blurred">Telecommunications</td><td>United States</td><td>3</td></tr>
+              <tr><td><input type="checkbox"></td><td>500</td><td class="table-company-name blurred">Prism Intelligence Co</td><td><span class="badge badge-medium">Medium</span></td><td>2,700</td><td class="blurred">AI &amp; Machine Learning</td><td>United States</td><td>3</td></tr>
+              <tr><td><input type="checkbox"></td><td>225</td><td class="table-company-name blurred">Strata Operations Inc</td><td><span class="badge badge-medium">Medium</span></td><td>1,200</td><td class="blurred">Operations Software</td><td>United States</td><td>3</td></tr>
+              <tr><td><input type="checkbox"></td><td>375</td><td class="table-company-name blurred">Comet Digital Agency</td><td><span class="badge badge-low">Low</span></td><td>1,600</td><td class="blurred">Digital Marketing</td><td>United States</td><td>0</td></tr>
+              <tr><td><input type="checkbox"></td><td>550</td><td class="table-company-name blurred">Radius Commerce Group</td><td><span class="badge badge-low">Low</span></td><td>2,000</td><td class="blurred">E-Commerce</td><td>United States</td><td>3</td></tr>
+              <tr><td><input type="checkbox"></td><td>525</td><td class="table-company-name blurred">Epoch Systems Corp</td><td><span class="badge badge-low">Low</span></td><td>2,400</td><td class="blurred">Systems Integration</td><td>United States</td><td>3</td></tr>
+              <tr><td><input type="checkbox"></td><td>575</td><td class="table-company-name blurred">Cipher Analytics LLC</td><td><span class="badge badge-low">Low</span></td><td>2,800</td><td class="blurred">Cybersecurity</td><td>United States</td><td>3</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div style="padding: 4px 16px 8px;">
+          <div class="pagination">
+            <button class="page-btn nav-btn">←</button>
+            <button class="page-btn active">1</button>
+            <button class="page-btn">2</button>
+            <button class="page-btn">3</button>
+            <button class="page-btn">4</button>
+            <button class="page-btn">5</button>
+            <span class="page-ellipsis">...</span>
+            <button class="page-btn">22</button>
+            <button class="page-btn">23</button>
+            <button class="page-btn nav-btn">→</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Floating Info Panel -->
+<div class="info-panel" id="infoPanel">
+  <div class="info-panel-header">
+    <span class="info-panel-title">Concept 1: Tech Stack Filter</span>
+    <button class="info-panel-dismiss" onclick="document.getElementById('infoPanel').style.display='none'">×</button>
+  </div>
+  <div class="info-panel-body">
+    <div class="info-panel-endpoint">POST /companies/search</div>
+    <p class="info-panel-text">BuyerCaddy's <code>/companies/search</code> endpoint supports filtering by <strong>vendorDomainIn</strong>, <strong>productIdIn</strong>, and <strong>mainCategoryIdIn</strong> — powering precise tech-stack targeting before spending a credit.</p>
+  </div>
+</div>
+
+</body>
+</html>

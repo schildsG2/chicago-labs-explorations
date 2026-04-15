@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Elevate Component Library — Demo</title>
+  <link rel="stylesheet" href="../tokens/elevate.css">
+  <link rel="stylesheet" href="elevate.css">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg-neutral-5);
+    }
+    .demo-section {
+      margin-bottom: 3rem;
+    }
+    .demo-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-nonessential);
+      margin-bottom: 12px;
+    }
+    .demo-grid {
+      display: grid;
+      gap: 1rem;
+    }
+    .demo-row {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+  </style>
+</head>
+<body>
+
+<div elv class="elv-max-w-screen-xl elv-mx-auto elv-p-8">
+
+  <!-- Header -->
+  <div class="elv-mb-12">
+    <div class="elv-inline-flex elv-items-center elv-gap-2 elv-px-3 elv-py-1 elv-bg-primary-20 elv-rounded-full elv-mb-4">
+      <span class="elv-text-xs elv-font-bold elv-text-primary elv-uppercase elv-tracking-wide">Component Library</span>
+    </div>
+    <h1 class="elv-text-4xl elv-font-bold elv-text-default elv-mb-3">Elevate Components</h1>
+    <p class="elv-text-base elv-text-subtle elv-max-w-2xl">
+      UE Elevate design system components ready for use in explorations. This page demonstrates all documented components and patterns.
+    </p>
+  </div>
+
+  <hr class="elv-border-t elv-border-light elv-my-12">
+
+  <!-- Typography -->
+  <div class="demo-section">
+    <h2 class="elv-text-2xl elv-font-bold elv-text-default elv-mb-6">Typography</h2>
+
+    <div class="demo-grid">
+      <div>
+        <div class="demo-label">Headings</div>
+        <div class="elv-flex elv-flex-col elv-gap-4">
+          <h1 class="elv-text-4xl elv-font-bold elv-text-default">Display Heading (4xl)</h1>
+          <h2 class="elv-text-3xl elv-font-bold elv-text-default">Page Heading (3xl)</h2>
+          <h3 class="elv-text-2xl elv-font-semibold elv-text-default">Section Heading (2xl)</h3>
+          <h4 class="elv-text-xl elv-font-semibold elv-text-default">Subsection (xl)</h4>
+          <h5 class="elv-text-lg elv-font-semibold elv-text-default">Subheading (lg)</h5>
+        </div>
+      </div>
+
+      <div>
+        <div class="demo-label">Body Text</div>
+        <div class="elv-flex elv-flex-col elv-gap-2">
+          <p class="elv-text-base elv-text-default">Base text — Regular body copy (16px)</p>
+          <p class="elv-text-sm elv-text-subtle">Small text — Secondary information (14px)</p>
+          <p class="elv-text-xs elv-text-nonessential">Extra small — Supporting text (12px)</p>
+        </div>
+      </div>
+
+      <div>
+        <div class="demo-label">Text Colors</div>
+        <div class="elv-flex elv-flex-col elv-gap-2">
+          <p class="elv-text-base elv-text-default">Default text color</p>
+          <p class="elv-text-base elv-text-subtle">Subtle text color</p>
+          <p class="elv-text-base elv-text-nonessential">Nonessential text</p>
+          <p class="elv-text-base elv-text-primary">Primary brand color</p>
+          <p class="elv-text-base elv-text-link">Link color</p>
+          <p class="elv-text-base elv-text-success">Success text</p>
+          <p class="elv-text-base elv-text-critical">Critical text</p>
+          <p class="elv-text-base elv-text-warning">Warning text</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="elv-border-t elv-border-light elv-my-12">
+
+  <!-- Buttons -->
+  <div class="demo-section">
+    <h2 class="elv-text-2xl elv-font-bold elv-text-default elv-mb-6">Buttons</h2>
+
+    <div class="demo-grid">
+      <div>
+        <div class="demo-label">Primary</div>
+        <div class="demo-row">
+          <button class="btn btn--primary btn--lg">Large</button>
+          <button class="btn btn--primary btn--md">Medium</button>
+          <button class="btn btn--primary btn--sm">Small</button>
+          <button class="btn btn--primary btn--md" disabled>Disabled</button>
+        </div>
+      </div>
+
+      <div>
+        <div class="demo-label">Secondary</div>
+        <div class="demo-row">
+          <button class="btn btn--secondary btn--lg">Large</button>
+          <button class="btn btn--secondary btn--md">Medium</button>
+          <button class="btn btn--secondary btn--sm">Small</button>
+          <button class="btn btn--secondary btn--md" disabled>Disabled</button>
+        </div>
+      </div>
+
+      <div>
+        <div class="demo-label">Tertiary</div>
+        <div class="demo-row">
+          <button class="btn btn--tertiary btn--lg">Large</button>
+          <button class="btn btn--tertiary btn--md">Medium</button>
+          <button class="btn btn--tertiary btn--sm">Small</button>
+        </div>
+      </div>
+
+      <div>
+        <div class="demo-label">Brand</div>
+        <div class="demo-row">
+          <button class="btn btn--brand btn--lg">Large</button>
+          <button class="btn btn--brand btn--md">Medium</button>
+          <button class="btn btn--brand btn--sm">Small</button>
+        </div>
+      </div>
+
+      <div>
+        <div class="demo-label">Inverted (for dark backgrounds)</div>
+        <div class="elv-bg-primary elv-p-4 elv-rounded-md">
+          <div class="demo-row">
+            <button class="btn btn--inverted btn--lg">Large</button>
+            <button class="btn btn--inverted btn--md">Medium</button>
+            <button class="btn btn--inverted btn--sm">Small</button>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="demo-label">Text Buttons</div>
+        <div class="demo-row">
+          <button class="btn btn--text btn--md">Text Button</button>
+          <button class="btn btn--text-neutral btn--md">Text Neutral</button>
+        </div>
+      </div>
+
+      <div>
+        <div class="demo-label">Button Groups</div>
+        <div class="elv-flex elv-gap-3">
+          <button class="btn btn--primary btn--md">Save</button>
+          <button class="btn btn--secondary btn--md">Cancel</button>
+        </div>
+      </div>
+
+      <div>
+        <div class="demo-label">As Links</div>
+        <div class="demo-row">
+          <a href="#" class="btn btn--primary btn--md">Link Button</a>
+          <a href="#" class="btn btn--secondary btn--md">Link Secondary</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="elv-border-t elv-border-light elv-my-12">
+
+  <!-- Cards & Layouts -->
+  <div class="demo-section">
+    <h2 class="elv-text-2xl elv-font-bold elv-text-default elv-mb-6">Cards & Layouts</h2>
+
+    <div class="demo-grid">
+      <div>
+        <div class="demo-label">Basic Card</div>
+        <div class="elv-bg-neutral-0 elv-border elv-border-light elv-rounded-md elv-p-6 elv-shadow-1">
+          <h3 class="elv-text-lg elv-font-semibold elv-text-default elv-mb-2">Card Title</h3>
+          <p class="elv-text-sm elv-text-subtle elv-mb-4">
+            Card description with supporting text that explains what this card is about.
+          </p>
+          <div class="elv-flex elv-gap-3">
+            <button class="btn btn--primary btn--sm">Primary</button>
+            <button class="btn btn--secondary btn--sm">Secondary</button>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="demo-label">Card with Shadow Levels</div>
+        <div class="elv-grid elv-grid-cols-3 elv-gap-4">
+          <div class="elv-bg-neutral-0 elv-border elv-border-light elv-rounded-md elv-p-4 elv-shadow-1">
+            <p class="elv-text-sm elv-text-subtle">Shadow 1</p>
+          </div>
+          <div class="elv-bg-neutral-0 elv-border elv-border-light elv-rounded-md elv-p-4 elv-shadow-2">
+            <p class="elv-text-sm elv-text-subtle">Shadow 2</p>
+          </div>
+          <div class="elv-bg-neutral-0 elv-border elv-border-light elv-rounded-md elv-p-4 elv-shadow-3">
+            <p class="elv-text-sm elv-text-subtle">Shadow 3</p>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="demo-label">Grid Layout</div>
+        <div class="elv-grid elv-grid-cols-2 elv-gap-4">
+          <div class="elv-bg-neutral-0 elv-border elv-border-light elv-rounded-md elv-p-4">
+            <p class="elv-text-sm elv-font-semibold elv-text-default">Grid Item 1</p>
+          </div>
+          <div class="elv-bg-neutral-0 elv-border elv-border-light elv-rounded-md elv-p-4">
+            <p class="elv-text-sm elv-font-semibold elv-text-default">Grid Item 2</p>
+          </div>
+          <div class="elv-bg-neutral-0 elv-border elv-border-light elv-rounded-md elv-p-4">
+            <p class="elv-text-sm elv-font-semibold elv-text-default">Grid Item 3</p>
+          </div>
+          <div class="elv-bg-neutral-0 elv-border elv-border-light elv-rounded-md elv-p-4">
+            <p class="elv-text-sm elv-font-semibold elv-text-default">Grid Item 4</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="elv-border-t elv-border-light elv-my-12">
+
+  <!-- Alerts & Messages -->
+  <div class="demo-section">
+    <h2 class="elv-text-2xl elv-font-bold elv-text-default elv-mb-6">Alerts & Messages</h2>
+
+    <div class="elv-flex elv-flex-col elv-gap-4">
+      <div class="elv-bg-success-20 elv-border elv-border-success elv-rounded-sm elv-p-4">
+        <p class="elv-text-sm elv-text-success elv-font-medium">✓ Success: Your changes have been saved.</p>
+      </div>
+
+      <div class="elv-bg-critical-20 elv-border elv-border-critical elv-rounded-sm elv-p-4">
+        <p class="elv-text-sm elv-text-critical elv-font-medium">✕ Error: Something went wrong. Please try again.</p>
+      </div>
+
+      <div class="elv-bg-info-20 elv-border elv-border-info elv-rounded-sm elv-p-4">
+        <p class="elv-text-sm elv-text-info elv-font-medium">ℹ Info: This is an informational message.</p>
+      </div>
+
+      <div class="elv-bg-warning-20 elv-border elv-border-warning elv-rounded-sm elv-p-4">
+        <p class="elv-text-sm elv-text-warning elv-font-medium">⚠ Warning: Please review before proceeding.</p>
+      </div>
+    </div>
+  </div>
+
+  <hr class="elv-border-t elv-border-light elv-my-12">
+
+  <!-- Form Elements -->
+  <div class="demo-section">
+    <h2 class="elv-text-2xl elv-font-bold elv-text-default elv-mb-6">Form Patterns</h2>
+
+    <div class="elv-bg-neutral-0 elv-border elv-border-light elv-rounded-md elv-p-6 elv-max-w-lg">
+      <h3 class="elv-text-lg elv-font-semibold elv-text-default elv-mb-4">Sample Form</h3>
+
+      <div class="elv-flex elv-flex-col elv-gap-4">
+        <div>
+          <label class="elv-block elv-text-sm elv-font-semibold elv-text-default elv-mb-1">
+            Email Address
+          </label>
+          <input
+            type="email"
+            placeholder="you@example.com"
+            class="elv-w-full elv-px-3 elv-py-2 elv-border elv-border-medium elv-rounded-sm elv-text-sm"
+          />
+        </div>
+
+        <div>
+          <label class="elv-block elv-text-sm elv-font-semibold elv-text-default elv-mb-1">
+            Message
+          </label>
+          <textarea
+            rows="3"
+            placeholder="Enter your message..."
+            class="elv-w-full elv-px-3 elv-py-2 elv-border elv-border-medium elv-rounded-sm elv-text-sm"
+          ></textarea>
+        </div>
+
+        <div>
+          <label class="elv-flex elv-items-center elv-gap-2 elv-text-sm elv-text-default">
+            <input type="checkbox" class="elv-w-4 elv-h-4">
+            <span>I agree to the terms and conditions</span>
+          </label>
+        </div>
+
+        <div class="elv-flex elv-gap-3 elv-pt-2">
+          <button class="btn btn--primary btn--md">Submit</button>
+          <button class="btn btn--secondary btn--md">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="elv-border-t elv-border-light elv-my-12">
+
+  <!-- Backgrounds -->
+  <div class="demo-section">
+    <h2 class="elv-text-2xl elv-font-bold elv-text-default elv-mb-6">Background Colors</h2>
+
+    <div class="elv-grid elv-grid-cols-3 elv-gap-4">
+      <div class="elv-bg-primary elv-text-inverted elv-p-4 elv-rounded-md">
+        <p class="elv-text-sm elv-font-semibold">Primary</p>
+      </div>
+      <div class="elv-bg-neutral-10 elv-text-default elv-p-4 elv-rounded-md">
+        <p class="elv-text-sm elv-font-semibold">Neutral 10</p>
+      </div>
+      <div class="elv-bg-neutral-20 elv-text-default elv-p-4 elv-rounded-md">
+        <p class="elv-text-sm elv-font-semibold">Neutral 20</p>
+      </div>
+      <div class="elv-bg-success-20 elv-text-success elv-p-4 elv-rounded-md">
+        <p class="elv-text-sm elv-font-semibold">Success</p>
+      </div>
+      <div class="elv-bg-critical-20 elv-text-critical elv-p-4 elv-rounded-md">
+        <p class="elv-text-sm elv-font-semibold">Critical</p>
+      </div>
+      <div class="elv-bg-info-20 elv-text-info elv-p-4 elv-rounded-md">
+        <p class="elv-text-sm elv-font-semibold">Info</p>
+      </div>
+    </div>
+  </div>
+
+  <hr class="elv-border-t elv-border-light elv-my-12">
+
+  <!-- Spacing Scale -->
+  <div class="demo-section">
+    <h2 class="elv-text-2xl elv-font-bold elv-text-default elv-mb-6">Spacing Scale</h2>
+
+    <div class="demo-label">Common Spacing Values (1 unit = 0.25rem)</div>
+    <div class="elv-flex elv-flex-col elv-gap-2">
+      <div class="elv-flex elv-items-center elv-gap-4">
+        <div class="elv-bg-primary elv-p-1" style="width: fit-content;"><span class="elv-text-xs elv-text-inverted">1</span></div>
+        <span class="elv-text-sm elv-text-subtle">0.25rem</span>
+      </div>
+      <div class="elv-flex elv-items-center elv-gap-4">
+        <div class="elv-bg-primary elv-p-2" style="width: fit-content;"><span class="elv-text-xs elv-text-inverted">2</span></div>
+        <span class="elv-text-sm elv-text-subtle">0.5rem</span>
+      </div>
+      <div class="elv-flex elv-items-center elv-gap-4">
+        <div class="elv-bg-primary elv-p-4" style="width: fit-content;"><span class="elv-text-xs elv-text-inverted">4</span></div>
+        <span class="elv-text-sm elv-text-subtle">1rem</span>
+      </div>
+      <div class="elv-flex elv-items-center elv-gap-4">
+        <div class="elv-bg-primary elv-p-6" style="width: fit-content;"><span class="elv-text-xs elv-text-inverted">6</span></div>
+        <span class="elv-text-sm elv-text-subtle">1.5rem</span>
+      </div>
+      <div class="elv-flex elv-items-center elv-gap-4">
+        <div class="elv-bg-primary elv-p-8" style="width: fit-content;"><span class="elv-text-xs elv-text-inverted">8</span></div>
+        <span class="elv-text-sm elv-text-subtle">2rem</span>
+      </div>
+    </div>
+  </div>
+
+  <hr class="elv-border-t elv-border-light elv-my-12">
+
+  <!-- Footer -->
+  <div class="elv-text-center elv-py-8">
+    <p class="elv-text-sm elv-text-subtle">
+      View full documentation in <a href="./ELEVATE_COMPONENTS.md" class="elv-text-link elv-underline">ELEVATE_COMPONENTS.md</a>
+    </p>
+    <p class="elv-text-xs elv-text-nonessential elv-mt-2">
+      Linked to UE Elevate · Auto-updated · <a href="https://www.g2.test/elevate/lookbook" class="elv-text-link">Lookbook</a>
+    </p>
+  </div>
+
+</div>
+
+</body>
+</html>

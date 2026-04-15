@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BuyerCaddy × G2 Activate — Design Explorations</title>
+  <link rel="stylesheet" href="./shared/styles.css">
+  <style>
+    body {
+      background: var(--gray-50);
+      min-width: 1000px;
+    }
+
+    .hub-wrapper {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 48px 24px 64px;
+    }
+
+    .hub-header {
+      margin-bottom: 48px;
+    }
+
+    .hub-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--indigo);
+      background: #EEF2FF;
+      padding: 4px 12px;
+      border-radius: 999px;
+      margin-bottom: 16px;
+    }
+
+    .hub-title {
+      font-size: 36px;
+      font-weight: 800;
+      color: var(--gray-900);
+      letter-spacing: -0.5px;
+      margin-bottom: 12px;
+      line-height: 1.2;
+    }
+
+    .hub-title .brand-bc {
+      color: var(--indigo);
+    }
+
+    .hub-title .brand-g2 {
+      color: var(--g2-red);
+    }
+
+    .hub-subtitle {
+      font-size: 16px;
+      color: var(--gray-500);
+      line-height: 1.6;
+      max-width: 600px;
+    }
+
+    /* Base card — full width, special treatment */
+    .base-card {
+      background: var(--gray-900);
+      border: 1px solid #1F2937;
+      border-radius: var(--radius);
+      padding: 28px 32px;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      text-decoration: none;
+      transition: background 0.15s, transform 0.15s;
+    }
+
+    .base-card:hover {
+      background: #111827;
+      text-decoration: none;
+      transform: translateY(-1px);
+    }
+
+    .base-card-label {
+      display: inline-flex;
+      align-items: center;
+      padding: 3px 10px;
+      background: #374151;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #9CA3AF;
+      margin-bottom: 8px;
+    }
+
+    .base-card-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 6px;
+    }
+
+    .base-card-desc {
+      font-size: 14px;
+      color: #9CA3AF;
+      line-height: 1.5;
+      max-width: 480px;
+    }
+
+    .base-card-cta {
+      margin-left: auto;
+      flex-shrink: 0;
+    }
+
+    .base-card-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 20px;
+      background: var(--white);
+      color: var(--gray-900);
+      border-radius: var(--radius-sm);
+      font-weight: 600;
+      font-size: 14px;
+      white-space: nowrap;
+    }
+
+    .base-card-link:hover {
+      background: var(--gray-100);
+      text-decoration: none;
+      color: var(--gray-900);
+    }
+
+    /* Concepts grid */
+    .concepts-section-label {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--gray-400);
+      margin-bottom: 16px;
+    }
+
+    .concepts-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .concept-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      transition: box-shadow 0.15s, transform 0.15s, border-color 0.15s;
+      text-decoration: none;
+    }
+
+    .concept-card:hover {
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      transform: translateY(-2px);
+      border-color: var(--gray-300);
+      text-decoration: none;
+    }
+
+    .concept-number {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--gray-400);
+      margin-bottom: 8px;
+    }
+
+    .concept-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--gray-900);
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+
+    .concept-desc {
+      font-size: 13px;
+      color: var(--gray-500);
+      line-height: 1.55;
+      flex: 1;
+      margin-bottom: 16px;
+    }
+
+    .concept-endpoint {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #F0FDF4;
+      border: 1px solid #BBF7D0;
+      border-radius: var(--radius-xs);
+      padding: 4px 10px;
+      font-size: 11px;
+      font-weight: 500;
+      color: #15803D;
+      font-family: 'Monaco', 'Menlo', monospace;
+      margin-bottom: 16px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .concept-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--purple);
+      margin-top: auto;
+    }
+
+    .concept-cta:hover {
+      text-decoration: underline;
+    }
+
+    /* Color accents per card */
+    .concept-card-1 { border-top: 3px solid #8B5CF6; }
+    .concept-card-2 { border-top: 3px solid #3B82F6; }
+    .concept-card-3 { border-top: 3px solid #10B981; }
+    .concept-card-4 { border-top: 3px solid #F59E0B; }
+    .concept-card-5 { border-top: 3px solid #EF4444; }
+
+    .hub-divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 32px 0 28px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="hub-wrapper">
+
+  <!-- Header -->
+  <div class="hub-header">
+    <div class="hub-eyebrow">Design Exploration · 2025</div>
+    <h1 class="hub-title">
+      <span class="brand-bc">BuyerCaddy</span> × <span class="brand-g2">G2</span> Activate
+    </h1>
+    <p class="hub-subtitle">Design explorations for integrating buyer tech stack intelligence into the G2 Activate workflow.</p>
+  </div>
+
+  <!-- Base State: Figma -->
+  <a href="./base/index.html" class="base-card">
+    <div>
+      <div class="base-card-label">Base State · Figma</div>
+      <div class="base-card-title">G2 Activate — Faithful Reproduction</div>
+      <p class="base-card-desc">Faithful reproduction of the G2 Activate interface. All 5 screens with working navigation. Starting point for all explorations.</p>
+    </div>
+    <div class="base-card-cta">
+      <span class="base-card-link">View Base →</span>
+    </div>
+  </a>
+
+  <!-- Base State: Live Code -->
+  <a href="./base-live-code/index.html" class="base-card" style="background: #1a1a2e; border-color: #2d2d4e; margin-top: 12px;">
+    <div>
+      <div class="base-card-label" style="background: #2d2d4e; color: #988ed2;">Base State · Live Code</div>
+      <div class="base-card-title">G2 Activate — Live Code Accurate</div>
+      <p class="base-card-desc">Modeled from the actual Rails/Slim templates and Elevate design system tokens. Closer to production: Figtree font, real color values, accurate component structure and column layouts.</p>
+    </div>
+    <div class="base-card-cta">
+      <span class="base-card-link" style="background: #988ed2; color: #fff;">View Base →</span>
+    </div>
+  </a>
+
+  <hr class="hub-divider">
+
+  <div class="concepts-section-label">BuyerCaddy Integration Concepts</div>
+
+  <div class="concepts-grid">
+
+    <!-- Concept 1 -->
+    <a href="./explorations/01-tech-stack-filter/index.html" class="concept-card concept-card-1">
+      <div class="concept-number">Concept 1 of 5</div>
+      <div class="concept-title">Tech Stack Filter</div>
+      <p class="concept-desc">Add vendor/category filters to the sidebar using BuyerCaddy's company search API. Target prospects by what software they already run.</p>
+      <div class="concept-endpoint">POST /companies/search</div>
+      <span class="concept-cta">View Exploration →</span>
+    </a>
+
+    <!-- Concept 2 -->
+    <a href="./explorations/02-stack-preview-column/index.html" class="concept-card concept-card-2">
+      <div class="concept-number">Concept 2 of 5</div>
+      <div class="concept-title">Stack Preview Column</div>
+      <p class="concept-desc">Surface top tech categories in the prospects table before unlock. Help users prioritize which companies to spend credits on.</p>
+      <div class="concept-endpoint">POST /companies/{domain}/products/paged</div>
+      <span class="concept-cta">View Exploration →</span>
+    </a>
+
+    <!-- Concept 3 -->
+    <a href="./explorations/03-unlock-enrichment/index.html" class="concept-card concept-card-3">
+      <div class="concept-number">Concept 3 of 5</div>
+      <div class="concept-title">Unlock Enrichment</div>
+      <p class="concept-desc">Enrich the Prospect Details page with the full software stack and recent trigger events on unlock.</p>
+      <div class="concept-endpoint">products/paged + /feed</div>
+      <span class="concept-cta">View Exploration →</span>
+    </a>
+
+    <!-- Concept 4 -->
+    <a href="./explorations/04-stack-aware-email/index.html" class="concept-card concept-card-4">
+      <div class="concept-number">Concept 4 of 5</div>
+      <div class="concept-title">Stack-Aware Email</div>
+      <p class="concept-desc">Feed real stack data into the email generator so the email body references actual tools by name.</p>
+      <div class="concept-endpoint">Stack data + email generation</div>
+      <span class="concept-cta">View Exploration →</span>
+    </a>
+
+    <!-- Concept 5 -->
+    <a href="./explorations/05-intent-trigger-events/index.html" class="concept-card concept-card-5">
+      <div class="concept-number">Concept 5 of 5</div>
+      <div class="concept-title">Intent + Trigger Events</div>
+      <p class="concept-desc">Supplement G2 intent signals with BuyerCaddy news feed events (funding, hiring, acquisitions) to explain WHY a company is in-market.</p>
+      <div class="concept-endpoint">GET /companies/{domain}/feed</div>
+      <span class="concept-cta">View Exploration →</span>
+    </a>
+
+  </div>
+
+  <hr class="hub-divider">
+
+  <div class="concepts-section-label" style="display: flex; align-items: center; gap: 10px;">
+    Credit-Unlocked Concepts
+    <span style="font-size: 11px; font-weight: 500; text-transform: none; letter-spacing: 0; color: #9b99a3; background: #f2f2f3; border-radius: 999px; padding: 2px 10px;">Per-company · Gated by credit spend · Modeled on live code</span>
+  </div>
+
+  <div class="concepts-grid">
+
+    <!-- Unlock 1 -->
+    <a href="./explorations/unlock-01-stack-enrichment/index.html" class="concept-card" style="border-top: 3px solid #5746b2;">
+      <div class="concept-number" style="color: #5746b2;">Credit-Unlock 1 of 3</div>
+      <div class="concept-title">Stack Enrichment on Unlock</div>
+      <p class="concept-desc">The full software stack is fetched and revealed on the Prospect Details page at the moment credits are spent — no pre-unlock visibility, no additional cost.</p>
+      <div class="concept-endpoint">POST /companies/{domain}/products/paged</div>
+      <span class="concept-cta" style="color: #5746b2;">View Exploration →</span>
+    </a>
+
+    <!-- Unlock 2 -->
+    <a href="./explorations/unlock-02-email-personalization/index.html" class="concept-card" style="border-top: 3px solid #5746b2;">
+      <div class="concept-number" style="color: #5746b2;">Credit-Unlock 2 of 3</div>
+      <div class="concept-title">Email Personalization from Stack</div>
+      <p class="concept-desc">Stack data fetched at unlock is passed as LLM context. The generated email references the prospect's actual tools by name — no extra API call required.</p>
+      <div class="concept-endpoint">Stack data from unlock</div>
+      <span class="concept-cta" style="color: #5746b2;">View Exploration →</span>
+    </a>
+
+    <!-- Unlock 3 -->
+    <a href="./explorations/unlock-03-trigger-events/index.html" class="concept-card" style="border-top: 3px solid #5746b2;">
+      <div class="concept-number" style="color: #5746b2;">Credit-Unlock 3 of 3</div>
+      <div class="concept-title">Trigger Events in Unlocked Table</div>
+      <p class="concept-desc">On unlock, BuyerCaddy's feed endpoint surfaces recent FUNDING, PEOPLE, and ACQUISITION events alongside G2 intent — explaining why a company is in-market.</p>
+      <div class="concept-endpoint">GET /companies/{domain}/feed</div>
+      <span class="concept-cta" style="color: #5746b2;">View Exploration →</span>
+    </a>
+
+  </div>
+
+  <hr class="hub-divider">
+
+  <div class="concepts-section-label" style="display: flex; align-items: center; gap: 10px;">
+    Stack Section Layout Variants
+    <span style="font-size: 11px; font-weight: 500; text-transform: none; letter-spacing: 0; color: #9b99a3; background: #f2f2f3; border-radius: 999px; padding: 2px 10px;">3 layout approaches for the tech stack enrichment component · Concept 1 deep-dive</span>
+  </div>
+
+  <div class="concepts-grid">
+
+    <!-- Layout A -->
+    <a href="./explorations/stack-layout-01-pill-cloud/index.html" class="concept-card" style="border-top: 3px solid #1fa896;">
+      <div class="concept-number" style="color: #1fa896;">Layout A · Compact</div>
+      <div class="concept-title">Pill Cloud</div>
+      <p class="concept-desc">All products as flowing chips in category rows. Minimal vertical footprint. Signal strength from hitCount encoded as a dot color on each chip.</p>
+      <div class="concept-endpoint" style="background: #d0f6f1; border-color: #a9efe5; color: #0f5249;">hitCount → signal dot</div>
+      <span class="concept-cta" style="color: #1fa896;">View Layout →</span>
+    </a>
+
+    <!-- Layout B -->
+    <a href="./explorations/stack-layout-02-flat-table/index.html" class="concept-card" style="border-top: 3px solid #1fa896;">
+      <div class="concept-number" style="color: #1fa896;">Layout B · Data-Dense</div>
+      <div class="concept-title">Flat Table</div>
+      <p class="concept-desc">Full-width table sorted by signal strength. Surfaces G2 rating, cohort adoption %, tenure from first detection, and last verified — one row per product.</p>
+      <div class="concept-endpoint" style="background: #d0f6f1; border-color: #a9efe5; color: #0f5249;">+ rating · cohort % · tenure</div>
+      <span class="concept-cta" style="color: #1fa896;">View Layout →</span>
+    </a>
+
+    <!-- Layout C -->
+    <a href="./explorations/stack-layout-03-category-cards/index.html" class="concept-card" style="border-top: 3px solid #1fa896;">
+      <div class="concept-number" style="color: #1fa896;">Layout C · Strategic</div>
+      <div class="concept-title">Category Cards</div>
+      <p class="concept-desc">Each category gets its own card with signal bars per product, cohort adoption context, and category-level insights — redundancy warnings, peer benchmarks, stack pairing notes.</p>
+      <div class="concept-endpoint" style="background: #d0f6f1; border-color: #a9efe5; color: #0f5249;">+ cohort % · overlap signals</div>
+      <span class="concept-cta" style="color: #1fa896;">View Layout →</span>
+    </a>
+
+  </div>
+
+  <hr class="hub-divider">
+
+  <div class="concepts-section-label" style="display: flex; align-items: center; gap: 10px;">
+    Tech Stack Table — States &amp; Edge Cases
+    <span style="font-size: 11px; font-weight: 500; text-transform: none; letter-spacing: 0; color: #9b99a3; background: #f2f2f3; border-radius: 999px; padding: 2px 10px;">6 states · Based on Layout B Flat Table · Informed by Figma explorations</span>
+  </div>
+
+  <div class="concepts-grid">
+
+    <!-- Null -->
+    <a href="./explorations/stack-state-null/index.html" class="concept-card" style="border-top: 3px solid #6f6d78;">
+      <div class="concept-number" style="color: #6f6d78;">State 1 · Pre-unlock</div>
+      <div class="concept-title">Null — No Data</div>
+      <p class="concept-desc">BuyerCaddy returned no tech stack results for this company. No unlock button — there is nothing to unlock. Empty state with explanation.</p>
+      <div class="concept-endpoint" style="background: #f2f2f3; border-color: #dfdfe2; color: #4c4b53;">No products detected · No CTA</div>
+      <span class="concept-cta" style="color: #6f6d78;">View State →</span>
+    </a>
+
+    <!-- Loading -->
+    <a href="./explorations/stack-state-loading/index.html" class="concept-card" style="border-top: 3px solid #5746b2;">
+      <div class="concept-number" style="color: #5746b2;">State 2 · Transitional</div>
+      <div class="concept-title">Loading — Unlock in Progress</div>
+      <p class="concept-desc">User clicked Unlock. Credits deducted. API call in flight. Skeleton table rows + spinner convey that data is on the way without blocking the rest of the page.</p>
+      <div class="concept-endpoint" style="background: #ebe9f6; border-color: #c3bde5; color: #45388f;">Skeleton rows · Spinner · Disabled CTA</div>
+      <span class="concept-cta" style="color: #5746b2;">View State →</span>
+    </a>
+
+    <!-- Refreshing -->
+    <a href="./explorations/stack-state-refreshing/index.html" class="concept-card" style="border-top: 3px solid #5746b2;">
+      <div class="concept-number" style="color: #5746b2;">State 3 · Transitional</div>
+      <div class="concept-title">Refreshing — Re-fetch in Progress</div>
+      <p class="concept-desc">Previously unlocked. User clicked Refresh Stack. Existing data stays visible but dimmed — a floating pill overlay signals the update without fully blocking content.</p>
+      <div class="concept-endpoint" style="background: #ebe9f6; border-color: #c3bde5; color: #45388f;">Existing data visible · Non-blocking overlay</div>
+      <span class="concept-cta" style="color: #5746b2;">View State →</span>
+    </a>
+
+    <!-- Stale -->
+    <a href="./explorations/stack-state-stale/index.html" class="concept-card" style="border-top: 3px solid #a07900;">
+      <div class="concept-number" style="color: #a07900;">State 4 · Post-unlock</div>
+      <div class="concept-title">Stale — Data Older than 6 Months</div>
+      <p class="concept-desc">Stack was unlocked and data is still showing, but last verified dates are aging past reliability threshold. Amber warning banner nudges user to refresh before generating emails.</p>
+      <div class="concept-endpoint" style="background: #fff9e5; border-color: #ffe999; color: #a07900;">Amber banner · Stale date highlight · Refresh CTA</div>
+      <span class="concept-cta" style="color: #a07900;">View State →</span>
+    </a>
+
+    <!-- Error -->
+    <a href="./explorations/stack-state-error/index.html" class="concept-card" style="border-top: 3px solid #eb2000;">
+      <div class="concept-number" style="color: #eb2000;">State 5 · Failure</div>
+      <div class="concept-title">Error — Fetch Failed</div>
+      <p class="concept-desc">API call failed mid-unlock or mid-refresh. Credits were not charged. Error state with retry CTA and explicit note that no credits were deducted.</p>
+      <div class="concept-endpoint" style="background: #fff6f5; border-color: #FFD7D1; color: #eb2000;">Error UI · No credits deducted · Retry CTA</div>
+      <span class="concept-cta" style="color: #eb2000;">View State →</span>
+    </a>
+
+    <!-- No credits -->
+    <a href="./explorations/stack-state-no-credits/index.html" class="concept-card" style="border-top: 3px solid #4c4b53;">
+      <div class="concept-number" style="color: #4c4b53;">State 6 · Pre-unlock</div>
+      <div class="concept-title">Insufficient Credits</div>
+      <p class="concept-desc">Locked state variant where the user's credit balance is below the cost to unlock. Button is disabled. Overlay callout surfaces balance vs. cost with a credit progress bar and upgrade path.</p>
+      <div class="concept-endpoint" style="background: #f2f2f3; border-color: #dfdfe2; color: #4c4b53;">Disabled unlock · Credit balance · Upgrade CTA</div>
+      <span class="concept-cta" style="color: #4c4b53;">View State →</span>
+    </a>
+
+  </div>
+
+</div>
+
+</body>
+</html>

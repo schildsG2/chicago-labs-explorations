@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exploration 07: Radio + Expansion — G2 Activate</title>
+  <link rel="stylesheet" href="../../shared/styles.css">
+  <style>
+    .payment-selector {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .radio-option {
+      background: var(--white);
+      border: 2px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      margin-bottom: 12px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .radio-option:hover {
+      border-color: var(--gray-400);
+    }
+    .radio-option.selected {
+      border-color: var(--purple);
+      background: var(--purple-light);
+    }
+    .radio-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .radio-input {
+      width: 20px;
+      height: 20px;
+      accent-color: var(--purple);
+      flex-shrink: 0;
+      cursor: pointer;
+    }
+    .radio-label {
+      flex: 1;
+    }
+    .radio-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--gray-900);
+      margin-bottom: 4px;
+    }
+    .radio-price {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--gray-900);
+    }
+    .radio-price-detail {
+      font-size: 13px;
+      color: var(--gray-600);
+    }
+    .expanded-details {
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+      display: none;
+    }
+    .radio-option.selected .expanded-details {
+      display: block;
+    }
+    .detail-section {
+      margin-bottom: 20px;
+    }
+    .detail-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--gray-900);
+      margin-bottom: 10px;
+    }
+    .benefit-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 6px 0;
+      font-size: 14px;
+      color: var(--gray-700);
+    }
+    .benefit-check {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--teal);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      flex-shrink: 0;
+    }
+  </style>
+</head>
+<body>
+  <header class="g2-header">
+    <div class="g2-logo">G</div>
+    <div class="g2-brand">MyG2</div>
+    <div class="header-spacer"></div>
+    <div class="header-actions">
+      <div class="header-icon">?</div>
+      <div class="header-avatar">SC</div>
+    </div>
+  </header>
+
+  <div class="page-header">
+    <div class="page-header-inner">
+      <div class="breadcrumbs">
+        <a href="../../index.html">Home</a>
+        <span class="breadcrumb-sep">›</span>
+        <a href="#">Buyer Activity</a>
+        <span class="breadcrumb-sep">›</span>
+        <a href="../../base/index.html">G2 Activate</a>
+        <span class="breadcrumb-sep">›</span>
+        <span>Manage Plan</span>
+      </div>
+      <h1 class="page-title" style="margin-bottom: 20px;">Manage Plan</h1>
+    </div>
+  </div>
+
+  <div class="page-wrapper">
+    <div class="payment-selector">
+      <div style="text-align: center; margin-bottom: 32px;">
+        <div style="font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--gray-400); margin-bottom: 8px;">
+          Exploration 07
+        </div>
+        <h2 style="font-size: 24px; font-weight: 700; color: var(--gray-900); margin-bottom: 8px;">
+          Select your payment preference
+        </h2>
+        <p style="font-size: 15px; color: var(--gray-600);">
+          Choose the option that best fits your needs
+        </p>
+      </div>
+
+      <!-- Monthly Subscription Option -->
+      <div class="radio-option selected">
+        <div class="radio-header">
+          <input type="radio" name="payment-model" class="radio-input" checked>
+          <div class="radio-label">
+            <div class="radio-title">Monthly Subscription</div>
+            <div class="radio-price">$499<span style="font-size: 14px; font-weight: 400; color: var(--gray-500);">/month</span></div>
+            <div class="radio-price-detail">Automatic monthly renewal</div>
+          </div>
+        </div>
+
+        <div class="expanded-details">
+          <div class="detail-section">
+            <div class="detail-title">What's included:</div>
+            <div class="benefit-row">
+              <div class="benefit-check">✓</div>
+              <span>5,000 credits delivered automatically each month</span>
+            </div>
+            <div class="benefit-row">
+              <div class="benefit-check">✓</div>
+              <span>Access to G2 Intent Data and buyer signals</span>
+            </div>
+            <div class="benefit-row">
+              <div class="benefit-check">✓</div>
+              <span>Identify and unlock in-market prospects</span>
+            </div>
+            <div class="benefit-row">
+              <div class="benefit-check">✓</div>
+              <span>Cancel anytime, no long-term commitment</span>
+            </div>
+          </div>
+
+          <button class="btn btn-purple w-full">Continue with Subscription</button>
+        </div>
+      </div>
+
+      <!-- Bulk Purchase Option -->
+      <div class="radio-option">
+        <div class="radio-header">
+          <input type="radio" name="payment-model" class="radio-input">
+          <div class="radio-label">
+            <div class="radio-title">Buy Credits in Bulk</div>
+            <div class="radio-price">$0.10<span style="font-size: 14px; font-weight: 400; color: var(--gray-500);">/credit</span></div>
+            <div class="radio-price-detail">One-time purchase, no recurring charges</div>
+          </div>
+        </div>
+
+        <div class="expanded-details">
+          <div class="detail-section">
+            <div class="detail-title">How it works:</div>
+            <div class="benefit-row">
+              <div class="benefit-check">✓</div>
+              <span>Purchase anywhere from 100 to 50,000 credits</span>
+            </div>
+            <div class="benefit-row">
+              <div class="benefit-check">✓</div>
+              <span>Credits never expire - use them at your own pace</span>
+            </div>
+            <div class="benefit-row">
+              <div class="benefit-check">✓</div>
+              <span>No monthly commitment or recurring billing</span>
+            </div>
+            <div class="benefit-row">
+              <div class="benefit-check">✓</div>
+              <span>Perfect for occasional or variable usage</span>
+            </div>
+          </div>
+
+          <div class="detail-section">
+            <label class="filter-label">How many credits?</label>
+            <input type="number" value="10,000" placeholder="Enter amount">
+            <div style="font-size: 13px; color: var(--gray-500); margin-top: 6px;">
+              Minimum 100, maximum 50,000 credits
+            </div>
+          </div>
+
+          <button class="btn btn-purple w-full">Continue with Bulk Purchase</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

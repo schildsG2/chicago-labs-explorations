@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>G2 Activate — Base State</title>
+  <link rel="stylesheet" href="../shared/styles.css">
+  <style>
+    .table-container {
+      overflow-x: auto;
+    }
+    .header-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .companies-count {
+      font-size: 20px;
+      font-weight: 700;
+    }
+    .companies-count span {
+      font-weight: 400;
+      color: var(--gray-500);
+      font-size: 16px;
+    }
+    .email-subject-preview {
+      color: var(--gray-500);
+      font-size: 13px;
+      max-width: 220px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .details-link {
+      color: var(--purple);
+      font-weight: 500;
+      font-size: 13px;
+      white-space: nowrap;
+    }
+    .section-header-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+    .section-title-lg {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--gray-900);
+    }
+    .section-actions {
+      display: flex;
+      gap: 10px;
+    }
+    /* Prospect details page */
+    .prospect-details-wrapper {
+      padding-top: 0;
+    }
+    .activity-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .month-tag {
+      font-size: 13px;
+      color: var(--gray-500);
+    }
+    /* Email generation page */
+    .gen-email-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+    .gen-email-title {
+      font-size: 28px;
+      font-weight: 700;
+    }
+    .email-field-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--gray-500);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 4px;
+    }
+    .email-field-value {
+      font-size: 14px;
+      color: var(--gray-900);
+      padding: 8px 12px;
+      background: var(--gray-50);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      margin-bottom: 12px;
+    }
+    .email-content-card {
+      padding: 20px;
+    }
+    .contact-list-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+    .contacts-showing {
+      font-size: 12px;
+      color: var(--gray-500);
+    }
+    .email-subject-field {
+      font-size: 15px;
+      font-weight: 600;
+      padding: 10px 12px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      background: var(--gray-50);
+      margin-bottom: 12px;
+    }
+    .filter-section-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px;
+    }
+    .sidebar-section-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--gray-500);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 14px;
+    }
+    .unlocked-table-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+    .back-btn {
+      background: none;
+      border: none;
+      font-size: 20px;
+      cursor: pointer;
+      color: var(--gray-500);
+      display: flex;
+      align-items: center;
+      padding: 0;
+    }
+    .back-btn:hover { color: var(--gray-900); }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="g2-header">
+  <div class="g2-logo">G</div>
+  <span class="g2-brand">MyG2</span>
+  <div class="header-spacer"></div>
+  <div class="header-actions">
+    <div class="header-icon">?</div>
+    <div class="header-avatar">HM</div>
+  </div>
+</header>
+
+<!-- ============================================================
+     SCREEN 1, 2, 3: Main tab-based layout
+     ============================================================ -->
+<div id="screen-main" class="screen active">
+  <div class="page-wrapper">
+    <div class="page-header">
+      <h1 class="page-title">G2 Activate</h1>
+      <p class="page-subtitle">Transform Buyer Intent data into ready-to-use leads. Identify and connect with companies researching solutions like yours on G2.</p>
+      <div class="page-meta">
+        <span class="status-active"><span class="status-dot"></span>Active</span>
+        <a href="#" class="manage-plan-link">Manage Plan</a>
+      </div>
+    </div>
+
+    <div class="tabs">
+      <button class="tab active" data-tab="available">Available Prospects</button>
+      <button class="tab" data-tab="unlocked">Unlocked Prospects</button>
+      <button class="tab" data-tab="emails">Emails</button>
+    </div>
+
+    <!-- TAB: Available Prospects -->
+    <div id="tab-available" class="tab-panel active">
+      <div class="content-area">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+          <div class="filter-section-card">
+            <div class="sidebar-section-title">Contact Filters</div>
+            <div class="filter-field">
+              <label class="filter-label">Departments</label>
+              <select><option>All Departments</option></select>
+            </div>
+            <div class="filter-field">
+              <label class="filter-label">Management Levels</label>
+              <select><option>All Levels</option></select>
+            </div>
+            <div class="filter-field">
+              <label class="filter-label">Job Functions</label>
+              <select><option>All Functions</option></select>
+            </div>
+          </div>
+          <div class="filter-section-card">
+            <div class="sidebar-section-title">Company Filters</div>
+            <div class="filter-field">
+              <label class="filter-label">Employee Count Range</label>
+              <div class="input-row">
+                <input type="number" placeholder="Min">
+                <input type="number" placeholder="Max">
+              </div>
+            </div>
+            <div class="filter-field">
+              <label class="filter-label">Company Headquarters Location</label>
+              <select><option>All Locations</option></select>
+            </div>
+          </div>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="main-area">
+          <div class="card" style="padding:0; overflow:hidden;">
+            <div style="padding: 20px 20px 0;">
+              <div class="header-row">
+                <div class="header-left">
+                  <span class="companies-count">Companies <span>(113)</span></span>
+                </div>
+                <div class="time-filters">
+                  <button class="time-pill active">7 Days</button>
+                  <button class="time-pill">30 Days</button>
+                  <button class="time-pill">90 Days</button>
+                  <button class="time-pill">1 Year</button>
+                  <button class="time-pill">📅 Custom</button>
+                </div>
+              </div>
+              <div class="credits-bar">
+                <span>My credits: <strong>5,000 ⭐</strong></span>
+                <span class="credits-divider">|</span>
+                <span>Total: <strong>0 credits</strong></span>
+                <div class="credits-bar-spacer"></div>
+                <button class="btn btn-disabled">Unlock Selected (0)</button>
+              </div>
+            </div>
+            <div class="table-container">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th style="width:36px;"><input type="checkbox"></th>
+                    <th>Credits ⭐</th>
+                    <th>Company</th>
+                    <th>Intent Level</th>
+                    <th>Company Size</th>
+                    <th>Industry</th>
+                    <th>Headquarters Location</th>
+                    <th>Contacts</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td><input type="checkbox"></td><td>100</td><td class="table-company-name blurred">Acme Corp International</td><td><span class="badge badge-high">High</span></td><td>900</td><td>Software Publishers</td><td>United States</td><td>3</td></tr>
+                  <tr><td><input type="checkbox"></td><td>250</td><td class="table-company-name blurred">TechStream Solutions</td><td><span class="badge badge-high">High</span></td><td>1,300</td><td class="blurred">Data Analytics Firms</td><td>United States</td><td>3</td></tr>
+                  <tr><td><input type="checkbox"></td><td>400</td><td class="table-company-name blurred">Nexus Systems Group</td><td><span class="badge badge-high">High</span></td><td>1,700</td><td class="blurred">Enterprise Software</td><td>United States</td><td>3</td></tr>
+                  <tr><td><input type="checkbox"></td><td>125</td><td class="table-company-name blurred">Orbital Dynamics Inc</td><td><span class="badge badge-high">High</span></td><td>2,100</td><td class="blurred">Cloud Services</td><td>United States</td><td>3</td></tr>
+                  <tr><td><input type="checkbox"></td><td>275</td><td class="table-company-name blurred">Vertex Capital Partners</td><td><span class="badge badge-high">High</span></td><td>2,500</td><td class="blurred">Financial Technology</td><td>United States</td><td>0</td></tr>
+                  <tr><td><input type="checkbox"></td><td>425</td><td class="table-company-name blurred">Pinnacle Growth Co</td><td><span class="badge badge-high">High</span></td><td>1,000</td><td class="blurred">Marketing Platforms</td><td>United States</td><td>1</td></tr>
+                  <tr><td><input type="checkbox"></td><td>150</td><td class="table-company-name blurred">Luminary Tech Works</td><td><span class="badge badge-medium">Medium</span></td><td>1,400</td><td class="blurred">HR Technology</td><td>United States</td><td>3</td></tr>
+                  <tr><td><input type="checkbox"></td><td>300</td><td class="table-company-name blurred">Cascade Revenue Group</td><td><span class="badge badge-medium">Medium</span></td><td>1,800</td><td class="blurred">Revenue Operations</td><td>United States</td><td>0</td></tr>
+                  <tr><td><input type="checkbox"></td><td>450</td><td class="table-company-name blurred">Meridian Data Labs</td><td><span class="badge badge-medium">Medium</span></td><td>2,200</td><td class="blurred">Data Infrastructure</td><td>United States</td><td>0</td></tr>
+                  <tr><td><input type="checkbox"></td><td>175</td><td class="table-company-name blurred">Solstice Ventures LLC</td><td><span class="badge badge-medium">Medium</span></td><td>2,600</td><td class="blurred">Venture Capital</td><td>United States</td><td>3</td></tr>
+                  <tr><td><input type="checkbox"></td><td>325</td><td class="table-company-name blurred">Ironclad Software Inc</td><td><span class="badge badge-medium">Medium</span></td><td>1,100</td><td class="blurred">Legal Technology</td><td>United States</td><td>3</td></tr>
+                  <tr><td><input type="checkbox"></td><td>475</td><td class="table-company-name blurred">Wavefront Analytics</td><td><span class="badge badge-medium">Medium</span></td><td>1,500</td><td class="blurred">Business Intelligence</td><td>United States</td><td>2</td></tr>
+                  <tr><td><input type="checkbox"></td><td>200</td><td class="table-company-name blurred">Axiom Cloud Systems</td><td><span class="badge badge-medium">Medium</span></td><td>1,900</td><td class="blurred">Cloud Computing</td><td>United States</td><td>3</td></tr>
+                  <tr><td><input type="checkbox"></td><td>350</td><td class="table-company-name blurred">Frontier Networks Ltd</td><td><span class="badge badge-medium">Medium</span></td><td>2,300</td><td class="blurred">Telecommunications</td><td>United States</td><td>3</td></tr>
+                  <tr><td><input type="checkbox"></td><td>500</td><td class="table-company-name blurred">Prism Intelligence Co</td><td><span class="badge badge-medium">Medium</span></td><td>2,700</td><td class="blurred">AI & Machine Learning</td><td>United States</td><td>3</td></tr>
+                  <tr><td><input type="checkbox"></td><td>225</td><td class="table-company-name blurred">Strata Operations Inc</td><td><span class="badge badge-medium">Medium</span></td><td>1,200</td><td class="blurred">Operations Software</td><td>United States</td><td>3</td></tr>
+                  <tr><td><input type="checkbox"></td><td>375</td><td class="table-company-name blurred">Comet Digital Agency</td><td><span class="badge badge-low">Low</span></td><td>1,600</td><td class="blurred">Digital Marketing</td><td>United States</td><td>0</td></tr>
+                  <tr><td><input type="checkbox"></td><td>550</td><td class="table-company-name blurred">Radius Commerce Group</td><td><span class="badge badge-low">Low</span></td><td>2,000</td><td class="blurred">E-Commerce</td><td>United States</td><td>3</td></tr>
+                  <tr><td><input type="checkbox"></td><td>525</td><td class="table-company-name blurred">Epoch Systems Corp</td><td><span class="badge badge-low">Low</span></td><td>2,400</td><td class="blurred">Systems Integration</td><td>United States</td><td>3</td></tr>
+                  <tr><td><input type="checkbox"></td><td>575</td><td class="table-company-name blurred">Cipher Analytics LLC</td><td><span class="badge badge-low">Low</span></td><td>2,800</td><td class="blurred">Cybersecurity</td><td>United States</td><td>3</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div style="padding: 4px 16px 8px;">
+              <div class="pagination">
+                <button class="page-btn nav-btn">←</button>
+                <button class="page-btn active">1</button>
+                <button class="page-btn">2</button>
+                <button class="page-btn">3</button>
+                <button class="page-btn">4</button>
+                <button class="page-btn">5</button>
+                <span class="page-ellipsis">...</span>
+                <button class="page-btn">22</button>
+                <button class="page-btn">23</button>
+                <button class="page-btn nav-btn">→</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB: Unlocked Prospects -->
+    <div id="tab-unlocked" class="tab-panel" style="display:none;">
+      <div class="card" style="padding:0; overflow:hidden;">
+        <div style="padding: 20px 20px 0;">
+          <div class="unlocked-table-header">
+            <div class="header-left">
+              <span class="companies-count">Companies <span>(6)</span></span>
+            </div>
+            <div style="display:flex; gap:12px; align-items:center;">
+              <div class="search-bar">
+                <span class="search-bar-icon">🔍</span>
+                <input type="search" placeholder="Search companies...">
+              </div>
+              <div class="time-filters">
+                <button class="time-pill active">7 Days</button>
+                <button class="time-pill">30 Days</button>
+                <button class="time-pill">90 Days</button>
+                <button class="time-pill">1 Year</button>
+                <button class="time-pill">📅 Custom</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Unlock Date</th>
+              <th>Company</th>
+              <th>Activity Level</th>
+              <th>Company Size</th>
+              <th>Headquarters Location</th>
+              <th>Est. Annual Revenue</th>
+              <th>Contacts</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="white-space:nowrap;"><span class="status-dot orange" style="display:inline-block; margin-right:6px;"></span>Dec 16, 2025</td>
+              <td class="table-company-name">Predictive</td>
+              <td><span class="badge badge-high">High</span></td>
+              <td><strong>750–1,000</strong></td>
+              <td><strong>Port Saint Lucie, FL</strong></td>
+              <td>$21,400,000</td>
+              <td>3</td>
+              <td><a href="#" class="details-link" data-action="show-details">Details →</a></td>
+            </tr>
+            <tr>
+              <td style="white-space:nowrap;">Dec 16, 2025</td>
+              <td class="table-company-name">InsightWave</td>
+              <td><span class="badge badge-high">High</span></td>
+              <td>750–1,000</td>
+              <td>Port Saint Lucie, FL</td>
+              <td>$17,560,000</td>
+              <td>2</td>
+              <td><a href="#" class="details-link">Details →</a></td>
+            </tr>
+            <tr>
+              <td style="white-space:nowrap;"><span class="status-dot orange" style="display:inline-block; margin-right:6px;"></span>Dec 16, 2025</td>
+              <td class="table-company-name">Predictive</td>
+              <td><span class="badge badge-high">High</span></td>
+              <td><strong>750–1,000</strong></td>
+              <td><strong>Port Saint Lucie, FL</strong></td>
+              <td>$21,400,000</td>
+              <td>3</td>
+              <td><a href="#" class="details-link" data-action="show-details">Details →</a></td>
+            </tr>
+            <tr>
+              <td style="white-space:nowrap;">Dec 15, 2025</td>
+              <td class="table-company-name">AlgoStream</td>
+              <td><span class="badge badge-high">High</span></td>
+              <td>750–1,000</td>
+              <td>Port Saint Lucie, FL</td>
+              <td>$15,240,000</td>
+              <td>0</td>
+              <td><a href="#" class="details-link">Details →</a></td>
+            </tr>
+            <tr>
+              <td style="white-space:nowrap;">Dec 5, 2025</td>
+              <td class="table-company-name">DataVision</td>
+              <td><span class="badge badge-high">High</span></td>
+              <td>750–1,000</td>
+              <td>Port Saint Lucie, FL</td>
+              <td>$15,240,000</td>
+              <td>3</td>
+              <td><a href="#" class="details-link">Details →</a></td>
+            </tr>
+            <tr>
+              <td style="white-space:nowrap;">Dec 5, 2025</td>
+              <td class="table-company-name">MetricPulse</td>
+              <td><span class="badge badge-high">High</span></td>
+              <td>750–1,000</td>
+              <td>Port Saint Lucie, FL</td>
+              <td>$17,560,000</td>
+              <td>3</td>
+              <td><a href="#" class="details-link">Details →</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- TAB: Emails -->
+    <div id="tab-emails" class="tab-panel" style="display:none;">
+      <div class="two-col-layout">
+        <!-- Left: Generation Settings -->
+        <div class="card">
+          <h2 class="card-title" style="margin-bottom:20px;">Generation Settings</h2>
+          <div class="filter-field">
+            <label class="filter-label">Tone</label>
+            <select><option>Friendly</option><option>Professional</option><option>Direct</option></select>
+          </div>
+          <div class="filter-field">
+            <label class="filter-label">Email body length</label>
+            <select><option>&lt;=120 words</option><option>&lt;=150 words</option><option>&lt;=200 words</option></select>
+          </div>
+          <div class="filter-field">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+              <label class="filter-label" style="margin-bottom:0;">Reference Material</label>
+              <a href="#" style="font-size:13px; color:var(--purple);">+ Auto-generate</a>
+            </div>
+            <textarea placeholder="Describe clear goals, topics, and instructions in full sentences." rows="5"></textarea>
+          </div>
+          <hr class="section-divider">
+          <div class="gmail-section">
+            <span>📧</span>
+            <div style="flex:1;">
+              <div style="font-weight:600; font-size:13px;">Gmail Connected <span style="color:var(--gray-400); font-size:12px;">ⓘ</span></div>
+              <div style="font-size:12px; color:var(--gray-500);">h.mustache@acmeinc.com</div>
+            </div>
+            <a href="#" style="font-size:13px; color:var(--purple);">Manage</a>
+          </div>
+        </div>
+        <!-- Right: All Generated Emails -->
+        <div class="card" style="padding:0; overflow:hidden;">
+          <div style="padding:20px 20px 0;">
+            <div class="header-row">
+              <span class="companies-count">All Generated Emails <span>(4)</span></span>
+              <div style="display:flex; gap:10px; align-items:center;">
+                <div class="search-bar">
+                  <span class="search-bar-icon">🔍</span>
+                  <input type="search" placeholder="Search...">
+                </div>
+                <button class="btn btn-coral">✦ Generate Email(s)</button>
+              </div>
+            </div>
+          </div>
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Date Created</th>
+                <th>Company</th>
+                <th>Recipient(s)</th>
+                <th>Subject</th>
+                <th>Status</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="white-space:nowrap;">Dec 17, 2025</td>
+                <td>Company Name</td>
+                <td>Lilly Pad</td>
+                <td class="email-subject-preview">Supporting reps at the moment...</td>
+                <td><span class="badge status-opened">Opened</span></td>
+                <td><a href="#" class="details-link" data-action="show-generate">View →</a></td>
+              </tr>
+              <tr>
+                <td style="white-space:nowrap;">Dec 17, 2025</td>
+                <td>Company Name</td>
+                <td>Jane Smith</td>
+                <td class="email-subject-preview">How leaders are scaling consiste...</td>
+                <td><span class="badge status-sent">Sent</span></td>
+                <td><a href="#" class="details-link">View →</a></td>
+              </tr>
+              <tr>
+                <td style="white-space:nowrap;">Dec 17, 2025</td>
+                <td>Company Name</td>
+                <td>John Doe</td>
+                <td class="email-subject-preview">Enabling best practices across t...</td>
+                <td><span class="badge status-draft">Draft</span></td>
+                <td><a href="#" class="details-link">View →</a></td>
+              </tr>
+              <tr>
+                <td style="white-space:nowrap;">Dec 17, 2025</td>
+                <td>Company Name</td>
+                <td>Harvey Mustache</td>
+                <td class="email-subject-preview">How leaders are scaling consiste...</td>
+                <td><span class="badge status-draft">Draft</span></td>
+                <td><a href="#" class="details-link">View →</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     SCREEN 4: Generate Emails
+     ============================================================ -->
+<div id="screen-generate" class="screen" style="display:none;">
+  <div class="page-wrapper">
+    <div class="page-header" style="border-bottom:none; padding-bottom:16px;">
+      <div class="gen-email-header">
+        <button class="back-btn" data-action="back-to-emails">←</button>
+        <h1 class="gen-email-title">Generate Emails</h1>
+      </div>
+    </div>
+    <div class="two-col-layout-40-60">
+      <!-- Left: Recipients -->
+      <div class="card" style="padding:0; overflow:hidden;">
+        <div style="padding:20px 20px 12px;">
+          <div class="card-header" style="margin-bottom:12px;">
+            <span class="card-title">Recipients <span style="font-weight:400; color:var(--gray-500);">(1 selected)</span></span>
+          </div>
+          <div class="contact-list-header">
+            <div class="search-bar" style="flex:1;">
+              <span class="search-bar-icon">🔍</span>
+              <input type="search" placeholder="Search contacts..." style="width:100%;">
+            </div>
+            <button class="btn btn-ghost btn-sm">Filters</button>
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:center; font-size:12px; color:var(--gray-500); margin-bottom:10px; margin-top:6px;">
+            <span>Showing 1–10 of 63 contacts</span>
+            <select style="width:auto; height:28px; padding:4px 24px 4px 8px; font-size:12px;">
+              <option>Most Recent</option>
+            </select>
+          </div>
+        </div>
+        <div class="contact-list-scroll" style="padding:0 12px 12px;">
+          <div class="contact-list-item selected">
+            <div class="checkbox checked">✓</div>
+            <div class="contact-meta">
+              <div class="contact-meta-name">Lilly Pad</div>
+              <div class="contact-meta-email">l.pad@company.com</div>
+              <div class="contact-meta-title">Chief Operating Officer</div>
+              <div class="contact-meta-chips">
+                <span class="contact-meta-chip">🏢 Predictive</span>
+                <span class="contact-meta-chip">📍 United States</span>
+                <span class="contact-meta-chip">👥 750</span>
+              </div>
+            </div>
+          </div>
+          <div class="contact-list-item">
+            <div class="checkbox"></div>
+            <div class="contact-meta">
+              <div class="contact-meta-name">John Doe</div>
+              <div class="contact-meta-email">j.doe@company.com</div>
+              <div class="contact-meta-title">Manager, Communications &amp; Chief Executive Officer</div>
+              <div class="contact-meta-chips">
+                <span class="contact-meta-chip">🏢 Predictive</span>
+                <span class="contact-meta-chip">📍 United States</span>
+                <span class="contact-meta-chip">👥 750</span>
+                <span class="likely-visitor-badge">Likely Visitor</span>
+              </div>
+            </div>
+          </div>
+          <div class="contact-list-item">
+            <div class="checkbox"></div>
+            <div class="contact-meta">
+              <div class="contact-meta-name">Jane Smith</div>
+              <div class="contact-meta-email">j.smith@company.com</div>
+              <div class="contact-meta-title">Chief Executive Officer &amp; Founder</div>
+              <div class="contact-meta-chips">
+                <span class="contact-meta-chip">🏢 Predictive</span>
+                <span class="contact-meta-chip">📍 United States</span>
+                <span class="contact-meta-chip">👥 750</span>
+              </div>
+            </div>
+          </div>
+          <div class="contact-list-item">
+            <div class="checkbox"></div>
+            <div class="contact-meta">
+              <div class="contact-meta-name">Naomi Watts</div>
+              <div class="contact-meta-email">n.watts@stellar.com</div>
+              <div class="contact-meta-title">VP, Marketing &amp; Co-founder</div>
+              <div class="contact-meta-chips">
+                <span class="contact-meta-chip">🏢 Stellar</span>
+                <span class="contact-meta-chip">📍 Canada</span>
+                <span class="contact-meta-chip">👥 1.2K</span>
+              </div>
+            </div>
+          </div>
+          <div class="contact-list-item">
+            <div class="checkbox"></div>
+            <div class="contact-meta">
+              <div class="contact-meta-name">Keanu Reeves</div>
+              <div class="contact-meta-email">k.reeves@matrix.com</div>
+              <div class="contact-meta-title">Senior Director</div>
+              <div class="contact-meta-chips">
+                <span class="contact-meta-chip">🏢 Matrix</span>
+                <span class="contact-meta-chip">📍 United Kingdom</span>
+                <span class="contact-meta-chip">👥 250</span>
+              </div>
+            </div>
+          </div>
+          <div class="contact-list-item">
+            <div class="checkbox"></div>
+            <div class="contact-meta">
+              <div class="contact-meta-name">Carrie Moss</div>
+              <div class="contact-meta-email">c.moss@resistance.com</div>
+              <div class="contact-meta-title">Lead Programmer</div>
+              <div class="contact-meta-chips">
+                <span class="contact-meta-chip">🏢 Resistance</span>
+                <span class="contact-meta-chip">📍 France</span>
+                <span class="contact-meta-chip">👥 500</span>
+              </div>
+            </div>
+          </div>
+          <div class="contact-list-item">
+            <div class="checkbox"></div>
+            <div class="contact-meta">
+              <div class="contact-meta-name">Laurence Fishburne</div>
+              <div class="contact-meta-email">l.fish@neb.com</div>
+              <div class="contact-meta-title">Chief Technology Officer</div>
+              <div class="contact-meta-chips">
+                <span class="contact-meta-chip">🏢 Nebuchadnezzar</span>
+                <span class="contact-meta-chip">📍 Germany</span>
+                <span class="contact-meta-chip">👥 1,000</span>
+              </div>
+            </div>
+          </div>
+          <div class="contact-list-item">
+            <div class="checkbox"></div>
+            <div class="contact-meta">
+              <div class="contact-meta-name">Hugo Weaving</div>
+              <div class="contact-meta-email">h.weav@agents.com</div>
+              <div class="contact-meta-title">Senior Agent</div>
+              <div class="contact-meta-chips">
+                <span class="contact-meta-chip">🏢 Agents</span>
+                <span class="contact-meta-chip">📍 Australia</span>
+                <span class="contact-meta-chip">👥 2.5K</span>
+              </div>
+            </div>
+          </div>
+          <div class="contact-list-item">
+            <div class="checkbox"></div>
+            <div class="contact-meta">
+              <div class="contact-meta-name">Joe Pantoliano</div>
+              <div class="contact-meta-email">j.panto@oracle.com</div>
+              <div class="contact-meta-title">Security Lead</div>
+              <div class="contact-meta-chips">
+                <span class="contact-meta-chip">🏢 Oracle</span>
+                <span class="contact-meta-chip">📍 Spain</span>
+                <span class="contact-meta-chip">👥 3.1K</span>
+              </div>
+            </div>
+          </div>
+          <div class="contact-list-item">
+            <div class="checkbox"></div>
+            <div class="contact-meta">
+              <div class="contact-meta-name">Monica Bellucci</div>
+              <div class="contact-meta-email">m.bell@train.com</div>
+              <div class="contact-meta-title">Train Manager</div>
+              <div class="contact-meta-chips">
+                <span class="contact-meta-chip">🏢 Train</span>
+                <span class="contact-meta-chip">📍 Italy</span>
+                <span class="contact-meta-chip">👥 1.8K</span>
+              </div>
+            </div>
+          </div>
+          <div class="pagination" style="padding-top:12px;">
+            <button class="page-btn nav-btn">←</button>
+            <button class="page-btn active">1</button>
+            <button class="page-btn">2</button>
+            <button class="page-btn">3</button>
+            <button class="page-btn">4</button>
+            <button class="page-btn">5</button>
+            <span class="page-ellipsis">...</span>
+            <button class="page-btn">22</button>
+            <button class="page-btn">23</button>
+            <button class="page-btn nav-btn">→</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Email Content -->
+      <div>
+        <div class="card email-content-card">
+          <div class="card-header">
+            <span class="card-title">Email Content</span>
+            <button class="btn btn-coral btn-sm">✦ Manage Generation</button>
+          </div>
+          <div class="recipient-card">
+            <div class="label">TO</div>
+            <div style="font-weight:600; font-size:14px; color:var(--gray-900);">Lilly Pad <span style="font-weight:400; color:var(--gray-500);">(l.pad@company.com)</span></div>
+            <div style="font-size:13px; color:var(--gray-600); margin-top:2px;">Chief Operating Officer</div>
+            <div style="font-size:12px; color:var(--gray-500); margin-top:4px; display:flex; gap:10px;">
+              <span>🏢 Predictive</span><span>📍 United States</span><span>👥 750</span>
+            </div>
+          </div>
+          <div>
+            <div class="email-field-label">SUBJECT</div>
+            <div class="email-subject-field">How leaders are scaling consistent execution</div>
+          </div>
+          <div>
+            <div class="email-field-label">BODY</div>
+            <textarea class="email-body" rows="14">Hello Lilly,
+
+I understand that your team at Predictive is exploring platforms like Acme Inc and Stanza Systems—a common step as companies aim to improve execution without increasing overhead.
+
+Often, these discussions focus on predictability: ensuring teams not only set ambitious goals but also reliably achieve them across all departments. That's where Acme Inc excels. Our clients utilize Acme to fine-tune priorities, proactively identify execution roadblocks, and provide leaders with clear insights into project progress—all while streamlining team processes.
+
+I'd be glad to offer a concise overview of how similar organizations leverage Acme to foster predictable outcomes.
+
+Best,
+Harvey Mustache
+Acme Inc</textarea>
+          </div>
+        </div>
+        <div class="bottom-bar" style="margin-top:12px; border-radius:var(--radius);">
+          <button class="btn btn-ghost" data-action="back-to-emails">Back</button>
+          <button class="btn btn-dark">Send 1 Email →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     SCREEN 5: Prospect Details
+     ============================================================ -->
+<div id="screen-details" class="screen" style="display:none;">
+  <div class="page-wrapper">
+    <div style="padding-top:24px;">
+      <a href="#" class="back-link" data-action="back-to-unlocked">← Unlocked Prospects</a>
+      <h1 class="page-title" style="margin-bottom:24px;">Prospect Details: Predictive</h1>
+
+      <div class="card" style="padding:0; overflow:hidden; margin-bottom:24px;">
+        <div class="company-header-card">
+          <div class="company-logo-placeholder">P</div>
+          <div class="company-main-info">
+            <div class="company-name-large">Predictive</div>
+            <a href="#" class="visit-link">Visit website ↗</a>
+            <div class="activity-row">
+              <span class="activity-pill">↑ High Activity (99)</span>
+              <span class="month-tag">Sep 2025</span>
+            </div>
+            <p class="company-desc">The Australia and New Zealand Banking Group Limited, commonly called ANZ, is an Australian multinational banking and financial services company headquartered in Melbourne, Australia. It is the second largest bank by assets and third largest bank by market capitalisation in Australia.</p>
+          </div>
+          <div class="company-right-stats">
+            <div class="company-stat">
+              <div class="company-stat-label">Company Size</div>
+              <div class="company-stat-value">40.3k</div>
+            </div>
+            <div class="company-stat">
+              <div class="company-stat-label">Est. Annual Revenue</div>
+              <div class="company-stat-value">$13.7M</div>
+            </div>
+            <div class="company-stat">
+              <div class="company-stat-label">Headquarters Location</div>
+              <div class="company-stat-value" style="font-size:13px;">Docklands, Victoria</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-header-row">
+        <h2 class="section-title-lg">Predictive Contacts (3)</h2>
+        <div class="section-actions">
+          <button class="btn btn-ghost btn-sm">Download CSV ↓</button>
+          <button class="btn btn-coral btn-sm">✦ Generate Emails</button>
+        </div>
+      </div>
+
+      <div class="contact-cards-grid">
+        <!-- Contact 1 -->
+        <div class="contact-card">
+          <div class="contact-card-header">
+            <div class="contact-avatar avatar-purple">LP</div>
+            <div class="contact-info">
+              <div class="contact-name">Lilly Pad</div>
+              <div class="contact-email">l.pad@company.com</div>
+            </div>
+          </div>
+          <div class="contact-title">Chief Operating Officer</div>
+          <div class="match-badges">
+            <span class="match-badge">Department Level</span>
+            <span class="match-badge">Department</span>
+          </div>
+          <button class="copy-email-btn">📋 Copy Email</button>
+        </div>
+        <!-- Contact 2 -->
+        <div class="contact-card">
+          <div class="contact-card-header">
+            <div class="contact-avatar avatar-blue">JD</div>
+            <div class="contact-info">
+              <div class="contact-name">John Doe</div>
+              <div class="contact-email">j.doe@company.com</div>
+            </div>
+          </div>
+          <div class="contact-title">Manager, Communications &amp; Chief Executive Officer &amp; Deputy Chief Executive Officer</div>
+          <div class="match-badges">
+            <span class="match-badge">Department</span>
+          </div>
+          <button class="copy-email-btn">📋 Copy Email</button>
+        </div>
+        <!-- Contact 3 -->
+        <div class="contact-card">
+          <div class="contact-card-header">
+            <div class="contact-avatar avatar-coral">JS</div>
+            <div class="contact-info">
+              <div class="contact-name">Jane Smith</div>
+              <div class="contact-email">j.smith@company.com</div>
+            </div>
+          </div>
+          <div class="contact-title">Chief Executive Officer &amp; Founder</div>
+          <div class="match-badges"></div>
+          <button class="copy-email-btn">📋 Copy Email</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Tab switching
+  document.querySelectorAll('.tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.tab-panel').forEach(p => p.style.display = 'none');
+      tab.classList.add('active');
+      const panelId = 'tab-' + tab.dataset.tab;
+      const panel = document.getElementById(panelId);
+      if (panel) panel.style.display = 'block';
+    });
+  });
+
+  // Screen navigation
+  function showScreen(id) {
+    document.querySelectorAll('.screen').forEach(s => s.style.display = 'none');
+    const s = document.getElementById(id);
+    if (s) s.style.display = 'block';
+    window.scrollTo(0, 0);
+  }
+
+  document.addEventListener('click', e => {
+    const action = e.target.dataset.action || (e.target.closest('[data-action]') && e.target.closest('[data-action]').dataset.action);
+    if (!action) return;
+    e.preventDefault();
+    if (action === 'show-details') showScreen('screen-details');
+    if (action === 'show-generate') showScreen('screen-generate');
+    if (action === 'back-to-emails') {
+      showScreen('screen-main');
+      // activate emails tab
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.tab-panel').forEach(p => p.style.display = 'none');
+      const emailsTab = document.querySelector('[data-tab="emails"]');
+      if (emailsTab) emailsTab.classList.add('active');
+      const emailsPanel = document.getElementById('tab-emails');
+      if (emailsPanel) emailsPanel.style.display = 'block';
+    }
+    if (action === 'back-to-unlocked') {
+      showScreen('screen-main');
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.tab-panel').forEach(p => p.style.display = 'none');
+      const unlockedTab = document.querySelector('[data-tab="unlocked"]');
+      if (unlockedTab) unlockedTab.classList.add('active');
+      const unlockedPanel = document.getElementById('tab-unlocked');
+      if (unlockedPanel) unlockedPanel.style.display = 'block';
+    }
+  });
+</script>
+</body>
+</html>

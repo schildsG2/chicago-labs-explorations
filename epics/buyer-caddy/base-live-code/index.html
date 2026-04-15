@@ -1,0 +1,2585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>G2 Activate — Live Code Base</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../shared/styles.css">
+  <style>
+    /* ============================================================
+       ELEVATE DESIGN SYSTEM TOKENS (live-code override)
+       ============================================================ */
+    :root {
+      /* Neutral */
+      --n-0:   #ffffff;
+      --n-1:   #fcfcfd;
+      --n-5:   #fafafa;
+      --n-10:  #f2f2f3;
+      --n-20:  #dfdfe2;
+      --n-30:  #cacace;
+      --n-40:  #b0afb6;
+      --n-50:  #9b99a3;
+      --n-70:  #6f6d78;
+      --n-80:  #4c4b53;
+      --n-90:  #2f2e33;
+      --n-100: #201f23;
+      /* Primary */
+      --p-5:   #f5f4fb;
+      --p-10:  #f2f0f9;
+      --p-20:  #ebe9f6;
+      --p-30:  #dedaf1;
+      --p-40:  #c3bde5;
+      --p-60:  #988ed2;
+      --p-80:  #7769c4;
+      --p:     #5746b2;
+      --p-120: #45388f;
+      /* Rorange */
+      --ro-20:  #fff6f5;
+      --ro-40:  #FFD7D1;
+      --ro-60:  #ffa394;
+      --ro-80:  #ff7761;
+      --ro:     #ff492c;
+      --ro-120: #eb2000;
+      --ro-140: #b21800;
+      /* Others */
+      --blue:        #0073f5;
+      --green-20:    #d0f6f1;
+      --green-40:    #a9efe5;
+      --green-120:   #1fa896;
+      --green-160:   #0f5249;
+      --yellow-20:   #fff9e5;
+      --yellow-100:  #ffc800;
+    }
+
+    /* Override base font */
+    html, body {
+      font-family: 'Figtree', system-ui, sans-serif;
+      font-size: 14px;
+      color: var(--n-100);
+      background: var(--n-10);
+      min-width: 1200px;
+    }
+
+    a { color: var(--p); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ============================================================
+       INFO BANNER (top of page)
+       ============================================================ */
+    .info-banner {
+      background: var(--n-100);
+      color: #fff;
+      font-size: 12px;
+      font-family: 'Figtree', sans-serif;
+      padding: 7px 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .info-banner a {
+      color: var(--n-30);
+      font-size: 12px;
+      text-decoration: underline;
+    }
+    .info-banner a:hover { color: #fff; }
+    .info-banner-label {
+      font-weight: 600;
+      letter-spacing: 0.01em;
+    }
+    .info-banner-spacer { flex: 1; }
+
+    /* ============================================================
+       HEADER
+       ============================================================ */
+    .elv-header {
+      height: 60px;
+      background: var(--n-0);
+      border-bottom: 1px solid var(--n-20);
+      display: flex;
+      align-items: center;
+      padding: 0 24px;
+      gap: 10px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .elv-header-back {
+      color: var(--n-80);
+      font-size: 18px;
+      line-height: 1;
+      cursor: pointer;
+      padding: 4px;
+      margin-right: 2px;
+    }
+    .elv-logo {
+      width: 32px;
+      height: 32px;
+      background: var(--ro);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 800;
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+    .elv-brand {
+      font-weight: 700;
+      font-size: 15px;
+      color: var(--n-100);
+    }
+    .elv-header-spacer { flex: 1; }
+    .elv-header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .elv-header-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: transparent;
+      border: 1px solid var(--n-20);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--n-70);
+      font-size: 15px;
+      cursor: pointer;
+    }
+    .elv-header-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--n-20);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--n-80);
+      font-weight: 600;
+      font-size: 12px;
+      cursor: pointer;
+    }
+
+    /* ============================================================
+       PAGE LAYOUT
+       ============================================================ */
+    .page-outer {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 24px 48px;
+    }
+
+    /* ============================================================
+       PAGE BANNER (G2 Activate header section)
+       ============================================================ */
+    .page-banner {
+      padding: 22px 0 18px;
+      border-bottom: 1px solid var(--n-20);
+    }
+    .page-banner-title {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--n-100);
+      margin-bottom: 4px;
+    }
+    .page-banner-subtitle {
+      font-size: 14px;
+      color: var(--n-70);
+      margin-bottom: 10px;
+    }
+    .page-banner-meta {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 13px;
+    }
+    .status-badge-active {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      color: var(--green-120);
+      font-weight: 500;
+    }
+    .status-badge-active .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--green-120);
+    }
+    .manage-plan-link {
+      color: var(--p);
+      font-size: 13px;
+      font-weight: 500;
+    }
+    .manage-plan-link:hover { text-decoration: underline; }
+
+    /* ============================================================
+       TABS (Elevate::Tab::Component)
+       ============================================================ */
+    .elv-tabs {
+      display: flex;
+      gap: 0;
+      border-bottom: 1px solid var(--n-20);
+      margin-bottom: 22px;
+      margin-top: 0;
+      padding-top: 2px;
+    }
+    .elv-tab {
+      padding: 13px 18px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--n-70);
+      cursor: pointer;
+      border: none;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -1px;
+      background: none;
+      font-family: 'Figtree', sans-serif;
+      transition: color 0.12s, border-color 0.12s;
+    }
+    .elv-tab:hover { color: var(--n-80); }
+    .elv-tab.active {
+      color: var(--p);
+      border-bottom-color: var(--p);
+      font-weight: 600;
+    }
+
+    /* ============================================================
+       CARD (elv-card pattern)
+       ============================================================ */
+    .elv-card {
+      background: var(--n-0);
+      border: 1px solid var(--n-20);
+      border-radius: 0.75rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+      overflow: hidden;
+    }
+    .elv-card-padded {
+      padding: 18px 20px;
+    }
+    .elv-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--n-10);
+      gap: 10px;
+    }
+    .elv-card-header-left {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .elv-card-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--n-100);
+    }
+    .elv-count {
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--n-70);
+    }
+
+    /* ============================================================
+       CONTENT LAYOUT
+       ============================================================ */
+    .content-flex {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    /* ============================================================
+       SIDEBAR (filter form)
+       ============================================================ */
+    .filter-sidebar {
+      width: 272px;
+      flex-shrink: 0;
+    }
+    .filter-group-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+    .filter-group-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--n-80);
+      letter-spacing: 0.01em;
+    }
+    .clear-all-btn {
+      font-size: 12px;
+      color: var(--p);
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: 'Figtree', sans-serif;
+      font-weight: 500;
+      padding: 0;
+    }
+    .clear-all-btn:hover { text-decoration: underline; }
+    .filter-field {
+      margin-bottom: 14px;
+    }
+    .filter-field:last-child { margin-bottom: 0; }
+    .filter-label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--n-80);
+      margin-bottom: 4px;
+    }
+    /* Combobox / Tag Input */
+    .elv-combobox {
+      border: 1px solid var(--n-30);
+      border-radius: 6px;
+      padding: 5px 8px;
+      min-height: 36px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      align-items: center;
+      background: var(--n-0);
+      cursor: text;
+      position: relative;
+    }
+    .elv-combobox:focus-within {
+      outline: 2px solid var(--p-40);
+      outline-offset: -1px;
+    }
+    .elv-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      background: var(--p-20);
+      color: var(--p);
+      font-size: 12px;
+      font-weight: 500;
+      border-radius: 4px;
+      padding: 2px 6px;
+    }
+    .elv-tag-x {
+      cursor: pointer;
+      font-size: 13px;
+      color: var(--p);
+      opacity: 0.7;
+      line-height: 1;
+    }
+    .elv-tag-x:hover { opacity: 1; }
+    .elv-combobox-placeholder {
+      font-size: 13px;
+      color: var(--n-50);
+    }
+    .elv-combobox-chevron {
+      margin-left: auto;
+      color: var(--n-50);
+      font-size: 11px;
+      pointer-events: none;
+    }
+    .elv-hr {
+      border: none;
+      border-top: 1px solid var(--n-20);
+      margin: 16px 0;
+    }
+    .number-range-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .number-range-row input {
+      flex: 1;
+      height: 36px;
+      border: 1px solid var(--n-30);
+      border-radius: 6px;
+      padding: 0 10px;
+      font-size: 13px;
+      font-family: 'Figtree', sans-serif;
+      color: var(--n-80);
+      background: var(--n-0);
+      outline: none;
+    }
+    .number-range-row input:focus {
+      outline: 2px solid var(--p-40);
+      outline-offset: -1px;
+    }
+    .range-sep {
+      font-size: 12px;
+      color: var(--n-50);
+      white-space: nowrap;
+    }
+
+    /* ============================================================
+       TIME FILTER PILLS
+       ============================================================ */
+    .time-filters {
+      display: flex;
+      gap: 3px;
+      align-items: center;
+    }
+    .time-pill {
+      padding: 4px 10px;
+      font-size: 12px;
+      font-weight: 500;
+      border-radius: 999px;
+      cursor: pointer;
+      color: var(--n-70);
+      background: transparent;
+      border: 1px solid transparent;
+      font-family: 'Figtree', sans-serif;
+      transition: all 0.12s;
+    }
+    .time-pill:hover { background: var(--n-10); }
+    .time-pill.active {
+      background: var(--p);
+      color: white;
+      border-color: var(--p);
+    }
+
+    /* ============================================================
+       BULK ACTION BAR
+       ============================================================ */
+    .bulk-bar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 9px 14px 9px 12px;
+      background: var(--n-5);
+      border-bottom: 1px solid var(--n-10);
+      font-size: 13px;
+      color: var(--n-80);
+    }
+    .bulk-credits {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-weight: 600;
+      color: var(--n-80);
+    }
+    .bulk-credits-star {
+      color: var(--ro);
+      font-size: 14px;
+    }
+    .bulk-total {
+      color: var(--n-70);
+    }
+    .bulk-spacer { flex: 1; }
+
+    /* ============================================================
+       BUTTONS (Elevate)
+       ============================================================ */
+    .elv-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      height: 34px;
+      padding: 0 14px;
+      font-family: 'Figtree', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      border-radius: 6px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: background 0.12s, border-color 0.12s, color 0.12s;
+      white-space: nowrap;
+      text-decoration: none;
+    }
+    .elv-btn-primary {
+      background: var(--p);
+      color: white;
+      border-color: var(--p);
+    }
+    .elv-btn-primary:hover {
+      background: var(--p-120);
+      border-color: var(--p-120);
+      color: white;
+      text-decoration: none;
+    }
+    .elv-btn-secondary {
+      background: var(--p-10);
+      color: var(--p);
+      border: 1px solid var(--p-40);
+    }
+    .elv-btn-secondary:hover {
+      background: var(--p-20);
+      color: var(--p);
+      text-decoration: none;
+    }
+    .elv-btn-ghost {
+      background: transparent;
+      color: var(--n-80);
+      border: 1px solid var(--n-20);
+    }
+    .elv-btn-ghost:hover {
+      background: var(--n-5);
+      color: var(--n-100);
+      text-decoration: none;
+    }
+    .elv-btn-disabled {
+      background: var(--n-20);
+      color: var(--n-50);
+      border-color: var(--n-20);
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+    .elv-btn-text {
+      background: none;
+      border: none;
+      color: var(--p);
+      font-family: 'Figtree', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      padding: 0;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .elv-btn-text:hover { text-decoration: underline; }
+    .ai-icon {
+      color: var(--ro);
+      font-size: 13px;
+    }
+
+    /* ============================================================
+       TABLE
+       ============================================================ */
+    .elv-table-wrap {
+      overflow-x: auto;
+    }
+    .elv-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    .elv-table thead tr {
+      background: var(--n-5);
+    }
+    .elv-table th {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--n-70);
+      text-align: left;
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--n-20);
+      white-space: nowrap;
+      background: var(--n-5);
+    }
+    .elv-table td {
+      padding: 0 14px;
+      border-bottom: 1px solid var(--n-10);
+      color: var(--n-80);
+      vertical-align: middle;
+      height: 48px;
+    }
+    .elv-table tbody tr:last-child td {
+      border-bottom: none;
+    }
+    .elv-table tbody tr:hover td {
+      background: var(--n-5);
+    }
+    /* First col: neutral-5 bg + right border */
+    .elv-table th.col-first,
+    .elv-table td.col-first {
+      background: var(--n-5);
+      border-right: 1px solid var(--n-10);
+    }
+    .elv-table tbody tr:hover td.col-first {
+      background: var(--n-10);
+    }
+    /* Last col: neutral-5 bg + left border */
+    .elv-table th.col-last,
+    .elv-table td.col-last {
+      background: var(--n-5);
+      border-left: 1px solid var(--n-10);
+    }
+    .elv-table tbody tr:hover td.col-last {
+      background: var(--n-10);
+    }
+
+    .table-company-name {
+      font-weight: 600;
+      color: var(--n-100);
+    }
+    .blurred {
+      filter: blur(4px);
+      user-select: none;
+    }
+
+    /* Checkbox */
+    .elv-checkbox {
+      width: 16px;
+      height: 16px;
+      border: 1.5px solid var(--n-30);
+      border-radius: 3px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: white;
+      flex-shrink: 0;
+      cursor: pointer;
+    }
+    .elv-checkbox.checked {
+      background: var(--p);
+      border-color: var(--p);
+      color: white;
+      font-size: 10px;
+    }
+
+    /* Credits cell */
+    .credits-cell {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-weight: 600;
+      color: var(--n-80);
+      font-size: 13px;
+    }
+    .credits-star {
+      color: var(--ro);
+      font-size: 13px;
+    }
+
+    /* ============================================================
+       ACTIVITY LEVEL BADGES
+       ============================================================ */
+    .act-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 3px 9px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+    .act-badge .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .act-high {
+      background: var(--green-20);
+      color: var(--green-160);
+    }
+    .act-high .dot { background: var(--green-120); }
+    .act-medium {
+      background: var(--yellow-20);
+      color: #665000;
+    }
+    .act-medium .dot { background: var(--yellow-100); }
+    .act-low {
+      background: var(--n-10);
+      color: var(--n-70);
+    }
+    .act-low .dot { background: var(--n-40); }
+
+    /* ============================================================
+       STATUS BADGES (emails)
+       ============================================================ */
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      padding: 3px 9px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 500;
+    }
+    .status-opened { background: var(--green-20); color: var(--green-160); }
+    .status-sent { background: var(--n-10); color: var(--n-70); }
+    .status-draft { background: var(--ro-20); color: var(--ro-140); }
+
+    /* ============================================================
+       PAGINATION
+       ============================================================ */
+    .elv-pagination {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      padding: 14px 0 2px;
+      justify-content: center;
+    }
+    .page-btn {
+      min-width: 30px;
+      height: 30px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 5px;
+      border-radius: 5px;
+      font-size: 13px;
+      color: var(--n-80);
+      cursor: pointer;
+      border: 1px solid transparent;
+      background: transparent;
+      font-family: 'Figtree', sans-serif;
+      transition: all 0.12s;
+    }
+    .page-btn:hover { background: var(--n-10); border-color: var(--n-20); }
+    .page-btn.active {
+      background: var(--p);
+      color: white;
+      border-color: var(--p);
+    }
+    .page-btn.nav-btn { color: var(--n-70); }
+    .page-ellipsis {
+      padding: 0 4px;
+      color: var(--n-50);
+      font-size: 13px;
+      line-height: 30px;
+    }
+    .pagination-right {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      padding: 10px 14px;
+      justify-content: flex-end;
+      border-top: 1px solid var(--n-10);
+    }
+
+    /* ============================================================
+       NOTIFICATION DOT
+       ============================================================ */
+    .unread-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--green-120);
+      flex-shrink: 0;
+      display: inline-block;
+    }
+    .unread-date-cell {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      white-space: nowrap;
+    }
+
+    /* ============================================================
+       SEARCH INPUT
+       ============================================================ */
+    .elv-search {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+    }
+    .elv-search input {
+      width: 210px;
+      height: 34px;
+      padding: 0 12px 0 32px;
+      border: 1px solid var(--n-30);
+      border-radius: 999px;
+      font-size: 13px;
+      font-family: 'Figtree', sans-serif;
+      color: var(--n-80);
+      background: var(--n-0);
+      outline: none;
+    }
+    .elv-search input:focus {
+      outline: 2px solid var(--p-40);
+      outline-offset: -1px;
+    }
+    .elv-search input::placeholder { color: var(--n-50); }
+    .elv-search-icon {
+      position: absolute;
+      left: 10px;
+      color: var(--n-50);
+      font-size: 13px;
+      pointer-events: none;
+    }
+
+    /* ============================================================
+       DETAILS LINK
+       ============================================================ */
+    .details-link {
+      color: var(--p);
+      font-weight: 600;
+      font-size: 13px;
+      white-space: nowrap;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .details-link:hover { text-decoration: underline; }
+
+    /* ============================================================
+       SCREEN 3: EMAILS — Left settings card
+       ============================================================ */
+    .gen-settings-card {
+      width: 280px;
+      flex-shrink: 0;
+    }
+    .gen-settings-section {
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--n-10);
+    }
+    .gen-settings-section:last-child { border-bottom: none; }
+    .gen-settings-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--n-100);
+      margin-bottom: 14px;
+    }
+    .settings-two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .form-label {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--n-80);
+      margin-bottom: 4px;
+    }
+    .elv-select {
+      width: 100%;
+      height: 34px;
+      border: 1px solid var(--n-30);
+      border-radius: 6px;
+      padding: 0 28px 0 10px;
+      font-size: 13px;
+      font-family: 'Figtree', sans-serif;
+      color: var(--n-80);
+      background: var(--n-0);
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236f6d78' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 9px center;
+      outline: none;
+      cursor: pointer;
+    }
+    .elv-select:focus {
+      outline: 2px solid var(--p-40);
+      outline-offset: -1px;
+    }
+    .elv-textarea {
+      width: 100%;
+      border: 1px solid var(--n-30);
+      border-radius: 6px;
+      padding: 9px 10px;
+      font-size: 13px;
+      font-family: 'Figtree', sans-serif;
+      color: var(--n-80);
+      background: var(--n-0);
+      resize: vertical;
+      outline: none;
+      line-height: 1.55;
+    }
+    .elv-textarea:focus {
+      outline: 2px solid var(--p-40);
+      outline-offset: -1px;
+    }
+    .elv-textarea::placeholder { color: var(--n-50); }
+    .ref-material-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 6px;
+    }
+    .gmail-section {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 12px;
+      background: var(--n-5);
+      border: 1px solid var(--n-10);
+      border-radius: 6px;
+      font-size: 13px;
+    }
+    .gmail-connected-label {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-weight: 600;
+      color: var(--n-80);
+    }
+    .gmail-meta {
+      font-size: 12px;
+      color: var(--n-70);
+      margin-top: 2px;
+    }
+    .gmail-manage-link {
+      margin-left: auto;
+      font-size: 12px;
+      color: var(--p);
+      font-weight: 500;
+    }
+    .gmail-manage-link:hover { text-decoration: underline; }
+
+    /* ============================================================
+       SCREEN 4: GENERATE EMAILS
+       ============================================================ */
+    .gen-page-header {
+      padding: 20px 0 16px;
+    }
+    .gen-page-title {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--n-100);
+    }
+    .gen-layout {
+      display: grid;
+      grid-template-columns: 2fr 3fr;
+      gap: 16px;
+      align-items: flex-start;
+    }
+    /* Recipient list */
+    .recipient-list-section {
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--n-10);
+    }
+    .recipient-list-title-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+    .recipient-list-h3 {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--n-100);
+    }
+    .recipient-count {
+      font-size: 13px;
+      color: var(--n-70);
+    }
+    .recipient-controls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+    .recipient-meta-row {
+      font-size: 12px;
+      color: var(--n-70);
+      margin-bottom: 8px;
+      padding: 0 2px;
+    }
+    .recipient-list {
+      /* Scrollable */
+    }
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 9px;
+      padding: 10px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      border: 1px solid transparent;
+      margin-bottom: 3px;
+      transition: all 0.12s;
+    }
+    .contact-item:hover { background: var(--n-5); }
+    .contact-item.selected {
+      background: var(--p-10);
+      border-color: var(--p-40);
+    }
+    .contact-item-meta { flex: 1; min-width: 0; }
+    .contact-item-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--n-100);
+    }
+    .contact-item-email {
+      font-size: 12px;
+      color: var(--n-70);
+    }
+    .contact-item-title {
+      font-size: 12px;
+      color: var(--n-70);
+      margin-bottom: 4px;
+      line-height: 1.3;
+    }
+    .contact-item-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      font-size: 11px;
+      color: var(--n-70);
+      margin-top: 4px;
+    }
+    .contact-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      font-size: 11px;
+      color: var(--n-70);
+    }
+    .likely-visitor-chip {
+      display: inline-flex;
+      align-items: center;
+      padding: 2px 7px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 500;
+      background: var(--p-20);
+      color: var(--p);
+    }
+
+    /* Email Content Panel */
+    .email-content-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--n-100);
+    }
+    .email-to-section {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--n-10);
+    }
+    .email-to-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--n-80);
+      margin-bottom: 6px;
+    }
+    .email-to-recipient {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 10px;
+      border: 1px solid var(--n-20);
+      border-radius: 6px;
+      cursor: pointer;
+      background: var(--n-1);
+    }
+    .email-to-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--n-100);
+    }
+    .email-to-meta {
+      font-size: 12px;
+      color: var(--n-70);
+      margin-top: 1px;
+    }
+    .email-body-section {
+      padding: 14px 16px;
+    }
+    .email-field-label {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--n-80);
+      margin-bottom: 5px;
+    }
+    .email-subject-input {
+      width: 100%;
+      height: 38px;
+      border: 1px solid var(--n-20);
+      border-radius: 6px;
+      padding: 0 12px;
+      font-size: 14px;
+      font-family: 'Figtree', sans-serif;
+      color: var(--n-80);
+      background: var(--n-5);
+      outline: none;
+      margin-bottom: 14px;
+    }
+    .email-body-textarea {
+      width: 100%;
+      height: 300px;
+      border: 1px solid var(--n-20);
+      border-radius: 6px;
+      padding: 12px;
+      font-size: 13px;
+      font-family: 'Figtree', sans-serif;
+      color: var(--n-80);
+      background: var(--n-5);
+      resize: none;
+      outline: none;
+      line-height: 1.7;
+      margin-bottom: 12px;
+    }
+    .email-body-actions {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+    }
+
+    /* Bottom bar */
+    .gen-bottom-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 18px;
+      background: var(--n-0);
+      border: 1px solid var(--n-20);
+      border-radius: 0.75rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+      margin-top: 14px;
+    }
+
+    /* ============================================================
+       SCREEN 5: PROSPECT DETAILS
+       ============================================================ */
+    .back-link-row {
+      padding: 16px 0 6px;
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 13px;
+      color: var(--n-70);
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .back-link:hover { color: var(--p); text-decoration: underline; }
+    .prospect-h1 {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--n-100);
+      margin-bottom: 4px;
+    }
+    .company-header-inner {
+      padding: 20px 22px;
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+    }
+    .company-logo {
+      width: 60px;
+      height: 60px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--p) 0%, var(--p-80) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 22px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .company-main { flex: 1; }
+    .company-name-lg {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--n-100);
+      margin-bottom: 2px;
+    }
+    .visit-link {
+      font-size: 13px;
+      color: var(--blue);
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      margin-bottom: 10px;
+      text-decoration: none;
+    }
+    .visit-link:hover { text-decoration: underline; }
+    .company-badges-row {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      margin-bottom: 12px;
+    }
+    .dark-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 500;
+      background: var(--n-10);
+      color: var(--n-80);
+    }
+    .company-desc-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--n-70);
+      margin-bottom: 4px;
+    }
+    .company-desc {
+      font-size: 13px;
+      color: var(--n-80);
+      line-height: 1.6;
+      max-width: 580px;
+    }
+    .company-right-stats {
+      min-width: 200px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      padding-top: 4px;
+    }
+    .stat-item { }
+    .stat-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--n-70);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 2px;
+    }
+    .stat-value {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--n-100);
+    }
+    /* Contacts section */
+    .contacts-section {
+      padding: 16px 20px;
+      border-top: 1px solid var(--n-10);
+    }
+    .contacts-section-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+    .contacts-section-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--n-100);
+      flex: 1;
+    }
+    .contact-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+    .contact-card {
+      background: var(--n-0);
+      border: 1px solid var(--n-20);
+      border-radius: 10px;
+      padding: 14px 16px;
+    }
+    .contact-card-top {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+    .contact-avatar {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 14px;
+      color: white;
+      flex-shrink: 0;
+    }
+    .avatar-purple { background: var(--p); }
+    .avatar-blue { background: var(--blue); }
+    .avatar-neutral { background: var(--n-40); }
+    .contact-card-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--n-100);
+      line-height: 1.3;
+    }
+    .contact-card-email {
+      font-size: 11px;
+      color: var(--n-70);
+      margin-bottom: 1px;
+    }
+    .contact-card-title {
+      font-size: 12px;
+      color: var(--n-70);
+      margin-bottom: 8px;
+      line-height: 1.4;
+    }
+    .contact-match-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-bottom: 10px;
+    }
+    .match-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 500;
+      background: var(--p-20);
+      color: var(--p);
+    }
+    .copy-email-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 12px;
+      color: var(--n-70);
+      cursor: pointer;
+      padding: 3px 8px;
+      border-radius: 4px;
+      border: 1px solid var(--n-20);
+      background: var(--n-0);
+      font-family: 'Figtree', sans-serif;
+      transition: all 0.12s;
+    }
+    .copy-email-btn:hover { background: var(--n-5); color: var(--n-80); }
+
+    /* ============================================================
+       SECTION DIVIDER
+       ============================================================ */
+    .elv-divider {
+      border: none;
+      border-top: 1px solid var(--n-20);
+      margin: 0;
+    }
+
+    /* ============================================================
+       SCREEN VISIBILITY
+       ============================================================ */
+    .screen { display: none; }
+    .screen.active { display: block; }
+
+    /* ============================================================
+       TABS CONTAINER (outside card)
+       ============================================================ */
+    .tabs-and-content {
+      padding-top: 0;
+    }
+  </style>
+</head>
+<body>
+
+<!-- INFO BANNER -->
+<div class="info-banner">
+  <a href="../index.html">← Back to Index</a>
+  <span class="info-banner-label">Live Code Base</span>
+  <span style="color: var(--n-50);">—</span>
+  <span style="color: var(--n-40);">Modeled from the actual Rails/Slim templates</span>
+</div>
+
+<!-- HEADER -->
+<header class="elv-header">
+  <span class="elv-header-back">←</span>
+  <div class="elv-logo">G</div>
+  <span class="elv-brand">MyG2</span>
+  <div class="elv-header-spacer"></div>
+  <div class="elv-header-actions">
+    <div class="elv-header-icon" title="Help">?</div>
+    <div class="elv-header-avatar" title="Harvey Mustache">HM</div>
+  </div>
+</header>
+
+<!-- PAGE WRAPPER -->
+<div class="page-outer">
+
+  <!-- PAGE BANNER -->
+  <div class="page-banner">
+    <div class="page-banner-title">G2 Activate</div>
+    <div class="page-banner-subtitle">Identify, unlock, and engage high-intent buyers researching your category on G2.</div>
+    <div class="page-banner-meta">
+      <span class="status-badge-active">
+        <span class="dot"></span>
+        Active
+      </span>
+      <a class="manage-plan-link" href="#">Manage Plan</a>
+    </div>
+  </div>
+
+  <!-- TABS (shared across screens 1–3) -->
+  <div class="tabs-and-content">
+    <div class="elv-tabs" id="main-tabs">
+      <button class="elv-tab active" onclick="showScreen('available', this)">Available Prospects</button>
+      <button class="elv-tab" onclick="showScreen('unlocked', this)">Unlocked Prospects</button>
+      <button class="elv-tab" onclick="showScreen('emails', this)">Emails</button>
+    </div>
+
+    <!-- ============================================================
+         SCREEN 1: AVAILABLE PROSPECTS
+         ============================================================ -->
+    <div class="screen active" id="screen-available">
+      <div class="content-flex">
+
+        <!-- SIDEBAR -->
+        <aside class="filter-sidebar">
+          <div class="elv-card elv-card-padded">
+
+            <!-- Contact Filters -->
+            <div class="filter-group-header">
+              <span class="filter-group-title">Contact Filters</span>
+              <button class="clear-all-btn">Clear All</button>
+            </div>
+
+            <div class="filter-field">
+              <label class="filter-label">Departments</label>
+              <div class="elv-combobox">
+                <span class="elv-tag">Engineering <span class="elv-tag-x">×</span></span>
+                <span class="elv-combobox-chevron">▾</span>
+              </div>
+            </div>
+
+            <div class="filter-field">
+              <label class="filter-label">Management Levels</label>
+              <div class="elv-combobox">
+                <span class="elv-tag">Director <span class="elv-tag-x">×</span></span>
+                <span class="elv-combobox-chevron">▾</span>
+              </div>
+            </div>
+
+            <div class="filter-field">
+              <label class="filter-label">Job Functions</label>
+              <div class="elv-combobox">
+                <span class="elv-combobox-placeholder">Select job functions…</span>
+                <span class="elv-combobox-chevron">▾</span>
+              </div>
+            </div>
+
+            <hr class="elv-hr">
+
+            <!-- Company Filters -->
+            <div class="filter-group-header">
+              <span class="filter-group-title">Company Filters</span>
+              <button class="clear-all-btn">Clear All</button>
+            </div>
+
+            <div class="filter-field">
+              <label class="filter-label">Employee Count Range</label>
+              <div class="number-range-row">
+                <input type="number" placeholder="Min">
+                <span class="range-sep">to</span>
+                <input type="number" placeholder="Max">
+              </div>
+            </div>
+
+            <div class="filter-field">
+              <label class="filter-label">Company Headquarters Location</label>
+              <div class="elv-combobox">
+                <span class="elv-tag">United States <span class="elv-tag-x">×</span></span>
+                <span class="elv-combobox-chevron">▾</span>
+              </div>
+            </div>
+
+          </div>
+        </aside>
+
+        <!-- MAIN: LOCKED COMPANIES CARD -->
+        <div style="flex: 1; min-width: 0;">
+          <div class="elv-card">
+
+            <!-- Card header -->
+            <div class="elv-card-header">
+              <div class="elv-card-header-left">
+                <span class="elv-card-title">Companies</span>
+                <span class="elv-count">(113)</span>
+              </div>
+              <div class="time-filters">
+                <button class="time-pill active">7 Days</button>
+                <button class="time-pill">30 Days</button>
+                <button class="time-pill">90 Days</button>
+                <button class="time-pill">1 Year</button>
+                <button class="time-pill">Custom</button>
+              </div>
+            </div>
+
+            <!-- Bulk action bar -->
+            <div class="bulk-bar">
+              <div class="elv-checkbox"></div>
+              <div class="bulk-credits">
+                <span>My credits: 5,000</span>
+                <span class="bulk-credits-star">★</span>
+              </div>
+              <span class="bulk-total">Total: 0 credits</span>
+              <div class="bulk-spacer"></div>
+              <button class="elv-btn elv-btn-disabled">Unlock Selected (0)</button>
+            </div>
+
+            <!-- Table -->
+            <div class="elv-table-wrap">
+              <table class="elv-table">
+                <thead>
+                  <tr>
+                    <th class="col-first" style="width:56px; text-align:center; padding-left:10px; padding-right:10px;">
+                      Credits <span style="color:var(--ro);">★</span>
+                    </th>
+                    <th style="min-width:180px;">Company</th>
+                    <th>Activity Level</th>
+                    <th>Company Size</th>
+                    <th>Industry</th>
+                    <th>Headquarters</th>
+                    <th style="text-align:center;">Contacts</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- Row 1 -->
+                  <tr>
+                    <td class="col-first" style="text-align:center;">
+                      <div class="credits-cell" style="justify-content:center;">
+                        <span class="elv-checkbox"></span>
+                        <span>100</span>
+                        <span class="credits-star">★</span>
+                      </div>
+                    </td>
+                    <td><span class="table-company-name blurred">Acmecorp Solutions</span></td>
+                    <td><span class="act-badge act-high"><span class="dot"></span>High</span></td>
+                    <td class="blurred">900</td>
+                    <td>Software Publishers</td>
+                    <td>United States</td>
+                    <td style="text-align:center;">3</td>
+                  </tr>
+                  <!-- Row 2 -->
+                  <tr>
+                    <td class="col-first" style="text-align:center;">
+                      <div class="credits-cell" style="justify-content:center;">
+                        <span class="elv-checkbox"></span>
+                        <span>250</span>
+                        <span class="credits-star">★</span>
+                      </div>
+                    </td>
+                    <td><span class="table-company-name blurred">Brightwave Inc</span></td>
+                    <td><span class="act-badge act-high"><span class="dot"></span>High</span></td>
+                    <td class="blurred">1300</td>
+                    <td class="blurred">Information Technology</td>
+                    <td>United States</td>
+                    <td style="text-align:center;">3</td>
+                  </tr>
+                  <!-- Row 3 -->
+                  <tr>
+                    <td class="col-first" style="text-align:center;">
+                      <div class="credits-cell" style="justify-content:center;">
+                        <span class="elv-checkbox"></span>
+                        <span>400</span>
+                        <span class="credits-star">★</span>
+                      </div>
+                    </td>
+                    <td><span class="table-company-name blurred">Cascade Digital</span></td>
+                    <td><span class="act-badge act-high"><span class="dot"></span>High</span></td>
+                    <td class="blurred">1700</td>
+                    <td class="blurred">Computer Software</td>
+                    <td>United States</td>
+                    <td style="text-align:center;">3</td>
+                  </tr>
+                  <!-- Row 4 -->
+                  <tr>
+                    <td class="col-first" style="text-align:center;">
+                      <div class="credits-cell" style="justify-content:center;">
+                        <span class="elv-checkbox"></span>
+                        <span>125</span>
+                        <span class="credits-star">★</span>
+                      </div>
+                    </td>
+                    <td><span class="table-company-name blurred">Dawntech Group</span></td>
+                    <td><span class="act-badge act-high"><span class="dot"></span>High</span></td>
+                    <td class="blurred">2100</td>
+                    <td class="blurred">Financial Services</td>
+                    <td>United States</td>
+                    <td style="text-align:center;">3</td>
+                  </tr>
+                  <!-- Row 5 -->
+                  <tr>
+                    <td class="col-first" style="text-align:center;">
+                      <div class="credits-cell" style="justify-content:center;">
+                        <span class="elv-checkbox"></span>
+                        <span>275</span>
+                        <span class="credits-star">★</span>
+                      </div>
+                    </td>
+                    <td><span class="table-company-name blurred">Edgemark Systems</span></td>
+                    <td><span class="act-badge act-high"><span class="dot"></span>High</span></td>
+                    <td class="blurred">2500</td>
+                    <td class="blurred">Healthcare IT</td>
+                    <td>United States</td>
+                    <td style="text-align:center;">0</td>
+                  </tr>
+                  <!-- Row 6 -->
+                  <tr>
+                    <td class="col-first" style="text-align:center;">
+                      <div class="credits-cell" style="justify-content:center;">
+                        <span class="elv-checkbox"></span>
+                        <span>425</span>
+                        <span class="credits-star">★</span>
+                      </div>
+                    </td>
+                    <td><span class="table-company-name blurred">Fluxpoint LLC</span></td>
+                    <td><span class="act-badge act-high"><span class="dot"></span>High</span></td>
+                    <td class="blurred">1000</td>
+                    <td class="blurred">Manufacturing</td>
+                    <td>United States</td>
+                    <td style="text-align:center;">1</td>
+                  </tr>
+                  <!-- Row 7 -->
+                  <tr>
+                    <td class="col-first" style="text-align:center;">
+                      <div class="credits-cell" style="justify-content:center;">
+                        <span class="elv-checkbox"></span>
+                        <span>150</span>
+                        <span class="credits-star">★</span>
+                      </div>
+                    </td>
+                    <td><span class="table-company-name blurred">Gridworks Co</span></td>
+                    <td><span class="act-badge act-medium"><span class="dot"></span>Medium</span></td>
+                    <td class="blurred">1400</td>
+                    <td class="blurred">Professional Services</td>
+                    <td>United States</td>
+                    <td style="text-align:center;">3</td>
+                  </tr>
+                  <!-- Row 8 -->
+                  <tr>
+                    <td class="col-first" style="text-align:center;">
+                      <div class="credits-cell" style="justify-content:center;">
+                        <span class="elv-checkbox"></span>
+                        <span>300</span>
+                        <span class="credits-star">★</span>
+                      </div>
+                    </td>
+                    <td><span class="table-company-name blurred">Helix Ventures</span></td>
+                    <td><span class="act-badge act-medium"><span class="dot"></span>Medium</span></td>
+                    <td class="blurred">1800</td>
+                    <td class="blurred">Retail Technology</td>
+                    <td>United States</td>
+                    <td style="text-align:center;">0</td>
+                  </tr>
+                  <!-- Row 9 -->
+                  <tr>
+                    <td class="col-first" style="text-align:center;">
+                      <div class="credits-cell" style="justify-content:center;">
+                        <span class="elv-checkbox"></span>
+                        <span>450</span>
+                        <span class="credits-star">★</span>
+                      </div>
+                    </td>
+                    <td><span class="table-company-name blurred">Ironside Corp</span></td>
+                    <td><span class="act-badge act-medium"><span class="dot"></span>Medium</span></td>
+                    <td class="blurred">2200</td>
+                    <td class="blurred">Logistics</td>
+                    <td>United States</td>
+                    <td style="text-align:center;">0</td>
+                  </tr>
+                  <!-- Row 10 -->
+                  <tr>
+                    <td class="col-first" style="text-align:center;">
+                      <div class="credits-cell" style="justify-content:center;">
+                        <span class="elv-checkbox"></span>
+                        <span>175</span>
+                        <span class="credits-star">★</span>
+                      </div>
+                    </td>
+                    <td><span class="table-company-name blurred">Jetstream Inc</span></td>
+                    <td><span class="act-badge act-medium"><span class="dot"></span>Medium</span></td>
+                    <td class="blurred">2600</td>
+                    <td class="blurred">E-commerce</td>
+                    <td>United States</td>
+                    <td style="text-align:center;">3</td>
+                  </tr>
+                  <!-- Row 11 -->
+                  <tr>
+                    <td class="col-first" style="text-align:center;">
+                      <div class="credits-cell" style="justify-content:center;">
+                        <span class="elv-checkbox"></span>
+                        <span>325</span>
+                        <span class="credits-star">★</span>
+                      </div>
+                    </td>
+                    <td><span class="table-company-name blurred">Keyline Partners</span></td>
+                    <td><span class="act-badge act-medium"><span class="dot"></span>Medium</span></td>
+                    <td class="blurred">1100</td>
+                    <td class="blurred">Consulting</td>
+                    <td>United States</td>
+                    <td style="text-align:center;">3</td>
+                  </tr>
+                  <!-- Row 12 -->
+                  <tr>
+                    <td class="col-first" style="text-align:center;">
+                      <div class="credits-cell" style="justify-content:center;">
+                        <span class="elv-checkbox"></span>
+                        <span>475</span>
+                        <span class="credits-star">★</span>
+                      </div>
+                    </td>
+                    <td><span class="table-company-name blurred">Luminet Group</span></td>
+                    <td><span class="act-badge act-medium"><span class="dot"></span>Medium</span></td>
+                    <td class="blurred">1500</td>
+                    <td class="blurred">AdTech</td>
+                    <td>United States</td>
+                    <td style="text-align:center;">2</td>
+                  </tr>
+                  <!-- Row 13 -->
+                  <tr>
+                    <td class="col-first" style="text-align:center;">
+                      <div class="credits-cell" style="justify-content:center;">
+                        <span class="elv-checkbox"></span>
+                        <span>200</span>
+                        <span class="credits-star">★</span>
+                      </div>
+                    </td>
+                    <td><span class="table-company-name blurred">Meridian Tech</span></td>
+                    <td><span class="act-badge act-medium"><span class="dot"></span>Medium</span></td>
+                    <td class="blurred">1900</td>
+                    <td class="blurred">SaaS</td>
+                    <td>United States</td>
+                    <td style="text-align:center;">3</td>
+                  </tr>
+                  <!-- Row 14 -->
+                  <tr>
+                    <td class="col-first" style="text-align:center;">
+                      <div class="credits-cell" style="justify-content:center;">
+                        <span class="elv-checkbox"></span>
+                        <span>350</span>
+                        <span class="credits-star">★</span>
+                      </div>
+                    </td>
+                    <td><span class="table-company-name blurred">Northgate Solutions</span></td>
+                    <td><span class="act-badge act-medium"><span class="dot"></span>Medium</span></td>
+                    <td class="blurred">2300</td>
+                    <td class="blurred">Cybersecurity</td>
+                    <td>United States</td>
+                    <td style="text-align:center;">3</td>
+                  </tr>
+                  <!-- Row 15 -->
+                  <tr>
+                    <td class="col-first" style="text-align:center;">
+                      <div class="credits-cell" style="justify-content:center;">
+                        <span class="elv-checkbox"></span>
+                        <span>500</span>
+                        <span class="credits-star">★</span>
+                      </div>
+                    </td>
+                    <td><span class="table-company-name blurred">Overture Digital</span></td>
+                    <td><span class="act-badge act-medium"><span class="dot"></span>Medium</span></td>
+                    <td class="blurred">2700</td>
+                    <td class="blurred">Media &amp; Publishing</td>
+                    <td>United States</td>
+                    <td style="text-align:center;">3</td>
+                  </tr>
+                  <!-- Row 16 -->
+                  <tr>
+                    <td class="col-first" style="text-align:center;">
+                      <div class="credits-cell" style="justify-content:center;">
+                        <span class="elv-checkbox"></span>
+                        <span>225</span>
+                        <span class="credits-star">★</span>
+                      </div>
+                    </td>
+                    <td><span class="table-company-name blurred">Pathway Systems</span></td>
+                    <td><span class="act-badge act-medium"><span class="dot"></span>Medium</span></td>
+                    <td class="blurred">1200</td>
+                    <td class="blurred">Legal Tech</td>
+                    <td>United States</td>
+                    <td style="text-align:center;">3</td>
+                  </tr>
+                  <!-- Row 17 -->
+                  <tr>
+                    <td class="col-first" style="text-align:center;">
+                      <div class="credits-cell" style="justify-content:center;">
+                        <span class="elv-checkbox"></span>
+                        <span>375</span>
+                        <span class="credits-star">★</span>
+                      </div>
+                    </td>
+                    <td><span class="table-company-name blurred">Quantum Edge</span></td>
+                    <td><span class="act-badge act-low"><span class="dot"></span>Low</span></td>
+                    <td class="blurred">1600</td>
+                    <td class="blurred">Real Estate Tech</td>
+                    <td>United States</td>
+                    <td style="text-align:center;">0</td>
+                  </tr>
+                  <!-- Row 18 -->
+                  <tr>
+                    <td class="col-first" style="text-align:center;">
+                      <div class="credits-cell" style="justify-content:center;">
+                        <span class="elv-checkbox"></span>
+                        <span>550</span>
+                        <span class="credits-star">★</span>
+                      </div>
+                    </td>
+                    <td><span class="table-company-name blurred">Redpoint Analytics</span></td>
+                    <td><span class="act-badge act-low"><span class="dot"></span>Low</span></td>
+                    <td class="blurred">2000</td>
+                    <td class="blurred">Insurance Tech</td>
+                    <td>United States</td>
+                    <td style="text-align:center;">3</td>
+                  </tr>
+                  <!-- Row 19 -->
+                  <tr>
+                    <td class="col-first" style="text-align:center;">
+                      <div class="credits-cell" style="justify-content:center;">
+                        <span class="elv-checkbox"></span>
+                        <span>525</span>
+                        <span class="credits-star">★</span>
+                      </div>
+                    </td>
+                    <td><span class="table-company-name blurred">Silverstone Corp</span></td>
+                    <td><span class="act-badge act-low"><span class="dot"></span>Low</span></td>
+                    <td class="blurred">2400</td>
+                    <td class="blurred">EdTech</td>
+                    <td>United States</td>
+                    <td style="text-align:center;">3</td>
+                  </tr>
+                  <!-- Row 20 -->
+                  <tr>
+                    <td class="col-first" style="text-align:center;">
+                      <div class="credits-cell" style="justify-content:center;">
+                        <span class="elv-checkbox"></span>
+                        <span>575</span>
+                        <span class="credits-star">★</span>
+                      </div>
+                    </td>
+                    <td><span class="table-company-name blurred">Titanfall Group</span></td>
+                    <td><span class="act-badge act-low"><span class="dot"></span>Low</span></td>
+                    <td class="blurred">2800</td>
+                    <td class="blurred">GovTech</td>
+                    <td>United States</td>
+                    <td style="text-align:center;">3</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Pagination -->
+            <div class="elv-pagination">
+              <button class="page-btn nav-btn">←</button>
+              <button class="page-btn active">1</button>
+              <button class="page-btn">2</button>
+              <button class="page-btn">3</button>
+              <button class="page-btn">4</button>
+              <button class="page-btn">5</button>
+              <span class="page-ellipsis">…</span>
+              <button class="page-btn">22</button>
+              <button class="page-btn">23</button>
+              <button class="page-btn nav-btn">→</button>
+            </div>
+
+          </div><!-- /elv-card -->
+        </div><!-- /main -->
+
+      </div><!-- /content-flex -->
+    </div><!-- /screen-available -->
+
+
+    <!-- ============================================================
+         SCREEN 2: UNLOCKED PROSPECTS
+         ============================================================ -->
+    <div class="screen" id="screen-unlocked">
+      <div class="elv-card">
+
+        <!-- Card header -->
+        <div class="elv-card-header">
+          <div class="elv-card-header-left">
+            <span class="elv-card-title">Companies</span>
+            <span class="elv-count">(6)</span>
+          </div>
+          <div style="display:flex; align-items:center; gap:10px;">
+            <div class="elv-search">
+              <span class="elv-search-icon">🔍</span>
+              <input type="search" placeholder="Search companies…">
+            </div>
+            <div class="time-filters">
+              <button class="time-pill active">7 Days</button>
+              <button class="time-pill">30 Days</button>
+              <button class="time-pill">90 Days</button>
+              <button class="time-pill">1 Year</button>
+              <button class="time-pill">Custom</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Table -->
+        <div class="elv-table-wrap">
+          <table class="elv-table">
+            <thead>
+              <tr>
+                <th class="col-first" style="min-width:130px;">Unlock Date</th>
+                <th style="min-width:160px;">Company</th>
+                <th>Activity Level</th>
+                <th>Company Size</th>
+                <th>Headquarters Location</th>
+                <th>Est. Annual Revenue</th>
+                <th style="text-align:center;">Contacts</th>
+                <th class="col-last" style="min-width:80px;">Details</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Row 1: unread -->
+              <tr>
+                <td class="col-first">
+                  <div class="unread-date-cell">
+                    <span class="unread-dot"></span>
+                    <span style="font-weight:700; color:var(--n-100);">Dec 16, 2025</span>
+                  </div>
+                </td>
+                <td><span class="table-company-name" style="font-weight:700;">Predictive</span></td>
+                <td><span class="act-badge act-high"><span class="dot"></span>High</span></td>
+                <td style="font-weight:700;">750–1,000</td>
+                <td style="font-weight:700;">Port Saint Lucie, FL</td>
+                <td>$21.4M</td>
+                <td style="text-align:center;">3</td>
+                <td class="col-last">
+                  <a class="details-link" href="#" onclick="showProspectDetails(); return false;">Details →</a>
+                </td>
+              </tr>
+              <!-- Row 2: read -->
+              <tr>
+                <td class="col-first">
+                  <div class="unread-date-cell">
+                    <span style="display:inline-block; width:8px; height:8px; flex-shrink:0;"></span>
+                    <span>Dec 16, 2025</span>
+                  </div>
+                </td>
+                <td><span class="table-company-name">InsightWave</span></td>
+                <td><span class="act-badge act-high"><span class="dot"></span>High</span></td>
+                <td>750–1,000</td>
+                <td>Port Saint Lucie, FL</td>
+                <td>$17.6M</td>
+                <td style="text-align:center;">2</td>
+                <td class="col-last">
+                  <a class="details-link" href="#" onclick="showProspectDetails(); return false;">Details →</a>
+                </td>
+              </tr>
+              <!-- Row 3: unread -->
+              <tr>
+                <td class="col-first">
+                  <div class="unread-date-cell">
+                    <span class="unread-dot"></span>
+                    <span style="font-weight:700; color:var(--n-100);">Dec 16, 2025</span>
+                  </div>
+                </td>
+                <td><span class="table-company-name" style="font-weight:700;">Predictive</span></td>
+                <td><span class="act-badge act-high"><span class="dot"></span>High</span></td>
+                <td style="font-weight:700;">750–1,000</td>
+                <td style="font-weight:700;">Port Saint Lucie, FL</td>
+                <td>$21.4M</td>
+                <td style="text-align:center;">3</td>
+                <td class="col-last">
+                  <a class="details-link" href="#" onclick="showProspectDetails(); return false;">Details →</a>
+                </td>
+              </tr>
+              <!-- Row 4 -->
+              <tr>
+                <td class="col-first">
+                  <div class="unread-date-cell">
+                    <span style="display:inline-block; width:8px; height:8px; flex-shrink:0;"></span>
+                    <span>Dec 15, 2025</span>
+                  </div>
+                </td>
+                <td><span class="table-company-name">AlgoStream</span></td>
+                <td><span class="act-badge act-high"><span class="dot"></span>High</span></td>
+                <td>750–1,000</td>
+                <td>Port Saint Lucie, FL</td>
+                <td>$15.2M</td>
+                <td style="text-align:center;">0</td>
+                <td class="col-last">
+                  <a class="details-link" href="#" onclick="showProspectDetails(); return false;">Details →</a>
+                </td>
+              </tr>
+              <!-- Row 5 -->
+              <tr>
+                <td class="col-first">
+                  <div class="unread-date-cell">
+                    <span style="display:inline-block; width:8px; height:8px; flex-shrink:0;"></span>
+                    <span>Dec 5, 2025</span>
+                  </div>
+                </td>
+                <td><span class="table-company-name">DataVision</span></td>
+                <td><span class="act-badge act-high"><span class="dot"></span>High</span></td>
+                <td>750–1,000</td>
+                <td>Port Saint Lucie, FL</td>
+                <td>$15.2M</td>
+                <td style="text-align:center;">3</td>
+                <td class="col-last">
+                  <a class="details-link" href="#" onclick="showProspectDetails(); return false;">Details →</a>
+                </td>
+              </tr>
+              <!-- Row 6 -->
+              <tr>
+                <td class="col-first">
+                  <div class="unread-date-cell">
+                    <span style="display:inline-block; width:8px; height:8px; flex-shrink:0;"></span>
+                    <span>Dec 5, 2025</span>
+                  </div>
+                </td>
+                <td><span class="table-company-name">MetricPulse</span></td>
+                <td><span class="act-badge act-high"><span class="dot"></span>High</span></td>
+                <td>750–1,000</td>
+                <td>Port Saint Lucie, FL</td>
+                <td>$17.6M</td>
+                <td style="text-align:center;">3</td>
+                <td class="col-last">
+                  <a class="details-link" href="#" onclick="showProspectDetails(); return false;">Details →</a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div><!-- /elv-card -->
+    </div><!-- /screen-unlocked -->
+
+
+    <!-- ============================================================
+         SCREEN 3: EMAILS
+         ============================================================ -->
+    <div class="screen" id="screen-emails">
+      <div class="content-flex" style="align-items: flex-start;">
+
+        <!-- LEFT: Generation Settings card -->
+        <div class="gen-settings-card">
+          <div class="elv-card">
+
+            <div class="gen-settings-section">
+              <div class="gen-settings-title">Generation Settings</div>
+
+              <div class="settings-two-col" style="margin-bottom:14px;">
+                <div>
+                  <label class="form-label">Tone</label>
+                  <select class="elv-select">
+                    <option>Professional</option>
+                    <option selected>Friendly</option>
+                    <option>Direct</option>
+                    <option>Consultative</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="form-label">Email body length</label>
+                  <select class="elv-select">
+                    <option>Short</option>
+                    <option selected>Medium</option>
+                    <option>Long</option>
+                    <option>Very Long</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="ref-material-row">
+                <label class="form-label" style="margin-bottom:0;">Reference Material</label>
+                <button class="elv-btn-text" style="font-size:12px;">
+                  <span class="ai-icon">✦</span> Auto-generate
+                </button>
+              </div>
+              <textarea class="elv-textarea" rows="5" style="min-height:100px;">Focus on how G2 Activate helps revenue teams act on buyer intent data faster. Mention our integration with Salesforce. Keep tone consultative and data-driven.</textarea>
+            </div>
+
+            <!-- Gmail Connected -->
+            <div class="gen-settings-section">
+              <div class="gmail-section" style="display:flex; flex-direction:column; align-items:stretch; gap:4px; background:none; border:none; padding:0;">
+                <div style="display:flex; align-items:center; justify-content:space-between;">
+                  <div class="gmail-connected-label">
+                    Gmail Connected
+                    <span style="color:var(--n-50); font-size:13px; font-weight:400; cursor:default;" title="Your Gmail account is connected">ⓘ</span>
+                  </div>
+                  <a href="#" class="gmail-manage-link">Manage</a>
+                </div>
+                <div class="gmail-meta">h.mustache@acmeinc.com</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- RIGHT: All Generated Emails card -->
+        <div style="flex:1; min-width:0;">
+          <div class="elv-card">
+
+            <!-- Card header -->
+            <div class="elv-card-header">
+              <div class="elv-card-header-left">
+                <span class="elv-card-title">All Generated Emails</span>
+                <span class="elv-count">(4)</span>
+              </div>
+              <div style="display:flex; align-items:center; gap:10px;">
+                <div class="elv-search">
+                  <span class="elv-search-icon">🔍</span>
+                  <input type="search" placeholder="Search emails…">
+                </div>
+                <button class="elv-btn elv-btn-secondary" onclick="showScreen('generate', null)">
+                  <span class="ai-icon">✦</span> Generate Email(s)
+                </button>
+              </div>
+            </div>
+
+            <!-- Table -->
+            <div class="elv-table-wrap">
+              <table class="elv-table">
+                <thead>
+                  <tr>
+                    <th>Date Created</th>
+                    <th>Company</th>
+                    <th>Recipient(s)</th>
+                    <th style="min-width:200px;">Subject</th>
+                    <th>Engagement</th>
+                    <th>Status</th>
+                    <th class="col-last" style="min-width:68px;">View</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Dec 17, 2025</td>
+                    <td>Predictive</td>
+                    <td>Lilly Pad</td>
+                    <td style="color:var(--n-70); font-size:12px; max-width:200px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">Supporting reps at the moment…</td>
+                    <td><span style="font-size:12px; color:var(--n-80);">1 open</span></td>
+                    <td><span class="status-pill status-opened">Opened</span></td>
+                    <td class="col-last"><a class="details-link" href="#" onclick="showScreen('generate', null); return false;">View →</a></td>
+                  </tr>
+                  <tr>
+                    <td>Dec 17, 2025</td>
+                    <td>InsightWave</td>
+                    <td>Jane Smith</td>
+                    <td style="color:var(--n-70); font-size:12px; max-width:200px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">How leaders are scaling consiste…</td>
+                    <td><span style="font-size:12px; color:var(--n-50);">—</span></td>
+                    <td><span class="status-pill status-sent">Sent</span></td>
+                    <td class="col-last"><a class="details-link" href="#" onclick="showScreen('generate', null); return false;">View →</a></td>
+                  </tr>
+                  <tr>
+                    <td>Dec 17, 2025</td>
+                    <td>Predictive</td>
+                    <td>John Doe</td>
+                    <td style="color:var(--n-70); font-size:12px; max-width:200px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">Enabling best practices across t…</td>
+                    <td><span style="font-size:12px; color:var(--n-50);">—</span></td>
+                    <td><span class="status-pill status-draft">Draft</span></td>
+                    <td class="col-last"><a class="details-link" href="#" onclick="showScreen('generate', null); return false;">View →</a></td>
+                  </tr>
+                  <tr>
+                    <td>Dec 17, 2025</td>
+                    <td>AlgoStream</td>
+                    <td>Harvey Mustache</td>
+                    <td style="color:var(--n-70); font-size:12px; max-width:200px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">How leaders are scaling consiste…</td>
+                    <td><span style="font-size:12px; color:var(--n-50);">—</span></td>
+                    <td><span class="status-pill status-draft">Draft</span></td>
+                    <td class="col-last"><a class="details-link" href="#" onclick="showScreen('generate', null); return false;">View →</a></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Pagination (right-aligned) -->
+            <div class="pagination-right">
+              <button class="page-btn nav-btn">←</button>
+              <button class="page-btn active">1</button>
+              <button class="page-btn nav-btn">→</button>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div><!-- /screen-emails -->
+
+
+    <!-- ============================================================
+         SCREEN 4: GENERATE EMAILS (sub-page, no tabs)
+         ============================================================ -->
+    <div class="screen" id="screen-generate">
+      <div class="gen-page-header">
+        <div class="gen-page-title">Generate Emails</div>
+      </div>
+
+      <div class="gen-layout">
+
+        <!-- LEFT: Recipients -->
+        <div class="elv-card" style="overflow:hidden;">
+          <div class="recipient-list-section">
+            <div class="recipient-list-title-row">
+              <span class="recipient-list-h3">Recipients</span>
+              <span class="recipient-count">(1 selected)</span>
+            </div>
+            <div class="recipient-controls">
+              <div class="elv-search" style="flex:1;">
+                <span class="elv-search-icon">🔍</span>
+                <input type="search" placeholder="Search companies and contacts" style="width:100%;">
+              </div>
+              <button class="elv-btn elv-btn-ghost" style="height:34px; gap:5px; font-size:12px;">
+                <span>⊞</span> Filters
+              </button>
+            </div>
+            <div class="recipient-meta-row">Showing 1–10 of 63 contacts</div>
+          </div>
+
+          <div style="padding: 8px 10px;">
+            <!-- Contact 1: selected -->
+            <div class="contact-item selected">
+              <div class="elv-checkbox checked" style="margin-top:3px;">✓</div>
+              <div class="contact-item-meta">
+                <div class="contact-item-name">Lilly Pad</div>
+                <div class="contact-item-email">l.pad@company.com</div>
+                <div class="contact-item-title">Chief Operating Officer</div>
+                <div class="contact-item-chips">
+                  <span class="contact-chip">🏢 Predictive</span>
+                  <span class="contact-chip">📍 United States</span>
+                  <span class="contact-chip">👥 750</span>
+                </div>
+              </div>
+            </div>
+            <!-- Contact 2 -->
+            <div class="contact-item">
+              <div class="elv-checkbox" style="margin-top:3px;"></div>
+              <div class="contact-item-meta">
+                <div style="display:flex; align-items:center; gap:7px; flex-wrap:wrap;">
+                  <span class="contact-item-name">John Doe</span>
+                  <span class="likely-visitor-chip">Likely Visitor</span>
+                </div>
+                <div class="contact-item-email">j.doe@company.com</div>
+                <div class="contact-item-title">Manager, Communications &amp; CEO</div>
+                <div class="contact-item-chips">
+                  <span class="contact-chip">🏢 Predictive</span>
+                  <span class="contact-chip">📍 United States</span>
+                  <span class="contact-chip">👥 750</span>
+                </div>
+              </div>
+            </div>
+            <!-- Contact 3 -->
+            <div class="contact-item">
+              <div class="elv-checkbox" style="margin-top:3px;"></div>
+              <div class="contact-item-meta">
+                <div class="contact-item-name">Jane Smith</div>
+                <div class="contact-item-email">j.smith@company.com</div>
+                <div class="contact-item-title">Chief Executive Officer &amp; Founder</div>
+                <div class="contact-item-chips">
+                  <span class="contact-chip">🏢 Predictive</span>
+                  <span class="contact-chip">📍 United States</span>
+                  <span class="contact-chip">👥 750</span>
+                </div>
+              </div>
+            </div>
+            <!-- Contact 4 -->
+            <div class="contact-item">
+              <div class="elv-checkbox" style="margin-top:3px;"></div>
+              <div class="contact-item-meta">
+                <div class="contact-item-name">Naomi Watts</div>
+                <div class="contact-item-email">n.watts@stellar.com</div>
+                <div class="contact-item-title">VP, Marketing &amp; Co-founder</div>
+                <div class="contact-item-chips">
+                  <span class="contact-chip">🏢 Stellar</span>
+                  <span class="contact-chip">📍 Canada</span>
+                  <span class="contact-chip">👥 1.2K</span>
+                </div>
+              </div>
+            </div>
+            <!-- Contact 5 -->
+            <div class="contact-item">
+              <div class="elv-checkbox" style="margin-top:3px;"></div>
+              <div class="contact-item-meta">
+                <div class="contact-item-name">Keanu Reeves</div>
+                <div class="contact-item-email">k.reeves@matrix.com</div>
+                <div class="contact-item-title">Senior Director</div>
+                <div class="contact-item-chips">
+                  <span class="contact-chip">🏢 Matrix</span>
+                  <span class="contact-chip">📍 United Kingdom</span>
+                  <span class="contact-chip">👥 250</span>
+                </div>
+              </div>
+            </div>
+            <!-- Contact 6 -->
+            <div class="contact-item">
+              <div class="elv-checkbox" style="margin-top:3px;"></div>
+              <div class="contact-item-meta">
+                <div class="contact-item-name">Carrie Moss</div>
+                <div class="contact-item-email">c.moss@resistance.com</div>
+                <div class="contact-item-title">Lead Programmer</div>
+                <div class="contact-item-chips">
+                  <span class="contact-chip">🏢 Resistance</span>
+                  <span class="contact-chip">📍 France</span>
+                  <span class="contact-chip">👥 500</span>
+                </div>
+              </div>
+            </div>
+            <!-- Contact 7 -->
+            <div class="contact-item">
+              <div class="elv-checkbox" style="margin-top:3px;"></div>
+              <div class="contact-item-meta">
+                <div class="contact-item-name">Laurence Fishburne</div>
+                <div class="contact-item-email">l.fish@neb.com</div>
+                <div class="contact-item-title">Chief Technology Officer</div>
+                <div class="contact-item-chips">
+                  <span class="contact-chip">🏢 Nebuchadnezzar</span>
+                  <span class="contact-chip">📍 Germany</span>
+                  <span class="contact-chip">👥 1,000</span>
+                </div>
+              </div>
+            </div>
+            <!-- Contact 8 -->
+            <div class="contact-item">
+              <div class="elv-checkbox" style="margin-top:3px;"></div>
+              <div class="contact-item-meta">
+                <div class="contact-item-name">Hugo Weaving</div>
+                <div class="contact-item-email">h.weav@agents.com</div>
+                <div class="contact-item-title">Senior Agent</div>
+                <div class="contact-item-chips">
+                  <span class="contact-chip">🏢 Agents</span>
+                  <span class="contact-chip">📍 Australia</span>
+                  <span class="contact-chip">👥 2.5K</span>
+                </div>
+              </div>
+            </div>
+            <!-- Contact 9 -->
+            <div class="contact-item">
+              <div class="elv-checkbox" style="margin-top:3px;"></div>
+              <div class="contact-item-meta">
+                <div class="contact-item-name">Joe Pantoliano</div>
+                <div class="contact-item-email">j.panto@oracle.com</div>
+                <div class="contact-item-title">Security Lead</div>
+                <div class="contact-item-chips">
+                  <span class="contact-chip">🏢 Oracle</span>
+                  <span class="contact-chip">📍 Spain</span>
+                  <span class="contact-chip">👥 3.1K</span>
+                </div>
+              </div>
+            </div>
+            <!-- Contact 10 -->
+            <div class="contact-item">
+              <div class="elv-checkbox" style="margin-top:3px;"></div>
+              <div class="contact-item-meta">
+                <div class="contact-item-name">Monica Bellucci</div>
+                <div class="contact-item-email">m.bell@train.com</div>
+                <div class="contact-item-title">Train Manager</div>
+                <div class="contact-item-chips">
+                  <span class="contact-chip">🏢 Train</span>
+                  <span class="contact-chip">📍 Italy</span>
+                  <span class="contact-chip">👥 1.8K</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Pagination -->
+          <div style="padding:8px 14px 12px; border-top: 1px solid var(--n-10);">
+            <div class="elv-pagination" style="padding:6px 0 0;">
+              <button class="page-btn nav-btn">←</button>
+              <button class="page-btn active">1</button>
+              <button class="page-btn">2</button>
+              <button class="page-btn">3</button>
+              <button class="page-btn">4</button>
+              <button class="page-btn">5</button>
+              <span class="page-ellipsis">…</span>
+              <button class="page-btn">22</button>
+              <button class="page-btn">23</button>
+              <button class="page-btn nav-btn">→</button>
+            </div>
+          </div>
+
+        </div><!-- /recipients card -->
+
+
+        <!-- RIGHT: Email Content -->
+        <div class="elv-card" style="overflow:hidden;">
+
+          <div class="elv-card-header">
+            <span class="email-content-title">Email Content</span>
+          </div>
+
+          <!-- To section -->
+          <div class="email-to-section">
+            <div class="email-to-label">To</div>
+            <div class="email-to-recipient">
+              <div>
+                <div class="email-to-name">Lilly Pad</div>
+                <div class="email-to-meta">🏢 Predictive &nbsp;·&nbsp; 📍 United States &nbsp;·&nbsp; 👥 750</div>
+              </div>
+              <span style="color:var(--n-50); font-size:14px;">▾</span>
+            </div>
+          </div>
+
+          <!-- Subject + Body -->
+          <div class="email-body-section">
+            <label class="email-field-label">Subject</label>
+            <input type="text" class="email-subject-input" value="How leaders are scaling consistent execution">
+
+            <label class="email-field-label">Email Body</label>
+            <textarea class="email-body-textarea">Hello Lilly,
+
+I noticed your team at Predictive has been actively researching execution platforms—a common priority for ops leaders managing scale.
+
+At Acme Inc, we help revenue teams like yours turn intent signals into pipeline faster. Our clients typically see a 30% reduction in time-to-outreach without adding headcount.
+
+I'd love to share how a few similar companies in your space have used Acme to improve execution velocity.
+
+Best,
+Harvey Mustache
+Acme Inc</textarea>
+
+            <div class="email-body-actions">
+              <button class="elv-btn elv-btn-secondary">
+                <span class="ai-icon">✦</span> Manage Generation
+              </button>
+            </div>
+          </div>
+
+        </div><!-- /email content card -->
+
+      </div><!-- /gen-layout -->
+
+      <!-- Bottom bar -->
+      <div class="gen-bottom-bar">
+        <a class="elv-btn-text" href="#" onclick="showScreen('emails', null); return false;" style="font-weight:600; color:var(--n-80);">← Back</a>
+        <button class="elv-btn elv-btn-primary">Send 1 Email →</button>
+      </div>
+
+    </div><!-- /screen-generate -->
+
+
+    <!-- ============================================================
+         SCREEN 5: PROSPECT DETAILS (sub-page, no tabs)
+         ============================================================ -->
+    <div class="screen" id="screen-details">
+
+      <div class="back-link-row">
+        <a class="back-link" href="#" onclick="showScreen('unlocked', null); return false;">← Unlocked Prospects</a>
+      </div>
+
+      <h1 class="prospect-h1" style="margin-bottom:16px;">Prospect Details: Predictive</h1>
+
+      <div class="elv-card" style="margin-bottom:14px;">
+
+        <!-- Company header -->
+        <div class="company-header-inner">
+          <div class="company-logo">P</div>
+          <div class="company-main">
+            <div class="company-name-lg">Predictive</div>
+            <a href="#" class="visit-link">Visit website ↗</a>
+            <div class="company-badges-row">
+              <span class="dark-pill">↑ High Activity (99)</span>
+              <span class="dark-pill">Dec 2025</span>
+            </div>
+            <div class="company-desc-label">Description</div>
+            <div class="company-desc">Predictive is a revenue intelligence platform helping enterprise sales teams identify and act on the highest-value opportunities in their pipeline. Headquartered in Port Saint Lucie, FL.</div>
+          </div>
+          <div class="company-right-stats">
+            <div class="stat-item">
+              <div class="stat-label">Company Size</div>
+              <div class="stat-value">40.3K</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-label">Est. Annual Revenue</div>
+              <div class="stat-value">$21.4M</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-label">Headquarters Location</div>
+              <div class="stat-value" style="font-size:13px; font-weight:500;">Port Saint Lucie, FL</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-label">Visitor Locations</div>
+              <div class="stat-value" style="font-size:13px; font-weight:500;">United States</div>
+            </div>
+          </div>
+        </div>
+
+        <hr class="elv-divider">
+
+        <!-- Contacts section -->
+        <div class="contacts-section">
+          <div class="contacts-section-header">
+            <span class="contacts-section-title">Predictive Contacts (3)</span>
+            <button class="elv-btn elv-btn-ghost" style="font-size:12px; height:32px;">Download CSV ↓</button>
+            <button class="elv-btn elv-btn-secondary" style="font-size:12px; height:32px;" onclick="showScreen('generate', null)">
+              <span class="ai-icon">✦</span> Generate Emails
+            </button>
+          </div>
+
+          <div class="contact-cards-grid">
+
+            <!-- Card 1: Lilly Pad -->
+            <div class="contact-card">
+              <div class="contact-card-top">
+                <div class="contact-avatar avatar-purple">LP</div>
+                <div>
+                  <div class="contact-card-name">Lilly Pad</div>
+                  <div class="contact-card-email">l.pad@company.com</div>
+                </div>
+              </div>
+              <div class="contact-card-title">Chief Operating Officer</div>
+              <div class="contact-match-badges">
+                <span class="match-badge">Department Level</span>
+              </div>
+              <button class="copy-email-btn">📋 Copy Email</button>
+            </div>
+
+            <!-- Card 2: John Doe -->
+            <div class="contact-card">
+              <div class="contact-card-top">
+                <div class="contact-avatar avatar-blue">JD</div>
+                <div>
+                  <div class="contact-card-name">John Doe</div>
+                  <div class="contact-card-email">j.doe@company.com</div>
+                </div>
+              </div>
+              <div class="contact-card-title">Manager, Communications &amp; Chief Executive Officer</div>
+              <div class="contact-match-badges">
+                <span class="match-badge">Department</span>
+              </div>
+              <button class="copy-email-btn">📋 Copy Email</button>
+            </div>
+
+            <!-- Card 3: Jane Smith -->
+            <div class="contact-card">
+              <div class="contact-card-top">
+                <div class="contact-avatar avatar-neutral">JS</div>
+                <div>
+                  <div class="contact-card-name">Jane Smith</div>
+                  <div class="contact-card-email">j.smith@company.com</div>
+                </div>
+              </div>
+              <div class="contact-card-title">Chief Executive Officer &amp; Founder</div>
+              <div class="contact-match-badges"><!-- no matches --></div>
+              <button class="copy-email-btn">📋 Copy Email</button>
+            </div>
+
+          </div><!-- /contact-cards-grid -->
+        </div><!-- /contacts-section -->
+
+      </div><!-- /elv-card -->
+
+    </div><!-- /screen-details -->
+
+  </div><!-- /tabs-and-content -->
+</div><!-- /page-outer -->
+
+<script>
+  // Track which tab is "active" for returning to after sub-pages
+  let activeTab = 'available';
+
+  function showScreen(screenId, tabBtn) {
+    // Hide all screens
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+
+    // Show target screen
+    const target = document.getElementById('screen-' + screenId);
+    if (target) target.classList.add('active');
+
+    // Update main-tabs active state
+    const mainTabs = document.getElementById('main-tabs');
+    const tabsEl = mainTabs;
+
+    // Map screen IDs to tab indices
+    const tabMap = { available: 0, unlocked: 1, emails: 2 };
+
+    if (tabBtn) {
+      // Called from tab click — update active tab UI
+      document.querySelectorAll('.elv-tab').forEach(t => t.classList.remove('active'));
+      tabBtn.classList.add('active');
+      activeTab = screenId;
+    } else if (tabMap.hasOwnProperty(screenId)) {
+      // Direct show of a main screen (e.g., from back link)
+      document.querySelectorAll('.elv-tab').forEach(t => t.classList.remove('active'));
+      const tabs = document.querySelectorAll('.elv-tab');
+      const idx = tabMap[screenId];
+      if (tabs[idx]) tabs[idx].classList.add('active');
+      activeTab = screenId;
+    }
+    // Sub-pages (generate, details) don't change the tab highlight
+
+    // Show/hide main tabs depending on screen
+    const subPages = ['generate', 'details'];
+    if (subPages.includes(screenId)) {
+      mainTabs.style.display = 'none';
+    } else {
+      mainTabs.style.display = 'flex';
+    }
+
+    window.scrollTo(0, 0);
+  }
+
+  function showProspectDetails() {
+    showScreen('details', null);
+  }
+
+  // Init: hide tabs for sub-pages on load (not needed on first load since we start on available)
+</script>
+
+</body>
+</html>

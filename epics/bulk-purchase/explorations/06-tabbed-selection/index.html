@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exploration 06: Tabbed Selection — G2 Activate</title>
+  <link rel="stylesheet" href="../../shared/styles.css">
+  <style>
+    .payment-tabs {
+      display: flex;
+      gap: 0;
+      border-bottom: 2px solid var(--border);
+      margin-bottom: 32px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .payment-tab {
+      flex: 1;
+      padding: 16px 24px;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--gray-500);
+      cursor: pointer;
+      border-bottom: 3px solid transparent;
+      margin-bottom: -2px;
+      transition: all 0.15s;
+      background: none;
+      border-top: none;
+      border-left: none;
+      border-right: none;
+      font-family: var(--font);
+      text-align: center;
+    }
+    .payment-tab:hover {
+      color: var(--gray-700);
+    }
+    .payment-tab.active {
+      color: var(--purple);
+      border-bottom-color: var(--purple);
+    }
+    .tab-content {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .price-display {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+    .price-large {
+      font-size: 48px;
+      font-weight: 700;
+      color: var(--gray-900);
+      margin-bottom: 8px;
+    }
+    .price-detail {
+      font-size: 16px;
+      color: var(--gray-600);
+    }
+    .feature-list {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      margin-bottom: 24px;
+    }
+    .feature-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border-light);
+    }
+    .feature-item:last-child {
+      border-bottom: none;
+    }
+    .feature-icon {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--teal);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      flex-shrink: 0;
+    }
+  </style>
+</head>
+<body>
+  <header class="g2-header">
+    <div class="g2-logo">G</div>
+    <div class="g2-brand">MyG2</div>
+    <div class="header-spacer"></div>
+    <div class="header-actions">
+      <div class="header-icon">?</div>
+      <div class="header-avatar">SC</div>
+    </div>
+  </header>
+
+  <div class="page-header">
+    <div class="page-header-inner">
+      <div class="breadcrumbs">
+        <a href="../../index.html">Home</a>
+        <span class="breadcrumb-sep">›</span>
+        <a href="#">Buyer Activity</a>
+        <span class="breadcrumb-sep">›</span>
+        <a href="../../base/index.html">G2 Activate</a>
+        <span class="breadcrumb-sep">›</span>
+        <span>Manage Plan</span>
+      </div>
+      <h1 class="page-title" style="margin-bottom: 20px;">Manage Plan</h1>
+    </div>
+  </div>
+
+  <div class="page-wrapper">
+    <div style="max-width: 800px; margin: 0 auto;">
+      <div style="text-align: center; margin-bottom: 32px;">
+        <div style="font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--gray-400); margin-bottom: 8px;">
+          Exploration 06
+        </div>
+        <h2 style="font-size: 24px; font-weight: 700; color: var(--gray-900); margin-bottom: 8px;">
+          Choose your payment model
+        </h2>
+      </div>
+
+      <div class="payment-tabs">
+        <button class="payment-tab active">Monthly Subscription</button>
+        <button class="payment-tab">Bulk Credits</button>
+      </div>
+
+      <div class="tab-content">
+        <div class="price-display">
+          <div class="price-large">$499<span style="font-size: 24px; color: var(--gray-500);">/month</span></div>
+          <div class="price-detail">Automatically renews each month</div>
+        </div>
+
+        <div class="feature-list">
+          <div class="feature-item">
+            <div class="feature-icon">✓</div>
+            <div>
+              <div style="font-weight: 600; color: var(--gray-900);">5,000 credits monthly</div>
+              <div style="font-size: 13px; color: var(--gray-500);">Fresh credits added automatically</div>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">✓</div>
+            <div>
+              <div style="font-weight: 600; color: var(--gray-900);">Predictable pricing</div>
+              <div style="font-size: 13px; color: var(--gray-500);">Same rate every month</div>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">✓</div>
+            <div>
+              <div style="font-weight: 600; color: var(--gray-900);">Cancel anytime</div>
+              <div style="font-size: 13px; color: var(--gray-500);">No long-term commitment required</div>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">✓</div>
+            <div>
+              <div style="font-weight: 600; color: var(--gray-900);">Access to Intent Data</div>
+              <div style="font-size: 13px; color: var(--gray-500);">Identify in-market buyers from G2</div>
+            </div>
+          </div>
+        </div>
+
+        <button class="btn btn-purple w-full" style="height: 44px; font-size: 15px;">
+          Activate Subscription
+        </button>
+
+        <div style="text-align: center; margin-top: 16px;">
+          <a href="#" style="color: var(--gray-500); font-size: 14px;">Learn more about subscription benefits</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

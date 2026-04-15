@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Credit + Subscription Pricing Models - Research Report</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px 60px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-radius: 8px;
+        }
+
+        header {
+            border-bottom: 3px solid #2563eb;
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            color: #1e293b;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .meta {
+            color: #64748b;
+            font-size: 0.95em;
+        }
+
+        h2 {
+            color: #2563eb;
+            font-size: 2em;
+            margin-top: 50px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        h3 {
+            color: #1e293b;
+            font-size: 1.5em;
+            margin-top: 35px;
+            margin-bottom: 15px;
+        }
+
+        h4 {
+            color: #475569;
+            font-size: 1.2em;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        ul, ol {
+            margin-left: 25px;
+            margin-bottom: 15px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .highlight-box {
+            background: #eff6ff;
+            border-left: 4px solid #2563eb;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 4px;
+        }
+
+        .highlight-box strong {
+            color: #1e40af;
+        }
+
+        .service-card {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            padding: 25px;
+            margin: 30px 0;
+            border-radius: 8px;
+            border-left: 5px solid #2563eb;
+        }
+
+        .service-card h3 {
+            margin-top: 0;
+            color: #2563eb;
+        }
+
+        .simple-story {
+            background: #f0fdf4;
+            border-left: 4px solid #22c55e;
+            padding: 15px 20px;
+            margin: 15px 0;
+            font-style: italic;
+            color: #166534;
+            border-radius: 4px;
+        }
+
+        .simple-story::before {
+            content: "💡 ";
+            font-style: normal;
+        }
+
+        .pattern-box {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .pattern-box h4 {
+            color: #92400e;
+            margin-top: 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            font-size: 0.95em;
+            overflow-x: auto;
+            display: block;
+        }
+
+        thead {
+            background: #1e293b;
+            color: white;
+        }
+
+        th {
+            padding: 12px 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        tbody tr:hover {
+            background: #f8fafc;
+        }
+
+        tbody tr:nth-child(even) {
+            background: #f9fafb;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            font-weight: 600;
+            margin: 2px;
+        }
+
+        .badge-yes {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .badge-no {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .badge-maybe {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .key-takeaways {
+            background: #f0f9ff;
+            border: 2px solid #0ea5e9;
+            padding: 25px;
+            margin: 30px 0;
+            border-radius: 8px;
+        }
+
+        .key-takeaways h3 {
+            color: #0369a1;
+            margin-top: 0;
+        }
+
+        .anti-pattern {
+            color: #dc2626;
+            font-weight: 600;
+        }
+
+        .anti-pattern::before {
+            content: "❌ ";
+        }
+
+        .pro-pattern {
+            color: #16a34a;
+            font-weight: 600;
+        }
+
+        .pro-pattern::before {
+            content: "✅ ";
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #e2e8f0;
+            margin: 30px 0;
+        }
+
+        code {
+            background: #f1f5f9;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Monaco', 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+
+        .toc {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 8px;
+        }
+
+        .toc h3 {
+            margin-top: 0;
+            color: #475569;
+        }
+
+        .toc ul {
+            list-style: none;
+            margin-left: 0;
+        }
+
+        .toc a {
+            color: #2563eb;
+            text-decoration: none;
+        }
+
+        .toc a:hover {
+            text-decoration: underline;
+        }
+
+        .stat {
+            font-size: 2em;
+            font-weight: bold;
+            color: #2563eb;
+        }
+
+        .service-link {
+            display: inline-block;
+            color: #2563eb;
+            text-decoration: none;
+            font-size: 0.9em;
+            margin-top: 5px;
+            margin-bottom: 15px;
+        }
+
+        .service-link:hover {
+            text-decoration: underline;
+        }
+
+        .service-link::before {
+            content: "🔗 ";
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+
+            h2 {
+                font-size: 1.5em;
+            }
+
+            table {
+                font-size: 0.85em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Credit + Subscription Pricing Models</h1>
+            <div class="meta">
+                <strong>Research Report</strong><br>
+                Research Date: April 10, 2026<br>
+                Goal: Identify real-world examples of services that combine subscription stipends with a la carte credit purchases
+            </div>
+        </header>
+
+        <div class="toc">
+            <h3>Table of Contents</h3>
+            <ul>
+                <li><a href="#executive-summary">Executive Summary</a></li>
+                <li><a href="#service-analysis">Detailed Service Analysis</a></li>
+                <li><a href="#patterns">Cross-Service Patterns</a></li>
+                <li><a href="#ux-patterns">Common UX/UI Patterns</a></li>
+                <li><a href="#trends">Industry Trends</a></li>
+                <li><a href="#takeaways">Key Takeaways for Implementation</a></li>
+                <li><a href="#reference-table">Quick Reference Table</a></li>
+            </ul>
+        </div>
+
+        <section id="executive-summary">
+            <h2>Executive Summary</h2>
+
+            <div class="highlight-box">
+                <p>We identified <strong>10 services</strong> across AI/ML, creative tools, and stock media that successfully implement a hybrid credit + subscription pricing model. The pattern is increasingly common, with <span class="stat">43%</span> of SaaS companies now using hybrid subscription + usage models.</p>
+            </div>
+
+            <p><strong>Key Finding:</strong> The most successful implementations give users <em>three ways to access the service</em>:</p>
+            <ol>
+                <li><strong>Subscription-only</strong> - Monthly plan with included credit stipend</li>
+                <li><strong>Subscription + top-ups</strong> - Monthly plan + buy extra credits when needed</li>
+                <li><strong>Pay-as-you-go only</strong> - Skip subscription, just buy credit packs</li>
+            </ol>
+        </section>
+
+        <section id="service-analysis">
+            <h2>Detailed Service Analysis</h2>
+
+            <div class="service-card">
+                <h3>1. ElevenLabs (Voice AI)</h3>
+                <a href="https://elevenlabs.io/pricing" target="_blank" class="service-link">elevenlabs.io/pricing</a>
+
+                <p><strong>What it does:</strong> Text-to-speech and AI voice generation</p>
+
+                <h4>How Credits Work:</h4>
+                <ul>
+                    <li>1 credit = 1 character of text converted to speech</li>
+                    <li>Credits are consumed when generating audio</li>
+                    <li>Different models use credits at different rates (Flash/Turbo = 0.5-1 credit per character)</li>
+                </ul>
+
+                <h4>How Subscriptions Work:</h4>
+                <ul>
+                    <li>7 tiers: Free (10K credits/mo) → Enterprise (11M credits/mo)</li>
+                    <li>Pricing: $0/mo (Free) to $1,320/mo (Business)</li>
+                    <li>Annual billing saves ~17% (2 months free)</li>
+                </ul>
+
+                <h4>How They Work Together:</h4>
+                <ul>
+                    <li><strong>Subscription gives you a monthly credit stipend</strong> that resets each billing cycle</li>
+                    <li><strong>Unused credits roll over</strong> for up to 2 months (reduces "use it or lose it" anxiety)</li>
+                    <li><strong>Can enable Usage-Based Billing (UBB)</strong> on Creator+ plans - automatically charges for overages instead of hard-stopping at quota</li>
+                    <li><strong>Tiered overage pricing</strong> - cheaper per-credit rate as you use more (incentivizes upgrading vs just buying credits)</li>
+                </ul>
+
+                <div class="simple-story">
+                    Pay monthly and get a bucket of credits. Run low? Either turn on auto-refill (UBB) or upgrade to a bigger bucket next month. Credits don't vanish immediately - you get 2 months to use them.
+                </div>
+
+                <h4>Key UX Patterns:</h4>
+                <ul>
+                    <li>Credit balance shown in Developers tab → Usage analytics</li>
+                    <li>Can view usage by voice, product, API key, time period</li>
+                    <li>Export usage data to CSV</li>
+                    <li>"Credits" terminology (not "tokens" or "units")</li>
+                    <li>Positive framing: "quota" not "limit", "usage-based billing" not "overages"</li>
+                </ul>
+            </div>
+
+            <div class="service-card">
+                <h3>2. Adobe Stock (Stock Photography)</h3>
+                <a href="https://stock.adobe.com/plans" target="_blank" class="service-link">stock.adobe.com/plans</a>
+
+                <p><strong>What it does:</strong> Stock photos, videos, illustrations, and design assets</p>
+
+                <h4>How Credits Work:</h4>
+                <ul>
+                    <li>1 credit = 1 standard asset download</li>
+                    <li>Credits used immediately when downloading an asset</li>
+                    <li>Different asset types may cost different amounts (1 standard image vs 5 HD video credits)</li>
+                </ul>
+
+                <h4>How Subscriptions Work:</h4>
+                <ul>
+                    <li>Tiers based on downloads per month: 10, 25, 40, 750 assets/month</li>
+                    <li>Pricing: $29.99/mo (10 assets) to $199.99/mo (750 assets)</li>
+                    <li>Monthly or annual billing (annual saves money)</li>
+                </ul>
+
+                <h4>How They Work Together:</h4>
+                <ul>
+                    <li><strong>Subscription gives you X downloads per month</strong> (your credit stipend)</li>
+                    <li><strong>Unused credits roll over</strong> up to a cap (10-image plan rolls over up to 120 credits, 40-image plan up to 480 credits)</li>
+                    <li><strong>Can buy additional assets</strong> at the same subscription rate if you run out mid-month</li>
+                    <li><strong>OR buy credit packs without subscription</strong> - 5, 16, 40, 80, or 150 credits that never expire (with annual login)</li>
+                    <li><strong>Pure pay-as-you-go option</strong> - Buy credit packs ($49.95-$1,200) with bulk discounts, no subscription needed</li>
+                </ul>
+
+                <div class="simple-story">
+                    Subscribe for regular monthly downloads with rollover, or just buy a pack of credits that lasts a year. Need more mid-month? Buy exactly what you need. Either way works.
+                </div>
+
+                <h4>Key UX Patterns:</h4>
+                <ul>
+                    <li>Clear side-by-side comparison of subscription tiers</li>
+                    <li>Credit pack selection shows $ savings for larger packs</li>
+                    <li>"Explore credit packs" CTA prominently shown alongside subscriptions</li>
+                    <li>Rollover benefits highlighted ("unused downloads don't disappear")</li>
+                    <li>Creative Cloud integration (access from Photoshop/Illustrator)</li>
+                    <li>30-day free trial with up to 25 assets</li>
+                </ul>
+
+                <p><em>Screenshots Collected: 23 files showing pricing pages, credit pack interfaces, in-app integration</em></p>
+            </div>
+
+            <div class="service-card">
+                <h3>3. Midjourney (AI Image Generation)</h3>
+                <a href="https://docs.midjourney.com/hc/en-us/articles/33570952624141-Purchasing-Extra-Fast-Time" target="_blank" class="service-link">docs.midjourney.com - Purchasing Extra Fast Time</a>
+
+                <p><strong>What it does:</strong> AI-generated images from text prompts</p>
+
+                <h4>How Credits Work:</h4>
+                <ul>
+                    <li>Credits measured in "Fast Hours" (GPU time)</li>
+                    <li>Fast mode = immediate generation, uses Fast Hours</li>
+                    <li>Relaxed mode = slower, unlimited, free on Pro+ plans</li>
+                </ul>
+
+                <h4>How Subscriptions Work:</h4>
+                <ul>
+                    <li>4 tiers: Basic (3.3 hrs/mo) → Mega (60 hrs/mo)</li>
+                    <li>Pricing: ~$10-$120/mo depending on tier</li>
+                    <li>All plans include relaxed/unlimited mode (Pro and above)</li>
+                </ul>
+
+                <h4>How They Work Together:</h4>
+                <ul>
+                    <li><strong>Subscription gives you monthly Fast Hours</strong> for priority generation</li>
+                    <li><strong>Can purchase additional Fast Hours</strong> as needed (60-day expiration)</li>
+                    <li><strong>Cannot use purchased hours without active subscription</strong> - must maintain membership</li>
+                    <li>Purchased hours expire after 60 days (encourages active use)</li>
+                </ul>
+
+                <div class="simple-story">
+                    Subscribe to get Fast Hours each month for quick generations. Need more speed? Buy extra Fast Hours. But you need an active subscription to use them - no pure pay-as-you-go option.
+                </div>
+
+                <p><strong>Key Difference:</strong> More locked-in than others - can't just buy credits standalone. Balances "unlimited but slow" vs "fast but metered"</p>
+            </div>
+
+            <div class="service-card">
+                <h3>4. Google One AI Credits</h3>
+                <a href="https://one.google.com/about/google-ai-plans/" target="_blank" class="service-link">one.google.com/about/google-ai-plans</a>
+
+                <p><strong>What it does:</strong> AI features across Google Workspace (Docs, Sheets, Gmail)</p>
+
+                <h4>How Credits Work:</h4>
+                <ul>
+                    <li>Credits consumed when using AI features (Smart Compose, Help Me Write, etc.)</li>
+                    <li>Different features consume different amounts of credits</li>
+                </ul>
+
+                <h4>How Subscriptions Work:</h4>
+                <ul>
+                    <li>AI Pro: 1,000 AI Credits/month</li>
+                    <li>AI Ultra: 25,000 AI Credits/month</li>
+                    <li>Part of larger Google One storage subscription</li>
+                </ul>
+
+                <h4>How They Work Together:</h4>
+                <ul>
+                    <li><strong>Subscription includes monthly AI credit stipend</strong></li>
+                    <li><strong>Can purchase top-up AI credits</strong> when monthly stipend runs out</li>
+                    <li><strong>Top-up credits last 12 months</strong> even without subscription</li>
+                    <li>Can buy top-ups without upgrading subscription tier</li>
+                </ul>
+
+                <div class="simple-story">
+                    Get AI credits every month with your plan. Need more? Buy a top-up pack that lasts a year. Top-ups work even if you downgrade later.
+                </div>
+
+                <p><strong>Key Feature:</strong> Top-up credits have long expiration (12 months) and are decoupled from subscription tier (don't need Ultra to buy top-ups)</p>
+            </div>
+
+            <div class="service-card">
+                <h3>5. Canva (Design Platform)</h3>
+                <a href="https://www.canva.com/pricing/" target="_blank" class="service-link">canva.com/pricing</a>
+
+                <p><strong>What it does:</strong> Graphic design, presentations, social media graphics</p>
+
+                <h4>How Credits Work:</h4>
+                <ul>
+                    <li>"Magic Credits" for AI generation features</li>
+                    <li>Used for AI image generation, Magic Write, Background Remover, etc.</li>
+                </ul>
+
+                <h4>How Subscriptions Work:</h4>
+                <ul>
+                    <li>Free: Limited AI features</li>
+                    <li>Pro: 500 monthly Magic Write credits + 500 AI image generations ($12.99/mo or $119.99/yr)</li>
+                </ul>
+
+                <h4>How They Work Together:</h4>
+                <ul>
+                    <li><strong>Pro subscription includes monthly Magic Credits</strong> for AI features</li>
+                    <li><strong>Can purchase Canva Credits directly</strong> for more AI generations</li>
+                    <li><strong>Credits can be bought without Pro subscription</strong> (pure pay-as-you-go option)</li>
+                    <li>AI features work à la carte for free users (pay per use)</li>
+                </ul>
+
+                <div class="simple-story">
+                    Free users can buy AI credits as needed. Pro subscribers get a monthly allowance. Either way, you can always buy more credits when you need them.
+                </div>
+
+                <p><strong>Key Feature:</strong> Separates "design tool access" (Pro features) from "AI consumption" (credits). Makes AI features accessible to free tier via credits.</p>
+            </div>
+
+            <div class="service-card">
+                <h3>6. iStock by Getty Images (Stock Media)</h3>
+                <a href="https://www.istockphoto.com/plans-and-pricing" target="_blank" class="service-link">istockphoto.com/plans-and-pricing</a>
+
+                <p><strong>What it does:</strong> Stock photos, illustrations, vectors, and videos</p>
+
+                <h4>How Credits Work:</h4>
+                <ul>
+                    <li>Credits used to download any file type</li>
+                    <li>Flexible - same credit can get photo, vector, or illustration</li>
+                </ul>
+
+                <h4>How Subscriptions Work:</h4>
+                <ul>
+                    <li>Basic: $29-$199/month (10-750 downloads)</li>
+                    <li>Premium: $70-$399/month</li>
+                    <li>Premium + Video: $99-$349/month</li>
+                </ul>
+
+                <h4>How They Work Together:</h4>
+                <ul>
+                    <li><strong>Subscription gives you monthly download quota</strong></li>
+                    <li><strong>Credit packs available</strong> in preset sizes without subscription</li>
+                    <li><strong>Pure pay-as-you-go option</strong> - Credits never expire with annual login</li>
+                    <li>Credits work across all content types (photos, videos, vectors)</li>
+                </ul>
+
+                <div class="simple-story">
+                    Subscribe for regular downloads, or buy credit packs that never expire (just log in once a year). Credits work for any content type.
+                </div>
+
+                <p><strong>Key Feature:</strong> "Never expire with annual login" = effectively permanent credits. Cross-content flexibility (one credit type for all media).</p>
+            </div>
+
+            <div class="service-card">
+                <h3>7-10. Additional Services</h3>
+
+                <h4>7. Poe (AI Platform)</h4>
+                <a href="https://poe.com/api_key" target="_blank" class="service-link">poe.com/api_key</a>
+                <p><strong>What it does:</strong> Access to multiple AI chatbot models (GPT-4, Claude, etc.)</p>
+                <ul>
+                    <li>Starts at $4.99/month with included credits</li>
+                    <li>Anyone with Poe subscription can purchase additional credits whenever needed</li>
+                    <li>Credits allow access to premium/expensive models</li>
+                </ul>
+
+                <h4>8. OpenAI API</h4>
+                <a href="https://platform.openai.com/settings/organization/billing/overview" target="_blank" class="service-link">platform.openai.com - Billing</a>
+                <p><strong>What it does:</strong> API access to GPT models for developers</p>
+                <ul>
+                    <li>Can purchase API credits starting at $5 minimum</li>
+                    <li>Pure pay-as-you-go option - API credits work without ChatGPT subscription</li>
+                    <li>Clear separation between consumer product (ChatGPT Plus) and developer product (API credits)</li>
+                    <li>Pre-pay model prevents surprise bills</li>
+                </ul>
+
+                <h4>9. Speechify Studio (Text-to-Speech)</h4>
+                <a href="https://speechify.com/pricing-studio/" target="_blank" class="service-link">speechify.com/pricing-studio</a>
+                <p><strong>What it does:</strong> Text-to-speech, dubbing, and AI avatar generation</p>
+                <ul>
+                    <li>Variable credit cost: 1 credit/sec (voiceovers), 3 credits/sec (dubbing), 30 credits/sec (avatars)</li>
+                    <li>Free: 600 credits | Starter: 7,200 credits | Creator: 28,800 credits</li>
+                    <li>Must contact sales for additional credit purchases (not self-serve)</li>
+                </ul>
+
+                <h4>10. Otter.ai (Transcription)</h4>
+                <a href="https://otter.ai/pricing" target="_blank" class="service-link">otter.ai/pricing</a>
+                <p><strong>What it does:</strong> AI transcription and meeting notes</p>
+                <ul>
+                    <li>Monthly minute allowance = effectively credits</li>
+                    <li>Basic: 300 min/mo (free) | Pro: 1,200 min/mo | Business: 6,000 min/mo</li>
+                    <li>Unclear if additional minutes can be purchased à la carte</li>
+                    <li>May require tier upgrade when quota exceeded</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="patterns">
+            <h2>Cross-Service Patterns</h2>
+
+            <div class="pattern-box">
+                <h4>Pattern 1: "Soft Landing" (Most Common)</h4>
+                <p><strong>Services:</strong> ElevenLabs, Adobe Stock, Google One, Canva, iStock</p>
+                <p><strong>How it works:</strong></p>
+                <ul>
+                    <li>Subscription includes monthly credits</li>
+                    <li>Can buy more credits anytime (self-serve)</li>
+                    <li>Pure pay-as-you-go option available (no subscription required)</li>
+                </ul>
+                <p><strong>Why it works:</strong> Lowest friction - users choose their commitment level. Subscription users never feel "trapped" when they hit limits. Casual users can participate without recurring charges.</p>
+            </div>
+
+            <div class="pattern-box">
+                <h4>Pattern 2: "Subscription Required" (Platform Lock-in)</h4>
+                <p><strong>Services:</strong> Midjourney, Poe</p>
+                <p><strong>How it works:</strong></p>
+                <ul>
+                    <li>Must have active subscription to use service</li>
+                    <li>Can buy additional credits, but only while subscribed</li>
+                    <li>No standalone credit purchase option</li>
+                </ul>
+                <p><strong>Why it works:</strong> Ensures recurring revenue. Purchased credits expire (encourages active use). Good for services with high compute costs.</p>
+            </div>
+
+            <div class="pattern-box">
+                <h4>Pattern 3: "Tier Upgrade Required" (Stepped Pricing)</h4>
+                <p><strong>Services:</strong> Otter.ai, Zapier (partial match)</p>
+                <p><strong>How it works:</strong></p>
+                <ul>
+                    <li>Run out of monthly quota → must upgrade to next tier</li>
+                    <li>No granular credit purchases</li>
+                    <li>Fixed capacity tiers</li>
+                </ul>
+                <p><strong>Why it works:</strong> Simpler pricing (fewer options). Predictable revenue. Drives tier upgrades. Less flexible for users.</p>
+            </div>
+
+            <div class="pattern-box">
+                <h4>Pattern 4: "Separation of Concerns"</h4>
+                <p><strong>Services:</strong> OpenAI (ChatGPT vs API), Canva (Pro features vs AI credits)</p>
+                <p><strong>How it works:</strong></p>
+                <ul>
+                    <li>Subscription = feature access</li>
+                    <li>Credits = consumption/usage</li>
+                    <li>Two separate value propositions</li>
+                </ul>
+                <p><strong>Why it works:</strong> Clear mental model (access vs. usage). Serves different user types (casual vs. power users). Can price each dimension independently.</p>
+            </div>
+        </section>
+
+        <section id="ux-patterns">
+            <h2>Common UX/UI Patterns</h2>
+
+            <h3>Credit Display</h3>
+            <ul>
+                <li><strong>Location:</strong> Sidebar, top navigation, profile menu, or dedicated "Usage" tab</li>
+                <li><strong>Metrics shown:</strong> Current balance, usage this month, breakdown by feature/time/product</li>
+                <li><strong>Export capability:</strong> CSV download common for business tiers</li>
+            </ul>
+
+            <h3>Pricing Page Layout</h3>
+            <ul>
+                <li><strong>Card-based comparisons</strong> for subscription tiers (side-by-side)</li>
+                <li><strong>Separate section</strong> for credit packs ("Explore credit packs" CTA)</li>
+                <li><strong>Savings badges</strong> on larger packs ("Save $299" on bulk purchases)</li>
+                <li><strong>Feature matrices</strong> showing what's included at each tier</li>
+            </ul>
+
+            <h3>Terminology Choices</h3>
+            <ul>
+                <li><strong>"Credits"</strong> most common (more tangible than "tokens" or "units")</li>
+                <li><strong>"Quota"</strong> preferred over "limit" (positive framing)</li>
+                <li><strong>"Usage-based billing"</strong> instead of "overages" (less punitive)</li>
+                <li><strong>"Rollover"</strong> emphasized as a benefit (reduces anxiety)</li>
+                <li><strong>"Top-up"</strong> for additional purchases (familiar mobile/prepaid concept)</li>
+            </ul>
+
+            <h3>Purchase Flows</h3>
+            <ul>
+                <li><strong>Upgrade prompts</strong> typically trigger at 80-90% usage</li>
+                <li><strong>Self-serve credit purchase</strong> within app (no sales contact needed)</li>
+                <li><strong>One-click upgrades</strong> common (start immediately vs. next cycle)</li>
+                <li><strong>Downgrade delays</strong> (take effect at end of cycle, not immediate)</li>
+            </ul>
+
+            <h3>Credit Mechanics</h3>
+            <ul>
+                <li><strong>Rollover periods:</strong> 2 months (ElevenLabs), up to 480 credits (Adobe Stock), 12 months (Google One)</li>
+                <li><strong>Expiration:</strong> 60 days (Midjourney purchases), 1 year (Adobe credit packs), never (iStock w/ login)</li>
+                <li><strong>Auto-refill options:</strong> Usage-Based Billing toggles (ElevenLabs Creator+)</li>
+            </ul>
+        </section>
+
+        <section id="trends">
+            <h2>Industry Trends</h2>
+
+            <h3>By Sector</h3>
+            <ul>
+                <li><strong>AI/ML Services (6/10):</strong> ElevenLabs, Midjourney, Google One, Poe, OpenAI, Speechify
+                    <ul>
+                        <li>High variance in usage makes fixed pricing problematic</li>
+                        <li>Credit model aligns cost with actual compute consumed</li>
+                    </ul>
+                </li>
+                <li><strong>Creative/Media (3/10):</strong> Adobe Stock, iStock, Canva
+                    <ul>
+                        <li>Well-established pattern in stock media industry</li>
+                        <li>Predictable usage patterns (designers know how many assets they need)</li>
+                    </ul>
+                </li>
+                <li><strong>Productivity (1/10):</strong> Otter.ai
+                    <ul>
+                        <li>Usage tied to specific events (meetings)</li>
+                        <li>Less common in pure productivity tools</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <h3>Pricing Trends (2026)</h3>
+            <div class="highlight-box">
+                <ul>
+                    <li><strong>43% of SaaS companies</strong> use hybrid subscription + usage models</li>
+                    <li><strong>Credit-based models</strong> increasingly common for AI services</li>
+                    <li><strong>Rollover benefits</strong> becoming table stakes (reduces churn)</li>
+                    <li><strong>Usage-based billing</strong> as safety net (prevents hard stops, reduces support burden)</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="takeaways">
+            <h2>Key Takeaways for Implementation</h2>
+
+            <div class="key-takeaways">
+                <h3>Must-Haves</h3>
+                <ol>
+                    <li><span class="pro-pattern">Clear credit-to-value translation</span> - Users must understand what credits buy (1 credit = 1 character, 1 image, 1 minute)</li>
+                    <li><span class="pro-pattern">Self-serve top-up purchase</span> - Don't make users contact sales for more credits</li>
+                    <li><span class="pro-pattern">Visible credit balance</span> - Always show current balance + usage trends</li>
+                    <li><span class="pro-pattern">Rollover or long expiration</span> - Don't make credits vanish immediately (2 months minimum)</li>
+                </ol>
+            </div>
+
+            <div class="key-takeaways">
+                <h3>Should-Haves</h3>
+                <ol start="5">
+                    <li><span class="pro-pattern">Pure pay-as-you-go option</span> - Let users skip subscription entirely if they want</li>
+                    <li><span class="pro-pattern">Usage analytics</span> - Breakdowns by time, feature, product help users understand consumption</li>
+                    <li><span class="pro-pattern">Upgrade prompts at 80-90%</span> - Warn before hard stop, offer easy upgrade path</li>
+                    <li><span class="pro-pattern">Positive terminology</span> - "Quota" not "limit", "top-up" not "overage"</li>
+                </ol>
+            </div>
+
+            <div class="key-takeaways">
+                <h3>Nice-to-Haves</h3>
+                <ol start="9">
+                    <li><span class="pro-pattern">Usage-based billing toggle</span> - Auto-refill option for power users who never want to hit limits</li>
+                    <li><span class="pro-pattern">Tiered overage pricing</span> - Cheaper per-credit rate at higher usage (incentivizes upgrades)</li>
+                    <li><span class="pro-pattern">Export capability</span> - CSV download for business users who need records</li>
+                    <li><span class="pro-pattern">Cross-product credits</span> - One credit type works across different features (like iStock)</li>
+                </ol>
+            </div>
+
+            <h3>Anti-Patterns to Avoid</h3>
+            <ul>
+                <li><span class="anti-pattern">Instant expiration</span> - Credits that vanish at month-end create anxiety</li>
+                <li><span class="anti-pattern">Unclear pricing</span> - Users shouldn't need to calculate credits per dollar</li>
+                <li><span class="anti-pattern">Sales-only top-ups</span> - Requiring sales contact for more credits kills momentum</li>
+                <li><span class="anti-pattern">Subscription lock-in for credits</span> - Let users buy credits without subscription (unless compelling reason)</li>
+                <li><span class="anti-pattern">Hidden credit costs</span> - Different features consuming different amounts without clarity</li>
+            </ul>
+        </section>
+
+        <section id="reference-table">
+            <h2>Quick Reference Table</h2>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Service</th>
+                        <th>Industry</th>
+                        <th>Subscription Tiers</th>
+                        <th>Credit Stipend</th>
+                        <th>À La Carte</th>
+                        <th>Pure PAYG</th>
+                        <th>Key Differentiator</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>ElevenLabs</strong></td>
+                        <td>Voice AI</td>
+                        <td>7 tiers ($0-$1,320/mo)</td>
+                        <td>10K-11M credits/mo</td>
+                        <td><span class="badge badge-yes">✓ UBB</span></td>
+                        <td><span class="badge badge-yes">✓ Creator+</span></td>
+                        <td>2-month rollover</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Adobe Stock</strong></td>
+                        <td>Stock Media</td>
+                        <td>4 tiers ($30-$200/mo)</td>
+                        <td>10-750 assets/mo</td>
+                        <td><span class="badge badge-yes">✓ Self-serve</span></td>
+                        <td><span class="badge badge-yes">✓ Credit packs</span></td>
+                        <td>Never expire (1yr login)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Midjourney</strong></td>
+                        <td>AI Images</td>
+                        <td>4 tiers ($10-$120/mo)</td>
+                        <td>3.3-60 Fast hrs/mo</td>
+                        <td><span class="badge badge-yes">✓ 60-day expiry</span></td>
+                        <td><span class="badge badge-no">✗ Sub required</span></td>
+                        <td>Unlimited relaxed mode</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Google One</strong></td>
+                        <td>AI Features</td>
+                        <td>2 tiers (AI Pro/Ultra)</td>
+                        <td>1K-25K credits/mo</td>
+                        <td><span class="badge badge-yes">✓ Self-serve</span></td>
+                        <td><span class="badge badge-yes">✓ 12mo expiry</span></td>
+                        <td>Long expiration</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Canva</strong></td>
+                        <td>Design</td>
+                        <td>2 tiers (Free/Pro)</td>
+                        <td>500 Magic Credits/mo</td>
+                        <td><span class="badge badge-yes">✓ Self-serve</span></td>
+                        <td><span class="badge badge-yes">✓ Works w/o Pro</span></td>
+                        <td>Separates access from usage</td>
+                    </tr>
+                    <tr>
+                        <td><strong>iStock</strong></td>
+                        <td>Stock Media</td>
+                        <td>3 tiers ($29-$399/mo)</td>
+                        <td>10-750 downloads/mo</td>
+                        <td><span class="badge badge-yes">✓ Credit packs</span></td>
+                        <td><span class="badge badge-yes">✓ Never expire</span></td>
+                        <td>Cross-content flexibility</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Poe</strong></td>
+                        <td>AI Platform</td>
+                        <td>Starts at $5/mo</td>
+                        <td>Base credits</td>
+                        <td><span class="badge badge-yes">✓ Self-serve</span></td>
+                        <td><span class="badge badge-no">✗ Sub required</span></td>
+                        <td>Multi-model access</td>
+                    </tr>
+                    <tr>
+                        <td><strong>OpenAI</strong></td>
+                        <td>AI API</td>
+                        <td>Separate from API</td>
+                        <td>N/A (API separate)</td>
+                        <td><span class="badge badge-yes">✓ $5 minimum</span></td>
+                        <td><span class="badge badge-yes">✓ Pre-paid</span></td>
+                        <td>Separation of web vs API</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Speechify</strong></td>
+                        <td>Voice AI</td>
+                        <td>3 tiers ($0-$?/mo)</td>
+                        <td>600-28.8K credits/mo</td>
+                        <td><span class="badge badge-maybe">⚠ Sales contact</span></td>
+                        <td><span class="badge badge-maybe">? Unclear</span></td>
+                        <td>Variable cost by feature</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Otter.ai</strong></td>
+                        <td>Transcription</td>
+                        <td>3 tiers ($0-$40/mo)</td>
+                        <td>300-6K mins/mo</td>
+                        <td><span class="badge badge-maybe">? Unclear</span></td>
+                        <td><span class="badge badge-no">✗ Tier upgrade</span></td>
+                        <td>Simple minute quotas</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p><strong>Legend:</strong> ✓ = Available | ✗ = Not available | ⚠ = Limited availability | ? = Unclear from research</p>
+        </section>
+
+        <section id="next-steps">
+            <h2>Next Steps</h2>
+
+            <h3>For Continuing Research:</h3>
+            <ol>
+                <li><strong>Manual screenshot collection</strong> - Create free accounts to capture authenticated UIs</li>
+                <li><strong>Remaining services</strong> - Research #3-10 in detail (Google One, Canva, iStock, etc.)</li>
+                <li><strong>Competitive pricing analysis</strong> - Compare $/credit across similar services</li>
+                <li><strong>User reviews</strong> - Read what users say about these pricing models (friction points)</li>
+            </ol>
+
+            <h3>For Product Implementation:</h3>
+            <ol>
+                <li><strong>Define credit unit</strong> - What does 1 credit represent in our service?</li>
+                <li><strong>Choose pattern</strong> - Soft Landing (most flexible) vs. Subscription Required (more revenue)?</li>
+                <li><strong>Set rollover policy</strong> - How long should credits last? (Recommend: 2+ months)</li>
+                <li><strong>Design upgrade prompts</strong> - When/how to nudge users toward purchasing more?</li>
+                <li><strong>Build analytics</strong> - What usage metrics do users need to see?</li>
+            </ol>
+        </section>
+
+        <hr>
+
+        <footer style="margin-top: 50px; padding-top: 20px; border-top: 2px solid #e2e8f0; color: #64748b; text-align: center;">
+            <p><strong>Report Generated:</strong> April 10, 2026</p>
+            <p><strong>Research Files Location:</strong> <code>/Users/schilds/projects/bulk-purchase-explorations/screenshot-references/</code></p>
+        </footer>
+    </div>
+</body>
+</html>

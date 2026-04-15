@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Concept 3: Unlock Enrichment — BuyerCaddy × G2 Activate</title>
+  <link rel="stylesheet" href="../../shared/styles.css">
+  <style>
+    .concept-banner {
+      background: var(--indigo);
+      color: white;
+      padding: 0 24px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      font-size: 13px;
+      font-weight: 500;
+      gap: 12px;
+    }
+    .concept-banner a { color: rgba(255,255,255,0.75); font-size: 13px; }
+    .concept-banner a:hover { color: white; text-decoration: none; }
+    .banner-divider { color: rgba(255,255,255,0.35); }
+
+    /* NEW highlight */
+    .new-section {
+      border: 2px solid #F59E0B;
+      border-radius: 6px;
+      padding: 20px;
+      position: relative;
+      background: var(--white);
+      margin-bottom: 20px;
+    }
+
+    .new-badge {
+      position: absolute;
+      top: -10px;
+      right: 12px;
+      background: #F59E0B;
+      color: #78350F;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 2px 7px;
+      border-radius: 999px;
+    }
+
+    .section-header-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 4px;
+    }
+
+    .section-title-lg { font-size: 18px; font-weight: 700; color: var(--gray-900); }
+    .section-subtitle { font-size: 12px; color: var(--gray-400); margin-bottom: 16px; }
+
+    .activity-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .activity-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      border-radius: 999px;
+      background: var(--gray-900);
+      color: white;
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    .month-tag { font-size: 13px; color: var(--gray-500); }
+
+    .company-header-card {
+      display: flex;
+      gap: 24px;
+      align-items: flex-start;
+      padding: 24px;
+    }
+
+    .company-logo-placeholder {
+      width: 64px;
+      height: 64px;
+      border-radius: var(--radius);
+      background: linear-gradient(135deg, #7C3AED, #4F46E5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 22px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .company-name-large { font-size: 22px; font-weight: 700; color: var(--gray-900); margin-bottom: 4px; }
+
+    .visit-link {
+      font-size: 13px;
+      color: var(--purple);
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      margin-bottom: 10px;
+    }
+
+    .company-desc { font-size: 14px; color: var(--gray-600); line-height: 1.6; max-width: 620px; }
+
+    .company-right-stats {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      min-width: 200px;
+    }
+
+    .company-stat-label {
+      font-size: 12px;
+      color: var(--gray-500);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 3px;
+    }
+
+    .company-stat-value { font-size: 15px; font-weight: 600; color: var(--gray-900); }
+
+    /* Tech stack grid */
+    .tech-stack-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 4px;
+    }
+
+    .tech-category-group { display: flex; flex-direction: column; gap: 8px; }
+
+    .tech-category-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--gray-500);
+      margin-bottom: 2px;
+    }
+
+    .tech-product-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 10px;
+      background: var(--gray-50);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+    }
+
+    .tech-product-logo {
+      width: 28px;
+      height: 28px;
+      border-radius: 4px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 700;
+      color: white;
+    }
+
+    .tech-product-info { flex: 1; min-width: 0; }
+    .tech-product-name { font-size: 13px; font-weight: 600; color: var(--gray-900); }
+    .tech-product-vendor { font-size: 11px; color: var(--gray-500); }
+    .tech-verified { font-size: 11px; color: var(--teal); white-space: nowrap; }
+
+    /* Feed events */
+    .feed-event {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 12px 14px;
+      background: var(--gray-50);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      margin-bottom: 8px;
+    }
+    .feed-event:last-child { margin-bottom: 0; }
+    .feed-event-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+    .feed-event-title { font-size: 14px; font-weight: 600; color: var(--gray-900); margin-bottom: 2px; }
+    .feed-event-meta { font-size: 12px; color: var(--gray-500); }
+
+    /* Contacts section */
+    .contact-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    .contact-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px;
+    }
+
+    .contact-card-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+
+    .contact-avatar {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      font-size: 15px;
+      color: white;
+      flex-shrink: 0;
+    }
+
+    .avatar-purple { background: var(--purple); }
+    .avatar-blue { background: #3B82F6; }
+    .avatar-coral { background: var(--g2-red); }
+
+    .contact-info { flex: 1; }
+    .contact-name { font-weight: 600; font-size: 14px; color: var(--gray-900); }
+    .contact-email { font-size: 12px; color: var(--gray-500); }
+    .contact-title { font-size: 13px; color: var(--gray-600); margin-bottom: 10px; line-height: 1.4; }
+
+    .match-badges { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+    .match-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 500;
+      background: var(--purple-light);
+      color: var(--purple);
+    }
+
+    .copy-email-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 12px;
+      color: var(--gray-500);
+      cursor: pointer;
+      padding: 4px 8px;
+      border-radius: var(--radius-xs);
+      border: 1px solid var(--gray-200);
+      background: var(--white);
+      font-family: var(--font);
+      transition: all 0.15s;
+    }
+
+    .section-actions { display: flex; gap: 10px; }
+
+    /* Info panel */
+    .info-panel {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      width: 300px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+      z-index: 999;
+      overflow: hidden;
+    }
+    .info-panel-header {
+      background: var(--indigo);
+      color: white;
+      padding: 12px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .info-panel-title { font-size: 13px; font-weight: 700; }
+    .info-panel-dismiss {
+      background: rgba(255,255,255,0.2);
+      border: none; color: white;
+      width: 22px; height: 22px;
+      border-radius: 50%; cursor: pointer;
+      font-size: 13px;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font);
+    }
+    .info-panel-dismiss:hover { background: rgba(255,255,255,0.3); }
+    .info-panel-body { padding: 14px; }
+    .info-panel-endpoint {
+      display: inline-flex;
+      background: #F0FDF4;
+      border: 1px solid #BBF7D0;
+      border-radius: var(--radius-xs);
+      padding: 3px 8px;
+      font-size: 11px;
+      font-weight: 500;
+      color: #15803D;
+      font-family: 'Monaco', 'Menlo', monospace;
+      margin-bottom: 10px;
+    }
+    .info-panel-text { font-size: 13px; color: var(--gray-600); line-height: 1.55; }
+  </style>
+</head>
+<body>
+
+<!-- Concept Banner -->
+<div class="concept-banner">
+  <span>Concept 3 of 5 — Unlock Enrichment</span>
+  <span class="banner-divider">·</span>
+  <span>BuyerCaddy Integration</span>
+  <span class="banner-divider">·</span>
+  <a href="../../index.html">← Back to Index</a>
+</div>
+
+<!-- G2 Header -->
+<header class="g2-header">
+  <div class="g2-logo">G</div>
+  <span class="g2-brand">MyG2</span>
+  <div class="header-spacer"></div>
+  <div class="header-actions">
+    <div class="header-icon">?</div>
+    <div class="header-avatar">HM</div>
+  </div>
+</header>
+
+<div class="page-wrapper">
+  <div style="padding-top: 24px;">
+    <a href="#" class="back-link">← Unlocked Prospects</a>
+    <h1 class="page-title" style="margin-bottom:24px;">Prospect Details: Predictive</h1>
+
+    <!-- Company Info Card -->
+    <div class="card" style="padding:0; overflow:hidden; margin-bottom:20px;">
+      <div class="company-header-card">
+        <div class="company-logo-placeholder">P</div>
+        <div style="flex:1;">
+          <div class="company-name-large">Predictive</div>
+          <a href="#" class="visit-link">Visit website ↗</a>
+          <div class="activity-row">
+            <span class="activity-pill">↑ High Activity (99)</span>
+            <span class="month-tag">Sep 2025</span>
+          </div>
+          <p class="company-desc">The Australia and New Zealand Banking Group Limited, commonly called ANZ, is an Australian multinational banking and financial services company headquartered in Melbourne, Australia. It is the second largest bank by assets and third largest bank by market capitalisation in Australia.</p>
+        </div>
+        <div class="company-right-stats">
+          <div>
+            <div class="company-stat-label">Company Size</div>
+            <div class="company-stat-value">40.3k</div>
+          </div>
+          <div>
+            <div class="company-stat-label">Est. Annual Revenue</div>
+            <div class="company-stat-value">$13.7M</div>
+          </div>
+          <div>
+            <div class="company-stat-label">Headquarters Location</div>
+            <div class="company-stat-value" style="font-size:13px;">Docklands, Victoria</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- NEW: Tech Stack Section -->
+    <div class="new-section">
+      <div class="new-badge">NEW</div>
+      <div class="section-header-row" style="margin-bottom:2px;">
+        <h2 class="section-title-lg">Tech Stack</h2>
+      </div>
+      <p class="section-subtitle">14 products detected &nbsp;·&nbsp; Last verified Dec 2025</p>
+
+      <div class="tech-stack-grid">
+
+        <!-- CRM -->
+        <div class="tech-category-group">
+          <div class="tech-category-label">CRM</div>
+          <div class="tech-product-item">
+            <div class="tech-product-logo" style="background:#00A1E0;">SF</div>
+            <div class="tech-product-info">
+              <div class="tech-product-name">Salesforce</div>
+              <div class="tech-product-vendor">salesforce.com</div>
+            </div>
+            <div class="tech-verified">✓ Dec 2025</div>
+          </div>
+          <div class="tech-product-item">
+            <div class="tech-product-logo" style="background:#FF7A59;">Hs</div>
+            <div class="tech-product-info">
+              <div class="tech-product-name">HubSpot</div>
+              <div class="tech-product-vendor">hubspot.com</div>
+            </div>
+            <div class="tech-verified">✓ Dec 2025</div>
+          </div>
+        </div>
+
+        <!-- Sales Engagement -->
+        <div class="tech-category-group">
+          <div class="tech-category-label">Sales Engagement</div>
+          <div class="tech-product-item">
+            <div class="tech-product-logo" style="background:#5C4EE5;">Or</div>
+            <div class="tech-product-info">
+              <div class="tech-product-name">Outreach</div>
+              <div class="tech-product-vendor">outreach.io</div>
+            </div>
+            <div class="tech-verified">✓ Dec 2025</div>
+          </div>
+          <div class="tech-product-item">
+            <div class="tech-product-logo" style="background:#2563EB;">Go</div>
+            <div class="tech-product-info">
+              <div class="tech-product-name">Gong</div>
+              <div class="tech-product-vendor">gong.io</div>
+            </div>
+            <div class="tech-verified">✓ Dec 2025</div>
+          </div>
+        </div>
+
+        <!-- Marketing Automation -->
+        <div class="tech-category-group">
+          <div class="tech-category-label">Marketing Automation</div>
+          <div class="tech-product-item">
+            <div class="tech-product-logo" style="background:#5C67F2;">Mk</div>
+            <div class="tech-product-info">
+              <div class="tech-product-name">Marketo</div>
+              <div class="tech-product-vendor">marketo.com</div>
+            </div>
+            <div class="tech-verified">✓ Dec 2025</div>
+          </div>
+        </div>
+
+        <!-- BI & Analytics -->
+        <div class="tech-category-group">
+          <div class="tech-category-label">BI &amp; Analytics</div>
+          <div class="tech-product-item">
+            <div class="tech-product-logo" style="background:#E97627;">Tb</div>
+            <div class="tech-product-info">
+              <div class="tech-product-name">Tableau</div>
+              <div class="tech-product-vendor">tableau.com</div>
+            </div>
+            <div class="tech-verified">✓ Dec 2025</div>
+          </div>
+          <div class="tech-product-item">
+            <div class="tech-product-logo" style="background:#4285F4;">Lk</div>
+            <div class="tech-product-info">
+              <div class="tech-product-name">Looker</div>
+              <div class="tech-product-vendor">looker.com</div>
+            </div>
+            <div class="tech-verified">✓ Dec 2025</div>
+          </div>
+        </div>
+
+        <!-- Data & Integration -->
+        <div class="tech-category-group">
+          <div class="tech-category-label">Data &amp; Integration</div>
+          <div class="tech-product-item">
+            <div class="tech-product-logo" style="background:#29B5E8;">Sw</div>
+            <div class="tech-product-info">
+              <div class="tech-product-name">Snowflake</div>
+              <div class="tech-product-vendor">snowflake.com</div>
+            </div>
+            <div class="tech-verified">✓ Dec 2025</div>
+          </div>
+          <div class="tech-product-item">
+            <div class="tech-product-logo" style="background:#CC3399;">Fv</div>
+            <div class="tech-product-info">
+              <div class="tech-product-name">Fivetran</div>
+              <div class="tech-product-vendor">fivetran.com</div>
+            </div>
+            <div class="tech-verified">✓ Dec 2025</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- NEW: Recent Activity Section -->
+    <div class="new-section">
+      <div class="new-badge">NEW</div>
+      <h2 class="section-title-lg" style="margin-bottom:14px;">Recent Activity</h2>
+      <div class="feed-event">
+        <div class="feed-event-icon">🏦</div>
+        <div>
+          <div class="feed-event-title">Series C Funding — $45M raised</div>
+          <div class="feed-event-meta">Dec 10, 2025 &nbsp;·&nbsp; TechCrunch</div>
+        </div>
+      </div>
+      <div class="feed-event">
+        <div class="feed-event-icon">👤</div>
+        <div>
+          <div class="feed-event-title">New VP of Sales hired — Michael Torres</div>
+          <div class="feed-event-meta">Nov 28, 2025 &nbsp;·&nbsp; LinkedIn</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contacts Section -->
+    <div class="section-header-row" style="margin-top:4px;">
+      <h2 class="section-title-lg">Predictive Contacts (3)</h2>
+      <div class="section-actions">
+        <button class="btn btn-ghost btn-sm">Download CSV ↓</button>
+        <button class="btn btn-coral btn-sm">✦ Generate Emails</button>
+      </div>
+    </div>
+
+    <div class="contact-cards-grid">
+      <div class="contact-card">
+        <div class="contact-card-header">
+          <div class="contact-avatar avatar-purple">LP</div>
+          <div class="contact-info">
+            <div class="contact-name">Lilly Pad</div>
+            <div class="contact-email">l.pad@company.com</div>
+          </div>
+        </div>
+        <div class="contact-title">Chief Operating Officer</div>
+        <div class="match-badges">
+          <span class="match-badge">Department Level</span>
+          <span class="match-badge">Department</span>
+        </div>
+        <button class="copy-email-btn">📋 Copy Email</button>
+      </div>
+
+      <div class="contact-card">
+        <div class="contact-card-header">
+          <div class="contact-avatar avatar-blue">JD</div>
+          <div class="contact-info">
+            <div class="contact-name">John Doe</div>
+            <div class="contact-email">j.doe@company.com</div>
+          </div>
+        </div>
+        <div class="contact-title">Manager, Communications &amp; Chief Executive Officer &amp; Deputy Chief Executive Officer</div>
+        <div class="match-badges">
+          <span class="match-badge">Department</span>
+        </div>
+        <button class="copy-email-btn">📋 Copy Email</button>
+      </div>
+
+      <div class="contact-card">
+        <div class="contact-card-header">
+          <div class="contact-avatar avatar-coral">JS</div>
+          <div class="contact-info">
+            <div class="contact-name">Jane Smith</div>
+            <div class="contact-email">j.smith@company.com</div>
+          </div>
+        </div>
+        <div class="contact-title">Chief Executive Officer &amp; Founder</div>
+        <div class="match-badges"></div>
+        <button class="copy-email-btn">📋 Copy Email</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Floating Info Panel -->
+<div class="info-panel" id="infoPanel">
+  <div class="info-panel-header">
+    <span class="info-panel-title">Concept 3: Unlock Enrichment</span>
+    <button class="info-panel-dismiss" onclick="document.getElementById('infoPanel').style.display='none'">×</button>
+  </div>
+  <div class="info-panel-body">
+    <div style="display:flex; gap:6px; flex-wrap:wrap; margin-bottom:10px;">
+      <span class="info-panel-endpoint">POST /products/paged</span>
+      <span class="info-panel-endpoint">GET /feed</span>
+    </div>
+    <p class="info-panel-text">On unlock, fire <code>POST /companies/{domain}/products/paged</code> and <code>GET /companies/{domain}/feed</code> to enrich the prospect record with the full software stack and recent trigger events.</p>
+  </div>
+</div>
+
+</body>
+</html>

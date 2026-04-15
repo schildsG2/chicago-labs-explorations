@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Concept 4: Stack-Aware Email — BuyerCaddy × G2 Activate</title>
+  <link rel="stylesheet" href="../../shared/styles.css">
+  <style>
+    .concept-banner {
+      background: var(--indigo);
+      color: white;
+      padding: 0 24px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      font-size: 13px;
+      font-weight: 500;
+      gap: 12px;
+    }
+    .concept-banner a { color: rgba(255,255,255,0.75); font-size: 13px; }
+    .concept-banner a:hover { color: white; text-decoration: none; }
+    .banner-divider { color: rgba(255,255,255,0.35); }
+
+    /* NEW highlight */
+    .new-highlight {
+      border: 2px solid #F59E0B;
+      border-radius: 6px;
+      position: relative;
+    }
+
+    .new-badge {
+      position: absolute;
+      top: -10px;
+      right: 12px;
+      background: #F59E0B;
+      color: #78350F;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 2px 7px;
+      border-radius: 999px;
+    }
+
+    .gen-email-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+    .gen-email-title { font-size: 28px; font-weight: 700; }
+
+    .back-btn {
+      background: none;
+      border: none;
+      font-size: 20px;
+      cursor: pointer;
+      color: var(--gray-500);
+      display: flex;
+      align-items: center;
+      padding: 0;
+    }
+    .back-btn:hover { color: var(--gray-900); }
+
+    .contact-list-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .contacts-showing { font-size: 12px; color: var(--gray-500); }
+
+    .email-field-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--gray-500);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 4px;
+    }
+
+    .email-subject-field {
+      font-size: 15px;
+      font-weight: 600;
+      padding: 10px 12px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      background: var(--gray-50);
+      margin-bottom: 12px;
+    }
+
+    .recipient-card {
+      padding: 12px 14px;
+      background: var(--gray-50);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      margin-bottom: 16px;
+    }
+
+    .recipient-card .label {
+      font-size: 12px;
+      color: var(--gray-500);
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+
+    .email-content-card { padding: 20px; }
+
+    .bottom-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 20px;
+      background: var(--white);
+      border-top: 1px solid var(--border);
+      margin-top: 12px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+    }
+
+    /* Stack context card */
+    .stack-context-card {
+      padding: 14px 16px;
+      margin-top: 12px;
+    }
+
+    .stack-context-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--gray-900);
+      margin-bottom: 3px;
+    }
+
+    .stack-context-subtitle {
+      font-size: 11px;
+      color: var(--gray-400);
+      margin-bottom: 12px;
+    }
+
+    .stack-context-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 0;
+      border-bottom: 1px solid var(--border-light);
+      font-size: 13px;
+    }
+
+    .stack-context-item:last-child { border-bottom: none; }
+
+    .stack-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--indigo);
+      flex-shrink: 0;
+    }
+
+    .stack-name { font-weight: 600; color: var(--gray-900); }
+    .stack-category { color: var(--gray-500); font-size: 12px; }
+
+    .stack-verified-chip {
+      margin-left: auto;
+      font-size: 11px;
+      padding: 2px 7px;
+      border-radius: 999px;
+      background: var(--teal-light);
+      color: var(--teal);
+      font-weight: 500;
+    }
+
+    /* Email body with inline highlights */
+    .email-body-display {
+      font-size: 14px;
+      line-height: 1.75;
+      color: var(--gray-800);
+      padding: 12px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      background: var(--white);
+      min-height: 280px;
+      white-space: pre-wrap;
+      font-family: var(--font);
+    }
+
+    .tool-highlight {
+      background: #FEF9C3;
+      border-radius: 3px;
+      padding: 0 2px;
+      font-weight: 500;
+      position: relative;
+    }
+
+    /* tooltip for highlighted terms */
+    .highlight-new-wrapper {
+      display: inline;
+      position: relative;
+    }
+
+    /* Info panel */
+    .info-panel {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      width: 300px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+      z-index: 999;
+      overflow: hidden;
+    }
+    .info-panel-header {
+      background: var(--indigo);
+      color: white;
+      padding: 12px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .info-panel-title { font-size: 13px; font-weight: 700; }
+    .info-panel-dismiss {
+      background: rgba(255,255,255,0.2);
+      border: none; color: white;
+      width: 22px; height: 22px;
+      border-radius: 50%; cursor: pointer;
+      font-size: 13px;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font);
+    }
+    .info-panel-dismiss:hover { background: rgba(255,255,255,0.3); }
+    .info-panel-body { padding: 14px; }
+    .info-panel-endpoint {
+      display: inline-flex;
+      background: #F0FDF4;
+      border: 1px solid #BBF7D0;
+      border-radius: var(--radius-xs);
+      padding: 3px 8px;
+      font-size: 11px;
+      font-weight: 500;
+      color: #15803D;
+      font-family: 'Monaco', 'Menlo', monospace;
+      margin-bottom: 10px;
+    }
+    .info-panel-text { font-size: 13px; color: var(--gray-600); line-height: 1.55; }
+
+    .contact-list-scroll { max-height: 380px; overflow-y: auto; }
+  </style>
+</head>
+<body>
+
+<!-- Concept Banner -->
+<div class="concept-banner">
+  <span>Concept 4 of 5 — Stack-Aware Email</span>
+  <span class="banner-divider">·</span>
+  <span>BuyerCaddy Integration</span>
+  <span class="banner-divider">·</span>
+  <a href="../../index.html">← Back to Index</a>
+</div>
+
+<!-- G2 Header -->
+<header class="g2-header">
+  <div class="g2-logo">G</div>
+  <span class="g2-brand">MyG2</span>
+  <div class="header-spacer"></div>
+  <div class="header-actions">
+    <div class="header-icon">?</div>
+    <div class="header-avatar">HM</div>
+  </div>
+</header>
+
+<div class="page-wrapper">
+  <div class="page-header" style="border-bottom:none; padding-bottom:16px;">
+    <div class="gen-email-header">
+      <button class="back-btn">←</button>
+      <h1 class="gen-email-title">Generate Emails</h1>
+    </div>
+  </div>
+
+  <div class="two-col-layout-40-60">
+    <!-- Left: Recipients + Stack Context -->
+    <div style="display:flex; flex-direction:column; gap:12px;">
+      <div class="card" style="padding:0; overflow:hidden;">
+        <div style="padding:20px 20px 12px;">
+          <div class="card-header" style="margin-bottom:12px;">
+            <span class="card-title">Recipients <span style="font-weight:400; color:var(--gray-500);">(1 selected)</span></span>
+          </div>
+          <div class="contact-list-header">
+            <div class="search-bar" style="flex:1;">
+              <span class="search-bar-icon">🔍</span>
+              <input type="search" placeholder="Search contacts..." style="width:100%;">
+            </div>
+            <button class="btn btn-ghost btn-sm">Filters</button>
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:center; font-size:12px; color:var(--gray-500); margin-bottom:10px; margin-top:6px;">
+            <span>Showing 1–10 of 63 contacts</span>
+            <select style="width:auto; height:28px; padding:4px 24px 4px 8px; font-size:12px;">
+              <option>Most Recent</option>
+            </select>
+          </div>
+        </div>
+        <div class="contact-list-scroll" style="padding:0 12px;">
+          <div class="contact-list-item selected">
+            <div class="checkbox checked">✓</div>
+            <div class="contact-meta">
+              <div class="contact-meta-name">Lilly Pad</div>
+              <div class="contact-meta-email">l.pad@company.com</div>
+              <div class="contact-meta-title">Chief Operating Officer</div>
+              <div class="contact-meta-chips">
+                <span class="contact-meta-chip">🏢 Predictive</span>
+                <span class="contact-meta-chip">📍 United States</span>
+                <span class="contact-meta-chip">👥 750</span>
+              </div>
+            </div>
+          </div>
+          <div class="contact-list-item">
+            <div class="checkbox"></div>
+            <div class="contact-meta">
+              <div class="contact-meta-name">John Doe</div>
+              <div class="contact-meta-email">j.doe@company.com</div>
+              <div class="contact-meta-title">Manager, Communications &amp; Chief Executive Officer</div>
+              <div class="contact-meta-chips">
+                <span class="contact-meta-chip">🏢 Predictive</span>
+                <span class="contact-meta-chip">📍 United States</span>
+                <span class="contact-meta-chip">👥 750</span>
+                <span class="likely-visitor-badge">Likely Visitor</span>
+              </div>
+            </div>
+          </div>
+          <div class="contact-list-item">
+            <div class="checkbox"></div>
+            <div class="contact-meta">
+              <div class="contact-meta-name">Jane Smith</div>
+              <div class="contact-meta-email">j.smith@company.com</div>
+              <div class="contact-meta-title">Chief Executive Officer &amp; Founder</div>
+              <div class="contact-meta-chips">
+                <span class="contact-meta-chip">🏢 Predictive</span>
+                <span class="contact-meta-chip">📍 United States</span>
+                <span class="contact-meta-chip">👥 750</span>
+              </div>
+            </div>
+          </div>
+          <div class="contact-list-item">
+            <div class="checkbox"></div>
+            <div class="contact-meta">
+              <div class="contact-meta-name">Naomi Watts</div>
+              <div class="contact-meta-email">n.watts@stellar.com</div>
+              <div class="contact-meta-title">VP, Marketing &amp; Co-founder</div>
+              <div class="contact-meta-chips">
+                <span class="contact-meta-chip">🏢 Stellar</span>
+                <span class="contact-meta-chip">📍 Canada</span>
+                <span class="contact-meta-chip">👥 1.2K</span>
+              </div>
+            </div>
+          </div>
+          <div class="contact-list-item">
+            <div class="checkbox"></div>
+            <div class="contact-meta">
+              <div class="contact-meta-name">Keanu Reeves</div>
+              <div class="contact-meta-email">k.reeves@matrix.com</div>
+              <div class="contact-meta-title">Senior Director</div>
+              <div class="contact-meta-chips">
+                <span class="contact-meta-chip">🏢 Matrix</span>
+                <span class="contact-meta-chip">📍 United Kingdom</span>
+                <span class="contact-meta-chip">👥 250</span>
+              </div>
+            </div>
+          </div>
+          <div style="padding-bottom:12px;"></div>
+        </div>
+        <div style="padding: 0 12px 12px;">
+          <div class="pagination" style="padding-top:8px;">
+            <button class="page-btn nav-btn">←</button>
+            <button class="page-btn active">1</button>
+            <button class="page-btn">2</button>
+            <button class="page-btn">3</button>
+            <span class="page-ellipsis">...</span>
+            <button class="page-btn">23</button>
+            <button class="page-btn nav-btn">→</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- NEW: Stack Context Card -->
+      <div class="card new-highlight stack-context-card" style="position:relative;">
+        <div class="new-badge">NEW</div>
+        <div class="stack-context-title">Stack Context (Predictive)</div>
+        <div class="stack-context-subtitle">Data powering this email:</div>
+        <div class="stack-context-item">
+          <div class="stack-dot"></div>
+          <div>
+            <span class="stack-name">Salesforce</span>
+            <span class="stack-category"> · CRM</span>
+          </div>
+          <span class="stack-verified-chip">verified</span>
+        </div>
+        <div class="stack-context-item">
+          <div class="stack-dot"></div>
+          <div>
+            <span class="stack-name">Gong</span>
+            <span class="stack-category"> · Sales Intelligence</span>
+          </div>
+          <span class="stack-verified-chip">verified</span>
+        </div>
+        <div class="stack-context-item">
+          <div class="stack-dot"></div>
+          <div>
+            <span class="stack-name">Outreach</span>
+            <span class="stack-category"> · Sales Engagement</span>
+          </div>
+          <span class="stack-verified-chip">verified</span>
+        </div>
+        <div class="stack-context-item">
+          <div class="stack-dot"></div>
+          <div>
+            <span class="stack-name">Marketo</span>
+            <span class="stack-category"> · Marketing Automation</span>
+          </div>
+          <span class="stack-verified-chip">verified</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: Email Content -->
+    <div>
+      <div class="card email-content-card">
+        <div class="card-header">
+          <span class="card-title">Email Content</span>
+          <button class="btn btn-coral btn-sm">✦ Manage Generation</button>
+        </div>
+        <div class="recipient-card">
+          <div class="label">TO</div>
+          <div style="font-weight:600; font-size:14px; color:var(--gray-900);">Lilly Pad <span style="font-weight:400; color:var(--gray-500);">(l.pad@company.com)</span></div>
+          <div style="font-size:13px; color:var(--gray-600); margin-top:2px;">Chief Operating Officer</div>
+          <div style="font-size:12px; color:var(--gray-500); margin-top:4px; display:flex; gap:10px;">
+            <span>🏢 Predictive</span><span>📍 United States</span><span>👥 750</span>
+          </div>
+        </div>
+        <div>
+          <div class="email-field-label">SUBJECT</div>
+          <div class="email-subject-field">How leaders are scaling consistent execution</div>
+        </div>
+        <div>
+          <div class="email-field-label" style="display:flex; align-items:center; gap:8px; margin-bottom:6px;">
+            BODY
+            <span style="font-size:11px; background:#FEF9C3; color:#92400E; border:1px solid #FDE68A; padding:2px 7px; border-radius:999px; font-weight:600; text-transform:uppercase; letter-spacing:0.04em;">NEW · Stack-aware</span>
+          </div>
+          <div class="email-body-display">Hello Lilly,
+
+I noticed Predictive runs <span class="tool-highlight">Salesforce</span> for CRM and <span class="tool-highlight">Outreach</span> for sequencing — a stack we see often in teams that are scaling SDR capacity quickly.
+
+Where we typically add value is in the handoff layer: helping AEs get richer context from every <span class="tool-highlight">Gong</span> call and <span class="tool-highlight">Outreach</span> sequence, without adding another tool to manage.
+
+I'd love to show you how a few Predictive customers have tightened their <span class="tool-highlight">Salesforce</span> pipeline visibility using Acme alongside their existing stack.
+
+Best,
+Harvey Mustache
+Acme Inc</div>
+        </div>
+      </div>
+      <div class="bottom-bar">
+        <button class="btn btn-ghost">Back</button>
+        <button class="btn btn-dark">Send 1 Email →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Floating Info Panel -->
+<div class="info-panel" id="infoPanel">
+  <div class="info-panel-header">
+    <span class="info-panel-title">Concept 4: Stack-Aware Email</span>
+    <button class="info-panel-dismiss" onclick="document.getElementById('infoPanel').style.display='none'">×</button>
+  </div>
+  <div class="info-panel-body">
+    <div class="info-panel-endpoint">Stack data + email generation</div>
+    <p class="info-panel-text">The stack data collected on unlock is passed as context to the email generator. The AI references the prospect's actual tools by name, making outreach feel researched rather than templated.</p>
+  </div>
+</div>
+
+</body>
+</html>

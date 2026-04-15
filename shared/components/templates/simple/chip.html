@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chip Component</title>
+  <link rel="stylesheet" href="../../../tokens/elevate.css">
+  <link rel="stylesheet" href="../../elevate.css">
+  <style>
+    body {
+      font-family: var(--font-sans);
+      padding: 2rem;
+      background: var(--bg-neutral-5);
+    }
+    .section {
+      background: white;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-light);
+    }
+    h1 { margin: 0 0 0.5rem 0; }
+    h2 { margin: 1.5rem 0 0.75rem 0; font-size: var(--text-lg); }
+    .examples { display: flex; gap: 0.75rem; flex-wrap: wrap; margin: 1rem 0; }
+    pre {
+      background: var(--bg-neutral-10);
+      padding: 1rem;
+      border-radius: var(--radius-sm);
+      overflow-x: auto;
+      font-size: 13px;
+    }
+
+    /* Chip Styles */
+    .elv-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.375rem;
+      font-weight: var(--font-medium);
+      border-radius: var(--radius-pill-xs);
+      transition: all 150ms ease;
+    }
+    .elv-chip--sm { padding: 0.25rem 0.75rem; font-size: var(--text-xs); }
+    .elv-chip--md { padding: 0.375rem 0.875rem; font-size: var(--text-sm); }
+    .elv-chip--lg { padding: 0.5rem 1rem; font-size: var(--text-base); }
+    .elv-chip--primary { background: var(--bg-primary); color: var(--text-inverted); }
+    .elv-chip--secondary { background: var(--bg-neutral-10); color: var(--text-default); border: 1px solid var(--border-medium); }
+    .elv-chip--success { background: var(--bg-success-20); color: var(--text-success); border: 1px solid var(--border-success); }
+    .elv-chip--critical { background: var(--bg-critical-20); color: var(--text-critical); border: 1px solid var(--border-critical); }
+    .elv-chip--warning { background: var(--bg-warning-20); color: var(--text-warning); border: 1px solid var(--border-warning); }
+    .elv-chip--info { background: var(--bg-info-20); color: var(--text-info); border: 1px solid var(--border-info); }
+    .elv-chip--removable { padding-right: 0.5rem; }
+    .elv-chip__remove {
+      background: transparent;
+      border: none;
+      color: currentColor;
+      cursor: pointer;
+      padding: 0.125rem;
+      opacity: 0.7;
+      transition: opacity 150ms;
+    }
+    .elv-chip__remove:hover { opacity: 1; }
+    .elv-chip__remove svg { width: 14px; height: 14px; }
+  </style>
+</head>
+<body>
+
+<div elv>
+  <h1 class="elv-text-3xl elv-font-bold elv-text-default">Chip</h1>
+  <p class="elv-text-sm elv-text-subtle">
+    See <a href="https://www.g2.test/elevate/lookbook" class="elv-text-link">Elevate Lookbook</a> for full documentation
+  </p>
+
+  <div class="section">
+    <h2 class="elv-font-semibold elv-text-default">Variants</h2>
+    <div class="examples">
+      <span class="elv-chip elv-chip--primary elv-chip--md">Primary</span>
+      <span class="elv-chip elv-chip--secondary elv-chip--md">Secondary</span>
+      <span class="elv-chip elv-chip--success elv-chip--md">Success</span>
+      <span class="elv-chip elv-chip--critical elv-chip--md">Critical</span>
+      <span class="elv-chip elv-chip--warning elv-chip--md">Warning</span>
+      <span class="elv-chip elv-chip--info elv-chip--md">Info</span>
+    </div>
+    <pre><code>&lt;span class="elv-chip elv-chip--primary elv-chip--md"&gt;Primary&lt;/span&gt;
+&lt;span class="elv-chip elv-chip--secondary elv-chip--md"&gt;Secondary&lt;/span&gt;
+&lt;span class="elv-chip elv-chip--success elv-chip--md"&gt;Success&lt;/span&gt;</code></pre>
+  </div>
+
+  <div class="section">
+    <h2 class="elv-font-semibold elv-text-default">Sizes</h2>
+    <div class="examples">
+      <span class="elv-chip elv-chip--primary elv-chip--sm">Small</span>
+      <span class="elv-chip elv-chip--primary elv-chip--md">Medium</span>
+      <span class="elv-chip elv-chip--primary elv-chip--lg">Large</span>
+    </div>
+    <pre><code>&lt;span class="elv-chip elv-chip--primary elv-chip--sm"&gt;Small&lt;/span&gt;
+&lt;span class="elv-chip elv-chip--primary elv-chip--md"&gt;Medium&lt;/span&gt;
+&lt;span class="elv-chip elv-chip--primary elv-chip--lg"&gt;Large&lt;/span&gt;</code></pre>
+  </div>
+
+  <div class="section">
+    <h2 class="elv-font-semibold elv-text-default">Removable</h2>
+    <div class="examples">
+      <span class="elv-chip elv-chip--secondary elv-chip--md elv-chip--removable">
+        Removable
+        <button class="elv-chip__remove" aria-label="Remove" onclick="this.parentElement.remove()">
+          <svg viewBox="0 0 14 14" fill="currentColor">
+            <path d="M14 1.41L12.59 0L7 5.59L1.41 0L0 1.41L5.59 7L0 12.59L1.41 14L7 8.41L12.59 14L14 12.59L8.41 7L14 1.41Z"/>
+          </svg>
+        </button>
+      </span>
+    </div>
+    <pre><code>&lt;span class="elv-chip elv-chip--secondary elv-chip--md elv-chip--removable"&gt;
+  Text
+  &lt;button class="elv-chip__remove" aria-label="Remove" onclick="this.parentElement.remove()"&gt;
+    &lt;svg viewBox="0 0 14 14" fill="currentColor"&gt;
+      &lt;path d="M14 1.41L12.59 0L7 5.59L1.41 0L0 1.41L5.59 7L0 12.59L1.41 14L7 8.41L12.59 14L14 12.59L8.41 7L14 1.41Z"/&gt;
+    &lt;/svg&gt;
+  &lt;/button&gt;
+&lt;/span&gt;</code></pre>
+  </div>
+
+</div>
+
+</body>
+</html>

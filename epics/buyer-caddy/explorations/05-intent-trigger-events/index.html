@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Concept 5: Intent + Trigger Events — BuyerCaddy × G2 Activate</title>
+  <link rel="stylesheet" href="../../shared/styles.css">
+  <style>
+    .concept-banner {
+      background: var(--indigo);
+      color: white;
+      padding: 0 24px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      font-size: 13px;
+      font-weight: 500;
+      gap: 12px;
+    }
+    .concept-banner a { color: rgba(255,255,255,0.75); font-size: 13px; }
+    .concept-banner a:hover { color: white; text-decoration: none; }
+    .banner-divider { color: rgba(255,255,255,0.35); }
+
+    /* NEW column header highlight */
+    .th-new {
+      position: relative;
+      background: #FFFBEB !important;
+      border-left: 2px solid #F59E0B;
+      border-right: 2px solid #F59E0B;
+      border-top: 2px solid #F59E0B;
+    }
+
+    .th-new-badge {
+      display: inline-flex;
+      align-items: center;
+      background: #F59E0B;
+      color: #78350F;
+      font-size: 9px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 1px 5px;
+      border-radius: 999px;
+      margin-left: 6px;
+      vertical-align: middle;
+    }
+
+    .td-new {
+      background: #FFFBEB !important;
+      border-left: 2px solid #F59E0B;
+      border-right: 2px solid #F59E0B;
+    }
+
+    .data-table tr:last-child .td-new {
+      border-bottom: 2px solid #F59E0B;
+    }
+
+    .trigger-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 3px 9px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 500;
+      background: #FEF3C7;
+      color: #92400E;
+      white-space: nowrap;
+    }
+
+    .trigger-pill-empty {
+      color: var(--gray-300);
+      font-size: 14px;
+    }
+
+    .unlocked-table-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+
+    .companies-count { font-size: 20px; font-weight: 700; }
+    .companies-count span { font-weight: 400; color: var(--gray-500); font-size: 16px; }
+
+    .details-link {
+      color: var(--purple);
+      font-weight: 500;
+      font-size: 13px;
+      white-space: nowrap;
+    }
+
+    /* Info panel */
+    .info-panel {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      width: 300px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+      z-index: 999;
+      overflow: hidden;
+    }
+    .info-panel-header {
+      background: var(--indigo);
+      color: white;
+      padding: 12px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .info-panel-title { font-size: 13px; font-weight: 700; }
+    .info-panel-dismiss {
+      background: rgba(255,255,255,0.2);
+      border: none; color: white;
+      width: 22px; height: 22px;
+      border-radius: 50%; cursor: pointer;
+      font-size: 13px;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font);
+    }
+    .info-panel-dismiss:hover { background: rgba(255,255,255,0.3); }
+    .info-panel-body { padding: 14px; }
+    .info-panel-endpoint {
+      display: inline-flex;
+      background: #F0FDF4;
+      border: 1px solid #BBF7D0;
+      border-radius: var(--radius-xs);
+      padding: 3px 8px;
+      font-size: 11px;
+      font-weight: 500;
+      color: #15803D;
+      font-family: 'Monaco', 'Menlo', monospace;
+      margin-bottom: 10px;
+    }
+    .info-panel-text { font-size: 13px; color: var(--gray-600); line-height: 1.55; }
+  </style>
+</head>
+<body>
+
+<!-- Concept Banner -->
+<div class="concept-banner">
+  <span>Concept 5 of 5 — Intent + Trigger Events</span>
+  <span class="banner-divider">·</span>
+  <span>BuyerCaddy Integration</span>
+  <span class="banner-divider">·</span>
+  <a href="../../index.html">← Back to Index</a>
+</div>
+
+<!-- G2 Header -->
+<header class="g2-header">
+  <div class="g2-logo">G</div>
+  <span class="g2-brand">MyG2</span>
+  <div class="header-spacer"></div>
+  <div class="header-actions">
+    <div class="header-icon">?</div>
+    <div class="header-avatar">HM</div>
+  </div>
+</header>
+
+<div class="page-wrapper">
+  <div class="page-header">
+    <h1 class="page-title">G2 Activate</h1>
+    <p class="page-subtitle">Transform Buyer Intent data into ready-to-use leads. Identify and connect with companies researching solutions like yours on G2.</p>
+    <div class="page-meta">
+      <span class="status-active"><span class="status-dot"></span>Active</span>
+      <a href="#" class="manage-plan-link">Manage Plan</a>
+    </div>
+  </div>
+
+  <div class="tabs">
+    <button class="tab">Available Prospects</button>
+    <button class="tab active">Unlocked Prospects</button>
+    <button class="tab">Emails</button>
+  </div>
+
+  <div class="card" style="padding:0; overflow:hidden;">
+    <div style="padding: 20px 20px 0;">
+      <div class="unlocked-table-header">
+        <div>
+          <span class="companies-count">Companies <span>(6)</span></span>
+        </div>
+        <div style="display:flex; gap:12px; align-items:center;">
+          <div class="search-bar">
+            <span class="search-bar-icon">🔍</span>
+            <input type="search" placeholder="Search companies...">
+          </div>
+          <div class="time-filters">
+            <button class="time-pill active">7 Days</button>
+            <button class="time-pill">30 Days</button>
+            <button class="time-pill">90 Days</button>
+            <button class="time-pill">1 Year</button>
+            <button class="time-pill">📅 Custom</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Unlock Date</th>
+          <th>Company</th>
+          <th>Activity Level</th>
+          <th class="th-new">Trigger Events <span class="th-new-badge">NEW</span></th>
+          <th>Company Size</th>
+          <th>Headquarters Location</th>
+          <th>Est. Annual Revenue</th>
+          <th>Contacts</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="white-space:nowrap;"><span class="status-dot orange" style="display:inline-block; margin-right:6px;"></span>Dec 16, 2025</td>
+          <td class="table-company-name">Predictive</td>
+          <td><span class="badge badge-high">High</span></td>
+          <td class="td-new"><span class="trigger-pill">🏦 Series C &middot; Dec 10</span></td>
+          <td><strong>750–1,000</strong></td>
+          <td><strong>Port Saint Lucie, FL</strong></td>
+          <td>$21,400,000</td>
+          <td>3</td>
+          <td><a href="#" class="details-link">Details →</a></td>
+        </tr>
+        <tr>
+          <td style="white-space:nowrap;">Dec 16, 2025</td>
+          <td class="table-company-name">InsightWave</td>
+          <td><span class="badge badge-high">High</span></td>
+          <td class="td-new"><span class="trigger-pill">👤 New VP Sales &middot; Dec 8</span></td>
+          <td>750–1,000</td>
+          <td>Port Saint Lucie, FL</td>
+          <td>$17,560,000</td>
+          <td>2</td>
+          <td><a href="#" class="details-link">Details →</a></td>
+        </tr>
+        <tr>
+          <td style="white-space:nowrap;"><span class="status-dot orange" style="display:inline-block; margin-right:6px;"></span>Dec 16, 2025</td>
+          <td class="table-company-name">Predictive</td>
+          <td><span class="badge badge-high">High</span></td>
+          <td class="td-new"><span class="trigger-pill">🏦 Series C &middot; Dec 10</span></td>
+          <td><strong>750–1,000</strong></td>
+          <td><strong>Port Saint Lucie, FL</strong></td>
+          <td>$21,400,000</td>
+          <td>3</td>
+          <td><a href="#" class="details-link">Details →</a></td>
+        </tr>
+        <tr>
+          <td style="white-space:nowrap;">Dec 15, 2025</td>
+          <td class="table-company-name">AlgoStream</td>
+          <td><span class="badge badge-high">High</span></td>
+          <td class="td-new"><span class="trigger-pill">📋 New CTO &middot; Dec 2</span></td>
+          <td>750–1,000</td>
+          <td>Port Saint Lucie, FL</td>
+          <td>$15,240,000</td>
+          <td>0</td>
+          <td><a href="#" class="details-link">Details →</a></td>
+        </tr>
+        <tr>
+          <td style="white-space:nowrap;">Dec 5, 2025</td>
+          <td class="table-company-name">DataVision</td>
+          <td><span class="badge badge-high">High</span></td>
+          <td class="td-new"><span class="trigger-pill-empty">—</span></td>
+          <td>750–1,000</td>
+          <td>Port Saint Lucie, FL</td>
+          <td>$15,240,000</td>
+          <td>3</td>
+          <td><a href="#" class="details-link">Details →</a></td>
+        </tr>
+        <tr>
+          <td style="white-space:nowrap;">Dec 5, 2025</td>
+          <td class="table-company-name">MetricPulse</td>
+          <td><span class="badge badge-high">High</span></td>
+          <td class="td-new"><span class="trigger-pill-empty">—</span></td>
+          <td>750–1,000</td>
+          <td>Port Saint Lucie, FL</td>
+          <td>$17,560,000</td>
+          <td>3</td>
+          <td><a href="#" class="details-link">Details →</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Floating Info Panel -->
+<div class="info-panel" id="infoPanel">
+  <div class="info-panel-header">
+    <span class="info-panel-title">Concept 5: Intent + Trigger Events</span>
+    <button class="info-panel-dismiss" onclick="document.getElementById('infoPanel').style.display='none'">×</button>
+  </div>
+  <div class="info-panel-body">
+    <div class="info-panel-endpoint">GET /companies/{domain}/feed</div>
+    <p class="info-panel-text">BuyerCaddy's <code>/companies/{domain}/feed</code> endpoint returns FUNDING, ACQUISITION, and PEOPLE events. Surfacing these alongside G2 intent signals explains WHY a company is in-market and adds urgency to the outreach.</p>
+  </div>
+</div>
+
+</body>
+</html>

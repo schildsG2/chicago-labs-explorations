@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Credit-Unlock Concept 3 — Trigger Events · BuyerCaddy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../shared/styles.css">
+  <style>
+    /* ============================================================
+       ELEVATE DESIGN SYSTEM TOKENS
+       ============================================================ */
+    :root {
+      --n-0:   #ffffff;
+      --n-1:   #fcfcfd;
+      --n-5:   #fafafa;
+      --n-10:  #f2f2f3;
+      --n-20:  #dfdfe2;
+      --n-30:  #cacace;
+      --n-40:  #b0afb6;
+      --n-50:  #9b99a3;
+      --n-70:  #6f6d78;
+      --n-80:  #4c4b53;
+      --n-90:  #2f2e33;
+      --n-100: #201f23;
+      --p-5:   #f5f4fb;
+      --p-10:  #f2f0f9;
+      --p-20:  #ebe9f6;
+      --p-30:  #dedaf1;
+      --p-40:  #c3bde5;
+      --p-60:  #988ed2;
+      --p-80:  #7769c4;
+      --p:     #5746b2;
+      --p-120: #45388f;
+      --ro:    #ff492c;
+      --blue:  #0073f5;
+      --green-20:  #d0f6f1;
+      --green-120: #1fa896;
+      --green-160: #0f5249;
+      --yellow-20: #fff9e5;
+    }
+
+    html, body {
+      font-family: 'Figtree', system-ui, sans-serif;
+      font-size: 14px;
+      color: var(--n-100);
+      background: var(--n-10);
+      min-width: 1200px;
+      margin: 0;
+    }
+
+    a { color: var(--p); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ============================================================
+       CONCEPT BANNER
+       ============================================================ */
+    .concept-banner {
+      background: #ff492c;
+      color: white;
+      font-size: 12px;
+      font-family: 'Figtree', sans-serif;
+      padding: 7px 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .concept-banner a { color: rgba(255,255,255,0.75); font-size: 12px; text-decoration: underline; }
+    .concept-banner a:hover { color: white; }
+    .concept-banner-label { font-weight: 600; letter-spacing: 0.01em; }
+    .concept-banner-spacer { flex: 1; }
+
+    /* ============================================================
+       HEADER
+       ============================================================ */
+    .elv-header {
+      height: 60px;
+      background: var(--n-0);
+      border-bottom: 1px solid var(--n-20);
+      display: flex; align-items: center;
+      padding: 0 24px; gap: 10px;
+      position: sticky; top: 0; z-index: 100;
+    }
+    .elv-header-back { color: var(--n-70); font-size: 18px; line-height: 1; padding: 4px; cursor: pointer; }
+    .elv-logo {
+      width: 32px; height: 32px; background: var(--ro); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: white; font-weight: 800; font-size: 16px; flex-shrink: 0;
+    }
+    .elv-brand { font-weight: 700; font-size: 15px; color: var(--n-100); }
+    .elv-header-spacer { flex: 1; }
+    .elv-header-actions { display: flex; align-items: center; gap: 10px; }
+    .elv-header-icon {
+      width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--n-20);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--n-70); font-size: 15px; cursor: pointer;
+    }
+    .elv-header-avatar {
+      width: 32px; height: 32px; border-radius: 50%; background: var(--n-20);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--n-80); font-weight: 600; font-size: 12px; cursor: pointer;
+    }
+
+    /* ============================================================
+       PAGE LAYOUT
+       ============================================================ */
+    .page-outer {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 24px 64px;
+    }
+    .page-banner {
+      padding: 22px 0 18px;
+      border-bottom: 1px solid var(--n-20);
+    }
+    .page-banner-title { font-size: 24px; font-weight: 700; color: var(--n-100); margin-bottom: 4px; }
+    .page-banner-subtitle { font-size: 14px; color: var(--n-70); margin-bottom: 10px; }
+    .page-banner-meta { display: flex; align-items: center; gap: 14px; font-size: 13px; }
+    .status-badge-active { display: inline-flex; align-items: center; gap: 5px; color: var(--green-120); font-weight: 500; }
+    .status-badge-active .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green-120); }
+    .manage-plan-link { color: var(--p); font-size: 13px; font-weight: 500; }
+
+    /* ============================================================
+       TABS
+       ============================================================ */
+    .elv-tabs { display: flex; border-bottom: 1px solid var(--n-20); margin-bottom: 22px; padding-top: 2px; }
+    .elv-tab {
+      padding: 13px 18px; font-size: 14px; font-weight: 500; color: var(--n-70);
+      cursor: pointer; border: none; border-bottom: 2px solid transparent;
+      margin-bottom: -1px; background: none; font-family: 'Figtree', sans-serif;
+    }
+    .elv-tab.active { color: var(--p); border-bottom-color: var(--p); font-weight: 600; }
+
+    /* ============================================================
+       CARD
+       ============================================================ */
+    .elv-card {
+      background: var(--n-0); border: 1px solid var(--n-20);
+      border-radius: 0.75rem; box-shadow: 0 1px 3px rgba(0,0,0,0.08); overflow: hidden;
+    }
+    .elv-card-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 18px; border-bottom: 1px solid var(--n-10); gap: 10px;
+    }
+    .elv-card-header-left { display: flex; align-items: center; gap: 8px; }
+    .elv-card-title { font-size: 15px; font-weight: 700; color: var(--n-100); }
+    .elv-count { font-size: 14px; font-weight: 400; color: var(--n-70); }
+
+    /* ============================================================
+       SEARCH + TIME FILTERS
+       ============================================================ */
+    .elv-search { position: relative; display: inline-flex; align-items: center; }
+    .elv-search input {
+      width: 210px; height: 34px; padding: 0 12px 0 32px;
+      border: 1px solid var(--n-30); border-radius: 999px; font-size: 13px;
+      font-family: 'Figtree', sans-serif; color: var(--n-80); background: var(--n-0); outline: none;
+    }
+    .elv-search input::placeholder { color: var(--n-50); }
+    .elv-search-icon { position: absolute; left: 10px; color: var(--n-50); font-size: 13px; pointer-events: none; }
+    .time-filters { display: flex; gap: 3px; align-items: center; }
+    .time-pill {
+      padding: 4px 10px; font-size: 12px; font-weight: 500; border-radius: 999px;
+      cursor: pointer; color: var(--n-70); background: transparent;
+      border: 1px solid transparent; font-family: 'Figtree', sans-serif;
+    }
+    .time-pill:hover { background: var(--n-10); }
+    .time-pill.active { background: var(--p); color: white; border-color: var(--p); }
+
+    /* ============================================================
+       TABLE
+       ============================================================ */
+    .elv-table-wrap { overflow-x: auto; }
+    .elv-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    .elv-table thead tr { background: var(--n-5); }
+    .elv-table th {
+      font-size: 12px; font-weight: 600; color: var(--n-70);
+      text-align: left; padding: 10px 14px; border-bottom: 1px solid var(--n-20);
+      white-space: nowrap; background: var(--n-5);
+    }
+    .elv-table td {
+      padding: 0 14px; border-bottom: 1px solid var(--n-10);
+      color: var(--n-80); vertical-align: middle; height: 48px;
+    }
+    .elv-table tbody tr:last-child td { border-bottom: none; }
+    .elv-table tbody tr:hover td { background: var(--n-5); }
+    .elv-table th.col-first,
+    .elv-table td.col-first { background: var(--n-5); border-right: 1px solid var(--n-10); }
+    .elv-table tbody tr:hover td.col-first { background: var(--n-10); }
+    .elv-table th.col-last,
+    .elv-table td.col-last { background: var(--n-5); border-left: 1px solid var(--n-10); }
+    .elv-table tbody tr:hover td.col-last { background: var(--n-10); }
+
+    .table-company-name { font-weight: 600; color: var(--n-100); }
+
+    /* ============================================================
+       ACTIVITY BADGES
+       ============================================================ */
+    .act-badge {
+      display: inline-flex; align-items: center; gap: 5px;
+      padding: 3px 9px; border-radius: 999px; font-size: 12px; font-weight: 500;
+    }
+    .act-badge .dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+    .act-high { background: var(--green-20); color: var(--green-160); }
+    .act-high .dot { background: var(--green-120); }
+    .act-medium { background: var(--yellow-20); color: #665000; }
+    .act-low { background: var(--n-10); color: var(--n-70); }
+
+    /* ============================================================
+       NOTIFICATION DOT
+       ============================================================ */
+    .unread-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green-120); flex-shrink: 0; display: inline-block; }
+    .unread-date-cell { display: flex; align-items: center; gap: 7px; white-space: nowrap; }
+
+    /* ============================================================
+       DETAILS LINK
+       ============================================================ */
+    .details-link { color: var(--p); font-weight: 600; font-size: 13px; white-space: nowrap; }
+    .details-link:hover { text-decoration: underline; }
+
+    /* ============================================================
+       NEW ELEMENT HIGHLIGHT
+       ============================================================ */
+    .new-badge {
+      background: #5746b2;
+      color: white;
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+
+    /* NEW column header cell style */
+    .th-new {
+      border: 2px solid #5746b2 !important;
+      border-bottom: 2px solid #5746b2 !important;
+      background: #ebe9f6 !important;
+      color: #5746b2 !important;
+      position: relative;
+    }
+    .td-new {
+      border-left: 2px solid #5746b2 !important;
+      border-right: 2px solid #5746b2 !important;
+      background: #f5f4fb !important;
+    }
+    /* Bottom border of last row new cells */
+    .elv-table tbody tr:last-child .td-new {
+      border-bottom: 2px solid #5746b2 !important;
+    }
+
+    /* ============================================================
+       TRIGGER PILL
+       ============================================================ */
+    .trigger-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: #fff9e5;
+      color: #92400E;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 500;
+      padding: 3px 10px;
+      white-space: nowrap;
+    }
+    .trigger-none {
+      color: var(--n-70);
+      font-size: 13px;
+    }
+
+    /* ============================================================
+       INFO PANEL
+       ============================================================ */
+    .info-panel {
+      position: fixed; bottom: 24px; right: 24px; width: 300px;
+      background: var(--n-0); border: 1px solid var(--n-20);
+      border-radius: 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+      padding: 20px; z-index: 200;
+    }
+    .info-panel-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 8px; }
+    .info-panel-title { font-size: 15px; font-weight: 700; color: var(--p); line-height: 1.3; }
+    .info-panel-dismiss {
+      color: var(--n-70); font-size: 18px; cursor: pointer; line-height: 1;
+      background: none; border: none; padding: 0; font-family: inherit;
+      flex-shrink: 0; margin-left: 8px;
+    }
+    .info-panel-dismiss:hover { color: var(--n-100); }
+    .info-panel-body { font-size: 13px; color: var(--n-70); line-height: 1.6; margin-bottom: 12px; }
+    .info-panel-endpoint {
+      display: inline-flex; align-items: center;
+      background: #F0FDF4; border: 1px solid #BBF7D0; border-radius: 4px;
+      padding: 4px 10px; font-size: 11px; font-weight: 500;
+      color: #15803D; font-family: 'Monaco', 'Menlo', monospace;
+    }
+  </style>
+</head>
+<body>
+
+<!-- CONCEPT BANNER -->
+<div class="concept-banner">
+  <a href="../../index.html">← Back to Index</a>
+  <span class="concept-banner-spacer"></span>
+  <span class="concept-banner-label">Credit-Unlock Concept 3 of 3 — Trigger Events · BuyerCaddy Integration</span>
+  <span class="concept-banner-spacer"></span>
+</div>
+
+<!-- HEADER -->
+<header class="elv-header">
+  <span class="elv-header-back">←</span>
+  <div class="elv-logo">G</div>
+  <span class="elv-brand">MyG2</span>
+  <div class="elv-header-spacer"></div>
+  <div class="elv-header-actions">
+    <div class="elv-header-icon" title="Help">?</div>
+    <div class="elv-header-avatar" title="Harvey Mustache">HM</div>
+  </div>
+</header>
+
+<!-- PAGE WRAPPER -->
+<div class="page-outer">
+
+  <!-- PAGE BANNER -->
+  <div class="page-banner">
+    <div class="page-banner-title">G2 Activate</div>
+    <div class="page-banner-subtitle">Identify, unlock, and engage high-intent buyers researching your category on G2.</div>
+    <div class="page-banner-meta">
+      <span class="status-badge-active">
+        <span class="dot"></span>
+        Active
+      </span>
+      <a class="manage-plan-link" href="#">Manage Plan</a>
+    </div>
+  </div>
+
+  <!-- TABS -->
+  <div class="elv-tabs">
+    <button class="elv-tab">Available Prospects</button>
+    <button class="elv-tab active">Unlocked Prospects</button>
+    <button class="elv-tab">Emails</button>
+  </div>
+
+  <!-- UNLOCKED PROSPECTS CARD -->
+  <div class="elv-card">
+
+    <!-- Card header -->
+    <div class="elv-card-header">
+      <div class="elv-card-header-left">
+        <span class="elv-card-title">Companies</span>
+        <span class="elv-count">(6)</span>
+      </div>
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <div class="elv-search">
+          <span class="elv-search-icon">🔍</span>
+          <input type="search" placeholder="Search companies…">
+        </div>
+        <div class="time-filters">
+          <button class="time-pill active">7 Days</button>
+          <button class="time-pill">30 Days</button>
+          <button class="time-pill">90 Days</button>
+          <button class="time-pill">1 Year</button>
+          <button class="time-pill">Custom</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Table -->
+    <div class="elv-table-wrap">
+      <table class="elv-table">
+        <thead>
+          <tr>
+            <th class="col-first" style="min-width: 130px;">Unlock Date</th>
+            <th style="min-width: 160px;">Company</th>
+            <th>Activity Level</th>
+            <!-- NEW: Trigger Event column -->
+            <th class="th-new" style="min-width: 170px;">
+              <div style="display: flex; align-items: center; gap: 7px;">
+                Trigger Event
+                <span class="new-badge">NEW</span>
+              </div>
+            </th>
+            <th>Company Size</th>
+            <th>Headquarters Location</th>
+            <th>Est. Annual Revenue</th>
+            <th style="text-align: center;">Contacts</th>
+            <th class="col-last" style="min-width: 80px;">Details</th>
+          </tr>
+        </thead>
+        <tbody>
+
+          <!-- Row 1: Predictive — unread -->
+          <tr>
+            <td class="col-first">
+              <div class="unread-date-cell">
+                <span class="unread-dot"></span>
+                <span style="font-weight: 700; color: var(--n-100);">Dec 16, 2025</span>
+              </div>
+            </td>
+            <td><span class="table-company-name" style="font-weight: 700;">Predictive</span></td>
+            <td><span class="act-badge act-high"><span class="dot"></span>High</span></td>
+            <td class="td-new">
+              <span class="trigger-pill">🏦 Series C · Dec 10</span>
+            </td>
+            <td style="font-weight: 700;">750–1,000</td>
+            <td style="font-weight: 700;">Port Saint Lucie, FL</td>
+            <td>$21.4M</td>
+            <td style="text-align: center;">3</td>
+            <td class="col-last">
+              <a class="details-link" href="#">Details →</a>
+            </td>
+          </tr>
+
+          <!-- Row 2: InsightWave — read -->
+          <tr>
+            <td class="col-first">
+              <div class="unread-date-cell">
+                <span style="display: inline-block; width: 8px; height: 8px; flex-shrink: 0;"></span>
+                <span>Dec 16, 2025</span>
+              </div>
+            </td>
+            <td><span class="table-company-name">InsightWave</span></td>
+            <td><span class="act-badge act-high"><span class="dot"></span>High</span></td>
+            <td class="td-new">
+              <span class="trigger-pill">👤 New VP Sales · Dec 8</span>
+            </td>
+            <td>750–1,000</td>
+            <td>Port Saint Lucie, FL</td>
+            <td>$17.6M</td>
+            <td style="text-align: center;">2</td>
+            <td class="col-last">
+              <a class="details-link" href="#">Details →</a>
+            </td>
+          </tr>
+
+          <!-- Row 3: Predictive — unread -->
+          <tr>
+            <td class="col-first">
+              <div class="unread-date-cell">
+                <span class="unread-dot"></span>
+                <span style="font-weight: 700; color: var(--n-100);">Dec 16, 2025</span>
+              </div>
+            </td>
+            <td><span class="table-company-name" style="font-weight: 700;">Predictive</span></td>
+            <td><span class="act-badge act-high"><span class="dot"></span>High</span></td>
+            <td class="td-new">
+              <span class="trigger-pill">🏦 Series C · Dec 10</span>
+            </td>
+            <td style="font-weight: 700;">750–1,000</td>
+            <td style="font-weight: 700;">Port Saint Lucie, FL</td>
+            <td>$21.4M</td>
+            <td style="text-align: center;">3</td>
+            <td class="col-last">
+              <a class="details-link" href="#">Details →</a>
+            </td>
+          </tr>
+
+          <!-- Row 4: AlgoStream — read -->
+          <tr>
+            <td class="col-first">
+              <div class="unread-date-cell">
+                <span style="display: inline-block; width: 8px; height: 8px; flex-shrink: 0;"></span>
+                <span>Dec 15, 2025</span>
+              </div>
+            </td>
+            <td><span class="table-company-name">AlgoStream</span></td>
+            <td><span class="act-badge act-high"><span class="dot"></span>High</span></td>
+            <td class="td-new">
+              <span class="trigger-pill">👤 New CTO · Dec 2</span>
+            </td>
+            <td>750–1,000</td>
+            <td>Port Saint Lucie, FL</td>
+            <td>$15.2M</td>
+            <td style="text-align: center;">0</td>
+            <td class="col-last">
+              <a class="details-link" href="#">Details →</a>
+            </td>
+          </tr>
+
+          <!-- Row 5: DataVision — read, no trigger -->
+          <tr>
+            <td class="col-first">
+              <div class="unread-date-cell">
+                <span style="display: inline-block; width: 8px; height: 8px; flex-shrink: 0;"></span>
+                <span>Dec 5, 2025</span>
+              </div>
+            </td>
+            <td><span class="table-company-name">DataVision</span></td>
+            <td><span class="act-badge act-high"><span class="dot"></span>High</span></td>
+            <td class="td-new">
+              <span class="trigger-none">—</span>
+            </td>
+            <td>750–1,000</td>
+            <td>Port Saint Lucie, FL</td>
+            <td>$15.2M</td>
+            <td style="text-align: center;">3</td>
+            <td class="col-last">
+              <a class="details-link" href="#">Details →</a>
+            </td>
+          </tr>
+
+          <!-- Row 6: MetricPulse — read, no trigger -->
+          <tr>
+            <td class="col-first">
+              <div class="unread-date-cell">
+                <span style="display: inline-block; width: 8px; height: 8px; flex-shrink: 0;"></span>
+                <span>Dec 5, 2025</span>
+              </div>
+            </td>
+            <td><span class="table-company-name">MetricPulse</span></td>
+            <td><span class="act-badge act-high"><span class="dot"></span>High</span></td>
+            <td class="td-new">
+              <span class="trigger-none">—</span>
+            </td>
+            <td>750–1,000</td>
+            <td>Port Saint Lucie, FL</td>
+            <td>$17.6M</td>
+            <td style="text-align: center;">3</td>
+            <td class="col-last">
+              <a class="details-link" href="#">Details →</a>
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+
+  </div><!-- /elv-card -->
+
+</div><!-- /page-outer -->
+
+<!-- INFO PANEL -->
+<div class="info-panel" id="info-panel">
+  <div class="info-panel-header">
+    <div class="info-panel-title">Credit-Unlock Concept 3 of 3 — Trigger Events</div>
+    <button class="info-panel-dismiss" onclick="document.getElementById('info-panel').style.display='none'">×</button>
+  </div>
+  <p class="info-panel-body">On unlock, BuyerCaddy's <code>/companies/{domain}/feed</code> endpoint is called alongside the stack fetch. FUNDING, PEOPLE, and ACQUISITION events surface in the Unlocked Prospects table, explaining why a company is in-market — without requiring additional credits.</p>
+  <div class="info-panel-endpoint">GET /companies/{domain}/feed</div>
+</div>
+
+</body>
+</html>

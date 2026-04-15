@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exploration 02: Dual Status — G2 Activate</title>
+  <link rel="stylesheet" href="../../shared/styles.css">
+</head>
+<body>
+  <header class="g2-header">
+    <div class="g2-logo">G</div>
+    <div class="g2-brand">MyG2</div>
+    <div class="header-spacer"></div>
+    <div class="header-actions">
+      <div class="header-icon">?</div>
+      <div class="header-avatar">SC</div>
+    </div>
+  </header>
+
+  <div class="page-header page-header-with-tabs">
+    <div class="page-header-inner">
+      <div class="breadcrumbs">
+        <a href="../../index.html">Home</a>
+        <span class="breadcrumb-sep">›</span>
+        <span>G2 Activate</span>
+      </div>
+      <h1 class="page-title">G2 Activate</h1>
+
+      <!-- Dual Status Approach -->
+      <div class="page-meta" style="margin-bottom: 16px;">
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <div class="status-active">
+            <span class="status-dot"></span>
+            Subscription Active
+          </div>
+          <span style="color: var(--gray-300);">|</span>
+          <div style="font-size: 14px; font-weight: 600; color: var(--gray-700);">
+            3,450 credits available
+          </div>
+        </div>
+        <a href="#" class="manage-plan-link">Manage Plan</a>
+      </div>
+
+      <div class="tabs">
+        <button class="tab active">Prospects</button>
+        <button class="tab">Activation</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-wrapper">
+    <div class="subtabs">
+      <button class="subtab active">Available Prospects</button>
+      <button class="subtab">Unlocked Prospects</button>
+    </div>
+
+    <div class="content-area">
+      <aside class="sidebar">
+        <div class="card">
+          <div class="filter-section">
+            <div class="filter-section-title">Contact Filters</div>
+            <div class="filter-field">
+              <label class="filter-label">Departments</label>
+              <select><option>Select...</option></select>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <main class="main-area">
+        <div class="card">
+          <div style="padding: 40px; text-align: center; color: var(--gray-500);">
+            <div style="font-size: 16px; font-weight: 600; margin-bottom: 8px;">Exploration 02: Dual Status</div>
+            <div style="font-size: 14px; line-height: 1.6; max-width: 500px; margin: 0 auto;">
+              Explicit separation showing both subscription status AND credit balance.
+              <br><br>
+              <strong>Example states:</strong><br>
+              • "Subscription Active | 3,450 credits available"<br>
+              • "Subscription Inactive | 3,450 credits available" (bulk only)<br>
+              • "Subscription Inactive | 0 credits available"
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+</body>
+</html>
