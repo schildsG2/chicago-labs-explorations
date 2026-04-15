@@ -28,51 +28,22 @@ chicago-labs-explorations/
 
 ## Using Elevate Components
 
-All explorations should use the **UE Elevate design system** to maintain 1:1 fidelity with production designs.
+All explorations use the **UE Elevate design system** for 1:1 fidelity with production.
 
 ### Quick Start
 
-1. **Include Elevate CSS** in your HTML:
-   ```html
-   <link rel="stylesheet" href="../../shared/tokens/elevate.css">
-   <link rel="stylesheet" href="../../shared/components/elevate.css">
-   ```
+**Starting a new exploration?**
+1. Copy [`/shared/exploration-starter.html`](./shared/exploration-starter.html)
+2. Browse the [Elevate Lookbook](https://www.g2.test/elevate/lookbook) for components
+3. Copy HTML from [`/shared/components/templates/`](./shared/components/templates/)
 
-2. **Wrap content with `elv` attribute**:
-   ```html
-   <div elv>
-     <!-- All Elevate components go here -->
-     <button class="btn btn--primary btn--md">Primary Button</button>
-   </div>
-   ```
-
-3. **Use Elevate utilities and components**:
-   - Typography: `elv-text-lg`, `elv-font-semibold`
-   - Layout: `elv-flex`, `elv-gap-4`, `elv-p-6`
-   - Colors: `elv-bg-primary`, `elv-text-default`
-   - Components: `.btn`, `.btn--primary`, `.btn--lg`
-
-### Resources
-
-- **Component Reference**: [`/shared/components/ELEVATE_COMPONENTS.md`](./shared/components/ELEVATE_COMPONENTS.md)
-- **Live Demo**: [`/shared/components/elevate-demo.html`](./shared/components/elevate-demo.html)
+**Resources:**
+- **Elevate Lookbook**: https://www.g2.test/elevate/lookbook (browse all components)
+- **HTML Templates**: [`/shared/components/templates/`](./shared/components/templates/) (copy-paste ready)
 - **Design Tokens**: [`/shared/tokens/elevate.css`](./shared/tokens/elevate.css)
-- **Icon Library**: [`/shared/icons/README.md`](./shared/icons/README.md)
-- **Component Library Roadmap**: [`/shared/ELEVATE_ROADMAP.md`](./shared/ELEVATE_ROADMAP.md) 🔄
-- **Next Steps**: [`/shared/NEXT_STEPS.md`](./shared/NEXT_STEPS.md)
-- **UE Lookbook**: https://www.g2.test/elevate/lookbook
+- **Icons**: [`/shared/icons/`](./shared/icons/)
 
-The Elevate CSS is **symlinked to the UE repo**, so it auto-updates when UE rebuilds.
-
-### Component Library Status
-
-We're building a lightweight HTML component library from UE Elevate for rapid prototyping:
-
-- ✅ **Phase 1: Foundation** — Design tokens, documentation, demo page
-- 🔄 **Phase 2: Icons** — Porting ~100+ icons from UE Elevate (in progress)
-- 📋 **Phase 3: Components** — HTML templates for 34+ components (next)
-
-See [`ELEVATE_ROADMAP.md`](./shared/ELEVATE_ROADMAP.md) for the full plan and [`NEXT_STEPS.md`](./shared/NEXT_STEPS.md) for immediate actions.
+The Lookbook is your source of truth. This repo just provides static HTML templates.
 
 ## Adding a New Epic
 
