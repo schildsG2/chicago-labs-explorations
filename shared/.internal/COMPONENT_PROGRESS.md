@@ -11,12 +11,16 @@ Track the porting status of all Elevate components from UE to Chicago Labs HTML 
 | Category | Total | Complete | In Progress | Not Started |
 |----------|-------|----------|-------------|-------------|
 | **Icons** | ~150 | 6 | ~144 | 0 |
+| **Form Inputs** ⚡️ | 8 | 1 | 0 | 7 |
 | **Simple Components** | 12 | 1 | 0 | 11 |
 | **Moderate Components** | 10 | 0 | 0 | 10 |
 | **Complex Components** | 12 | 0 | 0 | 12 |
-| **TOTAL** | 34 | 1 | 0 | 33 |
+| **TOTAL** | 42 | 2 | 0 | 40 |
 
-**Overall Completion**: ~4% (7/~184 total items)
+**Overall Completion**: ~5% (8/~192 total items)
+
+**COMPLETED TODAY**: search_input ✅  
+**NEXT**: text_input (2 hrs) → textarea (45 mins) → status_badge (30 mins)
 
 ---
 
@@ -36,6 +40,34 @@ Track the porting status of all Elevate components from UE to Chicago Labs HTML 
 - ✅ ui-icon-credit-card.svg
 - ✅ ui-icon-search.svg
 - ✅ ui-icon-shopping-cart.svg
+
+---
+
+## Form Inputs (PRIORITY — Needs Alignment) ⚡️
+
+**Goal**: Align existing form inputs with current Elevate specs + add missing types
+
+**Status**: Partial support exists, needs audit & rebuild
+
+| Input Type | Status | Template | Priority | Est. Time | Notes |
+|-----------|--------|----------|----------|-----------|-------|
+| search_input | ✅ Complete | [View](./templates/forms/search-input.html) | **CRITICAL** | ✓ Complete | Matches Lookbook & DESIGN.md ✨ |
+| text_input | ⬜ Not Started | — | High | 2 hrs | Base + variants (email, password, etc.) |
+| textarea | ⬜ Not Started | — | High | 45 mins | Resizable, char count |
+| select | ⬜ Not Started | — | High | 2-3 hrs | Custom styled, keyboard nav |
+| checkbox_radio | ⬜ Not Started | — | Medium | 1.5 hrs | Custom styled |
+| toggle | ⬜ Not Started | — | Low | 1 hr | Switch component |
+| file_upload | ⬜ Not Started | — | Low | 1.5 hrs | Drag-drop zone |
+| date_picker | ⬜ Not Started | — | Low | 2-3 hrs | Complex interactions |
+
+**Issues with Current Implementation:**
+- ❌ Missing focus states (2px purple border)
+- ❌ Missing error states (2px red border)
+- ❌ Missing disabled states
+- ❌ Wrong background color (missing N10)
+- ❌ Wrong font size (should be 16px)
+
+**See**: `/shared/.internal/FORM_INPUTS_AUDIT.md` for detailed audit & plan
 
 ---
 
