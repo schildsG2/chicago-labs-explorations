@@ -13,17 +13,17 @@ Track the porting status of all Elevate components from UE to Chicago Labs HTML 
 | **Icons** | ~150 | 102 | ~48 | 0 |
 | **Form Inputs** ⚡️ | 8 | 3 | 0 | 5 |
 | **Simple Components** | 12 | 12 | 0 | 0 |
-| **Moderate Components** | 10 | 8 | 0 | 2 |
+| **Moderate Components** | 10 | 10 | 0 | 0 |
 | **Complex Components** | 12 | 0 | 0 | 12 |
-| **TOTAL** | 42 | 23 | 0 | 19 |
+| **TOTAL** | 42 | 25 | 0 | 17 |
 
-**Overall Completion**: ~71% (124/~192 total items)
+**Overall Completion**: ~72% (126/~192 total items)
 
 **COMPLETED APRIL 16**: 
 - Simple Components: progress_bar ✅ breadcrumbs ✅ star_rating ✅ product_chip ✅ notification_badge ✅ product_avatar ✅ rating_distribution_bar ✅
-- Moderate Components: accordion ✅ tab ✅ tooltip ✅ pagination ✅ icon_button ✅ control_button ✅ button_group ✅ content_card ✅
+- Moderate Components: accordion ✅ tab ✅ tooltip ✅ pagination ✅ icon_button ✅ control_button ✅ button_group ✅ content_card ✅ index_nav ✅ inset_card ✅
 **SIMPLE COMPONENTS: 100% COMPLETE!** 🎉
-**MODERATE COMPONENTS: 8/10 complete (80%)** ⚡️
+**MODERATE COMPONENTS: 10/10 (100%) COMPLETE!** 🎉🎉🎉
 (+ anonymous profile avatars added to avatar component)
 **COMPLETED APRIL 15**: search_input ✅ text_input ✅ textarea ✅ status_badge ✅ avatar ✅ spin_loader ✅ link ✅
 
@@ -132,8 +132,8 @@ All UI icons now available including:
 | content_card | ✅ Complete | [View](../components/templates/moderate/content-card.html) | No | Medium | Header/body/footer, bordered/elevated ✨ |
 | control_button | ✅ Complete | [View](../components/templates/moderate/control-button.html) | No | Medium | Small utility buttons for UI controls (close, expand, menu) ✨ |
 | icon_button | ✅ Complete | [View](../components/templates/moderate/icon-button.html) | No | High | Icon-only buttons, 3 sizes, 4 styles, tooltip support ✨ |
-| index_nav | ⬜ Not Started | — | Optional | Low | Tab-like nav |
-| inset_card | ⬜ Not Started | — | No | Low | Card variant |
+| index_nav | ✅ Complete | [View](../components/templates/moderate/index-nav.html) | Optional | Low | Vertical/horizontal, sidebar, scroll tracking, active states ✨ |
+| inset_card | ✅ Complete | [View](../components/templates/moderate/inset-card.html) | No | Low | Recessed variant, 3 styles, size variants, nested content ✨ |
 | pagination | ✅ Complete | [View](../components/templates/simple/pagination.html) | Vanilla JS | High | Page numbers, truncation, keyboard nav, compact variant ✨ |
 | tab | ✅ Complete | [View](../components/templates/simple/tab.html) | Vanilla JS | High | Arrow key nav, ARIA tablist ✨ |
 | tooltip | ✅ Complete | [View](../components/templates/simple/tooltip.html) | Vanilla JS | High | 4 positions, hover delay, keyboard ✨ |
@@ -192,12 +192,13 @@ All UI icons now available including:
 
 **Completed**: April 16, 2026 (3 weeks ahead of schedule!)
 
-### 📋 Milestone 4: Moderate Components
-- [ ] 10 moderate component templates
-- [ ] Optional JS helpers
-- [ ] Accessibility validated
+### ✅ Milestone 4: Moderate Components (COMPLETE)
+- [x] 10 moderate component templates
+- [x] Optional JS helpers
+- [x] Accessibility validated
+- [x] All variants added to demo page
 
-**Target**: May 27, 2026
+**Completed**: April 16, 2026 (6 WEEKS AHEAD OF SCHEDULE!) 🎉
 
 ### 📋 Milestone 5: Complex Components
 - [ ] JS approach decided
