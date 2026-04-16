@@ -4,60 +4,73 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BuyerCaddy × G2 Activate — Design Explorations</title>
-  <link rel="stylesheet" href="./shared/styles.css">
+  <link rel="stylesheet" href="../../shared/tokens/elevate.css">
+  <link rel="stylesheet" href="../../shared/components/elevate.css">
+  <link rel="stylesheet" href="../../shared/icons/icons.css">
   <style>
-    body {
-      background: var(--gray-50);
-      min-width: 1000px;
-    }
+    body { margin: 0; }
 
-    .hub-wrapper {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 48px 24px 64px;
-    }
-
-    .hub-header {
-      margin-bottom: 48px;
-    }
-
-    .hub-eyebrow {
+    /* Breadcrumbs */
+    .elv-breadcrumbs {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
+      gap: 2px;
+    }
+    .elv-breadcrumb-item {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+    }
+    .elv-breadcrumb-link {
+      color: #4c4b53;
+      text-decoration: none;
       font-size: 12px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--indigo);
-      background: #EEF2FF;
-      padding: 4px 12px;
-      border-radius: 999px;
-      margin-bottom: 16px;
+      line-height: 16px;
+      transition: color 150ms ease;
+    }
+    .elv-breadcrumb-link:hover {
+      color: #201f23;
+    }
+    .elv-breadcrumb-link--current {
+      color: #84838a;
+      pointer-events: none;
+    }
+    .elv-breadcrumb-separator {
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+      fill: #6f6d78;
     }
 
-    .hub-title {
-      font-size: 36px;
-      font-weight: 800;
-      color: var(--gray-900);
-      letter-spacing: -0.5px;
-      margin-bottom: 12px;
-      line-height: 1.2;
+    /* Concept card arrow animation */
+    .concept-card:hover .concept-cta {
+      text-decoration: underline;
     }
 
-    .hub-title .brand-bc {
-      color: var(--indigo);
+    /* Base card (featured) hover */
+    .base-card:hover {
+      background: #111827 !important;
+      transform: translateY(-1px);
     }
 
-    .hub-title .brand-g2 {
-      color: var(--g2-red);
+    /* Responsive grid */
+    @media (min-width: 750px) {
+      .exploration-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+      }
+    }
+    @media (min-width: 1000px) {
+      .exploration-grid {
+        grid-template-columns: repeat(3, 1fr) !important;
+      }
     }
 
-    .hub-subtitle {
-      font-size: 16px;
-      color: var(--gray-500);
-      line-height: 1.6;
-      max-width: 600px;
+    .brand-bc {
+      color: #5746b2; /* BuyerCaddy purple */
+    }
+
+    .brand-g2 {
+      color: #ff492c;
     }
 
     /* Base card — full width, special treatment */
@@ -132,64 +145,17 @@
       color: var(--gray-900);
     }
 
-    /* Concepts grid */
-    .concepts-section-label {
-      font-size: 12px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--gray-400);
-      margin-bottom: 16px;
-    }
-
+    /* Concepts grid - using responsive pattern from bulk-purchase */
     .concepts-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 16px;
     }
 
-    .concept-card {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 24px;
-      display: flex;
-      flex-direction: column;
-      gap: 0;
-      transition: box-shadow 0.15s, transform 0.15s, border-color 0.15s;
-      text-decoration: none;
-    }
-
-    .concept-card:hover {
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-      transform: translateY(-2px);
-      border-color: var(--gray-300);
-      text-decoration: none;
-    }
-
-    .concept-number {
-      font-size: 11px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--gray-400);
-      margin-bottom: 8px;
-    }
-
-    .concept-title {
-      font-size: 16px;
-      font-weight: 700;
-      color: var(--gray-900);
-      margin-bottom: 8px;
-      line-height: 1.3;
-    }
-
-    .concept-desc {
-      font-size: 13px;
-      color: var(--gray-500);
-      line-height: 1.55;
-      flex: 1;
-      margin-bottom: 16px;
+    /* Exploration card hover - matches bulk-purchase pattern */
+    .exploration-card:hover .card-arrow {
+      color: var(--text-primary);
+      transform: translateX(3px);
     }
 
     .concept-endpoint {
@@ -204,24 +170,9 @@
       font-weight: 500;
       color: #15803D;
       font-family: 'Monaco', 'Menlo', monospace;
-      margin-bottom: 16px;
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
-    }
-
-    .concept-cta {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--purple);
-      margin-top: auto;
-    }
-
-    .concept-cta:hover {
-      text-decoration: underline;
     }
 
     /* Color accents per card */
@@ -231,28 +182,47 @@
     .concept-card-4 { border-top: 3px solid #F59E0B; }
     .concept-card-5 { border-top: 3px solid #EF4444; }
 
-    .hub-divider {
-      border: none;
-      border-top: 1px solid var(--border);
-      margin: 32px 0 28px;
+    .card-arrow {
+      position: absolute;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      transition: all 150ms ease;
     }
   </style>
 </head>
 <body>
 
-<div class="hub-wrapper">
+<div elv class="elv-bg-neutral-5 elv-min-h-screen">
 
   <!-- Header -->
-  <div class="hub-header">
-    <div class="hub-eyebrow">Design Exploration · 2025</div>
-    <h1 class="hub-title">
-      <span class="brand-bc">BuyerCaddy</span> × <span class="brand-g2">G2</span> Activate
-    </h1>
-    <p class="hub-subtitle">Design explorations for integrating buyer tech stack intelligence into the G2 Activate workflow.</p>
-  </div>
+  <header class="elv-bg-neutral-0 elv-border-b elv-border-light" style="border-bottom-width: 0.5px;">
+    <div class="elv-max-w-7xl elv-w-full md:elv-w-5/6 elv-mx-auto elv-pt-12 elv-pb-8 elv-px-3">
+      <nav aria-label="Breadcrumb" class="elv-mb-3">
+        <ol class="elv-breadcrumbs" role="list">
+          <li class="elv-breadcrumb-item">
+            <a href="../../index.html" class="elv-breadcrumb-link">Chicago Labs</a>
+            <svg class="elv-breadcrumb-separator" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10.875 10L6.9375 6.0625L8 5L13 10L8 15L6.9375 13.9375L10.875 10Z"/>
+            </svg>
+          </li>
+          <li class="elv-breadcrumb-item">
+            <span class="elv-breadcrumb-link elv-breadcrumb-link--current" aria-current="page">BuyerCaddy</span>
+          </li>
+        </ol>
+      </nav>
+      <h1 class="elv-text-4xl elv-font-extrabold elv-text-default elv-mb-3 elv-leading-tight">
+        <span class="brand-bc">BuyerCaddy</span> × <span class="brand-g2">G2</span> Activate
+      </h1>
+      <p class="elv-text-base elv-text-subtle elv-max-w-xl elv-leading-relaxed">
+        Design explorations for integrating buyer tech stack intelligence into the G2 Activate workflow.
+      </p>
+    </div>
+  </header>
+
+  <div class="elv-max-w-7xl elv-w-full md:elv-w-5/6 elv-mx-auto elv-py-12 elv-px-3">
 
   <!-- Base State: Figma -->
-  <a href="./base/index.html" class="base-card">
+  <a href="./base/index.html" class="base-card" style="background: #1F2937; text-decoration: none;">
     <div>
       <div class="base-card-label">Base State · Figma</div>
       <div class="base-card-title">G2 Activate — Faithful Reproduction</div>
@@ -275,197 +245,278 @@
     </div>
   </a>
 
-  <hr class="hub-divider">
+  <!-- BuyerCaddy Integration Concepts -->
+  <div class="elv-mb-4">
+    <h2 class="elv-text-xs elv-font-bold elv-uppercase elv-tracking-wide elv-text-nonessential">
+      BuyerCaddy Integration Concepts
+    </h2>
+  </div>
 
-  <div class="concepts-section-label">BuyerCaddy Integration Concepts</div>
-
-  <div class="concepts-grid">
+  <div class="exploration-grid elv-grid elv-grid-cols-1 elv-gap-4 elv-mb-12">
 
     <!-- Concept 1 -->
-    <a href="./explorations/01-tech-stack-filter/index.html" class="concept-card concept-card-1">
-      <div class="concept-number">Concept 1 of 5</div>
-      <div class="concept-title">Tech Stack Filter</div>
-      <p class="concept-desc">Add vendor/category filters to the sidebar using BuyerCaddy's company search API. Target prospects by what software they already run.</p>
-      <div class="concept-endpoint">POST /companies/search</div>
-      <span class="concept-cta">View Exploration →</span>
+    <a href="./explorations/01-tech-stack-filter/index.html"
+       class="exploration-card concept-card-1 elv-block elv-bg-neutral-0 elv-border elv-border-light elv-rounded-md elv-p-6 elv-no-underline elv-transition-all hover:elv-shadow-2 hover:elv-border-medium hover:elv--translate-y-0-5 elv-relative"
+       style="text-decoration: none; display: flex; flex-direction: column; gap: 12px;">
+      <div class="elv-text-2xs elv-font-bold elv-uppercase elv-tracking-wide elv-text-nonessential">Concept 1 of 5</div>
+      <div class="elv-text-base elv-font-bold elv-text-default elv-leading-snug">Tech Stack Filter</div>
+      <div class="elv-text-xs elv-text-subtle elv-leading-relaxed elv-flex-1">
+        Add vendor/category filters to the sidebar using BuyerCaddy's company search API. Target prospects by what software they already run.
+      </div>
+      <div class="concept-endpoint elv-mb-3">POST /companies/search</div>
+      <span class="card-arrow elv-text-sm elv-text-neutral-30">→</span>
     </a>
 
     <!-- Concept 2 -->
-    <a href="./explorations/02-stack-preview-column/index.html" class="concept-card concept-card-2">
-      <div class="concept-number">Concept 2 of 5</div>
-      <div class="concept-title">Stack Preview Column</div>
-      <p class="concept-desc">Surface top tech categories in the prospects table before unlock. Help users prioritize which companies to spend credits on.</p>
-      <div class="concept-endpoint">POST /companies/{domain}/products/paged</div>
-      <span class="concept-cta">View Exploration →</span>
+    <a href="./explorations/02-stack-preview-column/index.html"
+       class="exploration-card concept-card-2 elv-block elv-bg-neutral-0 elv-border elv-border-light elv-rounded-md elv-p-6 elv-no-underline elv-transition-all hover:elv-shadow-2 hover:elv-border-medium hover:elv--translate-y-0-5 elv-relative"
+       style="text-decoration: none; display: flex; flex-direction: column; gap: 12px;">
+      <div class="elv-text-2xs elv-font-bold elv-uppercase elv-tracking-wide elv-text-nonessential">Concept 2 of 5</div>
+      <div class="elv-text-base elv-font-bold elv-text-default elv-leading-snug">Stack Preview Column</div>
+      <div class="elv-text-xs elv-text-subtle elv-leading-relaxed elv-flex-1">
+        Surface top tech categories in the prospects table before unlock. Help users prioritize which companies to spend credits on.
+      </div>
+      <div class="concept-endpoint elv-mb-3">POST /companies/{domain}/products/paged</div>
+      <span class="card-arrow elv-text-sm elv-text-neutral-30">→</span>
     </a>
 
     <!-- Concept 3 -->
-    <a href="./explorations/03-unlock-enrichment/index.html" class="concept-card concept-card-3">
-      <div class="concept-number">Concept 3 of 5</div>
-      <div class="concept-title">Unlock Enrichment</div>
-      <p class="concept-desc">Enrich the Prospect Details page with the full software stack and recent trigger events on unlock.</p>
-      <div class="concept-endpoint">products/paged + /feed</div>
-      <span class="concept-cta">View Exploration →</span>
+    <a href="./explorations/03-unlock-enrichment/index.html"
+       class="exploration-card concept-card-3 elv-block elv-bg-neutral-0 elv-border elv-border-light elv-rounded-md elv-p-6 elv-no-underline elv-transition-all hover:elv-shadow-2 hover:elv-border-medium hover:elv--translate-y-0-5 elv-relative"
+       style="text-decoration: none; display: flex; flex-direction: column; gap: 12px;">
+      <div class="elv-text-2xs elv-font-bold elv-uppercase elv-tracking-wide elv-text-nonessential">Concept 3 of 5</div>
+      <div class="elv-text-base elv-font-bold elv-text-default elv-leading-snug">Unlock Enrichment</div>
+      <div class="elv-text-xs elv-text-subtle elv-leading-relaxed elv-flex-1">
+        Enrich the Prospect Details page with the full software stack and recent trigger events on unlock.
+      </div>
+      <div class="concept-endpoint elv-mb-3">products/paged + /feed</div>
+      <span class="card-arrow elv-text-sm elv-text-neutral-30">→</span>
     </a>
 
     <!-- Concept 4 -->
-    <a href="./explorations/04-stack-aware-email/index.html" class="concept-card concept-card-4">
-      <div class="concept-number">Concept 4 of 5</div>
-      <div class="concept-title">Stack-Aware Email</div>
-      <p class="concept-desc">Feed real stack data into the email generator so the email body references actual tools by name.</p>
-      <div class="concept-endpoint">Stack data + email generation</div>
-      <span class="concept-cta">View Exploration →</span>
+    <a href="./explorations/04-stack-aware-email/index.html"
+       class="exploration-card concept-card-4 elv-block elv-bg-neutral-0 elv-border elv-border-light elv-rounded-md elv-p-6 elv-no-underline elv-transition-all hover:elv-shadow-2 hover:elv-border-medium hover:elv--translate-y-0-5 elv-relative"
+       style="text-decoration: none; display: flex; flex-direction: column; gap: 12px;">
+      <div class="elv-text-2xs elv-font-bold elv-uppercase elv-tracking-wide elv-text-nonessential">Concept 4 of 5</div>
+      <div class="elv-text-base elv-font-bold elv-text-default elv-leading-snug">Stack-Aware Email</div>
+      <div class="elv-text-xs elv-text-subtle elv-leading-relaxed elv-flex-1">
+        Feed real stack data into the email generator so the email body references actual tools by name.
+      </div>
+      <div class="concept-endpoint elv-mb-3">Stack data + email generation</div>
+      <span class="card-arrow elv-text-sm elv-text-neutral-30">→</span>
     </a>
 
     <!-- Concept 5 -->
-    <a href="./explorations/05-intent-trigger-events/index.html" class="concept-card concept-card-5">
-      <div class="concept-number">Concept 5 of 5</div>
-      <div class="concept-title">Intent + Trigger Events</div>
-      <p class="concept-desc">Supplement G2 intent signals with BuyerCaddy news feed events (funding, hiring, acquisitions) to explain WHY a company is in-market.</p>
-      <div class="concept-endpoint">GET /companies/{domain}/feed</div>
-      <span class="concept-cta">View Exploration →</span>
+    <a href="./explorations/05-intent-trigger-events/index.html"
+       class="exploration-card concept-card-5 elv-block elv-bg-neutral-0 elv-border elv-border-light elv-rounded-md elv-p-6 elv-no-underline elv-transition-all hover:elv-shadow-2 hover:elv-border-medium hover:elv--translate-y-0-5 elv-relative"
+       style="text-decoration: none; display: flex; flex-direction: column; gap: 12px;">
+      <div class="elv-text-2xs elv-font-bold elv-uppercase elv-tracking-wide elv-text-nonessential">Concept 5 of 5</div>
+      <div class="elv-text-base elv-font-bold elv-text-default elv-leading-snug">Intent + Trigger Events</div>
+      <div class="elv-text-xs elv-text-subtle elv-leading-relaxed elv-flex-1">
+        Supplement G2 intent signals with BuyerCaddy news feed events (funding, hiring, acquisitions) to explain WHY a company is in-market.
+      </div>
+      <div class="concept-endpoint elv-mb-3">GET /companies/{domain}/feed</div>
+      <span class="card-arrow elv-text-sm elv-text-neutral-30">→</span>
     </a>
 
   </div>
 
-  <hr class="hub-divider">
-
-  <div class="concepts-section-label" style="display: flex; align-items: center; gap: 10px;">
-    Credit-Unlocked Concepts
-    <span style="font-size: 11px; font-weight: 500; text-transform: none; letter-spacing: 0; color: #9b99a3; background: #f2f2f3; border-radius: 999px; padding: 2px 10px;">Per-company · Gated by credit spend · Modeled on live code</span>
+  <!-- Credit-Unlocked Concepts -->
+  <div class="elv-mb-4 elv-mt-12">
+    <h2 class="elv-text-xs elv-font-bold elv-uppercase elv-tracking-wide elv-text-nonessential" style="display: flex; align-items: center; gap: 10px;">
+      Credit-Unlocked Concepts
+      <span style="font-size: 11px; font-weight: 500; text-transform: none; letter-spacing: 0; color: #9b99a3; background: #f2f2f3; border-radius: 999px; padding: 2px 10px;">Per-company · Gated by credit spend · Modeled on live code</span>
+    </h2>
   </div>
 
-  <div class="concepts-grid">
+  <div class="exploration-grid elv-grid elv-grid-cols-1 elv-gap-4 elv-mb-12">
 
     <!-- Unlock 1 -->
-    <a href="./explorations/unlock-01-stack-enrichment/index.html" class="concept-card" style="border-top: 3px solid #5746b2;">
-      <div class="concept-number" style="color: #5746b2;">Credit-Unlock 1 of 3</div>
-      <div class="concept-title">Stack Enrichment on Unlock</div>
-      <p class="concept-desc">The full software stack is fetched and revealed on the Prospect Details page at the moment credits are spent — no pre-unlock visibility, no additional cost.</p>
-      <div class="concept-endpoint">POST /companies/{domain}/products/paged</div>
-      <span class="concept-cta" style="color: #5746b2;">View Exploration →</span>
+    <a href="./explorations/unlock-01-stack-enrichment/index.html"
+       class="exploration-card elv-block elv-bg-neutral-0 elv-border elv-border-light elv-rounded-md elv-p-6 elv-no-underline elv-transition-all hover:elv-shadow-2 hover:elv-border-medium hover:elv--translate-y-0-5 elv-relative"
+       style="text-decoration: none; display: flex; flex-direction: column; gap: 12px; border-top: 3px solid #5746b2;">
+      <div class="elv-text-2xs elv-font-bold elv-uppercase elv-tracking-wide" style="color: #5746b2;">Credit-Unlock 1 of 3</div>
+      <div class="elv-text-base elv-font-bold elv-text-default elv-leading-snug">Stack Enrichment on Unlock</div>
+      <div class="elv-text-xs elv-text-subtle elv-leading-relaxed elv-flex-1">
+        The full software stack is fetched and revealed on the Prospect Details page at the moment credits are spent — no pre-unlock visibility, no additional cost.
+      </div>
+      <div class="concept-endpoint elv-mb-3">POST /companies/{domain}/products/paged</div>
+      <span class="card-arrow elv-text-sm" style="color: #5746b2;">→</span>
     </a>
 
     <!-- Unlock 2 -->
-    <a href="./explorations/unlock-02-email-personalization/index.html" class="concept-card" style="border-top: 3px solid #5746b2;">
-      <div class="concept-number" style="color: #5746b2;">Credit-Unlock 2 of 3</div>
-      <div class="concept-title">Email Personalization from Stack</div>
-      <p class="concept-desc">Stack data fetched at unlock is passed as LLM context. The generated email references the prospect's actual tools by name — no extra API call required.</p>
-      <div class="concept-endpoint">Stack data from unlock</div>
-      <span class="concept-cta" style="color: #5746b2;">View Exploration →</span>
+    <a href="./explorations/unlock-02-email-personalization/index.html"
+       class="exploration-card elv-block elv-bg-neutral-0 elv-border elv-border-light elv-rounded-md elv-p-6 elv-no-underline elv-transition-all hover:elv-shadow-2 hover:elv-border-medium hover:elv--translate-y-0-5 elv-relative"
+       style="text-decoration: none; display: flex; flex-direction: column; gap: 12px; border-top: 3px solid #5746b2;">
+      <div class="elv-text-2xs elv-font-bold elv-uppercase elv-tracking-wide" style="color: #5746b2;">Credit-Unlock 2 of 3</div>
+      <div class="elv-text-base elv-font-bold elv-text-default elv-leading-snug">Email Personalization from Stack</div>
+      <div class="elv-text-xs elv-text-subtle elv-leading-relaxed elv-flex-1">
+        Stack data fetched at unlock is passed as LLM context. The generated email references the prospect's actual tools by name — no extra API call required.
+      </div>
+      <div class="concept-endpoint elv-mb-3">Stack data from unlock</div>
+      <span class="card-arrow elv-text-sm" style="color: #5746b2;">→</span>
     </a>
 
     <!-- Unlock 3 -->
-    <a href="./explorations/unlock-03-trigger-events/index.html" class="concept-card" style="border-top: 3px solid #5746b2;">
-      <div class="concept-number" style="color: #5746b2;">Credit-Unlock 3 of 3</div>
-      <div class="concept-title">Trigger Events in Unlocked Table</div>
-      <p class="concept-desc">On unlock, BuyerCaddy's feed endpoint surfaces recent FUNDING, PEOPLE, and ACQUISITION events alongside G2 intent — explaining why a company is in-market.</p>
-      <div class="concept-endpoint">GET /companies/{domain}/feed</div>
-      <span class="concept-cta" style="color: #5746b2;">View Exploration →</span>
+    <a href="./explorations/unlock-03-trigger-events/index.html"
+       class="exploration-card elv-block elv-bg-neutral-0 elv-border elv-border-light elv-rounded-md elv-p-6 elv-no-underline elv-transition-all hover:elv-shadow-2 hover:elv-border-medium hover:elv--translate-y-0-5 elv-relative"
+       style="text-decoration: none; display: flex; flex-direction: column; gap: 12px; border-top: 3px solid #5746b2;">
+      <div class="elv-text-2xs elv-font-bold elv-uppercase elv-tracking-wide" style="color: #5746b2;">Credit-Unlock 3 of 3</div>
+      <div class="elv-text-base elv-font-bold elv-text-default elv-leading-snug">Trigger Events in Unlocked Table</div>
+      <div class="elv-text-xs elv-text-subtle elv-leading-relaxed elv-flex-1">
+        On unlock, BuyerCaddy's feed endpoint surfaces recent FUNDING, PEOPLE, and ACQUISITION events alongside G2 intent — explaining why a company is in-market.
+      </div>
+      <div class="concept-endpoint elv-mb-3">GET /companies/{domain}/feed</div>
+      <span class="card-arrow elv-text-sm" style="color: #5746b2;">→</span>
     </a>
 
   </div>
 
-  <hr class="hub-divider">
-
-  <div class="concepts-section-label" style="display: flex; align-items: center; gap: 10px;">
-    Stack Section Layout Variants
-    <span style="font-size: 11px; font-weight: 500; text-transform: none; letter-spacing: 0; color: #9b99a3; background: #f2f2f3; border-radius: 999px; padding: 2px 10px;">3 layout approaches for the tech stack enrichment component · Concept 1 deep-dive</span>
+  <!-- Stack Section Layout Variants -->
+  <div class="elv-mb-4 elv-mt-12">
+    <h2 class="elv-text-xs elv-font-bold elv-uppercase elv-tracking-wide elv-text-nonessential" style="display: flex; align-items: center; gap: 10px;">
+      Stack Section Layout Variants
+      <span style="font-size: 11px; font-weight: 500; text-transform: none; letter-spacing: 0; color: #9b99a3; background: #f2f2f3; border-radius: 999px; padding: 2px 10px;">3 layout approaches for the tech stack enrichment component · Concept 1 deep-dive</span>
+    </h2>
   </div>
 
-  <div class="concepts-grid">
+  <div class="exploration-grid elv-grid elv-grid-cols-1 elv-gap-4 elv-mb-12">
 
     <!-- Layout A -->
-    <a href="./explorations/stack-layout-01-pill-cloud/index.html" class="concept-card" style="border-top: 3px solid #1fa896;">
-      <div class="concept-number" style="color: #1fa896;">Layout A · Compact</div>
-      <div class="concept-title">Pill Cloud</div>
-      <p class="concept-desc">All products as flowing chips in category rows. Minimal vertical footprint. Signal strength from hitCount encoded as a dot color on each chip.</p>
-      <div class="concept-endpoint" style="background: #d0f6f1; border-color: #a9efe5; color: #0f5249;">hitCount → signal dot</div>
-      <span class="concept-cta" style="color: #1fa896;">View Layout →</span>
+    <a href="./explorations/stack-layout-01-pill-cloud/index.html"
+       class="exploration-card elv-block elv-bg-neutral-0 elv-border elv-border-light elv-rounded-md elv-p-6 elv-no-underline elv-transition-all hover:elv-shadow-2 hover:elv-border-medium hover:elv--translate-y-0-5 elv-relative"
+       style="text-decoration: none; display: flex; flex-direction: column; gap: 12px; border-top: 3px solid #1fa896;">
+      <div class="elv-text-2xs elv-font-bold elv-uppercase elv-tracking-wide" style="color: #1fa896;">Layout A · Compact</div>
+      <div class="elv-text-base elv-font-bold elv-text-default elv-leading-snug">Pill Cloud</div>
+      <div class="elv-text-xs elv-text-subtle elv-leading-relaxed elv-flex-1">
+        All products as flowing chips in category rows. Minimal vertical footprint. Signal strength from hitCount encoded as a dot color on each chip.
+      </div>
+      <div class="concept-endpoint elv-mb-3" style="background: #d0f6f1; border-color: #a9efe5; color: #0f5249;">hitCount → signal dot</div>
+      <span class="card-arrow elv-text-sm" style="color: #1fa896;">→</span>
     </a>
 
     <!-- Layout B -->
-    <a href="./explorations/stack-layout-02-flat-table/index.html" class="concept-card" style="border-top: 3px solid #1fa896;">
-      <div class="concept-number" style="color: #1fa896;">Layout B · Data-Dense</div>
-      <div class="concept-title">Flat Table</div>
-      <p class="concept-desc">Full-width table sorted by signal strength. Surfaces G2 rating, cohort adoption %, tenure from first detection, and last verified — one row per product.</p>
-      <div class="concept-endpoint" style="background: #d0f6f1; border-color: #a9efe5; color: #0f5249;">+ rating · cohort % · tenure</div>
-      <span class="concept-cta" style="color: #1fa896;">View Layout →</span>
+    <a href="./explorations/stack-layout-02-flat-table/index.html"
+       class="exploration-card elv-block elv-bg-neutral-0 elv-border elv-border-light elv-rounded-md elv-p-6 elv-no-underline elv-transition-all hover:elv-shadow-2 hover:elv-border-medium hover:elv--translate-y-0-5 elv-relative"
+       style="text-decoration: none; display: flex; flex-direction: column; gap: 12px; border-top: 3px solid #1fa896;">
+      <div class="elv-text-2xs elv-font-bold elv-uppercase elv-tracking-wide" style="color: #1fa896;">Layout B · Data-Dense</div>
+      <div class="elv-text-base elv-font-bold elv-text-default elv-leading-snug">Flat Table</div>
+      <div class="elv-text-xs elv-text-subtle elv-leading-relaxed elv-flex-1">
+        Full-width table sorted by signal strength. Surfaces G2 rating, cohort adoption %, tenure from first detection, and last verified — one row per product.
+      </div>
+      <div class="concept-endpoint elv-mb-3" style="background: #d0f6f1; border-color: #a9efe5; color: #0f5249;">+ rating · cohort % · tenure</div>
+      <span class="card-arrow elv-text-sm" style="color: #1fa896;">→</span>
     </a>
 
     <!-- Layout C -->
-    <a href="./explorations/stack-layout-03-category-cards/index.html" class="concept-card" style="border-top: 3px solid #1fa896;">
-      <div class="concept-number" style="color: #1fa896;">Layout C · Strategic</div>
-      <div class="concept-title">Category Cards</div>
-      <p class="concept-desc">Each category gets its own card with signal bars per product, cohort adoption context, and category-level insights — redundancy warnings, peer benchmarks, stack pairing notes.</p>
-      <div class="concept-endpoint" style="background: #d0f6f1; border-color: #a9efe5; color: #0f5249;">+ cohort % · overlap signals</div>
-      <span class="concept-cta" style="color: #1fa896;">View Layout →</span>
+    <a href="./explorations/stack-layout-03-category-cards/index.html"
+       class="exploration-card elv-block elv-bg-neutral-0 elv-border elv-border-light elv-rounded-md elv-p-6 elv-no-underline elv-transition-all hover:elv-shadow-2 hover:elv-border-medium hover:elv--translate-y-0-5 elv-relative"
+       style="text-decoration: none; display: flex; flex-direction: column; gap: 12px; border-top: 3px solid #1fa896;">
+      <div class="elv-text-2xs elv-font-bold elv-uppercase elv-tracking-wide" style="color: #1fa896;">Layout C · Strategic</div>
+      <div class="elv-text-base elv-font-bold elv-text-default elv-leading-snug">Category Cards</div>
+      <div class="elv-text-xs elv-text-subtle elv-leading-relaxed elv-flex-1">
+        Each category gets its own card with signal bars per product, cohort adoption context, and category-level insights — redundancy warnings, peer benchmarks, stack pairing notes.
+      </div>
+      <div class="concept-endpoint elv-mb-3" style="background: #d0f6f1; border-color: #a9efe5; color: #0f5249;">+ cohort % · overlap signals</div>
+      <span class="card-arrow elv-text-sm" style="color: #1fa896;">→</span>
     </a>
 
   </div>
 
-  <hr class="hub-divider">
-
-  <div class="concepts-section-label" style="display: flex; align-items: center; gap: 10px;">
-    Tech Stack Table — States &amp; Edge Cases
-    <span style="font-size: 11px; font-weight: 500; text-transform: none; letter-spacing: 0; color: #9b99a3; background: #f2f2f3; border-radius: 999px; padding: 2px 10px;">6 states · Based on Layout B Flat Table · Informed by Figma explorations</span>
+  <!-- Tech Stack Table — States & Edge Cases -->
+  <div class="elv-mb-4 elv-mt-12">
+    <h2 class="elv-text-xs elv-font-bold elv-uppercase elv-tracking-wide elv-text-nonessential" style="display: flex; align-items: center; gap: 10px;">
+      Tech Stack Table — States &amp; Edge Cases
+      <span style="font-size: 11px; font-weight: 500; text-transform: none; letter-spacing: 0; color: #9b99a3; background: #f2f2f3; border-radius: 999px; padding: 2px 10px;">6 states · Based on Layout B Flat Table · Informed by Figma explorations</span>
+    </h2>
   </div>
 
-  <div class="concepts-grid">
+  <div class="exploration-grid elv-grid elv-grid-cols-1 elv-gap-4 elv-mb-12">
 
     <!-- Null -->
-    <a href="./explorations/stack-state-null/index.html" class="concept-card" style="border-top: 3px solid #6f6d78;">
-      <div class="concept-number" style="color: #6f6d78;">State 1 · Pre-unlock</div>
-      <div class="concept-title">Null — No Data</div>
-      <p class="concept-desc">BuyerCaddy returned no tech stack results for this company. No unlock button — there is nothing to unlock. Empty state with explanation.</p>
-      <div class="concept-endpoint" style="background: #f2f2f3; border-color: #dfdfe2; color: #4c4b53;">No products detected · No CTA</div>
-      <span class="concept-cta" style="color: #6f6d78;">View State →</span>
+    <a href="./explorations/stack-state-null/index.html"
+       class="exploration-card elv-block elv-bg-neutral-0 elv-border elv-border-light elv-rounded-md elv-p-6 elv-no-underline elv-transition-all hover:elv-shadow-2 hover:elv-border-medium hover:elv--translate-y-0-5 elv-relative"
+       style="text-decoration: none; display: flex; flex-direction: column; gap: 12px; border-top: 3px solid #6f6d78;">
+      <div class="elv-text-2xs elv-font-bold elv-uppercase elv-tracking-wide" style="color: #6f6d78;">State 1 · Pre-unlock</div>
+      <div class="elv-text-base elv-font-bold elv-text-default elv-leading-snug">Null — No Data</div>
+      <div class="elv-text-xs elv-text-subtle elv-leading-relaxed elv-flex-1">
+        BuyerCaddy returned no tech stack results for this company. No unlock button — there is nothing to unlock. Empty state with explanation.
+      </div>
+      <div class="concept-endpoint elv-mb-3" style="background: #f2f2f3; border-color: #dfdfe2; color: #4c4b53;">No products detected · No CTA</div>
+      <span class="card-arrow elv-text-sm" style="color: #6f6d78;">→</span>
     </a>
 
     <!-- Loading -->
-    <a href="./explorations/stack-state-loading/index.html" class="concept-card" style="border-top: 3px solid #5746b2;">
-      <div class="concept-number" style="color: #5746b2;">State 2 · Transitional</div>
-      <div class="concept-title">Loading — Unlock in Progress</div>
-      <p class="concept-desc">User clicked Unlock. Credits deducted. API call in flight. Skeleton table rows + spinner convey that data is on the way without blocking the rest of the page.</p>
-      <div class="concept-endpoint" style="background: #ebe9f6; border-color: #c3bde5; color: #45388f;">Skeleton rows · Spinner · Disabled CTA</div>
-      <span class="concept-cta" style="color: #5746b2;">View State →</span>
+    <a href="./explorations/stack-state-loading/index.html"
+       class="exploration-card elv-block elv-bg-neutral-0 elv-border elv-border-light elv-rounded-md elv-p-6 elv-no-underline elv-transition-all hover:elv-shadow-2 hover:elv-border-medium hover:elv--translate-y-0-5 elv-relative"
+       style="text-decoration: none; display: flex; flex-direction: column; gap: 12px; border-top: 3px solid #5746b2;">
+      <div class="elv-text-2xs elv-font-bold elv-uppercase elv-tracking-wide" style="color: #5746b2;">State 2 · Transitional</div>
+      <div class="elv-text-base elv-font-bold elv-text-default elv-leading-snug">Loading — Unlock in Progress</div>
+      <div class="elv-text-xs elv-text-subtle elv-leading-relaxed elv-flex-1">
+        User clicked Unlock. Credits deducted. API call in flight. Skeleton table rows + spinner convey that data is on the way without blocking the rest of the page.
+      </div>
+      <div class="concept-endpoint elv-mb-3" style="background: #ebe9f6; border-color: #c3bde5; color: #45388f;">Skeleton rows · Spinner · Disabled CTA</div>
+      <span class="card-arrow elv-text-sm" style="color: #5746b2;">→</span>
     </a>
 
     <!-- Refreshing -->
-    <a href="./explorations/stack-state-refreshing/index.html" class="concept-card" style="border-top: 3px solid #5746b2;">
-      <div class="concept-number" style="color: #5746b2;">State 3 · Transitional</div>
-      <div class="concept-title">Refreshing — Re-fetch in Progress</div>
-      <p class="concept-desc">Previously unlocked. User clicked Refresh Stack. Existing data stays visible but dimmed — a floating pill overlay signals the update without fully blocking content.</p>
-      <div class="concept-endpoint" style="background: #ebe9f6; border-color: #c3bde5; color: #45388f;">Existing data visible · Non-blocking overlay</div>
-      <span class="concept-cta" style="color: #5746b2;">View State →</span>
+    <a href="./explorations/stack-state-refreshing/index.html"
+       class="exploration-card elv-block elv-bg-neutral-0 elv-border elv-border-light elv-rounded-md elv-p-6 elv-no-underline elv-transition-all hover:elv-shadow-2 hover:elv-border-medium hover:elv--translate-y-0-5 elv-relative"
+       style="text-decoration: none; display: flex; flex-direction: column; gap: 12px; border-top: 3px solid #5746b2;">
+      <div class="elv-text-2xs elv-font-bold elv-uppercase elv-tracking-wide" style="color: #5746b2;">State 3 · Transitional</div>
+      <div class="elv-text-base elv-font-bold elv-text-default elv-leading-snug">Refreshing — Re-fetch in Progress</div>
+      <div class="elv-text-xs elv-text-subtle elv-leading-relaxed elv-flex-1">
+        Previously unlocked. User clicked Refresh Stack. Existing data stays visible but dimmed — a floating pill overlay signals the update without fully blocking content.
+      </div>
+      <div class="concept-endpoint elv-mb-3" style="background: #ebe9f6; border-color: #c3bde5; color: #45388f;">Existing data visible · Non-blocking overlay</div>
+      <span class="card-arrow elv-text-sm" style="color: #5746b2;">→</span>
     </a>
 
     <!-- Stale -->
-    <a href="./explorations/stack-state-stale/index.html" class="concept-card" style="border-top: 3px solid #a07900;">
-      <div class="concept-number" style="color: #a07900;">State 4 · Post-unlock</div>
-      <div class="concept-title">Stale — Data Older than 6 Months</div>
-      <p class="concept-desc">Stack was unlocked and data is still showing, but last verified dates are aging past reliability threshold. Amber warning banner nudges user to refresh before generating emails.</p>
-      <div class="concept-endpoint" style="background: #fff9e5; border-color: #ffe999; color: #a07900;">Amber banner · Stale date highlight · Refresh CTA</div>
-      <span class="concept-cta" style="color: #a07900;">View State →</span>
+    <a href="./explorations/stack-state-stale/index.html"
+       class="exploration-card elv-block elv-bg-neutral-0 elv-border elv-border-light elv-rounded-md elv-p-6 elv-no-underline elv-transition-all hover:elv-shadow-2 hover:elv-border-medium hover:elv--translate-y-0-5 elv-relative"
+       style="text-decoration: none; display: flex; flex-direction: column; gap: 12px; border-top: 3px solid #a07900;">
+      <div class="elv-text-2xs elv-font-bold elv-uppercase elv-tracking-wide" style="color: #a07900;">State 4 · Post-unlock</div>
+      <div class="elv-text-base elv-font-bold elv-text-default elv-leading-snug">Stale — Data Older than 6 Months</div>
+      <div class="elv-text-xs elv-text-subtle elv-leading-relaxed elv-flex-1">
+        Stack was unlocked and data is still showing, but last verified dates are aging past reliability threshold. Amber warning banner nudges user to refresh before generating emails.
+      </div>
+      <div class="concept-endpoint elv-mb-3" style="background: #fff9e5; border-color: #ffe999; color: #a07900;">Amber banner · Stale date highlight · Refresh CTA</div>
+      <span class="card-arrow elv-text-sm" style="color: #a07900;">→</span>
     </a>
 
     <!-- Error -->
-    <a href="./explorations/stack-state-error/index.html" class="concept-card" style="border-top: 3px solid #eb2000;">
-      <div class="concept-number" style="color: #eb2000;">State 5 · Failure</div>
-      <div class="concept-title">Error — Fetch Failed</div>
-      <p class="concept-desc">API call failed mid-unlock or mid-refresh. Credits were not charged. Error state with retry CTA and explicit note that no credits were deducted.</p>
-      <div class="concept-endpoint" style="background: #fff6f5; border-color: #FFD7D1; color: #eb2000;">Error UI · No credits deducted · Retry CTA</div>
-      <span class="concept-cta" style="color: #eb2000;">View State →</span>
+    <a href="./explorations/stack-state-error/index.html"
+       class="exploration-card elv-block elv-bg-neutral-0 elv-border elv-border-light elv-rounded-md elv-p-6 elv-no-underline elv-transition-all hover:elv-shadow-2 hover:elv-border-medium hover:elv--translate-y-0-5 elv-relative"
+       style="text-decoration: none; display: flex; flex-direction: column; gap: 12px; border-top: 3px solid #eb2000;">
+      <div class="elv-text-2xs elv-font-bold elv-uppercase elv-tracking-wide" style="color: #eb2000;">State 5 · Failure</div>
+      <div class="elv-text-base elv-font-bold elv-text-default elv-leading-snug">Error — Fetch Failed</div>
+      <div class="elv-text-xs elv-text-subtle elv-leading-relaxed elv-flex-1">
+        API call failed mid-unlock or mid-refresh. Credits were not charged. Error state with retry CTA and explicit note that no credits were deducted.
+      </div>
+      <div class="concept-endpoint elv-mb-3" style="background: #fff6f5; border-color: #FFD7D1; color: #eb2000;">Error UI · No credits deducted · Retry CTA</div>
+      <span class="card-arrow elv-text-sm" style="color: #eb2000;">→</span>
     </a>
 
     <!-- No credits -->
-    <a href="./explorations/stack-state-no-credits/index.html" class="concept-card" style="border-top: 3px solid #4c4b53;">
-      <div class="concept-number" style="color: #4c4b53;">State 6 · Pre-unlock</div>
-      <div class="concept-title">Insufficient Credits</div>
-      <p class="concept-desc">Locked state variant where the user's credit balance is below the cost to unlock. Button is disabled. Overlay callout surfaces balance vs. cost with a credit progress bar and upgrade path.</p>
-      <div class="concept-endpoint" style="background: #f2f2f3; border-color: #dfdfe2; color: #4c4b53;">Disabled unlock · Credit balance · Upgrade CTA</div>
-      <span class="concept-cta" style="color: #4c4b53;">View State →</span>
+    <a href="./explorations/stack-state-no-credits/index.html"
+       class="exploration-card elv-block elv-bg-neutral-0 elv-border elv-border-light elv-rounded-md elv-p-6 elv-no-underline elv-transition-all hover:elv-shadow-2 hover:elv-border-medium hover:elv--translate-y-0-5 elv-relative"
+       style="text-decoration: none; display: flex; flex-direction: column; gap: 12px; border-top: 3px solid #4c4b53;">
+      <div class="elv-text-2xs elv-font-bold elv-uppercase elv-tracking-wide" style="color: #4c4b53;">State 6 · Pre-unlock</div>
+      <div class="elv-text-base elv-font-bold elv-text-default elv-leading-snug">Insufficient Credits</div>
+      <div class="elv-text-xs elv-text-subtle elv-leading-relaxed elv-flex-1">
+        Locked state variant where the user's credit balance is below the cost to unlock. Button is disabled. Overlay callout surfaces balance vs. cost with a credit progress bar and upgrade path.
+      </div>
+      <div class="concept-endpoint elv-mb-3" style="background: #f2f2f3; border-color: #dfdfe2; color: #4c4b53;">Disabled unlock · Credit balance · Upgrade CTA</div>
+      <span class="card-arrow elv-text-sm" style="color: #4c4b53;">→</span>
     </a>
+
+  </div>
+
+  <!-- Footer -->
+  <footer class="elv-mt-16 elv-pt-6 elv-text-xs elv-text-nonessential">
+    <a href="../../index.html" class="elv-text-nonessential hover:elv-text-primary">← Back to Chicago Labs</a>
+  </footer>
 
   </div>
 

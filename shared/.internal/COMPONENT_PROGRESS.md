@@ -14,18 +14,20 @@ Track the porting status of all Elevate components from UE to Chicago Labs HTML 
 | **Form Inputs** ⚡️ | 8 | 3 | 0 | 5 |
 | **Simple Components** | 12 | 12 | 0 | 0 |
 | **Moderate Components** | 10 | 10 | 0 | 0 |
-| **Complex Components** | 12 | 0 | 0 | 12 |
-| **TOTAL** | 42 | 25 | 0 | 17 |
+| **Complex Components** | 12 | 2 | 0 | 10 |
+| **TOTAL** | 42 | 27 | 0 | 15 |
 
-**Overall Completion**: ~85% (152/169 total items)
+**Overall Completion**: ~87% (154/169 total items)
 
 **COMPLETED APRIL 16**: 
 - Icons: **127/127 (100%) COMPLETE!** 🎉🎉🎉 All pictogram icons ported including base icons, color variants, circle variants, style variants, and special naming variants
 - Simple Components: progress_bar ✅ breadcrumbs ✅ star_rating ✅ product_chip ✅ notification_badge ✅ product_avatar ✅ rating_distribution_bar ✅
 - Moderate Components: accordion ✅ tab ✅ tooltip ✅ pagination ✅ icon_button ✅ control_button ✅ button_group ✅ content_card ✅ index_nav ✅ inset_card ✅
+- Complex Components: table (basic) ✅ table (sortable) ✅
 **ICONS: 100% COMPLETE!** 🎉
 **SIMPLE COMPONENTS: 100% COMPLETE!** 🎉
 **MODERATE COMPONENTS: 10/10 (100%) COMPLETE!** 🎉🎉🎉
+**COMPLEX COMPONENTS: 2/12 (17%) STARTED!** 🚀
 (+ anonymous profile avatars added to avatar component)
 **COMPLETED APRIL 15**: search_input ✅ text_input ✅ textarea ✅ status_badge ✅ avatar ✅ spin_loader ✅ link ✅
 
@@ -145,8 +147,8 @@ Track the porting status of all Elevate components from UE to Chicago Labs HTML 
 | notification/toast | ⬜ Not Started | — | TBD | Medium | Alert system |
 | popover | ⬜ Not Started | — | TBD | Medium | Contextual content |
 | slide_out_panel | ⬜ Not Started | — | TBD | High | Detail views in buyer-caddy |
-| table (basic) | ⬜ Not Started | — | TBD | High | Data display |
-| table (sortable) | ⬜ Not Started | — | TBD | High | agent-performance needs |
+| table (basic) | ✅ Complete | [View](../components/templates/complex/table.html) | Vanilla JS | High | Alternating rows, hover states, proper DESIGN.md styling ✨ |
+| table (sortable) | ✅ Complete | [View](../components/templates/complex/table.html) | Vanilla JS | High | Click headers to sort, supports text/number data types ✨ |
 | table (filterable) | ⬜ Not Started | — | TBD | Medium | Advanced tables |
 
 **Next 4 to Build**: modal, form, table, slide_out_panel

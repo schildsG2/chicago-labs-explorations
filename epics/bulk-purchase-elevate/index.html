@@ -6,207 +6,286 @@
   <title>Bulk Purchase × G2 Activate — Design Explorations (Elevate)</title>
   <link rel="stylesheet" href="../../shared/tokens/elevate.css">
   <link rel="stylesheet" href="../../shared/components/elevate.css">
+  <link rel="stylesheet" href="../../shared/icons/icons.css">
   <style>
-    body { margin: 0; min-width: 1000px; }
+    body { margin: 0; }
+
+    /* Breadcrumbs */
+    .elv-breadcrumbs {
+      display: inline-flex;
+      align-items: center;
+      gap: 2px;
+    }
+    .elv-breadcrumb-item {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+    }
+    .elv-breadcrumb-link {
+      color: #4c4b53;
+      text-decoration: none;
+      font-size: 12px;
+      line-height: 16px;
+      transition: color 150ms ease;
+    }
+    .elv-breadcrumb-link:hover {
+      color: #201f23;
+    }
+    .elv-breadcrumb-link--current {
+      color: #84838a;
+      pointer-events: none;
+    }
+    .elv-breadcrumb-separator {
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+      fill: #6f6d78;
+    }
+
+    /* Exploration card hover */
+    .exploration-card:hover .card-arrow {
+      color: var(--text-primary);
+      transform: translateX(3px);
+    }
+
+    /* Base card (featured) hover */
+    .base-card:hover {
+      background: #111827 !important;
+      transform: translateY(-1px);
+    }
+
+    /* Responsive grid */
+    @media (min-width: 750px) {
+      .exploration-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+      }
+    }
+    @media (min-width: 1000px) {
+      .exploration-grid {
+        grid-template-columns: repeat(3, 1fr) !important;
+      }
+    }
   </style>
 </head>
 <body>
 
 <div elv class="elv-bg-neutral-5 elv-min-h-screen">
 
-  <div class="elv-max-w-screen-lg elv-mx-auto elv-px-6 elv-py-12">
-
-    <!-- Header -->
-    <div class="elv-mb-12">
-      <div class="elv-inline-flex elv-items-center elv-gap-2 elv-px-3 elv-py-1 elv-rounded-full elv-mb-4" style="background: #EEF2FF;">
-        <span class="elv-text-xs elv-font-bold elv-uppercase elv-tracking-wide" style="color: #4F46E5;">
-          Design Explorations × Elevate
-        </span>
-      </div>
+  <!-- Header -->
+  <header class="elv-bg-neutral-0 elv-border-b elv-border-light" style="border-bottom-width: 0.5px;">
+    <div class="elv-max-w-7xl elv-w-full md:elv-w-5/6 elv-mx-auto elv-pt-12 elv-pb-8 elv-px-3">
+      <nav aria-label="Breadcrumb" class="elv-mb-3">
+        <ol class="elv-breadcrumbs" role="list">
+          <li class="elv-breadcrumb-item">
+            <a href="../../index.html" class="elv-breadcrumb-link">Chicago Labs</a>
+            <svg class="elv-breadcrumb-separator" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10.875 10L6.9375 6.0625L8 5L13 10L8 15L6.9375 13.9375L10.875 10Z"/>
+            </svg>
+          </li>
+          <li class="elv-breadcrumb-item">
+            <span class="elv-breadcrumb-link elv-breadcrumb-link--current" aria-current="page">Bulk Purchase (Elevate)</span>
+          </li>
+        </ol>
+      </nav>
       <h1 class="elv-text-4xl elv-font-extrabold elv-text-default elv-mb-3 elv-leading-tight">
-        Bulk Purchase × <span style="color: #FF492C;">G2</span> Activate
+        Bulk Purchase × <span style="color: #ff492c;">G2</span> Activate
       </h1>
       <p class="elv-text-base elv-text-subtle elv-max-w-xl elv-leading-relaxed">
         Exploring how bulk purchasing workflows integrate with G2 Activate's prospect discovery and activation features.
         <strong class="elv-text-primary">This version uses Elevate design system.</strong>
       </p>
     </div>
+  </header>
 
-    <!-- Base Implementation -->
-    <a href="./base/index.html" class="elv-block elv-bg-neutral-100 elv-border elv-border-dark elv-rounded-md elv-p-7 elv-mb-6 elv-no-underline elv-transition-all hover:elv-bg-neutral-90" style="text-decoration: none;">
-      <div class="elv-flex elv-items-center elv-gap-8">
-        <div class="elv-flex-1">
-          <div class="elv-inline-flex elv-items-center elv-px-2-5 elv-py-0-5 elv-rounded-full elv-mb-2" style="background: #374151;">
-            <span class="elv-text-2xs elv-font-semibold elv-uppercase elv-tracking-wide" style="color: #9CA3AF;">
-              Foundation
-            </span>
-          </div>
-          <div class="elv-text-xl elv-font-bold elv-text-inverted elv-mb-1-5">
-            Base Implementation
-          </div>
-          <div class="elv-text-sm elv-leading-relaxed elv-max-w-md" style="color: #9CA3AF;">
-            Transcribed from UE — the core G2 Activate interface with prospects table, filters, and bulk purchase workflow.
-          </div>
-        </div>
-        <div>
-          <button class="btn btn--inverted btn--md">
-            View Base →
-          </button>
-        </div>
+  <div class="elv-max-w-7xl elv-w-full md:elv-w-5/6 elv-mx-auto elv-py-12 elv-px-3">
+
+    <!-- Base Implementation (Featured) -->
+    <a href="./base/index.html"
+       class="base-card elv-block elv-rounded-md elv-p-8 elv-no-underline elv-transition-all elv-mb-8 elv-flex elv-items-center elv-gap-8 elv-flex-wrap"
+       style="background: #1F2937; text-decoration: none;">
+      <div class="elv-flex-1">
+        <h2 class="elv-text-xl elv-font-bold elv-mb-2" style="color: #FFFFFF;">
+          Base Implementation
+        </h2>
+        <p class="elv-text-sm elv-max-w-md" style="color: #9CA3AF; line-height: 1.5;">
+          Transcribed from UE — the core G2 Activate interface with prospects table, filters, and bulk purchase workflow.
+        </p>
+      </div>
+      <div class="elv-flex-shrink-0">
+        <span class="btn btn--primary btn--md">
+          View Base →
+        </span>
       </div>
     </a>
 
     <!-- Page Variants -->
-    <div class="elv-text-xs elv-font-bold elv-uppercase elv-tracking-wide elv-text-nonessential elv-mb-4">
-      Page Variants
+    <div class="elv-mb-4">
+      <h2 class="elv-text-xs elv-font-bold elv-uppercase elv-tracking-wide elv-text-nonessential">
+        Page Variants
+      </h2>
     </div>
-    <div class="elv-grid elv-grid-cols-3 elv-gap-4 elv-mb-10">
-      <a href="./manage-plan/index.html" class="elv-block elv-bg-neutral-0 elv-border elv-border-light elv-rounded-md elv-p-6 elv-no-underline elv-transition-all hover:elv-shadow-2 hover:elv-border-medium hover:elv--translate-y-0-5" style="text-decoration: none; display: flex; flex-direction: column;">
-        <div class="elv-text-2xs elv-font-bold elv-uppercase elv-tracking-wide elv-text-nonessential elv-mb-2">
-          Variant A
-        </div>
-        <div class="elv-text-base elv-font-bold elv-text-default elv-mb-2 elv-leading-snug">
+
+    <div class="exploration-grid elv-grid elv-grid-cols-1 elv-gap-4 elv-mb-12">
+      <a href="./manage-plan/index.html"
+         class="exploration-card elv-block elv-bg-neutral-0 elv-border elv-border-light elv-rounded-md elv-p-6 elv-no-underline elv-transition-all hover:elv-shadow-2 hover:elv-border-medium hover:elv--translate-y-0-5 elv-relative"
+         style="text-decoration: none; display: flex; flex-direction: column; gap: 12px;">
+        <div class="elv-text-2xs elv-font-bold elv-uppercase elv-tracking-wide elv-text-nonessential">Variant A</div>
+        <div class="elv-text-base elv-font-bold elv-text-default elv-leading-snug">
           Manage Plan (Active)
         </div>
-        <div class="elv-text-xs elv-text-subtle elv-leading-relaxed elv-flex-1 elv-mb-4">
+        <div class="elv-text-xs elv-text-subtle elv-leading-relaxed elv-flex-1">
           Active subscription state with renewal date, current credits, and ability to add credits.
         </div>
-        <div class="elv-inline-flex elv-items-center elv-gap-1-5 elv-self-start elv-px-2-5 elv-py-1 elv-rounded-full" style="background: #F0FDF4;">
-          <span class="elv-text-xs elv-font-semibold" style="color: #065F46;">✓ Updated</span>
-        </div>
+
+        <span class="card-arrow elv-absolute elv-text-sm elv-text-neutral-30 elv-transition-all" style="bottom: 1.5rem; right: 1.5rem;">→</span>
       </a>
 
-      <a href="./manage-plan/inactive.html" class="elv-block elv-bg-neutral-0 elv-border elv-border-light elv-rounded-md elv-p-6 elv-no-underline elv-transition-all hover:elv-shadow-2 hover:elv-border-medium hover:elv--translate-y-0-5" style="text-decoration: none; display: flex; flex-direction: column;">
-        <div class="elv-text-2xs elv-font-bold elv-uppercase elv-tracking-wide elv-text-nonessential elv-mb-2">
-          Variant B
-        </div>
-        <div class="elv-text-base elv-font-bold elv-text-default elv-mb-2 elv-leading-snug">
+      <a href="./manage-plan/inactive.html"
+         class="exploration-card elv-block elv-bg-neutral-0 elv-border elv-border-light elv-rounded-md elv-p-6 elv-no-underline elv-transition-all hover:elv-shadow-2 hover:elv-border-medium hover:elv--translate-y-0-5 elv-relative"
+         style="text-decoration: none; display: flex; flex-direction: column; gap: 12px;">
+        <div class="elv-text-2xs elv-font-bold elv-uppercase elv-tracking-wide elv-text-nonessential">Variant B</div>
+        <div class="elv-text-base elv-font-bold elv-text-default elv-leading-snug">
           Manage Plan (Inactive)
         </div>
-        <div class="elv-text-xs elv-text-subtle elv-leading-relaxed elv-flex-1 elv-mb-4">
+        <div class="elv-text-xs elv-text-subtle elv-leading-relaxed elv-flex-1">
           Lapsed or inactive plan state with option to re-activate or upgrade.
         </div>
-        <div class="elv-inline-flex elv-items-center elv-gap-1-5 elv-self-start elv-px-2-5 elv-py-1 elv-rounded-full" style="background: #F0FDF4;">
-          <span class="elv-text-xs elv-font-semibold" style="color: #065F46;">✓ Updated</span>
-        </div>
+
+        <span class="card-arrow elv-absolute elv-text-sm elv-text-neutral-30 elv-transition-all" style="bottom: 1.5rem; right: 1.5rem;">→</span>
       </a>
 
-      <a href="./purchase-credits/index.html" class="elv-block elv-bg-neutral-0 elv-border elv-border-light elv-rounded-md elv-p-6 elv-no-underline elv-transition-all hover:elv-shadow-2 hover:elv-border-medium hover:elv--translate-y-0-5" style="text-decoration: none; display: flex; flex-direction: column;">
-        <div class="elv-text-2xs elv-font-bold elv-uppercase elv-tracking-wide elv-text-nonessential elv-mb-2">
-          Variant C
-        </div>
-        <div class="elv-text-base elv-font-bold elv-text-default elv-mb-2 elv-leading-snug">
+      <a href="./purchase-credits/index.html"
+         class="exploration-card elv-block elv-bg-neutral-0 elv-border elv-border-light elv-rounded-md elv-p-6 elv-no-underline elv-transition-all hover:elv-shadow-2 hover:elv-border-medium hover:elv--translate-y-0-5 elv-relative"
+         style="text-decoration: none; display: flex; flex-direction: column; gap: 12px;">
+        <div class="elv-text-2xs elv-font-bold elv-uppercase elv-tracking-wide elv-text-nonessential">Variant C</div>
+        <div class="elv-text-base elv-font-bold elv-text-default elv-leading-snug">
           Purchase Credits
         </div>
-        <div class="elv-text-xs elv-text-subtle elv-leading-relaxed elv-flex-1 elv-mb-4">
+        <div class="elv-text-xs elv-text-subtle elv-leading-relaxed elv-flex-1">
           One-time credit purchase flow with quantity selector and checkout.
         </div>
-        <div class="elv-inline-flex elv-items-center elv-gap-1-5 elv-self-start elv-px-2-5 elv-py-1 elv-rounded-full" style="background: #F0FDF4;">
-          <span class="elv-text-xs elv-font-semibold" style="color: #065F46;">✓ Updated</span>
-        </div>
+
+        <span class="card-arrow elv-absolute elv-text-sm elv-text-neutral-30 elv-transition-all" style="bottom: 1.5rem; right: 1.5rem;">→</span>
       </a>
     </div>
 
     <!-- Concept Explorations -->
-    <div class="elv-text-xs elv-font-bold elv-uppercase elv-tracking-wide elv-text-nonessential elv-mb-4">
-      Concept Explorations
+    <div class="elv-mb-4 elv-mt-12">
+      <h2 class="elv-text-xs elv-font-bold elv-uppercase elv-tracking-wide elv-text-nonessential">
+        Concept Explorations
+      </h2>
     </div>
-    <div class="elv-grid elv-grid-cols-3 elv-gap-4">
 
-      <a href="./explorations/01-credits-first/index.html" class="elv-block elv-bg-neutral-0 elv-border elv-border-light elv-rounded-md elv-p-6 elv-no-underline elv-transition-all hover:elv-shadow-2 hover:elv-border-medium hover:elv--translate-y-0-5" style="text-decoration: none;">
-        <div class="elv-text-2xs elv-font-bold elv-uppercase elv-tracking-wide elv-text-nonessential elv-mb-2">
-          Exploration 01
-        </div>
-        <div class="elv-text-base elv-font-bold elv-text-default elv-mb-2 elv-leading-snug">
+    <div class="exploration-grid elv-grid elv-grid-cols-1 elv-gap-4 elv-mb-12">
+
+      <a href="./explorations/01-credits-first/index.html"
+         class="exploration-card elv-block elv-bg-neutral-0 elv-border elv-border-light elv-rounded-md elv-p-6 elv-no-underline elv-transition-all hover:elv-shadow-2 hover:elv-border-medium hover:elv--translate-y-0-5 elv-relative"
+         style="text-decoration: none; display: flex; flex-direction: column; gap: 12px;">
+        <div class="elv-text-2xs elv-font-bold elv-uppercase elv-tracking-wide elv-text-nonessential">Exploration 01</div>
+        <div class="elv-text-base elv-font-bold elv-text-default elv-leading-snug">
           Credits-First
         </div>
-        <div class="elv-text-xs elv-text-subtle elv-leading-relaxed">
+        <div class="elv-text-xs elv-text-subtle elv-leading-relaxed elv-flex-1">
           Lead with credit amount; pricing is secondary
         </div>
+
+        <span class="card-arrow elv-absolute elv-text-sm elv-text-neutral-30 elv-transition-all" style="bottom: 1.5rem; right: 1.5rem;">→</span>
       </a>
 
-      <a href="./explorations/02-dual-status/index.html" class="elv-block elv-bg-neutral-0 elv-border elv-border-light elv-rounded-md elv-p-6 elv-no-underline elv-transition-all hover:elv-shadow-2 hover:elv-border-medium hover:elv--translate-y-0-5" style="text-decoration: none;">
-        <div class="elv-text-2xs elv-font-bold elv-uppercase elv-tracking-wide elv-text-nonessential elv-mb-2">
-          Exploration 02
-        </div>
-        <div class="elv-text-base elv-font-bold elv-text-default elv-mb-2 elv-leading-snug">
+      <a href="./explorations/02-dual-status/index.html"
+         class="exploration-card elv-block elv-bg-neutral-0 elv-border elv-border-light elv-rounded-md elv-p-6 elv-no-underline elv-transition-all hover:elv-shadow-2 hover:elv-border-medium hover:elv--translate-y-0-5 elv-relative"
+         style="text-decoration: none; display: flex; flex-direction: column; gap: 12px;">
+        <div class="elv-text-2xs elv-font-bold elv-uppercase elv-tracking-wide elv-text-nonessential">Exploration 02</div>
+        <div class="elv-text-base elv-font-bold elv-text-default elv-leading-snug">
           Dual Status
         </div>
-        <div class="elv-text-xs elv-text-subtle elv-leading-relaxed">
+        <div class="elv-text-xs elv-text-subtle elv-leading-relaxed elv-flex-1">
           Show current plan + upgrade side by side
         </div>
+
+        <span class="card-arrow elv-absolute elv-text-sm elv-text-neutral-30 elv-transition-all" style="bottom: 1.5rem; right: 1.5rem;">→</span>
       </a>
 
-      <a href="./explorations/03-smart-unified/index.html" class="elv-block elv-bg-neutral-0 elv-border elv-border-light elv-rounded-md elv-p-6 elv-no-underline elv-transition-all hover:elv-shadow-2 hover:elv-border-medium hover:elv--translate-y-0-5" style="text-decoration: none;">
-        <div class="elv-text-2xs elv-font-bold elv-uppercase elv-tracking-wide elv-text-nonessential elv-mb-2">
-          Exploration 03
-        </div>
-        <div class="elv-text-base elv-font-bold elv-text-default elv-mb-2 elv-leading-snug">
+      <a href="./explorations/03-smart-unified/index.html"
+         class="exploration-card elv-block elv-bg-neutral-0 elv-border elv-border-light elv-rounded-md elv-p-6 elv-no-underline elv-transition-all hover:elv-shadow-2 hover:elv-border-medium hover:elv--translate-y-0-5 elv-relative"
+         style="text-decoration: none; display: flex; flex-direction: column; gap: 12px;">
+        <div class="elv-text-2xs elv-font-bold elv-uppercase elv-tracking-wide elv-text-nonessential">Exploration 03</div>
+        <div class="elv-text-base elv-font-bold elv-text-default elv-leading-snug">
           Smart Unified
         </div>
-        <div class="elv-text-xs elv-text-subtle elv-leading-relaxed">
+        <div class="elv-text-xs elv-text-subtle elv-leading-relaxed elv-flex-1">
           Single unified view that adapts to plan state
         </div>
+
+        <span class="card-arrow elv-absolute elv-text-sm elv-text-neutral-30 elv-transition-all" style="bottom: 1.5rem; right: 1.5rem;">→</span>
       </a>
 
-      <a href="./explorations/04-tab-toggle/index.html" class="elv-block elv-bg-neutral-0 elv-border elv-border-light elv-rounded-md elv-p-6 elv-no-underline elv-transition-all hover:elv-shadow-2 hover:elv-border-medium hover:elv--translate-y-0-5" style="text-decoration: none;">
-        <div class="elv-text-2xs elv-font-bold elv-uppercase elv-tracking-wide elv-text-nonessential elv-mb-2">
-          Exploration 04
-        </div>
-        <div class="elv-text-base elv-font-bold elv-text-default elv-mb-2 elv-leading-snug">
+      <a href="./explorations/04-tab-toggle/index.html"
+         class="exploration-card elv-block elv-bg-neutral-0 elv-border elv-border-light elv-rounded-md elv-p-6 elv-no-underline elv-transition-all hover:elv-shadow-2 hover:elv-border-medium hover:elv--translate-y-0-5 elv-relative"
+         style="text-decoration: none; display: flex; flex-direction: column; gap: 12px;">
+        <div class="elv-text-2xs elv-font-bold elv-uppercase elv-tracking-wide elv-text-nonessential">Exploration 04</div>
+        <div class="elv-text-base elv-font-bold elv-text-default elv-leading-snug">
           Tab Toggle
         </div>
-        <div class="elv-text-xs elv-text-subtle elv-leading-relaxed">
+        <div class="elv-text-xs elv-text-subtle elv-leading-relaxed elv-flex-1">
           Tab between credits and subscription views
         </div>
+
+        <span class="card-arrow elv-absolute elv-text-sm elv-text-neutral-30 elv-transition-all" style="bottom: 1.5rem; right: 1.5rem;">→</span>
       </a>
 
-      <a href="./explorations/05-side-by-side-cards/index.html" class="elv-block elv-bg-neutral-0 elv-border elv-border-light elv-rounded-md elv-p-6 elv-no-underline elv-transition-all hover:elv-shadow-2 hover:elv-border-medium hover:elv--translate-y-0-5" style="text-decoration: none;">
-        <div class="elv-text-2xs elv-font-bold elv-uppercase elv-tracking-wide elv-text-nonessential elv-mb-2">
-          Exploration 05
-        </div>
-        <div class="elv-text-base elv-font-bold elv-text-default elv-mb-2 elv-leading-snug">
+      <a href="./explorations/05-side-by-side-cards/index.html"
+         class="exploration-card elv-block elv-bg-neutral-0 elv-border elv-border-light elv-rounded-md elv-p-6 elv-no-underline elv-transition-all hover:elv-shadow-2 hover:elv-border-medium hover:elv--translate-y-0-5 elv-relative"
+         style="text-decoration: none; display: flex; flex-direction: column; gap: 12px;">
+        <div class="elv-text-2xs elv-font-bold elv-uppercase elv-tracking-wide elv-text-nonessential">Exploration 05</div>
+        <div class="elv-text-base elv-font-bold elv-text-default elv-leading-snug">
           Side-by-Side Cards
         </div>
-        <div class="elv-text-xs elv-text-subtle elv-leading-relaxed">
+        <div class="elv-text-xs elv-text-subtle elv-leading-relaxed elv-flex-1">
           Card grid comparison layout
         </div>
+
+        <span class="card-arrow elv-absolute elv-text-sm elv-text-neutral-30 elv-transition-all" style="bottom: 1.5rem; right: 1.5rem;">→</span>
       </a>
 
-      <a href="./explorations/06-tabbed-selection/index.html" class="elv-block elv-bg-neutral-0 elv-border elv-border-light elv-rounded-md elv-p-6 elv-no-underline elv-transition-all hover:elv-shadow-2 hover:elv-border-medium hover:elv--translate-y-0-5" style="text-decoration: none;">
-        <div class="elv-text-2xs elv-font-bold elv-uppercase elv-tracking-wide elv-text-nonessential elv-mb-2">
-          Exploration 06
-        </div>
-        <div class="elv-text-base elv-font-bold elv-text-default elv-mb-2 elv-leading-snug">
+      <a href="./explorations/06-tabbed-selection/index.html"
+         class="exploration-card elv-block elv-bg-neutral-0 elv-border elv-border-light elv-rounded-md elv-p-6 elv-no-underline elv-transition-all hover:elv-shadow-2 hover:elv-border-medium hover:elv--translate-y-0-5 elv-relative"
+         style="text-decoration: none; display: flex; flex-direction: column; gap: 12px;">
+        <div class="elv-text-2xs elv-font-bold elv-uppercase elv-tracking-wide elv-text-nonessential">Exploration 06</div>
+        <div class="elv-text-base elv-font-bold elv-text-default elv-leading-snug">
           Tabbed Selection
         </div>
-        <div class="elv-text-xs elv-text-subtle elv-leading-relaxed">
+        <div class="elv-text-xs elv-text-subtle elv-leading-relaxed elv-flex-1">
           Tabbed quantity selector
         </div>
+
+        <span class="card-arrow elv-absolute elv-text-sm elv-text-neutral-30 elv-transition-all" style="bottom: 1.5rem; right: 1.5rem;">→</span>
       </a>
 
-      <a href="./explorations/07-radio-expansion/index.html" class="elv-block elv-bg-neutral-0 elv-border elv-border-light elv-rounded-md elv-p-6 elv-no-underline elv-transition-all hover:elv-shadow-2 hover:elv-border-medium hover:elv--translate-y-0-5" style="text-decoration: none;">
-        <div class="elv-text-2xs elv-font-bold elv-uppercase elv-tracking-wide elv-text-nonessential elv-mb-2">
-          Exploration 07
-        </div>
-        <div class="elv-text-base elv-font-bold elv-text-default elv-mb-2 elv-leading-snug">
+      <a href="./explorations/07-radio-expansion/index.html"
+         class="exploration-card elv-block elv-bg-neutral-0 elv-border elv-border-light elv-rounded-md elv-p-6 elv-no-underline elv-transition-all hover:elv-shadow-2 hover:elv-border-medium hover:elv--translate-y-0-5 elv-relative"
+         style="text-decoration: none; display: flex; flex-direction: column; gap: 12px;">
+        <div class="elv-text-2xs elv-font-bold elv-uppercase elv-tracking-wide elv-text-nonessential">Exploration 07</div>
+        <div class="elv-text-base elv-font-bold elv-text-default elv-leading-snug">
           Radio Expansion ⭐
         </div>
-        <div class="elv-text-xs elv-text-subtle elv-leading-relaxed">
+        <div class="elv-text-xs elv-text-subtle elv-leading-relaxed elv-flex-1">
           Radio group with expandable tier detail (current direction)
         </div>
+
+        <span class="card-arrow elv-absolute elv-text-sm elv-text-neutral-30 elv-transition-all" style="bottom: 1.5rem; right: 1.5rem;">→</span>
       </a>
 
     </div>
 
     <!-- Footer -->
-    <div class="elv-text-center elv-mt-16 elv-pt-8 elv-border-t elv-border-light">
-      <p class="elv-text-xs elv-text-subtle">
+    <footer class="elv-mt-16 elv-pt-6 elv-text-xs elv-text-nonessential">
+      <p>
         Using <strong class="elv-text-primary">UE Elevate Design System</strong> ·
-        <a href="../bulk-purchase/" class="elv-text-link elv-underline">View Original Version</a> ·
-        <a href="../../index.html" class="elv-text-link elv-underline">All Epics</a>
+        <a href="../bulk-purchase/" class="elv-text-nonessential hover:elv-text-primary">View Original Version</a> ·
+        <a href="../../index.html" class="elv-text-nonessential hover:elv-text-primary">← Back to Chicago Labs</a>
       </p>
-    </div>
+    </footer>
 
   </div>
 

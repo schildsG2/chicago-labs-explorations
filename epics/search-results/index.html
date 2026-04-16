@@ -4,261 +4,164 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Search Results × G2 AI — Design Explorations</title>
-  <link rel="stylesheet" href="./shared/styles.css">
+  <link rel="stylesheet" href="../../shared/tokens/elevate.css">
+  <link rel="stylesheet" href="../../shared/components/elevate.css">
+  <link rel="stylesheet" href="../../shared/icons/icons.css">
   <style>
-    body {
-      background: var(--gray-50);
-      min-width: 1000px;
-    }
+    body { margin: 0; }
 
-    .hub-wrapper {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 48px 24px 64px;
-    }
-
-    .hub-header {
-      margin-bottom: 48px;
-    }
-
-    .hub-eyebrow {
+    /* Breadcrumbs */
+    .elv-breadcrumbs {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      font-size: 12px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: #5746b2;
-      background: #f2f0f9;
-      padding: 4px 12px;
-      border-radius: 999px;
-      margin-bottom: 16px;
+      gap: 2px;
     }
-
-    .hub-title {
-      font-size: 36px;
-      font-weight: 800;
-      color: var(--gray-900);
-      letter-spacing: -0.5px;
-      margin-bottom: 12px;
-      line-height: 1.2;
-    }
-
-    .hub-title .brand-g2 {
-      color: #5746b2;
-    }
-
-    .hub-subtitle {
-      font-size: 16px;
-      color: var(--gray-500);
-      line-height: 1.6;
-      max-width: 600px;
-    }
-
-    /* Base card — full width, special treatment */
-    .base-card {
-      background: var(--gray-900);
-      border: 1px solid #1F2937;
-      border-radius: var(--radius);
-      padding: 28px 32px;
-      margin-bottom: 24px;
+    .elv-breadcrumb-item {
       display: flex;
       align-items: center;
-      gap: 32px;
+      gap: 2px;
+    }
+    .elv-breadcrumb-link {
+      color: #4c4b53;
       text-decoration: none;
-      transition: background 0.15s, transform 0.15s;
+      font-size: 12px;
+      line-height: 16px;
+      transition: color 150ms ease;
+    }
+    .elv-breadcrumb-link:hover {
+      color: #201f23;
+    }
+    .elv-breadcrumb-link--current {
+      color: #84838a;
+      pointer-events: none;
+    }
+    .elv-breadcrumb-separator {
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+      fill: #6f6d78;
     }
 
+    /* Exploration card hover */
+    .exploration-card:hover .card-arrow {
+      color: var(--text-primary);
+      transform: translateX(3px);
+    }
+
+    /* Base card (featured) hover */
     .base-card:hover {
-      background: #111827;
-      text-decoration: none;
+      background: #111827 !important;
       transform: translateY(-1px);
     }
 
-    .base-card-label {
-      display: inline-flex;
-      align-items: center;
-      padding: 3px 10px;
-      background: #374151;
-      border-radius: 999px;
-      font-size: 11px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: #9CA3AF;
-      margin-bottom: 8px;
+    /* Responsive grid */
+    @media (min-width: 750px) {
+      .exploration-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+      }
     }
-
-    .base-card-title {
-      font-size: 20px;
-      font-weight: 700;
-      color: var(--white);
-      margin-bottom: 6px;
-    }
-
-    .base-card-desc {
-      font-size: 14px;
-      color: #9CA3AF;
-      line-height: 1.5;
-      max-width: 480px;
-    }
-
-    .base-card-cta {
-      margin-left: auto;
-      flex-shrink: 0;
-    }
-
-    .base-card-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 10px 20px;
-      background: var(--white);
-      color: var(--gray-900);
-      border-radius: var(--radius-sm);
-      font-weight: 600;
-      font-size: 14px;
-      white-space: nowrap;
-    }
-
-    .base-card-link:hover {
-      background: var(--gray-100);
-      text-decoration: none;
-      color: var(--gray-900);
-    }
-
-    /* Concepts grid */
-    .concepts-section-label {
-      font-size: 12px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--gray-400);
-      margin-bottom: 16px;
-    }
-
-    .concepts-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-    }
-
-    .concept-card {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 24px;
-      display: flex;
-      flex-direction: column;
-      gap: 0;
-      transition: box-shadow 0.15s, transform 0.15s, border-color 0.15s;
-      text-decoration: none;
-    }
-
-    .concept-card:hover {
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-      transform: translateY(-2px);
-      border-color: var(--gray-300);
-      text-decoration: none;
-    }
-
-    .concept-number {
-      font-size: 11px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--gray-400);
-      margin-bottom: 8px;
-    }
-
-    .concept-title {
-      font-size: 16px;
-      font-weight: 700;
-      color: var(--gray-900);
-      margin-bottom: 8px;
-      line-height: 1.3;
-    }
-
-    .concept-desc {
-      font-size: 13px;
-      color: var(--gray-500);
-      line-height: 1.55;
-      flex: 1;
-      margin-bottom: 16px;
-    }
-
-    .concept-meta {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: #F0FDF4;
-      color: #065F46;
-      font-size: 12px;
-      font-weight: 600;
-      padding: 4px 10px;
-      border-radius: 999px;
-      align-self: flex-start;
-    }
-
-    .coming-soon {
-      background: var(--gray-100);
-      color: var(--gray-500);
+    @media (min-width: 1000px) {
+      .exploration-grid {
+        grid-template-columns: repeat(3, 1fr) !important;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="hub-wrapper">
-    <!-- Header -->
-    <div class="hub-header">
-      <div class="hub-eyebrow">
-        Design Explorations
-      </div>
-      <h1 class="hub-title">
-        Search Results × <span class="brand-g2">G2 AI</span>
+
+<div elv class="elv-bg-neutral-5 elv-min-h-screen">
+
+  <!-- Header -->
+  <header class="elv-bg-neutral-0 elv-border-b elv-border-light" style="border-bottom-width: 0.5px;">
+    <div class="elv-max-w-7xl elv-w-full md:elv-w-5/6 elv-mx-auto elv-pt-12 elv-pb-8 elv-px-3">
+      <nav aria-label="Breadcrumb" class="elv-mb-3">
+        <ol class="elv-breadcrumbs" role="list">
+          <li class="elv-breadcrumb-item">
+            <a href="../../index.html" class="elv-breadcrumb-link">Chicago Labs</a>
+            <svg class="elv-breadcrumb-separator" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10.875 10L6.9375 6.0625L8 5L13 10L8 15L6.9375 13.9375L10.875 10Z"/>
+            </svg>
+          </li>
+          <li class="elv-breadcrumb-item">
+            <span class="elv-breadcrumb-link elv-breadcrumb-link--current" aria-current="page">Search Results</span>
+          </li>
+        </ol>
+      </nav>
+      <h1 class="elv-text-4xl elv-font-extrabold elv-text-default elv-mb-3 elv-leading-tight">
+        Search Results × <span style="color: #5746b2;">G2 AI</span>
       </h1>
-      <p class="hub-subtitle">
+      <p class="elv-text-base elv-text-subtle elv-max-w-xl elv-leading-relaxed">
         Exploring search UX patterns for ai.g2.com — query conveyance, result counts, null states, and accessibility improvements.
       </p>
     </div>
+  </header>
 
-    <!-- Base Implementation -->
-    <a href="./base/index.html" class="base-card">
-      <div style="flex: 1;">
-        <div class="base-card-label">Foundation</div>
-        <div class="base-card-title">Base Implementation</div>
-        <div class="base-card-desc">
+  <div class="elv-max-w-7xl elv-w-full md:elv-w-5/6 elv-mx-auto elv-py-12 elv-px-3">
+
+    <!-- Base Implementation (Featured) -->
+    <a href="./base/index.html"
+       class="base-card elv-block elv-rounded-md elv-p-8 elv-no-underline elv-transition-all elv-mb-8 elv-flex elv-items-center elv-gap-8 elv-flex-wrap"
+       style="background: #1F2937; text-decoration: none;">
+      <div class="elv-flex-1">
+        <h2 class="elv-text-xl elv-font-bold elv-mb-2" style="color: #FFFFFF;">
+          Base Implementation
+        </h2>
+        <p class="elv-text-sm elv-max-w-md" style="color: #9CA3AF; line-height: 1.5;">
           Transcribed from g2-ai repo — the current ai.g2.com browse page with hero, filters, search box, and tool cards.
-        </div>
+        </p>
       </div>
-      <div class="base-card-cta">
-        <div class="base-card-link">
+      <div class="elv-flex-shrink-0">
+        <span class="btn btn--primary btn--md">
           View Base →
-        </div>
+        </span>
       </div>
     </a>
 
     <!-- Explorations -->
-    <div class="concepts-section-label">Explorations: Search UX Improvements</div>
-    <div class="concepts-grid">
-      <a href="./explorations/01-query-conveyance.html" class="concept-card">
-        <div class="concept-number">Exploration 01</div>
-        <div class="concept-title">Query Conveyance</div>
-        <div class="concept-desc">
+    <div class="elv-mb-4">
+      <h2 class="elv-text-xs elv-font-bold elv-uppercase elv-tracking-wide elv-text-nonessential">
+        Explorations: Search UX Improvements
+      </h2>
+    </div>
+
+    <div class="exploration-grid elv-grid elv-grid-cols-1 elv-gap-4 elv-mb-12">
+      <a href="./explorations/01-query-conveyance.html"
+         class="exploration-card elv-block elv-bg-neutral-0 elv-border elv-border-light elv-rounded-md elv-p-6 elv-no-underline elv-transition-all hover:elv-shadow-2 hover:elv-border-medium hover:elv--translate-y-0-5 elv-relative"
+         style="text-decoration: none; display: flex; flex-direction: column; gap: 12px;">
+        <div class="elv-text-2xs elv-font-bold elv-uppercase elv-tracking-wide elv-text-nonessential">Exploration 01</div>
+        <div class="elv-text-base elv-font-bold elv-text-default elv-leading-snug">
+          Query Conveyance
+        </div>
+        <div class="elv-text-xs elv-text-subtle elv-leading-relaxed elv-flex-1">
           Add "Results for [query]" header with result count. Clear visual feedback that search was applied.
         </div>
-        <div class="concept-meta">View →</div>
+
+        <span class="card-arrow elv-absolute elv-text-sm elv-text-neutral-30 elv-transition-all" style="bottom: 1.5rem; right: 1.5rem;">→</span>
       </a>
 
-      <a href="./explorations/02-null-state.html" class="concept-card">
-        <div class="concept-number">Exploration 02</div>
-        <div class="concept-title">Null State</div>
-        <div class="concept-desc">
+      <a href="./explorations/02-null-state.html"
+         class="exploration-card elv-block elv-bg-neutral-0 elv-border elv-border-light elv-rounded-md elv-p-6 elv-no-underline elv-transition-all hover:elv-shadow-2 hover:elv-border-medium hover:elv--translate-y-0-5 elv-relative"
+         style="text-decoration: none; display: flex; flex-direction: column; gap: 12px;">
+        <div class="elv-text-2xs elv-font-bold elv-uppercase elv-tracking-wide elv-text-nonessential">Exploration 02</div>
+        <div class="elv-text-base elv-font-bold elv-text-default elv-leading-snug">
+          Null State
+        </div>
+        <div class="elv-text-xs elv-text-subtle elv-leading-relaxed elv-flex-1">
           Empty state design with magnify icon, clear explanation, and simple clear search action.
         </div>
-        <div class="concept-meta">View →</div>
+
+        <span class="card-arrow elv-absolute elv-text-sm elv-text-neutral-30 elv-transition-all" style="bottom: 1.5rem; right: 1.5rem;">→</span>
       </a>
     </div>
+
+    <!-- Footer -->
+    <footer class="elv-mt-16 elv-pt-6 elv-text-xs elv-text-nonessential">
+      <a href="../../index.html" class="elv-text-nonessential hover:elv-text-primary">← Back to Chicago Labs</a>
+    </footer>
+
   </div>
+
+</div>
+
 </body>
 </html>

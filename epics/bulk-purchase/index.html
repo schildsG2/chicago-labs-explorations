@@ -74,10 +74,18 @@
   <!-- Header -->
   <header class="elv-bg-neutral-0 elv-border-b elv-border-light" style="border-bottom-width: 0.5px;">
     <div class="elv-max-w-7xl elv-w-full md:elv-w-5/6 elv-mx-auto elv-pt-12 elv-pb-8 elv-px-3">
-      <nav class="elv-flex elv-items-center elv-gap-2 elv-mb-3 elv-text-sm">
-        <a href="../../index.html" class="elv-text-subtle hover:elv-text-primary elv-no-underline">Chicago Labs</a>
-        <span class="elv-text-neutral-30">/</span>
-        <span class="elv-text-default">Bulk Purchase</span>
+      <nav aria-label="Breadcrumb" class="elv-mb-3">
+        <ol class="elv-breadcrumbs" role="list">
+          <li class="elv-breadcrumb-item">
+            <a href="../../index.html" class="elv-breadcrumb-link">Chicago Labs</a>
+            <svg class="elv-breadcrumb-separator" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10.875 10L6.9375 6.0625L8 5L13 10L8 15L6.9375 13.9375L10.875 10Z"/>
+            </svg>
+          </li>
+          <li class="elv-breadcrumb-item">
+            <span class="elv-breadcrumb-link elv-breadcrumb-link--current" aria-current="page">Bulk Purchase</span>
+          </li>
+        </ol>
       </nav>
       <h1 class="elv-text-4xl elv-font-extrabold elv-text-default elv-mb-3 elv-leading-tight">
         Bulk Purchase × <span style="color: #ff492c;">G2</span> Activate
@@ -95,11 +103,6 @@
        class="base-card elv-block elv-rounded-md elv-p-8 elv-no-underline elv-transition-all elv-mb-8 elv-flex elv-items-center elv-gap-8 elv-flex-wrap"
        style="background: #1F2937; text-decoration: none;">
       <div class="elv-flex-1">
-        <div class="elv-inline-flex elv-items-center elv-px-3 elv-py-1 elv-rounded-full elv-mb-2" style="background: #374151;">
-          <span class="elv-text-2xs elv-font-bold elv-uppercase elv-tracking-wide" style="color: #9CA3AF;">
-            Foundation
-          </span>
-        </div>
         <h2 class="elv-text-xl elv-font-bold elv-mb-2" style="color: #FFFFFF;">
           Base Implementation
         </h2>
@@ -108,7 +111,7 @@
         </p>
       </div>
       <div class="elv-flex-shrink-0">
-        <span class="elv-inline-flex elv-items-center elv-gap-2 elv-px-5 elv-py-2 elv-rounded-sm elv-text-sm elv-font-semibold elv-bg-neutral-0 elv-text-default hover:elv-bg-neutral-10 elv-transition-all">
+        <span class="btn btn--primary btn--md">
           View Base →
         </span>
       </div>
@@ -125,54 +128,42 @@
       <a href="./manage-plan/index.html"
          class="exploration-card elv-block elv-bg-neutral-0 elv-border elv-border-light elv-rounded-md elv-p-6 elv-no-underline elv-transition-all hover:elv-shadow-2 hover:elv-border-medium hover:elv--translate-y-0-5 elv-relative"
          style="text-decoration: none; display: flex; flex-direction: column; gap: 12px;">
-        <div class="elv-text-2xs elv-font-bold elv-uppercase elv-tracking-wide elv-text-nonessential">
-          Variant A
-        </div>
+        <div class="elv-text-2xs elv-font-bold elv-uppercase elv-tracking-wide elv-text-nonessential">Variant A</div>
         <div class="elv-text-base elv-font-bold elv-text-default elv-leading-snug">
           Manage Plan (Active)
         </div>
         <div class="elv-text-xs elv-text-subtle elv-leading-relaxed elv-flex-1">
           Active subscription state with renewal date, current credits, and ability to add credits.
         </div>
-        <div class="elv-inline-flex elv-items-center elv-gap-1 elv-self-start elv-px-3 elv-py-1 elv-rounded-full elv-text-2xs elv-font-semibold" style="background: #F0FDF4; color: #065F46;">
-          View Page →
-        </div>
+
         <span class="card-arrow elv-absolute elv-text-sm elv-text-neutral-30 elv-transition-all" style="bottom: 1.5rem; right: 1.5rem;">→</span>
       </a>
 
       <a href="./manage-plan/inactive.html"
          class="exploration-card elv-block elv-bg-neutral-0 elv-border elv-border-light elv-rounded-md elv-p-6 elv-no-underline elv-transition-all hover:elv-shadow-2 hover:elv-border-medium hover:elv--translate-y-0-5 elv-relative"
          style="text-decoration: none; display: flex; flex-direction: column; gap: 12px;">
-        <div class="elv-text-2xs elv-font-bold elv-uppercase elv-tracking-wide elv-text-nonessential">
-          Variant B
-        </div>
+        <div class="elv-text-2xs elv-font-bold elv-uppercase elv-tracking-wide elv-text-nonessential">Variant B</div>
         <div class="elv-text-base elv-font-bold elv-text-default elv-leading-snug">
           Manage Plan (Inactive)
         </div>
         <div class="elv-text-xs elv-text-subtle elv-leading-relaxed elv-flex-1">
           Inactive state with clear upgrade CTA and simplified credit purchase flow.
         </div>
-        <div class="elv-inline-flex elv-items-center elv-gap-1 elv-self-start elv-px-3 elv-py-1 elv-rounded-full elv-text-2xs elv-font-semibold" style="background: #F0FDF4; color: #065F46;">
-          View Page →
-        </div>
+
         <span class="card-arrow elv-absolute elv-text-sm elv-text-neutral-30 elv-transition-all" style="bottom: 1.5rem; right: 1.5rem;">→</span>
       </a>
 
-      <a href="./purchase-flow/index.html"
+      <a href="./purchase-credits/index.html"
          class="exploration-card elv-block elv-bg-neutral-0 elv-border elv-border-light elv-rounded-md elv-p-6 elv-no-underline elv-transition-all hover:elv-shadow-2 hover:elv-border-medium hover:elv--translate-y-0-5 elv-relative"
          style="text-decoration: none; display: flex; flex-direction: column; gap: 12px;">
-        <div class="elv-text-2xs elv-font-bold elv-uppercase elv-tracking-wide elv-text-nonessential">
-          Variant C
-        </div>
+        <div class="elv-text-2xs elv-font-bold elv-uppercase elv-tracking-wide elv-text-nonessential">Variant C</div>
         <div class="elv-text-base elv-font-bold elv-text-default elv-leading-snug">
           Purchase Flow
         </div>
         <div class="elv-text-xs elv-text-subtle elv-leading-relaxed elv-flex-1">
           Step-by-step credit purchase workflow with quantity selection and payment confirmation.
         </div>
-        <div class="elv-inline-flex elv-items-center elv-gap-1 elv-self-start elv-px-3 elv-py-1 elv-rounded-full elv-text-2xs elv-font-semibold" style="background: #F0FDF4; color: #065F46;">
-          View Page →
-        </div>
+
         <span class="card-arrow elv-absolute elv-text-sm elv-text-neutral-30 elv-transition-all" style="bottom: 1.5rem; right: 1.5rem;">→</span>
       </a>
     </div>
@@ -185,75 +176,59 @@
     </div>
 
     <div class="exploration-grid elv-grid elv-grid-cols-1 elv-gap-4 elv-mb-12">
-      <a href="./explorations/01-hybrid-display/index.html"
+      <a href="./explorations/01-credits-first/index.html"
          class="exploration-card elv-block elv-bg-neutral-0 elv-border elv-border-light elv-rounded-md elv-p-6 elv-no-underline elv-transition-all hover:elv-shadow-2 hover:elv-border-medium hover:elv--translate-y-0-5 elv-relative"
          style="text-decoration: none; display: flex; flex-direction: column; gap: 12px;">
-        <div class="elv-text-2xs elv-font-bold elv-uppercase elv-tracking-wide elv-text-nonessential">
-          Exploration 01
-        </div>
+        <div class="elv-text-2xs elv-font-bold elv-uppercase elv-tracking-wide elv-text-nonessential">Exploration 01</div>
         <div class="elv-text-base elv-font-bold elv-text-default elv-leading-snug">
           Hybrid Display
         </div>
         <div class="elv-text-xs elv-text-subtle elv-leading-relaxed elv-flex-1">
           Combined view showing both subscription and bulk credit status simultaneously. Single pane of glass for payment model.
         </div>
-        <div class="elv-inline-flex elv-items-center elv-gap-1 elv-self-start elv-px-3 elv-py-1 elv-rounded-full elv-text-2xs elv-font-semibold" style="background: #F0FDF4; color: #065F46;">
-          View →
-        </div>
+
         <span class="card-arrow elv-absolute elv-text-sm elv-text-neutral-30 elv-transition-all" style="bottom: 1.5rem; right: 1.5rem;">→</span>
       </a>
 
-      <a href="./explorations/02-status-icon-breakdown/index.html"
+      <a href="./explorations/02-dual-status/index.html"
          class="exploration-card elv-block elv-bg-neutral-0 elv-border elv-border-light elv-rounded-md elv-p-6 elv-no-underline elv-transition-all hover:elv-shadow-2 hover:elv-border-medium hover:elv--translate-y-0-5 elv-relative"
          style="text-decoration: none; display: flex; flex-direction: column; gap: 12px;">
-        <div class="elv-text-2xs elv-font-bold elv-uppercase elv-tracking-wide elv-text-nonessential">
-          Exploration 02
-        </div>
+        <div class="elv-text-2xs elv-font-bold elv-uppercase elv-tracking-wide elv-text-nonessential">Exploration 02</div>
         <div class="elv-text-base elv-font-bold elv-text-default elv-leading-snug">
           Status + Icon Breakdown
         </div>
         <div class="elv-text-xs elv-text-subtle elv-leading-relaxed elv-flex-1">
           Subscription status indicator with visual icons to distinguish between Active, Pay-as-you-go, and credit-only modes.
         </div>
-        <div class="elv-inline-flex elv-items-center elv-gap-1 elv-self-start elv-px-3 elv-py-1 elv-rounded-full elv-text-2xs elv-font-semibold" style="background: #F0FDF4; color: #065F46;">
-          View →
-        </div>
+
         <span class="card-arrow elv-absolute elv-text-sm elv-text-neutral-30 elv-transition-all" style="bottom: 1.5rem; right: 1.5rem;">→</span>
       </a>
 
-      <a href="./explorations/03-smart-unified-status/index.html"
+      <a href="./explorations/03-smart-unified/index.html"
          class="exploration-card elv-block elv-bg-neutral-0 elv-border elv-border-light elv-rounded-md elv-p-6 elv-no-underline elv-transition-all hover:elv-shadow-2 hover:elv-border-medium hover:elv--translate-y-0-5 elv-relative"
          style="text-decoration: none; display: flex; flex-direction: column; gap: 12px;">
-        <div class="elv-text-2xs elv-font-bold elv-uppercase elv-tracking-wide elv-text-nonessential">
-          Exploration 03
-        </div>
+        <div class="elv-text-2xs elv-font-bold elv-uppercase elv-tracking-wide elv-text-nonessential">Exploration 03</div>
         <div class="elv-text-base elv-font-bold elv-text-default elv-leading-snug">
           Smart Unified Status
         </div>
         <div class="elv-text-xs elv-text-subtle elv-leading-relaxed elv-flex-1">
           Single adaptive status that changes based on payment model: Active, Pay-as-you-go, Hybrid, or Inactive.
         </div>
-        <div class="elv-inline-flex elv-items-center elv-gap-1 elv-self-start elv-px-3 elv-py-1 elv-rounded-full elv-text-2xs elv-font-semibold" style="background: #F0FDF4; color: #065F46;">
-          View →
-        </div>
+
         <span class="card-arrow elv-absolute elv-text-sm elv-text-neutral-30 elv-transition-all" style="bottom: 1.5rem; right: 1.5rem;">→</span>
       </a>
 
       <a href="./explorations/04-tab-toggle/index.html"
          class="exploration-card elv-block elv-bg-neutral-0 elv-border elv-border-light elv-rounded-md elv-p-6 elv-no-underline elv-transition-all hover:elv-shadow-2 hover:elv-border-medium hover:elv--translate-y-0-5 elv-relative"
          style="text-decoration: none; display: flex; flex-direction: column; gap: 12px;">
-        <div class="elv-text-2xs elv-font-bold elv-uppercase elv-tracking-wide elv-text-nonessential">
-          Exploration 04
-        </div>
+        <div class="elv-text-2xs elv-font-bold elv-uppercase elv-tracking-wide elv-text-nonessential">Exploration 04</div>
         <div class="elv-text-base elv-font-bold elv-text-default elv-leading-snug">
           Tab/Toggle
         </div>
         <div class="elv-text-xs elv-text-subtle elv-leading-relaxed elv-flex-1">
           Segmented control to switch between Subscription view and Bulk Credits view. Clear separation of modes.
         </div>
-        <div class="elv-inline-flex elv-items-center elv-gap-1 elv-self-start elv-px-3 elv-py-1 elv-rounded-full elv-text-2xs elv-font-semibold" style="background: #F0FDF4; color: #065F46;">
-          View →
-        </div>
+
         <span class="card-arrow elv-absolute elv-text-sm elv-text-neutral-30 elv-transition-all" style="bottom: 1.5rem; right: 1.5rem;">→</span>
       </a>
     </div>
@@ -269,54 +244,42 @@
       <a href="./explorations/05-side-by-side-cards/index.html"
          class="exploration-card elv-block elv-bg-neutral-0 elv-border elv-border-light elv-rounded-md elv-p-6 elv-no-underline elv-transition-all hover:elv-shadow-2 hover:elv-border-medium hover:elv--translate-y-0-5 elv-relative"
          style="text-decoration: none; display: flex; flex-direction: column; gap: 12px;">
-        <div class="elv-text-2xs elv-font-bold elv-uppercase elv-tracking-wide elv-text-nonessential">
-          Exploration 05
-        </div>
+        <div class="elv-text-2xs elv-font-bold elv-uppercase elv-tracking-wide elv-text-nonessential">Exploration 05</div>
         <div class="elv-text-base elv-font-bold elv-text-default elv-leading-snug">
           Side-by-Side Cards
         </div>
         <div class="elv-text-xs elv-text-subtle elv-leading-relaxed elv-flex-1">
           Classic pricing page pattern. Both subscription and bulk options presented as equal-weight cards for direct comparison.
         </div>
-        <div class="elv-inline-flex elv-items-center elv-gap-1 elv-self-start elv-px-3 elv-py-1 elv-rounded-full elv-text-2xs elv-font-semibold" style="background: #F0FDF4; color: #065F46;">
-          View →
-        </div>
+
         <span class="card-arrow elv-absolute elv-text-sm elv-text-neutral-30 elv-transition-all" style="bottom: 1.5rem; right: 1.5rem;">→</span>
       </a>
 
       <a href="./explorations/06-tabbed-selection/index.html"
          class="exploration-card elv-block elv-bg-neutral-0 elv-border elv-border-light elv-rounded-md elv-p-6 elv-no-underline elv-transition-all hover:elv-shadow-2 hover:elv-border-medium hover:elv--translate-y-0-5 elv-relative"
          style="text-decoration: none; display: flex; flex-direction: column; gap: 12px;">
-        <div class="elv-text-2xs elv-font-bold elv-uppercase elv-tracking-wide elv-text-nonessential">
-          Exploration 06
-        </div>
+        <div class="elv-text-2xs elv-font-bold elv-uppercase elv-tracking-wide elv-text-nonessential">Exploration 06</div>
         <div class="elv-text-base elv-font-bold elv-text-default elv-leading-snug">
           Tabbed Selection
         </div>
         <div class="elv-text-xs elv-text-subtle elv-leading-relaxed elv-flex-1">
           Tab interface to focus on one payment model at a time. Clean, familiar pattern with detailed feature breakdown.
         </div>
-        <div class="elv-inline-flex elv-items-center elv-gap-1 elv-self-start elv-px-3 elv-py-1 elv-rounded-full elv-text-2xs elv-font-semibold" style="background: #F0FDF4; color: #065F46;">
-          View →
-        </div>
+
         <span class="card-arrow elv-absolute elv-text-sm elv-text-neutral-30 elv-transition-all" style="bottom: 1.5rem; right: 1.5rem;">→</span>
       </a>
 
       <a href="./explorations/07-radio-expansion/index.html"
          class="exploration-card elv-block elv-bg-neutral-0 elv-border elv-border-light elv-rounded-md elv-p-6 elv-no-underline elv-transition-all hover:elv-shadow-2 hover:elv-border-medium hover:elv--translate-y-0-5 elv-relative"
          style="text-decoration: none; display: flex; flex-direction: column; gap: 12px;">
-        <div class="elv-text-2xs elv-font-bold elv-uppercase elv-tracking-wide elv-text-nonessential">
-          Exploration 07
-        </div>
+        <div class="elv-text-2xs elv-font-bold elv-uppercase elv-tracking-wide elv-text-nonessential">Exploration 07</div>
         <div class="elv-text-base elv-font-bold elv-text-default elv-leading-snug">
           Radio + Expansion
         </div>
         <div class="elv-text-xs elv-text-subtle elv-leading-relaxed elv-flex-1">
           Radio selection with progressive disclosure. Selected option expands to show full details and activation flow.
         </div>
-        <div class="elv-inline-flex elv-items-center elv-gap-1 elv-self-start elv-px-3 elv-py-1 elv-rounded-full elv-text-2xs elv-font-semibold" style="background: #F0FDF4; color: #065F46;">
-          View →
-        </div>
+
         <span class="card-arrow elv-absolute elv-text-sm elv-text-neutral-30 elv-transition-all" style="bottom: 1.5rem; right: 1.5rem;">→</span>
       </a>
     </div>

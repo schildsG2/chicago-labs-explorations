@@ -4,28 +4,42 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Agent Performance Benchmarks</title>
+  <link rel="stylesheet" href="../../shared/tokens/elevate.css">
+  <link rel="stylesheet" href="../../shared/components/elevate.css">
+  <link rel="stylesheet" href="../../shared/icons/icons.css">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    body { margin: 0; }
 
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-      background: #FAFAFA;
-      padding: 48px;
-      color: #1F2937;
-      line-height: 1.5;
+    /* Breadcrumbs */
+    .elv-breadcrumbs {
+      display: inline-flex;
+      align-items: center;
+      gap: 2px;
     }
-
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      background: white;
-      padding: 48px;
-      border-radius: 8px;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    .elv-breadcrumb-item {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+    }
+    .elv-breadcrumb-link {
+      color: #4c4b53;
+      text-decoration: none;
+      font-size: 12px;
+      line-height: 16px;
+      transition: color 150ms ease;
+    }
+    .elv-breadcrumb-link:hover {
+      color: #201f23;
+    }
+    .elv-breadcrumb-link--current {
+      color: #84838a;
+      pointer-events: none;
+    }
+    .elv-breadcrumb-separator {
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+      fill: #6f6d78;
     }
 
     /* Two-column grid for strengths/risks */
@@ -178,6 +192,13 @@
       margin-bottom: 48px;
     }
 
+    /* Responsive grid */
+    @media (min-width: 750px) {
+      .metrics-grid, .recommendations-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+      }
+    }
+
     .recommendation-section h2 {
       font-size: 14px;
       font-weight: 600;
@@ -256,7 +277,36 @@
   <script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
 </head>
 <body>
-  <div class="container">
+
+<div elv class="elv-bg-neutral-5 elv-min-h-screen">
+
+  <!-- Header -->
+  <header class="elv-bg-neutral-0 elv-border-b elv-border-light" style="border-bottom-width: 0.5px;">
+    <div class="elv-max-w-7xl elv-w-full md:elv-w-5/6 elv-mx-auto elv-pt-12 elv-pb-8 elv-px-3">
+      <nav aria-label="Breadcrumb" class="elv-mb-3">
+        <ol class="elv-breadcrumbs" role="list">
+          <li class="elv-breadcrumb-item">
+            <a href="../../index.html" class="elv-breadcrumb-link">Chicago Labs</a>
+            <svg class="elv-breadcrumb-separator" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10.875 10L6.9375 6.0625L8 5L13 10L8 15L6.9375 13.9375L10.875 10Z"/>
+            </svg>
+          </li>
+          <li class="elv-breadcrumb-item">
+            <span class="elv-breadcrumb-link elv-breadcrumb-link--current" aria-current="page">Agent Performance</span>
+          </li>
+        </ol>
+      </nav>
+      <h1 class="elv-text-4xl elv-font-extrabold elv-text-default elv-mb-3 elv-leading-tight">
+        Agent Performance Benchmarks
+      </h1>
+      <p class="elv-text-base elv-text-subtle elv-max-w-xl elv-leading-relaxed">
+        Real-world performance metrics and reviewer feedback for AI customer service agents.
+      </p>
+    </div>
+  </header>
+
+  <div class="elv-max-w-7xl elv-w-full md:elv-w-5/6 elv-mx-auto elv-py-12 elv-px-3">
+    <div class="elv-bg-neutral-0 elv-rounded-md elv-p-8 elv-shadow-1">
     <!-- Top Strengths and Top Risks -->
     <div class="metrics-grid">
       <!-- Top Strengths -->
@@ -441,6 +491,16 @@
         </div>
       </div>
     </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="elv-mt-16 elv-pt-6 elv-text-xs elv-text-nonessential">
+      <a href="../../index.html" class="elv-text-nonessential hover:elv-text-primary">← Back to Chicago Labs</a>
+    </footer>
+
   </div>
+
+</div>
+
 </body>
 </html>

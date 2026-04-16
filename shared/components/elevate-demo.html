@@ -1093,6 +1093,131 @@
     .elv-inset-card--lg {
       padding: 24px;
     }
+
+    /* Table Styles — from DESIGN.md specs */
+    .elv-table-container {
+      width: 100%;
+      overflow-x: auto;
+      border: 1px solid #dfdfe2;
+      border-radius: var(--radius-md);
+    }
+
+    .elv-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #ffffff;
+    }
+
+    .elv-table thead {
+      background: #fafafa;
+    }
+
+    .elv-table th {
+      padding: 12px 16px;
+      text-align: left;
+      font-size: 14px;
+      line-height: 20px;
+      font-weight: 600;
+      color: #4c4b53;
+      border-bottom: 1px solid #dfdfe2;
+      white-space: nowrap;
+    }
+
+    .elv-table th:first-child {
+      padding-left: 24px;
+    }
+
+    .elv-table th:last-child {
+      padding-right: 24px;
+    }
+
+    .elv-table tbody tr {
+      min-height: 48px;
+      border-bottom: 1px solid #dfdfe2;
+      transition: background-color 150ms ease;
+    }
+
+    .elv-table tbody tr:last-child {
+      border-bottom: none;
+    }
+
+    .elv-table tbody tr:nth-child(even) {
+      background: #fcfcfd;
+    }
+
+    .elv-table tbody tr:hover {
+      background: #f2f2f3;
+    }
+
+    .elv-table td {
+      padding: 12px 16px;
+      font-size: 16px;
+      line-height: 24px;
+      font-weight: 400;
+      color: var(--text-default);
+    }
+
+    .elv-table td:first-child {
+      padding-left: 24px;
+    }
+
+    .elv-table td:last-child {
+      padding-right: 24px;
+    }
+
+    /* Sortable table headers */
+    .elv-table--sortable th[data-sortable] {
+      cursor: pointer;
+      user-select: none;
+      position: relative;
+      padding-right: 32px;
+    }
+
+    .elv-table--sortable th[data-sortable]:hover {
+      background: #f2f2f3;
+    }
+
+    .elv-table--sortable th[data-sortable]::after {
+      content: '↕';
+      position: absolute;
+      right: 12px;
+      opacity: 0.3;
+      font-size: 14px;
+    }
+
+    .elv-table--sortable th[data-sortable][data-sort="asc"]::after {
+      content: '↑';
+      opacity: 1;
+      color: #5746b2;
+    }
+
+    .elv-table--sortable th[data-sortable][data-sort="desc"]::after {
+      content: '↓';
+      opacity: 1;
+      color: #5746b2;
+    }
+
+    /* Compact variant */
+    .elv-table--compact th,
+    .elv-table--compact td {
+      padding: 8px 12px;
+      font-size: 14px;
+      line-height: 20px;
+    }
+
+    .elv-table--compact th:first-child,
+    .elv-table--compact td:first-child {
+      padding-left: 16px;
+    }
+
+    .elv-table--compact th:last-child,
+    .elv-table--compact td:last-child {
+      padding-right: 16px;
+    }
+
+    .elv-table--compact tbody tr {
+      min-height: 40px;
+    }
   </style>
 </head>
 <body>
@@ -1143,6 +1268,7 @@
       <a href="#accordion" class="elv-index-nav__item">Accordion</a>
       <a href="#tabs" class="elv-index-nav__item">Tabs</a>
       <a href="#pagination" class="elv-index-nav__item">Pagination</a>
+      <a href="#tables" class="elv-index-nav__item">Tables</a>
       <a href="#tooltips" class="elv-index-nav__item">Tooltips</a>
       <a href="#alerts" class="elv-index-nav__item">Alerts & Messages</a>
       <a href="#form-inputs" class="elv-index-nav__item">Form Inputs</a>
@@ -2515,6 +2641,152 @@
 
   <hr class="elv-border-t elv-border-light elv-my-12">
 
+  <!-- Tables -->
+  <div id="tables" class="demo-section">
+    <h2 class="elv-text-2xl elv-font-bold elv-text-default elv-mb-6">Tables</h2>
+    <p class="elv-text-sm elv-text-subtle elv-mb-4">
+      Display structured data with proper styling, alternating rows, and hover states. Supports sortable columns and compact variants.
+      <a href="./templates/complex/table.html" class="elv-text-link elv-underline">View detailed docs</a>
+    </p>
+
+    <div class="demo-grid">
+      <div>
+        <div class="demo-label">Basic Table</div>
+        <div class="elv-table-container">
+          <table class="elv-table">
+            <thead>
+              <tr>
+                <th>Product</th>
+                <th>Category</th>
+                <th>Rating</th>
+                <th>Reviews</th>
+                <th>Price</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>HubSpot CRM</td>
+                <td>CRM Software</td>
+                <td>4.5</td>
+                <td>12,345</td>
+                <td>Free</td>
+              </tr>
+              <tr>
+                <td>Salesforce</td>
+                <td>CRM Software</td>
+                <td>4.3</td>
+                <td>18,567</td>
+                <td>$25/user/mo</td>
+              </tr>
+              <tr>
+                <td>Slack</td>
+                <td>Team Chat</td>
+                <td>4.6</td>
+                <td>23,891</td>
+                <td>$8/user/mo</td>
+              </tr>
+              <tr>
+                <td>Zoom</td>
+                <td>Video Conferencing</td>
+                <td>4.5</td>
+                <td>15,234</td>
+                <td>$15/user/mo</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div>
+        <div class="demo-label">Sortable Table</div>
+        <p class="elv-text-xs elv-text-subtle elv-mb-3">Click column headers to sort</p>
+        <div class="elv-table-container">
+          <table class="elv-table elv-table--sortable" id="demo-sortable-table">
+            <thead>
+              <tr>
+                <th data-sortable data-type="text">Product</th>
+                <th data-sortable data-type="text">Category</th>
+                <th data-sortable data-type="number">Rating</th>
+                <th data-sortable data-type="number">Reviews</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>HubSpot CRM</td>
+                <td>CRM Software</td>
+                <td data-value="4.5">4.5</td>
+                <td data-value="12345">12,345</td>
+              </tr>
+              <tr>
+                <td>Salesforce</td>
+                <td>CRM Software</td>
+                <td data-value="4.3">4.3</td>
+                <td data-value="18567">18,567</td>
+              </tr>
+              <tr>
+                <td>Slack</td>
+                <td>Team Chat</td>
+                <td data-value="4.6">4.6</td>
+                <td data-value="23891">23,891</td>
+              </tr>
+              <tr>
+                <td>Zoom</td>
+                <td>Video Conferencing</td>
+                <td data-value="4.5">4.5</td>
+                <td data-value="15234">15,234</td>
+              </tr>
+              <tr>
+                <td>Asana</td>
+                <td>Project Management</td>
+                <td data-value="4.4">4.4</td>
+                <td data-value="11890">11,890</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div>
+        <div class="demo-label">Compact Variant</div>
+        <p class="elv-text-xs elv-text-subtle elv-mb-3">Denser spacing for data-heavy views</p>
+        <div class="elv-table-container">
+          <table class="elv-table elv-table--compact">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Jane Doe</td>
+                <td>jane@example.com</td>
+                <td>Admin</td>
+                <td>Active</td>
+              </tr>
+              <tr>
+                <td>John Smith</td>
+                <td>john@example.com</td>
+                <td>User</td>
+                <td>Active</td>
+              </tr>
+              <tr>
+                <td>Alice Johnson</td>
+                <td>alice@example.com</td>
+                <td>User</td>
+                <td>Inactive</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="elv-border-t elv-border-light elv-my-12">
+
   <!-- Tooltips -->
   <div id="tooltips" class="demo-section">
     <h2 class="elv-text-2xl elv-font-bold elv-text-default elv-mb-6">Tooltips</h2>
@@ -3162,6 +3434,57 @@
       if (targetSection) {
         targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
+    });
+  });
+
+  // Table sorting functionality
+  document.querySelectorAll('.elv-table--sortable').forEach(table => {
+    const headers = table.querySelectorAll('th[data-sortable]');
+
+    headers.forEach((header, index) => {
+      header.addEventListener('click', () => {
+        const tbody = table.querySelector('tbody');
+        const rows = Array.from(tbody.querySelectorAll('tr'));
+        const currentSort = header.getAttribute('data-sort');
+        const type = header.getAttribute('data-type') || 'text';
+
+        // Clear all sort indicators
+        headers.forEach(h => h.removeAttribute('data-sort'));
+
+        // Toggle sort direction
+        const newSort = currentSort === 'asc' ? 'desc' : 'asc';
+        header.setAttribute('data-sort', newSort);
+
+        // Sort rows
+        rows.sort((a, b) => {
+          const aCell = a.children[index];
+          const bCell = b.children[index];
+
+          let aVal, bVal;
+
+          if (type === 'number') {
+            // Use data-value if present, otherwise parse text content
+            aVal = parseFloat(aCell.getAttribute('data-value') || aCell.textContent);
+            bVal = parseFloat(bCell.getAttribute('data-value') || bCell.textContent);
+          } else {
+            aVal = aCell.textContent.trim();
+            bVal = bCell.textContent.trim();
+          }
+
+          if (type === 'number') {
+            return newSort === 'asc' ? aVal - bVal : bVal - aVal;
+          } else {
+            if (newSort === 'asc') {
+              return aVal.localeCompare(bVal);
+            } else {
+              return bVal.localeCompare(aVal);
+            }
+          }
+        });
+
+        // Reappend sorted rows
+        rows.forEach(row => tbody.appendChild(row));
+      });
     });
   });
 </script>
