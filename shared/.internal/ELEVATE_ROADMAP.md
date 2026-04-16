@@ -226,6 +226,94 @@ We are! Elevate already uses Tailwind under the hood, and we're reusing those ut
 
 ---
 
+## Component Development Workflow
+
+When adding a new component to the library, follow this process:
+
+### 1. Research Phase
+- [ ] Read DESIGN.md section for component specifications
+- [ ] Check Elevate Lookbook for visual reference
+- [ ] Identify all variants and states needed
+- [ ] Note any accessibility requirements
+
+### 2. Build Phase
+- [ ] Create template file in `/shared/components/templates/[category]/`
+- [ ] Follow naming convention: `component-name.html`
+- [ ] Use search-input.html as structural template
+- [ ] Include all variants and states
+- [ ] Add code snippets for each pattern
+- [ ] Link to DESIGN.md and Lookbook
+
+### 3. Demo Page Integration ⚡️ **REQUIRED**
+- [ ] Update `/shared/components/elevate-demo.html`
+- [ ] Add component section with representative examples
+- [ ] Show key states (default, focus, error, disabled)
+- [ ] Add CSS for component (inline in demo or external)
+- [ ] Add JavaScript if component has interactions
+- [ ] Link to full component template for details
+
+**Why demo page matters:**
+- Human-readable preview for design team
+- Quick visual reference without opening individual templates
+- Validates components work together
+- Central testing ground for consistency
+
+### 4. Documentation Phase
+- [ ] Update COMPONENT_PROGRESS.md with completion status
+- [ ] Add component to ELEVATE_COMPONENTS.md (if applicable)
+- [ ] Include specs table in component template
+- [ ] Document accessibility requirements
+
+### 5. Commit & Ship
+- [ ] Git add component files
+- [ ] Write descriptive commit message
+- [ ] Push to GitHub
+- [ ] Update Next Actions if needed
+
+### Template Structure Standard
+
+Every component template should include:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Component Name</title>
+  <link rel="stylesheet" href="../../../tokens/elevate.css">
+  <link rel="stylesheet" href="../../elevate.css">
+  <!-- Add Material Symbols if needed -->
+  <style>
+    /* Component-specific CSS */
+  </style>
+</head>
+<body>
+  <!-- Header with links to Lookbook & DESIGN.md -->
+  
+  <!-- Section 1: Default variant -->
+  <!-- Section 2: Size variants -->
+  <!-- Section 3: State variants (focus, error, disabled) -->
+  <!-- Section 4: Accessibility notes -->
+  <!-- Section 5: Specs table -->
+  
+  <script>
+    /* Minimal JavaScript if needed */
+  </script>
+</body>
+</html>
+```
+
+### Time Estimates by Component Type
+
+| Type | Estimate | Example |
+|------|----------|---------|
+| Simple (no JS) | 30-60 mins | status_badge, chip |
+| Moderate (minimal JS) | 1-2 hrs | text_input, accordion |
+| Complex (rich JS) | 2-4 hrs | select, modal, table |
+
+**Include demo page update in these estimates** — add 15-20 mins per component.
+
+---
+
 ## Next Actions
 
 1. ✅ **Continue icon port** — Let the agent complete the icon library

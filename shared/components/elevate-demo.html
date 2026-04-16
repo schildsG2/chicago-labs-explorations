@@ -6,6 +6,7 @@
   <title>Elevate Component Library — Demo</title>
   <link rel="stylesheet" href="../tokens/elevate.css">
   <link rel="stylesheet" href="elevate.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined">
   <style>
     body {
       margin: 0;
@@ -32,6 +33,155 @@
       gap: 1rem;
       align-items: center;
       flex-wrap: wrap;
+    }
+
+    /* Form Component Styles — from DESIGN.md specs */
+
+    /* Search Input */
+    .elv-search-input {
+      position: relative;
+      width: 100%;
+      max-width: 400px;
+    }
+    .elv-search-input__field {
+      width: 100%;
+      height: 40px;
+      padding: 0 40px;
+      background: #f2f2f3;
+      border: 1px solid #dfdfe2;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 24px;
+      color: #201f23;
+      transition: border 150ms ease;
+    }
+    .elv-search-input__field::placeholder {
+      color: #6f6d78;
+    }
+    .elv-search-input__field:focus {
+      outline: none;
+      border: 2px solid #5746b2;
+      padding: 0 39px;
+    }
+    .elv-search-input__icon {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #6f6d78;
+      pointer-events: none;
+      font-size: 20px;
+    }
+    .elv-search-input__clear {
+      position: absolute;
+      right: 8px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: transparent;
+      border: none;
+      color: #6f6d78;
+      cursor: pointer;
+      padding: 4px;
+      border-radius: 4px;
+      display: none;
+      font-size: 20px;
+    }
+    .elv-search-input__clear:hover {
+      background: #dfdfe2;
+      color: #201f23;
+    }
+    .elv-search-input--has-value .elv-search-input__clear {
+      display: block;
+    }
+
+    /* Text Input */
+    .elv-text-input {
+      position: relative;
+      width: 100%;
+    }
+    .elv-text-input__field {
+      width: 100%;
+      height: 40px;
+      padding: 0 12px;
+      background: #f2f2f3;
+      border: 1px solid #dfdfe2;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 24px;
+      color: #201f23;
+      transition: border 150ms ease;
+    }
+    .elv-text-input__field::placeholder {
+      color: #6f6d78;
+    }
+    .elv-text-input__field:focus {
+      outline: none;
+      border: 2px solid #5746b2;
+      padding: 0 11px;
+    }
+    .elv-text-input__field--error {
+      border: 2px solid #eb2000;
+      padding: 0 11px;
+    }
+    .elv-text-input__field:disabled {
+      background: #fafafa;
+      color: #b0afb6;
+      cursor: not-allowed;
+    }
+    .elv-text-input__label {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      color: #201f23;
+      margin-bottom: 4px;
+    }
+    .elv-text-input__error {
+      font-size: 12px;
+      font-weight: 600;
+      color: #b21800;
+      margin-top: 4px;
+    }
+
+    /* Textarea */
+    .elv-textarea {
+      width: 100%;
+      min-height: 80px;
+      padding: 12px;
+      background: #f2f2f3;
+      border: 1px solid #dfdfe2;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 24px;
+      color: #201f23;
+      font-family: var(--font-sans);
+      resize: vertical;
+      transition: border 150ms ease;
+    }
+    .elv-textarea::placeholder {
+      color: #6f6d78;
+    }
+    .elv-textarea:focus {
+      outline: none;
+      border: 2px solid #5746b2;
+      padding: 11px;
+    }
+    .elv-textarea--error {
+      border: 2px solid #eb2000;
+      padding: 11px;
+    }
+    .elv-textarea:disabled {
+      background: #fafafa;
+      color: #b0afb6;
+      cursor: not-allowed;
+      resize: none;
+    }
+
+    /* Material Symbols */
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20;
     }
   </style>
 </head>
@@ -258,46 +408,165 @@
 
   <hr class="elv-border-t elv-border-light elv-my-12">
 
-  <!-- Form Elements -->
+  <!-- Form Inputs -->
   <div class="demo-section">
-    <h2 class="elv-text-2xl elv-font-bold elv-text-default elv-mb-6">Form Patterns</h2>
+    <h2 class="elv-text-2xl elv-font-bold elv-text-default elv-mb-6">Form Inputs</h2>
+    <p class="elv-text-sm elv-text-subtle elv-mb-6">
+      All form inputs match DESIGN.md specifications with proper focus, error, and disabled states.
+      <a href="./templates/forms/search-input.html" class="elv-text-link elv-underline">View detailed docs</a>
+    </p>
 
-    <div class="elv-bg-neutral-0 elv-border elv-border-light elv-rounded-md elv-p-6 elv-max-w-lg">
-      <h3 class="elv-text-lg elv-font-semibold elv-text-default elv-mb-4">Sample Form</h3>
-
-      <div class="elv-flex elv-flex-col elv-gap-4">
-        <div>
-          <label class="elv-block elv-text-sm elv-font-semibold elv-text-default elv-mb-1">
-            Email Address
-          </label>
+    <div class="demo-grid">
+      <!-- Search Input -->
+      <div>
+        <div class="demo-label">Search Input</div>
+        <div class="elv-search-input">
+          <span class="material-symbols-outlined elv-search-input__icon">search</span>
           <input
-            type="email"
-            placeholder="you@example.com"
-            class="elv-w-full elv-px-3 elv-py-2 elv-border elv-border-medium elv-rounded-sm elv-text-sm"
+            type="search"
+            class="elv-search-input__field"
+            placeholder="Search software..."
+            aria-label="Search"
+          />
+          <button class="elv-search-input__clear material-symbols-outlined" aria-label="Clear">close</button>
+        </div>
+        <p class="elv-text-xs elv-text-nonessential elv-mt-2">
+          <a href="./templates/forms/search-input.html" class="elv-text-link">Full documentation →</a>
+        </p>
+      </div>
+
+      <!-- Text Input - Default -->
+      <div>
+        <div class="demo-label">Text Input (Default)</div>
+        <div class="elv-text-input" style="max-width: 400px;">
+          <label class="elv-text-input__label" for="demo-name">Full Name</label>
+          <input
+            id="demo-name"
+            type="text"
+            class="elv-text-input__field"
+            placeholder="Enter your name"
           />
         </div>
+      </div>
 
-        <div>
-          <label class="elv-block elv-text-sm elv-font-semibold elv-text-default elv-mb-1">
-            Message
-          </label>
+      <!-- Text Input - Error State -->
+      <div>
+        <div class="demo-label">Text Input (Error State)</div>
+        <div class="elv-text-input" style="max-width: 400px;">
+          <label class="elv-text-input__label" for="demo-email">Email Address</label>
+          <input
+            id="demo-email"
+            type="email"
+            class="elv-text-input__field elv-text-input__field--error"
+            value="invalid-email"
+            aria-invalid="true"
+            aria-describedby="email-error"
+          />
+          <p id="email-error" class="elv-text-input__error" role="alert">
+            Please enter a valid email address
+          </p>
+        </div>
+      </div>
+
+      <!-- Text Input - Disabled -->
+      <div>
+        <div class="demo-label">Text Input (Disabled)</div>
+        <div class="elv-text-input" style="max-width: 400px;">
+          <label class="elv-text-input__label" for="demo-disabled">Account ID</label>
+          <input
+            id="demo-disabled"
+            type="text"
+            class="elv-text-input__field"
+            value="ACC-12345"
+            disabled
+          />
+        </div>
+      </div>
+
+      <!-- Textarea -->
+      <div>
+        <div class="demo-label">Textarea</div>
+        <div style="max-width: 400px;">
+          <label class="elv-text-input__label" for="demo-message">Message</label>
           <textarea
-            rows="3"
+            id="demo-message"
+            class="elv-textarea"
             placeholder="Enter your message..."
-            class="elv-w-full elv-px-3 elv-py-2 elv-border elv-border-medium elv-rounded-sm elv-text-sm"
           ></textarea>
         </div>
+        <p class="elv-text-xs elv-text-nonessential elv-mt-2">
+          <a href="./templates/forms/textarea.html" class="elv-text-link">Full documentation →</a>
+        </p>
+      </div>
 
-        <div>
-          <label class="elv-flex elv-items-center elv-gap-2 elv-text-sm elv-text-default">
-            <input type="checkbox" class="elv-w-4 elv-h-4">
-            <span>I agree to the terms and conditions</span>
-          </label>
+      <!-- Sample Form -->
+      <div>
+        <div class="demo-label">Sample Form</div>
+        <div class="elv-bg-neutral-0 elv-border elv-border-light elv-rounded-md elv-p-6" style="max-width: 500px;">
+          <h3 class="elv-text-lg elv-font-semibold elv-text-default elv-mb-4">Contact Us</h3>
+
+          <div class="elv-flex elv-flex-col elv-gap-4">
+            <div class="elv-text-input">
+              <label class="elv-text-input__label" for="form-name">
+                Name <span class="elv-text-critical">*</span>
+              </label>
+              <input
+                id="form-name"
+                type="text"
+                class="elv-text-input__field"
+                placeholder="Your name"
+                required
+                aria-required="true"
+              />
+            </div>
+
+            <div class="elv-text-input">
+              <label class="elv-text-input__label" for="form-email">
+                Email <span class="elv-text-critical">*</span>
+              </label>
+              <input
+                id="form-email"
+                type="email"
+                class="elv-text-input__field"
+                placeholder="you@example.com"
+                required
+                aria-required="true"
+              />
+            </div>
+
+            <div>
+              <label class="elv-text-input__label" for="form-message">Message</label>
+              <textarea
+                id="form-message"
+                class="elv-textarea"
+                placeholder="How can we help?"
+              ></textarea>
+            </div>
+
+            <div class="elv-flex elv-gap-3 elv-pt-2">
+              <button class="btn btn--primary btn--md">Send Message</button>
+              <button class="btn btn--secondary btn--md">Cancel</button>
+            </div>
+          </div>
         </div>
+      </div>
 
-        <div class="elv-flex elv-gap-3 elv-pt-2">
-          <button class="btn btn--primary btn--md">Submit</button>
-          <button class="btn btn--secondary btn--md">Cancel</button>
+      <!-- Documentation Links -->
+      <div>
+        <div class="demo-label">Component Documentation</div>
+        <div class="elv-flex elv-flex-col elv-gap-2">
+          <a href="./templates/forms/search-input.html" class="elv-text-link elv-text-sm">
+            → Search Input (all variants & states)
+          </a>
+          <a href="./templates/forms/text-input.html" class="elv-text-link elv-text-sm">
+            → Text Input (6 types: text, email, password, number, url, tel)
+          </a>
+          <a href="./templates/forms/textarea.html" class="elv-text-link elv-text-sm">
+            → Textarea (character count, all states)
+          </a>
+          <p class="elv-text-xs elv-text-nonessential elv-mt-2">
+            All components match <a href="../design-system/DESIGN.md" class="elv-text-link">DESIGN.md</a> specifications
+          </p>
         </div>
       </div>
     </div>
@@ -375,6 +644,39 @@
   </div>
 
 </div>
+
+<script>
+  // Search input: show/hide clear button
+  document.querySelectorAll('.elv-search-input__field').forEach(input => {
+    input.addEventListener('input', function() {
+      if (this.value) {
+        this.parentElement.classList.add('elv-search-input--has-value');
+      } else {
+        this.parentElement.classList.remove('elv-search-input--has-value');
+      }
+    });
+  });
+
+  // Search input: clear button functionality
+  document.querySelectorAll('.elv-search-input__clear').forEach(btn => {
+    btn.addEventListener('click', function() {
+      const input = this.previousElementSibling;
+      input.value = '';
+      input.focus();
+      this.parentElement.classList.remove('elv-search-input--has-value');
+    });
+  });
+
+  // Search input: Esc key to clear
+  document.querySelectorAll('.elv-search-input__field').forEach(input => {
+    input.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        this.value = '';
+        this.parentElement.classList.remove('elv-search-input--has-value');
+      }
+    });
+  });
+</script>
 
 </body>
 </html>
