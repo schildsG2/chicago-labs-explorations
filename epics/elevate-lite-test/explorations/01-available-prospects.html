@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Available Prospects - G2 Activate</title>
+
+  <!-- Elevate Design System -->
+  <link rel="stylesheet" href="../../../shared/tokens/elevate.css">
+  <link rel="stylesheet" href="../../../shared/components/elevate.css">
+  <link rel="stylesheet" href="../../../shared/icons/icons.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined">
+
+  <style>
+    /* Material Symbols */
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20;
+    }
+
+    /* Page Layout */
+    body {
+      font-family: var(--font-sans);
+      background: var(--bg-neutral-0);
+      margin: 0;
+      padding: 0;
+    }
+
+    .page-container {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 32px;
+    }
+
+    /* Page Header */
+    .page-header {
+      margin-bottom: 32px;
+    }
+
+    .page-title {
+      font-size: 38px;
+      font-weight: 700;
+      line-height: 1.2;
+      color: #252530;
+      margin: 0 0 8px 0;
+    }
+
+    .page-description {
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 1.5;
+      color: var(--text-subtle);
+      margin: 0 0 12px 0;
+      max-width: 800px;
+    }
+
+    .page-meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .page-link {
+      font-size: 14px;
+      color: var(--text-link);
+      text-decoration: underline;
+    }
+
+    /* Status Badge Styles */
+    .elv-status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      max-height: 24px;
+      padding: 2px 8px;
+      border: 1px solid;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 600;
+      line-height: 16px;
+      width: fit-content;
+    }
+
+    .elv-status-badge--success {
+      background: #d0f6f1;
+      border-color: #13c8af;
+      color: #0f5249;
+    }
+
+    .elv-status-badge__dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      margin-right: 4px;
+    }
+
+    .elv-status-badge__dot--active {
+      background: #13c8af;
+    }
+
+    /* Tab Styles */
+    .elv-tab-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin-bottom: 32px;
+    }
+
+    .elv-tab-list {
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid #c7c6cd;
+    }
+
+    .elv-tab {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      height: 40px;
+      padding: 0 24px;
+      border: none;
+      background: none;
+      cursor: pointer;
+      font-family: var(--font-sans);
+      font-size: 14px;
+      line-height: 20px;
+      font-weight: 600;
+      color: #4c4b53;
+      transition: all 150ms ease;
+      border-bottom: 2px solid transparent;
+      position: relative;
+      white-space: nowrap;
+    }
+
+    .elv-tab:hover {
+      color: #5746b2;
+      border-bottom: 2px solid #5746b2;
+    }
+
+    .elv-tab[aria-selected="true"] {
+      color: #5746b2;
+      border-bottom: 2px solid #5746b2;
+    }
+
+    .elv-tab:focus {
+      outline: 2px solid #5746b2;
+      outline-offset: -2px;
+      z-index: 1;
+    }
+
+    /* Main Content Layout */
+    .content-layout {
+      display: flex;
+      gap: 24px;
+    }
+
+    /* Filters Sidebar */
+    .filters-sidebar {
+      width: 300px;
+      flex-shrink: 0;
+    }
+
+    .filter-section {
+      margin-bottom: 24px;
+    }
+
+    .filter-section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .filter-section-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-default);
+    }
+
+    .filter-clear-btn {
+      background: none;
+      border: none;
+      color: var(--text-link);
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: underline;
+      padding: 0;
+    }
+
+    .filter-clear-btn:hover {
+      color: #442f99;
+    }
+
+    .filter-field {
+      margin-bottom: 12px;
+    }
+
+    .filter-label {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-default);
+      margin-bottom: 4px;
+    }
+
+    /* Text Input Styles */
+    .elv-text-input {
+      position: relative;
+      width: 100%;
+    }
+
+    .elv-text-input__field {
+      width: 100%;
+      height: 40px;
+      padding: 0 12px;
+      background: #f2f2f3;
+      border: 1px solid #dfdfe2;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 24px;
+      color: #201f23;
+      transition: border 150ms ease;
+    }
+
+    .elv-text-input__field::placeholder {
+      color: #6f6d78;
+    }
+
+    .elv-text-input__field:focus {
+      outline: none;
+      border: 2px solid #5746b2;
+      padding: 0 11px;
+    }
+
+    /* Range Input Group */
+    .range-input-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .range-input-group .elv-text-input {
+      flex: 1;
+    }
+
+    .range-separator {
+      font-size: 14px;
+      color: var(--text-subtle);
+    }
+
+    /* Main Content Area */
+    .main-content {
+      flex: 1;
+      min-width: 0;
+    }
+
+    /* Sticky Header */
+    .sticky-header {
+      position: sticky;
+      top: 0;
+      background: white;
+      z-index: 10;
+      padding: 16px 24px;
+      border: 1px solid #dfdfe2;
+      border-radius: 8px;
+      margin-bottom: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .credits-info {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .credit-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-default);
+    }
+
+    .credit-icon {
+      font-size: 16px;
+      color: #ffcf29;
+    }
+
+    .credit-total--disabled {
+      color: var(--text-nonessential);
+    }
+
+    /* Table Container */
+    .elv-table-container {
+      width: 100%;
+      overflow-x: auto;
+      border: 1px solid #dfdfe2;
+      border-radius: 8px;
+      margin-bottom: 24px;
+    }
+
+    /* Table Styles */
+    .elv-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #ffffff;
+    }
+
+    .elv-table thead {
+      background: #fafafa;
+    }
+
+    .elv-table th {
+      padding: 12px 16px;
+      text-align: left;
+      font-size: 14px;
+      line-height: 20px;
+      font-weight: 600;
+      color: #4c4b53;
+      border-bottom: 1px solid #dfdfe2;
+      white-space: nowrap;
+    }
+
+    .elv-table th:first-child {
+      padding-left: 24px;
+    }
+
+    .elv-table th:last-child {
+      padding-right: 24px;
+    }
+
+    .elv-table tbody tr {
+      height: 48px;
+      border-bottom: 1px solid #dfdfe2;
+      transition: background-color 150ms ease;
+    }
+
+    .elv-table tbody tr:last-child {
+      border-bottom: none;
+    }
+
+    .elv-table tbody tr:nth-child(even) {
+      background: #fcfcfd;
+    }
+
+    .elv-table tbody tr:hover {
+      background: #f2f2f3;
+    }
+
+    .elv-table td {
+      padding: 12px 16px;
+      font-size: 16px;
+      line-height: 24px;
+      font-weight: 400;
+      color: var(--text-default);
+    }
+
+    .elv-table td:first-child {
+      padding-left: 24px;
+    }
+
+    .elv-table td:last-child {
+      padding-right: 24px;
+    }
+
+    /* Column Widths */
+    .col-checkbox { width: 56px; }
+    .col-credits { width: 117px; }
+    .col-company { width: 166.5px; }
+    .col-industry { width: 133px; }
+    .col-location { width: 140px; }
+    .col-employees { width: 174px; }
+    .col-revenue { width: 166.5px; }
+    .col-actions { width: 107px; }
+
+    /* Right-align numeric content */
+    .text-right {
+      text-align: right;
+    }
+
+    /* Sortable headers */
+    .elv-table--sortable th[data-sortable] {
+      cursor: pointer;
+      user-select: none;
+      position: relative;
+      padding-right: 32px;
+    }
+
+    .elv-table--sortable th[data-sortable]:hover {
+      background: #f2f2f3;
+    }
+
+    .elv-table--sortable th[data-sortable]::after {
+      content: '↕';
+      position: absolute;
+      right: 12px;
+      opacity: 0.3;
+      font-size: 14px;
+    }
+
+    .elv-table--sortable th[data-sortable][data-sort="asc"]::after {
+      content: '↑';
+      opacity: 1;
+      color: #5746b2;
+    }
+
+    .elv-table--sortable th[data-sortable][data-sort="desc"]::after {
+      content: '↓';
+      opacity: 1;
+      color: #5746b2;
+    }
+
+    /* Checkbox */
+    .elv-checkbox {
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+    }
+
+    /* Action Link */
+    .action-link {
+      font-size: 14px;
+      color: var(--text-link);
+      text-decoration: underline;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 0;
+      font-family: inherit;
+    }
+
+    .action-link:hover {
+      color: #442f99;
+    }
+
+    /* Pagination Styles */
+    .elv-pagination {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      justify-content: center;
+      width: 100%;
+      margin-top: 24px;
+    }
+
+    .elv-pagination__btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 40px;
+      height: 40px;
+      padding: 8px 12px;
+      background: transparent;
+      border: 1px solid var(--border-light);
+      border-radius: 6px;
+      font-family: var(--font-sans);
+      font-size: 14px;
+      line-height: 20px;
+      font-weight: 600;
+      color: var(--text-default);
+      text-decoration: none;
+      cursor: pointer;
+      transition: background-color 150ms ease, border-color 150ms ease;
+    }
+
+    .elv-pagination__btn:hover:not(:disabled):not(.elv-pagination__btn--current) {
+      background: var(--bg-neutral-10);
+    }
+
+    .elv-pagination__btn:focus {
+      outline: 2px solid var(--color-purple-100);
+      outline-offset: 2px;
+    }
+
+    .elv-pagination__btn:disabled {
+      cursor: not-allowed;
+      background: var(--bg-neutral-5);
+      color: var(--text-nonessential);
+    }
+
+    .elv-pagination__btn--current {
+      background: #ebe9f6;
+      border-color: #ebe9f6;
+      color: #5746b2;
+      cursor: default;
+    }
+
+    .elv-pagination__btn--nav .material-symbols-outlined {
+      font-size: 20px;
+    }
+
+    .elv-pagination__ellipsis {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 40px;
+      height: 40px;
+      padding: 8px 12px;
+      color: var(--text-nonessential);
+      font-size: 14px;
+      font-weight: 600;
+      user-select: none;
+    }
+  </style>
+</head>
+<body>
+
+<div elv class="page-container">
+
+  <!-- Page Header -->
+  <div class="page-header">
+    <h1 class="page-title">G2 Activate</h1>
+    <p class="page-description">
+      Transform Buyer Intent data into ready-to-use leads, making it easier to act on high-intent prospects without requiring extra tools or setup.
+    </p>
+    <div class="page-meta">
+      <span class="elv-status-badge elv-status-badge--success">
+        <span class="elv-status-badge__dot elv-status-badge__dot--active"></span>
+        Active
+      </span>
+      <a href="#" class="page-link">Manage Plan</a>
+    </div>
+  </div>
+
+  <!-- Tabs -->
+  <div class="elv-tab-group" id="main-tabs">
+    <div class="elv-tab-list" role="tablist" aria-label="G2 Activate sections">
+      <button class="elv-tab" role="tab" aria-selected="true" aria-controls="tab-panel-1" id="tab-1">
+        Available Prospects
+      </button>
+      <button class="elv-tab" role="tab" aria-selected="false" aria-controls="tab-panel-2" id="tab-2" tabindex="-1">
+        Unlocked Prospects
+      </button>
+      <button class="elv-tab" role="tab" aria-selected="false" aria-controls="tab-panel-3" id="tab-3" tabindex="-1">
+        Emails
+      </button>
+    </div>
+  </div>
+
+  <!-- Main Content Layout -->
+  <div class="content-layout">
+
+    <!-- Filters Sidebar -->
+    <aside class="filters-sidebar">
+
+      <!-- Company Filters -->
+      <div class="filter-section">
+        <div class="filter-section-header">
+          <h2 class="filter-section-title">Company Filters</h2>
+          <button class="filter-clear-btn" type="button">Clear All</button>
+        </div>
+
+        <div class="filter-field">
+          <label class="filter-label" for="employee-count-min">Employee Count Range</label>
+          <div class="range-input-group">
+            <div class="elv-text-input">
+              <input
+                type="number"
+                id="employee-count-min"
+                class="elv-text-input__field"
+                placeholder="Min"
+                aria-label="Minimum employee count"
+              />
+            </div>
+            <span class="range-separator">to</span>
+            <div class="elv-text-input">
+              <input
+                type="number"
+                id="employee-count-max"
+                class="elv-text-input__field"
+                placeholder="Max"
+                aria-label="Maximum employee count"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="filter-field">
+          <label class="filter-label" for="headquarters-location">Company Headquarters Location</label>
+          <div class="elv-text-input">
+            <input
+              type="text"
+              id="headquarters-location"
+              class="elv-text-input__field"
+              placeholder="Search location..."
+              aria-label="Company headquarters location"
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact Filters -->
+      <div class="filter-section">
+        <div class="filter-section-header">
+          <h2 class="filter-section-title">Contact Filters</h2>
+          <button class="filter-clear-btn" type="button">Clear All</button>
+        </div>
+
+        <div class="filter-field">
+          <label class="filter-label" for="departments">Departments</label>
+          <div class="elv-text-input">
+            <input
+              type="text"
+              id="departments"
+              class="elv-text-input__field"
+              placeholder="Search departments..."
+              aria-label="Departments"
+            />
+          </div>
+        </div>
+
+        <div class="filter-field">
+          <label class="filter-label" for="management-levels">Management Levels</label>
+          <div class="elv-text-input">
+            <input
+              type="text"
+              id="management-levels"
+              class="elv-text-input__field"
+              placeholder="Search levels..."
+              aria-label="Management levels"
+            />
+          </div>
+        </div>
+
+        <div class="filter-field">
+          <label class="filter-label" for="job-functions">Job Functions</label>
+          <div class="elv-text-input">
+            <input
+              type="text"
+              id="job-functions"
+              class="elv-text-input__field"
+              placeholder="Search functions..."
+              aria-label="Job functions"
+            />
+          </div>
+        </div>
+      </div>
+
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+
+      <!-- Sticky Header with Credits and Button -->
+      <div class="sticky-header">
+        <div class="credits-info">
+          <div class="credit-item">
+            <span class="credit-icon material-symbols-outlined">star</span>
+            <span>My credits: 5,000</span>
+          </div>
+          <div class="credit-item credit-total--disabled">
+            <span>Total: 0 credits</span>
+          </div>
+        </div>
+        <button class="btn btn--primary btn--md" disabled>
+          Unlock Selected (0)
+        </button>
+      </div>
+
+      <!-- Table -->
+      <div class="elv-table-container">
+        <table class="elv-table elv-table--sortable" id="prospects-table">
+          <thead>
+            <tr>
+              <th class="col-checkbox">
+                <input type="checkbox" class="elv-checkbox" aria-label="Select all prospects" id="select-all">
+              </th>
+              <th class="col-credits text-right" data-sortable data-type="number">Credits</th>
+              <th class="col-company">Company Name</th>
+              <th class="col-industry">Industry</th>
+              <th class="col-location">Location</th>
+              <th class="col-employees text-right" data-sortable data-type="number">Employees</th>
+              <th class="col-revenue text-right" data-sortable data-type="number">Revenue</th>
+              <th class="col-actions">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><input type="checkbox" class="elv-checkbox" aria-label="Select Acme Corp"></td>
+              <td class="text-right" data-value="50">50</td>
+              <td>Acme Corp</td>
+              <td>Technology</td>
+              <td>San Francisco, CA</td>
+              <td class="text-right" data-value="250">250</td>
+              <td class="text-right" data-value="50000000">$50M</td>
+              <td><button class="action-link">View</button></td>
+            </tr>
+            <tr>
+              <td><input type="checkbox" class="elv-checkbox" aria-label="Select TechFlow Solutions"></td>
+              <td class="text-right" data-value="75">75</td>
+              <td>TechFlow Solutions</td>
+              <td>Software</td>
+              <td>Austin, TX</td>
+              <td class="text-right" data-value="500">500</td>
+              <td class="text-right" data-value="120000000">$120M</td>
+              <td><button class="action-link">View</button></td>
+            </tr>
+            <tr>
+              <td><input type="checkbox" class="elv-checkbox" aria-label="Select DataViz Inc"></td>
+              <td class="text-right" data-value="100">100</td>
+              <td>DataViz Inc</td>
+              <td>Analytics</td>
+              <td>New York, NY</td>
+              <td class="text-right" data-value="1200">1,200</td>
+              <td class="text-right" data-value="250000000">$250M</td>
+              <td><button class="action-link">View</button></td>
+            </tr>
+            <tr>
+              <td><input type="checkbox" class="elv-checkbox" aria-label="Select CloudBridge Systems"></td>
+              <td class="text-right" data-value="60">60</td>
+              <td>CloudBridge Systems</td>
+              <td>Cloud Services</td>
+              <td>Seattle, WA</td>
+              <td class="text-right" data-value="350">350</td>
+              <td class="text-right" data-value="80000000">$80M</td>
+              <td><button class="action-link">View</button></td>
+            </tr>
+            <tr>
+              <td><input type="checkbox" class="elv-checkbox" aria-label="Select InnovateLabs"></td>
+              <td class="text-right" data-value="85">85</td>
+              <td>InnovateLabs</td>
+              <td>Research</td>
+              <td>Boston, MA</td>
+              <td class="text-right" data-value="180">180</td>
+              <td class="text-right" data-value="35000000">$35M</td>
+              <td><button class="action-link">View</button></td>
+            </tr>
+            <tr>
+              <td><input type="checkbox" class="elv-checkbox" aria-label="Select MarketPro Analytics"></td>
+              <td class="text-right" data-value="70">70</td>
+              <td>MarketPro Analytics</td>
+              <td>Marketing</td>
+              <td>Chicago, IL</td>
+              <td class="text-right" data-value="420">420</td>
+              <td class="text-right" data-value="95000000">$95M</td>
+              <td><button class="action-link">View</button></td>
+            </tr>
+            <tr>
+              <td><input type="checkbox" class="elv-checkbox" aria-label="Select SecureNet Technologies"></td>
+              <td class="text-right" data-value="90">90</td>
+              <td>SecureNet Technologies</td>
+              <td>Cybersecurity</td>
+              <td>Washington, DC</td>
+              <td class="text-right" data-value="650">650</td>
+              <td class="text-right" data-value="150000000">$150M</td>
+              <td><button class="action-link">View</button></td>
+            </tr>
+            <tr>
+              <td><input type="checkbox" class="elv-checkbox" aria-label="Select NextGen Software"></td>
+              <td class="text-right" data-value="55">55</td>
+              <td>NextGen Software</td>
+              <td>SaaS</td>
+              <td>Denver, CO</td>
+              <td class="text-right" data-value="290">290</td>
+              <td class="text-right" data-value="60000000">$60M</td>
+              <td><button class="action-link">View</button></td>
+            </tr>
+            <tr>
+              <td><input type="checkbox" class="elv-checkbox" aria-label="Select FinTech Innovations"></td>
+              <td class="text-right" data-value="110">110</td>
+              <td>FinTech Innovations</td>
+              <td>Finance</td>
+              <td>Charlotte, NC</td>
+              <td class="text-right" data-value="800">800</td>
+              <td class="text-right" data-value="200000000">$200M</td>
+              <td><button class="action-link">View</button></td>
+            </tr>
+            <tr>
+              <td><input type="checkbox" class="elv-checkbox" aria-label="Select HealthTech Partners"></td>
+              <td class="text-right" data-value="95">95</td>
+              <td>HealthTech Partners</td>
+              <td>Healthcare IT</td>
+              <td>Minneapolis, MN</td>
+              <td class="text-right" data-value="550">550</td>
+              <td class="text-right" data-value="130000000">$130M</td>
+              <td><button class="action-link">View</button></td>
+            </tr>
+            <tr>
+              <td><input type="checkbox" class="elv-checkbox" aria-label="Select EduTech Solutions"></td>
+              <td class="text-right" data-value="65">65</td>
+              <td>EduTech Solutions</td>
+              <td>Education</td>
+              <td>Portland, OR</td>
+              <td class="text-right" data-value="220">220</td>
+              <td class="text-right" data-value="45000000">$45M</td>
+              <td><button class="action-link">View</button></td>
+            </tr>
+            <tr>
+              <td><input type="checkbox" class="elv-checkbox" aria-label="Select RetailPro Systems"></td>
+              <td class="text-right" data-value="80">80</td>
+              <td>RetailPro Systems</td>
+              <td>Retail Tech</td>
+              <td>Atlanta, GA</td>
+              <td class="text-right" data-value="480">480</td>
+              <td class="text-right" data-value="110000000">$110M</td>
+              <td><button class="action-link">View</button></td>
+            </tr>
+            <tr>
+              <td><input type="checkbox" class="elv-checkbox" aria-label="Select LogisticsHub"></td>
+              <td class="text-right" data-value="70">70</td>
+              <td>LogisticsHub</td>
+              <td>Logistics</td>
+              <td>Dallas, TX</td>
+              <td class="text-right" data-value="390">390</td>
+              <td class="text-right" data-value="85000000">$85M</td>
+              <td><button class="action-link">View</button></td>
+            </tr>
+            <tr>
+              <td><input type="checkbox" class="elv-checkbox" aria-label="Select MediaStream Digital"></td>
+              <td class="text-right" data-value="75">75</td>
+              <td>MediaStream Digital</td>
+              <td>Media</td>
+              <td>Los Angeles, CA</td>
+              <td class="text-right" data-value="320">320</td>
+              <td class="text-right" data-value="70000000">$70M</td>
+              <td><button class="action-link">View</button></td>
+            </tr>
+            <tr>
+              <td><input type="checkbox" class="elv-checkbox" aria-label="Select EnergyTech Corp"></td>
+              <td class="text-right" data-value="100">100</td>
+              <td>EnergyTech Corp</td>
+              <td>Energy</td>
+              <td>Houston, TX</td>
+              <td class="text-right" data-value="900">900</td>
+              <td class="text-right" data-value="300000000">$300M</td>
+              <td><button class="action-link">View</button></td>
+            </tr>
+            <tr>
+              <td><input type="checkbox" class="elv-checkbox" aria-label="Select AgriData Systems"></td>
+              <td class="text-right" data-value="60">60</td>
+              <td>AgriData Systems</td>
+              <td>Agriculture Tech</td>
+              <td>Des Moines, IA</td>
+              <td class="text-right" data-value="200">200</td>
+              <td class="text-right" data-value="40000000">$40M</td>
+              <td><button class="action-link">View</button></td>
+            </tr>
+            <tr>
+              <td><input type="checkbox" class="elv-checkbox" aria-label="Select TransportConnect"></td>
+              <td class="text-right" data-value="85">85</td>
+              <td>TransportConnect</td>
+              <td>Transportation</td>
+              <td>Phoenix, AZ</td>
+              <td class="text-right" data-value="440">440</td>
+              <td class="text-right" data-value="105000000">$105M</td>
+              <td><button class="action-link">View</button></td>
+            </tr>
+            <tr>
+              <td><input type="checkbox" class="elv-checkbox" aria-label="Select BuildTech Solutions"></td>
+              <td class="text-right" data-value="70">70</td>
+              <td>BuildTech Solutions</td>
+              <td>Construction Tech</td>
+              <td>Nashville, TN</td>
+              <td class="text-right" data-value="310">310</td>
+              <td class="text-right" data-value="65000000">$65M</td>
+              <td><button class="action-link">View</button></td>
+            </tr>
+            <tr>
+              <td><input type="checkbox" class="elv-checkbox" aria-label="Select InsureTech Group"></td>
+              <td class="text-right" data-value="90">90</td>
+              <td>InsureTech Group</td>
+              <td>Insurance Tech</td>
+              <td>Hartford, CT</td>
+              <td class="text-right" data-value="720">720</td>
+              <td class="text-right" data-value="180000000">$180M</td>
+              <td><button class="action-link">View</button></td>
+            </tr>
+            <tr>
+              <td><input type="checkbox" class="elv-checkbox" aria-label="Select RealEstate Analytics"></td>
+              <td class="text-right" data-value="65">65</td>
+              <td>RealEstate Analytics</td>
+              <td>Real Estate Tech</td>
+              <td>Miami, FL</td>
+              <td class="text-right" data-value="260">260</td>
+              <td class="text-right" data-value="55000000">$55M</td>
+              <td><button class="action-link">View</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Pagination -->
+      <nav class="elv-pagination" role="navigation" aria-label="Prospects pagination">
+        <button class="elv-pagination__btn elv-pagination__btn--nav" aria-label="Previous page" disabled>
+          <span class="material-symbols-outlined">chevron_left</span>
+        </button>
+        <button class="elv-pagination__btn elv-pagination__btn--current" aria-label="Page 1" aria-current="page">1</button>
+        <button class="elv-pagination__btn" aria-label="Go to page 2">2</button>
+        <button class="elv-pagination__btn" aria-label="Go to page 3">3</button>
+        <button class="elv-pagination__btn" aria-label="Go to page 4">4</button>
+        <button class="elv-pagination__btn" aria-label="Go to page 5">5</button>
+        <button class="elv-pagination__btn elv-pagination__btn--nav" aria-label="Next page">
+          <span class="material-symbols-outlined">chevron_right</span>
+        </button>
+      </nav>
+
+    </main>
+
+  </div>
+
+</div>
+
+<script>
+  // Tab functionality
+  class TabGroup {
+    constructor(container) {
+      this.container = container;
+      this.tabList = container.querySelector('[role="tablist"]');
+      this.tabs = Array.from(this.tabList.querySelectorAll('[role="tab"]'));
+      this.init();
+    }
+
+    init() {
+      this.tabs.forEach((tab, index) => {
+        tab.addEventListener('click', () => this.selectTab(index));
+      });
+      this.tabList.addEventListener('keydown', (e) => this.handleKeydown(e));
+    }
+
+    selectTab(index) {
+      this.tabs.forEach((tab, i) => {
+        const isSelected = i === index;
+        tab.setAttribute('aria-selected', isSelected);
+        tab.setAttribute('tabindex', isSelected ? '0' : '-1');
+      });
+      this.tabs[index].focus();
+    }
+
+    handleKeydown(e) {
+      const currentIndex = this.tabs.findIndex(tab => tab === document.activeElement);
+      if (currentIndex === -1) return;
+
+      let nextIndex = currentIndex;
+
+      switch(e.key) {
+        case 'ArrowLeft':
+          e.preventDefault();
+          nextIndex = currentIndex > 0 ? currentIndex - 1 : this.tabs.length - 1;
+          break;
+        case 'ArrowRight':
+          e.preventDefault();
+          nextIndex = currentIndex < this.tabs.length - 1 ? currentIndex + 1 : 0;
+          break;
+        case 'Home':
+          e.preventDefault();
+          nextIndex = 0;
+          break;
+        case 'End':
+          e.preventDefault();
+          nextIndex = this.tabs.length - 1;
+          break;
+        default:
+          return;
+      }
+
+      this.selectTab(nextIndex);
+    }
+  }
+
+  // Initialize tabs
+  document.addEventListener('DOMContentLoaded', () => {
+    new TabGroup(document.getElementById('main-tabs'));
+
+    // Sortable table functionality
+    const table = document.getElementById('prospects-table');
+    const headers = table.querySelectorAll('th[data-sortable]');
+
+    headers.forEach((header, index) => {
+      header.addEventListener('click', () => {
+        const tbody = table.querySelector('tbody');
+        const rows = Array.from(tbody.querySelectorAll('tr'));
+        const currentSort = header.getAttribute('data-sort');
+        const type = header.getAttribute('data-type') || 'text';
+
+        // Clear all sort indicators
+        headers.forEach(h => h.removeAttribute('data-sort'));
+
+        // Toggle sort direction
+        const newSort = currentSort === 'asc' ? 'desc' : 'asc';
+        header.setAttribute('data-sort', newSort);
+
+        // Get column index (accounting for checkbox column)
+        const columnIndex = Array.from(header.parentElement.children).indexOf(header);
+
+        // Sort rows
+        rows.sort((a, b) => {
+          const aCell = a.children[columnIndex];
+          const bCell = b.children[columnIndex];
+
+          let aVal, bVal;
+
+          if (type === 'number') {
+            aVal = parseFloat(aCell.getAttribute('data-value') || aCell.textContent.replace(/[^0-9.-]/g, ''));
+            bVal = parseFloat(bCell.getAttribute('data-value') || bCell.textContent.replace(/[^0-9.-]/g, ''));
+          } else {
+            aVal = aCell.textContent.trim();
+            bVal = bCell.textContent.trim();
+          }
+
+          if (type === 'number') {
+            return newSort === 'asc' ? aVal - bVal : bVal - aVal;
+          } else {
+            if (newSort === 'asc') {
+              return aVal.localeCompare(bVal);
+            } else {
+              return bVal.localeCompare(aVal);
+            }
+          }
+        });
+
+        // Reappend sorted rows
+        rows.forEach(row => tbody.appendChild(row));
+      });
+    });
+
+    // Select all checkbox functionality
+    const selectAll = document.getElementById('select-all');
+    const rowCheckboxes = document.querySelectorAll('tbody .elv-checkbox');
+
+    selectAll.addEventListener('change', (e) => {
+      rowCheckboxes.forEach(cb => cb.checked = e.target.checked);
+    });
+  });
+</script>
+
+</body>
+</html>
