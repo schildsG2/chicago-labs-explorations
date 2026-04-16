@@ -74,11 +74,11 @@
           <path d="M15.9375 17L10.9583 12.0208C10.5417 12.3264 10.0848 12.566 9.58767 12.7396C9.09056 12.9132 8.56158 13 8.00073 13C6.61135 13 5.43056 12.5139 4.45833 11.5417C3.48611 10.5694 3 9.38889 3 8C3 6.61111 3.48611 5.43056 4.45833 4.45833C5.43056 3.48611 6.61111 3 8 3C9.38889 3 10.5694 3.48611 11.5417 4.45833C12.5139 5.43056 13 6.61135 13 8.00073C13 8.56158 12.9132 9.09056 12.7396 9.58767C12.566 10.0848 12.3264 10.5417 12.0208 10.9583L17 15.9375L15.9375 17ZM8 11.5C8.97222 11.5 9.79861 11.1597 10.4792 10.4792C11.1597 9.79861 11.5 8.97222 11.5 8C11.5 7.02778 11.1597 6.20139 10.4792 5.52083C9.79861 4.84028 8.97222 4.5 8 4.5C7.02778 4.5 6.20139 4.84028 5.52083 5.52083C4.84028 6.20139 4.5 7.02778 4.5 8C4.5 8.97222 4.84028 9.79861 5.52083 10.4792C6.20139 11.1597 7.02778 11.5 8 11.5Z"/>
         </svg>
         <input
-          type="text"
+          type="search"
           id="searchInput"
           placeholder="Search epics and research..."
-          class="elv-w-full elv-pl-10 elv-pr-3 elv-py-2 elv-border elv-border-medium elv-rounded-sm elv-text-sm elv-bg-neutral-0 elv-text-default"
-          style="font-family: var(--font-sans); outline: none; height: 36px;"
+          aria-label="Search epics and research"
+          class="elv-input elv-w-full elv-h-9 elv-pl-10 elv-rounded-full elv-text-sm"
         />
       </div>
 
@@ -289,7 +289,7 @@
     <!-- Research Section -->
     <div class="elv-mb-4">
       <h2 class="elv-text-lg elv-font-bold elv-text-default">
-        Research <span class="elv-text-lg elv-font-normal elv-text-subtle" id="researchCount">(4)</span>
+        Research <span class="elv-text-lg elv-font-normal elv-text-subtle" id="researchCount">(5)</span>
       </h2>
     </div>
 
@@ -352,7 +352,7 @@
       <!-- Vercel Prototype Hosting -->
       <a href="./research/spikes/vercel-prototype-hosting-spike.md"
          class="research-row elv-block elv-bg-neutral-0 elv-border elv-border-light elv-rounded-md elv-px-5 elv-py-4 elv-no-underline elv-transition-all hover:elv-shadow-2 hover:elv-border-medium"
-         data-tags="g2-activate agent-marketplace"
+         data-tags="all"
          data-date="2026-04-15"
          data-name="Vercel Prototype Hosting"
          style="text-decoration: none;">
@@ -363,22 +363,6 @@
           <span class="elv-text-sm elv-font-semibold elv-text-default elv-flex-1">
             Vercel Prototype Hosting — evaluation &amp; setup
           </span>
-          <div class="elv-flex elv-gap-2">
-            <div
-              class="tag-chip elv-inline-flex elv-w-fit elv-items-center elv-justify-center elv-ease-in-out elv-duration-150 elv-cursor-pointer elv-bg-neutral-10 elv-text-neutral hover:elv-bg-primary-30 hover:elv-text-primary data-[selected=true]:elv-bg-primary-20 data-[selected=true]:elv-text-primary elv-rounded-xs elv-h-6 elv-p-0.5"
-              data-tag="g2-activate"
-              data-selected="false"
-              onclick="event.preventDefault(); event.stopPropagation(); window.filterByTag('g2-activate');">
-              <span class="elv-text-sm elv-font-medium elv-px-0.5 elv-text-inherit elv-cursor-pointer elv-whitespace-nowrap">G2 Activate</span>
-            </div>
-            <div
-              class="tag-chip elv-inline-flex elv-w-fit elv-items-center elv-justify-center elv-ease-in-out elv-duration-150 elv-cursor-pointer elv-bg-neutral-10 elv-text-neutral hover:elv-bg-primary-30 hover:elv-text-primary data-[selected=true]:elv-bg-primary-20 data-[selected=true]:elv-text-primary elv-rounded-xs elv-h-6 elv-p-0.5"
-              data-tag="agent-marketplace"
-              data-selected="false"
-              onclick="event.preventDefault(); event.stopPropagation(); window.filterByTag('agent-marketplace');">
-              <span class="elv-text-sm elv-font-medium elv-px-0.5 elv-text-inherit elv-cursor-pointer elv-whitespace-nowrap">Agent Marketplace</span>
-            </div>
-          </div>
           <span class="elv-text-2xs elv-text-nonessential elv-whitespace-nowrap">Apr 15, 2026</span>
         </div>
       </a>
@@ -406,6 +390,24 @@
               <span class="elv-text-sm elv-font-medium elv-px-0.5 elv-text-inherit elv-cursor-pointer elv-whitespace-nowrap">Agent Marketplace</span>
             </div>
           </div>
+          <span class="elv-text-2xs elv-text-nonessential elv-whitespace-nowrap">Apr 16, 2026</span>
+        </div>
+      </a>
+
+      <!-- UI Change Monitoring -->
+      <a href="./research/spikes/ui-change-monitoring.md"
+         class="research-row elv-block elv-bg-neutral-0 elv-border elv-border-light elv-rounded-md elv-px-5 elv-py-4 elv-no-underline elv-transition-all hover:elv-shadow-2 hover:elv-border-medium"
+         data-tags="all"
+         data-date="2026-04-16"
+         data-name="Automated UI Change Monitoring"
+         style="text-decoration: none;">
+        <div class="elv-flex elv-items-center elv-gap-4">
+          <span class="elv-text-sm elv-font-semibold elv-text-subtle elv-whitespace-nowrap">
+            Spike
+          </span>
+          <span class="elv-text-sm elv-font-semibold elv-text-default elv-flex-1">
+            Automated UI Change Monitoring — weekly digest for design team awareness
+          </span>
           <span class="elv-text-2xs elv-text-nonessential elv-whitespace-nowrap">Apr 16, 2026</span>
         </div>
       </a>
