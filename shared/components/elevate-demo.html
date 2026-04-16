@@ -1261,6 +1261,169 @@
 
   <hr class="elv-border-t elv-border-light elv-my-12">
 
+
+  <!-- Button Groups -->
+  <div class="demo-section">
+    <h2 class="elv-text-2xl elv-font-bold elv-text-default elv-mb-6">Button Groups</h2>
+    <p class="elv-text-sm elv-text-subtle elv-mb-4">
+      Arrange buttons with visual connection. Most common: Primary + Tertiary.
+      <a href="./templates/moderate/button-group.html" class="elv-text-link elv-underline">View detailed docs</a>
+    </p>
+
+    <div class="demo-grid">
+      <div>
+        <div class="demo-label">Horizontal (Default)</div>
+        <div class="elv-button-group elv-button-group--horizontal">
+          <button class="btn btn--primary btn--md">Save</button>
+          <button class="btn btn--tertiary btn--md">Cancel</button>
+        </div>
+      </div>
+
+      <div>
+        <div class="demo-label">Three Buttons</div>
+        <div class="elv-button-group elv-button-group--horizontal">
+          <button class="btn btn--primary btn--md">Save</button>
+          <button class="btn btn--secondary btn--md">Save as draft</button>
+          <button class="btn btn--tertiary btn--md">Cancel</button>
+        </div>
+      </div>
+
+      <div>
+        <div class="demo-label">Connected Style</div>
+        <div class="elv-button-group elv-button-group--horizontal elv-button-group--connected">
+          <button class="btn btn--secondary btn--md">Yes</button>
+          <button class="btn btn--secondary btn--md">No</button>
+          <button class="btn btn--secondary btn--md">Maybe</button>
+        </div>
+      </div>
+
+      <div>
+        <div class="demo-label">Vertical Stack</div>
+        <div class="elv-button-group elv-button-group--vertical">
+          <button class="btn btn--primary btn--md">Primary action</button>
+          <button class="btn btn--secondary btn--md">Secondary action</button>
+          <button class="btn btn--tertiary btn--md">Cancel</button>
+        </div>
+      </div>
+
+      <div>
+        <div class="demo-label">Tight Spacing (8px)</div>
+        <div class="elv-button-group elv-button-group--horizontal elv-button-group--tight">
+          <button class="btn btn--secondary btn--sm">Edit</button>
+          <button class="btn btn--secondary btn--sm">Delete</button>
+          <button class="btn btn--secondary btn--sm">Share</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="elv-border-t elv-border-light elv-my-12">
+
+  <!-- Content Cards -->
+  <div class="demo-section">
+    <h2 class="elv-text-2xl elv-font-bold elv-text-default elv-mb-6">Content Cards</h2>
+    <p class="elv-text-sm elv-text-subtle elv-mb-4">
+      Structured card layout pattern with header, body, and optional footer.
+      <a href="./templates/moderate/content-card.html" class="elv-text-link elv-underline">View detailed docs</a>
+    </p>
+
+    <div class="demo-grid">
+      <div>
+        <div class="demo-label">Basic Card (Bordered)</div>
+        <div class="elv-content-card elv-content-card--bordered" style="max-width: 360px;">
+          <div class="elv-content-card__header">
+            <div class="elv-content-card__header-content">
+              <h3 class="elv-content-card__title">Card Title</h3>
+            </div>
+          </div>
+          <div class="elv-content-card__body">
+            <p class="elv-text-sm elv-text-default">
+              Card description with supporting text. Border defines edge, no shadow.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="demo-label">With Subtitle</div>
+        <div class="elv-content-card elv-content-card--bordered" style="max-width: 360px;">
+          <div class="elv-content-card__header">
+            <div class="elv-content-card__header-content">
+              <h3 class="elv-content-card__title">Account Settings</h3>
+              <p class="elv-content-card__subtitle">Manage your profile</p>
+            </div>
+          </div>
+          <div class="elv-content-card__body">
+            <p class="elv-text-sm elv-text-default">
+              Update account information and preferences.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="demo-label">With Header Actions</div>
+        <div class="elv-content-card elv-content-card--bordered" style="max-width: 360px;">
+          <div class="elv-content-card__header">
+            <div class="elv-content-card__header-content">
+              <h3 class="elv-content-card__title">Notifications</h3>
+            </div>
+            <div class="elv-content-card__actions">
+              <button class="elv-content-card__action-button" aria-label="Settings">
+                <span class="material-symbols-outlined" style="font-size: 20px;">settings</span>
+              </button>
+              <button class="elv-content-card__action-button" aria-label="Close">
+                <span class="material-symbols-outlined" style="font-size: 20px;">close</span>
+              </button>
+            </div>
+          </div>
+          <div class="elv-content-card__body">
+            <p class="elv-text-sm elv-text-default">
+              You have 3 unread notifications.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="demo-label">With Footer</div>
+        <div class="elv-content-card elv-content-card--bordered" style="max-width: 360px;">
+          <div class="elv-content-card__header">
+            <div class="elv-content-card__header-content">
+              <h3 class="elv-content-card__title">Confirm Action</h3>
+            </div>
+          </div>
+          <div class="elv-content-card__body">
+            <p class="elv-text-sm elv-text-default">
+              Are you sure you want to proceed?
+            </p>
+          </div>
+          <div class="elv-content-card__footer">
+            <button class="btn btn--tertiary btn--sm">Cancel</button>
+            <button class="btn btn--primary btn--sm">Confirm</button>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="demo-label">Elevated (Shadow)</div>
+        <div class="elv-content-card elv-content-card--elevated" style="max-width: 360px;">
+          <div class="elv-content-card__header">
+            <div class="elv-content-card__header-content">
+              <h3 class="elv-content-card__title">Floating Card</h3>
+            </div>
+          </div>
+          <div class="elv-content-card__body">
+            <p class="elv-text-sm elv-text-default">
+              Subtle shadow for modals and popovers. No border when elevated.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="elv-border-t elv-border-light elv-my-12">
   <!-- Cards & Layouts -->
   <div class="demo-section">
     <h2 class="elv-text-2xl elv-font-bold elv-text-default elv-mb-6">Cards & Layouts</h2>
