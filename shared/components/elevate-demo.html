@@ -37,32 +37,11 @@
 
     /* Form Component Styles — from DESIGN.md specs */
 
-    /* Search Input */
+    /* Search Input - uses actual Elevate elv-input class */
     .elv-search-input {
       position: relative;
       width: 100%;
       max-width: 400px;
-    }
-    .elv-search-input__field {
-      width: 100%;
-      height: 40px;
-      padding: 0 40px;
-      background: #f2f2f3;
-      border: 1px solid #dfdfe2;
-      border-radius: 9999px; /* Fully rounded (pill shape) */
-      font-size: 16px;
-      font-weight: 400;
-      line-height: 24px;
-      color: #201f23;
-      transition: border 150ms ease;
-    }
-    .elv-search-input__field::placeholder {
-      color: #6f6d78;
-    }
-    .elv-search-input__field:focus {
-      outline: none;
-      border: 2px solid #5746b2;
-      padding: 0 39px;
     }
     .elv-search-input__icon {
       position: absolute;
@@ -95,40 +74,10 @@
       display: block;
     }
 
-    /* Text Input */
+    /* Text Input - uses actual Elevate elv-input class */
     .elv-text-input {
       position: relative;
       width: 100%;
-    }
-    .elv-text-input__field {
-      width: 100%;
-      height: 40px;
-      padding: 0 12px;
-      background: #f2f2f3;
-      border: 1px solid #dfdfe2;
-      border-radius: 8px;
-      font-size: 16px;
-      font-weight: 400;
-      line-height: 24px;
-      color: #201f23;
-      transition: border 150ms ease;
-    }
-    .elv-text-input__field::placeholder {
-      color: #6f6d78;
-    }
-    .elv-text-input__field:focus {
-      outline: none;
-      border: 2px solid #5746b2;
-      padding: 0 11px;
-    }
-    .elv-text-input__field--error {
-      border: 2px solid #eb2000;
-      padding: 0 11px;
-    }
-    .elv-text-input__field:disabled {
-      background: #fafafa;
-      color: #b0afb6;
-      cursor: not-allowed;
     }
     .elv-text-input__label {
       display: block;
@@ -144,40 +93,7 @@
       margin-top: 4px;
     }
 
-    /* Textarea */
-    .elv-textarea {
-      width: 100%;
-      min-height: 80px;
-      padding: 12px;
-      background: #f2f2f3;
-      border: 1px solid #dfdfe2;
-      border-radius: 8px;
-      font-size: 16px;
-      font-weight: 400;
-      line-height: 24px;
-      color: #201f23;
-      font-family: var(--font-sans);
-      resize: vertical;
-      transition: border 150ms ease;
-    }
-    .elv-textarea::placeholder {
-      color: #6f6d78;
-    }
-    .elv-textarea:focus {
-      outline: none;
-      border: 2px solid #5746b2;
-      padding: 11px;
-    }
-    .elv-textarea--error {
-      border: 2px solid #eb2000;
-      padding: 11px;
-    }
-    .elv-textarea:disabled {
-      background: #fafafa;
-      color: #b0afb6;
-      cursor: not-allowed;
-      resize: none;
-    }
+    /* Textarea - uses actual Elevate elv-input class */
 
     /* Material Symbols */
     .material-symbols-outlined {
@@ -446,6 +362,220 @@
       color: #4c4b53;
       font-size: 14px;
       font-weight: 300;
+    }
+
+    /* Accordion */
+    .elv-accordion {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+    }
+    .elv-accordion__item {
+      border-bottom: 1px solid var(--border-light);
+    }
+    .elv-accordion__item:last-child {
+      border-bottom: none;
+    }
+    .elv-accordion__header {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 16px;
+      background: var(--bg-neutral-0);
+      border: none;
+      text-align: left;
+      cursor: pointer;
+      font-family: var(--font-sans);
+      font-size: 16px;
+      line-height: 24px;
+      font-weight: 600;
+      color: var(--text-default);
+      transition: background-color 150ms ease;
+    }
+    .elv-accordion__header:hover {
+      background: var(--bg-neutral-5);
+    }
+    .elv-accordion__header:focus {
+      outline: 2px solid var(--border-focus);
+      outline-offset: -2px;
+      z-index: 1;
+    }
+    .elv-accordion__header[aria-expanded="true"] {
+      background: var(--bg-neutral-5);
+    }
+    .elv-accordion__icon {
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+      transition: transform 200ms ease;
+      color: var(--text-subtle);
+    }
+    .elv-accordion__header[aria-expanded="true"] .elv-accordion__icon {
+      transform: rotate(180deg);
+    }
+    .elv-accordion__content {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows 250ms ease;
+      overflow: hidden;
+    }
+    .elv-accordion__content[aria-hidden="false"] {
+      grid-template-rows: 1fr;
+    }
+    .elv-accordion__content-inner {
+      min-height: 0;
+      padding: 0 16px;
+    }
+    .elv-accordion__content[aria-hidden="false"] .elv-accordion__content-inner {
+      padding: 0 16px 16px 16px;
+    }
+    .elv-accordion__body {
+      font-size: 14px;
+      line-height: 20px;
+      color: var(--text-default);
+    }
+
+    /* Tabs */
+    .elv-tab-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .elv-tab-list {
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid #c7c6cd;
+    }
+    .elv-tab {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      height: 40px;
+      padding: 0 24px;
+      border: none;
+      background: none;
+      cursor: pointer;
+      font-family: var(--font-sans);
+      font-size: 14px;
+      line-height: 20px;
+      font-weight: 600;
+      color: #4c4b53;
+      transition: all 150ms ease;
+      border-bottom: 1px solid transparent;
+      position: relative;
+      white-space: nowrap;
+    }
+    .elv-tab:hover {
+      color: #5746b2;
+      border-bottom: 2px solid #5746b2;
+    }
+    .elv-tab[aria-selected="true"] {
+      color: #5746b2;
+      border-bottom: 2px solid #5746b2;
+    }
+    .elv-tab:focus {
+      outline: 2px solid #5746b2;
+      outline-offset: -2px;
+      z-index: 1;
+    }
+    .elv-tab-panels {
+      margin-top: 16px;
+    }
+    .elv-tab-panel {
+      display: none;
+      animation: fadeIn 200ms ease;
+    }
+    .elv-tab-panel[aria-hidden="false"] {
+      display: block;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* Tooltip */
+    .elv-tooltip-trigger {
+      border-radius: 9999px;
+      padding: 4px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    .elv-tooltip-trigger:focus {
+      outline: 2px solid var(--border-focus);
+      outline-offset: 0;
+    }
+    .elv-tooltip {
+      position: absolute;
+      z-index: 9999;
+      background: #201f23;
+      color: white;
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-size: 14px;
+      line-height: 20px;
+      font-weight: 500;
+      max-width: 240px;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 150ms ease;
+      white-space: normal;
+    }
+    .elv-tooltip.is-visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .elv-tooltip::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 0;
+      border: 6px solid transparent;
+    }
+    .elv-tooltip[data-position="top"]::after {
+      bottom: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-top-color: #201f23;
+      border-bottom: 0;
+    }
+    .elv-tooltip[data-position="bottom"]::after {
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-bottom-color: #201f23;
+      border-top: 0;
+    }
+    .elv-tooltip[data-position="left"]::after {
+      right: -12px;
+      top: 50%;
+      transform: translateY(-50%);
+      border-left-color: #201f23;
+      border-right: 0;
+    }
+    .elv-tooltip[data-position="right"]::after {
+      left: -12px;
+      top: 50%;
+      transform: translateY(-50%);
+      border-right-color: #201f23;
+      border-left: 0;
+    }
+    .elv-tooltip-icon {
+      width: 16px;
+      height: 16px;
+      fill: var(--text-subtle);
     }
   </style>
 </head>
@@ -1073,6 +1203,252 @@
 
   <hr class="elv-border-t elv-border-light elv-my-12">
 
+  <!-- Accordion -->
+  <div class="demo-section">
+    <h2 class="elv-text-2xl elv-font-bold elv-text-default elv-mb-6">Accordion</h2>
+    <p class="elv-text-sm elv-text-subtle elv-mb-4">
+      Expand/collapse sections for FAQs, settings, and content panels. Click headers or use keyboard navigation.
+      <a href="./templates/simple/accordion.html" class="elv-text-link elv-underline">View detailed docs</a>
+    </p>
+
+    <div class="demo-grid">
+      <div>
+        <div class="demo-label">Multi-Open Mode</div>
+        <div style="max-width: 600px;">
+          <div class="elv-accordion" data-mode="multi">
+            <div class="elv-accordion__item">
+              <button class="elv-accordion__header" aria-expanded="false" aria-controls="accordion-1">
+                <span>What is G2?</span>
+                <svg class="elv-accordion__icon" viewBox="0 0 20 20" fill="none">
+                  <path d="M10 13L5 8L6.0625 6.9375L10 10.875L13.9375 6.9375L15 8L10 13Z" fill="currentColor"/>
+                </svg>
+              </button>
+              <div class="elv-accordion__content" id="accordion-1" aria-hidden="true">
+                <div class="elv-accordion__content-inner">
+                  <div class="elv-accordion__body">
+                    G2 is a peer-to-peer review platform for business software and services. We help buyers make better decisions through authentic reviews and detailed research.
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="elv-accordion__item">
+              <button class="elv-accordion__header" aria-expanded="false" aria-controls="accordion-2">
+                <span>How do reviews work?</span>
+                <svg class="elv-accordion__icon" viewBox="0 0 20 20" fill="none">
+                  <path d="M10 13L5 8L6.0625 6.9375L10 10.875L13.9375 6.9375L15 8L10 13Z" fill="currentColor"/>
+                </svg>
+              </button>
+              <div class="elv-accordion__content" id="accordion-2" aria-hidden="true">
+                <div class="elv-accordion__content-inner">
+                  <div class="elv-accordion__body">
+                    Reviews are submitted by verified users who have used the product. We validate each review through our proprietary authentication process to ensure authenticity.
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="elv-accordion__item">
+              <button class="elv-accordion__header" aria-expanded="false" aria-controls="accordion-3">
+                <span>Is G2 free to use?</span>
+                <svg class="elv-accordion__icon" viewBox="0 0 20 20" fill="none">
+                  <path d="M10 13L5 8L6.0625 6.9375L10 10.875L13.9375 6.9375L15 8L10 13Z" fill="currentColor"/>
+                </svg>
+              </button>
+              <div class="elv-accordion__content" id="accordion-3" aria-hidden="true">
+                <div class="elv-accordion__content-inner">
+                  <div class="elv-accordion__body">
+                    Yes! Browsing products, reading reviews, and comparing software is completely free. We also offer premium features for businesses.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="demo-label">Single-Open Mode</div>
+        <div style="max-width: 600px;">
+          <div class="elv-accordion" data-mode="single">
+            <div class="elv-accordion__item">
+              <button class="elv-accordion__header" aria-expanded="true" aria-controls="accordion-single-1">
+                <span>Account Settings</span>
+                <svg class="elv-accordion__icon" viewBox="0 0 20 20" fill="none">
+                  <path d="M10 13L5 8L6.0625 6.9375L10 10.875L13.9375 6.9375L15 8L10 13Z" fill="currentColor"/>
+                </svg>
+              </button>
+              <div class="elv-accordion__content" id="accordion-single-1" aria-hidden="false">
+                <div class="elv-accordion__content-inner">
+                  <div class="elv-accordion__body">
+                    Manage your profile, email preferences, and notification settings.
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="elv-accordion__item">
+              <button class="elv-accordion__header" aria-expanded="false" aria-controls="accordion-single-2">
+                <span>Privacy & Security</span>
+                <svg class="elv-accordion__icon" viewBox="0 0 20 20" fill="none">
+                  <path d="M10 13L5 8L6.0625 6.9375L10 10.875L13.9375 6.9375L15 8L10 13Z" fill="currentColor"/>
+                </svg>
+              </button>
+              <div class="elv-accordion__content" id="accordion-single-2" aria-hidden="true">
+                <div class="elv-accordion__content-inner">
+                  <div class="elv-accordion__body">
+                    Control who can see your reviews, manage two-factor authentication, and update your password.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="elv-border-t elv-border-light elv-my-12">
+
+  <!-- Tabs -->
+  <div class="demo-section">
+    <h2 class="elv-text-2xl elv-font-bold elv-text-default elv-mb-6">Tabs</h2>
+    <p class="elv-text-sm elv-text-subtle elv-mb-4">
+      Switch between content sections with keyboard navigation (arrow keys, Home, End).
+      <a href="./templates/simple/tab.html" class="elv-text-link elv-underline">View detailed docs</a>
+    </p>
+
+    <div class="demo-grid">
+      <div>
+        <div class="demo-label">Basic Tabs</div>
+        <div style="max-width: 600px;">
+          <div class="elv-tab-group">
+            <div class="elv-tab-list" role="tablist" aria-label="Product information">
+              <button class="elv-tab" role="tab" aria-selected="true" aria-controls="demo-panel-1" id="demo-tab-1">
+                Overview
+              </button>
+              <button class="elv-tab" role="tab" aria-selected="false" aria-controls="demo-panel-2" id="demo-tab-2" tabindex="-1">
+                Features
+              </button>
+              <button class="elv-tab" role="tab" aria-selected="false" aria-controls="demo-panel-3" id="demo-tab-3" tabindex="-1">
+                Pricing
+              </button>
+              <button class="elv-tab" role="tab" aria-selected="false" aria-controls="demo-panel-4" id="demo-tab-4" tabindex="-1">
+                Reviews
+              </button>
+            </div>
+            <div class="elv-tab-panels">
+              <div class="elv-tab-panel" role="tabpanel" id="demo-panel-1" aria-labelledby="demo-tab-1" aria-hidden="false" tabindex="0">
+                <div class="elv-bg-neutral-5 elv-p-4 elv-rounded-sm">
+                  <p class="elv-text-sm elv-text-default">
+                    <strong>Overview:</strong> This product helps teams collaborate more effectively with real-time messaging, file sharing, and video calls.
+                  </p>
+                </div>
+              </div>
+              <div class="elv-tab-panel" role="tabpanel" id="demo-panel-2" aria-labelledby="demo-tab-2" aria-hidden="true" tabindex="0">
+                <div class="elv-bg-neutral-5 elv-p-4 elv-rounded-sm">
+                  <p class="elv-text-sm elv-text-default">
+                    <strong>Features:</strong> Real-time chat, video conferencing, screen sharing, file storage, integrations with 100+ tools.
+                  </p>
+                </div>
+              </div>
+              <div class="elv-tab-panel" role="tabpanel" id="demo-panel-3" aria-labelledby="demo-tab-3" aria-hidden="true" tabindex="0">
+                <div class="elv-bg-neutral-5 elv-p-4 elv-rounded-sm">
+                  <p class="elv-text-sm elv-text-default">
+                    <strong>Pricing:</strong> Free for up to 10 users. Pro plan starts at $8/user/month. Enterprise pricing available on request.
+                  </p>
+                </div>
+              </div>
+              <div class="elv-tab-panel" role="tabpanel" id="demo-panel-4" aria-labelledby="demo-tab-4" aria-hidden="true" tabindex="0">
+                <div class="elv-bg-neutral-5 elv-p-4 elv-rounded-sm">
+                  <p class="elv-text-sm elv-text-default">
+                    <strong>Reviews:</strong> 4.5 out of 5 stars from 1,234 verified users. Customers love the ease of use and reliability.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="elv-border-t elv-border-light elv-my-12">
+
+  <!-- Tooltips -->
+  <div class="demo-section">
+    <h2 class="elv-text-2xl elv-font-bold elv-text-default elv-mb-6">Tooltips</h2>
+    <p class="elv-text-sm elv-text-subtle elv-mb-4">
+      Contextual help on hover or focus. 300ms hover delay, immediate on focus, Esc to dismiss.
+      <a href="./templates/simple/tooltip.html" class="elv-text-link elv-underline">View detailed docs</a>
+    </p>
+
+    <div class="demo-grid">
+      <div>
+        <div class="demo-label">Position Variants</div>
+        <div class="elv-flex elv-gap-8 elv-items-center elv-justify-center elv-p-12">
+          <button class="elv-tooltip-trigger" type="button" aria-describedby="demo-tooltip-top" data-tooltip-trigger>
+            <svg class="elv-tooltip-icon" viewBox="0 0 16 16" fill="currentColor">
+              <circle cx="8" cy="8" r="7" stroke="currentColor" fill="none" stroke-width="1.5"/>
+              <path d="M8 11V8M8 5.5v.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+            <div class="elv-tooltip" id="demo-tooltip-top" role="tooltip" data-position="top">
+              This tooltip appears on top
+            </div>
+          </button>
+
+          <button class="elv-tooltip-trigger" type="button" aria-describedby="demo-tooltip-bottom" data-tooltip-trigger>
+            <svg class="elv-tooltip-icon" viewBox="0 0 16 16" fill="currentColor">
+              <circle cx="8" cy="8" r="7" stroke="currentColor" fill="none" stroke-width="1.5"/>
+              <path d="M8 11V8M8 5.5v.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+            <div class="elv-tooltip" id="demo-tooltip-bottom" role="tooltip" data-position="bottom">
+              This tooltip appears on bottom
+            </div>
+          </button>
+
+          <button class="elv-tooltip-trigger" type="button" aria-describedby="demo-tooltip-left" data-tooltip-trigger>
+            <svg class="elv-tooltip-icon" viewBox="0 0 16 16" fill="currentColor">
+              <circle cx="8" cy="8" r="7" stroke="currentColor" fill="none" stroke-width="1.5"/>
+              <path d="M8 11V8M8 5.5v.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+            <div class="elv-tooltip" id="demo-tooltip-left" role="tooltip" data-position="left">
+              Appears on left
+            </div>
+          </button>
+
+          <button class="elv-tooltip-trigger" type="button" aria-describedby="demo-tooltip-right" data-tooltip-trigger>
+            <svg class="elv-tooltip-icon" viewBox="0 0 16 16" fill="currentColor">
+              <circle cx="8" cy="8" r="7" stroke="currentColor" fill="none" stroke-width="1.5"/>
+              <path d="M8 11V8M8 5.5v.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+            <div class="elv-tooltip" id="demo-tooltip-right" role="tooltip" data-position="right">
+              Appears on right
+            </div>
+          </button>
+        </div>
+      </div>
+
+      <div>
+        <div class="demo-label">In Context</div>
+        <div class="elv-bg-neutral-0 elv-border elv-border-light elv-rounded-md elv-p-4" style="max-width: 500px;">
+          <div class="elv-flex elv-items-center elv-gap-2 elv-mb-3">
+            <span class="elv-text-sm elv-font-semibold elv-text-default">Satisfaction Score</span>
+            <button class="elv-tooltip-trigger" type="button" aria-describedby="demo-tooltip-context" data-tooltip-trigger>
+              <svg class="elv-tooltip-icon" viewBox="0 0 16 16" fill="currentColor">
+                <circle cx="8" cy="8" r="7" stroke="currentColor" fill="none" stroke-width="1.5"/>
+                <path d="M8 11V8M8 5.5v.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+              <div class="elv-tooltip" id="demo-tooltip-context" role="tooltip" data-position="top">
+                Calculated from user ratings over the past 90 days
+              </div>
+            </button>
+          </div>
+          <div class="elv-text-3xl elv-font-bold elv-text-primary">94%</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="elv-border-t elv-border-light elv-my-12">
+
   <!-- Alerts & Messages -->
   <div class="demo-section">
     <h2 class="elv-text-2xl elv-font-bold elv-text-default elv-mb-6">Alerts & Messages</h2>
@@ -1114,7 +1490,7 @@
           <span class="material-symbols-outlined elv-search-input__icon">search</span>
           <input
             type="search"
-            class="elv-search-input__field"
+            class="elv-input elv-w-full elv-h-10 elv-pl-10 elv-pr-10 elv-rounded-full elv-text-sm"
             placeholder="Search software..."
             aria-label="Search"
           />
@@ -1133,7 +1509,7 @@
           <input
             id="demo-name"
             type="text"
-            class="elv-text-input__field"
+            class="elv-input elv-w-full"
             placeholder="Enter your name"
           />
         </div>
@@ -1147,7 +1523,8 @@
           <input
             id="demo-email"
             type="email"
-            class="elv-text-input__field elv-text-input__field--error"
+            class="elv-input elv-w-full"
+            data-status="error"
             value="invalid-email"
             aria-invalid="true"
             aria-describedby="email-error"
@@ -1166,7 +1543,7 @@
           <input
             id="demo-disabled"
             type="text"
-            class="elv-text-input__field"
+            class="elv-input elv-w-full"
             value="ACC-12345"
             disabled
           />
@@ -1180,7 +1557,7 @@
           <label class="elv-text-input__label" for="demo-message">Message</label>
           <textarea
             id="demo-message"
-            class="elv-textarea"
+            class="elv-input elv-w-full elv-min-h-20"
             placeholder="Enter your message..."
           ></textarea>
         </div>
@@ -1203,7 +1580,7 @@
               <input
                 id="form-name"
                 type="text"
-                class="elv-text-input__field"
+                class="elv-input elv-w-full"
                 placeholder="Your name"
                 required
                 aria-required="true"
@@ -1217,7 +1594,7 @@
               <input
                 id="form-email"
                 type="email"
-                class="elv-text-input__field"
+                class="elv-input elv-w-full"
                 placeholder="you@example.com"
                 required
                 aria-required="true"
@@ -1228,7 +1605,7 @@
               <label class="elv-text-input__label" for="form-message">Message</label>
               <textarea
                 id="form-message"
-                class="elv-textarea"
+                class="elv-input elv-w-full elv-min-h-20"
                 placeholder="How can we help?"
               ></textarea>
             </div>
@@ -1358,11 +1735,154 @@
   });
 
   // Search input: Esc key to clear
-  document.querySelectorAll('.elv-search-input__field').forEach(input => {
+  document.querySelectorAll('.elv-search-input input').forEach(input => {
     input.addEventListener('keydown', function(e) {
       if (e.key === 'Escape') {
         this.value = '';
         this.parentElement.classList.remove('elv-search-input--has-value');
+      }
+    });
+  });
+
+  // Accordion functionality
+  document.addEventListener('click', (e) => {
+    const header = e.target.closest('.elv-accordion__header');
+    if (!header) return;
+
+    const accordion = header.closest('.elv-accordion');
+    const item = header.closest('.elv-accordion__item');
+    const content = item.querySelector('.elv-accordion__content');
+    const isExpanded = header.getAttribute('aria-expanded') === 'true';
+    const mode = accordion.dataset.mode || 'multi';
+
+    if (mode === 'single' && !isExpanded) {
+      accordion.querySelectorAll('.elv-accordion__header').forEach(h => {
+        h.setAttribute('aria-expanded', 'false');
+        h.nextElementSibling.setAttribute('aria-hidden', 'true');
+      });
+    }
+
+    header.setAttribute('aria-expanded', !isExpanded);
+    content.setAttribute('aria-hidden', isExpanded);
+  });
+
+  // Tab functionality
+  function selectTab(tabButton) {
+    const tabList = tabButton.closest('.elv-tab-list');
+    const tabGroup = tabButton.closest('.elv-tab-group');
+
+    tabList.querySelectorAll('.elv-tab').forEach(tab => {
+      tab.setAttribute('aria-selected', 'false');
+      tab.setAttribute('tabindex', '-1');
+    });
+
+    tabButton.setAttribute('aria-selected', 'true');
+    tabButton.removeAttribute('tabindex');
+
+    const panelId = tabButton.getAttribute('aria-controls');
+    tabGroup.querySelectorAll('.elv-tab-panel').forEach(panel => {
+      panel.setAttribute('aria-hidden', 'true');
+    });
+
+    const activePanel = document.getElementById(panelId);
+    if (activePanel) {
+      activePanel.setAttribute('aria-hidden', 'false');
+    }
+  }
+
+  document.addEventListener('click', (e) => {
+    if (e.target.matches('.elv-tab')) {
+      selectTab(e.target);
+    }
+  });
+
+  document.addEventListener('keydown', (e) => {
+    const tab = e.target.closest('.elv-tab');
+    if (!tab) return;
+
+    const tabList = tab.closest('.elv-tab-list');
+    const tabs = Array.from(tabList.querySelectorAll('.elv-tab'));
+    const currentIndex = tabs.indexOf(tab);
+
+    let nextTab = null;
+
+    if (e.key === 'ArrowLeft' && currentIndex > 0) {
+      nextTab = tabs[currentIndex - 1];
+    } else if (e.key === 'ArrowRight' && currentIndex < tabs.length - 1) {
+      nextTab = tabs[currentIndex + 1];
+    } else if (e.key === 'Home') {
+      nextTab = tabs[0];
+    } else if (e.key === 'End') {
+      nextTab = tabs[tabs.length - 1];
+    }
+
+    if (nextTab) {
+      e.preventDefault();
+      selectTab(nextTab);
+      nextTab.focus();
+    }
+  });
+
+  // Tooltip functionality
+  document.querySelectorAll('[data-tooltip-trigger]').forEach(trigger => {
+    const tooltip = trigger.querySelector('.elv-tooltip');
+    let showTimeout;
+
+    function positionTooltip() {
+      const triggerRect = trigger.getBoundingClientRect();
+      const position = tooltip.dataset.position || 'top';
+      const offset = 8;
+
+      tooltip.style.position = 'fixed';
+
+      switch (position) {
+        case 'top':
+          tooltip.style.left = `${triggerRect.left + triggerRect.width / 2}px`;
+          tooltip.style.top = `${triggerRect.top - tooltip.offsetHeight - offset}px`;
+          tooltip.style.transform = 'translateX(-50%)';
+          break;
+        case 'bottom':
+          tooltip.style.left = `${triggerRect.left + triggerRect.width / 2}px`;
+          tooltip.style.top = `${triggerRect.bottom + offset}px`;
+          tooltip.style.transform = 'translateX(-50%)';
+          break;
+        case 'left':
+          tooltip.style.left = `${triggerRect.left - tooltip.offsetWidth - offset}px`;
+          tooltip.style.top = `${triggerRect.top + triggerRect.height / 2}px`;
+          tooltip.style.transform = 'translateY(-50%)';
+          break;
+        case 'right':
+          tooltip.style.left = `${triggerRect.right + offset}px`;
+          tooltip.style.top = `${triggerRect.top + triggerRect.height / 2}px`;
+          tooltip.style.transform = 'translateY(-50%)';
+          break;
+      }
+    }
+
+    function showTooltip() {
+      positionTooltip();
+      tooltip.classList.add('is-visible');
+    }
+
+    function hideTooltip() {
+      clearTimeout(showTimeout);
+      tooltip.classList.remove('is-visible');
+    }
+
+    trigger.addEventListener('mouseenter', () => {
+      showTimeout = setTimeout(showTooltip, 300);
+    });
+
+    trigger.addEventListener('mouseleave', hideTooltip);
+
+    trigger.addEventListener('focus', showTooltip);
+
+    trigger.addEventListener('blur', hideTooltip);
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && tooltip.classList.contains('is-visible')) {
+        hideTooltip();
+        trigger.blur();
       }
     });
   });
