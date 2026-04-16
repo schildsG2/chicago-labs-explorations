@@ -13,6 +13,72 @@
       padding: 0;
       background: var(--bg-neutral-5);
     }
+
+    /* Layout with fixed sidebar */
+    .demo-layout {
+      display: flex;
+      min-height: 100vh;
+      max-width: 1600px;
+      margin: 0 auto;
+    }
+    .demo-sidebar {
+      width: 240px;
+      flex-shrink: 0;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+      padding: 24px 16px;
+      background: var(--bg-neutral-0);
+      border-right: 1px solid var(--border-light);
+    }
+    .demo-main {
+      flex: 1;
+      padding: 32px;
+      min-width: 0;
+    }
+
+    /* Index Nav for sidebar */
+    .elv-index-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .elv-index-nav__item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      font-family: var(--font-sans);
+      font-size: 14px;
+      line-height: 20px;
+      font-weight: 400;
+      color: var(--text-default);
+      text-decoration: none;
+      transition: all 150ms ease;
+      border-radius: var(--radius-sm);
+      text-align: left;
+    }
+    .elv-index-nav__item:hover {
+      background: var(--bg-neutral-10);
+      color: var(--color-purple-100);
+    }
+    .elv-index-nav__item:focus {
+      outline: 2px solid var(--color-purple-100);
+      outline-offset: 2px;
+    }
+    .elv-index-nav__item--active {
+      background: #ebe9f6;
+      color: #5746b2;
+      font-weight: 600;
+    }
+    .elv-index-nav__item--active:hover {
+      background: #d9d6ed;
+    }
+
     .demo-section {
       margin-bottom: 3rem;
     }
@@ -1033,24 +1099,60 @@
 </head>
 <body>
 
-<div elv class="elv-max-w-screen-xl elv-mx-auto elv-p-8">
-
-  <!-- Header -->
-  <div class="elv-mb-12">
-    <div class="elv-inline-flex elv-items-center elv-gap-2 elv-px-3 elv-py-1 elv-bg-primary-20 elv-rounded-full elv-mb-4">
-      <span class="elv-text-xs elv-font-bold elv-text-primary elv-uppercase elv-tracking-wide">Component Library</span>
+<div class="demo-layout">
+  <!-- Sidebar Navigation -->
+  <aside class="demo-sidebar">
+    <div class="elv-mb-6">
+      <div class="elv-inline-flex elv-items-center elv-gap-2 elv-px-2 elv-py-1 elv-bg-primary-20 elv-rounded-full elv-mb-2">
+        <span class="elv-text-xs elv-font-bold elv-text-primary elv-uppercase elv-tracking-wide">Components</span>
+      </div>
+      <h2 class="elv-text-lg elv-font-bold elv-text-default">Elevate Library</h2>
     </div>
-    <h1 class="elv-text-4xl elv-font-bold elv-text-default elv-mb-3">Elevate Components</h1>
-    <p class="elv-text-base elv-text-subtle elv-max-w-2xl">
-      UE Elevate design system components ready for use in explorations. This page demonstrates all documented components and patterns.
-    </p>
-  </div>
 
-  <hr class="elv-border-t elv-border-light elv-my-12">
+    <nav class="elv-index-nav" aria-label="Component navigation">
+      <a href="#typography" class="elv-index-nav__item">Typography</a>
+      <a href="#buttons" class="elv-index-nav__item">Buttons</a>
+      <a href="#icon-buttons" class="elv-index-nav__item">Icon Buttons</a>
+      <a href="#control-buttons" class="elv-index-nav__item">Control Buttons</a>
+      <a href="#button-groups" class="elv-index-nav__item">Button Groups</a>
+      <a href="#content-cards" class="elv-index-nav__item">Content Cards</a>
+      <a href="#inset-cards" class="elv-index-nav__item">Inset Cards</a>
+      <a href="#index-nav" class="elv-index-nav__item">Index Navigation</a>
+      <a href="#cards-layouts" class="elv-index-nav__item">Cards & Layouts</a>
+      <a href="#links" class="elv-index-nav__item">Links</a>
+      <a href="#loading-spinners" class="elv-index-nav__item">Loading Spinners</a>
+      <a href="#avatars" class="elv-index-nav__item">Avatars</a>
+      <a href="#status-badges" class="elv-index-nav__item">Status Badges</a>
+      <a href="#progress-bars" class="elv-index-nav__item">Progress Bars</a>
+      <a href="#breadcrumbs" class="elv-index-nav__item">Breadcrumbs</a>
+      <a href="#star-ratings" class="elv-index-nav__item">Star Ratings</a>
+      <a href="#accordion" class="elv-index-nav__item">Accordion</a>
+      <a href="#tabs" class="elv-index-nav__item">Tabs</a>
+      <a href="#pagination" class="elv-index-nav__item">Pagination</a>
+      <a href="#tooltips" class="elv-index-nav__item">Tooltips</a>
+      <a href="#alerts" class="elv-index-nav__item">Alerts & Messages</a>
+      <a href="#form-inputs" class="elv-index-nav__item">Form Inputs</a>
+      <a href="#backgrounds" class="elv-index-nav__item">Background Colors</a>
+      <a href="#spacing" class="elv-index-nav__item">Spacing Scale</a>
+    </nav>
+  </aside>
 
-  <!-- Typography -->
-  <div class="demo-section">
-    <h2 class="elv-text-2xl elv-font-bold elv-text-default elv-mb-6">Typography</h2>
+  <!-- Main Content -->
+  <main class="demo-main">
+    <div class="elv-content-card elv-content-card--bordered">
+      <div class="elv-content-card__header">
+        <div class="elv-content-card__header-content">
+          <h1 class="elv-content-card__title">Elevate Components</h1>
+          <p class="elv-content-card__subtitle">
+            UE Elevate design system components ready for use in explorations. This page demonstrates all documented components and patterns.
+          </p>
+        </div>
+      </div>
+
+      <div class="elv-content-card__body">
+        <!-- Typography -->
+        <div id="typography" class="demo-section">
+          <h2 class="elv-text-2xl elv-font-bold elv-text-default elv-mb-6">Typography</h2>
 
     <div class="demo-grid">
       <div>
@@ -1092,7 +1194,7 @@
   <hr class="elv-border-t elv-border-light elv-my-12">
 
   <!-- Buttons -->
-  <div class="demo-section">
+  <div id="buttons" class="demo-section">
     <h2 class="elv-text-2xl elv-font-bold elv-text-default elv-mb-6">Buttons</h2>
 
     <div class="demo-grid">
@@ -1174,7 +1276,7 @@
   <hr class="elv-border-t elv-border-light elv-my-12">
 
   <!-- Icon Buttons -->
-  <div class="demo-section">
+  <div id="icon-buttons" class="demo-section">
     <h2 class="elv-text-2xl elv-font-bold elv-text-default elv-mb-6">Icon Buttons</h2>
     <p class="elv-text-sm elv-text-subtle elv-mb-6">
       Buttons with only icons, no text. Always include aria-label for accessibility.
@@ -1268,7 +1370,7 @@
   <hr class="elv-border-t elv-border-light elv-my-12">
 
   <!-- Control Buttons -->
-  <div class="demo-section">
+  <div id="control-buttons" class="demo-section">
     <h2 class="elv-text-2xl elv-font-bold elv-text-default elv-mb-6">Control Buttons</h2>
     <p class="elv-text-sm elv-text-subtle elv-mb-6">
       Small utility buttons for UI controls like close, expand, minimize. Subtle styling for secondary UI.
@@ -1337,7 +1439,7 @@
 
 
   <!-- Button Groups -->
-  <div class="demo-section">
+  <div id="button-groups" class="demo-section">
     <h2 class="elv-text-2xl elv-font-bold elv-text-default elv-mb-6">Button Groups</h2>
     <p class="elv-text-sm elv-text-subtle elv-mb-4">
       Arrange buttons with visual connection. Most common: Primary + Tertiary.
@@ -1394,7 +1496,7 @@
   <hr class="elv-border-t elv-border-light elv-my-12">
 
   <!-- Content Cards -->
-  <div class="demo-section">
+  <div id="content-cards" class="demo-section">
     <h2 class="elv-text-2xl elv-font-bold elv-text-default elv-mb-6">Content Cards</h2>
     <p class="elv-text-sm elv-text-subtle elv-mb-4">
       Structured card layout pattern with header, body, and optional footer.
@@ -1500,7 +1602,7 @@
   <hr class="elv-border-t elv-border-light elv-my-12">
 
   <!-- Inset Cards -->
-  <div class="demo-section">
+  <div id="inset-cards" class="demo-section">
     <h2 class="elv-text-2xl elv-font-bold elv-text-default elv-mb-6">Inset Cards</h2>
     <p class="elv-text-sm elv-text-subtle elv-mb-4">
       Recessed card variant for nested or secondary content.
@@ -1587,7 +1689,7 @@
   <hr class="elv-border-t elv-border-light elv-my-12">
 
   <!-- Index Navigation -->
-  <div class="demo-section">
+  <div id="index-nav" class="demo-section">
     <h2 class="elv-text-2xl elv-font-bold elv-text-default elv-mb-6">Index Navigation</h2>
     <p class="elv-text-sm elv-text-subtle elv-mb-4">
       Tab-like navigation for page sections and anchor links.
@@ -1659,7 +1761,7 @@
 
   <hr class="elv-border-t elv-border-light elv-my-12">
   <!-- Cards & Layouts -->
-  <div class="demo-section">
+  <div id="cards-layouts" class="demo-section">
     <h2 class="elv-text-2xl elv-font-bold elv-text-default elv-mb-6">Cards & Layouts</h2>
 
     <div class="demo-grid">
@@ -1715,7 +1817,7 @@
   <hr class="elv-border-t elv-border-light elv-my-12">
 
   <!-- Links -->
-  <div class="demo-section">
+  <div id="links" class="demo-section">
     <h2 class="elv-text-2xl elv-font-bold elv-text-default elv-mb-6">Links</h2>
     <p class="elv-text-sm elv-text-subtle elv-mb-4">
       Text links with standard and subtle variants.
@@ -1754,7 +1856,7 @@
   <hr class="elv-border-t elv-border-light elv-my-12">
 
   <!-- Loading Spinners -->
-  <div class="demo-section">
+  <div id="loading-spinners" class="demo-section">
     <h2 class="elv-text-2xl elv-font-bold elv-text-default elv-mb-6">Loading Spinners</h2>
     <p class="elv-text-sm elv-text-subtle elv-mb-4">
       Animated loading indicators for async operations.
@@ -1793,7 +1895,7 @@
   <hr class="elv-border-t elv-border-light elv-my-12">
 
   <!-- Avatars -->
-  <div class="demo-section">
+  <div id="avatars" class="demo-section">
     <h2 class="elv-text-2xl elv-font-bold elv-text-default elv-mb-6">Avatars</h2>
     <p class="elv-text-sm elv-text-subtle elv-mb-4">
       User avatars with image, initials, or placeholder states.
@@ -1869,7 +1971,7 @@
   <hr class="elv-border-t elv-border-light elv-my-12">
 
   <!-- Status Badges -->
-  <div class="demo-section">
+  <div id="status-badges" class="demo-section">
     <h2 class="elv-text-2xl elv-font-bold elv-text-default elv-mb-6">Status Badges</h2>
     <p class="elv-text-sm elv-text-subtle elv-mb-4">
       Compact status indicators with semantic color treatments.
@@ -1930,7 +2032,7 @@
   <hr class="elv-border-t elv-border-light elv-my-12">
 
   <!-- Progress Bars -->
-  <div class="demo-section">
+  <div id="progress-bars" class="demo-section">
     <h2 class="elv-text-2xl elv-font-bold elv-text-default elv-mb-6">Progress Bars</h2>
     <p class="elv-text-sm elv-text-subtle elv-mb-4">
       Visual indicators for task completion, uploads, and multi-step processes.
@@ -1987,7 +2089,7 @@
   <hr class="elv-border-t elv-border-light elv-my-12">
 
   <!-- Breadcrumbs -->
-  <div class="demo-section">
+  <div id="breadcrumbs" class="demo-section">
     <h2 class="elv-text-2xl elv-font-bold elv-text-default elv-mb-6">Breadcrumbs</h2>
     <p class="elv-text-sm elv-text-subtle elv-mb-4">
       Navigation path showing current location in site hierarchy.
@@ -2052,7 +2154,7 @@
   <hr class="elv-border-t elv-border-light elv-my-12">
 
   <!-- Star Ratings -->
-  <div class="demo-section">
+  <div id="star-ratings" class="demo-section">
     <h2 class="elv-text-2xl elv-font-bold elv-text-default elv-mb-6">Star Ratings</h2>
     <p class="elv-text-sm elv-text-subtle elv-mb-4">
       Display product ratings and review counts.
@@ -2141,7 +2243,7 @@
   <hr class="elv-border-t elv-border-light elv-my-12">
 
   <!-- Accordion -->
-  <div class="demo-section">
+  <div id="accordion" class="demo-section">
     <h2 class="elv-text-2xl elv-font-bold elv-text-default elv-mb-6">Accordion</h2>
     <p class="elv-text-sm elv-text-subtle elv-mb-4">
       Expand/collapse sections for FAQs, settings, and content panels. Click headers or use keyboard navigation.
@@ -2245,7 +2347,7 @@
   <hr class="elv-border-t elv-border-light elv-my-12">
 
   <!-- Tabs -->
-  <div class="demo-section">
+  <div id="tabs" class="demo-section">
     <h2 class="elv-text-2xl elv-font-bold elv-text-default elv-mb-6">Tabs</h2>
     <p class="elv-text-sm elv-text-subtle elv-mb-4">
       Switch between content sections with keyboard navigation (arrow keys, Home, End).
@@ -2310,7 +2412,7 @@
   <hr class="elv-border-t elv-border-light elv-my-12">
 
   <!-- Pagination -->
-  <div class="demo-section">
+  <div id="pagination" class="demo-section">
     <h2 class="elv-text-2xl elv-font-bold elv-text-default elv-mb-6">Pagination</h2>
     <p class="elv-text-sm elv-text-subtle elv-mb-4">
       Navigate through multi-page datasets and lists. Supports arrow key navigation and full ARIA labels.
@@ -2400,7 +2502,7 @@
   <hr class="elv-border-t elv-border-light elv-my-12">
 
   <!-- Tooltips -->
-  <div class="demo-section">
+  <div id="tooltips" class="demo-section">
     <h2 class="elv-text-2xl elv-font-bold elv-text-default elv-mb-6">Tooltips</h2>
     <p class="elv-text-sm elv-text-subtle elv-mb-4">
       Contextual help on hover or focus. 300ms hover delay, immediate on focus, Esc to dismiss.
@@ -2477,7 +2579,7 @@
   <hr class="elv-border-t elv-border-light elv-my-12">
 
   <!-- Alerts & Messages -->
-  <div class="demo-section">
+  <div id="alerts" class="demo-section">
     <h2 class="elv-text-2xl elv-font-bold elv-text-default elv-mb-6">Alerts & Messages</h2>
 
     <div class="elv-flex elv-flex-col elv-gap-4">
@@ -2502,7 +2604,7 @@
   <hr class="elv-border-t elv-border-light elv-my-12">
 
   <!-- Form Inputs -->
-  <div class="demo-section">
+  <div id="form-inputs" class="demo-section">
     <h2 class="elv-text-2xl elv-font-bold elv-text-default elv-mb-6">Form Inputs</h2>
     <p class="elv-text-sm elv-text-subtle elv-mb-6">
       All form inputs match DESIGN.md specifications with proper focus, error, and disabled states.
@@ -2669,7 +2771,7 @@
   <hr class="elv-border-t elv-border-light elv-my-12">
 
   <!-- Backgrounds -->
-  <div class="demo-section">
+  <div id="backgrounds" class="demo-section">
     <h2 class="elv-text-2xl elv-font-bold elv-text-default elv-mb-6">Background Colors</h2>
 
     <div class="elv-grid elv-grid-cols-3 elv-gap-4">
@@ -2697,7 +2799,7 @@
   <hr class="elv-border-t elv-border-light elv-my-12">
 
   <!-- Spacing Scale -->
-  <div class="demo-section">
+  <div id="spacing" class="demo-section">
     <h2 class="elv-text-2xl elv-font-bold elv-text-default elv-mb-6">Spacing Scale</h2>
 
     <div class="demo-label">Common Spacing Values (1 unit = 0.25rem)</div>
@@ -2727,17 +2829,19 @@
 
   <hr class="elv-border-t elv-border-light elv-my-12">
 
-  <!-- Footer -->
-  <div class="elv-text-center elv-py-8">
-    <p class="elv-text-sm elv-text-subtle">
-      View full documentation in <a href="./ELEVATE_COMPONENTS.md" class="elv-text-link elv-underline">ELEVATE_COMPONENTS.md</a>
-    </p>
-    <p class="elv-text-xs elv-text-nonessential elv-mt-2">
-      Linked to UE Elevate · Auto-updated · <a href="https://www.g2.test/elevate/lookbook" class="elv-text-link">Lookbook</a>
-    </p>
-  </div>
-
-</div>
+        <!-- Footer -->
+        <div class="elv-text-center elv-py-8 elv-mt-12 elv-border-t elv-border-light">
+          <p class="elv-text-sm elv-text-subtle">
+            View full documentation in <a href="./ELEVATE_COMPONENTS.md" class="elv-text-link elv-underline">ELEVATE_COMPONENTS.md</a>
+          </p>
+          <p class="elv-text-xs elv-text-nonessential elv-mt-2">
+            Linked to UE Elevate · Auto-updated · <a href="https://www.g2.test/elevate/lookbook" class="elv-text-link">Lookbook</a>
+          </p>
+        </div>
+      </div><!-- /.elv-content-card__body -->
+    </div><!-- /.elv-content-card -->
+  </main><!-- /.demo-main -->
+</div><!-- /.demo-layout -->
 
 <script>
   // Search input: show/hide clear button
@@ -2999,6 +3103,50 @@
       if (e.key === 'Escape' && tooltip.classList.contains('is-visible')) {
         hideTooltip();
         trigger.blur();
+      }
+    });
+  });
+
+  // Scroll spy for sidebar navigation
+  const observerOptions = {
+    root: null,
+    rootMargin: '-20% 0px -70% 0px',
+    threshold: 0
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        // Remove active class from all nav items
+        document.querySelectorAll('.elv-index-nav__item').forEach(item => {
+          item.classList.remove('elv-index-nav__item--active');
+        });
+
+        // Add active class to corresponding nav item
+        const id = entry.target.getAttribute('id');
+        const activeLink = document.querySelector(`.elv-index-nav__item[href="#${id}"]`);
+        if (activeLink) {
+          activeLink.classList.add('elv-index-nav__item--active');
+        }
+      }
+    });
+  }, observerOptions);
+
+  // Observe all sections
+  document.querySelectorAll('[id]').forEach(section => {
+    if (section.classList.contains('demo-section')) {
+      observer.observe(section);
+    }
+  });
+
+  // Smooth scroll for navigation links
+  document.querySelectorAll('.elv-index-nav__item').forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const targetId = link.getAttribute('href').substring(1);
+      const targetSection = document.getElementById(targetId);
+      if (targetSection) {
+        targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
     });
   });
