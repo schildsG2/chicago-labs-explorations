@@ -77,7 +77,7 @@ Track the porting status of all Elevate components from UE to Chicago Labs HTML 
 
 | Component | Status | Template | Variants | Priority | Notes |
 |-----------|--------|----------|----------|----------|-------|
-| avatar | ✅ Complete | [View](../components/templates/simple/avatar.html) | 5 sizes, 3 display types | High | Image, initials, placeholder ✨ |
+| avatar | ✅ Complete | [View](../components/templates/simple/avatar.html) | 5 sizes, 4 display types | High | Image, initials, placeholder, anonymous profiles ✨ |
 | chip | ✅ Complete | [View](./templates/simple/chip.html) | 6 colors, 3 sizes, removable | High | Pilot component ✨ |
 | notification_badge | ⬜ Not Started | — | count, dot | Medium | |
 | product_avatar | ⬜ Not Started | — | sizes, placeholder | Medium | |
