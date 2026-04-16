@@ -291,6 +291,45 @@
     .elv-avatar--sm .elv-avatar__initials {
       font-size: 12px;
     }
+
+    /* Spin Loader */
+    @keyframes elv-spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    .elv-spin-loader {
+      display: inline-block;
+      border-radius: 50%;
+      border-style: solid;
+      animation: elv-spin 0.8s linear infinite;
+    }
+    .elv-spin-loader--sm {
+      width: 24px;
+      height: 24px;
+      border-width: 2px;
+    }
+    .elv-spin-loader--md {
+      width: 32px;
+      height: 32px;
+      border-width: 3px;
+    }
+    .elv-spin-loader--primary {
+      border-color: #ebe9f6;
+      border-top-color: #5746b2;
+    }
+    .elv-spin-loader--neutral {
+      border-color: #dfdfe2;
+      border-top-color: #6f6d78;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .elv-spin-loader {
+        animation: elv-pulse 1.5s ease-in-out infinite;
+      }
+      @keyframes elv-pulse {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.5; }
+      }
+    }
   </style>
 </head>
 <body>
@@ -483,6 +522,45 @@
           </div>
           <div class="elv-bg-neutral-0 elv-border elv-border-light elv-rounded-md elv-p-4">
             <p class="elv-text-sm elv-font-semibold elv-text-default">Grid Item 4</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="elv-border-t elv-border-light elv-my-12">
+
+  <!-- Loading Spinners -->
+  <div class="demo-section">
+    <h2 class="elv-text-2xl elv-font-bold elv-text-default elv-mb-6">Loading Spinners</h2>
+    <p class="elv-text-sm elv-text-subtle elv-mb-4">
+      Animated loading indicators for async operations.
+      <a href="./templates/simple/spin-loader.html" class="elv-text-link elv-underline">View detailed docs</a>
+    </p>
+
+    <div class="demo-grid">
+      <div>
+        <div class="demo-label">Sizes (Primary)</div>
+        <div class="demo-row">
+          <div class="elv-spin-loader elv-spin-loader--sm elv-spin-loader--primary"></div>
+          <div class="elv-spin-loader elv-spin-loader--md elv-spin-loader--primary"></div>
+        </div>
+      </div>
+
+      <div>
+        <div class="demo-label">Colors</div>
+        <div class="demo-row">
+          <div class="elv-spin-loader elv-spin-loader--md elv-spin-loader--primary"></div>
+          <div class="elv-spin-loader elv-spin-loader--md elv-spin-loader--neutral"></div>
+        </div>
+      </div>
+
+      <div>
+        <div class="demo-label">In Context</div>
+        <div class="elv-bg-neutral-0 elv-border elv-border-light elv-rounded-md elv-p-4" style="max-width: 400px;">
+          <div class="elv-flex elv-items-center elv-gap-3">
+            <div class="elv-spin-loader elv-spin-loader--sm elv-spin-loader--primary"></div>
+            <span class="elv-text-sm elv-text-subtle">Loading your data...</span>
           </div>
         </div>
       </div>

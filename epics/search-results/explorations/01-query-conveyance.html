@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Query Conveyance — G2 AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --g2-dark: #0f1a2a;
+      --g2-darker: #0a1119;
+      --g2-card: #16213e;
+      --g2-border: #1f2937;
+      --g2-purple: #5746b2;
+      --g2-purple-light: rgba(87, 70, 178, 0.1);
+      --g2-text: #ffffff;
+      --g2-text-muted: rgba(255, 255, 255, 0.7);
+      --g2-text-subtle: rgba(255, 255, 255, 0.5);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Figtree', system-ui, -apple-system, sans-serif;
+      background: var(--g2-dark);
+      color: var(--g2-text);
+      line-height: 1.6;
+    }
+
+    /* Header Navigation */
+    .header {
+      background: var(--g2-darker);
+      border-bottom: 1px solid var(--g2-border);
+      padding: 16px 24px;
+    }
+
+    .header-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: var(--g2-text);
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    .logo-icon {
+      width: 32px;
+      height: 32px;
+      background: var(--g2-purple);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 16px;
+    }
+
+    .nav-link {
+      color: var(--g2-text-muted);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      transition: color 0.15s ease;
+    }
+
+    .nav-link:hover {
+      color: var(--g2-text);
+    }
+
+    /* Query Conveyance */
+    .query-header {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .query-text {
+      font-size: 16px;
+      color: var(--g2-text-muted);
+    }
+
+    .query-text strong {
+      font-weight: 600;
+      color: var(--g2-text);
+    }
+
+    .result-count {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--g2-text-subtle);
+    }
+
+    /* Hero Section */
+    .hero {
+      background: var(--g2-darker);
+      padding: 96px 24px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 0%, rgba(87, 70, 178, 0.15), transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .hero-title {
+      font-size: 88px;
+      font-weight: 600;
+      line-height: 1;
+      letter-spacing: -2px;
+      margin-bottom: 24px;
+    }
+
+    @media (max-width: 1024px) {
+      .hero-title {
+        font-size: 56px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero-title {
+        font-size: 48px;
+      }
+    }
+
+    .hero-ai-text {
+      position: relative;
+      display: inline-block;
+      color: var(--g2-purple);
+    }
+
+    .hero-description {
+      font-size: 18px;
+      color: var(--g2-text-muted);
+      line-height: 1.6;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    /* Main Container */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 24px;
+    }
+
+    /* Section Heading */
+    .section-heading {
+      font-size: 30px;
+      font-weight: 600;
+      margin-bottom: 24px;
+    }
+
+    /* Filter Bar */
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 32px;
+    }
+
+    .filter-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      flex: 1;
+    }
+
+    .filter-pill {
+      padding: 6px 16px;
+      border-radius: 9999px;
+      border: 1px solid var(--g2-border);
+      background: transparent;
+      color: var(--g2-text-muted);
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    @media (max-width: 768px) {
+      .filter-pill.hide-mobile {
+        display: none;
+      }
+    }
+
+    .filter-pill:hover {
+      background: var(--g2-purple-light);
+      border-color: var(--g2-purple);
+      color: var(--g2-text);
+    }
+
+    .filter-pill.active {
+      background: var(--g2-purple);
+      border-color: var(--g2-purple);
+      color: var(--g2-text);
+    }
+
+    /* Search Box */
+    .search-box {
+      display: flex;
+      align-items: center;
+      background: var(--g2-card);
+      border: 1px solid var(--g2-border);
+      border-radius: 9999px;
+      padding: 10px 20px;
+      min-width: 280px;
+      transition: border-color 0.15s ease;
+    }
+
+    .search-box:focus-within {
+      border-color: var(--g2-purple);
+    }
+
+    .search-box input {
+      flex: 1;
+      background: transparent;
+      border: none;
+      outline: none;
+      color: var(--g2-text);
+      font-size: 14px;
+      font-family: inherit;
+    }
+
+    .search-box input::placeholder {
+      color: var(--g2-text-subtle);
+    }
+
+    /* Tools Grid */
+    .tools-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    @media (min-width: 640px) {
+      .tools-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .tools-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    /* Tool Card */
+    .tool-card {
+      background: var(--g2-card);
+      border: 1px solid var(--g2-border);
+      border-radius: 12px;
+      padding: 24px;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .tool-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+      border-color: rgba(87, 70, 178, 0.5);
+    }
+
+    .tool-header {
+      display: flex;
+      gap: 16px;
+    }
+
+    .tool-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 8px;
+      background: #ffffff;
+      border: 1px solid var(--g2-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+
+    .tool-icon svg {
+      color: var(--g2-dark);
+    }
+
+    .tool-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .tool-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .tool-name {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--g2-text);
+      margin-bottom: 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .tool-content {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .tool-description {
+      font-size: 14px;
+      color: var(--g2-text-muted);
+      line-height: 1.6;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .tool-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tool-tag {
+      padding: 3px 8px;
+      border-radius: 4px;
+      background: rgba(87, 70, 178, 0.15);
+      border: 1px solid rgba(87, 70, 178, 0.3);
+      color: #b4a7ff;
+      font-size: 12px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Header Navigation -->
+  <header class="header">
+    <div class="header-content">
+      <a href="#" class="logo">
+        <div class="logo-icon">G</div>
+        <span>ai</span>
+      </a>
+      <a href="#" class="nav-link">Research</a>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1 class="hero-title">
+        Where you go for <span class="hero-ai-text">AI.</span>
+      </h1>
+      <p class="hero-description">
+        Discover and compare the best AI tools, agents, and MCP servers. Browse verified tools with pricing, features, and reviews on G2's AI Marketplace.
+      </p>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main class="container">
+    <h2 class="section-heading">Browse Tools</h2>
+
+    <!-- Query Conveyance Header -->
+    <div class="query-header" role="status" aria-live="polite">
+      <span class="query-text">
+        Results for <strong>workflow automation</strong>
+      </span>
+      <span class="result-count" aria-label="24 tools found">24 tools</span>
+    </div>
+
+    <!-- Filter Bar -->
+    <div class="filter-bar">
+      <div class="filter-pills">
+        <a href="#" class="filter-pill active">All</a>
+        <a href="#" class="filter-pill">Mcp Server</a>
+        <a href="#" class="filter-pill hide-mobile">Content Creation</a>
+        <a href="#" class="filter-pill hide-mobile">Workflow Automation</a>
+        <a href="#" class="filter-pill">More</a>
+      </div>
+
+      <form class="search-box" role="search">
+        <input
+          type="search"
+          value="workflow automation"
+          placeholder="Search AI tools..."
+          autocomplete="off"
+        />
+      </form>
+    </div>
+
+    <!-- Tools Grid -->
+    <div class="tools-grid">
+
+      <!-- Tool Card 1 -->
+      <a href="#" class="tool-card">
+        <div class="tool-header">
+          <div class="tool-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+              <line x1="3" y1="9" x2="21" y2="9"/>
+              <line x1="9" y1="21" x2="9" y2="9"/>
+            </svg>
+          </div>
+          <div class="tool-info">
+            <h3 class="tool-name">OnMCP — Universal AI API Orchestra...</h3>
+          </div>
+        </div>
+        <div class="tool-content">
+          <p class="tool-description">
+            Universal MCP server: AI-to-API orchestration with 1,500+ tools.
+          </p>
+          <div class="tool-tags">
+            <span class="tool-tag">Api Integration</span>
+            <span class="tool-tag">Mcp Server</span>
+            <span class="tool-tag">+6 more</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Tool Card 2 -->
+      <a href="#" class="tool-card">
+        <div class="tool-header">
+          <div class="tool-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/>
+              <line x1="2" y1="12" x2="22" y2="12"/>
+              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+            </svg>
+          </div>
+          <div class="tool-info">
+            <h3 class="tool-name">008 Agent</h3>
+          </div>
+        </div>
+        <div class="tool-content">
+          <p class="tool-description">
+            Autonomous voice AI agents that streamline and automate your calls.
+          </p>
+          <div class="tool-tags">
+            <span class="tool-tag">Crm Integration</span>
+            <span class="tool-tag">Customer Support</span>
+            <span class="tool-tag">Voice Generation</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Tool Card 3 -->
+      <a href="#" class="tool-card">
+        <div class="tool-header">
+          <div class="tool-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+              <polyline points="7.5 4.21 12 6.81 16.5 4.21"/>
+              <polyline points="7.5 19.79 7.5 14.6 3 12"/>
+              <polyline points="21 12 16.5 14.6 16.5 19.79"/>
+              <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+              <line x1="12" y1="22.08" x2="12" y2="12"/>
+            </svg>
+          </div>
+          <div class="tool-info">
+            <h3 class="tool-name">0Latency Memory</h3>
+          </div>
+        </div>
+        <div class="tool-content">
+          <p class="tool-description">
+            Persistent semantic memory for AI agents, with sub-100ms recall.
+          </p>
+          <div class="tool-tags">
+            <span class="tool-tag">Ai Memory</span>
+            <span class="tool-tag">Semantic Search</span>
+            <span class="tool-tag">Knowledge Graph</span>
+            <span class="tool-tag">+7 more</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Tool Card 4 -->
+      <a href="#" class="tool-card">
+        <div class="tool-header">
+          <div class="tool-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/>
+              <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
+            </svg>
+          </div>
+          <div class="tool-info">
+            <h3 class="tool-name">Opi</h3>
+          </div>
+        </div>
+        <div class="tool-content">
+          <p class="tool-description">
+            Bridge workflows and cache agent contexts for free in the MCP ecosystem.
+          </p>
+          <div class="tool-tags">
+            <span class="tool-tag">Mcp Framework</span>
+            <span class="tool-tag">Mcp Server</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Tool Card 5 -->
+      <a href="#" class="tool-card">
+        <div class="tool-header">
+          <div class="tool-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 2v20M2 12h20"/>
+              <circle cx="12" cy="12" r="3"/>
+            </svg>
+          </div>
+          <div class="tool-info">
+            <h3 class="tool-name">100+ AI Prompts</h3>
+          </div>
+        </div>
+        <div class="tool-content">
+          <p class="tool-description">
+            100+ AI Prompts is a comprehensive Trello board designed to assist users in generating and managing AI prompts effectively.
+          </p>
+          <div class="tool-tags">
+            <span class="tool-tag">Productivity</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Tool Card 6 -->
+      <a href="#" class="tool-card">
+        <div class="tool-header">
+          <div class="tool-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon points="12 2 2 7 12 12 22 7 12 2"/>
+              <polyline points="2 17 12 22 22 17"/>
+              <polyline points="2 12 12 17 22 12"/>
+            </svg>
+          </div>
+          <div class="tool-info">
+            <h3 class="tool-name">101.school</h3>
+          </div>
+        </div>
+        <div class="tool-content">
+          <p class="tool-description">
+            101.school is an innovative platform that leverages artificial intelligence to generate personalized educational content.
+          </p>
+          <div class="tool-tags">
+            <span class="tool-tag">Education</span>
+            <span class="tool-tag">Content Creation</span>
+          </div>
+        </div>
+      </a>
+
+    </div>
+  </main>
+
+</body>
+</html>

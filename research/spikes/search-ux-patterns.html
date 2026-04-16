@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Search UX Improvements — ai.g2.com</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      /* Colors from Elevate */
+      --bg-neutral-0: #ffffff;
+      --bg-neutral-5: #fafafa;
+      --bg-neutral-10: #f2f2f3;
+      --text-default: #201f23;
+      --text-subtle: #4c4b53;
+      --text-nonessential: #6f6d78;
+      --purple-100: #5746b2;
+      --purple-10: #f2f0f9;
+      --blue-100: #0073f5;
+
+      /* Typography */
+      --font-family: 'Figtree', system-ui, -apple-system, sans-serif;
+
+      /* Spacing */
+      --space-3: 12px;
+      --space-4: 16px;
+      --space-5: 20px;
+      --space-6: 24px;
+      --space-8: 32px;
+      --space-10: 40px;
+      --space-12: 48px;
+      --space-16: 64px;
+
+      /* Radius */
+      --radius-xs: 4px;
+      --radius-sm: 8px;
+      --radius-pill-md: 24px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: var(--font-family);
+      background: #1a1a2e; /* Dark theme matching screenshot */
+      color: var(--bg-neutral-0);
+      padding: var(--space-8);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      font-size: 28px;
+      line-height: 36px;
+      font-weight: 700;
+      margin-bottom: var(--space-8);
+      color: var(--bg-neutral-0);
+    }
+
+    .section {
+      background: #16213e;
+      border-radius: var(--radius-sm);
+      padding: var(--space-10);
+      margin-bottom: var(--space-8);
+    }
+
+    .section-label {
+      font-size: 12px;
+      line-height: 16px;
+      font-weight: 600;
+      color: var(--purple-100);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: var(--space-3);
+    }
+
+    .section-title {
+      font-size: 21px;
+      line-height: 28px;
+      font-weight: 700;
+      margin-bottom: var(--space-6);
+      color: var(--bg-neutral-0);
+    }
+
+    /* Search Results Header */
+    .search-header {
+      display: flex;
+      align-items: center;
+      gap: var(--space-4);
+      margin-bottom: var(--space-6);
+      padding: var(--space-5);
+      background: rgba(87, 70, 178, 0.08);
+      border-radius: var(--radius-sm);
+      border-left: 3px solid var(--purple-100);
+    }
+
+    .search-query {
+      font-size: 16px;
+      line-height: 24px;
+      font-weight: 400;
+      color: var(--bg-neutral-0);
+    }
+
+    .search-query strong {
+      font-weight: 600;
+      color: var(--bg-neutral-0);
+    }
+
+    .result-count {
+      display: inline-flex;
+      align-items: center;
+      padding: 4px 12px;
+      background: var(--purple-100);
+      color: var(--bg-neutral-0);
+      font-size: 14px;
+      line-height: 20px;
+      font-weight: 600;
+      border-radius: var(--radius-pill-md);
+      white-space: nowrap;
+    }
+
+    /* Empty State */
+    .empty-state {
+      text-align: center;
+      padding: var(--space-16) var(--space-8);
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .empty-state-icon {
+      width: 64px;
+      height: 64px;
+      margin: 0 auto var(--space-6);
+      opacity: 0.4;
+    }
+
+    .empty-state-title {
+      font-size: 21px;
+      line-height: 28px;
+      font-weight: 700;
+      color: var(--bg-neutral-0);
+      margin-bottom: var(--space-3);
+    }
+
+    .empty-state-message {
+      font-size: 16px;
+      line-height: 24px;
+      font-weight: 400;
+      color: rgba(255, 255, 255, 0.7);
+      margin-bottom: var(--space-8);
+    }
+
+    .empty-state-query {
+      display: inline-block;
+      padding: 4px 12px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: var(--radius-xs);
+      font-family: 'SF Mono', 'Monaco', 'Courier New', monospace;
+      font-size: 14px;
+      color: var(--bg-neutral-0);
+      margin: 0 4px;
+    }
+
+    .empty-state-actions {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+      align-items: center;
+    }
+
+    .empty-state-actions button,
+    .empty-state-actions a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 24px;
+      font-size: 14px;
+      line-height: 20px;
+      font-weight: 600;
+      border-radius: var(--radius-pill-md);
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.15s ease;
+    }
+
+    .btn-primary {
+      background: var(--purple-100);
+      color: var(--bg-neutral-0);
+    }
+
+    .btn-primary:hover {
+      background: #6855c9;
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--bg-neutral-0);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+
+    /* Tool Cards (lightweight representation) */
+    .tool-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: var(--space-5);
+    }
+
+    .tool-card {
+      background: #0f3460;
+      border-radius: var(--radius-sm);
+      padding: var(--space-5);
+    }
+
+    .tool-card-title {
+      font-size: 16px;
+      line-height: 24px;
+      font-weight: 600;
+      color: var(--bg-neutral-0);
+      margin-bottom: var(--space-2);
+    }
+
+    .tool-card-desc {
+      font-size: 14px;
+      line-height: 20px;
+      font-weight: 400;
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    /* Accessibility */
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border-width: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Search UX Improvements for ai.g2.com</h1>
+
+    <!-- STATE 1: Results Found -->
+    <section class="section">
+      <div class="section-label">State 1: Results Found</div>
+      <h2 class="section-title">Query Conveyance with Result Count</h2>
+
+      <div class="search-header" role="status" aria-live="polite">
+        <span class="search-query">
+          Results for <strong>"workflow automation"</strong>
+        </span>
+        <span class="result-count" aria-label="24 tools found">24 tools</span>
+      </div>
+
+      <div class="tool-grid">
+        <div class="tool-card">
+          <div class="tool-card-title">OnMCP — Universal AI API Orchestra...</div>
+          <div class="tool-card-desc">Universal MCP server: AI-to-API orchestration with 1,500+ tools.</div>
+        </div>
+        <div class="tool-card">
+          <div class="tool-card-title">008 Agent</div>
+          <div class="tool-card-desc">Autonomous voice AI agents that streamline and automate your calls.</div>
+        </div>
+        <div class="tool-card">
+          <div class="tool-card-title">0Latency Memory</div>
+          <div class="tool-card-desc">Persistent semantic memory for AI agents, with sub-100ms recall.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STATE 2: No Results (Null State) -->
+    <section class="section">
+      <div class="section-label">State 2: No Results</div>
+      <h2 class="section-title">Null State with Clear Next Steps</h2>
+
+      <div class="search-header" role="status" aria-live="polite">
+        <span class="search-query">
+          Results for <strong>"quantum blockchain AI"</strong>
+        </span>
+        <span class="result-count" aria-label="0 tools found">0 tools</span>
+      </div>
+
+      <div class="empty-state">
+        <svg class="empty-state-icon" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="32" cy="32" r="30" stroke="currentColor" stroke-width="2" opacity="0.2"/>
+          <path d="M28 28C28 25.7909 29.7909 24 32 24C34.2091 24 36 25.7909 36 28C36 29.8638 34.7252 31.4299 33 31.874V34M32 40V40.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+
+        <h3 class="empty-state-title">No Tools Match Your Search</h3>
+        <p class="empty-state-message">
+          We couldn't find any tools matching
+          <span class="empty-state-query">"quantum blockchain AI"</span>
+        </p>
+
+        <div class="empty-state-actions">
+          <button class="btn-primary" aria-label="Browse all AI tools">
+            Browse All Tools
+          </button>
+          <a href="#" class="btn-secondary">Clear Search</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- DESIGN NOTES -->
+    <section class="section">
+      <div class="section-label">Design Notes</div>
+      <h2 class="section-title">UX Research Findings (via Baymard MCP)</h2>
+
+      <div style="color: rgba(255, 255, 255, 0.8); font-size: 14px; line-height: 22px;">
+        <p style="margin-bottom: 12px;"><strong>Key Improvements Based on Best Practices:</strong></p>
+        <ul style="padding-left: 20px; margin-bottom: 16px;">
+          <li style="margin-bottom: 8px;"><strong>Query Display:</strong> Shows what was searched to confirm the query was applied</li>
+          <li style="margin-bottom: 8px;"><strong>Result Count Badge:</strong> Purple badge with count provides clear feedback on search scope</li>
+          <li style="margin-bottom: 8px;"><strong>Visual Treatment:</strong> Purple accent bar + subtle background creates clear "results context" zone</li>
+          <li style="margin-bottom: 8px;"><strong>Accessibility:</strong> role="status" with aria-live="polite" announces results to screen readers</li>
+          <li style="margin-bottom: 8px;"><strong>Null State Tone:</strong> Practical and encouraging, not playful. Clear next steps.</li>
+          <li style="margin-bottom: 8px;"><strong>Empty State Actions:</strong> Primary CTA to browse all + secondary to clear search</li>
+        </ul>
+
+        <p style="margin-bottom: 12px;"><strong>Elevate Design System Compliance:</strong></p>
+        <ul style="padding-left: 20px;">
+          <li style="margin-bottom: 8px;">Typography: Label Sm (14px/600) for badge, Body (16px/400) for query text</li>
+          <li style="margin-bottom: 8px;">Colors: Purple-100 (#5746b2) for brand elements, neutral scale for text</li>
+          <li style="margin-bottom: 8px;">Spacing: All spacing is multiple of 4px (space-4, space-5, space-6)</li>
+          <li style="margin-bottom: 8px;">Radius: radius-pill-md (24px) for badge, radius-sm (8px) for containers</li>
+          <li style="margin-bottom: 8px;">Empty state follows DESIGN.md guidance: "explain, reassure, and offer next step"</li>
+        </ul>
+      </div>
+    </section>
+  </div>
+</body>
+</html>
