@@ -330,6 +330,30 @@
         50% { opacity: 0.5; }
       }
     }
+
+    /* Links */
+    .elv-link {
+      color: #0073f5;
+      text-decoration: none;
+      transition: color 150ms ease;
+    }
+    .elv-link:hover {
+      color: #005bc2;
+    }
+    .elv-link:focus-visible {
+      outline: 2px solid #5746b2;
+      outline-offset: 2px;
+      border-radius: 2px;
+    }
+    .elv-link--underline {
+      text-decoration: underline;
+    }
+    .elv-link--subtle {
+      color: #4c4b53;
+    }
+    .elv-link--subtle:hover {
+      color: #201f23;
+    }
   </style>
 </head>
 <body>
@@ -523,6 +547,45 @@
           <div class="elv-bg-neutral-0 elv-border elv-border-light elv-rounded-md elv-p-4">
             <p class="elv-text-sm elv-font-semibold elv-text-default">Grid Item 4</p>
           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="elv-border-t elv-border-light elv-my-12">
+
+  <!-- Links -->
+  <div class="demo-section">
+    <h2 class="elv-text-2xl elv-font-bold elv-text-default elv-mb-6">Links</h2>
+    <p class="elv-text-sm elv-text-subtle elv-mb-4">
+      Text links with standard and subtle variants.
+      <a href="./templates/simple/link.html" class="elv-text-link elv-underline">View detailed docs</a>
+    </p>
+
+    <div class="demo-grid">
+      <div>
+        <div class="demo-label">Standard (Blue)</div>
+        <div class="elv-flex elv-flex-col elv-gap-2">
+          <a href="#" class="elv-link">Standard link</a>
+          <a href="#" class="elv-link elv-link--underline">With underline</a>
+        </div>
+      </div>
+
+      <div>
+        <div class="demo-label">Subtle (Gray)</div>
+        <div class="elv-flex elv-flex-col elv-gap-2">
+          <a href="#" class="elv-link elv-link--subtle">Subtle link</a>
+          <a href="#" class="elv-link elv-link--subtle elv-link--underline">Subtle with underline</a>
+        </div>
+      </div>
+
+      <div>
+        <div class="demo-label">In Context</div>
+        <div class="elv-bg-neutral-0 elv-border elv-border-light elv-rounded-md elv-p-4" style="max-width: 400px;">
+          <p class="elv-text-sm elv-text-default">
+            Read <a href="#" class="elv-link">verified reviews</a> from real users.
+            Learn more about our <a href="#" class="elv-link elv-link--underline">scoring methodology</a>.
+          </p>
         </div>
       </div>
     </div>
