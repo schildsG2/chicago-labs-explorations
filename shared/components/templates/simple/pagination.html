@@ -51,8 +51,8 @@
       height: 40px;
       padding: 8px 12px;
       background: transparent;
-      border: 1.5px solid var(--border-light);
-      border-radius: var(--radius-md);
+      border: 1px solid var(--border-light);
+      border-radius: 6px;
       font-family: var(--font-sans);
       font-size: 14px;
       line-height: 20px;
@@ -74,13 +74,14 @@
 
     .elv-pagination__btn:disabled {
       cursor: not-allowed;
-      opacity: 0.4;
+      background: var(--bg-neutral-5);
+      color: var(--text-nonessential);
     }
 
     .elv-pagination__btn--current {
-      background: var(--color-purple-100);
-      border-color: var(--color-purple-100);
-      color: var(--text-inverted);
+      background: #ebe9f6;
+      border-color: #ebe9f6;
+      color: #5746b2;
       cursor: default;
     }
 
