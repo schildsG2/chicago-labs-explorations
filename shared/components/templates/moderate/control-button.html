@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Control Button Component</title>
+  <link rel="stylesheet" href="../../../tokens/elevate.css">
+  <link rel="stylesheet" href="../../elevate.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined">
+  <style>
+    body {
+      font-family: var(--font-sans);
+      padding: 2rem;
+      background: var(--bg-neutral-5);
+    }
+    .section {
+      background: white;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-light);
+    }
+    h1 { margin: 0 0 0.5rem 0; }
+    h2 { margin: 1.5rem 0 0.75rem 0; font-size: var(--text-lg); }
+    .examples { display: flex; gap: 0.75rem; flex-wrap: wrap; margin: 1rem 0; align-items: center; }
+    pre {
+      background: var(--bg-neutral-10);
+      padding: 1rem;
+      border-radius: var(--radius-sm);
+      overflow-x: auto;
+      font-size: 13px;
+    }
+
+    /* Material Symbols */
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20;
+    }
+
+    /* Control Button — small utility buttons for UI controls */
+    .elv-control-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      transition: all 150ms ease;
+      color: #4c4b53;
+      flex-shrink: 0;
+      border-radius: 4px;
+    }
+
+    /* Sizes */
+    .elv-control-button--sm {
+      width: 24px;
+      height: 24px;
+      font-size: 16px;
+    }
+    .elv-control-button--md {
+      width: 32px;
+      height: 32px;
+      font-size: 20px;
+    }
+
+    /* Hover state */
+    .elv-control-button:hover {
+      background: #f2f2f3;
+      color: #201f23;
+    }
+
+    /* Focus state */
+    .elv-control-button:focus {
+      outline: 2px solid #5746b2;
+      outline-offset: 2px;
+    }
+
+    /* Active state */
+    .elv-control-button:active {
+      background: #dfdfe2;
+      color: #201f23;
+    }
+
+    /* Disabled state */
+    .elv-control-button:disabled {
+      color: #b0afb6;
+      cursor: not-allowed;
+      opacity: 0.5;
+    }
+    .elv-control-button:disabled:hover {
+      background: transparent;
+    }
+
+    /* Close button variant (X) */
+    .elv-control-button--close {
+      color: #6f6d78;
+    }
+    .elv-control-button--close:hover {
+      background: #ffd7d1;
+      color: #b21800;
+    }
+
+    /* Demo containers */
+    .modal-header-demo {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem;
+      background: white;
+      border: 1px solid #dfdfe2;
+      border-radius: 8px;
+      margin: 1rem 0;
+    }
+
+    .panel-demo {
+      display: flex;
+      flex-direction: column;
+      background: white;
+      border: 1px solid #dfdfe2;
+      border-radius: 8px;
+      width: 300px;
+      margin: 1rem 0;
+    }
+    .panel-demo__header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid #dfdfe2;
+    }
+    .panel-demo__body {
+      padding: 1rem;
+      color: #6f6d78;
+      font-size: 14px;
+    }
+
+    .window-controls-demo {
+      display: inline-flex;
+      gap: 8px;
+      padding: 0.5rem;
+      background: #f2f2f3;
+      border-radius: 8px;
+      margin: 1rem 0;
+    }
+  </style>
+</head>
+<body>
+
+<div elv>
+  <h1 class="elv-text-3xl elv-font-bold elv-text-default">Control Button</h1>
+  <p class="elv-text-sm elv-text-subtle">
+    Reference: <a href="https://www.g2.test/elevate/lookbook" class="elv-text-link">Elevate Lookbook</a> |
+    Specs: <a href="../../design-system/DESIGN.md" class="elv-text-link">DESIGN.md (Buttons)</a>
+  </p>
+
+  <!-- Sizes -->
+  <div class="section">
+    <h2 class="elv-font-semibold elv-text-default">Sizes</h2>
+    <p class="elv-text-sm elv-text-subtle elv-mb-4">
+      Small (24px) and Medium (32px). Designed for UI controls like close, expand, minimize.
+    </p>
+    <div class="examples">
+      <button class="elv-control-button elv-control-button--sm" type="button" aria-label="Close">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+      <button class="elv-control-button elv-control-button--md" type="button" aria-label="Close">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+    </div>
+    <pre><code>&lt;button class="elv-control-button elv-control-button--sm" type="button" aria-label="Close"&gt;
+  &lt;span class="material-symbols-outlined"&gt;close&lt;/span&gt;
+&lt;/button&gt;
+
+&lt;button class="elv-control-button elv-control-button--md" type="button" aria-label="Close"&gt;
+  &lt;span class="material-symbols-outlined"&gt;close&lt;/span&gt;
+&lt;/button&gt;</code></pre>
+  </div>
+
+  <!-- Close Control -->
+  <div class="section">
+    <h2 class="elv-font-semibold elv-text-default">Close Control</h2>
+    <p class="elv-text-sm elv-text-subtle elv-mb-4">
+      Most common control. Hover shows red tint. Use for modals, panels, dismissible cards.
+    </p>
+    <div class="examples">
+      <button class="elv-control-button elv-control-button--close elv-control-button--md" type="button" aria-label="Close">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+      <button class="elv-control-button elv-control-button--close elv-control-button--md" type="button" aria-label="Close" disabled>
+        <span class="material-symbols-outlined">close</span>
+      </button>
+    </div>
+    <pre><code>&lt;button class="elv-control-button elv-control-button--close elv-control-button--md" type="button" aria-label="Close"&gt;
+  &lt;span class="material-symbols-outlined"&gt;close&lt;/span&gt;
+&lt;/button&gt;</code></pre>
+  </div>
+
+  <!-- Common Controls -->
+  <div class="section">
+    <h2 class="elv-font-semibold elv-text-default">Common Controls</h2>
+    <p class="elv-text-sm elv-text-subtle elv-mb-4">
+      Standard utility controls for menus, expansion, minimization, and more.
+    </p>
+    <div class="examples">
+      <button class="elv-control-button elv-control-button--md" type="button" aria-label="Menu">
+        <span class="material-symbols-outlined">menu</span>
+      </button>
+      <button class="elv-control-button elv-control-button--md" type="button" aria-label="Expand">
+        <span class="material-symbols-outlined">expand_more</span>
+      </button>
+      <button class="elv-control-button elv-control-button--md" type="button" aria-label="Collapse">
+        <span class="material-symbols-outlined">expand_less</span>
+      </button>
+      <button class="elv-control-button elv-control-button--md" type="button" aria-label="More options">
+        <span class="material-symbols-outlined">more_vert</span>
+      </button>
+      <button class="elv-control-button elv-control-button--md" type="button" aria-label="Fullscreen">
+        <span class="material-symbols-outlined">fullscreen</span>
+      </button>
+      <button class="elv-control-button elv-control-button--md" type="button" aria-label="Exit fullscreen">
+        <span class="material-symbols-outlined">fullscreen_exit</span>
+      </button>
+    </div>
+    <pre><code>&lt;button class="elv-control-button elv-control-button--md" type="button" aria-label="Menu"&gt;
+  &lt;span class="material-symbols-outlined"&gt;menu&lt;/span&gt;
+&lt;/button&gt;
+
+&lt;button class="elv-control-button elv-control-button--md" type="button" aria-label="Expand"&gt;
+  &lt;span class="material-symbols-outlined"&gt;expand_more&lt;/span&gt;
+&lt;/button&gt;</code></pre>
+  </div>
+
+  <!-- In Context: Modal Header -->
+  <div class="section">
+    <h2 class="elv-font-semibold elv-text-default">In Context: Modal Header</h2>
+    <p class="elv-text-sm elv-text-subtle elv-mb-4">
+      Control buttons in modal headers. Close button positioned at top-right.
+    </p>
+    <div class="modal-header-demo">
+      <h3 class="elv-font-semibold elv-text-default" style="margin: 0;">Modal Title</h3>
+      <button class="elv-control-button elv-control-button--close elv-control-button--md" type="button" aria-label="Close modal">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+    </div>
+    <pre><code>&lt;div class="modal-header"&gt;
+  &lt;h3&gt;Modal Title&lt;/h3&gt;
+  &lt;button class="elv-control-button elv-control-button--close elv-control-button--md" type="button" aria-label="Close modal"&gt;
+    &lt;span class="material-symbols-outlined"&gt;close&lt;/span&gt;
+  &lt;/button&gt;
+&lt;/div&gt;</code></pre>
+  </div>
+
+  <!-- In Context: Collapsible Panel -->
+  <div class="section">
+    <h2 class="elv-font-semibold elv-text-default">In Context: Collapsible Panel</h2>
+    <p class="elv-text-sm elv-text-subtle elv-mb-4">
+      Control button for expanding/collapsing panels. Click to toggle.
+    </p>
+    <div class="panel-demo" data-collapsible>
+      <div class="panel-demo__header">
+        <h4 class="elv-font-semibold elv-text-default" style="margin: 0; font-size: 16px;">Panel Title</h4>
+        <button class="elv-control-button elv-control-button--md" type="button" aria-label="Expand panel" data-toggle>
+          <span class="material-symbols-outlined" data-icon>expand_more</span>
+        </button>
+      </div>
+      <div class="panel-demo__body" data-content>
+        This content can be collapsed or expanded using the control button.
+      </div>
+    </div>
+    <pre><code>&lt;div class="panel"&gt;
+  &lt;div class="panel__header"&gt;
+    &lt;h4&gt;Panel Title&lt;/h4&gt;
+    &lt;button class="elv-control-button elv-control-button--md" type="button" aria-label="Expand panel"&gt;
+      &lt;span class="material-symbols-outlined"&gt;expand_more&lt;/span&gt;
+    &lt;/button&gt;
+  &lt;/div&gt;
+  &lt;div class="panel__body"&gt;...&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+  </div>
+
+  <!-- In Context: Window Controls -->
+  <div class="section">
+    <h2 class="elv-font-semibold elv-text-default">In Context: Window Controls</h2>
+    <p class="elv-text-sm elv-text-subtle elv-mb-4">
+      Grouped controls for window-like interfaces.
+    </p>
+    <div class="window-controls-demo">
+      <button class="elv-control-button elv-control-button--sm" type="button" aria-label="Minimize">
+        <span class="material-symbols-outlined">minimize</span>
+      </button>
+      <button class="elv-control-button elv-control-button--sm" type="button" aria-label="Maximize">
+        <span class="material-symbols-outlined">crop_square</span>
+      </button>
+      <button class="elv-control-button elv-control-button--close elv-control-button--sm" type="button" aria-label="Close">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+    </div>
+    <pre><code>&lt;div class="window-controls"&gt;
+  &lt;button class="elv-control-button elv-control-button--sm" type="button" aria-label="Minimize"&gt;
+    &lt;span class="material-symbols-outlined"&gt;minimize&lt;/span&gt;
+  &lt;/button&gt;
+  &lt;button class="elv-control-button elv-control-button--sm" type="button" aria-label="Maximize"&gt;
+    &lt;span class="material-symbols-outlined"&gt;crop_square&lt;/span&gt;
+  &lt;/button&gt;
+  &lt;button class="elv-control-button elv-control-button--close elv-control-button--sm" type="button" aria-label="Close"&gt;
+    &lt;span class="material-symbols-outlined"&gt;close&lt;/span&gt;
+  &lt;/button&gt;
+&lt;/div&gt;</code></pre>
+  </div>
+
+  <!-- Usage Notes -->
+  <div class="section">
+    <h2 class="elv-font-semibold elv-text-default">Usage Notes</h2>
+    <ul class="elv-text-sm elv-text-default" style="line-height: 1.6;">
+      <li><strong>Purpose</strong> — Small utility buttons for UI controls, not primary actions</li>
+      <li><strong>Always include aria-label</strong> — control buttons need accessible labels</li>
+      <li><strong>Close variant</strong> — Use --close modifier for destructive close actions (red hover)</li>
+      <li><strong>Subtle styling</strong> — Transparent background, hover reveals light gray</li>
+      <li><strong>Focus states</strong> — 2px purple outline for keyboard accessibility</li>
+      <li><strong>Common icons</strong> — close, menu, expand_more, expand_less, fullscreen, minimize, more_vert</li>
+      <li><strong>Positioning</strong> — Typically positioned at panel edges or in headers</li>
+    </ul>
+  </div>
+
+</div>
+
+<script>
+  // Collapsible panel demo
+  document.querySelectorAll('[data-collapsible]').forEach(panel => {
+    const toggle = panel.querySelector('[data-toggle]');
+    const content = panel.querySelector('[data-content]');
+    const icon = panel.querySelector('[data-icon]');
+    let isExpanded = true;
+
+    toggle.addEventListener('click', () => {
+      isExpanded = !isExpanded;
+
+      if (isExpanded) {
+        content.style.display = 'block';
+        icon.textContent = 'expand_more';
+        toggle.setAttribute('aria-label', 'Collapse panel');
+      } else {
+        content.style.display = 'none';
+        icon.textContent = 'expand_less';
+        toggle.setAttribute('aria-label', 'Expand panel');
+      }
+    });
+  });
+</script>
+
+</body>
+</html>

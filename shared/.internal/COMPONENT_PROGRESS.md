@@ -13,17 +13,17 @@ Track the porting status of all Elevate components from UE to Chicago Labs HTML 
 | **Icons** | ~150 | 102 | ~48 | 0 |
 | **Form Inputs** ⚡️ | 8 | 3 | 0 | 5 |
 | **Simple Components** | 12 | 12 | 0 | 0 |
-| **Moderate Components** | 10 | 4 | 0 | 6 |
+| **Moderate Components** | 10 | 6 | 0 | 4 |
 | **Complex Components** | 12 | 0 | 0 | 12 |
-| **TOTAL** | 42 | 19 | 0 | 23 |
+| **TOTAL** | 42 | 21 | 0 | 21 |
 
-**Overall Completion**: ~68% (120/~192 total items)
+**Overall Completion**: ~69% (122/~192 total items)
 
 **COMPLETED APRIL 16**: 
 - Simple Components: progress_bar ✅ breadcrumbs ✅ star_rating ✅ product_chip ✅ notification_badge ✅ product_avatar ✅ rating_distribution_bar ✅
-- Moderate Components: accordion ✅ tab ✅ tooltip ✅ pagination ✅
+- Moderate Components: accordion ✅ tab ✅ tooltip ✅ pagination ✅ icon_button ✅ control_button ✅
 **SIMPLE COMPONENTS: 100% COMPLETE!** 🎉
-**MODERATE COMPONENTS: 4/10 complete (40%)** ⚡️
+**MODERATE COMPONENTS: 6/10 complete (60%)** ⚡️
 (+ anonymous profile avatars added to avatar component)
 **COMPLETED APRIL 15**: search_input ✅ text_input ✅ textarea ✅ status_badge ✅ avatar ✅ spin_loader ✅ link ✅
 
@@ -130,8 +130,8 @@ All UI icons now available including:
 | accordion | ✅ Complete | [View](../components/templates/simple/accordion.html) | Vanilla JS | High | Multi/single-open modes, keyboard nav ✨ |
 | button_group | ⬜ Not Started | — | No | Medium | Mostly CSS |
 | content_card | ⬜ Not Started | — | No | Medium | Layout pattern |
-| control_button | ⬜ Not Started | — | No | Medium | Icon buttons |
-| icon_button | ⬜ Not Started | — | No | High | Common pattern |
+| control_button | ✅ Complete | [View](../components/templates/moderate/control-button.html) | No | Medium | Small utility buttons for UI controls (close, expand, menu) ✨ |
+| icon_button | ✅ Complete | [View](../components/templates/moderate/icon-button.html) | No | High | Icon-only buttons, 3 sizes, 4 styles, tooltip support ✨ |
 | index_nav | ⬜ Not Started | — | Optional | Low | Tab-like nav |
 | inset_card | ⬜ Not Started | — | No | Low | Card variant |
 | pagination | ✅ Complete | [View](../components/templates/simple/pagination.html) | Vanilla JS | High | Page numbers, truncation, keyboard nav, compact variant ✨ |
