@@ -183,6 +183,68 @@
     .material-symbols-outlined {
       font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20;
     }
+
+    /* Status Badge */
+    .elv-status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      max-height: 24px;
+      padding: 2px 8px;
+      border: 1px solid;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 600;
+      line-height: 16px;
+      width: fit-content;
+    }
+    .elv-status-badge--neutral {
+      background: #f2f2f3;
+      border-color: #dfdfe2;
+      color: #201f23;
+    }
+    .elv-status-badge--info {
+      background: #dbecff;
+      border-color: #5296ff;
+      color: #002b5c;
+    }
+    .elv-status-badge--success {
+      background: #d0f6f1;
+      border-color: #13c8af;
+      color: #0f5249;
+    }
+    .elv-status-badge--warning {
+      background: #fff9e5;
+      border-color: #ffcf29;
+      color: #665000;
+    }
+    .elv-status-badge--critical {
+      background: #ffd7d1;
+      border-color: #eb2000;
+      color: #b21800;
+    }
+    .elv-status-badge--new {
+      background: #ebe9f6;
+      border-color: #5746b2;
+      color: #342a6a;
+    }
+    .elv-status-badge--brand {
+      background: #fff6f5;
+      border-color: #ff492c;
+      color: #ff492c;
+    }
+    .elv-status-badge__dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      margin-right: 4px;
+    }
+    .elv-status-badge__dot--active {
+      background: #13c8af;
+    }
+    .elv-status-badge__dot--inactive {
+      background: #eb2000;
+    }
   </style>
 </head>
 <body>
@@ -375,6 +437,67 @@
           </div>
           <div class="elv-bg-neutral-0 elv-border elv-border-light elv-rounded-md elv-p-4">
             <p class="elv-text-sm elv-font-semibold elv-text-default">Grid Item 4</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="elv-border-t elv-border-light elv-my-12">
+
+  <!-- Status Badges -->
+  <div class="demo-section">
+    <h2 class="elv-text-2xl elv-font-bold elv-text-default elv-mb-6">Status Badges</h2>
+    <p class="elv-text-sm elv-text-subtle elv-mb-4">
+      Compact status indicators with semantic color treatments.
+      <a href="./templates/simple/status-badge.html" class="elv-text-link elv-underline">View detailed docs</a>
+    </p>
+
+    <div class="demo-grid">
+      <div>
+        <div class="demo-label">Primary States</div>
+        <div class="demo-row">
+          <span class="elv-status-badge elv-status-badge--neutral">Neutral</span>
+          <span class="elv-status-badge elv-status-badge--info">Info</span>
+          <span class="elv-status-badge elv-status-badge--success">Success</span>
+          <span class="elv-status-badge elv-status-badge--warning">Warning</span>
+          <span class="elv-status-badge elv-status-badge--critical">Critical</span>
+          <span class="elv-status-badge elv-status-badge--new">New</span>
+          <span class="elv-status-badge elv-status-badge--brand">Featured</span>
+        </div>
+      </div>
+
+      <div>
+        <div class="demo-label">Dot Indicators</div>
+        <div class="demo-row">
+          <span class="elv-status-badge elv-status-badge--neutral">
+            <span class="elv-status-badge__dot elv-status-badge__dot--active"></span>
+            Active
+          </span>
+          <span class="elv-status-badge elv-status-badge--neutral">
+            <span class="elv-status-badge__dot elv-status-badge__dot--inactive"></span>
+            Inactive
+          </span>
+        </div>
+      </div>
+
+      <div>
+        <div class="demo-label">In Context</div>
+        <div class="elv-bg-neutral-0 elv-border elv-border-light elv-rounded-md elv-p-4" style="max-width: 500px;">
+          <div class="elv-flex elv-items-center elv-justify-between elv-mb-3">
+            <div class="elv-flex elv-items-center elv-gap-3">
+              <span class="elv-text-base elv-font-semibold elv-text-default">Project Alpha</span>
+              <span class="elv-status-badge elv-status-badge--success">
+                <span class="elv-status-badge__dot elv-status-badge__dot--active"></span>
+                Active
+              </span>
+            </div>
+          </div>
+          <div class="elv-flex elv-items-center elv-justify-between">
+            <div class="elv-flex elv-items-center elv-gap-3">
+              <span class="elv-text-base elv-font-semibold elv-text-default">API v2.0</span>
+              <span class="elv-status-badge elv-status-badge--brand">New</span>
+            </div>
           </div>
         </div>
       </div>
