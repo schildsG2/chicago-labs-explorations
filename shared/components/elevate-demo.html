@@ -423,6 +423,30 @@
       flex-shrink: 0;
       fill: #6f6d78;
     }
+
+    /* Star Rating */
+    .elv-star-rating {
+      display: flex;
+      align-items: center;
+    }
+    .elv-star-rating__stars {
+      display: flex;
+      gap: 2px;
+    }
+    .elv-star-rating__star--sm {
+      width: 16px;
+      height: 16px;
+    }
+    .elv-star-rating__star--md {
+      width: 20px;
+      height: 20px;
+    }
+    .elv-star-rating__text {
+      padding-left: 4px;
+      color: #4c4b53;
+      font-size: 14px;
+      font-weight: 300;
+    }
   </style>
 </head>
 <body>
@@ -954,6 +978,95 @@
             </li>
           </ol>
         </nav>
+      </div>
+    </div>
+  </div>
+
+  <hr class="elv-border-t elv-border-light elv-my-12">
+
+  <!-- Star Ratings -->
+  <div class="demo-section">
+    <h2 class="elv-text-2xl elv-font-bold elv-text-default elv-mb-6">Star Ratings</h2>
+    <p class="elv-text-sm elv-text-subtle elv-mb-4">
+      Display product ratings and review counts.
+      <a href="./templates/simple/star-rating.html" class="elv-text-link elv-underline">View detailed docs</a>
+    </p>
+
+    <div class="demo-grid">
+      <div>
+        <div class="demo-label">Sizes</div>
+        <div class="elv-flex elv-flex-col elv-gap-3">
+          <div class="elv-star-rating">
+            <div class="elv-star-rating__stars">
+              <svg class="elv-star-rating__star elv-star-rating__star--sm" viewBox="0 0 24 24" fill="none">
+                <path d="M14.7002 8.7002L21.5996 9.27539L16.3496 13.75L17.9248 20.4004L12 16.875L6.0752 20.4004L7.65039 13.75L2.40039 9.27539L9.2998 8.6748L12 2.40039L14.7002 8.7002Z" fill="#FF492C"/>
+              </svg>
+              <svg class="elv-star-rating__star elv-star-rating__star--sm" viewBox="0 0 24 24" fill="none">
+                <path d="M14.7002 8.7002L21.5996 9.27539L16.3496 13.75L17.9248 20.4004L12 16.875L6.0752 20.4004L7.65039 13.75L2.40039 9.27539L9.2998 8.6748L12 2.40039L14.7002 8.7002Z" fill="#FF492C"/>
+              </svg>
+              <svg class="elv-star-rating__star elv-star-rating__star--sm" viewBox="0 0 24 24" fill="none">
+                <path d="M14.7002 8.7002L21.5996 9.27539L16.3496 13.75L17.9248 20.4004L12 16.875L6.0752 20.4004L7.65039 13.75L2.40039 9.27539L9.2998 8.6748L12 2.40039L14.7002 8.7002Z" fill="#FF492C"/>
+              </svg>
+              <svg class="elv-star-rating__star elv-star-rating__star--sm" viewBox="0 0 24 24" fill="none">
+                <path d="M14.7002 8.7002L21.5996 9.27539L16.3496 13.75L17.9248 20.4004L12 16.875L6.0752 20.4004L7.65039 13.75L2.40039 9.27539L9.2998 8.6748L12 2.40039L14.7002 8.7002Z" fill="#FF492C"/>
+              </svg>
+              <svg class="elv-star-rating__star elv-star-rating__star--sm" viewBox="0 0 24 24" fill="none">
+                <path d="M14.7002 8.7002L21.5996 9.27539L16.3496 13.75L17.9248 20.4004L12 16.875L6.0752 20.4004L7.65039 13.75L2.40039 9.27539L9.2998 8.6748L12 2.40039L14.7002 8.7002Z" fill="#DFDFE2"/>
+              </svg>
+            </div>
+            <span class="elv-star-rating__text">4 out of 5</span>
+          </div>
+          <div class="elv-star-rating">
+            <div class="elv-star-rating__stars">
+              <svg class="elv-star-rating__star elv-star-rating__star--md" viewBox="0 0 24 24" fill="none">
+                <path d="M14.7002 8.7002L21.5996 9.27539L16.3496 13.75L17.9248 20.4004L12 16.875L6.0752 20.4004L7.65039 13.75L2.40039 9.27539L9.2998 8.6748L12 2.40039L14.7002 8.7002Z" fill="#FF492C"/>
+              </svg>
+              <svg class="elv-star-rating__star elv-star-rating__star--md" viewBox="0 0 24 24" fill="none">
+                <path d="M14.7002 8.7002L21.5996 9.27539L16.3496 13.75L17.9248 20.4004L12 16.875L6.0752 20.4004L7.65039 13.75L2.40039 9.27539L9.2998 8.6748L12 2.40039L14.7002 8.7002Z" fill="#FF492C"/>
+              </svg>
+              <svg class="elv-star-rating__star elv-star-rating__star--md" viewBox="0 0 24 24" fill="none">
+                <path d="M14.7002 8.7002L21.5996 9.27539L16.3496 13.75L17.9248 20.4004L12 16.875L6.0752 20.4004L7.65039 13.75L2.40039 9.27539L9.2998 8.6748L12 2.40039L14.7002 8.7002Z" fill="#FF492C"/>
+              </svg>
+              <svg class="elv-star-rating__star elv-star-rating__star--md" viewBox="0 0 24 24" fill="none">
+                <path d="M14.7002 8.7002L21.5996 9.27539L16.3496 13.75L17.9248 20.4004L12 16.875L6.0752 20.4004L7.65039 13.75L2.40039 9.27539L9.2998 8.6748L12 2.40039L14.7002 8.7002Z" fill="#FF492C"/>
+              </svg>
+              <svg class="elv-star-rating__star elv-star-rating__star--md" viewBox="0 0 24 24" fill="none">
+                <path d="M14.7002 8.7002L21.5996 9.27539L16.3496 13.75L17.9248 20.4004L12 16.875L6.0752 20.4004L7.65039 13.75L2.40039 9.27539L9.2998 8.6748L12 2.40039L14.7002 8.7002Z" fill="#DFDFE2"/>
+              </svg>
+            </div>
+            <span class="elv-star-rating__text">4 out of 5 (1,234)</span>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="demo-label">Half Stars</div>
+        <div class="elv-star-rating">
+          <div class="elv-star-rating__stars">
+            <svg class="elv-star-rating__star elv-star-rating__star--md" viewBox="0 0 24 24" fill="none">
+              <path d="M14.7002 8.7002L21.5996 9.27539L16.3496 13.75L17.9248 20.4004L12 16.875L6.0752 20.4004L7.65039 13.75L2.40039 9.27539L9.2998 8.6748L12 2.40039L14.7002 8.7002Z" fill="#FF492C"/>
+            </svg>
+            <svg class="elv-star-rating__star elv-star-rating__star--md" viewBox="0 0 24 24" fill="none">
+              <path d="M14.7002 8.7002L21.5996 9.27539L16.3496 13.75L17.9248 20.4004L12 16.875L6.0752 20.4004L7.65039 13.75L2.40039 9.27539L9.2998 8.6748L12 2.40039L14.7002 8.7002Z" fill="#FF492C"/>
+            </svg>
+            <svg class="elv-star-rating__star elv-star-rating__star--md" viewBox="0 0 24 24" fill="none">
+              <path d="M14.7002 8.7002L21.5996 9.27539L16.3496 13.75L17.9248 20.4004L12 16.875L6.0752 20.4004L7.65039 13.75L2.40039 9.27539L9.2998 8.6748L12 2.40039L14.7002 8.7002Z" fill="#FF492C"/>
+            </svg>
+            <svg class="elv-star-rating__star elv-star-rating__star--md" viewBox="0 0 24 24" fill="none">
+              <path d="M14.7002 8.7002L21.5996 9.27539L16.3496 13.75L17.9248 20.4004L12 16.875L6.0752 20.4004L7.65039 13.75L2.40039 9.27539L9.2998 8.6748L12 2.40039L14.7002 8.7002Z" fill="#FF492C"/>
+            </svg>
+            <svg class="elv-star-rating__star elv-star-rating__star--md" viewBox="0 0 24 24" fill="none">
+              <g clip-path="url(#clip-demo)">
+                <path d="M6.13672 20.4L7.69531 13.75L2.5 9.27499L9.32812 8.67499L12 2.39999L14.6719 8.69999L21.5 9.27499L16.3047 13.75L17.8633 20.4L12 16.875L6.13672 20.4Z" fill="#DFDFE2"/>
+                <path d="M6.13672 20.4L7.69531 13.75L2.5 9.27499L9.32812 8.67499L12 2.39999V16.875L6.13672 20.4Z" fill="#FF492C"/>
+              </g>
+              <defs>
+                <clipPath id="clip-demo"><rect width="24" height="24" fill="white"/></clipPath>
+              </defs>
+            </svg>
+          </div>
+          <span class="elv-star-rating__text">4.5 out of 5</span>
+        </div>
       </div>
     </div>
   </div>
