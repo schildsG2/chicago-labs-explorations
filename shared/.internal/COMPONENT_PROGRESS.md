@@ -13,14 +13,17 @@ Track the porting status of all Elevate components from UE to Chicago Labs HTML 
 | **Icons** | ~150 | 6 | ~144 | 0 |
 | **Form Inputs** ⚡️ | 8 | 3 | 0 | 5 |
 | **Simple Components** | 12 | 12 | 0 | 0 |
-| **Moderate Components** | 10 | 0 | 0 | 10 |
+| **Moderate Components** | 10 | 3 | 0 | 7 |
 | **Complex Components** | 12 | 0 | 0 | 12 |
-| **TOTAL** | 42 | 15 | 0 | 27 |
+| **TOTAL** | 42 | 18 | 0 | 24 |
 
-**Overall Completion**: ~36% (21/~192 total items)
+**Overall Completion**: ~43% (24/~192 total items)
 
-**COMPLETED APRIL 16**: progress_bar ✅ breadcrumbs ✅ star_rating ✅ product_chip ✅ notification_badge ✅ product_avatar ✅ rating_distribution_bar ✅
-**SIMPLE COMPONENTS: 100% COMPLETE!** 🎉🎉🎉
+**COMPLETED APRIL 16**: 
+- Simple Components: progress_bar ✅ breadcrumbs ✅ star_rating ✅ product_chip ✅ notification_badge ✅ product_avatar ✅ rating_distribution_bar ✅
+- Moderate Components: accordion ✅ tab ✅ tooltip ✅
+**SIMPLE COMPONENTS: 100% COMPLETE!** 🎉
+**MODERATE COMPONENTS: 3/10 complete (30%)** ⚡️
 (+ anonymous profile avatars added to avatar component)
 **COMPLETED APRIL 15**: search_input ✅ text_input ✅ textarea ✅ status_badge ✅ avatar ✅ spin_loader ✅ link ✅
 
@@ -102,7 +105,7 @@ Track the porting status of all Elevate components from UE to Chicago Labs HTML 
 
 | Component | Status | Template | JS Required? | Priority | Notes |
 |-----------|--------|----------|--------------|----------|-------|
-| accordion | ⬜ Not Started | — | Optional | High | Used in buyer-caddy |
+| accordion | ✅ Complete | [View](../components/templates/simple/accordion.html) | Vanilla JS | High | Multi/single-open modes, keyboard nav ✨ |
 | button_group | ⬜ Not Started | — | No | Medium | Mostly CSS |
 | content_card | ⬜ Not Started | — | No | Medium | Layout pattern |
 | control_button | ⬜ Not Started | — | No | Medium | Icon buttons |
@@ -110,8 +113,8 @@ Track the porting status of all Elevate components from UE to Chicago Labs HTML 
 | index_nav | ⬜ Not Started | — | Optional | Low | Tab-like nav |
 | inset_card | ⬜ Not Started | — | No | Low | Card variant |
 | pagination | ⬜ Not Started | — | Yes | High | All epics |
-| tab | ⬜ Not Started | — | Yes | High | Used in bulk-purchase |
-| tooltip | ⬜ Not Started | — | Yes | High | Explanations in agent-performance |
+| tab | ✅ Complete | [View](../components/templates/simple/tab.html) | Vanilla JS | High | Arrow key nav, ARIA tablist ✨ |
+| tooltip | ✅ Complete | [View](../components/templates/simple/tooltip.html) | Vanilla JS | High | 4 positions, hover delay, keyboard ✨ |
 
 **Next 3 to Build**: tooltip, tab, accordion
 
