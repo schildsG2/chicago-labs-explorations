@@ -38,12 +38,13 @@ All explorations use the **UE Elevate design system** for 1:1 fidelity with prod
 3. Copy HTML from [`/shared/components/templates/`](./shared/components/templates/)
 
 **Resources:**
-- **Elevate Lookbook**: https://www.g2.test/elevate/lookbook (browse all components)
+- **Design System Specs**: [`/shared/design-system/DESIGN.md`](./shared/design-system/DESIGN.md) (authoritative specifications)
+- **Elevate Lookbook**: https://www.g2.test/elevate/lookbook (visual reference)
 - **HTML Templates**: [`/shared/components/templates/`](./shared/components/templates/) (copy-paste ready)
 - **Design Tokens**: [`/shared/tokens/elevate.css`](./shared/tokens/elevate.css)
 - **Icons**: [`/shared/icons/`](./shared/icons/)
 
-The Lookbook is your source of truth. This repo just provides static HTML templates.
+DESIGN.md has exact specifications. Lookbook has visual examples. Templates provide HTML.
 
 ## Adding a New Epic
 
