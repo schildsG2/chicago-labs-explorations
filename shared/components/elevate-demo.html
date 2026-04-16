@@ -354,6 +354,43 @@
     .elv-link--subtle:hover {
       color: #201f23;
     }
+
+    /* Progress Bar */
+    .elv-progress-bar {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .elv-progress-bar__track {
+      width: 100%;
+      overflow: hidden;
+      border-radius: 9999px;
+      background: #f2f2f3;
+    }
+    .elv-progress-bar__track--sm {
+      height: 8px;
+    }
+    .elv-progress-bar__track--lg {
+      height: 12px;
+    }
+    .elv-progress-bar__fill {
+      height: 100%;
+      border-radius: 9999px;
+      transition: width 300ms ease;
+    }
+    .elv-progress-bar__fill--brand {
+      background: #ff492c;
+    }
+    .elv-progress-bar__fill--primary {
+      background: #5746b2;
+    }
+    .elv-progress-bar__label {
+      font-size: 14px;
+      line-height: 20px;
+      font-weight: 600;
+      color: #201f23;
+    }
   </style>
 </head>
 <body>
@@ -760,6 +797,63 @@
             <div class="elv-flex elv-items-center elv-gap-3">
               <span class="elv-text-base elv-font-semibold elv-text-default">API v2.0</span>
               <span class="elv-status-badge elv-status-badge--brand">New</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="elv-border-t elv-border-light elv-my-12">
+
+  <!-- Progress Bars -->
+  <div class="demo-section">
+    <h2 class="elv-text-2xl elv-font-bold elv-text-default elv-mb-6">Progress Bars</h2>
+    <p class="elv-text-sm elv-text-subtle elv-mb-4">
+      Visual indicators for task completion, uploads, and multi-step processes.
+      <a href="./templates/simple/progress-bar.html" class="elv-text-link elv-underline">View detailed docs</a>
+    </p>
+
+    <div class="demo-grid">
+      <div>
+        <div class="demo-label">Sizes</div>
+        <div class="elv-flex elv-flex-col elv-gap-4" style="max-width: 300px;">
+          <div class="elv-progress-bar">
+            <div class="elv-progress-bar__track elv-progress-bar__track--sm">
+              <div class="elv-progress-bar__fill elv-progress-bar__fill--brand" style="width: 65%"></div>
+            </div>
+          </div>
+          <div class="elv-progress-bar">
+            <div class="elv-progress-bar__track elv-progress-bar__track--lg">
+              <div class="elv-progress-bar__fill elv-progress-bar__fill--brand" style="width: 65%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="demo-label">Colors</div>
+        <div class="elv-flex elv-flex-col elv-gap-4" style="max-width: 300px;">
+          <div class="elv-progress-bar">
+            <div class="elv-progress-bar__track elv-progress-bar__track--sm">
+              <div class="elv-progress-bar__fill elv-progress-bar__fill--brand" style="width: 75%"></div>
+            </div>
+          </div>
+          <div class="elv-progress-bar">
+            <div class="elv-progress-bar__track elv-progress-bar__track--sm">
+              <div class="elv-progress-bar__fill elv-progress-bar__fill--primary" style="width: 75%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="demo-label">With Label</div>
+        <div style="max-width: 300px;">
+          <div class="elv-progress-bar">
+            <div class="elv-progress-bar__label">Profile completion: 80%</div>
+            <div class="elv-progress-bar__track elv-progress-bar__track--sm">
+              <div class="elv-progress-bar__fill elv-progress-bar__fill--primary" style="width: 80%"></div>
             </div>
           </div>
         </div>
