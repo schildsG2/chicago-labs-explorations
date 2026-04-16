@@ -245,6 +245,52 @@
     .elv-status-badge__dot--inactive {
       background: #eb2000;
     }
+
+    /* Avatar */
+    .elv-avatar {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid white;
+      overflow: hidden;
+    }
+    .elv-avatar--lg {
+      width: 60px;
+      height: 60px;
+      border-radius: 9999px;
+    }
+    .elv-avatar--md {
+      width: 44px;
+      height: 44px;
+      border-radius: 9999px;
+    }
+    .elv-avatar--sm {
+      width: 36px;
+      height: 36px;
+      border-radius: 9999px;
+    }
+    .elv-avatar__image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: inherit;
+    }
+    .elv-avatar__initials {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      background: #5746b2;
+      color: white;
+      font-weight: 600;
+      font-size: 14px;
+      border-radius: inherit;
+    }
+    .elv-avatar--sm .elv-avatar__initials {
+      font-size: 12px;
+    }
   </style>
 </head>
 <body>
@@ -437,6 +483,64 @@
           </div>
           <div class="elv-bg-neutral-0 elv-border elv-border-light elv-rounded-md elv-p-4">
             <p class="elv-text-sm elv-font-semibold elv-text-default">Grid Item 4</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="elv-border-t elv-border-light elv-my-12">
+
+  <!-- Avatars -->
+  <div class="demo-section">
+    <h2 class="elv-text-2xl elv-font-bold elv-text-default elv-mb-6">Avatars</h2>
+    <p class="elv-text-sm elv-text-subtle elv-mb-4">
+      User avatars with image, initials, or placeholder states.
+      <a href="./templates/simple/avatar.html" class="elv-text-link elv-underline">View detailed docs</a>
+    </p>
+
+    <div class="demo-grid">
+      <div>
+        <div class="demo-label">Sizes (with images)</div>
+        <div class="demo-row">
+          <div class="elv-avatar elv-avatar--lg">
+            <img src="https://i.pravatar.cc/150?img=1" alt="User" class="elv-avatar__image">
+          </div>
+          <div class="elv-avatar elv-avatar--md">
+            <img src="https://i.pravatar.cc/150?img=2" alt="User" class="elv-avatar__image">
+          </div>
+          <div class="elv-avatar elv-avatar--sm">
+            <img src="https://i.pravatar.cc/150?img=3" alt="User" class="elv-avatar__image">
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="demo-label">Initials</div>
+        <div class="demo-row">
+          <div class="elv-avatar elv-avatar--lg">
+            <div class="elv-avatar__initials">JD</div>
+          </div>
+          <div class="elv-avatar elv-avatar--md">
+            <div class="elv-avatar__initials">AS</div>
+          </div>
+          <div class="elv-avatar elv-avatar--sm">
+            <div class="elv-avatar__initials">MK</div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="demo-label">In Context</div>
+        <div class="elv-bg-neutral-0 elv-border elv-border-light elv-rounded-md elv-p-3" style="max-width: 400px;">
+          <div class="elv-flex elv-items-center elv-gap-3">
+            <div class="elv-avatar elv-avatar--md">
+              <img src="https://i.pravatar.cc/150?img=4" alt="Jane Doe" class="elv-avatar__image">
+            </div>
+            <div>
+              <p class="elv-text-sm elv-font-semibold elv-text-default">Jane Doe</p>
+              <p class="elv-text-xs elv-text-subtle">Product Manager</p>
+            </div>
           </div>
         </div>
       </div>
