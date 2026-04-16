@@ -11,16 +11,16 @@ Track the porting status of all Elevate components from UE to Chicago Labs HTML 
 | Category | Total | Complete | In Progress | Not Started |
 |----------|-------|----------|-------------|-------------|
 | **Icons** | ~150 | 6 | ~144 | 0 |
-| **Form Inputs** ⚡️ | 8 | 1 | 0 | 7 |
+| **Form Inputs** ⚡️ | 8 | 3 | 0 | 5 |
 | **Simple Components** | 12 | 1 | 0 | 11 |
 | **Moderate Components** | 10 | 0 | 0 | 10 |
 | **Complex Components** | 12 | 0 | 0 | 12 |
-| **TOTAL** | 42 | 2 | 0 | 40 |
+| **TOTAL** | 42 | 4 | 0 | 38 |
 
-**Overall Completion**: ~5% (8/~192 total items)
+**Overall Completion**: ~10% (10/~192 total items)
 
-**COMPLETED TODAY**: search_input ✅  
-**NEXT**: text_input (2 hrs) → textarea (45 mins) → status_badge (30 mins)
+**COMPLETED TODAY**: search_input ✅ text_input ✅ textarea ✅  
+**NEXT**: select (2-3 hrs) → checkbox_radio (1.5 hrs) → status_badge (30 mins)
 
 ---
 
@@ -52,8 +52,8 @@ Track the porting status of all Elevate components from UE to Chicago Labs HTML 
 | Input Type | Status | Template | Priority | Est. Time | Notes |
 |-----------|--------|----------|----------|-----------|-------|
 | search_input | ✅ Complete | [View](./templates/forms/search-input.html) | **CRITICAL** | ✓ Complete | Matches Lookbook & DESIGN.md ✨ |
-| text_input | ⬜ Not Started | — | High | 2 hrs | Base + variants (email, password, etc.) |
-| textarea | ⬜ Not Started | — | High | 45 mins | Resizable, char count |
+| text_input | ✅ Complete | [View](../components/templates/forms/text-input.html) | High | ✓ Complete | 6 variants, password toggle, all states ✨ |
+| textarea | ✅ Complete | [View](../components/templates/forms/textarea.html) | High | ✓ Complete | Character count, all states ✨ |
 | select | ⬜ Not Started | — | High | 2-3 hrs | Custom styled, keyboard nav |
 | checkbox_radio | ⬜ Not Started | — | Medium | 1.5 hrs | Custom styled |
 | toggle | ⬜ Not Started | — | Low | 1 hr | Switch component |
