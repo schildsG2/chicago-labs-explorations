@@ -391,6 +391,38 @@
       font-weight: 600;
       color: #201f23;
     }
+
+    /* Breadcrumbs */
+    .elv-breadcrumbs {
+      display: inline-flex;
+      align-items: center;
+      gap: 2px;
+    }
+    .elv-breadcrumb-item {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+    }
+    .elv-breadcrumb-link {
+      color: #4c4b53;
+      text-decoration: none;
+      font-size: 12px;
+      line-height: 16px;
+      transition: color 150ms ease;
+    }
+    .elv-breadcrumb-link:hover {
+      color: #201f23;
+    }
+    .elv-breadcrumb-link--current {
+      color: #84838a;
+      pointer-events: none;
+    }
+    .elv-breadcrumb-separator {
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+      fill: #6f6d78;
+    }
   </style>
 </head>
 <body>
@@ -857,6 +889,71 @@
             </div>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="elv-border-t elv-border-light elv-my-12">
+
+  <!-- Breadcrumbs -->
+  <div class="demo-section">
+    <h2 class="elv-text-2xl elv-font-bold elv-text-default elv-mb-6">Breadcrumbs</h2>
+    <p class="elv-text-sm elv-text-subtle elv-mb-4">
+      Navigation path showing current location in site hierarchy.
+      <a href="./templates/simple/breadcrumbs.html" class="elv-text-link elv-underline">View detailed docs</a>
+    </p>
+
+    <div class="demo-grid">
+      <div>
+        <div class="demo-label">Three Levels</div>
+        <nav aria-label="Breadcrumb">
+          <ol class="elv-breadcrumbs" role="list">
+            <li class="elv-breadcrumb-item">
+              <a href="#" class="elv-breadcrumb-link">Home</a>
+              <svg class="elv-breadcrumb-separator" viewBox="0 0 20 20" fill="none">
+                <path d="M10.875 10L6.9375 6.0625L8 5L13 10L8 15L6.9375 13.9375L10.875 10Z"/>
+              </svg>
+            </li>
+            <li class="elv-breadcrumb-item">
+              <a href="#" class="elv-breadcrumb-link">Categories</a>
+              <svg class="elv-breadcrumb-separator" viewBox="0 0 20 20" fill="none">
+                <path d="M10.875 10L6.9375 6.0625L8 5L13 10L8 15L6.9375 13.9375L10.875 10Z"/>
+              </svg>
+            </li>
+            <li class="elv-breadcrumb-item">
+              <span class="elv-breadcrumb-link elv-breadcrumb-link--current" aria-current="page">CRM Software</span>
+            </li>
+          </ol>
+        </nav>
+      </div>
+
+      <div>
+        <div class="demo-label">Four Levels</div>
+        <nav aria-label="Breadcrumb">
+          <ol class="elv-breadcrumbs" role="list">
+            <li class="elv-breadcrumb-item">
+              <a href="#" class="elv-breadcrumb-link">Home</a>
+              <svg class="elv-breadcrumb-separator" viewBox="0 0 20 20" fill="none">
+                <path d="M10.875 10L6.9375 6.0625L8 5L13 10L8 15L6.9375 13.9375L10.875 10Z"/>
+              </svg>
+            </li>
+            <li class="elv-breadcrumb-item">
+              <a href="#" class="elv-breadcrumb-link">Categories</a>
+              <svg class="elv-breadcrumb-separator" viewBox="0 0 20 20" fill="none">
+                <path d="M10.875 10L6.9375 6.0625L8 5L13 10L8 15L6.9375 13.9375L10.875 10Z"/>
+              </svg>
+            </li>
+            <li class="elv-breadcrumb-item">
+              <a href="#" class="elv-breadcrumb-link">CRM Software</a>
+              <svg class="elv-breadcrumb-separator" viewBox="0 0 20 20" fill="none">
+                <path d="M10.875 10L6.9375 6.0625L8 5L13 10L8 15L6.9375 13.9375L10.875 10Z"/>
+              </svg>
+            </li>
+            <li class="elv-breadcrumb-item">
+              <span class="elv-breadcrumb-link elv-breadcrumb-link--current" aria-current="page">Reviews</span>
+            </li>
+          </ol>
+        </nav>
       </div>
     </div>
   </div>
