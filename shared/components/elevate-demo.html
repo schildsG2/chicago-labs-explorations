@@ -62,10 +62,10 @@
     }
     .elv-index-nav__item:hover {
       background: var(--bg-neutral-10);
-      color: var(--color-purple-100);
+      color: #5746b2;
     }
     .elv-index-nav__item:focus {
-      outline: 2px solid var(--color-purple-100);
+      outline: 3px solid #c3bde5;
       outline-offset: 2px;
     }
     .elv-index-nav__item--active {
@@ -167,6 +167,261 @@
     }
 
     /* Textarea - uses actual Elevate elv-input class */
+
+    /* Select Input */
+    .elv-select {
+      position: relative;
+      width: 100%;
+    }
+    .elv-select__field {
+      width: 100%;
+      height: 40px;
+      padding: 0 36px 0 12px;
+      background: #f2f2f3;
+      border: 1px solid #dfdfe2;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 24px;
+      color: #201f23;
+      transition: border 150ms ease;
+      appearance: none;
+      cursor: pointer;
+    }
+    .elv-select__icon {
+      position: absolute;
+      right: 8px;
+      top: 50%;
+      transform: translateY(-50%);
+      pointer-events: none;
+      color: #6f6d78;
+      font-size: 20px;
+    }
+    .elv-select__field:focus {
+      outline: none;
+      border: 2px solid #5746b2;
+      padding: 0 35px 0 11px;
+    }
+    .elv-select__field--error {
+      border: 2px solid #eb2000;
+      padding: 0 35px 0 11px;
+    }
+    .elv-select__field:disabled {
+      background: #fafafa;
+      color: #b0afb6;
+      cursor: not-allowed;
+    }
+    .elv-select__field:disabled + .elv-select__icon {
+      color: #b0afb6;
+    }
+
+
+    /* Checkbox & Radio Styles */
+    .elv-choice {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      position: relative;
+      cursor: pointer;
+      margin-bottom: 12px;
+    }
+    .elv-choice__input {
+      position: absolute;
+      opacity: 0;
+      width: 20px;
+      height: 20px;
+      margin: 0;
+      cursor: pointer;
+    }
+    .elv-choice__box {
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+      background: #f2f2f3;
+      border: 1px solid #dfdfe2;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 150ms ease;
+      position: relative;
+    }
+    .elv-choice--radio .elv-choice__box {
+      border-radius: 50%;
+    }
+    .elv-choice__box::after {
+      content: '';
+      display: none;
+    }
+    .elv-choice--checkbox .elv-choice__box::after {
+      width: 12px;
+      height: 12px;
+      background-image: url("data:image/svg+xml,%3Csvg width='12' height='12' viewBox='0 0 12 12' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 3L4.5 8.5L2 6' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+    .elv-choice--radio .elv-choice__box::after {
+      width: 10px;
+      height: 10px;
+      background: white;
+      border-radius: 50%;
+    }
+    .elv-choice__input:checked + .elv-choice__box {
+      background: #5746b2;
+      border-color: #5746b2;
+    }
+    .elv-choice__input:checked + .elv-choice__box::after {
+      display: block;
+    }
+    .elv-choice__input:focus + .elv-choice__box {
+      outline: 3px solid #c3bde5;
+      outline-offset: 1px;
+    }
+    .elv-choice:hover .elv-choice__box {
+      border-color: #5746b2;
+    }
+    .elv-choice__input:disabled + .elv-choice__box {
+      background: #fafafa;
+      border-color: #dfdfe2;
+      cursor: not-allowed;
+    }
+    .elv-choice__input:disabled:checked + .elv-choice__box {
+      background: #b0afb6;
+      border-color: #b0afb6;
+    }
+    .elv-choice__input:disabled ~ .elv-choice__label {
+      color: #b0afb6;
+      cursor: not-allowed;
+    }
+    .elv-choice--error .elv-choice__box {
+      border-color: #eb2000;
+      border-width: 2px;
+    }
+    .elv-choice__input:indeterminate + .elv-choice__box {
+      background: #5746b2;
+      border-color: #5746b2;
+    }
+    .elv-choice__input:indeterminate + .elv-choice__box::after {
+      display: block;
+      width: 12px;
+      height: 2px;
+      background: white;
+      border-radius: 1px;
+      background-image: none;
+    }
+    .elv-choice__label {
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 20px;
+      color: #201f23;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    /* File Upload */
+    .elv-file-upload { position: relative; width: 100%; }
+    .elv-file-upload__zone { position: relative; min-height: 160px; padding: 32px; background: #f2f2f3; border: 2px dashed #dfdfe2; border-radius: 12px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; transition: all 150ms ease; cursor: pointer; }
+    .elv-file-upload__zone:hover { background: #fafafa; border-color: #b0afb6; }
+    .elv-file-upload__zone--dragover { background: #ebe9f6; border-color: #5746b2; border-style: solid; }
+    .elv-file-upload__zone:has(input:focus) { outline: 3px solid #c3bde5; outline-offset: 2px; }
+    .elv-file-upload__input { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+    .elv-file-upload__icon { font-size: 48px; color: #6f6d78; }
+    .elv-file-upload__zone--dragover .elv-file-upload__icon { color: #5746b2; }
+    .elv-file-upload__text { text-align: center; color: #201f23; }
+    .elv-file-upload__primary { font-size: 16px; font-weight: 600; line-height: 24px; margin-bottom: 4px; }
+    .elv-file-upload__secondary { font-size: 14px; font-weight: 400; line-height: 20px; color: #6f6d78; }
+    .elv-file-upload__button { background: #5746b2; color: #ffffff; font-size: 14px; font-weight: 600; padding: 8px 16px; border: none; border-radius: 24px; cursor: pointer; transition: background 150ms ease; margin-top: 4px; }
+    .elv-file-upload__button:hover { background: #45388f; }
+    .elv-file-upload__files { margin-top: 12px; display: flex; flex-direction: column; gap: 8px; }
+    .elv-file-upload__file { display: flex; align-items: center; gap: 12px; padding: 12px; background: #ffffff; border: 1px solid #dfdfe2; border-radius: 8px; }
+    .elv-file-upload__file-icon { font-size: 24px; color: #5746b2; }
+    .elv-file-upload__file-info { flex: 1; min-width: 0; }
+    .elv-file-upload__file-name { font-size: 14px; font-weight: 600; color: #201f23; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .elv-file-upload__file-size { font-size: 12px; color: #6f6d78; }
+    .elv-file-upload__file-remove { background: transparent; border: none; color: #6f6d78; cursor: pointer; padding: 4px; border-radius: 4px; font-size: 20px; }
+    .elv-file-upload__file-remove:hover { background: #f2f2f3; color: #201f23; }
+
+
+    /* Toggle Switch - based on Elevate form patterns */
+    .elv-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      user-select: none;
+    }
+    .elv-toggle--disabled {
+      cursor: not-allowed;
+      opacity: 0.6;
+    }
+    .elv-toggle__input {
+      position: absolute;
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    .elv-toggle__track {
+      position: relative;
+      display: inline-block;
+      width: 40px;
+      height: 24px;
+      background: #dfdfe2;
+      border-radius: 12px;
+      transition: background-color 200ms ease;
+      flex-shrink: 0;
+    }
+    .elv-toggle__thumb {
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 20px;
+      height: 20px;
+      background: #ffffff;
+      border-radius: 50%;
+      transition: transform 200ms ease;
+      box-shadow: 0 2px 4px 0 rgba(32, 31, 35, 0.12);
+    }
+    .elv-toggle__input:checked + .elv-toggle__track {
+      background: #5746b2;
+    }
+    .elv-toggle__input:checked + .elv-toggle__track .elv-toggle__thumb {
+      transform: translateX(16px);
+    }
+    .elv-toggle__input:focus + .elv-toggle__track {
+      outline: 3px solid #c3bde5;
+      outline-offset: 1px;
+    }
+    .elv-toggle:not(.elv-toggle--disabled):hover .elv-toggle__track {
+      background: #b0afb6;
+    }
+    .elv-toggle:not(.elv-toggle--disabled):hover .elv-toggle__input:checked + .elv-toggle__track {
+      background: #45388f;
+    }
+    .elv-toggle__input:disabled + .elv-toggle__track {
+      background: #fafafa;
+      cursor: not-allowed;
+    }
+    .elv-toggle__input:disabled:checked + .elv-toggle__track {
+      background: #b0afb6;
+    }
+    .elv-toggle__label {
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 20px;
+      color: #201f23;
+    }
+    .elv-toggle--disabled .elv-toggle__label {
+      color: #b0afb6;
+    }
+    .elv-toggle--label-left {
+      flex-direction: row-reverse;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .elv-toggle__track,
+      .elv-toggle__thumb {
+        transition: none;
+      }
+    }
 
     /* Material Symbols */
     .material-symbols-outlined {
@@ -330,7 +585,7 @@
       color: #005bc2;
     }
     .elv-link:focus-visible {
-      outline: 2px solid #5746b2;
+      outline: 3px solid #c3bde5;
       outline-offset: 2px;
       border-radius: 2px;
     }
@@ -553,7 +808,7 @@
       border-bottom: 2px solid #5746b2;
     }
     .elv-tab:focus {
-      outline: 2px solid #5746b2;
+      outline: 3px solid #c3bde5;
       outline-offset: -2px;
       z-index: 1;
     }
@@ -601,7 +856,7 @@
       background: var(--bg-neutral-10);
     }
     .elv-pagination__btn:focus {
-      outline: 2px solid var(--color-purple-100);
+      outline: 3px solid #c3bde5;
       outline-offset: 2px;
     }
     .elv-pagination__btn:disabled {
@@ -998,7 +1253,7 @@
       color: #201f23;
     }
     .elv-control-button:focus {
-      outline: 2px solid #5746b2;
+      outline: 3px solid #c3bde5;
       outline-offset: 2px;
     }
     .elv-control-button:active {
@@ -1052,15 +1307,15 @@
     }
     .elv-index-nav__item:hover {
       background: var(--bg-neutral-10);
-      color: var(--color-purple-100);
+      color: #5746b2;
     }
     .elv-index-nav__item:focus {
-      outline: 2px solid var(--color-purple-100);
+      outline: 3px solid #c3bde5;
       outline-offset: 2px;
     }
     .elv-index-nav__item--active {
       background: var(--color-purple-10);
-      color: var(--color-purple-100);
+      color: #5746b2;
       font-weight: 600;
     }
     .elv-index-nav__item--active:hover {
@@ -1371,6 +1626,160 @@
     .elv-product-details__rating-count {
       color: var(--text-subtle);
       font-weight: 300;
+    }
+
+    /* Date Picker — Following DESIGN.md Form Specs */
+    .elv-date-picker {
+      position: relative;
+      width: 100%;
+      max-width: 400px;
+    }
+    .elv-date-picker__input {
+      width: 100%;
+      height: 40px;
+      padding: 0 36px 0 12px;
+      background: #f2f2f3;
+      border: 1px solid #dfdfe2;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 24px;
+      color: #201f23;
+      transition: border 150ms ease;
+      cursor: pointer;
+    }
+    .elv-date-picker__input::placeholder {
+      color: #6f6d78;
+    }
+    .elv-date-picker__input:focus {
+      outline: none;
+      border: 2px solid #5746b2;
+      padding: 0 35px 0 11px;
+    }
+    .elv-date-picker__input--error {
+      border: 2px solid #eb2000;
+      padding: 0 35px 0 11px;
+    }
+    .elv-date-picker__input:disabled {
+      background: #fafafa;
+      color: #b0afb6;
+      cursor: not-allowed;
+    }
+    .elv-date-picker__icon {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      pointer-events: none;
+      color: #6f6d78;
+      font-size: 20px;
+    }
+    .elv-date-picker__input:focus ~ .elv-date-picker__icon {
+      color: #5746b2;
+    }
+    .elv-date-picker__input:disabled ~ .elv-date-picker__icon {
+      color: #b0afb6;
+    }
+    .elv-date-picker__calendar {
+      position: absolute;
+      top: calc(100% + 4px);
+      left: 0;
+      width: 320px;
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 4px 16px 0 rgba(32, 31, 35, 0.10);
+      padding: 16px;
+      z-index: 100;
+      display: none;
+    }
+    .elv-date-picker__calendar--open {
+      display: block;
+    }
+    .elv-date-picker__header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+      gap: 8px;
+    }
+    .elv-date-picker__month-year {
+      font-size: 14px;
+      font-weight: 600;
+      color: #201f23;
+      flex: 1;
+      text-align: center;
+    }
+    .elv-date-picker__nav-btn {
+      width: 32px;
+      height: 32px;
+      border: none;
+      background: transparent;
+      border-radius: 8px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #201f23;
+      transition: background 150ms ease;
+    }
+    .elv-date-picker__nav-btn:hover {
+      background: #f2f2f3;
+    }
+    .elv-date-picker__weekdays {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 4px;
+      margin-bottom: 4px;
+    }
+    .elv-date-picker__weekday {
+      font-size: 12px;
+      font-weight: 600;
+      color: #6f6d78;
+      text-align: center;
+      padding: 8px 0;
+    }
+    .elv-date-picker__days {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 4px;
+    }
+    .elv-date-picker__day {
+      aspect-ratio: 1;
+      border: none;
+      background: transparent;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 400;
+      color: #201f23;
+      cursor: pointer;
+      transition: background 150ms ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .elv-date-picker__day:hover:not(:disabled):not(.elv-date-picker__day--selected) {
+      background: #f2f2f3;
+    }
+    .elv-date-picker__day--other-month {
+      color: #b0afb6;
+    }
+    .elv-date-picker__day--today {
+      font-weight: 600;
+      color: #5746b2;
+      border: 1px solid #5746b2;
+    }
+    .elv-date-picker__day--selected {
+      background: #5746b2;
+      color: #ffffff;
+      font-weight: 600;
+    }
+    .elv-date-picker__day:disabled {
+      color: #dfdfe2;
+      cursor: not-allowed;
+    }
+    .elv-date-picker__day:focus-visible {
+      outline: 3px solid #c3bde5;
+      outline-offset: -2px;
     }
   </style>
 </head>
@@ -3303,6 +3712,41 @@
 
       <div class="elv-bg-info-20 elv-border elv-border-info elv-rounded-sm elv-p-4">
         <p class="elv-text-sm elv-text-info elv-font-medium">ℹ Info: This is an informational message.</p>
+
+      <!-- Toggle Switch -->
+      <div>
+        <div class="demo-label">Toggle Switch</div>
+        <div style="max-width: 400px;">
+          <div class="elv-flex elv-flex-col elv-gap-3">
+            <label class="elv-toggle elv-toggle--label-left">
+              <input type="checkbox" class="elv-toggle__input" checked>
+              <span class="elv-toggle__track">
+                <span class="elv-toggle__thumb"></span>
+              </span>
+              <span class="elv-toggle__label">Email notifications</span>
+            </label>
+
+            <label class="elv-toggle elv-toggle--label-left">
+              <input type="checkbox" class="elv-toggle__input">
+              <span class="elv-toggle__track">
+                <span class="elv-toggle__thumb"></span>
+              </span>
+              <span class="elv-toggle__label">Marketing emails</span>
+            </label>
+
+            <label class="elv-toggle elv-toggle--label-left elv-toggle--disabled">
+              <input type="checkbox" class="elv-toggle__input" disabled>
+              <span class="elv-toggle__track">
+                <span class="elv-toggle__thumb"></span>
+              </span>
+              <span class="elv-toggle__label">SMS notifications (disabled)</span>
+            </label>
+          </div>
+        </div>
+        <p class="elv-text-xs elv-text-nonessential elv-mt-2">
+          <a href="./templates/forms/toggle.html" class="elv-text-link">Full documentation →</a>
+        </p>
+      </div>
       </div>
 
       <div class="elv-bg-warning-20 elv-border elv-border-warning elv-rounded-sm elv-p-4">
@@ -3405,6 +3849,140 @@
         </p>
       </div>
 
+      <!-- Date Picker -->
+      <div>
+        <div class="demo-label">Date Picker</div>
+        <div style="max-width: 400px;">
+          <label class="elv-text-input__label" for="demo-date">Event Date</label>
+          <div class="elv-date-picker" id="demo-date-picker">
+            <input
+              id="demo-date"
+              type="text"
+              class="elv-date-picker__input"
+              placeholder="MM/DD/YYYY"
+              readonly
+            >
+            <span class="material-symbols-outlined elv-date-picker__icon">calendar_today</span>
+            <div class="elv-date-picker__calendar">
+              <div class="elv-date-picker__header">
+                <button class="elv-date-picker__nav-btn" data-action="prev-month">
+                  <span class="material-symbols-outlined">chevron_left</span>
+                </button>
+                <div class="elv-date-picker__month-year"></div>
+                <button class="elv-date-picker__nav-btn" data-action="next-month">
+                  <span class="material-symbols-outlined">chevron_right</span>
+                </button>
+              </div>
+              <div class="elv-date-picker__weekdays">
+                <div class="elv-date-picker__weekday">Su</div>
+                <div class="elv-date-picker__weekday">Mo</div>
+                <div class="elv-date-picker__weekday">Tu</div>
+                <div class="elv-date-picker__weekday">We</div>
+                <div class="elv-date-picker__weekday">Th</div>
+                <div class="elv-date-picker__weekday">Fr</div>
+                <div class="elv-date-picker__weekday">Sa</div>
+              </div>
+              <div class="elv-date-picker__days"></div>
+            </div>
+          </div>
+        </div>
+        <p class="elv-text-xs elv-text-nonessential elv-mt-2">
+          Click to select a date • <a href="./templates/forms/date-picker.html" class="elv-text-link">Full documentation →</a>
+        </p>
+      </div>
+
+      <!-- Select Input - Default -->
+      <div>
+        <div class="demo-label">Select Input (Default)</div>
+        <div class="elv-text-input" style="max-width: 400px;">
+          <label class="elv-text-input__label" for="demo-category">Software Category</label>
+          <div class="elv-select">
+            <select
+              id="demo-category"
+              class="elv-select__field"
+            >
+              <option value="" disabled selected>Choose a category...</option>
+              <option value="crm">CRM Software</option>
+              <option value="marketing">Marketing Automation</option>
+              <option value="sales">Sales Enablement</option>
+              <option value="analytics">Analytics</option>
+            </select>
+            <span class="elv-select__icon material-symbols-outlined">expand_more</span>
+          </div>
+        </div>
+        <p class="elv-text-xs elv-text-nonessential elv-mt-2">
+          <a href="./templates/forms/select.html" class="elv-text-link">Full documentation →</a>
+        </p>
+      </div>
+
+      <!-- Select Input - Error State -->
+      <div>
+        <div class="demo-label">Select Input (Error State)</div>
+        <div class="elv-text-input" style="max-width: 400px;">
+          <label class="elv-text-input__label" for="demo-country">Country</label>
+          <div class="elv-select">
+            <select
+              id="demo-country"
+              class="elv-select__field elv-select__field--error"
+              aria-invalid="true"
+            >
+              <option value="" disabled selected>Please select...</option>
+              <option value="us">United States</option>
+              <option value="ca">Canada</option>
+              <option value="uk">United Kingdom</option>
+            </select>
+            <span class="elv-select__icon material-symbols-outlined">expand_more</span>
+          </div>
+          <p class="elv-text-input__error">This field is required</p>
+        </div>
+      </div>
+
+      <!-- Select Input - Disabled -->
+      <div>
+        <div class="demo-label">Select Input (Disabled)</div>
+        <div class="elv-text-input" style="max-width: 400px;">
+          <label class="elv-text-input__label" for="demo-disabled-select">Account Type</label>
+          <div class="elv-select">
+            <select
+              id="demo-disabled-select"
+              class="elv-select__field"
+              disabled
+            >
+              <option value="" disabled selected>Disabled select...</option>
+              <option value="1">Option 1</option>
+              <option value="2">Option 2</option>
+            </select>
+            <span class="elv-select__icon material-symbols-outlined">expand_more</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- File Upload -->
+      <div>
+        <div class="demo-label">File Upload</div>
+        <div class="elv-file-upload" style="max-width: 500px;">
+          <div class="elv-file-upload__zone" id="demo-drop-zone">
+            <span class="elv-file-upload__icon material-symbols-outlined">upload_file</span>
+            <div class="elv-file-upload__text">
+              <div class="elv-file-upload__primary">Drag and drop files here</div>
+              <div class="elv-file-upload__secondary">or click to browse</div>
+            </div>
+            <button type="button" class="elv-file-upload__button">Browse files</button>
+            <input
+              type="file"
+              id="demo-file-upload"
+              class="elv-file-upload__input"
+              multiple
+              aria-label="Upload files"
+            />
+          </div>
+          <div class="elv-file-upload__files" id="demo-file-list"></div>
+        </div>
+        <p class="elv-text-xs elv-text-nonessential elv-mt-2">
+          <a href="./templates/forms/file-upload.html" class="elv-text-link">Full documentation →</a>
+        </p>
+      </div>
+
       <!-- Sample Form -->
       <div>
         <div class="demo-label">Sample Form</div>
@@ -3441,6 +4019,27 @@
             </div>
 
             <div>
+              <label class="elv-text-input__label" for="form-topic">
+                Topic <span class="elv-text-critical">*</span>
+              </label>
+              <div class="elv-select">
+                <select
+                  id="form-topic"
+                  class="elv-select__field"
+                  required
+                  aria-required="true"
+                >
+                  <option value="" disabled selected>Select a topic...</option>
+                  <option value="sales">Sales Inquiry</option>
+                  <option value="support">Technical Support</option>
+                  <option value="general">General Question</option>
+                  <option value="feedback">Product Feedback</option>
+                </select>
+                <span class="elv-select__icon material-symbols-outlined">expand_more</span>
+              </div>
+            </div>
+
+            <div>
               <label class="elv-text-input__label" for="form-message">Message</label>
               <textarea
                 id="form-message"
@@ -3457,6 +4056,56 @@
         </div>
       </div>
 
+
+      <!-- Checkboxes -->
+      <div>
+        <div class="demo-label">Checkboxes</div>
+        <div class="elv-flex elv-flex-col elv-gap-3">
+          <label class="elv-choice elv-choice--checkbox">
+            <input type="checkbox" class="elv-choice__input" />
+            <span class="elv-choice__box"></span>
+            <span class="elv-choice__label">Unchecked checkbox</span>
+          </label>
+          <label class="elv-choice elv-choice--checkbox">
+            <input type="checkbox" class="elv-choice__input" checked />
+            <span class="elv-choice__box"></span>
+            <span class="elv-choice__label">Checked checkbox</span>
+          </label>
+          <label class="elv-choice elv-choice--checkbox">
+            <input type="checkbox" class="elv-choice__input" disabled />
+            <span class="elv-choice__box"></span>
+            <span class="elv-choice__label">Disabled checkbox</span>
+          </label>
+        </div>
+        <p class="elv-text-xs elv-text-nonessential elv-mt-2">
+          <a href="./templates/forms/checkbox-radio.html" class="elv-text-link">Full documentation →</a>
+        </p>
+      </div>
+
+      <!-- Radio Buttons -->
+      <div>
+        <div class="demo-label">Radio Buttons</div>
+        <div class="elv-flex elv-flex-col elv-gap-3">
+          <label class="elv-choice elv-choice--radio">
+            <input type="radio" class="elv-choice__input" name="demo-radio" />
+            <span class="elv-choice__box"></span>
+            <span class="elv-choice__label">Option A</span>
+          </label>
+          <label class="elv-choice elv-choice--radio">
+            <input type="radio" class="elv-choice__input" name="demo-radio" checked />
+            <span class="elv-choice__box"></span>
+            <span class="elv-choice__label">Option B (selected)</span>
+          </label>
+          <label class="elv-choice elv-choice--radio">
+            <input type="radio" class="elv-choice__input" name="demo-radio" />
+            <span class="elv-choice__box"></span>
+            <span class="elv-choice__label">Option C</span>
+          </label>
+        </div>
+        <p class="elv-text-xs elv-text-nonessential elv-mt-2">
+          <a href="./templates/forms/checkbox-radio.html" class="elv-text-link">Full documentation →</a>
+        </p>
+      </div>
       <!-- Documentation Links -->
       <div>
         <div class="demo-label">Component Documentation</div>
@@ -3467,8 +4116,22 @@
           <a href="./templates/forms/text-input.html" class="elv-text-link elv-text-sm">
             → Text Input (6 types: text, email, password, number, url, tel)
           </a>
+          <a href="./templates/forms/select.html" class="elv-text-link elv-text-sm">
+            → Select Input (native select with custom styling)
+          </a>
           <a href="./templates/forms/textarea.html" class="elv-text-link elv-text-sm">
             → Textarea (character count, all states)
+          <a href="./templates/forms/checkbox-radio.html" class="elv-text-link elv-text-sm">
+            → Checkbox & Radio (all states, inline/stacked layouts)
+          </a>
+          <a href="./templates/forms/toggle.html" class="elv-text-link elv-text-sm">
+            → Toggle Switch (3 sizes, all states, label positioning)
+          </a>
+          <a href="./templates/forms/file-upload.html" class="elv-text-link elv-text-sm">
+            → File Upload (drag-and-drop, multiple files, all states)
+          </a>
+          <a href="./templates/forms/date-picker.html" class="elv-text-link elv-text-sm">
+            → Date Picker (calendar dropdown, keyboard nav, range support)
           </a>
           <p class="elv-text-xs elv-text-nonessential elv-mt-2">
             All components match <a href="../design-system/DESIGN.md" class="elv-text-link">DESIGN.md</a> specifications
@@ -3911,6 +4574,246 @@
       });
     });
   });
+
+  // File upload functionality for demo
+  (function() {
+    const zone = document.getElementById("demo-drop-zone");
+    const input = document.getElementById("demo-file-upload");
+    const fileList = document.getElementById("demo-file-list");
+    const button = zone ? zone.querySelector(".elv-file-upload__button") : null;
+
+    if (!zone || !input || !fileList) return;
+
+    let files = [];
+
+    zone.addEventListener("click", (e) => {
+      if (e.target !== input && !e.target.classList.contains("elv-file-upload__file-remove")) {
+        input.click();
+      }
+    });
+
+    if (button) {
+      button.addEventListener("click", (e) => {
+        e.stopPropagation();
+        input.click();
+      });
+    }
+
+    input.addEventListener("change", (e) => {
+      handleFiles(e.target.files);
+    });
+
+    zone.addEventListener("dragover", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      zone.classList.add("elv-file-upload__zone--dragover");
+    });
+
+    zone.addEventListener("dragleave", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      zone.classList.remove("elv-file-upload__zone--dragover");
+    });
+
+    zone.addEventListener("drop", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      zone.classList.remove("elv-file-upload__zone--dragover");
+      handleFiles(e.dataTransfer.files);
+    });
+
+    function handleFiles(newFiles) {
+      files = [...files, ...Array.from(newFiles)];
+      renderFiles();
+    }
+
+    function renderFiles() {
+      fileList.innerHTML = "";
+      files.forEach((file, index) => {
+        const fileItem = document.createElement("div");
+        fileItem.className = "elv-file-upload__file";
+        let iconName = "description";
+        if (file.type.startsWith("image/")) iconName = "image";
+        else if (file.type.startsWith("video/")) iconName = "video_file";
+        else if (file.type.startsWith("audio/")) iconName = "audio_file";
+        else if (file.type.includes("pdf")) iconName = "picture_as_pdf";
+        const size = formatFileSize(file.size);
+        fileItem.innerHTML = `<span class="elv-file-upload__file-icon material-symbols-outlined">${iconName}</span><div class="elv-file-upload__file-info"><div class="elv-file-upload__file-name">${file.name}</div><div class="elv-file-upload__file-size">${size}</div></div><button type="button" class="elv-file-upload__file-remove material-symbols-outlined" aria-label="Remove ${file.name}">close</button>`;
+        const removeBtn = fileItem.querySelector(".elv-file-upload__file-remove");
+        removeBtn.addEventListener("click", (e) => {
+          e.stopPropagation();
+          files.splice(index, 1);
+          renderFiles();
+        });
+        fileList.appendChild(fileItem);
+      });
+    }
+
+    function formatFileSize(bytes) {
+      if (bytes === 0) return "0 Bytes";
+      const k = 1024;
+      const sizes = ["Bytes", "KB", "MB", "GB"];
+      const i = Math.floor(Math.log(bytes) / Math.log(k));
+      return Math.round(bytes / Math.pow(k, i) * 100) / 100 + " " + sizes[i];
+    }
+  })();
+</script>
+
+<script>
+  // Date Picker functionality
+  class DatePicker {
+    constructor(element) {
+      this.element = element;
+      this.input = element.querySelector('.elv-date-picker__input');
+      this.calendar = element.querySelector('.elv-date-picker__calendar');
+      this.monthYear = element.querySelector('.elv-date-picker__month-year');
+      this.daysGrid = element.querySelector('.elv-date-picker__days');
+      this.prevBtn = element.querySelector('[data-action="prev-month"]');
+      this.nextBtn = element.querySelector('[data-action="next-month"]');
+
+      this.currentDate = new Date();
+      this.selectedDate = null;
+
+      this.init();
+    }
+
+    init() {
+      this.renderCalendar();
+
+      // Toggle calendar on input click
+      this.input.addEventListener('click', () => {
+        this.toggleCalendar();
+      });
+
+      // Navigation buttons
+      if (this.prevBtn) {
+        this.prevBtn.addEventListener('click', () => {
+          this.currentDate.setMonth(this.currentDate.getMonth() - 1);
+          this.renderCalendar();
+        });
+      }
+
+      if (this.nextBtn) {
+        this.nextBtn.addEventListener('click', () => {
+          this.currentDate.setMonth(this.currentDate.getMonth() + 1);
+          this.renderCalendar();
+        });
+      }
+
+      // Close on click outside
+      document.addEventListener('click', (e) => {
+        if (!this.element.contains(e.target)) {
+          this.closeCalendar();
+        }
+      });
+
+      // Keyboard support
+      this.calendar.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          this.closeCalendar();
+          this.input.focus();
+        }
+      });
+    }
+
+    renderCalendar() {
+      const year = this.currentDate.getFullYear();
+      const month = this.currentDate.getMonth();
+
+      // Update month/year display
+      const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
+                        'July', 'August', 'September', 'October', 'November', 'December'];
+      this.monthYear.textContent = `${monthNames[month]} ${year}`;
+
+      // Get first day of month and number of days
+      const firstDay = new Date(year, month, 1).getDay();
+      const daysInMonth = new Date(year, month + 1, 0).getDate();
+      const daysInPrevMonth = new Date(year, month, 0).getDate();
+
+      // Clear existing days
+      this.daysGrid.innerHTML = '';
+
+      // Add previous month's trailing days
+      for (let i = firstDay - 1; i >= 0; i--) {
+        const day = daysInPrevMonth - i;
+        const btn = this.createDayButton(day, true);
+        this.daysGrid.appendChild(btn);
+      }
+
+      // Add current month's days
+      const today = new Date();
+      for (let day = 1; day <= daysInMonth; day++) {
+        const date = new Date(year, month, day);
+        const isToday = date.toDateString() === today.toDateString();
+        const isSelected = this.selectedDate && date.toDateString() === this.selectedDate.toDateString();
+
+        const btn = this.createDayButton(day, false, isToday, isSelected, date);
+        this.daysGrid.appendChild(btn);
+      }
+
+      // Add next month's leading days
+      const totalCells = this.daysGrid.children.length;
+      const remainingCells = totalCells % 7 === 0 ? 0 : 7 - (totalCells % 7);
+      for (let day = 1; day <= remainingCells; day++) {
+        const btn = this.createDayButton(day, true);
+        this.daysGrid.appendChild(btn);
+      }
+    }
+
+    createDayButton(day, isOtherMonth, isToday = false, isSelected = false, date = null) {
+      const btn = document.createElement('button');
+      btn.className = 'elv-date-picker__day';
+      btn.textContent = day;
+      btn.type = 'button';
+
+      if (isOtherMonth) {
+        btn.classList.add('elv-date-picker__day--other-month');
+      }
+      if (isToday) {
+        btn.classList.add('elv-date-picker__day--today');
+      }
+      if (isSelected) {
+        btn.classList.add('elv-date-picker__day--selected');
+      }
+
+      if (date) {
+        btn.addEventListener('click', () => {
+          this.selectDate(date);
+        });
+      }
+
+      return btn;
+    }
+
+    selectDate(date) {
+      this.selectedDate = date;
+      const formatted = this.formatDate(date);
+      this.input.value = formatted;
+      this.renderCalendar();
+      this.closeCalendar();
+    }
+
+    formatDate(date) {
+      const month = String(date.getMonth() + 1).padStart(2, '0');
+      const day = String(date.getDate()).padStart(2, '0');
+      const year = date.getFullYear();
+      return `${month}/${day}/${year}`;
+    }
+
+    toggleCalendar() {
+      this.calendar.classList.toggle('elv-date-picker__calendar--open');
+    }
+
+    closeCalendar() {
+      this.calendar.classList.remove('elv-date-picker__calendar--open');
+    }
+  }
+
+  // Initialize date picker
+  const demoDatePicker = document.getElementById('demo-date-picker');
+  if (demoDatePicker) {
+    new DatePicker(demoDatePicker);
+  }
 </script>
 
 </body>
