@@ -160,6 +160,117 @@
     .elv-table--compact tbody tr {
       min-height: 40px;
     }
+
+    /* Product Avatar in Tables */
+    .elv-product-avatar {
+      display: flex;
+      flex-shrink: 0;
+      justify-content: center;
+      align-items: center;
+      border: 1px solid var(--border-light);
+      background: var(--bg-neutral-0);
+      overflow: hidden;
+    }
+
+    .elv-product-avatar--xs {
+      width: 48px;
+      height: 48px;
+      border-radius: 4px;
+    }
+
+    .elv-product-avatar__image {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+    }
+
+    .elv-product-avatar__placeholder {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      padding: 25%;
+    }
+
+    .elv-product-avatar__placeholder img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      opacity: 0.3;
+    }
+
+    /* Product Details Component (Horizontal Layout) */
+    .elv-product-details {
+      display: flex;
+      align-items: center;
+      min-width: 0;
+      gap: 12px;
+    }
+
+    .elv-product-details--xs {
+      gap: 4px;
+    }
+
+    .elv-product-details__content {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      min-width: 0;
+    }
+
+    .elv-product-details__title {
+      font-weight: 600;
+      color: var(--text-default);
+      margin: 0;
+      font-size: 16px;
+      line-height: 24px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .elv-product-details--xs .elv-product-details__title {
+      font-size: 14px;
+      line-height: 20px;
+    }
+
+    .elv-product-details__seller {
+      color: var(--text-subtle);
+      margin: 0;
+      font-size: 14px;
+      line-height: 20px;
+    }
+
+    .elv-product-details__seller-link {
+      color: var(--text-link);
+      text-decoration: none;
+    }
+
+    .elv-product-details__seller-link:hover {
+      text-decoration: underline;
+    }
+
+    .elv-product-details__rating {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      color: var(--text-default);
+      font-weight: 600;
+      font-size: 14px;
+      line-height: 20px;
+    }
+
+    .elv-product-details__rating svg {
+      width: 16px;
+      height: 16px;
+      fill: #ff492c;
+    }
+
+    .elv-product-details__rating-count {
+      color: var(--text-subtle);
+      font-weight: 400;
+    }
   </style>
 </head>
 <body>
@@ -333,6 +444,203 @@
               <td>alice@example.com</td>
               <td>User</td>
               <td>Inactive</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Table with Product Avatars -->
+  <div class="section">
+    <h2 class="elv-font-semibold elv-text-default">With Product Avatars</h2>
+    <p class="elv-text-sm elv-text-subtle elv-mb-4">
+      Include product logos using the product_avatar component
+    </p>
+    <div class="examples">
+      <div class="elv-table-container">
+        <table class="elv-table">
+          <thead>
+            <tr>
+              <th style="width: 80px;">Logo</th>
+              <th>Product</th>
+              <th>Category</th>
+              <th>Rating</th>
+              <th>Reviews</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <div class="elv-product-avatar elv-product-avatar--xs">
+                  <img src="https://images.g2crowd.com/uploads/product/image/large_detail/large_detail_eaa87303ec37117ba901e5a792a545c2/hubspot-crm.png"
+                       alt="HubSpot CRM"
+                       class="elv-product-avatar__image">
+                </div>
+              </td>
+              <td>HubSpot CRM</td>
+              <td>CRM Software</td>
+              <td>4.5</td>
+              <td>12,345</td>
+            </tr>
+            <tr>
+              <td>
+                <div class="elv-product-avatar elv-product-avatar--xs">
+                  <img src="https://images.g2crowd.com/uploads/product/image/large_detail/large_detail_1489697886/salesforce-sales-cloud.png"
+                       alt="Salesforce"
+                       class="elv-product-avatar__image">
+                </div>
+              </td>
+              <td>Salesforce</td>
+              <td>CRM Software</td>
+              <td>4.3</td>
+              <td>18,567</td>
+            </tr>
+            <tr>
+              <td>
+                <div class="elv-product-avatar elv-product-avatar--xs">
+                  <img src="https://images.g2crowd.com/uploads/product/image/large_detail/large_detail_1511269831/slack.png"
+                       alt="Slack"
+                       class="elv-product-avatar__image">
+                </div>
+              </td>
+              <td>Slack</td>
+              <td>Team Chat</td>
+              <td>4.6</td>
+              <td>23,891</td>
+            </tr>
+            <tr>
+              <td>
+                <div class="elv-product-avatar elv-product-avatar--xs">
+                  <div class="elv-product-avatar__placeholder">
+                    <img src="../../../icons/product-placeholder.png" alt="Product placeholder">
+                  </div>
+                </div>
+              </td>
+              <td>Example Product</td>
+              <td>Business Software</td>
+              <td>4.2</td>
+              <td>8,432</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Table with Product Details -->
+  <div class="section">
+    <h2 class="elv-font-semibold elv-text-default">With Product Details</h2>
+    <p class="elv-text-sm elv-text-subtle elv-mb-4">
+      Combine avatar, name, rating, and category in a single cell using product_details component
+    </p>
+    <div class="examples">
+      <div class="elv-table-container">
+        <table class="elv-table">
+          <thead>
+            <tr>
+              <th>Product</th>
+              <th>Reviews</th>
+              <th>Price</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <div class="elv-product-details elv-product-details--xs">
+                  <div class="elv-product-avatar elv-product-avatar--xs">
+                    <img src="https://images.g2crowd.com/uploads/product/image/large_detail/large_detail_eaa87303ec37117ba901e5a792a545c2/hubspot-crm.png"
+                         alt="HubSpot CRM"
+                         class="elv-product-avatar__image">
+                  </div>
+                  <div class="elv-product-details__content">
+                    <div class="elv-product-details__title">HubSpot CRM</div>
+                    <p class="elv-product-details__seller">
+                      By <a href="#" class="elv-product-details__seller-link">HubSpot</a>
+                    </p>
+                    <div class="elv-product-details__rating">
+                      <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                      4.5 <span class="elv-product-details__rating-count">(12,345)</span>
+                    </div>
+                  </div>
+                </div>
+              </td>
+              <td>12,345</td>
+              <td>Free</td>
+              <td>Active</td>
+            </tr>
+            <tr>
+              <td>
+                <div class="elv-product-details elv-product-details--xs">
+                  <div class="elv-product-avatar elv-product-avatar--xs">
+                    <img src="https://images.g2crowd.com/uploads/product/image/large_detail/large_detail_1489697886/salesforce-sales-cloud.png"
+                         alt="Salesforce"
+                         class="elv-product-avatar__image">
+                  </div>
+                  <div class="elv-product-details__content">
+                    <div class="elv-product-details__title">Salesforce</div>
+                    <p class="elv-product-details__seller">
+                      By <a href="#" class="elv-product-details__seller-link">Salesforce</a>
+                    </p>
+                    <div class="elv-product-details__rating">
+                      <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                      4.3 <span class="elv-product-details__rating-count">(18,567)</span>
+                    </div>
+                  </div>
+                </div>
+              </td>
+              <td>18,567</td>
+              <td>$25/user/mo</td>
+              <td>Active</td>
+            </tr>
+            <tr>
+              <td>
+                <div class="elv-product-details elv-product-details--xs">
+                  <div class="elv-product-avatar elv-product-avatar--xs">
+                    <img src="https://images.g2crowd.com/uploads/product/image/large_detail/large_detail_1511269831/slack.png"
+                         alt="Slack"
+                         class="elv-product-avatar__image">
+                  </div>
+                  <div class="elv-product-details__content">
+                    <div class="elv-product-details__title">Slack</div>
+                    <p class="elv-product-details__seller">
+                      By <a href="#" class="elv-product-details__seller-link">Slack Technologies</a>
+                    </p>
+                    <div class="elv-product-details__rating">
+                      <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                      4.6 <span class="elv-product-details__rating-count">(23,891)</span>
+                    </div>
+                  </div>
+                </div>
+              </td>
+              <td>23,891</td>
+              <td>$8/user/mo</td>
+              <td>Active</td>
+            </tr>
+            <tr>
+              <td>
+                <div class="elv-product-details elv-product-details--xs">
+                  <div class="elv-product-avatar elv-product-avatar--xs">
+                    <div class="elv-product-avatar__placeholder">
+                      <img src="../../../icons/product-placeholder.png" alt="Product placeholder">
+                    </div>
+                  </div>
+                  <div class="elv-product-details__content">
+                    <div class="elv-product-details__title">Example Product</div>
+                    <p class="elv-product-details__seller">
+                      By <a href="#" class="elv-product-details__seller-link">Example Company</a>
+                    </p>
+                    <div class="elv-product-details__rating">
+                      <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                      4.2 <span class="elv-product-details__rating-count">(8,432)</span>
+                    </div>
+                  </div>
+                </div>
+              </td>
+              <td>8,432</td>
+              <td>Free</td>
+              <td>Active</td>
             </tr>
           </tbody>
         </table>
