@@ -1276,7 +1276,6 @@
     .elv-product-details__content {
       display: flex;
       flex-direction: column;
-      gap: 2px;
       min-width: 0;
     }
 
@@ -1331,34 +1330,47 @@
     .elv-product-details__rating {
       display: inline-flex;
       align-items: center;
-      gap: 4px;
-      color: var(--text-default);
-      font-weight: 600;
-      font-size: 14px;
-      line-height: 20px;
+      gap: 0;
     }
 
-    .elv-product-details--lg .elv-product-details__rating,
-    .elv-product-details--xl .elv-product-details__rating {
+    .elv-product-details__stars {
+      display: flex;
+      align-items: center;
+      gap: 0;
+    }
+
+    .elv-product-details__stars svg {
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+    }
+
+    .elv-product-details--lg .elv-product-details__stars svg,
+    .elv-product-details--xl .elv-product-details__stars svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    .elv-product-details__rating-text {
+      padding-left: 4px;
+      display: inline-flex;
+      align-items: center;
+      gap: 0;
+      color: var(--text-subtle);
+      font-weight: 600;  /* Correct - semibold */
+      font-size: 12px;  /* Correct */
+      line-height: 16px;  /* Correct */
+    }
+
+    .elv-product-details--lg .elv-product-details__rating-text,
+    .elv-product-details--xl .elv-product-details__rating-text {
       font-size: 16px;
       line-height: 24px;
     }
 
-    .elv-product-details__rating svg {
-      width: 16px;
-      height: 16px;
-      fill: #ff492c;
-    }
-
-    .elv-product-details--lg .elv-product-details__rating svg,
-    .elv-product-details--xl .elv-product-details__rating svg {
-      width: 20px;
-      height: 20px;
-    }
-
     .elv-product-details__rating-count {
       color: var(--text-subtle);
-      font-weight: 400;
+      font-weight: 300;
     }
   </style>
 </head>
@@ -2535,7 +2547,7 @@
 
     <div class="demo-grid">
       <div>
-        <div class="demo-label">XS (48px avatar) — for tables</div>
+        <div class="demo-label">XS (48px avatar) — title + rating, no seller</div>
         <div class="elv-product-details elv-product-details--xs">
           <div class="elv-product-avatar elv-product-avatar--xs">
             <div class="elv-product-avatar__placeholder">
@@ -2544,12 +2556,15 @@
           </div>
           <div class="elv-product-details__content">
             <div class="elv-product-details__title">HubSpot CRM</div>
-            <p class="elv-product-details__seller">
-              By <a href="#" class="elv-product-details__seller-link">HubSpot</a>
-            </p>
             <div class="elv-product-details__rating">
-              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-              4.5 <span class="elv-product-details__rating-count">(12,345)</span>
+              <div class="elv-product-details__stars">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M14.7002 8.7002L21.5996 9.27539L16.3496 13.75L17.9248 20.4004L12 16.875L6.0752 20.4004L7.65039 13.75L2.40039 9.27539L9.2998 8.6748L12 2.40039L14.7002 8.7002Z" fill="#FF492C"/></svg>
+                <svg viewBox="0 0 24 24" fill="none"><path d="M14.7002 8.7002L21.5996 9.27539L16.3496 13.75L17.9248 20.4004L12 16.875L6.0752 20.4004L7.65039 13.75L2.40039 9.27539L9.2998 8.6748L12 2.40039L14.7002 8.7002Z" fill="#FF492C"/></svg>
+                <svg viewBox="0 0 24 24" fill="none"><path d="M14.7002 8.7002L21.5996 9.27539L16.3496 13.75L17.9248 20.4004L12 16.875L6.0752 20.4004L7.65039 13.75L2.40039 9.27539L9.2998 8.6748L12 2.40039L14.7002 8.7002Z" fill="#FF492C"/></svg>
+                <svg viewBox="0 0 24 24" fill="none"><path d="M14.7002 8.7002L21.5996 9.27539L16.3496 13.75L17.9248 20.4004L12 16.875L6.0752 20.4004L7.65039 13.75L2.40039 9.27539L9.2998 8.6748L12 2.40039L14.7002 8.7002Z" fill="#FF492C"/></svg>
+                <svg viewBox="0 0 24 24" fill="none"><g clip-path="url(#clip0-demo)"><path d="M6.13672 20.4L7.69531 13.75L2.5 9.27499L9.32812 8.67499L12 2.39999L14.6719 8.69999L21.5 9.27499L16.3047 13.75L17.8633 20.4L12 16.875L6.13672 20.4Z" fill="#DFDFE2"/><path d="M6.13672 20.4L7.69531 13.75L2.5 9.27499L9.32812 8.67499L12 2.39999V16.875L6.13672 20.4Z" fill="#FF492C"/></g><defs><clipPath id="clip0-demo"><rect width="24" height="24" fill="white"/></clipPath></defs></svg>
+              </div>
+              <span class="elv-product-details__rating-text">4.5 <span class="elv-product-details__rating-count">(28,123)</span></span>
             </div>
           </div>
         </div>
@@ -2569,8 +2584,14 @@
               By <a href="#" class="elv-product-details__seller-link">Salesforce</a>
             </p>
             <div class="elv-product-details__rating">
-              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-              4.3 <span class="elv-product-details__rating-count">(4,391,167)</span>
+              <div class="elv-product-details__stars">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M14.7002 8.7002L21.5996 9.27539L16.3496 13.75L17.9248 20.4004L12 16.875L6.0752 20.4004L7.65039 13.75L2.40039 9.27539L9.2998 8.6748L12 2.40039L14.7002 8.7002Z" fill="#FF492C"/></svg>
+                <svg viewBox="0 0 24 24" fill="none"><path d="M14.7002 8.7002L21.5996 9.27539L16.3496 13.75L17.9248 20.4004L12 16.875L6.0752 20.4004L7.65039 13.75L2.40039 9.27539L9.2998 8.6748L12 2.40039L14.7002 8.7002Z" fill="#FF492C"/></svg>
+                <svg viewBox="0 0 24 24" fill="none"><path d="M14.7002 8.7002L21.5996 9.27539L16.3496 13.75L17.9248 20.4004L12 16.875L6.0752 20.4004L7.65039 13.75L2.40039 9.27539L9.2998 8.6748L12 2.40039L14.7002 8.7002Z" fill="#FF492C"/></svg>
+                <svg viewBox="0 0 24 24" fill="none"><path d="M14.7002 8.7002L21.5996 9.27539L16.3496 13.75L17.9248 20.4004L12 16.875L6.0752 20.4004L7.65039 13.75L2.40039 9.27539L9.2998 8.6748L12 2.40039L14.7002 8.7002Z" fill="#FF492C"/></svg>
+                <svg viewBox="0 0 24 24" fill="none"><path d="M14.7002 8.7002L21.5996 9.27539L16.3496 13.75L17.9248 20.4004L12 16.875L6.0752 20.4004L7.65039 13.75L2.40039 9.27539L9.2998 8.6748L12 2.40039L14.7002 8.7002Z" fill="#DFDFE2"/></svg>
+              </div>
+              <span class="elv-product-details__rating-text">4.3 <span class="elv-product-details__rating-count">(4,391,167)</span></span>
             </div>
           </div>
         </div>
@@ -2590,8 +2611,14 @@
               By <a href="#" class="elv-product-details__seller-link">Slack Technologies</a>
             </p>
             <div class="elv-product-details__rating">
-              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-              4.6 <span class="elv-product-details__rating-count">(23,891)</span>
+              <div class="elv-product-details__stars">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M14.7002 8.7002L21.5996 9.27539L16.3496 13.75L17.9248 20.4004L12 16.875L6.0752 20.4004L7.65039 13.75L2.40039 9.27539L9.2998 8.6748L12 2.40039L14.7002 8.7002Z" fill="#FF492C"/></svg>
+                <svg viewBox="0 0 24 24" fill="none"><path d="M14.7002 8.7002L21.5996 9.27539L16.3496 13.75L17.9248 20.4004L12 16.875L6.0752 20.4004L7.65039 13.75L2.40039 9.27539L9.2998 8.6748L12 2.40039L14.7002 8.7002Z" fill="#FF492C"/></svg>
+                <svg viewBox="0 0 24 24" fill="none"><path d="M14.7002 8.7002L21.5996 9.27539L16.3496 13.75L17.9248 20.4004L12 16.875L6.0752 20.4004L7.65039 13.75L2.40039 9.27539L9.2998 8.6748L12 2.40039L14.7002 8.7002Z" fill="#FF492C"/></svg>
+                <svg viewBox="0 0 24 24" fill="none"><path d="M14.7002 8.7002L21.5996 9.27539L16.3496 13.75L17.9248 20.4004L12 16.875L6.0752 20.4004L7.65039 13.75L2.40039 9.27539L9.2998 8.6748L12 2.40039L14.7002 8.7002Z" fill="#FF492C"/></svg>
+                <svg viewBox="0 0 24 24" fill="none"><g clip-path="url(#clip1-demo)"><path d="M6.13672 20.4L7.69531 13.75L2.5 9.27499L9.32812 8.67499L12 2.39999L14.6719 8.69999L21.5 9.27499L16.3047 13.75L17.8633 20.4L12 16.875L6.13672 20.4Z" fill="#DFDFE2"/><path d="M6.13672 20.4L7.69531 13.75L2.5 9.27499L9.32812 8.67499L12 2.39999V16.875L6.13672 20.4Z" fill="#FF492C"/></g><defs><clipPath id="clip1-demo"><rect width="24" height="24" fill="white"/></clipPath></defs></svg>
+              </div>
+              <span class="elv-product-details__rating-text">4.6 <span class="elv-product-details__rating-count">(23,891)</span></span>
             </div>
           </div>
         </div>
@@ -2611,8 +2638,14 @@
               By <a href="#" class="elv-product-details__seller-link">Zoom Video Communications</a>
             </p>
             <div class="elv-product-details__rating">
-              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-              4.5 <span class="elv-product-details__rating-count">(15,234)</span>
+              <div class="elv-product-details__stars">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M14.7002 8.7002L21.5996 9.27539L16.3496 13.75L17.9248 20.4004L12 16.875L6.0752 20.4004L7.65039 13.75L2.40039 9.27539L9.2998 8.6748L12 2.40039L14.7002 8.7002Z" fill="#FF492C"/></svg>
+                <svg viewBox="0 0 24 24" fill="none"><path d="M14.7002 8.7002L21.5996 9.27539L16.3496 13.75L17.9248 20.4004L12 16.875L6.0752 20.4004L7.65039 13.75L2.40039 9.27539L9.2998 8.6748L12 2.40039L14.7002 8.7002Z" fill="#FF492C"/></svg>
+                <svg viewBox="0 0 24 24" fill="none"><path d="M14.7002 8.7002L21.5996 9.27539L16.3496 13.75L17.9248 20.4004L12 16.875L6.0752 20.4004L7.65039 13.75L2.40039 9.27539L9.2998 8.6748L12 2.40039L14.7002 8.7002Z" fill="#FF492C"/></svg>
+                <svg viewBox="0 0 24 24" fill="none"><path d="M14.7002 8.7002L21.5996 9.27539L16.3496 13.75L17.9248 20.4004L12 16.875L6.0752 20.4004L7.65039 13.75L2.40039 9.27539L9.2998 8.6748L12 2.40039L14.7002 8.7002Z" fill="#FF492C"/></svg>
+                <svg viewBox="0 0 24 24" fill="none"><g clip-path="url(#clip2-demo)"><path d="M6.13672 20.4L7.69531 13.75L2.5 9.27499L9.32812 8.67499L12 2.39999L14.6719 8.69999L21.5 9.27499L16.3047 13.75L17.8633 20.4L12 16.875L6.13672 20.4Z" fill="#DFDFE2"/><path d="M6.13672 20.4L7.69531 13.75L2.5 9.27499L9.32812 8.67499L12 2.39999V16.875L6.13672 20.4Z" fill="#FF492C"/></g><defs><clipPath id="clip2-demo"><rect width="24" height="24" fill="white"/></clipPath></defs></svg>
+              </div>
+              <span class="elv-product-details__rating-text">4.5 <span class="elv-product-details__rating-count">(15,234)</span></span>
             </div>
           </div>
         </div>
@@ -3101,12 +3134,15 @@
                     </div>
                     <div class="elv-product-details__content">
                       <div class="elv-product-details__title">HubSpot CRM</div>
-                      <p class="elv-product-details__seller">
-                        By <a href="#" class="elv-product-details__seller-link">HubSpot</a>
-                      </p>
                       <div class="elv-product-details__rating">
-                        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                        4.5 <span class="elv-product-details__rating-count">(12,345)</span>
+                        <div class="elv-product-details__stars">
+                          <svg viewBox="0 0 24 24" fill="none"><path d="M14.7002 8.7002L21.5996 9.27539L16.3496 13.75L17.9248 20.4004L12 16.875L6.0752 20.4004L7.65039 13.75L2.40039 9.27539L9.2998 8.6748L12 2.40039L14.7002 8.7002Z" fill="#FF492C"/></svg>
+                          <svg viewBox="0 0 24 24" fill="none"><path d="M14.7002 8.7002L21.5996 9.27539L16.3496 13.75L17.9248 20.4004L12 16.875L6.0752 20.4004L7.65039 13.75L2.40039 9.27539L9.2998 8.6748L12 2.40039L14.7002 8.7002Z" fill="#FF492C"/></svg>
+                          <svg viewBox="0 0 24 24" fill="none"><path d="M14.7002 8.7002L21.5996 9.27539L16.3496 13.75L17.9248 20.4004L12 16.875L6.0752 20.4004L7.65039 13.75L2.40039 9.27539L9.2998 8.6748L12 2.40039L14.7002 8.7002Z" fill="#FF492C"/></svg>
+                          <svg viewBox="0 0 24 24" fill="none"><path d="M14.7002 8.7002L21.5996 9.27539L16.3496 13.75L17.9248 20.4004L12 16.875L6.0752 20.4004L7.65039 13.75L2.40039 9.27539L9.2998 8.6748L12 2.40039L14.7002 8.7002Z" fill="#FF492C"/></svg>
+                          <svg viewBox="0 0 24 24" fill="none"><g clip-path="url(#clip3-demo)"><path d="M6.13672 20.4L7.69531 13.75L2.5 9.27499L9.32812 8.67499L12 2.39999L14.6719 8.69999L21.5 9.27499L16.3047 13.75L17.8633 20.4L12 16.875L6.13672 20.4Z" fill="#DFDFE2"/><path d="M6.13672 20.4L7.69531 13.75L2.5 9.27499L9.32812 8.67499L12 2.39999V16.875L6.13672 20.4Z" fill="#FF492C"/></g><defs><clipPath id="clip3-demo"><rect width="24" height="24" fill="white"/></clipPath></defs></svg>
+                        </div>
+                        <span class="elv-product-details__rating-text">4.5 <span class="elv-product-details__rating-count">(12,345)</span></span>
                       </div>
                     </div>
                   </div>
@@ -3124,12 +3160,15 @@
                     </div>
                     <div class="elv-product-details__content">
                       <div class="elv-product-details__title">Salesforce</div>
-                      <p class="elv-product-details__seller">
-                        By <a href="#" class="elv-product-details__seller-link">Salesforce</a>
-                      </p>
                       <div class="elv-product-details__rating">
-                        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                        4.3 <span class="elv-product-details__rating-count">(18,567)</span>
+                        <div class="elv-product-details__stars">
+                          <svg viewBox="0 0 24 24" fill="none"><path d="M14.7002 8.7002L21.5996 9.27539L16.3496 13.75L17.9248 20.4004L12 16.875L6.0752 20.4004L7.65039 13.75L2.40039 9.27539L9.2998 8.6748L12 2.40039L14.7002 8.7002Z" fill="#FF492C"/></svg>
+                          <svg viewBox="0 0 24 24" fill="none"><path d="M14.7002 8.7002L21.5996 9.27539L16.3496 13.75L17.9248 20.4004L12 16.875L6.0752 20.4004L7.65039 13.75L2.40039 9.27539L9.2998 8.6748L12 2.40039L14.7002 8.7002Z" fill="#FF492C"/></svg>
+                          <svg viewBox="0 0 24 24" fill="none"><path d="M14.7002 8.7002L21.5996 9.27539L16.3496 13.75L17.9248 20.4004L12 16.875L6.0752 20.4004L7.65039 13.75L2.40039 9.27539L9.2998 8.6748L12 2.40039L14.7002 8.7002Z" fill="#FF492C"/></svg>
+                          <svg viewBox="0 0 24 24" fill="none"><path d="M14.7002 8.7002L21.5996 9.27539L16.3496 13.75L17.9248 20.4004L12 16.875L6.0752 20.4004L7.65039 13.75L2.40039 9.27539L9.2998 8.6748L12 2.40039L14.7002 8.7002Z" fill="#FF492C"/></svg>
+                          <svg viewBox="0 0 24 24" fill="none"><path d="M14.7002 8.7002L21.5996 9.27539L16.3496 13.75L17.9248 20.4004L12 16.875L6.0752 20.4004L7.65039 13.75L2.40039 9.27539L9.2998 8.6748L12 2.40039L14.7002 8.7002Z" fill="#DFDFE2"/></svg>
+                        </div>
+                        <span class="elv-product-details__rating-text">4.3 <span class="elv-product-details__rating-count">(18,567)</span></span>
                       </div>
                     </div>
                   </div>
@@ -3147,12 +3186,15 @@
                     </div>
                     <div class="elv-product-details__content">
                       <div class="elv-product-details__title">Slack</div>
-                      <p class="elv-product-details__seller">
-                        By <a href="#" class="elv-product-details__seller-link">Slack Technologies</a>
-                      </p>
                       <div class="elv-product-details__rating">
-                        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                        4.6 <span class="elv-product-details__rating-count">(23,891)</span>
+                        <div class="elv-product-details__stars">
+                          <svg viewBox="0 0 24 24" fill="none"><path d="M14.7002 8.7002L21.5996 9.27539L16.3496 13.75L17.9248 20.4004L12 16.875L6.0752 20.4004L7.65039 13.75L2.40039 9.27539L9.2998 8.6748L12 2.40039L14.7002 8.7002Z" fill="#FF492C"/></svg>
+                          <svg viewBox="0 0 24 24" fill="none"><path d="M14.7002 8.7002L21.5996 9.27539L16.3496 13.75L17.9248 20.4004L12 16.875L6.0752 20.4004L7.65039 13.75L2.40039 9.27539L9.2998 8.6748L12 2.40039L14.7002 8.7002Z" fill="#FF492C"/></svg>
+                          <svg viewBox="0 0 24 24" fill="none"><path d="M14.7002 8.7002L21.5996 9.27539L16.3496 13.75L17.9248 20.4004L12 16.875L6.0752 20.4004L7.65039 13.75L2.40039 9.27539L9.2998 8.6748L12 2.40039L14.7002 8.7002Z" fill="#FF492C"/></svg>
+                          <svg viewBox="0 0 24 24" fill="none"><path d="M14.7002 8.7002L21.5996 9.27539L16.3496 13.75L17.9248 20.4004L12 16.875L6.0752 20.4004L7.65039 13.75L2.40039 9.27539L9.2998 8.6748L12 2.40039L14.7002 8.7002Z" fill="#FF492C"/></svg>
+                          <svg viewBox="0 0 24 24" fill="none"><g clip-path="url(#clip4-demo)"><path d="M6.13672 20.4L7.69531 13.75L2.5 9.27499L9.32812 8.67499L12 2.39999L14.6719 8.69999L21.5 9.27499L16.3047 13.75L17.8633 20.4L12 16.875L6.13672 20.4Z" fill="#DFDFE2"/><path d="M6.13672 20.4L7.69531 13.75L2.5 9.27499L9.32812 8.67499L12 2.39999V16.875L6.13672 20.4Z" fill="#FF492C"/></g><defs><clipPath id="clip4-demo"><rect width="24" height="24" fill="white"/></clipPath></defs></svg>
+                        </div>
+                        <span class="elv-product-details__rating-text">4.6 <span class="elv-product-details__rating-count">(23,891)</span></span>
                       </div>
                     </div>
                   </div>
