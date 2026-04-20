@@ -40,50 +40,47 @@
 
     .elv-spin-loader {
       display: inline-block;
-      border-radius: 50%;
-      border-style: solid;
-      animation: elv-spin 0.8s linear infinite;
+      animation: elv-spin 1s linear infinite;
+    }
+
+    .elv-spin-loader svg {
+      width: 100%;
+      height: 100%;
+      display: block;
     }
 
     /* Size Variants */
     .elv-spin-loader--xs {
       width: 16px;
       height: 16px;
-      border-width: 2px;
     }
 
     .elv-spin-loader--sm {
-      width: 24px;
-      height: 24px;
-      border-width: 2px;
+      width: 20px;
+      height: 20px;
     }
 
     .elv-spin-loader--md {
-      width: 32px;
-      height: 32px;
-      border-width: 3px;
+      width: 24px;
+      height: 24px;
     }
 
     .elv-spin-loader--lg {
-      width: 48px;
-      height: 48px;
-      border-width: 4px;
+      width: 28px;
+      height: 28px;
     }
 
     /* Color Variants */
-    .elv-spin-loader--primary {
-      border-color: #ebe9f6; /* P20 - light purple */
-      border-top-color: #5746b2; /* P100 - primary purple */
+    .elv-spin-loader--primary svg {
+      stroke: #5746b2; /* P100 - primary purple */
     }
 
-    .elv-spin-loader--neutral {
-      border-color: #dfdfe2; /* border-light */
-      border-top-color: #6f6d78; /* N70 - neutral */
+    .elv-spin-loader--neutral svg {
+      stroke: #6f6d78; /* N70 - neutral */
     }
 
-    .elv-spin-loader--inverted {
-      border-color: rgba(255, 255, 255, 0.3);
-      border-top-color: #ffffff; /* white */
+    .elv-spin-loader--inverted svg {
+      stroke: #ffffff; /* white */
     }
 
     /* Demo backgrounds */
@@ -107,27 +104,47 @@
   <div class="section">
     <h2 class="elv-font-semibold elv-text-default">Size Variants (Primary)</h2>
     <p class="elv-text-sm elv-text-subtle elv-mb-4">
-      4 sizes: xs (16px), sm (24px), md (32px), lg (48px)
+      4 sizes: xs (16px), sm (20px), md (24px), lg (28px)
     </p>
     <div class="examples">
       <div>
-        <div class="elv-spin-loader elv-spin-loader--xs elv-spin-loader--primary"></div>
+        <div class="elv-spin-loader elv-spin-loader--xs elv-spin-loader--primary">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22" stroke-width="2.5" stroke-linecap="round"/>
+          </svg>
+        </div>
         <p class="elv-text-xs elv-text-subtle elv-mt-2">XS (16px)</p>
       </div>
       <div>
-        <div class="elv-spin-loader elv-spin-loader--sm elv-spin-loader--primary"></div>
-        <p class="elv-text-xs elv-text-subtle elv-mt-2">SM (24px)</p>
+        <div class="elv-spin-loader elv-spin-loader--sm elv-spin-loader--primary">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22" stroke-width="2.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <p class="elv-text-xs elv-text-subtle elv-mt-2">SM (20px)</p>
       </div>
       <div>
-        <div class="elv-spin-loader elv-spin-loader--md elv-spin-loader--primary"></div>
-        <p class="elv-text-xs elv-text-subtle elv-mt-2">MD (32px)</p>
+        <div class="elv-spin-loader elv-spin-loader--md elv-spin-loader--primary">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22" stroke-width="2.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <p class="elv-text-xs elv-text-subtle elv-mt-2">MD (24px)</p>
       </div>
       <div>
-        <div class="elv-spin-loader elv-spin-loader--lg elv-spin-loader--primary"></div>
-        <p class="elv-text-xs elv-text-subtle elv-mt-2">LG (48px)</p>
+        <div class="elv-spin-loader elv-spin-loader--lg elv-spin-loader--primary">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22" stroke-width="2.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <p class="elv-text-xs elv-text-subtle elv-mt-2">LG (28px)</p>
       </div>
     </div>
-    <pre><code>&lt;div class="elv-spin-loader elv-spin-loader--md elv-spin-loader--primary"&gt;&lt;/div&gt;</code></pre>
+    <pre><code>&lt;div class="elv-spin-loader elv-spin-loader--md elv-spin-loader--primary"&gt;
+  &lt;svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"&gt;
+    &lt;path d="M12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22" stroke-width="2.5" stroke-linecap="round"/&gt;
+  &lt;/svg&gt;
+&lt;/div&gt;</code></pre>
   </div>
 
   <!-- Color Variants -->
@@ -139,29 +156,53 @@
 
     <div class="elv-mb-4">
       <div class="demo-label elv-mb-2">Primary (Purple)</div>
-      <div class="elv-spin-loader elv-spin-loader--md elv-spin-loader--primary"></div>
+      <div class="elv-spin-loader elv-spin-loader--md elv-spin-loader--primary">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>
+      </div>
     </div>
 
     <div class="elv-mb-4">
       <div class="demo-label elv-mb-2">Neutral (Gray)</div>
-      <div class="elv-spin-loader elv-spin-loader--md elv-spin-loader--neutral"></div>
+      <div class="elv-spin-loader elv-spin-loader--md elv-spin-loader--neutral">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>
+      </div>
     </div>
 
     <div class="elv-mb-4">
       <div class="demo-label elv-mb-2">Inverted (White) — for dark backgrounds</div>
       <div class="dark-bg">
-        <div class="elv-spin-loader elv-spin-loader--md elv-spin-loader--inverted"></div>
+        <div class="elv-spin-loader elv-spin-loader--md elv-spin-loader--inverted">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22" stroke-width="2.5" stroke-linecap="round"/>
+          </svg>
+        </div>
       </div>
     </div>
 
     <pre><code>&lt;!-- Primary (purple) --&gt;
-&lt;div class="elv-spin-loader elv-spin-loader--md elv-spin-loader--primary"&gt;&lt;/div&gt;
+&lt;div class="elv-spin-loader elv-spin-loader--md elv-spin-loader--primary"&gt;
+  &lt;svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"&gt;
+    &lt;path d="M12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22" stroke-width="2.5" stroke-linecap="round"/&gt;
+  &lt;/svg&gt;
+&lt;/div&gt;
 
 &lt;!-- Neutral (gray) --&gt;
-&lt;div class="elv-spin-loader elv-spin-loader--md elv-spin-loader--neutral"&gt;&lt;/div&gt;
+&lt;div class="elv-spin-loader elv-spin-loader--md elv-spin-loader--neutral"&gt;
+  &lt;svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"&gt;
+    &lt;path d="M12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22" stroke-width="2.5" stroke-linecap="round"/&gt;
+  &lt;/svg&gt;
+&lt;/div&gt;
 
 &lt;!-- Inverted (white for dark backgrounds) --&gt;
-&lt;div class="elv-spin-loader elv-spin-loader--md elv-spin-loader--inverted"&gt;&lt;/div&gt;</code></pre>
+&lt;div class="elv-spin-loader elv-spin-loader--md elv-spin-loader--inverted"&gt;
+  &lt;svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"&gt;
+    &lt;path d="M12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22" stroke-width="2.5" stroke-linecap="round"/&gt;
+  &lt;/svg&gt;
+&lt;/div&gt;</code></pre>
   </div>
 
   <!-- In Context -->
@@ -174,7 +215,11 @@
     <!-- Inline Loading -->
     <div class="elv-bg-neutral-0 elv-border elv-border-light elv-rounded-md elv-p-4 elv-mb-4" style="max-width: 500px;">
       <div class="elv-flex elv-items-center elv-gap-3">
-        <div class="elv-spin-loader elv-spin-loader--sm elv-spin-loader--primary"></div>
+        <div class="elv-spin-loader elv-spin-loader--sm elv-spin-loader--primary">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22" stroke-width="2.5" stroke-linecap="round"/>
+          </svg>
+        </div>
         <span class="elv-text-sm elv-text-subtle">Loading your data...</span>
       </div>
     </div>
@@ -182,7 +227,11 @@
     <!-- Button Loading -->
     <div class="elv-mb-4">
       <button class="btn btn--primary btn--md" style="display: inline-flex; align-items: center; gap: 8px;" disabled>
-        <div class="elv-spin-loader elv-spin-loader--xs elv-spin-loader--inverted"></div>
+        <div class="elv-spin-loader elv-spin-loader--xs elv-spin-loader--inverted">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22" stroke-width="2.5" stroke-linecap="round"/>
+          </svg>
+        </div>
         <span>Saving...</span>
       </button>
     </div>
@@ -190,7 +239,11 @@
     <!-- Centered Loading -->
     <div class="elv-bg-neutral-0 elv-border elv-border-light elv-rounded-md elv-p-8" style="max-width: 500px;">
       <div class="elv-flex elv-flex-col elv-items-center elv-gap-3">
-        <div class="elv-spin-loader elv-spin-loader--lg elv-spin-loader--primary"></div>
+        <div class="elv-spin-loader elv-spin-loader--lg elv-spin-loader--primary">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22" stroke-width="2.5" stroke-linecap="round"/>
+          </svg>
+        </div>
         <p class="elv-text-sm elv-font-semibold elv-text-default">Loading content</p>
         <p class="elv-text-xs elv-text-subtle">This may take a few moments...</p>
       </div>
@@ -219,7 +272,11 @@
       <li class="elv-mb-2"><strong>Animation:</strong> Respect <code>prefers-reduced-motion</code> by pausing animation for users who need it</li>
     </ul>
     <pre><code>&lt;div role="status" aria-live="polite"&gt;
-  &lt;div class="elv-spin-loader elv-spin-loader--md elv-spin-loader--primary"&gt;&lt;/div&gt;
+  &lt;div class="elv-spin-loader elv-spin-loader--md elv-spin-loader--primary"&gt;
+    &lt;svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"&gt;
+      &lt;path d="M12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22" stroke-width="2.5" stroke-linecap="round"/&gt;
+    &lt;/svg&gt;
+  &lt;/div&gt;
   &lt;span class="elv-sr-only"&gt;Loading content&lt;/span&gt;
 &lt;/div&gt;</code></pre>
   </div>
@@ -244,27 +301,27 @@
     <table class="elv-text-sm elv-text-default" style="width: 100%; border-collapse: collapse;">
       <tr style="border-bottom: 1px solid var(--border-light);">
         <td style="padding: 8px;"><strong>Sizes</strong></td>
-        <td style="padding: 8px;">XS (16px), SM (24px), MD (32px), LG (48px)</td>
+        <td style="padding: 8px;">XS (16px), SM (20px), MD (24px), LG (28px)</td>
       </tr>
       <tr style="border-bottom: 1px solid var(--border-light);">
         <td style="padding: 8px;"><strong>Animation</strong></td>
-        <td style="padding: 8px;">Spin (0.8s linear infinite)</td>
+        <td style="padding: 8px;">Spin (1s linear infinite)</td>
       </tr>
       <tr style="border-bottom: 1px solid var(--border-light);">
-        <td style="padding: 8px;"><strong>Border Width</strong></td>
-        <td style="padding: 8px;">XS/SM: 2px, MD: 3px, LG: 4px</td>
+        <td style="padding: 8px;"><strong>Implementation</strong></td>
+        <td style="padding: 8px;">SVG arc path with rotating container</td>
       </tr>
       <tr style="border-bottom: 1px solid var(--border-light);">
-        <td style="padding: 8px;"><strong>Primary Colors</strong></td>
-        <td style="padding: 8px;">Light: #ebe9f6 (P20), Spinner: #5746b2 (P100)</td>
+        <td style="padding: 8px;"><strong>Primary Color</strong></td>
+        <td style="padding: 8px;">Stroke: #5746b2 (P100)</td>
       </tr>
       <tr style="border-bottom: 1px solid var(--border-light);">
-        <td style="padding: 8px;"><strong>Neutral Colors</strong></td>
-        <td style="padding: 8px;">Light: #dfdfe2, Spinner: #6f6d78 (N70)</td>
+        <td style="padding: 8px;"><strong>Neutral Color</strong></td>
+        <td style="padding: 8px;">Stroke: #6f6d78 (N70)</td>
       </tr>
       <tr>
-        <td style="padding: 8px;"><strong>Inverted Colors</strong></td>
-        <td style="padding: 8px;">Light: rgba(255,255,255,0.3), Spinner: #ffffff</td>
+        <td style="padding: 8px;"><strong>Inverted Color</strong></td>
+        <td style="padding: 8px;">Stroke: #ffffff</td>
       </tr>
     </table>
   </div>

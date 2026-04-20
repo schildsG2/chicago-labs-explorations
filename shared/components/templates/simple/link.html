@@ -49,7 +49,12 @@
     .elv-link:focus-visible {
       outline: 2px solid #5746b2; /* P100 - primary purple */
       outline-offset: 2px;
-      border-radius: 2px;
+      border-radius: 8px; /* 8px for sm/md, override for xs below */
+    }
+
+    /* Size-specific focus border-radius */
+    .elv-link--xs:focus-visible {
+      border-radius: 12px;
     }
 
     /* Underline variant */
@@ -59,7 +64,7 @@
 
     /* Subtle variant (gray) */
     .elv-link--subtle {
-      color: #4c4b53; /* text-subtle */
+      color: #6f6d78; /* neutral-70 / N70 */
     }
 
     .elv-link--subtle:hover {
@@ -67,7 +72,7 @@
     }
 
     .elv-link--subtle:visited {
-      color: #4c4b53;
+      color: #6f6d78;
     }
 
     /* Size variants */
@@ -296,11 +301,11 @@
       </tr>
       <tr style="border-bottom: 1px solid var(--border-light);">
         <td style="padding: 8px;"><strong>Subtle Color</strong></td>
-        <td style="padding: 8px;">#4c4b53 (text-subtle)</td>
+        <td style="padding: 8px;">#6f6d78 (neutral-70 / N70)</td>
       </tr>
       <tr style="border-bottom: 1px solid var(--border-light);">
         <td style="padding: 8px;"><strong>Focus Outline</strong></td>
-        <td style="padding: 8px;">2px solid #5746b2 (P100) with 2px offset</td>
+        <td style="padding: 8px;">2px solid #5746b2 (P100) with 2px offset, border-radius 8px (sm/md) or 12px (xs)</td>
       </tr>
       <tr style="border-bottom: 1px solid var(--border-light);">
         <td style="padding: 8px;"><strong>Sizes</strong></td>
