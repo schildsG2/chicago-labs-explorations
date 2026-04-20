@@ -42,18 +42,23 @@
       width: 100%;
       height: 40px;
       padding: 0 40px 0 40px; /* Space for icons */
-      background: #f2f2f3; /* N10 */
-      border: 1px solid #dfdfe2; /* border-light */
+      background: #fafafa; /* N5 */
+      border: 0.5px solid #b0afb6; /* border-medium N40 */
       border-radius: 9999px; /* Fully rounded (pill shape) */
       font-size: 16px;
       font-weight: 400;
       line-height: 24px;
-      color: #201f23; /* text-default */
-      transition: outline 150ms ease;
+      color: #4c4b53; /* N80 text-subtle */
+      transition: background 150ms ease, outline 150ms ease;
     }
 
     .elv-search-input__field::placeholder {
       color: #6f6d78; /* text-nonessential */
+    }
+
+    /* Hover state */
+    .elv-search-input__field:hover:not(:disabled):not(:read-only) {
+      background: #f2f2f3; /* N10 */
     }
 
     /* Focus state — CRITICAL for accessibility */
@@ -64,7 +69,7 @@
 
     /* Disabled state */
     .elv-search-input__field:disabled {
-      background: #fafafa; /* N5 */
+      background: #fcfcfd; /* N1 */
       color: #b0afb6; /* N40 */
       cursor: not-allowed;
     }
@@ -259,11 +264,11 @@
     <table class="elv-text-sm elv-text-default" style="width: 100%; border-collapse: collapse;">
       <tr style="border-bottom: 1px solid var(--border-light);">
         <td style="padding: 8px;"><strong>Background</strong></td>
-        <td style="padding: 8px;">#f2f2f3 (N10)</td>
+        <td style="padding: 8px;">#fafafa (N5)</td>
       </tr>
       <tr style="border-bottom: 1px solid var(--border-light);">
         <td style="padding: 8px;"><strong>Border</strong></td>
-        <td style="padding: 8px;">1px solid #dfdfe2 (border-light)</td>
+        <td style="padding: 8px;">0.5px solid #b0afb6 (border-medium N40)</td>
       </tr>
       <tr style="border-bottom: 1px solid var(--border-light);">
         <td style="padding: 8px;"><strong>Border Radius</strong></td>
@@ -278,6 +283,10 @@
         <td style="padding: 8px;">16px / 400 (Body)</td>
       </tr>
       <tr style="border-bottom: 1px solid var(--border-light);">
+        <td style="padding: 8px;"><strong>Text Color</strong></td>
+        <td style="padding: 8px;">#4c4b53 (N80 text-subtle)</td>
+      </tr>
+      <tr style="border-bottom: 1px solid var(--border-light);">
         <td style="padding: 8px;"><strong>Placeholder</strong></td>
         <td style="padding: 8px;">#6f6d78 (text-nonessential)</td>
       </tr>
@@ -287,7 +296,7 @@
       </tr>
       <tr>
         <td style="padding: 8px;"><strong>Disabled</strong></td>
-        <td style="padding: 8px;">Background #fafafa (N5), text #b0afb6 (N40)</td>
+        <td style="padding: 8px;">Background #fcfcfd (N1), text #b0afb6 (N40)</td>
       </tr>
     </table>
   </div>

@@ -38,10 +38,15 @@
     .elv-choice {
       display: flex;
       align-items: flex-start;
-      gap: 8px;
+      gap: 8px; /* Default gap (md/lg) */
       position: relative;
       cursor: pointer;
       margin-bottom: 12px;
+    }
+
+    /* Small variant - reduced gap */
+    .elv-choice--sm {
+      gap: 4px; /* gap-1 */
     }
 
     /* Hide native checkbox/radio but keep it accessible */
@@ -59,8 +64,8 @@
       flex-shrink: 0;
       width: 20px;
       height: 20px;
-      background: #f2f2f3; /* N10 */
-      border: 1px solid #dfdfe2; /* border-light */
+      background: #ffffff; /* N0 / neutral-0 */
+      border: 1px solid #b0afb6; /* border-medium / N40 */
       border-radius: 4px; /* radius-xs for checkbox */
       display: flex;
       align-items: center;
@@ -89,12 +94,18 @@
       background-position: center;
     }
 
-    /* Radio dot */
+    /* Radio dot - default/md size (scale-60 of 20px = 12px) */
     .elv-choice--radio .elv-choice__box::after {
-      width: 10px;
-      height: 10px;
+      width: 12px;
+      height: 12px;
       background: white;
       border-radius: 50%;
+    }
+
+    /* Radio dot - small size (scale-40 of 16px = 6.4px, round to 6px) */
+    .elv-choice--radio.elv-choice--sm .elv-choice__box::after {
+      width: 6px;
+      height: 6px;
     }
 
     /* Checked state */
@@ -123,21 +134,26 @@
       outline-offset: 1px;
     }
 
-    /* Hover state */
-    .elv-choice:hover .elv-choice__box {
-      border-color: #5746b2;
+    /* Hover state - for unchecked, not disabled, not indeterminate checkbox */
+    .elv-choice--checkbox:hover .elv-choice__input:not(:checked):not(:disabled):not(:indeterminate) + .elv-choice__box {
+      background: #ebe9f6; /* P20 / primary-20 */
+    }
+
+    /* Hover state - radio (unchecked, not disabled) */
+    .elv-choice--radio:hover .elv-choice__input:not(:checked):not(:disabled) + .elv-choice__box {
+      background: #ebe9f6; /* P20 / primary-20 */
     }
 
     /* Disabled state */
     .elv-choice__input:disabled + .elv-choice__box {
-      background: #fafafa; /* N5 */
-      border-color: #dfdfe2;
+      background: #f2f2f3; /* N10 */
+      border-color: #dfdfe2; /* N20 / border-neutral */
       cursor: not-allowed;
     }
 
     .elv-choice__input:disabled:checked + .elv-choice__box {
-      background: #b0afb6; /* N40 */
-      border-color: #b0afb6;
+      background: #dfdfe2; /* N20 */
+      border-color: #dfdfe2; /* N20 */
     }
 
     .elv-choice__input:disabled ~ .elv-choice__label {
@@ -178,6 +194,11 @@
       color: #201f23; /* text-default */
       cursor: pointer;
       user-select: none;
+    }
+
+    /* Radio label uses text-primary */
+    .elv-choice--radio .elv-choice__label {
+      color: #5746b2; /* text-primary / P100 */
     }
 
     /* Helper text */
@@ -246,9 +267,10 @@
       background-image: url("data:image/svg+xml,%3Csvg width='14' height='14' viewBox='0 0 14 14' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 4L5.5 9.5L3 7' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
     }
 
+    /* Radio dot - large size (scale-75 of 24px = 18px) */
     .elv-choice--lg.elv-choice--radio .elv-choice__box::after {
-      width: 12px;
-      height: 12px;
+      width: 18px;
+      height: 18px;
     }
 
     .elv-choice--lg .elv-choice__helper,
@@ -811,14 +833,14 @@
         <td style="padding: 8px;">—</td>
       </tr>
       <tr style="border-bottom: 1px solid var(--border-light);">
-        <td style="padding: 8px;">Background</td>
-        <td style="padding: 8px;">#f2f2f3</td>
-        <td style="padding: 8px;">N10</td>
+        <td style="padding: 8px;">Background (unchecked)</td>
+        <td style="padding: 8px;">#ffffff</td>
+        <td style="padding: 8px;">N0 / neutral-0</td>
       </tr>
       <tr style="border-bottom: 1px solid var(--border-light);">
-        <td style="padding: 8px;">Border</td>
-        <td style="padding: 8px;">1px solid #dfdfe2</td>
-        <td style="padding: 8px;">border-light</td>
+        <td style="padding: 8px;">Border (unchecked)</td>
+        <td style="padding: 8px;">1px solid #b0afb6</td>
+        <td style="padding: 8px;">border-medium / N40</td>
       </tr>
       <tr style="border-bottom: 1px solid var(--border-light);">
         <td style="padding: 8px;">Border Radius (checkbox)</td>
@@ -846,9 +868,9 @@
         <td style="padding: 8px;">P40</td>
       </tr>
       <tr style="border-bottom: 1px solid var(--border-light);">
-        <td style="padding: 8px;">Hover Border</td>
-        <td style="padding: 8px;">#5746b2</td>
-        <td style="padding: 8px;">P100</td>
+        <td style="padding: 8px;">Hover Background (unchecked)</td>
+        <td style="padding: 8px;">#ebe9f6</td>
+        <td style="padding: 8px;">P20 / primary-20</td>
       </tr>
       <tr style="border-bottom: 1px solid var(--border-light);">
         <td style="padding: 8px;">Error Border</td>
@@ -857,13 +879,18 @@
       </tr>
       <tr style="border-bottom: 1px solid var(--border-light);">
         <td style="padding: 8px;">Disabled Background</td>
-        <td style="padding: 8px;">#fafafa</td>
-        <td style="padding: 8px;">N5</td>
+        <td style="padding: 8px;">#f2f2f3</td>
+        <td style="padding: 8px;">N10</td>
       </tr>
       <tr style="border-bottom: 1px solid var(--border-light);">
-        <td style="padding: 8px;">Disabled Checked</td>
-        <td style="padding: 8px;">#b0afb6</td>
-        <td style="padding: 8px;">N40</td>
+        <td style="padding: 8px;">Disabled Border</td>
+        <td style="padding: 8px;">#dfdfe2</td>
+        <td style="padding: 8px;">N20 / border-neutral</td>
+      </tr>
+      <tr style="border-bottom: 1px solid var(--border-light);">
+        <td style="padding: 8px;">Disabled Checked Background</td>
+        <td style="padding: 8px;">#dfdfe2</td>
+        <td style="padding: 8px;">N20</td>
       </tr>
       <tr style="border-bottom: 1px solid var(--border-light);">
         <td style="padding: 8px;">Label Font Size</td>
@@ -876,9 +903,19 @@
         <td style="padding: 8px;">Regular</td>
       </tr>
       <tr style="border-bottom: 1px solid var(--border-light);">
-        <td style="padding: 8px;">Label Color</td>
+        <td style="padding: 8px;">Label Color (checkbox)</td>
         <td style="padding: 8px;">#201f23</td>
         <td style="padding: 8px;">text-default</td>
+      </tr>
+      <tr style="border-bottom: 1px solid var(--border-light);">
+        <td style="padding: 8px;">Label Color (radio)</td>
+        <td style="padding: 8px;">#5746b2</td>
+        <td style="padding: 8px;">text-primary / P100</td>
+      </tr>
+      <tr style="border-bottom: 1px solid var(--border-light);">
+        <td style="padding: 8px;">Radio Inner Circle</td>
+        <td style="padding: 8px;">sm: 6px, md: 12px, lg: 18px</td>
+        <td style="padding: 8px;">scale-40/60/75</td>
       </tr>
       <tr style="border-bottom: 1px solid var(--border-light);">
         <td style="padding: 8px;">Helper Text Size</td>
@@ -916,8 +953,12 @@
         <td style="padding: 8px;"><strong>Spacing</strong></td>
       </tr>
       <tr style="border-bottom: 1px solid var(--border-light);">
-        <td style="padding: 8px;">Box to label</td>
-        <td style="padding: 8px;">8px</td>
+        <td style="padding: 8px;">Box to label (sm)</td>
+        <td style="padding: 8px;">4px (gap-1)</td>
+      </tr>
+      <tr style="border-bottom: 1px solid var(--border-light);">
+        <td style="padding: 8px;">Box to label (md/lg)</td>
+        <td style="padding: 8px;">8px (gap-2)</td>
       </tr>
       <tr style="border-bottom: 1px solid var(--border-light);">
         <td style="padding: 8px;">Between choices (stacked)</td>

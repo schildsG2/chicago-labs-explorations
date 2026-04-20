@@ -33,10 +33,10 @@
     /* Textarea Styles — DESIGN.md line 444-458 + textarea specs */
     .elv-textarea {
       width: 100%;
-      min-height: 80px;
+      min-height: 64px; /* md: 64px */
       padding: 12px;
       background: #fafafa; /* N5 */
-      border: 1px solid #dfdfe2; /* border-light */
+      border: 0.5px solid #b0afb6; /* border-medium N40 */
       border-radius: 8px; /* radius-sm */
       font-size: 16px;
       font-weight: 400;
@@ -45,6 +45,24 @@
       color: #201f23; /* text-default */
       resize: vertical; /* Only vertical resize */
       transition: background 150ms ease, outline 150ms ease;
+    }
+
+    /* Hover state */
+    .elv-textarea:hover:not(:disabled):not(:read-only) {
+      background: #f2f2f3; /* N10 */
+    }
+
+    /* Size variants */
+    .elv-textarea--sm {
+      min-height: 52px;
+    }
+
+    .elv-textarea--md {
+      min-height: 64px;
+    }
+
+    .elv-textarea--lg {
+      min-height: 64px;
     }
 
     .elv-textarea::placeholder {
@@ -60,12 +78,12 @@
     /* Error state */
     .elv-textarea--error {
       border: 2px solid #eb2000; /* R120 */
-      padding: 11px; /* Adjust for thicker border */
+      padding: 11.5px; /* Adjust for thicker border to maintain same inner dimensions */
     }
 
     /* Disabled state */
     .elv-textarea:disabled {
-      background: #fafafa; /* N5 */
+      background: #fcfcfd; /* N1 */
       color: #b0afb6; /* N40 */
       cursor: not-allowed;
       resize: none;
@@ -578,7 +596,7 @@ function updateCount(textarea) {
       </tr>
       <tr style="border-bottom: 1px solid var(--border-light);">
         <td style="padding: 8px;"><strong>Border</strong></td>
-        <td style="padding: 8px;">1px solid #dfdfe2 (border-light)</td>
+        <td style="padding: 8px;">0.5px solid #b0afb6 (border-medium N40)</td>
       </tr>
       <tr style="border-bottom: 1px solid var(--border-light);">
         <td style="padding: 8px;"><strong>Border Radius</strong></td>
@@ -586,7 +604,7 @@ function updateCount(textarea) {
       </tr>
       <tr style="border-bottom: 1px solid var(--border-light);">
         <td style="padding: 8px;"><strong>Min Height</strong></td>
-        <td style="padding: 8px;">80px (default, customizable)</td>
+        <td style="padding: 8px;">sm: 52px, md: 64px, lg: 64px</td>
       </tr>
       <tr style="border-bottom: 1px solid var(--border-light);">
         <td style="padding: 8px;"><strong>Padding</strong></td>
@@ -622,7 +640,7 @@ function updateCount(textarea) {
       </tr>
       <tr style="border-bottom: 1px solid var(--border-light);">
         <td style="padding: 8px;"><strong>Disabled</strong></td>
-        <td style="padding: 8px;">Background #fafafa (N5), text #b0afb6 (N40), no resize</td>
+        <td style="padding: 8px;">Background #fcfcfd (N1), text #b0afb6 (N40), no resize</td>
       </tr>
       <tr style="border-bottom: 1px solid var(--border-light);">
         <td style="padding: 8px;"><strong>Label</strong></td>
