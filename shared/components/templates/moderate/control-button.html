@@ -6,7 +6,6 @@
   <title>Control Button Component</title>
   <link rel="stylesheet" href="../../../tokens/elevate.css">
   <link rel="stylesheet" href="../../elevate.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined">
   <style>
     body {
       font-family: var(--font-sans);
@@ -22,124 +21,207 @@
     }
     h1 { margin: 0 0 0.5rem 0; }
     h2 { margin: 1.5rem 0 0.75rem 0; font-size: var(--text-lg); }
-    .examples { display: flex; gap: 0.75rem; flex-wrap: wrap; margin: 1rem 0; align-items: center; }
+    .examples { display: flex; gap: 1.5rem; flex-wrap: wrap; margin: 1rem 0; align-items: center; }
     pre {
       background: var(--bg-neutral-10);
       padding: 1rem;
       border-radius: var(--radius-sm);
       overflow-x: auto;
       font-size: 13px;
+      line-height: 1.5;
     }
 
-    /* Material Symbols */
-    .material-symbols-outlined {
-      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20;
-    }
-
-    /* Control Button — small utility buttons for UI controls */
+    /* Control Button — Segmented button groups for toolbars and controls */
     .elv-control-button {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      background: transparent;
-      border: none;
+      min-width: 24px;
+      gap: 4px;
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-sm);
+      background: var(--bg-neutral-5);
+      color: var(--text-subtle);
+      fill: var(--fill-subtle);
       cursor: pointer;
-      transition: all 150ms ease;
-      color: #4c4b53;
-      flex-shrink: 0;
-      border-radius: 4px;
-    }
-
-    /* Sizes */
-    .elv-control-button--sm {
-      width: 24px;
-      height: 24px;
-      font-size: 16px;
-    }
-    .elv-control-button--md {
-      width: 32px;
-      height: 32px;
-      font-size: 20px;
+      transition: all 150ms ease-in;
+      box-shadow: inset 0 0 0 0 transparent;
+      outline: none;
     }
 
     /* Hover state */
     .elv-control-button:hover {
-      background: #f2f2f3;
-      color: #201f23;
+      background: var(--bg-primary-20);
+      color: var(--text-primary);
+      fill: var(--fill-primary);
     }
 
     /* Focus state */
     .elv-control-button:focus {
-      outline: 2px solid #5746b2;
-      outline-offset: 2px;
+      outline: 3px solid #c3bde5;
+      outline-offset: 0;
+      border-color: var(--border-primary);
+      box-shadow: 0 0 0 3px rgba(87, 70, 178, 0.1);
+      background: var(--bg-primary-20);
+      color: var(--text-primary);
+      fill: var(--fill-primary);
     }
 
     /* Active state */
+    .elv-control-button.is-active,
     .elv-control-button:active {
-      background: #dfdfe2;
-      color: #201f23;
+      background: var(--bg-primary-20);
+      color: var(--text-primary);
+      fill: var(--fill-primary);
+      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.08);
     }
 
     /* Disabled state */
     .elv-control-button:disabled {
-      color: #b0afb6;
+      background: var(--bg-neutral-10);
+      color: var(--text-neutral-20);
+      fill: var(--fill-neutral-20);
       cursor: not-allowed;
-      opacity: 0.5;
-    }
-    .elv-control-button:disabled:hover {
-      background: transparent;
+      opacity: 0.6;
     }
 
-    /* Close button variant (X) */
-    .elv-control-button--close {
-      color: #6f6d78;
+    /* Sizes */
+    .elv-control-button--xs {
+      height: 24px;
+      padding: 0 4px;
     }
-    .elv-control-button--close:hover {
-      background: #ffd7d1;
-      color: #b21800;
-    }
-
-    /* Demo containers */
-    .modal-header-demo {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 1rem;
-      background: white;
-      border: 1px solid #dfdfe2;
-      border-radius: 8px;
-      margin: 1rem 0;
+    .elv-control-button--xs.elv-control-button--icon-only {
+      width: 24px;
+      padding: 0;
     }
 
-    .panel-demo {
-      display: flex;
-      flex-direction: column;
-      background: white;
-      border: 1px solid #dfdfe2;
-      border-radius: 8px;
-      width: 300px;
-      margin: 1rem 0;
+    .elv-control-button--sm {
+      height: 32px;
+      padding: 0 8px;
     }
-    .panel-demo__header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0.75rem 1rem;
-      border-bottom: 1px solid #dfdfe2;
+    .elv-control-button--sm.elv-control-button--icon-only {
+      width: 32px;
+      padding: 0;
     }
-    .panel-demo__body {
-      padding: 1rem;
-      color: #6f6d78;
+
+    .elv-control-button--md {
+      height: 40px;
+      padding: 0 8px;
+    }
+    .elv-control-button--md.elv-control-button--icon-only {
+      width: 40px;
+      padding: 0;
+    }
+
+    .elv-control-button--lg {
+      height: 48px;
+      padding: 0 12px;
+    }
+    .elv-control-button--lg.elv-control-button--icon-only {
+      width: 48px;
+      padding: 0;
+    }
+
+    /* Segment positioning */
+    .elv-control-button--left-cap {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+      border-right-width: 0;
+    }
+
+    .elv-control-button--middle {
+      border-radius: 0;
+      border-right-width: 0;
+    }
+
+    .elv-control-button--right-cap {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+
+    /* XS segments have smaller radius */
+    .elv-control-button--xs.elv-control-button--left-cap {
+      border-top-left-radius: 2px;
+      border-bottom-left-radius: 2px;
+    }
+    .elv-control-button--xs.elv-control-button--right-cap {
+      border-top-right-radius: 2px;
+      border-bottom-right-radius: 2px;
+    }
+    .elv-control-button--xs:not([class*="--left-cap"]):not([class*="--middle"]):not([class*="--right-cap"]) {
+      border-radius: 2px;
+    }
+
+    /* Icon styling within buttons */
+    .elv-control-button__icon {
+      width: 16px;
+      height: 16px;
+      fill: inherit;
+      flex-shrink: 0;
+    }
+
+    .elv-control-button--xs .elv-control-button__icon,
+    .elv-control-button--sm .elv-control-button__icon {
+      width: 16px;
+      height: 16px;
+    }
+
+    .elv-control-button--md .elv-control-button__icon,
+    .elv-control-button--lg .elv-control-button__icon {
+      width: 20px;
+      height: 20px;
+    }
+
+    /* Label styling */
+    .elv-control-button__label {
+      font-size: 13px;
+      font-weight: 500;
+      line-height: 1;
+      padding: 0 4px;
+      color: inherit;
+    }
+
+    .elv-control-button--xs .elv-control-button__label,
+    .elv-control-button--sm .elv-control-button__label {
+      font-size: 13px;
+    }
+
+    .elv-control-button--md .elv-control-button__label,
+    .elv-control-button--lg .elv-control-button__label {
       font-size: 14px;
     }
 
-    .window-controls-demo {
+    /* Dropdown menu divider */
+    .elv-control-button__dropdown {
+      border-left: 1px solid var(--border-light);
+      padding-left: 8px;
+      margin-left: 4px;
+      display: flex;
+      align-items: center;
+      height: 100%;
+    }
+
+    /* Button group container */
+    .elv-control-button-group {
       display: inline-flex;
-      gap: 8px;
-      padding: 0.5rem;
-      background: #f2f2f3;
-      border-radius: 8px;
-      margin: 1rem 0;
+      align-items: center;
+    }
+
+    /* Demo SVG icons (minimal placeholders) */
+    .demo-icon {
+      width: 16px;
+      height: 16px;
+      fill: currentColor;
+    }
+
+    .demo-icon--sm {
+      width: 20px;
+      height: 20px;
+    }
+
+    /* Interactive demo state */
+    .interactive-demo .elv-control-button:not(:disabled):hover {
+      background: var(--bg-primary-20);
     }
   </style>
 </head>
@@ -149,200 +231,419 @@
   <h1 class="elv-text-3xl elv-font-bold elv-text-default">Control Button</h1>
   <p class="elv-text-sm elv-text-subtle">
     Reference: <a href="https://www.g2.test/elevate/lookbook" class="elv-text-link">Elevate Lookbook</a> |
-    Specs: <a href="../../design-system/DESIGN.md" class="elv-text-link">DESIGN.md (Buttons)</a>
+    Specs: <a href="../../design-system/DESIGN.md" class="elv-text-link">DESIGN.md</a>
   </p>
 
-  <!-- Sizes -->
+  <!-- Overview -->
   <div class="section">
-    <h2 class="elv-font-semibold elv-text-default">Sizes</h2>
+    <h2 class="elv-font-semibold elv-text-default">Overview</h2>
     <p class="elv-text-sm elv-text-subtle elv-mb-4">
-      Small (24px) and Medium (32px). Designed for UI controls like close, expand, minimize.
+      Control buttons are <strong>segmented button groups</strong> used in toolbars, control panels, and filtering interfaces. They can be icon-only or include text labels, and support left/right icons with optional dropdown menus.
+    </p>
+    <ul class="elv-text-sm elv-text-default" style="line-height: 1.8;">
+      <li><strong>Segmented groups</strong> — Buttons join together with caps: left_cap, middle, right_cap, none</li>
+      <li><strong>4 sizes</strong> — xs (24px), sm (32px), md (40px), lg (48px)</li>
+      <li><strong>Icon + label support</strong> — Can be icon-only or have left/right icons with labels</li>
+      <li><strong>Active states</strong> — Toggle-style highlighting for selected options</li>
+      <li><strong>Dropdown menus</strong> — Optional dropdown indicator with divider</li>
+    </ul>
+  </div>
+
+  <!-- Sizes: Icon-Only Standalone -->
+  <div class="section">
+    <h2 class="elv-font-semibold elv-text-default">Sizes: Icon-Only Standalone</h2>
+    <p class="elv-text-sm elv-text-subtle elv-mb-4">
+      Control buttons in all four sizes (xs, sm, md, lg) with segment="none" (fully rounded, standalone).
     </p>
     <div class="examples">
-      <button class="elv-control-button elv-control-button--sm" type="button" aria-label="Close">
-        <span class="material-symbols-outlined">close</span>
+      <button class="elv-control-button elv-control-button--xs elv-control-button--icon-only" type="button" aria-label="Controls">
+        <svg class="elv-control-button__icon" viewBox="0 0 20 20"><path d="M10 2a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm0 6a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm0 6a2 2 0 1 0 0 4 2 2 0 0 0 0-4z"/></svg>
       </button>
-      <button class="elv-control-button elv-control-button--md" type="button" aria-label="Close">
-        <span class="material-symbols-outlined">close</span>
+
+      <button class="elv-control-button elv-control-button--sm elv-control-button--icon-only" type="button" aria-label="Controls">
+        <svg class="elv-control-button__icon" viewBox="0 0 20 20"><path d="M10 2a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm0 6a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm0 6a2 2 0 1 0 0 4 2 2 0 0 0 0-4z"/></svg>
+      </button>
+
+      <button class="elv-control-button elv-control-button--md elv-control-button--icon-only" type="button" aria-label="Controls">
+        <svg class="elv-control-button__icon demo-icon--sm" viewBox="0 0 20 20"><path d="M10 2a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm0 6a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm0 6a2 2 0 1 0 0 4 2 2 0 0 0 0-4z"/></svg>
+      </button>
+
+      <button class="elv-control-button elv-control-button--lg elv-control-button--icon-only" type="button" aria-label="Controls">
+        <svg class="elv-control-button__icon demo-icon--sm" viewBox="0 0 20 20"><path d="M10 2a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm0 6a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm0 6a2 2 0 1 0 0 4 2 2 0 0 0 0-4z"/></svg>
       </button>
     </div>
-    <pre><code>&lt;button class="elv-control-button elv-control-button--sm" type="button" aria-label="Close"&gt;
-  &lt;span class="material-symbols-outlined"&gt;close&lt;/span&gt;
+    <pre><code>&lt;!-- XS (24px) --&gt;
+&lt;button class="elv-control-button elv-control-button--xs elv-control-button--icon-only" type="button" aria-label="Controls"&gt;
+  &lt;svg class="elv-control-button__icon" viewBox="0 0 20 20"&gt;...&lt;/svg&gt;
 &lt;/button&gt;
 
-&lt;button class="elv-control-button elv-control-button--md" type="button" aria-label="Close"&gt;
-  &lt;span class="material-symbols-outlined"&gt;close&lt;/span&gt;
-&lt;/button&gt;</code></pre>
+&lt;!-- SM (32px) --&gt;
+&lt;button class="elv-control-button elv-control-button--sm elv-control-button--icon-only" type="button"&gt;...&lt;/button&gt;
+
+&lt;!-- MD (40px) --&gt;
+&lt;button class="elv-control-button elv-control-button--md elv-control-button--icon-only" type="button"&gt;...&lt;/button&gt;
+
+&lt;!-- LG (48px) --&gt;
+&lt;button class="elv-control-button elv-control-button--lg elv-control-button--icon-only" type="button"&gt;...&lt;/button&gt;</code></pre>
   </div>
 
-  <!-- Close Control -->
+  <!-- Segmented Icon-Only Group (MD) -->
   <div class="section">
-    <h2 class="elv-font-semibold elv-text-default">Close Control</h2>
+    <h2 class="elv-font-semibold elv-text-default">Segmented Icon-Only Group (MD)</h2>
     <p class="elv-text-sm elv-text-subtle elv-mb-4">
-      Most common control. Hover shows red tint. Use for modals, panels, dismissible cards.
+      Three-segment button group using left_cap, middle, and right_cap. Middle button is in active state.
     </p>
     <div class="examples">
-      <button class="elv-control-button elv-control-button--close elv-control-button--md" type="button" aria-label="Close">
-        <span class="material-symbols-outlined">close</span>
-      </button>
-      <button class="elv-control-button elv-control-button--close elv-control-button--md" type="button" aria-label="Close" disabled>
-        <span class="material-symbols-outlined">close</span>
-      </button>
-    </div>
-    <pre><code>&lt;button class="elv-control-button elv-control-button--close elv-control-button--md" type="button" aria-label="Close"&gt;
-  &lt;span class="material-symbols-outlined"&gt;close&lt;/span&gt;
-&lt;/button&gt;</code></pre>
-  </div>
-
-  <!-- Common Controls -->
-  <div class="section">
-    <h2 class="elv-font-semibold elv-text-default">Common Controls</h2>
-    <p class="elv-text-sm elv-text-subtle elv-mb-4">
-      Standard utility controls for menus, expansion, minimization, and more.
-    </p>
-    <div class="examples">
-      <button class="elv-control-button elv-control-button--md" type="button" aria-label="Menu">
-        <span class="material-symbols-outlined">menu</span>
-      </button>
-      <button class="elv-control-button elv-control-button--md" type="button" aria-label="Expand">
-        <span class="material-symbols-outlined">expand_more</span>
-      </button>
-      <button class="elv-control-button elv-control-button--md" type="button" aria-label="Collapse">
-        <span class="material-symbols-outlined">expand_less</span>
-      </button>
-      <button class="elv-control-button elv-control-button--md" type="button" aria-label="More options">
-        <span class="material-symbols-outlined">more_vert</span>
-      </button>
-      <button class="elv-control-button elv-control-button--md" type="button" aria-label="Fullscreen">
-        <span class="material-symbols-outlined">fullscreen</span>
-      </button>
-      <button class="elv-control-button elv-control-button--md" type="button" aria-label="Exit fullscreen">
-        <span class="material-symbols-outlined">fullscreen_exit</span>
-      </button>
-    </div>
-    <pre><code>&lt;button class="elv-control-button elv-control-button--md" type="button" aria-label="Menu"&gt;
-  &lt;span class="material-symbols-outlined"&gt;menu&lt;/span&gt;
-&lt;/button&gt;
-
-&lt;button class="elv-control-button elv-control-button--md" type="button" aria-label="Expand"&gt;
-  &lt;span class="material-symbols-outlined"&gt;expand_more&lt;/span&gt;
-&lt;/button&gt;</code></pre>
-  </div>
-
-  <!-- In Context: Modal Header -->
-  <div class="section">
-    <h2 class="elv-font-semibold elv-text-default">In Context: Modal Header</h2>
-    <p class="elv-text-sm elv-text-subtle elv-mb-4">
-      Control buttons in modal headers. Close button positioned at top-right.
-    </p>
-    <div class="modal-header-demo">
-      <h3 class="elv-font-semibold elv-text-default" style="margin: 0;">Modal Title</h3>
-      <button class="elv-control-button elv-control-button--close elv-control-button--md" type="button" aria-label="Close modal">
-        <span class="material-symbols-outlined">close</span>
-      </button>
-    </div>
-    <pre><code>&lt;div class="modal-header"&gt;
-  &lt;h3&gt;Modal Title&lt;/h3&gt;
-  &lt;button class="elv-control-button elv-control-button--close elv-control-button--md" type="button" aria-label="Close modal"&gt;
-    &lt;span class="material-symbols-outlined"&gt;close&lt;/span&gt;
-  &lt;/button&gt;
-&lt;/div&gt;</code></pre>
-  </div>
-
-  <!-- In Context: Collapsible Panel -->
-  <div class="section">
-    <h2 class="elv-font-semibold elv-text-default">In Context: Collapsible Panel</h2>
-    <p class="elv-text-sm elv-text-subtle elv-mb-4">
-      Control button for expanding/collapsing panels. Click to toggle.
-    </p>
-    <div class="panel-demo" data-collapsible>
-      <div class="panel-demo__header">
-        <h4 class="elv-font-semibold elv-text-default" style="margin: 0; font-size: 16px;">Panel Title</h4>
-        <button class="elv-control-button elv-control-button--md" type="button" aria-label="Expand panel" data-toggle>
-          <span class="material-symbols-outlined" data-icon>expand_more</span>
+      <div class="elv-control-button-group">
+        <button class="elv-control-button elv-control-button--md elv-control-button--icon-only elv-control-button--left-cap" type="button" aria-label="Align left">
+          <svg class="elv-control-button__icon demo-icon--sm" viewBox="0 0 20 20"><path d="M2 4h16v2H2V4zm0 5h12v2H2V9zm0 5h16v2H2v-2z"/></svg>
+        </button>
+        <button class="elv-control-button elv-control-button--md elv-control-button--icon-only elv-control-button--middle is-active" type="button" aria-label="Align center" aria-pressed="true">
+          <svg class="elv-control-button__icon demo-icon--sm" viewBox="0 0 20 20"><path d="M2 4h16v2H2V4zm2 5h12v2H4V9zm-2 5h16v2H2v-2z"/></svg>
+        </button>
+        <button class="elv-control-button elv-control-button--md elv-control-button--icon-only elv-control-button--right-cap" type="button" aria-label="Align right">
+          <svg class="elv-control-button__icon demo-icon--sm" viewBox="0 0 20 20"><path d="M2 4h16v2H2V4zm4 5h12v2H6V9zm-4 5h16v2H2v-2z"/></svg>
         </button>
       </div>
-      <div class="panel-demo__body" data-content>
-        This content can be collapsed or expanded using the control button.
+    </div>
+    <pre><code>&lt;div class="elv-control-button-group"&gt;
+  &lt;button class="elv-control-button elv-control-button--md elv-control-button--icon-only elv-control-button--left-cap" type="button" aria-label="Align left"&gt;
+    &lt;svg class="elv-control-button__icon"&gt;...&lt;/svg&gt;
+  &lt;/button&gt;
+  &lt;button class="elv-control-button elv-control-button--md elv-control-button--icon-only elv-control-button--middle is-active" type="button" aria-label="Align center" aria-pressed="true"&gt;
+    &lt;svg class="elv-control-button__icon"&gt;...&lt;/svg&gt;
+  &lt;/button&gt;
+  &lt;button class="elv-control-button elv-control-button--md elv-control-button--icon-only elv-control-button--right-cap" type="button" aria-label="Align right"&gt;
+    &lt;svg class="elv-control-button__icon"&gt;...&lt;/svg&gt;
+  &lt;/button&gt;
+&lt;/div&gt;</code></pre>
+  </div>
+
+  <!-- Segmented Icon-Only Group (SM) -->
+  <div class="section">
+    <h2 class="elv-font-semibold elv-text-default">Segmented Icon-Only Group (SM)</h2>
+    <p class="elv-text-sm elv-text-subtle elv-mb-4">
+      Smaller 32px toolbar group with four segments showing view mode controls.
+    </p>
+    <div class="examples">
+      <div class="elv-control-button-group">
+        <button class="elv-control-button elv-control-button--sm elv-control-button--icon-only elv-control-button--left-cap is-active" type="button" aria-label="List view" aria-pressed="true">
+          <svg class="elv-control-button__icon" viewBox="0 0 20 20"><path d="M2 4h16v2H2V4zm0 5h16v2H2V9zm0 5h16v2H2v-2z"/></svg>
+        </button>
+        <button class="elv-control-button elv-control-button--sm elv-control-button--icon-only elv-control-button--middle" type="button" aria-label="Grid view">
+          <svg class="elv-control-button__icon" viewBox="0 0 20 20"><path d="M2 2h7v7H2V2zm9 0h7v7h-7V2zM2 11h7v7H2v-7zm9 0h7v7h-7v-7z"/></svg>
+        </button>
+        <button class="elv-control-button elv-control-button--sm elv-control-button--icon-only elv-control-button--middle" type="button" aria-label="Compact view">
+          <svg class="elv-control-button__icon" viewBox="0 0 20 20"><path d="M2 3h16v3H2V3zm0 5h16v3H2V8zm0 5h16v3H2v-3z"/></svg>
+        </button>
+        <button class="elv-control-button elv-control-button--sm elv-control-button--icon-only elv-control-button--right-cap" type="button" aria-label="Card view">
+          <svg class="elv-control-button__icon" viewBox="0 0 20 20"><path d="M2 2h5v5H2V2zm6 0h5v5H8V2zm6 0h5v5h-5V2zM2 9h5v5H2V9zm6 0h5v5H8V9zm6 0h5v5h-5V9z"/></svg>
+        </button>
       </div>
     </div>
-    <pre><code>&lt;div class="panel"&gt;
-  &lt;div class="panel__header"&gt;
-    &lt;h4&gt;Panel Title&lt;/h4&gt;
-    &lt;button class="elv-control-button elv-control-button--md" type="button" aria-label="Expand panel"&gt;
-      &lt;span class="material-symbols-outlined"&gt;expand_more&lt;/span&gt;
-    &lt;/button&gt;
-  &lt;/div&gt;
-  &lt;div class="panel__body"&gt;...&lt;/div&gt;
+    <pre><code>&lt;div class="elv-control-button-group"&gt;
+  &lt;button class="elv-control-button elv-control-button--sm elv-control-button--icon-only elv-control-button--left-cap is-active" type="button" aria-pressed="true"&gt;
+    &lt;svg class="elv-control-button__icon"&gt;...&lt;/svg&gt;
+  &lt;/button&gt;
+  &lt;button class="elv-control-button elv-control-button--sm elv-control-button--icon-only elv-control-button--middle" type="button"&gt;...&lt;/button&gt;
+  &lt;button class="elv-control-button elv-control-button--sm elv-control-button--icon-only elv-control-button--middle" type="button"&gt;...&lt;/button&gt;
+  &lt;button class="elv-control-button elv-control-button--sm elv-control-button--icon-only elv-control-button--right-cap" type="button"&gt;...&lt;/button&gt;
 &lt;/div&gt;</code></pre>
   </div>
 
-  <!-- In Context: Window Controls -->
+  <!-- Buttons with Labels (MD) -->
   <div class="section">
-    <h2 class="elv-font-semibold elv-text-default">In Context: Window Controls</h2>
+    <h2 class="elv-font-semibold elv-text-default">Buttons with Labels (MD)</h2>
     <p class="elv-text-sm elv-text-subtle elv-mb-4">
-      Grouped controls for window-like interfaces.
+      Control buttons with text labels. Labels use Elevate Typography component styles (label variant).
     </p>
-    <div class="window-controls-demo">
-      <button class="elv-control-button elv-control-button--sm" type="button" aria-label="Minimize">
-        <span class="material-symbols-outlined">minimize</span>
-      </button>
-      <button class="elv-control-button elv-control-button--sm" type="button" aria-label="Maximize">
-        <span class="material-symbols-outlined">crop_square</span>
-      </button>
-      <button class="elv-control-button elv-control-button--close elv-control-button--sm" type="button" aria-label="Close">
-        <span class="material-symbols-outlined">close</span>
+    <div class="examples">
+      <div class="elv-control-button-group">
+        <button class="elv-control-button elv-control-button--md elv-control-button--left-cap" type="button">
+          <span class="elv-control-button__label">Day</span>
+        </button>
+        <button class="elv-control-button elv-control-button--md elv-control-button--middle is-active" type="button" aria-pressed="true">
+          <span class="elv-control-button__label">Week</span>
+        </button>
+        <button class="elv-control-button elv-control-button--md elv-control-button--right-cap" type="button">
+          <span class="elv-control-button__label">Month</span>
+        </button>
+      </div>
+    </div>
+    <pre><code>&lt;div class="elv-control-button-group"&gt;
+  &lt;button class="elv-control-button elv-control-button--md elv-control-button--left-cap" type="button"&gt;
+    &lt;span class="elv-control-button__label"&gt;Day&lt;/span&gt;
+  &lt;/button&gt;
+  &lt;button class="elv-control-button elv-control-button--md elv-control-button--middle is-active" type="button" aria-pressed="true"&gt;
+    &lt;span class="elv-control-button__label"&gt;Week&lt;/span&gt;
+  &lt;/button&gt;
+  &lt;button class="elv-control-button elv-control-button--md elv-control-button--right-cap" type="button"&gt;
+    &lt;span class="elv-control-button__label"&gt;Month&lt;/span&gt;
+  &lt;/button&gt;
+&lt;/div&gt;</code></pre>
+  </div>
+
+  <!-- Buttons with Left Icons + Labels (LG) -->
+  <div class="section">
+    <h2 class="elv-font-semibold elv-text-default">Buttons with Left Icons + Labels (LG)</h2>
+    <p class="elv-text-sm elv-text-subtle elv-mb-4">
+      Larger 48px control buttons combining left icons with text labels. First button is active.
+    </p>
+    <div class="examples">
+      <div class="elv-control-button-group">
+        <button class="elv-control-button elv-control-button--lg elv-control-button--left-cap is-active" type="button" aria-pressed="true">
+          <svg class="elv-control-button__icon demo-icon--sm" viewBox="0 0 20 20"><path d="M10 2a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm0 6a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm0 6a2 2 0 1 0 0 4 2 2 0 0 0 0-4z"/></svg>
+          <span class="elv-control-button__label">Controls</span>
+        </button>
+        <button class="elv-control-button elv-control-button--lg elv-control-button--middle" type="button">
+          <svg class="elv-control-button__icon demo-icon--sm" viewBox="0 0 20 20"><path d="M10 3l2.4 4.8 5.6.8-4 3.9.9 5.5-5-2.6-5 2.6.9-5.5-4-3.9 5.6-.8L10 3z"/></svg>
+          <span class="elv-control-button__label">Favorites</span>
+        </button>
+        <button class="elv-control-button elv-control-button--lg elv-control-button--right-cap" type="button">
+          <svg class="elv-control-button__icon demo-icon--sm" viewBox="0 0 20 20"><path d="M18 8h-6V2h-4v6H2v4h6v6h4v-6h6V8z"/></svg>
+          <span class="elv-control-button__label">Add</span>
+        </button>
+      </div>
+    </div>
+    <pre><code>&lt;div class="elv-control-button-group"&gt;
+  &lt;button class="elv-control-button elv-control-button--lg elv-control-button--left-cap is-active" type="button" aria-pressed="true"&gt;
+    &lt;svg class="elv-control-button__icon"&gt;...&lt;/svg&gt;
+    &lt;span class="elv-control-button__label"&gt;Controls&lt;/span&gt;
+  &lt;/button&gt;
+  &lt;button class="elv-control-button elv-control-button--lg elv-control-button--middle" type="button"&gt;
+    &lt;svg class="elv-control-button__icon"&gt;...&lt;/svg&gt;
+    &lt;span class="elv-control-button__label"&gt;Favorites&lt;/span&gt;
+  &lt;/button&gt;
+  &lt;button class="elv-control-button elv-control-button--lg elv-control-button--right-cap" type="button"&gt;
+    &lt;svg class="elv-control-button__icon"&gt;...&lt;/svg&gt;
+    &lt;span class="elv-control-button__label"&gt;Add&lt;/span&gt;
+  &lt;/button&gt;
+&lt;/div&gt;</code></pre>
+  </div>
+
+  <!-- Buttons with Right Icons (SM) -->
+  <div class="section">
+    <h2 class="elv-font-semibold elv-text-default">Buttons with Right Icons (SM)</h2>
+    <p class="elv-text-sm elv-text-subtle elv-mb-4">
+      Small control buttons with labels and right-positioned icons (e.g., sort indicators).
+    </p>
+    <div class="examples">
+      <div class="elv-control-button-group">
+        <button class="elv-control-button elv-control-button--sm elv-control-button--left-cap" type="button">
+          <span class="elv-control-button__label">Name</span>
+          <svg class="elv-control-button__icon" viewBox="0 0 20 20"><path d="M10 6l-6 6h12l-6-6z"/></svg>
+        </button>
+        <button class="elv-control-button elv-control-button--sm elv-control-button--middle is-active" type="button" aria-pressed="true">
+          <span class="elv-control-button__label">Date</span>
+          <svg class="elv-control-button__icon" viewBox="0 0 20 20"><path d="M10 14l6-6H4l6 6z"/></svg>
+        </button>
+        <button class="elv-control-button elv-control-button--sm elv-control-button--right-cap" type="button">
+          <span class="elv-control-button__label">Size</span>
+        </button>
+      </div>
+    </div>
+    <pre><code>&lt;div class="elv-control-button-group"&gt;
+  &lt;button class="elv-control-button elv-control-button--sm elv-control-button--left-cap" type="button"&gt;
+    &lt;span class="elv-control-button__label"&gt;Name&lt;/span&gt;
+    &lt;svg class="elv-control-button__icon"&gt;...&lt;/svg&gt;
+  &lt;/button&gt;
+  &lt;button class="elv-control-button elv-control-button--sm elv-control-button--middle is-active" type="button" aria-pressed="true"&gt;
+    &lt;span class="elv-control-button__label"&gt;Date&lt;/span&gt;
+    &lt;svg class="elv-control-button__icon"&gt;...&lt;/svg&gt;
+  &lt;/button&gt;
+  &lt;button class="elv-control-button elv-control-button--sm elv-control-button--right-cap" type="button"&gt;
+    &lt;span class="elv-control-button__label"&gt;Size&lt;/span&gt;
+  &lt;/button&gt;
+&lt;/div&gt;</code></pre>
+  </div>
+
+  <!-- Button with Dropdown Menu (MD) -->
+  <div class="section">
+    <h2 class="elv-font-semibold elv-text-default">Button with Dropdown Menu (MD)</h2>
+    <p class="elv-text-sm elv-text-subtle elv-mb-4">
+      Control button with integrated dropdown indicator (separated by divider). Standalone button, not part of a group.
+    </p>
+    <div class="examples">
+      <button class="elv-control-button elv-control-button--md" type="button">
+        <svg class="elv-control-button__icon demo-icon--sm" viewBox="0 0 20 20"><path d="M10 2a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm0 6a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm0 6a2 2 0 1 0 0 4 2 2 0 0 0 0-4z"/></svg>
+        <span class="elv-control-button__label">Options</span>
+        <div class="elv-control-button__dropdown">
+          <svg class="elv-control-button__icon demo-icon--sm" viewBox="0 0 20 20"><path d="M10 14l6-6H4l6 6z"/></svg>
+        </div>
       </button>
     </div>
-    <pre><code>&lt;div class="window-controls"&gt;
-  &lt;button class="elv-control-button elv-control-button--sm" type="button" aria-label="Minimize"&gt;
-    &lt;span class="material-symbols-outlined"&gt;minimize&lt;/span&gt;
-  &lt;/button&gt;
-  &lt;button class="elv-control-button elv-control-button--sm" type="button" aria-label="Maximize"&gt;
-    &lt;span class="material-symbols-outlined"&gt;crop_square&lt;/span&gt;
-  &lt;/button&gt;
-  &lt;button class="elv-control-button elv-control-button--close elv-control-button--sm" type="button" aria-label="Close"&gt;
-    &lt;span class="material-symbols-outlined"&gt;close&lt;/span&gt;
-  &lt;/button&gt;
-&lt;/div&gt;</code></pre>
+    <pre><code>&lt;button class="elv-control-button elv-control-button--md" type="button"&gt;
+  &lt;svg class="elv-control-button__icon"&gt;...&lt;/svg&gt;
+  &lt;span class="elv-control-button__label"&gt;Options&lt;/span&gt;
+  &lt;div class="elv-control-button__dropdown"&gt;
+    &lt;svg class="elv-control-button__icon"&gt;...&lt;/svg&gt;
+  &lt;/div&gt;
+&lt;/button&gt;</code></pre>
   </div>
 
-  <!-- Usage Notes -->
+  <!-- All Sizes Comparison (Icon-Only) -->
   <div class="section">
-    <h2 class="elv-font-semibold elv-text-default">Usage Notes</h2>
-    <ul class="elv-text-sm elv-text-default" style="line-height: 1.6;">
-      <li><strong>Purpose</strong> — Small utility buttons for UI controls, not primary actions</li>
-      <li><strong>Always include aria-label</strong> — control buttons need accessible labels</li>
-      <li><strong>Close variant</strong> — Use --close modifier for destructive close actions (red hover)</li>
-      <li><strong>Subtle styling</strong> — Transparent background, hover reveals light gray</li>
-      <li><strong>Focus states</strong> — 2px purple outline for keyboard accessibility</li>
-      <li><strong>Common icons</strong> — close, menu, expand_more, expand_less, fullscreen, minimize, more_vert</li>
-      <li><strong>Positioning</strong> — Typically positioned at panel edges or in headers</li>
+    <h2 class="elv-font-semibold elv-text-default">All Sizes Comparison (Icon-Only)</h2>
+    <p class="elv-text-sm elv-text-subtle elv-mb-4">
+      Side-by-side comparison of all four sizes with icon-only buttons in segmented groups.
+    </p>
+    <div class="examples" style="flex-direction: column; align-items: flex-start; gap: 1rem;">
+      <div style="display: flex; align-items: center; gap: 1rem;">
+        <span class="elv-text-xs elv-text-subtle" style="width: 40px;">XS</span>
+        <div class="elv-control-button-group">
+          <button class="elv-control-button elv-control-button--xs elv-control-button--icon-only elv-control-button--left-cap" type="button" aria-label="Option 1">
+            <svg class="elv-control-button__icon" viewBox="0 0 20 20"><circle cx="10" cy="10" r="3"/></svg>
+          </button>
+          <button class="elv-control-button elv-control-button--xs elv-control-button--icon-only elv-control-button--middle is-active" type="button" aria-label="Option 2" aria-pressed="true">
+            <svg class="elv-control-button__icon" viewBox="0 0 20 20"><rect x="7" y="7" width="6" height="6"/></svg>
+          </button>
+          <button class="elv-control-button elv-control-button--xs elv-control-button--icon-only elv-control-button--right-cap" type="button" aria-label="Option 3">
+            <svg class="elv-control-button__icon" viewBox="0 0 20 20"><path d="M10 3l3 6 6 1-4 4 1 6-6-3-6 3 1-6-4-4 6-1 3-6z"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <div style="display: flex; align-items: center; gap: 1rem;">
+        <span class="elv-text-xs elv-text-subtle" style="width: 40px;">SM</span>
+        <div class="elv-control-button-group">
+          <button class="elv-control-button elv-control-button--sm elv-control-button--icon-only elv-control-button--left-cap" type="button" aria-label="Option 1">
+            <svg class="elv-control-button__icon" viewBox="0 0 20 20"><circle cx="10" cy="10" r="3"/></svg>
+          </button>
+          <button class="elv-control-button elv-control-button--sm elv-control-button--icon-only elv-control-button--middle is-active" type="button" aria-label="Option 2" aria-pressed="true">
+            <svg class="elv-control-button__icon" viewBox="0 0 20 20"><rect x="7" y="7" width="6" height="6"/></svg>
+          </button>
+          <button class="elv-control-button elv-control-button--sm elv-control-button--icon-only elv-control-button--right-cap" type="button" aria-label="Option 3">
+            <svg class="elv-control-button__icon" viewBox="0 0 20 20"><path d="M10 3l3 6 6 1-4 4 1 6-6-3-6 3 1-6-4-4 6-1 3-6z"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <div style="display: flex; align-items: center; gap: 1rem;">
+        <span class="elv-text-xs elv-text-subtle" style="width: 40px;">MD</span>
+        <div class="elv-control-button-group">
+          <button class="elv-control-button elv-control-button--md elv-control-button--icon-only elv-control-button--left-cap" type="button" aria-label="Option 1">
+            <svg class="elv-control-button__icon demo-icon--sm" viewBox="0 0 20 20"><circle cx="10" cy="10" r="3"/></svg>
+          </button>
+          <button class="elv-control-button elv-control-button--md elv-control-button--icon-only elv-control-button--middle is-active" type="button" aria-label="Option 2" aria-pressed="true">
+            <svg class="elv-control-button__icon demo-icon--sm" viewBox="0 0 20 20"><rect x="7" y="7" width="6" height="6"/></svg>
+          </button>
+          <button class="elv-control-button elv-control-button--md elv-control-button--icon-only elv-control-button--right-cap" type="button" aria-label="Option 3">
+            <svg class="elv-control-button__icon demo-icon--sm" viewBox="0 0 20 20"><path d="M10 3l3 6 6 1-4 4 1 6-6-3-6 3 1-6-4-4 6-1 3-6z"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <div style="display: flex; align-items: center; gap: 1rem;">
+        <span class="elv-text-xs elv-text-subtle" style="width: 40px;">LG</span>
+        <div class="elv-control-button-group">
+          <button class="elv-control-button elv-control-button--lg elv-control-button--icon-only elv-control-button--left-cap" type="button" aria-label="Option 1">
+            <svg class="elv-control-button__icon demo-icon--sm" viewBox="0 0 20 20"><circle cx="10" cy="10" r="3"/></svg>
+          </button>
+          <button class="elv-control-button elv-control-button--lg elv-control-button--icon-only elv-control-button--middle is-active" type="button" aria-label="Option 2" aria-pressed="true">
+            <svg class="elv-control-button__icon demo-icon--sm" viewBox="0 0 20 20"><rect x="7" y="7" width="6" height="6"/></svg>
+          </button>
+          <button class="elv-control-button elv-control-button--lg elv-control-button--icon-only elv-control-button--right-cap" type="button" aria-label="Option 3">
+            <svg class="elv-control-button__icon demo-icon--sm" viewBox="0 0 20 20"><path d="M10 3l3 6 6 1-4 4 1 6-6-3-6 3 1-6-4-4 6-1 3-6z"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Interactive Demo: View Switcher -->
+  <div class="section">
+    <h2 class="elv-font-semibold elv-text-default">Interactive Demo: View Switcher</h2>
+    <p class="elv-text-sm elv-text-subtle elv-mb-4">
+      Click to switch between different view modes. Active state persists.
+    </p>
+    <div class="examples interactive-demo">
+      <div class="elv-control-button-group" data-toggle-group>
+        <button class="elv-control-button elv-control-button--md elv-control-button--icon-only elv-control-button--left-cap is-active" type="button" aria-label="List view" aria-pressed="true" data-toggle-item>
+          <svg class="elv-control-button__icon demo-icon--sm" viewBox="0 0 20 20"><path d="M2 4h16v2H2V4zm0 5h16v2H2V9zm0 5h16v2H2v-2z"/></svg>
+        </button>
+        <button class="elv-control-button elv-control-button--md elv-control-button--icon-only elv-control-button--middle" type="button" aria-label="Grid view" data-toggle-item>
+          <svg class="elv-control-button__icon demo-icon--sm" viewBox="0 0 20 20"><path d="M2 2h7v7H2V2zm9 0h7v7h-7V2zM2 11h7v7H2v-7zm9 0h7v7h-7v-7z"/></svg>
+        </button>
+        <button class="elv-control-button elv-control-button--md elv-control-button--icon-only elv-control-button--right-cap" type="button" aria-label="Compact view" data-toggle-item>
+          <svg class="elv-control-button__icon demo-icon--sm" viewBox="0 0 20 20"><path d="M2 3h16v3H2V3zm0 5h16v3H2V8zm0 5h16v3H2v-3z"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="elv-text-sm elv-text-subtle elv-mt-4" id="view-status">
+      Current view: <strong>List</strong>
+    </div>
+  </div>
+
+  <!-- Disabled States -->
+  <div class="section">
+    <h2 class="elv-font-semibold elv-text-default">Disabled States</h2>
+    <p class="elv-text-sm elv-text-subtle elv-mb-4">
+      Control buttons in disabled state with reduced opacity and cursor-not-allowed.
+    </p>
+    <div class="examples">
+      <button class="elv-control-button elv-control-button--md elv-control-button--icon-only" type="button" aria-label="Disabled" disabled>
+        <svg class="elv-control-button__icon demo-icon--sm" viewBox="0 0 20 20"><path d="M10 2a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm0 6a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm0 6a2 2 0 1 0 0 4 2 2 0 0 0 0-4z"/></svg>
+      </button>
+
+      <div class="elv-control-button-group">
+        <button class="elv-control-button elv-control-button--sm elv-control-button--left-cap" type="button" disabled>
+          <span class="elv-control-button__label">Option 1</span>
+        </button>
+        <button class="elv-control-button elv-control-button--sm elv-control-button--middle" type="button" disabled>
+          <span class="elv-control-button__label">Option 2</span>
+        </button>
+        <button class="elv-control-button elv-control-button--sm elv-control-button--right-cap" type="button" disabled>
+          <span class="elv-control-button__label">Option 3</span>
+        </button>
+      </div>
+    </div>
+    <pre><code>&lt;button class="elv-control-button elv-control-button--md elv-control-button--icon-only" type="button" disabled&gt;
+  &lt;svg class="elv-control-button__icon"&gt;...&lt;/svg&gt;
+&lt;/button&gt;</code></pre>
+  </div>
+
+  <!-- Usage Guidelines -->
+  <div class="section">
+    <h2 class="elv-font-semibold elv-text-default">Usage Guidelines</h2>
+    <ul class="elv-text-sm elv-text-default" style="line-height: 1.8;">
+      <li><strong>Segmented groups</strong> — Use left_cap, middle, and right_cap to create joined button groups</li>
+      <li><strong>Active states</strong> — Add <code>is-active</code> class and <code>aria-pressed="true"</code> for toggle behavior</li>
+      <li><strong>Icon sizes</strong> — XS/SM buttons use 16px icons, MD/LG use 20px icons</li>
+      <li><strong>Label sizing</strong> — XS/SM buttons use 13px labels, MD/LG use 14px labels</li>
+      <li><strong>Accessibility</strong> — Always include aria-label for icon-only buttons, aria-pressed for toggles</li>
+      <li><strong>Use cases</strong> — Toolbars, view switchers, text alignment, filtering controls, sorting options</li>
+      <li><strong>Hover states</strong> — Background changes to light purple (bg-primary-20), text/fill changes to primary</li>
+      <li><strong>Focus states</strong> — 3px purple outline with subtle shadow for keyboard navigation</li>
+      <li><strong>Dropdown indicator</strong> — Use divider + caret icon for buttons with dropdown menus</li>
+      <li><strong>Standalone vs. grouped</strong> — Use segment="none" for standalone, caps/middle for groups</li>
     </ul>
   </div>
 
 </div>
 
 <script>
-  // Collapsible panel demo
-  document.querySelectorAll('[data-collapsible]').forEach(panel => {
-    const toggle = panel.querySelector('[data-toggle]');
-    const content = panel.querySelector('[data-content]');
-    const icon = panel.querySelector('[data-icon]');
-    let isExpanded = true;
+  // Interactive toggle group demo
+  const toggleGroups = document.querySelectorAll('[data-toggle-group]');
+  const viewLabels = ['List', 'Grid', 'Compact'];
 
-    toggle.addEventListener('click', () => {
-      isExpanded = !isExpanded;
+  toggleGroups.forEach(group => {
+    const buttons = group.querySelectorAll('[data-toggle-item]');
+    const status = document.getElementById('view-status');
 
-      if (isExpanded) {
-        content.style.display = 'block';
-        icon.textContent = 'expand_more';
-        toggle.setAttribute('aria-label', 'Collapse panel');
-      } else {
-        content.style.display = 'none';
-        icon.textContent = 'expand_less';
-        toggle.setAttribute('aria-label', 'Expand panel');
-      }
+    buttons.forEach((button, index) => {
+      button.addEventListener('click', () => {
+        buttons.forEach(btn => {
+          btn.classList.remove('is-active');
+          btn.setAttribute('aria-pressed', 'false');
+        });
+
+        button.classList.add('is-active');
+        button.setAttribute('aria-pressed', 'true');
+
+        if (status) {
+          status.innerHTML = `Current view: <strong>${viewLabels[index]}</strong>`;
+        }
+      });
     });
   });
 </script>

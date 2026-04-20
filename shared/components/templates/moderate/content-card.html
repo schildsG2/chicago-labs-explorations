@@ -51,11 +51,16 @@
     .elv-content-card--elevated {
       box-shadow: 0 4px 16px 0 rgba(32, 31, 35, 0.10);
     }
+    @media (min-width: 768px) {
+      .elv-content-card--elevated {
+        box-shadow: 0 4px 16px 0 rgba(32, 31, 35, 0.10);
+      }
+    }
     .elv-content-card--lg {
       border-radius: var(--radius-lg);
     }
     .elv-content-card__header {
-      padding: 24px 24px 16px 24px;
+      padding: 24px 24px 8px 24px;
       display: flex;
       align-items: flex-start;
       justify-content: space-between;
@@ -101,8 +106,21 @@
       color: var(--text-default);
     }
     .elv-content-card__body {
-      padding: 0 24px 24px 24px;
+      padding: 12px 24px 24px 24px;
       flex: 1;
+    }
+    @media (min-width: 768px) {
+      .elv-content-card__body {
+        padding: 16px 24px 24px 24px;
+      }
+    }
+    .elv-content-card__body--no-footer {
+      padding: 12px 24px 24px 24px;
+    }
+    @media (min-width: 768px) {
+      .elv-content-card__body--no-footer {
+        padding: 16px 24px 24px 24px;
+      }
     }
     .elv-content-card__body > *:first-child {
       margin-top: 0;
@@ -111,7 +129,7 @@
       margin-bottom: 0;
     }
     .elv-content-card__footer {
-      padding: 16px 24px;
+      padding: 8px 24px 24px 24px;
       border-top: 1px solid var(--border-light);
       display: flex;
       align-items: center;
@@ -353,9 +371,10 @@
     <ul class="elv-text-sm elv-text-default" style="line-height: 1.6; padding-left: 1.5rem;">
       <li>Static cards use border only, no shadow (DESIGN.md rule)</li>
       <li>Floating cards (modals, popovers) use shadow, no border</li>
-      <li>Header padding: 24px horizontal, 24px top, 16px bottom</li>
-      <li>Body padding: 24px horizontal and bottom</li>
-      <li>Footer padding: 16px all sides</li>
+      <li>Header padding: 24px horizontal, 24px top, 8px bottom</li>
+      <li>Body padding: 24px horizontal, 12px top (md: 16px), 24px bottom</li>
+      <li>Footer padding: 8px top, 24px horizontal and bottom (asymmetric)</li>
+      <li>Shadow: Responsive - only shown at md+ breakpoint for elevated variant</li>
       <li>Card title uses Heading Sm (21px / 700)</li>
       <li>Subtitle uses Label Sm (14px / 400)</li>
       <li>Default radius: 12px (radius-md), large: 16px (radius-lg)</li>

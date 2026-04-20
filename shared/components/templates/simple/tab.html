@@ -40,11 +40,15 @@
     .elv-tab-list {
       display: flex;
       align-items: center;
+    }
+
+    .elv-tab-list--full-width {
       border-bottom: 1px solid #c7c6cd; /* border-medium */
     }
 
     .elv-tab-list--full-width .elv-tab {
       flex: 1;
+      border-bottom: 1px solid transparent;
     }
 
     .elv-tab {
@@ -53,7 +57,7 @@
       justify-content: center;
       gap: 4px;
       height: 40px;
-      padding: 0 24px;
+      padding: 0 24px 1px 24px;
       border: none;
       background: none;
       cursor: pointer;
@@ -63,18 +67,19 @@
       font-weight: 600;
       color: #4c4b53; /* text-subtle */
       transition: all 150ms ease;
-      border-bottom: 1px solid transparent;
       position: relative;
       white-space: nowrap;
     }
 
     .elv-tab:hover {
       color: #5746b2; /* text-primary */
+      padding-bottom: 0;
       border-bottom: 2px solid #5746b2; /* border-primary */
     }
 
     .elv-tab[aria-selected="true"] {
       color: #5746b2; /* text-primary */
+      padding-bottom: 0;
       border-bottom: 2px solid #5746b2; /* border-primary */
     }
 
@@ -108,12 +113,6 @@
       to { opacity: 1; }
     }
 
-    /* Compact variant */
-    .elv-tab--compact {
-      height: 32px;
-      padding: 0 16px;
-      font-size: 13px;
-    }
 
     /* Example content styling */
     .demo-content {
@@ -311,49 +310,6 @@
 &lt;/div&gt;</code></pre>
   </div>
 
-  <!-- Compact Size -->
-  <div class="section">
-    <h2 class="elv-font-semibold elv-text-default">Compact Size</h2>
-    <p class="elv-text-sm elv-text-subtle elv-mb-4">
-      Smaller tabs for dense interfaces
-    </p>
-    <div class="examples">
-      <div class="elv-tab-group" id="compact-tabs">
-        <div class="elv-tab-list" role="tablist" aria-label="Filter options">
-          <button class="elv-tab elv-tab--compact" role="tab" aria-selected="true" aria-controls="compact-panel-1" id="compact-tab-1">
-            All
-          </button>
-          <button class="elv-tab elv-tab--compact" role="tab" aria-selected="false" aria-controls="compact-panel-2" id="compact-tab-2" tabindex="-1">
-            Active
-          </button>
-          <button class="elv-tab elv-tab--compact" role="tab" aria-selected="false" aria-controls="compact-panel-3" id="compact-tab-3" tabindex="-1">
-            Archived
-          </button>
-        </div>
-        <div class="elv-tab-panels">
-          <div class="elv-tab-panel" role="tabpanel" id="compact-panel-1" aria-labelledby="compact-tab-1" aria-hidden="false">
-            <div class="demo-content">
-              <p class="elv-text-sm">Showing all items (42)</p>
-            </div>
-          </div>
-          <div class="elv-tab-panel" role="tabpanel" id="compact-panel-2" aria-labelledby="compact-tab-2" aria-hidden="true">
-            <div class="demo-content">
-              <p class="elv-text-sm">Showing active items (38)</p>
-            </div>
-          </div>
-          <div class="elv-tab-panel" role="tabpanel" id="compact-panel-3" aria-labelledby="compact-tab-3" aria-hidden="true">
-            <div class="demo-content">
-              <p class="elv-text-sm">Showing archived items (4)</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <pre><code>&lt;button class="elv-tab elv-tab--compact" role="tab"
-        aria-selected="true" aria-controls="panel-1" id="tab-1"&gt;
-  All
-&lt;/button&gt;</code></pre>
-  </div>
 
   <!-- Usage Guidelines -->
   <div class="section">
@@ -397,11 +353,11 @@
     <table class="elv-text-sm elv-text-default" style="width: 100%; border-collapse: collapse;">
       <tr style="border-bottom: 1px solid var(--border-light);">
         <td style="padding: 8px;"><strong>Tab Height</strong></td>
-        <td style="padding: 8px;">Default: 40px, Compact: 32px</td>
+        <td style="padding: 8px;">40px</td>
       </tr>
       <tr style="border-bottom: 1px solid var(--border-light);">
         <td style="padding: 8px;"><strong>Horizontal Padding</strong></td>
-        <td style="padding: 8px;">Default: 24px, Compact: 16px</td>
+        <td style="padding: 8px;">24px (0 24px 1px 24px for inactive state)</td>
       </tr>
       <tr style="border-bottom: 1px solid var(--border-light);">
         <td style="padding: 8px;"><strong>Icon-Label Gap</strong></td>
@@ -425,7 +381,15 @@
       </tr>
       <tr style="border-bottom: 1px solid var(--border-light);">
         <td style="padding: 8px;"><strong>Font</strong></td>
-        <td style="padding: 8px;">Default: 14px/600, Compact: 13px/600</td>
+        <td style="padding: 8px;">14px/600</td>
+      </tr>
+      <tr style="border-bottom: 1px solid var(--border-light);">
+        <td style="padding: 8px;"><strong>Inactive Border</strong></td>
+        <td style="padding: 8px;">None (padding-bottom: 1px to compensate)</td>
+      </tr>
+      <tr style="border-bottom: 1px solid var(--border-light);">
+        <td style="padding: 8px;"><strong>Hover/Active Border</strong></td>
+        <td style="padding: 8px;">2px solid #5746b2 (padding-bottom: 0)</td>
       </tr>
       <tr style="border-bottom: 1px solid var(--border-light);">
         <td style="padding: 8px;"><strong>Transition</strong></td>
