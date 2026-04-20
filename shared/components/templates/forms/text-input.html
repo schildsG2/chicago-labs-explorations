@@ -43,25 +43,29 @@
       width: 100%;
       height: 40px;
       padding: 0 12px;
-      background: #f2f2f3; /* N10 */
+      background: #fafafa; /* N5 */
       border: 1px solid #dfdfe2; /* border-light */
       border-radius: 8px; /* radius-sm */
       font-size: 16px;
       font-weight: 400;
       line-height: 24px;
       color: #201f23; /* text-default */
-      transition: border 150ms ease;
+      transition: background 150ms ease, outline 150ms ease;
     }
 
     .elv-text-input__field::placeholder {
       color: #6f6d78; /* text-nonessential */
     }
 
+    /* Hover state */
+    .elv-text-input__field:hover:not(:disabled):not(:read-only) {
+      background: #f2f2f3; /* N10 */
+    }
+
     /* Focus state — CRITICAL for accessibility */
     .elv-text-input__field:focus {
-      outline: none;
-      border: 2px solid #5746b2; /* P100 */
-      padding: 0 11px; /* Adjust for thicker border */
+      outline: 3px solid #c3bde5; /* P40 */
+      outline-offset: 1px;
     }
 
     /* Error state */
@@ -322,7 +326,7 @@
             aria-label="Focus"
           />
         </div>
-        <p class="elv-input-helper">Focus state: 2px purple border (#5746b2)</p>
+        <p class="elv-input-helper">Focus state: 3px light purple outline (#c3bde5)</p>
       </div>
 
       <div class="form-group">
@@ -543,7 +547,7 @@
       <li class="elv-mb-2"><strong>ARIA Labels:</strong> Include <code>aria-label</code> when label is not visible</li>
       <li class="elv-mb-2"><strong>Error States:</strong> Use <code>aria-invalid="true"</code> and <code>aria-describedby</code> for error messages</li>
       <li class="elv-mb-2"><strong>Required Fields:</strong> Use <code>required</code> attribute and <code>aria-required="true"</code></li>
-      <li class="elv-mb-2"><strong>Focus State:</strong> 2px purple border (#5746b2) — CRITICAL for accessibility</li>
+      <li class="elv-mb-2"><strong>Focus State:</strong> 3px light purple outline (#c3bde5) with 1px offset — CRITICAL for accessibility</li>
       <li class="elv-mb-2"><strong>Keyboard Navigation:</strong> Tab to move between inputs, Shift+Tab to move backward</li>
       <li class="elv-mb-2"><strong>Password Toggle:</strong> Include <code>aria-label="Toggle password visibility"</code> on toggle button</li>
       <li class="elv-mb-2"><strong>Helper Text:</strong> Use <code>aria-describedby</code> to link helper text to input</li>
@@ -561,8 +565,8 @@
       </tr>
       <tr style="border-bottom: 1px solid var(--border-light);">
         <td style="padding: 8px;">Background</td>
-        <td style="padding: 8px;">#f2f2f3</td>
-        <td style="padding: 8px;">N10</td>
+        <td style="padding: 8px;">#fafafa</td>
+        <td style="padding: 8px;">N5</td>
       </tr>
       <tr style="border-bottom: 1px solid var(--border-light);">
         <td style="padding: 8px;">Border</td>
@@ -616,8 +620,8 @@
       </tr>
       <tr style="border-bottom: 1px solid var(--border-light);">
         <td style="padding: 8px;">Focus State</td>
-        <td style="padding: 8px;">2px solid #5746b2</td>
-        <td style="padding: 8px;">P100</td>
+        <td style="padding: 8px;">3px solid #c3bde5 outline, 1px offset</td>
+        <td style="padding: 8px;">P40</td>
       </tr>
       <tr style="border-bottom: 1px solid var(--border-light);">
         <td style="padding: 8px;">Error State</td>

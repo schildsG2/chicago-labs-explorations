@@ -103,6 +103,16 @@
       border-color: #5746b2;
     }
 
+    /* Checkbox checked: increase border width */
+    .elv-choice--checkbox .elv-choice__input:checked + .elv-choice__box {
+      border-width: 2px;
+    }
+
+    /* Radio checked: increase border width to 2px */
+    .elv-choice--radio .elv-choice__input:checked + .elv-choice__box {
+      border-width: 2px;
+    }
+
     .elv-choice__input:checked + .elv-choice__box::after {
       display: block;
     }
@@ -772,7 +782,7 @@
       <li class="elv-mb-2"><strong>Labels:</strong> Always wrap input and label in a <code>&lt;label&gt;</code> element for clickability</li>
       <li class="elv-mb-2"><strong>Radio Groups:</strong> Use <code>&lt;fieldset&gt;</code> and <code>&lt;legend&gt;</code> for radio button groups</li>
       <li class="elv-mb-2"><strong>Checkbox Groups:</strong> Use <code>role="group"</code> and <code>aria-labelledby</code> for checkbox groups</li>
-      <li class="elv-mb-2"><strong>Focus State:</strong> 2px purple outline offset by 2px — CRITICAL for keyboard navigation</li>
+      <li class="elv-mb-2"><strong>Focus State:</strong> 3px solid #c3bde5 (light purple P40) outline offset by 1px — CRITICAL for keyboard navigation</li>
       <li class="elv-mb-2"><strong>Keyboard Navigation:</strong> Space to toggle checkbox/radio, Tab to move between inputs</li>
       <li class="elv-mb-2"><strong>Error States:</strong> Use <code>aria-invalid="true"</code> and <code>aria-describedby</code> for error messages</li>
       <li class="elv-mb-2"><strong>Helper Text:</strong> Use <code>aria-describedby</code> to link helper text to input</li>
@@ -827,13 +837,13 @@
       </tr>
       <tr style="border-bottom: 1px solid var(--border-light);">
         <td style="padding: 8px;">Checked Border</td>
-        <td style="padding: 8px;">#5746b2</td>
+        <td style="padding: 8px;">2px solid #5746b2</td>
         <td style="padding: 8px;">P100</td>
       </tr>
       <tr style="border-bottom: 1px solid var(--border-light);">
         <td style="padding: 8px;">Focus State</td>
-        <td style="padding: 8px;">2px solid #5746b2, offset 2px</td>
-        <td style="padding: 8px;">P100</td>
+        <td style="padding: 8px;">3px solid #c3bde5, offset 1px</td>
+        <td style="padding: 8px;">P40</td>
       </tr>
       <tr style="border-bottom: 1px solid var(--border-light);">
         <td style="padding: 8px;">Hover Border</td>

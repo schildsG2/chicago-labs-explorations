@@ -49,7 +49,7 @@
       font-weight: 400;
       line-height: 24px;
       color: #201f23; /* text-default */
-      transition: border 150ms ease;
+      transition: outline 150ms ease;
     }
 
     .elv-search-input__field::placeholder {
@@ -58,9 +58,8 @@
 
     /* Focus state — CRITICAL for accessibility */
     .elv-search-input__field:focus {
-      outline: none;
-      border: 2px solid #5746b2; /* P100 */
-      padding: 0 39px 0 39px; /* Adjust for thicker border */
+      outline: 3px solid #c3bde5; /* P40 */
+      outline-offset: 1px;
     }
 
     /* Disabled state */
@@ -195,7 +194,7 @@
         <button class="elv-search-input__clear material-symbols-outlined" aria-label="Clear">close</button>
       </div>
       <p class="elv-text-xs elv-text-nonessential">
-        Focus state: 2px purple border (#5746b2)
+        Focus state: 3px light purple outline (#c3bde5)
       </p>
     </div>
   </div>
@@ -249,7 +248,7 @@
     <ul class="elv-text-sm elv-text-default">
       <li class="elv-mb-2"><strong>ARIA Labels:</strong> Always include <code>aria-label="Search"</code> on the input</li>
       <li class="elv-mb-2"><strong>Clear Button:</strong> Include <code>aria-label="Clear search"</code></li>
-      <li class="elv-mb-2"><strong>Focus State:</strong> 2px purple border (#5746b2) — CRITICAL for accessibility</li>
+      <li class="elv-mb-2"><strong>Focus State:</strong> 3px light purple outline (#c3bde5) with 1px offset — CRITICAL for accessibility</li>
       <li class="elv-mb-2"><strong>Keyboard:</strong> Enter to submit, Esc to clear</li>
       <li class="elv-mb-2"><strong>Type:</strong> Use <code>type="search"</code> for semantic HTML</li>
     </ul>
@@ -284,7 +283,7 @@
       </tr>
       <tr style="border-bottom: 1px solid var(--border-light);">
         <td style="padding: 8px;"><strong>Focus State</strong></td>
-        <td style="padding: 8px;">2px border #5746b2 (P100)</td>
+        <td style="padding: 8px;">3px solid #c3bde5 outline (P40), 1px offset</td>
       </tr>
       <tr>
         <td style="padding: 8px;"><strong>Disabled</strong></td>
