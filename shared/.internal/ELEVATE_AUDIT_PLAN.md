@@ -17,7 +17,7 @@
 - [x] select
 - [x] checkbox
 - [x] radio_button
-- [x] toggle (17 issues: CRITICAL fixed ✅, 7 HIGH pending)
+- [x] toggle (17 issues: CRITICAL ✅ HIGH ✅ - 100% complete)
 - [x] file_upload (if exists in UE)
 - [ ] date_picker (if exists in UE)
 
@@ -41,7 +41,7 @@
 - [ ] button_group
 - [ ] content_card
 - [ ] control_button
-- [x] icon_button (89 issues: CRITICAL fixed ✅, 34 HIGH pending)
+- [x] icon_button (89 issues: CRITICAL ✅ HIGH ✅ - 100% complete)
 - [ ] index_nav
 - [ ] inset_card
 - [ ] pagination
@@ -356,20 +356,30 @@ After all fixes:
 
 ---
 
-## Progress Update (April 17, 2026)
+## Progress Update (April 20, 2026)
 
 ### Completed
-- ✅ **3 components audited**: icon_button, toggle, tooltip
-- ✅ **110 total issues found**: 23 CRITICAL, 41 HIGH, 46 MEDIUM/LOW
-- ✅ **All CRITICAL fixes applied and pushed**
+- ✅ **3 components fully audited**: icon_button, toggle, tooltip
+- ✅ **110 total issues found**: 23 CRITICAL, 18 HIGH, ~69 MEDIUM/LOW
+- ✅ **All CRITICAL fixes applied** (April 17)
+- ✅ **All HIGH fixes applied** (April 20)
+- ✅ **3 components 100% complete** (CRITICAL + HIGH)
+
+### Issue Breakdown by Component
+- **icon_button**: 12 HIGH fixes (XS size, hover shadows, variants)
+- **toggle**: 6 HIGH fixes (dimensions, transitions, colors)
+- **tooltip**: 4 total fixes (all CRITICAL/HIGH complete)
 
 ### Next Steps
-1. **Fix 41 HIGH priority issues** in icon_button (34) and toggle (7)
+1. **Decide**: Continue with MEDIUM/LOW fixes on these 3 components OR
 2. **Expand audit** to remaining form inputs (text_input, textarea, search_input, select, checkbox, radio_button)
-3. **Continue with Simple components** (Phase 2)
+3. **OR continue with Simple components** (Phase 2: avatar, chip, status_badge, etc.)
 
-### Key Discovery
-**System-wide pattern**: Focus states use `box-shadow: 0 0 0 4px #c3bde5, 0 0 0 0.5px #ffffff` (NOT outline), except for form inputs which use `outline: 3px solid #c3bde5`.
+### Key Discoveries
+- **Focus states**: Use `box-shadow: 0 0 0 4px #c3bde5, 0 0 0 0.5px #ffffff` (NOT outline), except form inputs use `outline: 3px solid #c3bde5`
+- **Icon sizing**: All icons 10px fixed, regardless of button size
+- **Toggle dimensions**: Wider than expected (sm: 36px, md: 48px, lg: 60px)
+- **Transitions**: 150ms cubic-bezier, not 200ms ease
 
 ---
 
