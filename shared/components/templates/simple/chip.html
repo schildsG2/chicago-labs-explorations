@@ -46,7 +46,7 @@
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      transition: all 150ms ease-in-out;
+      transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
       background: var(--bg-neutral-10);
       color: var(--text-neutral);
       border: none;
@@ -99,7 +99,7 @@
     /* Icon Styles */
     .elv-chip__icon {
       color: var(--text-primary);
-      transition: width 150ms ease-in-out;
+      transition: width 150ms cubic-bezier(0.4, 0, 0.2, 1);
       flex-shrink: 0;
     }
 
@@ -132,7 +132,7 @@
     /* Fade out animation for dismissible */
     .elv-chip--dismissing {
       opacity: 0;
-      transition: opacity 150ms ease-in-out;
+      transition: opacity 150ms cubic-bezier(0.4, 0, 0.2, 1);
     }
   </style>
 </head>
