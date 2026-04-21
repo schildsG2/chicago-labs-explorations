@@ -33,14 +33,14 @@
     .myg2-logo {
       width: 36px;
       height: 36px;
-      background: var(--bg-rorange);
-      border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: white;
-      font-weight: bold;
-      font-size: 18px;
+    }
+    .myg2-logo img {
+      width: 36px;
+      height: 36px;
+      display: block;
     }
     .help-icon, .user-avatar {
       width: 36px;
@@ -146,7 +146,6 @@
     /* Primary Tabs */
     .primary-tabs {
       display: flex;
-      border-bottom: 0.5px solid var(--border-medium);
     }
     .primary-tab {
       padding: 0 24px;
@@ -173,7 +172,7 @@
     .secondary-tabs {
       display: flex;
       border-bottom: 0.5px solid var(--border-medium);
-      margin-top: 16px;
+      padding-top: 16px;
     }
     .secondary-tab {
       padding: 0 24px;
@@ -368,7 +367,9 @@
     <svg width="24" height="24" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" style="color: var(--text-default); cursor: pointer;">
       <path d="M12.5 5L7.5 10L12.5 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
     </svg>
-    <div class="myg2-logo">G2</div>
+    <div class="myg2-logo">
+      <img src="../../../shared/assets/g2-logo.svg" alt="G2 Logo" />
+    </div>
     <span style="font-size: 16px; font-weight: 600; margin-left: 4px;">MyG2</span>
   </div>
   <div class="myg2-header-right">
@@ -398,9 +399,10 @@
     <!-- Page Title -->
     <div class="page-title-row">
       <h1 class="page-title">G2 Activate</h1>
+      <!-- new-release icon placeholder - needs actual Elevate icon -->
       <svg class="info-icon" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="1.5"/>
-        <path d="M10 7V10M10 13H10.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        <circle cx="10" cy="10" r="7" stroke="currentColor" stroke-width="1.5"/>
+        <path d="M10 6V10L13 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
     </div>
 
@@ -484,9 +486,10 @@
         <!-- Matched Contacts Card -->
         <div class="metric-card">
           <div class="metric-card-header">
+            <!-- person icon (no fill) -->
             <svg class="metric-icon" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
               <circle cx="10" cy="7" r="3" stroke="currentColor" stroke-width="1.5"/>
-              <path d="M5 15C5 12.5 7 11 10 11C13 11 15 12.5 15 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              <path d="M5 16C5 13.5 7 12 10 12C13 12 15 13.5 15 16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
             </svg>
             <span class="metric-title">Matched Contacts</span>
             <svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" style="color: var(--text-subtle);">
@@ -508,9 +511,10 @@
         <!-- Unlocked Companies Card -->
         <div class="metric-card">
           <div class="metric-card-header">
+            <!-- business icon -->
             <svg class="metric-icon" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M3 9L10 3L17 9V16C17 16.5 16.5 17 16 17H4C3.5 17 3 16.5 3 16V9Z" stroke="currentColor" stroke-width="1.5"/>
-              <path d="M8 17V11H12V17" stroke="currentColor" stroke-width="1.5"/>
+              <path d="M3 17V5C3 4.5 3.5 4 4 4H16C16.5 4 17 4.5 17 5V17" stroke="currentColor" stroke-width="1.5"/>
+              <path d="M7 8H9M11 8H13M7 11H9M11 11H13M7 14H9M11 14H13M3 17H17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
             </svg>
             <span class="metric-title">Unlocked Companies</span>
           </div>
@@ -522,10 +526,11 @@
       <!-- Full Width Card -->
       <div class="full-width-card">
         <div class="metric-card-header">
+          <!-- people-group icon -->
           <svg class="metric-icon" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="6" cy="10" r="2" stroke="currentColor" stroke-width="1.5"/>
-            <circle cx="10" cy="10" r="2" stroke="currentColor" stroke-width="1.5"/>
-            <circle cx="14" cy="10" r="2" stroke="currentColor" stroke-width="1.5"/>
+            <circle cx="6" cy="6" r="2.5" stroke="currentColor" stroke-width="1.5"/>
+            <circle cx="14" cy="6" r="2.5" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M3 14C3 12 4.5 11 6 11C7.5 11 9 12 9 14M11 14C11 12 12.5 11 14 11C15.5 11 17 12 17 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
           </svg>
           <span class="metric-title">Est. Targetable Audience Reach</span>
           <svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" style="color: var(--text-subtle);">
