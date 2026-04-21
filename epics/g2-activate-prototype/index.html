@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>G2 Activate Prototype — Design Explorations</title>
+  <link rel="stylesheet" href="../../shared/tokens/elevate.css">
+  <link rel="stylesheet" href="../../shared/components/elevate.css">
+  <link rel="stylesheet" href="../../shared/icons/icons.css">
+  <style>
+    body { margin: 0; }
+
+    /* Breadcrumbs */
+    .elv-breadcrumbs {
+      display: inline-flex;
+      align-items: center;
+      gap: 2px;
+    }
+    .elv-breadcrumb-item {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+    }
+    .elv-breadcrumb-link {
+      color: #4c4b53;
+      text-decoration: none;
+      font-size: 12px;
+      line-height: 16px;
+      transition: color 150ms ease;
+    }
+    .elv-breadcrumb-link:hover {
+      color: #201f23;
+    }
+    .elv-breadcrumb-link--current {
+      color: #84838a;
+      pointer-events: none;
+    }
+    .elv-breadcrumb-separator {
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+      fill: #6f6d78;
+    }
+
+    /* Page row hover */
+    .page-row:hover .card-arrow {
+      color: var(--text-primary);
+      transform: translateX(3px);
+    }
+
+    .card-arrow {
+      width: 20px;
+      height: 20px;
+      color: var(--text-subtle);
+      transition: all 150ms ease;
+    }
+
+    /* Base card (featured) hover */
+    .base-card:hover {
+      background: #111827 !important;
+      transform: translateY(-1px);
+    }
+  </style>
+</head>
+<body>
+
+<div elv class="elv-bg-neutral-5 elv-min-h-screen">
+
+  <!-- Header -->
+  <header class="elv-bg-neutral-0 elv-border-b elv-border-light" style="border-bottom-width: 0.5px;">
+    <div class="elv-max-w-7xl elv-w-full md:elv-w-5/6 elv-mx-auto elv-pt-12 elv-pb-8 elv-px-3">
+      <nav aria-label="Breadcrumb" class="elv-mb-3">
+        <ol class="elv-breadcrumbs" role="list">
+          <li class="elv-breadcrumb-item">
+            <a href="../../index.html" class="elv-breadcrumb-link">Chicago Labs</a>
+            <svg class="elv-breadcrumb-separator" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10.875 10L6.9375 6.0625L8 5L13 10L8 15L6.9375 13.9375L10.875 10Z"/>
+            </svg>
+          </li>
+          <li class="elv-breadcrumb-item">
+            <span class="elv-breadcrumb-link elv-breadcrumb-link--current" aria-current="page">G2 Activate Prototype</span>
+          </li>
+        </ol>
+      </nav>
+      <h1 class="elv-text-4xl elv-font-extrabold elv-text-default elv-mb-3 elv-leading-tight">
+        G2 Activate <span style="color: #5746b2;">Prototype</span>
+      </h1>
+      <p class="elv-text-base elv-text-subtle elv-max-w-xl elv-leading-relaxed">
+        Comprehensive prototype for G2 Activate — demonstrating complete user flows, dashboard interactions, and purchasing experiences.
+      </p>
+    </div>
+  </header>
+
+  <div class="elv-max-w-7xl elv-w-full md:elv-w-5/6 elv-mx-auto elv-py-12 elv-px-3">
+
+    <!-- Base Prototype (Featured) -->
+    <a href="./prototype.html"
+       class="base-card elv-block elv-rounded-md elv-p-8 elv-no-underline elv-transition-all elv-mb-8 elv-flex elv-items-center elv-gap-8 elv-flex-wrap"
+       style="background: #1F2937; text-decoration: none;">
+      <div class="elv-flex-1">
+        <h2 class="elv-text-xl elv-font-bold elv-mb-2" style="color: #FFFFFF;">
+          Full Prototype
+        </h2>
+        <p class="elv-text-sm elv-max-w-md" style="color: #9CA3AF; line-height: 1.5;">
+          Complete G2 Activate experience with navigation, dashboard views, purchasing flows, and interactive components.
+        </p>
+      </div>
+      <div class="elv-flex-shrink-0">
+        <span class="btn btn--primary btn--md">
+          Go to Prototype →
+        </span>
+      </div>
+    </a>
+
+    <!-- Pages Section -->
+    <div class="elv-mb-4">
+      <h2 class="elv-text-lg elv-font-bold elv-text-default elv-mb-6">
+        Pages
+      </h2>
+
+      <div class="elv-grid elv-grid-cols-1 elv-gap-4">
+
+        <!-- Dashboard -->
+        <a href="./pages/dashboard.html"
+           class="page-row elv-block elv-bg-neutral-0 elv-border elv-border-light elv-rounded-md elv-p-6 elv-no-underline elv-transition-all hover:elv-shadow-2 hover:elv-border-medium"
+           style="text-decoration: none;">
+          <div class="elv-flex elv-items-start elv-justify-between elv-gap-6">
+            <div class="elv-flex-1">
+              <h3 class="elv-text-lg elv-font-semibold elv-text-default elv-mb-2">
+                Dashboard
+              </h3>
+              <p class="elv-text-sm elv-text-subtle elv-leading-relaxed">
+                Main feed view with stats panel, company listings, intent signals, and unlock CTAs. Core experience for reviewing and acting on interested companies.
+              </p>
+            </div>
+            <svg class="card-arrow" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </a>
+
+        <!-- Credits & Subscription -->
+        <a href="./pages/purchase.html"
+           class="page-row elv-block elv-bg-neutral-0 elv-border elv-border-light elv-rounded-md elv-p-6 elv-no-underline elv-transition-all hover:elv-shadow-2 hover:elv-border-medium"
+           style="text-decoration: none;">
+          <div class="elv-flex elv-items-start elv-justify-between elv-gap-6">
+            <div class="elv-flex-1">
+              <h3 class="elv-text-lg elv-font-semibold elv-text-default elv-mb-2">
+                Credits & Subscription
+              </h3>
+              <p class="elv-text-sm elv-text-subtle elv-leading-relaxed">
+                Purchasing flow for credits and subscription plans. Tier comparison, pricing clarity, and upgrade paths.
+              </p>
+            </div>
+            <svg class="card-arrow" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </a>
+
+        <!-- Company Details -->
+        <a href="./pages/company-details.html"
+           class="page-row elv-block elv-bg-neutral-0 elv-border elv-border-light elv-rounded-md elv-p-6 elv-no-underline elv-transition-all hover:elv-shadow-2 hover:elv-border-medium"
+           style="text-decoration: none;">
+          <div class="elv-flex elv-items-start elv-justify-between elv-gap-6">
+            <div class="elv-flex-1">
+              <h3 class="elv-text-lg elv-font-semibold elv-text-default elv-mb-2">
+                Company Details
+              </h3>
+              <p class="elv-text-sm elv-text-subtle elv-leading-relaxed">
+                Deep-dive view of a specific company showing full profile, engagement history, tech stack intelligence, and contact discovery.
+              </p>
+            </div>
+            <svg class="card-arrow" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </a>
+
+        <!-- Filters & Search -->
+        <a href="./pages/filters.html"
+           class="page-row elv-block elv-bg-neutral-0 elv-border elv-border-light elv-rounded-md elv-p-6 elv-no-underline elv-transition-all hover:elv-shadow-2 hover:elv-border-medium"
+           style="text-decoration: none;">
+          <div class="elv-flex elv-items-start elv-justify-between elv-gap-6">
+            <div class="elv-flex-1">
+              <h3 class="elv-text-lg elv-font-semibold elv-text-default elv-mb-2">
+                Filters & Search
+              </h3>
+              <p class="elv-text-sm elv-text-subtle elv-leading-relaxed">
+                Advanced filtering and search capabilities for narrowing the company feed by industry, size, location, intent level, and more.
+              </p>
+            </div>
+            <svg class="card-arrow" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </a>
+
+        <!-- Settings & Preferences -->
+        <a href="./pages/settings.html"
+           class="page-row elv-block elv-bg-neutral-0 elv-border elv-border-light elv-rounded-md elv-p-6 elv-no-underline elv-transition-all hover:elv-shadow-2 hover:elv-border-medium"
+           style="text-decoration: none;">
+          <div class="elv-flex elv-items-start elv-justify-between elv-gap-6">
+            <div class="elv-flex-1">
+              <h3 class="elv-text-lg elv-font-semibold elv-text-default elv-mb-2">
+                Settings & Preferences
+              </h3>
+              <p class="elv-text-sm elv-text-subtle elv-leading-relaxed">
+                User preferences, notification controls, integration settings, and account management.
+              </p>
+            </div>
+            <svg class="card-arrow" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </a>
+
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="elv-mt-16 elv-pt-6 elv-text-xs elv-text-nonessential">
+      <a href="../../index.html" class="elv-text-nonessential hover:elv-text-primary">← Back to Chicago Labs</a>
+    </footer>
+
+  </div>
+
+</div>
+
+</body>
+</html>
