@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Available Prospects — G2 Activate</title>
+  <link rel="stylesheet" href="../../../shared/tokens/elevate.css">
+  <link rel="stylesheet" href="../../../shared/components/elevate.css">
+  <link rel="stylesheet" href="../../../shared/icons/icons.css">
+  <style>
+    body { margin: 0; font-family: var(--font-sans); }
+
+    /* MyG2 Global Header */
+    .myg2-header {
+      background: white;
+      height: 60px;
+      border-bottom: 0.5px solid var(--border-medium);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+    }
+    .myg2-header-left {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .back-arrow {
+      width: 24px;
+      height: 24px;
+      cursor: pointer;
+      color: var(--text-default);
+      flex-shrink: 0;
+    }
+    .myg2-header-right {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+    .myg2-logo {
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .myg2-logo img {
+      width: 36px;
+      height: 36px;
+      display: block;
+    }
+    .help-icon, .user-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+    .help-icon {
+      border: 1px solid var(--border-light);
+      color: var(--text-subtle);
+    }
+    .user-avatar {
+      background: var(--bg-primary);
+      color: white;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    /* Breadcrumbs */
+    .breadcrumbs {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      margin-bottom: 6px;
+    }
+    .breadcrumb-link {
+      color: var(--text-nonessential);
+      text-decoration: none;
+      font-size: 12px;
+      line-height: 16px;
+      transition: color 150ms ease;
+    }
+    .breadcrumb-link:hover {
+      color: var(--text-default);
+    }
+    .breadcrumb-link.current {
+      color: var(--text-default);
+    }
+    .breadcrumb-separator {
+      width: 16px;
+      height: 16px;
+      color: var(--text-nonessential);
+    }
+
+    /* Page Header */
+    .page-header {
+      background: white;
+      border-bottom: 0.5px solid var(--border-medium);
+      padding: 24px 24px 0;
+    }
+    .page-title-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 8px;
+    }
+    .page-title {
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--text-default);
+      line-height: 36px;
+    }
+    .info-icon {
+      width: 20px;
+      height: 20px;
+      color: var(--text-subtle);
+      cursor: help;
+      position: relative;
+    }
+
+    /* Tooltip */
+    .tooltip-wrapper {
+      position: relative;
+      display: inline-flex;
+    }
+    .tooltip-content {
+      position: absolute;
+      bottom: calc(100% + 8px);
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--bg-neutral-100);
+      color: white;
+      padding: 12px;
+      border-radius: 8px;
+      font-size: 14px;
+      line-height: 20px;
+      width: 320px;
+      box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 200ms ease;
+      z-index: 1000;
+    }
+    .tooltip-content::after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border: 6px solid transparent;
+      border-top-color: var(--bg-neutral-100);
+    }
+    .tooltip-wrapper:hover .tooltip-content {
+      opacity: 1;
+    }
+    .status-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 2px 8px;
+      border-radius: 8px;
+      background: var(--bg-neutral-10);
+      border: 0.5px solid var(--border-light);
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-subtle);
+    }
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--bg-success);
+    }
+    .manage-plan-link {
+      color: var(--text-link);
+      text-decoration: underline;
+      font-size: 14px;
+      cursor: pointer;
+    }
+    .credits-display {
+      color: var(--text-nonessential);
+      font-size: 14px;
+      margin-left: auto;
+    }
+    .credits-value {
+      font-weight: 600;
+      color: var(--text-default);
+    }
+
+    /* Primary Tabs */
+    .primary-tabs {
+      display: flex;
+    }
+    .primary-tab {
+      padding: 0 24px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-subtle);
+      text-decoration: none;
+      border-bottom: 2px solid transparent;
+      transition: all 150ms ease;
+      cursor: pointer;
+    }
+    .primary-tab:hover {
+      color: var(--text-default);
+    }
+    .primary-tab.active {
+      color: var(--text-primary);
+      border-bottom-color: var(--bg-primary);
+    }
+
+    /* Secondary Tabs */
+    .secondary-tabs {
+      display: flex;
+      border-bottom: 0.5px solid var(--border-medium);
+      padding-top: 16px;
+    }
+    .secondary-tab {
+      padding: 0 24px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-subtle);
+      text-decoration: none;
+      border-bottom: 2px solid transparent;
+      transition: all 150ms ease;
+      cursor: pointer;
+    }
+    .secondary-tab:hover {
+      color: var(--text-default);
+    }
+    .secondary-tab.active {
+      color: var(--text-primary);
+      border-bottom-color: var(--bg-primary);
+    }
+
+    /* Content Area */
+    .content-area {
+      background: var(--bg-neutral-5);
+      padding: 24px;
+      min-height: calc(100vh - 60px - 140px);
+    }
+
+    /* Main Layout: Sidebar + Content */
+    .main-layout {
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      gap: 24px;
+      margin-top: 24px;
+    }
+
+    /* Filters Sidebar */
+    .filters-sidebar {
+      background: white;
+      border: 0.5px solid var(--border-light);
+      border-radius: 12px;
+      height: fit-content;
+      box-shadow: 0px 0px 1px 0px rgba(32,31,35,0.32), 0px 4px 4px 0px rgba(32,31,35,0.04);
+    }
+    .filter-section {
+      border-bottom: 0.5px solid var(--border-light);
+    }
+    .filter-section:last-child {
+      border-bottom: none;
+    }
+    .filter-header {
+      display: flex;
+      align-items: center;
+      padding: 24px 24px 12px;
+    }
+    .filter-title {
+      flex: 1;
+      font-size: 21px;
+      font-weight: 800;
+      color: var(--text-default);
+      line-height: 28px;
+    }
+    .filter-clear {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-disabled);
+      cursor: not-allowed;
+    }
+    .filter-body {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      padding: 12px 24px 24px;
+    }
+    .filter-field {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .filter-label {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-default);
+      line-height: 24px;
+    }
+    .filter-select, .filter-input {
+      height: 40px;
+      padding: 0 8px;
+      background: var(--bg-neutral-5);
+      border: 0.5px solid var(--border-medium);
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--text-nonessential);
+      cursor: pointer;
+    }
+    .filter-input {
+      font-weight: 400;
+    }
+    .filter-range {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .filter-range .filter-input {
+      flex: 1;
+    }
+
+    /* Card Content */
+    .card-content {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .content-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .content-title {
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--text-default);
+      line-height: 36px;
+    }
+    .content-count {
+      font-size: 21px;
+      font-weight: 400;
+      color: var(--text-nonessential);
+      line-height: 28px;
+    }
+
+    /* Sticky Header */
+    .sticky-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: white;
+      border: 0.5px solid var(--border-light);
+      border-radius: 12px;
+      padding: 12px 24px;
+      box-shadow: 0px 0px 1px 0px rgba(32,31,35,0.32), 0px 4px 4px 0px rgba(32,31,35,0.04);
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+    .sticky-credits {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-default);
+      line-height: 20px;
+    }
+    .sticky-total {
+      flex: 1;
+      text-align: right;
+      font-size: 14px;
+      color: var(--text-disabled);
+      line-height: 20px;
+    }
+    .sticky-total.active {
+      color: var(--text-default);
+      font-weight: 600;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 20px;
+      cursor: pointer;
+      transition: all 150ms ease;
+      border: none;
+      text-decoration: none;
+    }
+    .btn--primary {
+      background: var(--bg-primary);
+      color: white;
+    }
+    .btn--primary:hover:not(:disabled) {
+      background: var(--bg-primary-hover);
+    }
+    .btn--primary:active:not(:disabled) {
+      background: var(--bg-primary-active);
+    }
+    .btn--primary:disabled {
+      background: var(--bg-disabled);
+      color: var(--text-disabled);
+      cursor: not-allowed;
+    }
+
+    /* Table */
+    .table-container {
+      background: white;
+      border: 0.5px solid var(--border-light);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0px 0px 1px 0px rgba(32,31,35,0.32), 0px 4px 4px 0px rgba(32,31,35,0.04);
+    }
+    .prospects-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .prospects-table th {
+      background: white;
+      padding: 14px 24px;
+      text-align: left;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-default);
+      line-height: 20px;
+      border-bottom: 0.5px solid var(--border-medium);
+    }
+    .prospects-table th:first-child {
+      width: 56px;
+      padding: 14px 16px;
+    }
+    .prospects-table td {
+      padding: 14px 24px;
+      font-size: 16px;
+      color: var(--text-default);
+      line-height: 24px;
+      border-bottom: 0.5px solid var(--border-light);
+    }
+    .prospects-table td:first-child {
+      padding: 14px 16px;
+    }
+    .prospects-table tr:last-child td {
+      border-bottom: none;
+    }
+    .prospects-table tr:hover {
+      background: var(--bg-neutral-5);
+    }
+    .table-checkbox {
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+      accent-color: var(--bg-primary);
+    }
+    .credits-cell {
+      font-weight: 600;
+    }
+    .intent-badge {
+      display: inline-flex;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 600;
+      line-height: 16px;
+    }
+    .intent-badge--high {
+      background: #d0f6f1;
+      color: #0f5249;
+    }
+    .intent-badge--medium {
+      background: #e6f4ff;
+      color: #1e5a8e;
+    }
+    .intent-badge--low {
+      background: var(--bg-neutral-10);
+      color: var(--text-subtle);
+    }
+
+    /* Empty State */
+    .empty-state {
+      padding: 48px 24px;
+      text-align: center;
+    }
+    .empty-state-title {
+      font-size: 21px;
+      font-weight: 800;
+      color: var(--text-default);
+      line-height: 28px;
+      margin-bottom: 8px;
+    }
+    .empty-state-description {
+      font-size: 14px;
+      color: var(--text-subtle);
+      line-height: 20px;
+      margin-bottom: 20px;
+    }
+
+  </style>
+</head>
+<body>
+
+<!-- MyG2 Global Header -->
+<header class="myg2-header">
+  <div class="myg2-header-left">
+    <svg class="back-arrow" width="24" height="24" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M6.875 10.75L11.0625 14.9375L10 16L4 10L10 4L11.0625 5.0625L6.875 9.25H16V10.75H6.875Z" fill="currentColor"/>
+    </svg>
+    <div class="myg2-logo">
+      <img src="../../../shared/assets/logos/g2-logo-rorange.svg" alt="G2 Logo" />
+    </div>
+    <span style="font-size: 16px; font-weight: 600; margin-left: 4px;">MyG2</span>
+  </div>
+  <div class="myg2-header-right">
+    <div class="help-icon">?</div>
+    <div class="user-avatar">HC</div>
+  </div>
+</header>
+
+<!-- Page Content -->
+<div elv>
+
+  <!-- Page Header -->
+  <div class="page-header">
+    <!-- Breadcrumbs -->
+    <nav class="breadcrumbs">
+      <a href="#" class="breadcrumb-link">Home</a>
+      <svg class="breadcrumb-separator" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M7 15L12 10L7 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <a href="#" class="breadcrumb-link">Buyer Activity</a>
+      <svg class="breadcrumb-separator" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M7 15L12 10L7 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span class="breadcrumb-link current">G2 Activate</span>
+    </nav>
+
+    <!-- Page Title -->
+    <div class="page-title-row">
+      <h1 class="page-title">G2 Activate</h1>
+      <div class="tooltip-wrapper">
+        <svg class="info-icon" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M10 7V10M10 13H10.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        <div class="tooltip-content">
+          Transform Buyer Intent data into ready-to-use leads, making it easier to act on high-intent prospects without requiring extra tools or setup.
+        </div>
+      </div>
+    </div>
+
+    <!-- Status Row with Credits -->
+    <div class="status-row">
+      <div class="status-badge">
+        <span class="status-dot"></span>
+        <span>Active</span>
+      </div>
+      <a href="manage-plan-active.html" class="manage-plan-link">Manage Plan</a>
+      <div class="credits-display">
+        Credits: <span class="credits-value" data-credits>150</span>
+      </div>
+    </div>
+
+    <!-- Primary Tabs -->
+    <nav class="primary-tabs">
+      <a href="prospects-available.html" class="primary-tab active">Prospects</a>
+      <a href="activation-linkedin-ads.html" class="primary-tab">Activation</a>
+    </nav>
+  </div>
+
+  <!-- Content Area -->
+  <div class="content-area">
+
+    <!-- Secondary Tabs -->
+    <nav class="secondary-tabs">
+      <a href="prospects-available.html" class="secondary-tab active">Available</a>
+      <a href="prospects-unlocked.html" class="secondary-tab">Unlocked</a>
+    </nav>
+
+    <!-- Main Layout: Sidebar + Content -->
+    <div class="main-layout">
+
+      <!-- Filters Sidebar -->
+      <aside class="filters-sidebar">
+        <!-- Contact Filters -->
+        <div class="filter-section">
+          <div class="filter-header">
+            <h3 class="filter-title">Contact Filters</h3>
+            <span class="filter-clear">Clear All</span>
+          </div>
+          <div class="filter-body">
+            <div class="filter-field">
+              <label class="filter-label">Departments</label>
+              <select class="filter-select">
+                <option>Select...</option>
+              </select>
+            </div>
+            <div class="filter-field">
+              <label class="filter-label">Management Levels</label>
+              <select class="filter-select">
+                <option>Select...</option>
+              </select>
+            </div>
+            <div class="filter-field">
+              <label class="filter-label">Job Functions</label>
+              <select class="filter-select">
+                <option>Select...</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Company Filters -->
+        <div class="filter-section">
+          <div class="filter-header">
+            <h3 class="filter-title">Company Filters</h3>
+            <span class="filter-clear">Clear All</span>
+          </div>
+          <div class="filter-body">
+            <div class="filter-field">
+              <label class="filter-label">Employee Count Range</label>
+              <div class="filter-range">
+                <input type="text" class="filter-input" placeholder="Min" />
+                <span>to</span>
+                <input type="text" class="filter-input" placeholder="Max" />
+              </div>
+            </div>
+            <div class="filter-field">
+              <label class="filter-label">Company Headquarters Location</label>
+              <select class="filter-select">
+                <option>Select...</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Card Content -->
+      <div class="card-content">
+
+        <!-- Content Header -->
+        <div class="content-header">
+          <h2 class="content-title">Companies</h2>
+          <span class="content-count" id="companyCount">(0)</span>
+        </div>
+
+        <!-- Sticky Header -->
+        <div class="sticky-header">
+          <div class="sticky-credits">
+            <span>My credits: <span data-credits>150</span></span>
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="10" cy="10" r="8" fill="#5746B2" opacity="0.2"/>
+              <path d="M10 6L11.5 9.5L15 10L11.5 10.5L10 14L8.5 10.5L5 10L8.5 9.5L10 6Z" fill="#5746B2"/>
+            </svg>
+          </div>
+          <div class="sticky-total" id="stickyTotal">Total: 0 credits</div>
+          <button class="btn btn--primary" id="unlockButton" disabled>
+            Unlock Selected (0)
+          </button>
+        </div>
+
+        <!-- Table Container -->
+        <div class="table-container" id="tableContainer">
+          <!-- Table will be rendered here -->
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<!-- State Management -->
+<script src="../prototype-state.js"></script>
+
+<script>
+// Selection state
+let selectedCompanies = new Set();
+
+// Render table
+function renderTable() {
+  const state = G2ActivateState.get();
+  const companies = state.availableCompanies;
+  const container = document.getElementById('tableContainer');
+  const countEl = document.getElementById('companyCount');
+
+  // Update count
+  countEl.textContent = `(${companies.length})`;
+
+  // Empty state
+  if (companies.length === 0) {
+    container.innerHTML = `
+      <div class="empty-state">
+        <h3 class="empty-state-title">No Available Prospects</h3>
+        <p class="empty-state-description">
+          All prospects have been unlocked. Check the Unlocked tab to view your companies.
+        </p>
+        <a href="prospects-unlocked.html" class="btn btn--primary">View Unlocked Prospects</a>
+      </div>
+    `;
+    return;
+  }
+
+  // Render table
+  const tableHtml = `
+    <table class="prospects-table">
+      <thead>
+        <tr>
+          <th>
+            <input type="checkbox" class="table-checkbox" id="selectAll" />
+          </th>
+          <th>Credits</th>
+          <th>Company</th>
+          <th>Intent Level</th>
+          <th>Company Size</th>
+          <th>Industry</th>
+          <th>Headquarters Location</th>
+          <th>Contacts</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${companies.map(company => `
+          <tr>
+            <td>
+              <input
+                type="checkbox"
+                class="table-checkbox company-checkbox"
+                data-company-id="${company.id}"
+                data-cost="${company.unlockCost}"
+              />
+            </td>
+            <td class="credits-cell">${company.unlockCost}</td>
+            <td>${company.name}</td>
+            <td>
+              <span class="intent-badge intent-badge--${company.activityLevel.toLowerCase()}">
+                ${company.activityLevel}
+              </span>
+            </td>
+            <td>${company.employees}</td>
+            <td>${company.industry || 'Software Publishers'}</td>
+            <td>${company.location}</td>
+            <td>${company.contacts}</td>
+          </tr>
+        `).join('')}
+      </tbody>
+    </table>
+  `;
+
+  container.innerHTML = tableHtml;
+
+  // Attach event listeners
+  attachCheckboxListeners();
+}
+
+// Attach checkbox event listeners
+function attachCheckboxListeners() {
+  const selectAll = document.getElementById('selectAll');
+  const checkboxes = document.querySelectorAll('.company-checkbox');
+
+  // Select all handler
+  selectAll.addEventListener('change', (e) => {
+    const isChecked = e.target.checked;
+    checkboxes.forEach(cb => {
+      cb.checked = isChecked;
+      if (isChecked) {
+        selectedCompanies.add(cb.dataset.companyId);
+      } else {
+        selectedCompanies.delete(cb.dataset.companyId);
+      }
+    });
+    updateStickyHeader();
+  });
+
+  // Individual checkbox handlers
+  checkboxes.forEach(cb => {
+    cb.addEventListener('change', (e) => {
+      if (e.target.checked) {
+        selectedCompanies.add(e.target.dataset.companyId);
+      } else {
+        selectedCompanies.delete(e.target.dataset.companyId);
+        selectAll.checked = false;
+      }
+
+      // Update "select all" if all are checked
+      if (selectedCompanies.size === checkboxes.length) {
+        selectAll.checked = true;
+      }
+
+      updateStickyHeader();
+    });
+  });
+}
+
+// Update sticky header based on selection
+function updateStickyHeader() {
+  const totalEl = document.getElementById('stickyTotal');
+  const buttonEl = document.getElementById('unlockButton');
+
+  if (selectedCompanies.size === 0) {
+    totalEl.textContent = 'Total: 0 credits';
+    totalEl.classList.remove('active');
+    buttonEl.textContent = 'Unlock Selected (0)';
+    buttonEl.disabled = true;
+  } else {
+    // Calculate total credits needed
+    const checkboxes = document.querySelectorAll('.company-checkbox:checked');
+    let totalCredits = 0;
+    checkboxes.forEach(cb => {
+      totalCredits += parseInt(cb.dataset.cost);
+    });
+
+    totalEl.textContent = `Total: ${totalCredits} credits`;
+    totalEl.classList.add('active');
+    buttonEl.textContent = `Unlock Selected (${selectedCompanies.size})`;
+    buttonEl.disabled = false;
+  }
+}
+
+// Handle unlock
+function handleUnlock() {
+  const state = G2ActivateState.get();
+  const checkboxes = document.querySelectorAll('.company-checkbox:checked');
+
+  if (checkboxes.length === 0) return;
+
+  // Calculate total cost
+  let totalCost = 0;
+  const companyIds = [];
+  checkboxes.forEach(cb => {
+    totalCost += parseInt(cb.dataset.cost);
+    companyIds.push(cb.dataset.companyId);
+  });
+
+  // Check if enough credits
+  if (state.credits < totalCost) {
+    alert(`✗ Insufficient credits\n\nYou need ${totalCost} credits but only have ${state.credits}.\n\nPlease purchase more credits or select fewer companies.`);
+    return;
+  }
+
+  // Unlock all selected companies
+  let successCount = 0;
+  let failedCompanies = [];
+
+  companyIds.forEach(companyId => {
+    const result = G2ActivateState.unlockCompany(companyId, 10);
+    if (result.success) {
+      successCount++;
+    } else {
+      failedCompanies.push(companyId);
+    }
+  });
+
+  // Show result
+  if (successCount > 0) {
+    alert(`✓ Successfully unlocked ${successCount} ${successCount === 1 ? 'company' : 'companies'}!\n\nRemaining credits: ${G2ActivateState.getCredits()}`);
+
+    // Reset selection
+    selectedCompanies.clear();
+
+    // Re-render
+    renderTable();
+    updateStickyHeader();
+    G2ActivateState.updateCreditDisplay();
+  }
+
+  if (failedCompanies.length > 0) {
+    alert(`✗ Failed to unlock ${failedCompanies.length} companies`);
+  }
+}
+
+// Attach unlock button handler
+document.getElementById('unlockButton').addEventListener('click', handleUnlock);
+
+// Initial render
+renderTable();
+
+// Listen for state changes from other pages
+window.addEventListener('g2ActivateStateChange', () => {
+  selectedCompanies.clear();
+  renderTable();
+  updateStickyHeader();
+  G2ActivateState.updateCreditDisplay();
+});
+</script>
+
+</body>
+</html>
