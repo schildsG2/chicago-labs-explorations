@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>G2 Activate Feed — Unified Container Refined (7a)</title>
+
+  <!-- Elevate Design System -->
+  <link rel="stylesheet" href="../../../shared/tokens/elevate.css">
+  <link rel="stylesheet" href="../../../shared/components/elevate.css">
+  <link rel="stylesheet" href="../../../shared/icons/icons.css">
+
+
+  <style>
+    body {
+      margin: 0;
+      background: #FAFAFA;
+    }
+
+    /* Navigation bar */
+    .nav-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 48px;
+      background: var(--bg-neutral-0);
+      border-bottom: 1px solid var(--border-light);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+      z-index: 100;
+    }
+
+    /* Main container - 960px centered */
+    .dashboard-layout {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 72px 24px 48px;
+    }
+
+    /* Content Card - Elevate style */
+    .content-card {
+      background: var(--bg-neutral-0);
+      border: 0.5px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.06);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      height: 440px;
+    }
+
+    /* Content Card Header */
+    .content-card-header {
+      padding: 32px 40px;
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .content-card-title {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--text-default);
+      line-height: 1.3;
+      margin: 0;
+    }
+
+    /* Content card body */
+    .content-card-body {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: minmax(0, 1fr);
+      gap: 0;
+      padding: 0 0 0 24px;
+      overflow: hidden;
+      flex: 1;
+      min-height: 0;
+    }
+
+    /* Left column - fixed, no scroll */
+    .left-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      padding: 24px 24px 24px 0;
+    }
+
+    /* Stat card */
+    .stat-card {
+      background: var(--bg-neutral-0);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .stat-label {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--text-default);
+      line-height: 1.4;
+    }
+
+    .stat-value {
+      font-size: 48px;
+      font-weight: 700;
+      color: var(--text-default);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+
+    /* Right column - feed (gray background with padding, scrollable) */
+    .feed-panel {
+      height: 100%;
+      background: var(--bg-neutral-5);
+      padding: 20px;
+      border-left: 0.5px solid var(--border-light);
+      overflow-y: auto;
+    }
+
+    /* Unified feed container */
+    .feed-container {
+      background: var(--bg-neutral-0);
+      border: 0.5px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.06);
+      overflow: hidden;
+    }
+
+    /* Company rows (no individual card styling) */
+    .company-card {
+      padding: 16px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .company-card:last-child {
+      border-bottom: none;
+    }
+
+    /* Blurred company name */
+    .company-name-blurred {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text-default);
+      filter: blur(6px);
+      user-select: none;
+      line-height: 21px;
+    }
+
+    /* Second row with badge and info */
+    .company-card-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Intent badge - Status Badge style */
+    .intent-chip {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2px 8px;
+      border-radius: 8px;
+      border: 0.5px solid;
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 20px;
+      flex-shrink: 0;
+    }
+
+    .intent-chip--high {
+      background: #d0f6f1;
+      border-color: #1fa896;
+      color: #0f5249;
+    }
+
+    .intent-chip--medium {
+      background: #fff9e5;
+      border-color: #f59e0b;
+      color: #665000;
+    }
+
+    /* Company info with pipe separators - Body XS */
+    .company-info {
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 16px;
+      color: var(--text-subtle);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .pipe-separator {
+      color: #dfdfe2;
+    }
+
+    /* Timestamp styling within company-info */
+    .timestamp {
+      color: var(--text-nonessential);
+    }
+
+    /* CTA container with button and credits */
+    .cta-container {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    /* Credits text - matches stat-label size and weight */
+    .credits-text {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--text-default);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .star-icon {
+      width: 20px;
+      height: 20px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navigation Bar -->
+<nav elv class="nav-bar">
+  <a href="./06-unified-container.html" class="elv-inline-flex elv-items-center elv-gap-2 elv-text-sm elv-font-medium elv-text-subtle elv-no-underline elv-transition-colors hover:elv-text-default">
+    <svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M7.5 15L2.5 10L7.5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M17.5 10H2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+    </svg>
+    Previous
+  </a>
+  <a href="../index.html" class="elv-text-sm elv-font-medium elv-text-nonessential elv-no-underline hover:elv-text-subtle elv-transition-colors">Back to Index</a>
+  <span class="elv-text-sm elv-font-medium elv-text-nonessential">07a — Unified Container Refined</span>
+</nav>
+
+<div elv class="dashboard-layout">
+
+  <!-- Content Card -->
+  <div class="content-card">
+
+    <!-- Content Card Header -->
+    <div class="content-card-header">
+      <h1 class="content-card-title">Companies Showing Intent for Solutions Like Yours</h1>
+    </div>
+
+    <!-- Content Card Body -->
+    <div class="content-card-body">
+
+      <!-- Left Panel: Stats & CTA -->
+      <div class="left-panel">
+
+
+    <!-- Stat Cards -->
+    <div class="elv-grid elv-grid-cols-2 elv-gap-4">
+      <div class="stat-card">
+        <div class="stat-label">Locked Companies</div>
+        <div class="stat-value">291</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Unlocked Companies</div>
+        <div class="stat-value">0</div>
+      </div>
+    </div>
+
+    <!-- Description Text -->
+    <p class="elv-text-base elv-text-default elv-leading-relaxed">
+      Unlock company insights and contact details for high-intent companies in G2 Activate.
+    </p>
+
+    <!-- Primary CTA -->
+    <div class="cta-container">
+      <button class="btn btn--primary btn--lg">
+        Unlock Prospects
+      </button>
+      <div class="credits-text">
+        Your credits: 150
+        <img src="../../../shared/icons/ui-icon-star-circle.svg" alt="" class="star-icon">
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Right Panel: Company Feed -->
+  <div class="feed-panel">
+
+    <!-- Unified Container -->
+    <div class="feed-container">
+
+      <!-- Company Card 1 -->
+      <div class="company-card">
+        <div class="company-name-blurred">Enterprise Software Co</div>
+        <div class="company-card-row">
+          <div class="intent-chip intent-chip--high">High</div>
+          <div class="company-info">
+            74 employees<span class="pipe-separator">|</span>United States<span class="pipe-separator">|</span><span class="timestamp">2 minutes ago</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Company Card 2 -->
+      <div class="company-card">
+        <div class="company-name-blurred">Tech Solutions Inc</div>
+        <div class="company-card-row">
+          <div class="intent-chip intent-chip--high">High</div>
+          <div class="company-info">
+            112 employees<span class="pipe-separator">|</span>United States<span class="pipe-separator">|</span><span class="timestamp">8 minutes ago</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Company Card 3 -->
+      <div class="company-card">
+        <div class="company-name-blurred">Digital Innovations Ltd</div>
+        <div class="company-card-row">
+          <div class="intent-chip intent-chip--high">High</div>
+          <div class="company-info">
+            3,730 employees<span class="pipe-separator">|</span>United States<span class="pipe-separator">|</span><span class="timestamp">12 minutes ago</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Company Card 4 -->
+      <div class="company-card">
+        <div class="company-name-blurred">Cloud Services Group</div>
+        <div class="company-card-row">
+          <div class="intent-chip intent-chip--high">High</div>
+          <div class="company-info">
+            74 employees<span class="pipe-separator">|</span>United States<span class="pipe-separator">|</span><span class="timestamp">2 minutes ago</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Company Card 5 -->
+      <div class="company-card">
+        <div class="company-name-blurred">Manufacturing Systems Co</div>
+        <div class="company-card-row">
+          <div class="intent-chip intent-chip--high">High</div>
+          <div class="company-info">
+            112 employees<span class="pipe-separator">|</span>United States<span class="pipe-separator">|</span><span class="timestamp">8 minutes ago</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Company Card 6 -->
+      <div class="company-card">
+        <div class="company-name-blurred">Analytics Platform Inc</div>
+        <div class="company-card-row">
+          <div class="intent-chip intent-chip--high">High</div>
+          <div class="company-info">
+            3,730 employees<span class="pipe-separator">|</span>United States<span class="pipe-separator">|</span><span class="timestamp">12 minutes ago</span>
+          </div>
+        </div>
+      </div>
+
+    </div> <!-- End feed-container -->
+
+  </div>
+
+    </div> <!-- End content-card-body -->
+
+  </div> <!-- End content-card -->
+
+</div>
+
+</body>
+</html>

@@ -2,14 +2,48 @@
 
 SVG icons copied from the UE Elevate design system for use in static HTML prototypes.
 
-## Available Icons
+## Icon Library
 
-- `ui-icon-analytics.svg` - Analytics/chart icon
-- `ui-icon-arrow-right.svg` - Right arrow
-- `ui-icon-bar-chart.svg` - Bar chart icon
-- `ui-icon-credit-card.svg` - Credit card icon
-- `ui-icon-search.svg` - Search/magnifying glass icon
-- `ui-icon-shopping-cart.svg` - Shopping cart icon
+**Total: 172 icons** (130 contextual + 42 functional UI)
+
+### Functional UI Icons (NEW - April 21, 2026)
+
+Essential icons for buttons, controls, and interactive elements:
+
+**Navigation (20)**
+- Arrows: `arrow-down`, `arrow-left`, `arrow-right`, `arrow-up`, `arrow-redo`, `arrow-undo`
+- Carets: `caret-down`, `caret-left`, `caret-right`, `caret-up`, `caret-up-down`
+- Chevrons: `chevron-down`, `chevron-left`, `chevron-right`, `chevron-up`, `chevron-up-down`
+- G2 Chevrons: `chevron-g2-down`, `chevron-g2-left`, `chevron-g2-right`, `chevron-g2-up`
+
+**Actions (11)**
+- Check: `check`, `check-circle`, `check-circle-filled`, `check-stamp`
+- Checkbox: `checkbox-checked`, `checkbox-indeterminate`
+- Close: `close`, `close-x`
+- Add: `add-circle`, `add-circle-filled`
+- Edit: `edit`
+
+**Utility (11)**
+- Info: `info-circle`, `info-circle-filled`
+- Menu: `menu`
+- More: `more`, `more-vertical`
+- Plus: `plus`
+- Settings: `settings`
+- Visibility: `visibility`, `visibility-off`
+
+### Contextual Icons (130)
+
+Complete library of informational and contextual icons:
+- Analytics & Data: `analytics`, `bar-chart`, `bubble-chart`, `data-usage`, etc.
+- Business: `business`, `company`, `handshake`, `briefcase`, etc.
+- Communication: `chat`, `bell`, `mail`, etc.
+- Content: `file`, `clipboard`, `bookmark`, `image`, etc.
+- E-commerce: `shopping-cart`, `credit-card`, `dollar-symbol`, etc.
+- User: `account-circle`, `group`, `person`, etc.
+- Technology: `ai`, `android`, `apple`, `cloud`, etc.
+- General: `calendar`, `clock`, `flag`, `heart`, `star`, etc.
+
+For complete icon inventory, see: `/shared/icons/`
 
 ## Usage
 

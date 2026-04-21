@@ -42,8 +42,9 @@
 - [x] Port all UI icons from UE Elevate
 - [x] Organize by category
 - [x] Update README with complete icon inventory
+- [x] Port functional UI icons (navigation, actions, utility)
 
-**Status**: 130 icons ported and ready for use
+**Status**: 172 icons ported (130 contextual + 42 functional) — COMPLETE library ready for use
 
 #### 2.2 Icon Tooling
 - [ ] Create icon gallery page (`shared/icons/index.html`)
@@ -92,6 +93,32 @@
 **Timeline**: 1-2 days (manual curation + documentation)
 
 **Priority**: MEDIUM — G2 logo is sufficient for current prototyping needs, but comprehensive set needed for Claude Design optimization and production-quality mockups
+
+#### 2.4 Icon Audit 📋 NEW
+**Objective**: Comprehensive audit of all icons used across explorations to identify missing icons from Elevate library
+
+**Current State**:
+- ✅ 172 icons ported from UE Elevate
+- ⚠️ Ad-hoc icon gaps discovered during exploration development (e.g., star-circle icon)
+
+**Tasks**:
+- [ ] **Exploration Audit** — Scan all epics/explorations for custom SVG icons or missing icon references
+- [ ] **Compare with UE Source** — Cross-reference current icon library against complete UE Elevate icon set
+- [ ] **Document Missing Icons** — Create list of icons needed but not yet ported
+- [ ] **Port Missing Icons** — Add any critical missing icons to the library
+- [ ] **Naming Convention Check** — Ensure all icons follow `ui-icon-*` or `func-icon-*` naming pattern
+- [ ] **Update Icon Inventory** — Refresh README.md with complete icon catalog
+
+**Source Location**: `/Users/schilds/projects/ue/engines/elevate/app/assets/images/icons/`
+
+**Deliverables**:
+- Icon gap analysis document
+- Updated icon library with all missing icons
+- Updated README with complete inventory
+
+**Timeline**: 1-2 days
+
+**Priority**: MEDIUM — Ensures exploration teams have all icons needed without creating custom SVGs
 
 ---
 

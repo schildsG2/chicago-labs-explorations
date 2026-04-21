@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>G2 Activate Feed — Inline with Pipes</title>
+
+  <!-- Elevate Design System -->
+  <link rel="stylesheet" href="../../../shared/tokens/elevate.css">
+  <link rel="stylesheet" href="../../../shared/components/elevate.css">
+  <link rel="stylesheet" href="../../../shared/icons/icons.css">
+
+  <!-- Figma Capture Script -->
+  <script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+
+  <style>
+    body {
+      margin: 0;
+      background: var(--bg-neutral-100);
+    }
+
+    /* Navigation bar */
+    .nav-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 48px;
+      background: var(--bg-neutral-0);
+      border-bottom: 1px solid var(--border-light);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+      z-index: 100;
+    }
+
+    /* Two-column layout */
+    .dashboard-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      height: 100vh;
+      overflow: hidden;
+      padding-top: 48px;
+    }
+
+    /* Left column - fixed, no scroll */
+    .left-panel {
+      background: var(--bg-neutral-0);
+      padding: 64px 48px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      overflow: hidden;
+    }
+
+    /* Stat card */
+    .stat-card {
+      background: var(--bg-neutral-0);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .stat-label {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--text-default);
+      line-height: 1.4;
+    }
+
+    .stat-value {
+      font-size: 48px;
+      font-weight: 700;
+      color: var(--text-default);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+
+    /* Right column - feed */
+    .feed-panel {
+      background: var(--bg-neutral-5);
+      padding: 24px;
+      overflow-y: auto;
+      border-left: 0.5px solid var(--border-light);
+    }
+
+    /* Company card with grid layout */
+    .company-card {
+      background: var(--bg-neutral-0);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      grid-template-rows: auto auto auto;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    /* Card header row */
+    .card-header {
+      display: contents;
+    }
+
+    /* Blurred company name */
+    .company-name-blurred {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text-default);
+      filter: blur(6px);
+      user-select: none;
+      line-height: 1.4;
+      grid-column: 1;
+      grid-row: 1;
+    }
+
+    /* Intent chip in top-right */
+    .intent-chip {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 28px;
+      padding: 4px 12px;
+      border-radius: var(--radius-xs);
+      font-size: 13px;
+      font-weight: 500;
+      line-height: 1;
+      width: fit-content;
+      grid-column: 2;
+      grid-row: 1;
+      align-self: start;
+    }
+
+    .intent-chip--high {
+      background: #D1FAE5;
+      color: #065F46;
+    }
+
+    .intent-chip--medium {
+      background: #FEF3C7;
+      color: #92400E;
+    }
+
+    /* Company info with pipe separators */
+    .company-info {
+      font-size: 12px;
+      color: var(--text-subtle);
+      line-height: 1.5;
+      grid-column: 1 / -1;
+      grid-row: 2;
+    }
+
+    .pipe-separator {
+      color: var(--text-nonessential);
+      opacity: 0.4;
+      margin: 0 8px;
+    }
+
+    /* Timestamp */
+    .timestamp {
+      font-size: 13px;
+      color: var(--text-nonessential);
+      line-height: 1.4;
+      grid-column: 1 / -1;
+      grid-row: 3;
+    }
+
+    /* Button with arrow */
+    .btn-with-arrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-arrow {
+      width: 20px;
+      height: 20px;
+      transition: transform 150ms ease;
+    }
+
+    .btn:hover .btn-arrow {
+      transform: translateX(3px);
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navigation Bar -->
+<nav elv class="nav-bar">
+  <a href="./04-tight-spacing.html" class="elv-inline-flex elv-items-center elv-gap-2 elv-text-sm elv-font-medium elv-text-subtle elv-no-underline elv-transition-colors hover:elv-text-default">
+    <svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M7.5 15L2.5 10L7.5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M17.5 10H2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+    </svg>
+    Previous
+  </a>
+  <a href="../index.html" class="elv-text-sm elv-font-medium elv-text-nonessential elv-no-underline hover:elv-text-subtle elv-transition-colors">Back to Index</a>
+  <a href="./06-unified-container.html" class="elv-inline-flex elv-items-center elv-gap-2 elv-text-sm elv-font-medium elv-text-subtle elv-no-underline elv-transition-colors hover:elv-text-default">
+    Next
+    <svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12.5 5L17.5 10L12.5 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M2.5 10H17.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+    </svg>
+  </a>
+</nav>
+
+<div elv class="dashboard-layout">
+
+  <!-- Left Panel: Stats & CTA -->
+  <div class="left-panel">
+
+    <!-- Header -->
+    <div>
+      <h2 class="elv-text-xl elv-font-semibold elv-text-default">
+        Companies looking at your profile:
+      </h2>
+    </div>
+
+    <!-- Stat Cards -->
+    <div class="elv-grid elv-grid-cols-2 elv-gap-4">
+      <div class="stat-card">
+        <div class="stat-label">Locked Companies</div>
+        <div class="stat-value">291</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Unlocked Companies</div>
+        <div class="stat-value">102</div>
+      </div>
+    </div>
+
+    <!-- Primary CTA -->
+    <div>
+      <button class="btn btn--primary btn--md btn-with-arrow">
+        <span>Go to G2 Activate</span>
+        <svg class="btn-arrow" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
+
+  </div>
+
+  <!-- Right Panel: Company Feed -->
+  <div class="feed-panel">
+
+    <!-- Company Card 1 -->
+    <div class="company-card">
+      <div class="company-name-blurred">Enterprise Software Co</div>
+      <div class="intent-chip intent-chip--high">High</div>
+      <div class="company-info">
+        74 employees<span class="pipe-separator">|</span>United States<span class="pipe-separator">|</span>Ball and Roller Bearing Manufacturing
+      </div>
+      <div class="timestamp">less than a minute ago</div>
+    </div>
+
+    <!-- Company Card 2 -->
+    <div class="company-card">
+      <div class="company-name-blurred">Tech Solutions Inc</div>
+      <div class="intent-chip intent-chip--high">High</div>
+      <div class="company-info">
+        74 employees<span class="pipe-separator">|</span>United States<span class="pipe-separator">|</span>Software Development
+      </div>
+      <div class="timestamp">2 minutes ago</div>
+    </div>
+
+    <!-- Company Card 3 -->
+    <div class="company-card">
+      <div class="company-name-blurred">Digital Innovations Ltd</div>
+      <div class="intent-chip intent-chip--medium">Medium</div>
+      <div class="company-info">
+        120 employees<span class="pipe-separator">|</span>Canada<span class="pipe-separator">|</span>Information Technology Services
+      </div>
+      <div class="timestamp">5 minutes ago</div>
+    </div>
+
+    <!-- Company Card 4 -->
+    <div class="company-card">
+      <div class="company-name-blurred">Cloud Services Group</div>
+      <div class="intent-chip intent-chip--high">High</div>
+      <div class="company-info">
+        45 employees<span class="pipe-separator">|</span>United Kingdom<span class="pipe-separator">|</span>Cloud Computing Services
+      </div>
+      <div class="timestamp">8 minutes ago</div>
+    </div>
+
+    <!-- Company Card 5 -->
+    <div class="company-card">
+      <div class="company-name-blurred">Manufacturing Systems Co</div>
+      <div class="intent-chip intent-chip--medium">Medium</div>
+      <div class="company-info">
+        200 employees<span class="pipe-separator">|</span>Germany<span class="pipe-separator">|</span>Industrial Equipment Manufacturing
+      </div>
+      <div class="timestamp">12 minutes ago</div>
+    </div>
+
+    <!-- Company Card 6 -->
+    <div class="company-card">
+      <div class="company-name-blurred">Analytics Platform Inc</div>
+      <div class="intent-chip intent-chip--high">High</div>
+      <div class="company-info">
+        88 employees<span class="pipe-separator">|</span>United States<span class="pipe-separator">|</span>Business Intelligence Software
+      </div>
+      <div class="timestamp">15 minutes ago</div>
+    </div>
+
+  </div>
+
+</div>
+
+</body>
+</html>

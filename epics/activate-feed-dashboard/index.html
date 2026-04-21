@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Activate Feed Dashboard — Design Explorations</title>
+  <link rel="stylesheet" href="../../shared/tokens/elevate.css">
+  <link rel="stylesheet" href="../../shared/components/elevate.css">
+  <link rel="stylesheet" href="../../shared/icons/icons.css">
+  <style>
+    body { margin: 0; }
+
+    /* Exploration card hover */
+    .exploration-card:hover .card-arrow {
+      color: var(--text-primary);
+      transform: translateX(3px);
+    }
+
+    .card-arrow {
+      width: 20px;
+      height: 20px;
+      color: var(--text-subtle);
+      transition: all 150ms ease;
+    }
+  </style>
+</head>
+<body>
+
+<div elv class="elv-bg-neutral-5 elv-min-h-screen">
+
+  <!-- Header -->
+  <header class="elv-bg-neutral-0 elv-border-b elv-border-light" style="border-bottom-width: 0.5px;">
+    <div class="elv-max-w-7xl elv-w-full md:elv-w-5/6 elv-mx-auto elv-pt-12 elv-pb-8">
+
+      <!-- Breadcrumbs -->
+      <nav class="elv-flex elv-items-center elv-gap-2 elv-mb-6">
+        <a href="../../index.html" class="elv-text-sm elv-text-subtle elv-no-underline hover:elv-text-default elv-transition-colors">Home</a>
+        <svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" class="elv-text-nonessential">
+          <path d="M7 15L12 10L7 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="elv-text-sm elv-text-nonessential">Activate Feed Dashboard</span>
+      </nav>
+
+      <!-- Title -->
+      <h1 class="elv-text-4xl elv-font-extrabold elv-text-default elv-mb-4 elv-leading-tight">
+        Activate Feed Dashboard
+      </h1>
+
+      <!-- Description -->
+      <p class="elv-text-base elv-text-subtle elv-max-w-2xl elv-leading-relaxed">
+        Iterating on the scrollable feed of companies viewing your profile. Focus on optimizing the presentation of company information, intent signals, and engagement patterns.
+      </p>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="elv-max-w-7xl elv-w-full md:elv-w-5/6 elv-mx-auto elv-py-12">
+
+    <!-- Explorations Section -->
+    <div class="elv-mb-8">
+      <h2 class="elv-text-lg elv-font-bold elv-text-default elv-mb-6">
+        Explorations
+      </h2>
+
+      <div class="elv-grid elv-grid-cols-1 elv-gap-4">
+
+        <!-- Exploration 1: Base Feed -->
+        <a href="./explorations/01-base-feed.html"
+           class="exploration-card elv-block elv-bg-neutral-0 elv-border elv-border-light elv-rounded-md elv-p-6 elv-no-underline elv-transition-all hover:elv-shadow-2 hover:elv-border-medium"
+           style="text-decoration: none;">
+          <div class="elv-flex elv-items-start elv-justify-between elv-gap-6">
+            <div class="elv-flex-1">
+              <h3 class="elv-text-lg elv-font-semibold elv-text-default elv-mb-2">
+                01 — Base Feed
+              </h3>
+              <p class="elv-text-sm elv-text-subtle elv-leading-relaxed">
+                Initial implementation with two-column layout: stats and CTA on left, scrollable company feed on right. Blurred company names, basic intent chips, and timestamp display.
+              </p>
+            </div>
+            <svg class="card-arrow" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </a>
+
+        <!-- Exploration 2: Inline Metadata -->
+        <a href="./explorations/02-inline-metadata.html"
+           class="exploration-card elv-block elv-bg-neutral-0 elv-border elv-border-light elv-rounded-md elv-p-6 elv-no-underline elv-transition-all hover:elv-shadow-2 hover:elv-border-medium"
+           style="text-decoration: none;">
+          <div class="elv-flex elv-items-start elv-justify-between elv-gap-6">
+            <div class="elv-flex-1">
+              <h3 class="elv-text-lg elv-font-semibold elv-text-default elv-mb-2">
+                02 — Inline Metadata
+              </h3>
+              <p class="elv-text-sm elv-text-subtle elv-leading-relaxed">
+                Combines related fields on single lines with bullet separators. Company context (employees, location, industry) on one line, intent + timestamp on another. <strong>~30-40% height reduction</strong> while maintaining all information.
+              </p>
+            </div>
+            <svg class="card-arrow" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </a>
+
+        <!-- Exploration 3: Two-Column Layout -->
+        <a href="./explorations/03-two-column.html"
+           class="exploration-card elv-block elv-bg-neutral-0 elv-border elv-border-light elv-rounded-md elv-p-6 elv-no-underline elv-transition-all hover:elv-shadow-2 hover:elv-border-medium"
+           style="text-decoration: none;">
+          <div class="elv-flex elv-items-start elv-justify-between elv-gap-6">
+            <div class="elv-flex-1">
+              <h3 class="elv-text-lg elv-font-semibold elv-text-default elv-mb-2">
+                03 — Two-Column Layout
+              </h3>
+              <p class="elv-text-sm elv-text-subtle elv-leading-relaxed">
+                Grid layout within cards: company info on left, intent chip + timestamp on right. Creates strong visual hierarchy with intent signals prominently positioned top-right. <strong>~30-40% height reduction</strong> with natural scanning pattern.
+              </p>
+            </div>
+            <svg class="card-arrow" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </a>
+
+        <!-- Exploration 4: Tight Spacing -->
+        <a href="./explorations/04-tight-spacing.html"
+           class="exploration-card elv-block elv-bg-neutral-0 elv-border elv-border-light elv-rounded-md elv-p-6 elv-no-underline elv-transition-all hover:elv-shadow-2 hover:elv-border-medium"
+           style="text-decoration: none;">
+          <div class="elv-flex elv-items-start elv-justify-between elv-gap-6">
+            <div class="elv-flex-1">
+              <h3 class="elv-text-lg elv-font-semibold elv-text-default elv-mb-2">
+                04 — Tight Spacing
+              </h3>
+              <p class="elv-text-sm elv-text-subtle elv-leading-relaxed">
+                Same vertical structure as base feed but with reduced padding (24px → 16px), tighter gaps (12px → 6px), and compact line-height (1.3). <strong>~15-20% height reduction</strong> — subtle but noticeable density improvement.
+              </p>
+            </div>
+            <svg class="card-arrow" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </a>
+
+        <!-- Exploration 5: Inline with Pipes -->
+        <a href="./explorations/05-inline-pipes.html"
+           class="exploration-card elv-block elv-bg-neutral-0 elv-border elv-border-light elv-rounded-md elv-p-6 elv-no-underline elv-transition-all hover:elv-shadow-2 hover:elv-border-medium"
+           style="text-decoration: none;">
+          <div class="elv-flex elv-items-start elv-justify-between elv-gap-6">
+            <div class="elv-flex-1">
+              <h3 class="elv-text-lg elv-font-semibold elv-text-default elv-mb-2">
+                05 — Inline with Pipes
+              </h3>
+              <p class="elv-text-sm elv-text-subtle elv-leading-relaxed">
+                Builds on inline metadata with intent badge positioned top-right and faint gray pipe separators (|) instead of bullets. Clean visual hierarchy with prominent intent signals. <strong>~35-45% height reduction</strong> with improved scannability.
+              </p>
+            </div>
+            <svg class="card-arrow" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </a>
+
+        <!-- Exploration 6: Unified Container -->
+        <a href="./explorations/06-unified-container.html"
+           class="exploration-card elv-block elv-bg-neutral-0 elv-border elv-border-light elv-rounded-md elv-p-6 elv-no-underline elv-transition-all hover:elv-shadow-2 hover:elv-border-medium"
+           style="text-decoration: none;">
+          <div class="elv-flex elv-items-start elv-justify-between elv-gap-6">
+            <div class="elv-flex-1">
+              <h3 class="elv-text-lg elv-font-semibold elv-text-default elv-mb-2">
+                06 — Unified Container
+              </h3>
+              <p class="elv-text-sm elv-text-subtle elv-leading-relaxed">
+                All listings consolidated into a single white container with rounded corners and Elevate shadow-1. Rows separated by subtle dividers instead of individual cards. Maximum space efficiency with clean, unified appearance.
+              </p>
+            </div>
+            <svg class="card-arrow" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </a>
+
+        <!-- Exploration 7: Unified Container Refined -->
+        <a href="./explorations/07a-unified-container-refined.html"
+           class="exploration-card elv-block elv-bg-neutral-0 elv-border elv-border-light elv-rounded-md elv-p-6 elv-no-underline elv-transition-all hover:elv-shadow-2 hover:elv-border-medium"
+           style="text-decoration: none;">
+          <div class="elv-flex elv-items-start elv-justify-between elv-gap-6">
+            <div class="elv-flex-1">
+              <h3 class="elv-text-lg elv-font-semibold elv-text-default elv-mb-2">
+                07a — Unified Container Refined
+              </h3>
+              <p class="elv-text-sm elv-text-subtle elv-leading-relaxed">
+                Refinement of the unified container approach. Starting with variant A, preparing for A/B/C testing of layout refinements and interaction patterns.
+              </p>
+            </div>
+            <svg class="card-arrow" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </a>
+
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+</body>
+</html>

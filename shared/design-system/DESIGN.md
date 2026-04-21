@@ -249,6 +249,7 @@ Body copy, navigation, filters, review metadata, and table content rely on Figtr
 | Heading Md | 28px | 36px | 700 | Section headings |
 | Heading Sm | 21px | 28px | 700 | Sub-headings and card titles |
 | Body | 16px | 24px | 400 | All body copy |
+| Body XS | 12px | 16px | 400 | Small body text, metadata, secondary information |
 | Label Sm | 14px | 20px | 600 | Buttons, labels, metadata |
 | Label Xs | 12px | 16px | 600 | Badges, chips, captions |
 
