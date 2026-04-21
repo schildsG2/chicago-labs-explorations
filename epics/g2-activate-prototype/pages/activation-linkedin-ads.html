@@ -25,6 +25,13 @@
       align-items: center;
       gap: 4px;
     }
+    .back-arrow {
+      width: 24px;
+      height: 24px;
+      cursor: pointer;
+      color: var(--text-default);
+      flex-shrink: 0;
+    }
     .myg2-header-right {
       display: flex;
       align-items: center;
@@ -401,7 +408,9 @@
 <!-- MyG2 Global Header -->
 <header class="myg2-header">
   <div class="myg2-header-left">
-    <img src="../../../shared/icons/ui-icon-arrow-left.svg" alt="Back" style="width: 24px; height: 24px; cursor: pointer;" />
+    <svg class="back-arrow" width="24" height="24" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M6.875 10.75L11.0625 14.9375L10 16L4 10L10 4L11.0625 5.0625L6.875 9.25H16V10.75H6.875Z" fill="currentColor"/>
+    </svg>
     <div class="myg2-logo">
       <img src="../../../shared/assets/logos/g2-logo-rorange.svg" alt="G2 Logo" />
     </div>
