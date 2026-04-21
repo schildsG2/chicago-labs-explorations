@@ -59,7 +59,7 @@
       display: inline-block;
       width: 48px;
       height: 24px;
-      background: #dfdfe2; /* N20 - neutral-20 */
+      background: var(--bg-neutral-20); /* N20 - neutral-20 */
       border-radius: 3rem; /* 48px - pill-lg */
       transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1);
       flex-shrink: 0;
@@ -72,7 +72,7 @@
       left: 4px;
       width: 16px;
       height: 16px;
-      background: #ffffff;
+      background: var(--bg-neutral-0);
       border-radius: 50%;
       transition: transform 150ms cubic-bezier(0.4, 0, 0.2, 1);
       box-shadow: 0 0 1px 0 rgba(32, 31, 35, 0.32), 4px 0 4px 0 rgba(32, 31, 35, 0.04);
@@ -80,7 +80,7 @@
 
     /* Checked state */
     .elv-toggle__input:checked + .elv-toggle__track {
-      background: #5746b2; /* P100 */
+      background: var(--text-primary); /* P100 */
     }
 
     .elv-toggle__input:checked + .elv-toggle__track .elv-toggle__thumb {
@@ -95,13 +95,13 @@
     .elv-toggle__input:focus + .elv-toggle__track {
       outline-style: solid;
       outline-width: 3px;
-      outline-color: #c3bde5;
+      outline-color: var(--palette-purple-40);
       outline-offset: 1px;
     }
 
     /* Hover state (not disabled) */
     .elv-toggle:not(.elv-toggle--disabled):hover .elv-toggle__track {
-      background: #b0afb6; /* N40 */
+      background: var(--border-medium); /* N40 */
     }
 
     .elv-toggle:not(.elv-toggle--disabled):hover .elv-toggle__input:checked + .elv-toggle__track {
@@ -110,12 +110,12 @@
 
     /* Disabled state */
     .elv-toggle__input:disabled + .elv-toggle__track {
-      background: #f2f2f3; /* N10 - neutral-10 */
+      background: var(--bg-neutral-10); /* N10 - neutral-10 */
       cursor: not-allowed;
     }
 
     .elv-toggle__input:disabled:checked + .elv-toggle__track {
-      background: #b0afb6; /* N40 */
+      background: var(--border-medium); /* N40 */
     }
 
     /* Label text */
@@ -123,11 +123,11 @@
       font-size: 14px;
       font-weight: 600;
       line-height: 20px;
-      color: #201f23; /* text-default */
+      color: var(--text-default); /* text-default */
     }
 
     .elv-toggle--disabled .elv-toggle__label {
-      color: #b0afb6; /* N40 */
+      color: var(--border-medium); /* N40 */
     }
 
     /* Label positioning variants */
@@ -183,7 +183,7 @@
     /* Helper text */
     .elv-toggle-helper {
       font-size: 12px;
-      color: #6f6d78; /* text-nonessential */
+      color: var(--text-neutral-70); /* text-nonessential */
       margin-top: 4px;
       margin-left: 48px; /* Align with toggle when label is on right */
     }
@@ -466,7 +466,7 @@
   <div class="section">
     <h2 class="elv-font-semibold elv-text-default">Settings Panel Example</h2>
     <div class="examples">
-      <div style="max-width: 500px; background: #fafafa; padding: 1.5rem; border-radius: 8px;">
+      <div style="max-width: 500px; background: var(--bg-neutral-5); padding: 1.5rem; border-radius: 8px;">
         <h3 style="margin: 0 0 1rem 0; font-size: 18px; font-weight: 700;">Notification Settings</h3>
 
         <div class="form-group">

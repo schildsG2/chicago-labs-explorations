@@ -42,35 +42,35 @@
       width: 100%;
       height: 40px;
       padding: 0 40px 0 40px; /* Space for icons */
-      background: #fafafa; /* N5 */
-      border: 0.5px solid #b0afb6; /* border-medium N40 */
+      background: var(--bg-neutral-5); /* N5 */
+      border: 0.5px solid var(--border-medium); /* border-medium N40 */
       border-radius: 9999px; /* Fully rounded (pill shape) */
       font-size: 16px;
       font-weight: 400;
       line-height: 24px;
-      color: #4c4b53; /* N80 text-subtle */
+      color: var(--text-subtle); /* N80 text-subtle */
       transition: background 150ms ease, outline 150ms ease;
     }
 
     .elv-search-input__field::placeholder {
-      color: #6f6d78; /* text-nonessential */
+      color: var(--text-neutral-70); /* text-nonessential */
     }
 
     /* Hover state */
     .elv-search-input__field:hover:not(:disabled):not(:read-only) {
-      background: #f2f2f3; /* N10 */
+      background: var(--bg-neutral-10); /* N10 */
     }
 
     /* Focus state — CRITICAL for accessibility */
     .elv-search-input__field:focus {
-      outline: 3px solid #c3bde5; /* P40 */
+      outline: 3px solid var(--palette-purple-40); /* P40 */
       outline-offset: 1px;
     }
 
     /* Disabled state */
     .elv-search-input__field:disabled {
-      background: #fcfcfd; /* N1 */
-      color: #b0afb6; /* N40 */
+      background: var(--bg-neutral-1); /* N1 */
+      color: var(--border-medium); /* N40 */
       cursor: not-allowed;
     }
 
@@ -80,7 +80,7 @@
       left: 12px;
       top: 50%;
       transform: translateY(-50%);
-      color: #6f6d78; /* text-nonessential */
+      color: var(--text-neutral-70); /* text-nonessential */
       pointer-events: none;
       font-size: 20px;
     }
@@ -93,7 +93,7 @@
       transform: translateY(-50%);
       background: transparent;
       border: none;
-      color: #6f6d78;
+      color: var(--text-neutral-70);
       cursor: pointer;
       padding: 4px;
       border-radius: 4px;
@@ -102,8 +102,8 @@
     }
 
     .elv-search-input__clear:hover {
-      background: #dfdfe2;
-      color: #201f23;
+      background: var(--bg-neutral-20);
+      color: var(--text-default);
     }
 
     /* Show clear button when input has value */

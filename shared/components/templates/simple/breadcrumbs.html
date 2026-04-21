@@ -44,7 +44,7 @@
     }
 
     .elv-breadcrumb-link {
-      color: #6f6d78; /* neutral-70 / N70 */
+      color: var(--text-neutral-70); /* neutral-70 / N70 */
       text-decoration: none;
       font-size: 12px;
       line-height: 16px;
@@ -52,17 +52,17 @@
     }
 
     .elv-breadcrumb-link:hover {
-      color: #201f23; /* text-default */
+      color: var(--text-default); /* text-default */
     }
 
     .elv-breadcrumb-link:focus-visible {
-      outline: 2px solid #5746b2;
+      outline: 2px solid var(--text-primary);
       outline-offset: 2px;
       border-radius: 2px;
     }
 
     .elv-breadcrumb-link--current {
-      color: #201f23; /* neutral-100 / text-default - darkest/most prominent */
+      color: var(--text-default); /* neutral-100 / text-default - darkest/most prominent */
       pointer-events: none;
     }
 
@@ -70,7 +70,7 @@
       width: 20px;
       height: 20px;
       flex-shrink: 0;
-      fill: #6f6d78; /* N70 */
+      fill: var(--text-neutral-70); /* N70 */
     }
   </style>
 </head>

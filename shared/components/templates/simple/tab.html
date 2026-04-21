@@ -13,7 +13,7 @@
       background: var(--bg-neutral-5);
     }
     .section {
-      background: white;
+      background: var(--bg-neutral-0);
       padding: 1.5rem;
       margin-bottom: 1.5rem;
       border-radius: var(--radius-md);
@@ -43,7 +43,7 @@
     }
 
     .elv-tab-list--full-width {
-      border-bottom: 1px solid #c7c6cd; /* border-medium */
+      border-bottom: 1px solid var(--border-medium); /* border-medium */
     }
 
     .elv-tab-list--full-width .elv-tab {
@@ -65,26 +65,26 @@
       font-size: 14px;
       line-height: 20px;
       font-weight: 600;
-      color: #4c4b53; /* text-subtle */
+      color: var(--text-subtle); /* text-subtle */
       transition: all 150ms ease;
       position: relative;
       white-space: nowrap;
     }
 
     .elv-tab:hover {
-      color: #5746b2; /* text-primary */
+      color: var(--text-primary); /* text-primary */
       padding-bottom: 0;
-      border-bottom: 2px solid #5746b2; /* border-primary */
+      border-bottom: 2px solid var(--text-primary); /* border-primary */
     }
 
     .elv-tab[aria-selected="true"] {
-      color: #5746b2; /* text-primary */
+      color: var(--text-primary); /* text-primary */
       padding-bottom: 0;
-      border-bottom: 2px solid #5746b2; /* border-primary */
+      border-bottom: 2px solid var(--text-primary); /* border-primary */
     }
 
     .elv-tab:focus {
-      outline: 2px solid #5746b2;
+      outline: 2px solid var(--text-primary);
       outline-offset: -2px;
       z-index: 1;
     }
@@ -365,19 +365,19 @@
       </tr>
       <tr style="border-bottom: 1px solid var(--border-light);">
         <td style="padding: 8px;"><strong>Inactive Text</strong></td>
-        <td style="padding: 8px;">#4c4b53 (text-subtle)</td>
+        <td style="padding: 8px;">var(--text-subtle) / #4c4b53</td>
       </tr>
       <tr style="border-bottom: 1px solid var(--border-light);">
         <td style="padding: 8px;"><strong>Active Text</strong></td>
-        <td style="padding: 8px;">#5746b2 (text-primary / purple)</td>
+        <td style="padding: 8px;">var(--text-primary) / #5746b2 (purple)</td>
       </tr>
       <tr style="border-bottom: 1px solid var(--border-light);">
         <td style="padding: 8px;"><strong>Active Indicator</strong></td>
-        <td style="padding: 8px;">2px solid #5746b2 (border-primary)</td>
+        <td style="padding: 8px;">2px solid var(--text-primary) / #5746b2</td>
       </tr>
       <tr style="border-bottom: 1px solid var(--border-light);">
         <td style="padding: 8px;"><strong>Tab List Border</strong></td>
-        <td style="padding: 8px;">1px solid #c7c6cd (border-medium)</td>
+        <td style="padding: 8px;">1px solid var(--border-medium) / #c7c6cd</td>
       </tr>
       <tr style="border-bottom: 1px solid var(--border-light);">
         <td style="padding: 8px;"><strong>Font</strong></td>
@@ -389,7 +389,7 @@
       </tr>
       <tr style="border-bottom: 1px solid var(--border-light);">
         <td style="padding: 8px;"><strong>Hover/Active Border</strong></td>
-        <td style="padding: 8px;">2px solid #5746b2 (padding-bottom: 0)</td>
+        <td style="padding: 8px;">2px solid var(--text-primary) / #5746b2 (padding-bottom: 0)</td>
       </tr>
       <tr style="border-bottom: 1px solid var(--border-light);">
         <td style="padding: 8px;"><strong>Transition</strong></td>

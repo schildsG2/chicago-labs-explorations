@@ -43,13 +43,13 @@
       width: 100%;
       height: 40px;
       padding: 0 36px 0 12px; /* Right padding for dropdown icon */
-      background: #f2f2f3; /* N10 */
-      border: 1px solid #dfdfe2; /* border-light */
+      background: var(--bg-neutral-10); /* N10 */
+      border: 1px solid var(--bg-neutral-20); /* border-light */
       border-radius: 8px; /* radius-sm */
       font-size: 16px;
       font-weight: 400;
       line-height: 24px;
-      color: #201f23; /* text-default */
+      color: var(--text-default); /* text-default */
       transition: border 150ms ease;
       appearance: none; /* Remove default browser styling */
       cursor: pointer;
@@ -62,25 +62,25 @@
       top: 50%;
       transform: translateY(-50%);
       pointer-events: none; /* Allow clicks to pass through to select */
-      color: #6f6d78; /* text-nonessential */
+      color: var(--text-neutral-70); /* text-nonessential */
       font-size: 20px;
     }
 
     /* Placeholder styling (first option when disabled selected) */
     .elv-select__field option:disabled {
-      color: #6f6d78; /* text-nonessential */
+      color: var(--text-neutral-70); /* text-nonessential */
     }
 
     /* Hover state */
     .elv-select__field:hover:not(:disabled) {
-      background: #f2f2f3; /* N10 - maintain background */
+      background: var(--bg-neutral-10); /* N10 - maintain background */
     }
 
     /* Focus state — CRITICAL for accessibility */
     .elv-select__field:focus {
-      outline: 3px solid #c3bde5; /* P40 */
+      outline: 3px solid var(--palette-purple-40); /* P40 */
       outline-offset: -3px;
-      border: 1px solid #dfdfe2; /* Keep border consistent */
+      border: 1px solid var(--bg-neutral-20); /* Keep border consistent */
     }
 
     /* Error state */
@@ -91,13 +91,13 @@
 
     /* Disabled state */
     .elv-select__field:disabled {
-      background: #fafafa; /* N5 */
-      color: #b0afb6; /* N40 */
+      background: var(--bg-neutral-5); /* N5 */
+      color: var(--border-medium); /* N40 */
       cursor: not-allowed;
     }
 
     .elv-select__field:disabled + .elv-select__icon {
-      color: #b0afb6; /* N40 */
+      color: var(--border-medium); /* N40 */
     }
 
     /* Label */
@@ -105,7 +105,7 @@
       display: block;
       font-size: 14px;
       font-weight: 600;
-      color: #201f23;
+      color: var(--text-default);
       margin-bottom: 4px;
     }
 
@@ -117,13 +117,13 @@
     /* Optional indicator */
     .elv-input-optional {
       font-weight: 400;
-      color: #6f6d78;
+      color: var(--text-neutral-70);
     }
 
     /* Helper text */
     .elv-input-helper {
       font-size: 12px;
-      color: #6f6d78;
+      color: var(--text-neutral-70);
       margin-top: 4px;
     }
 

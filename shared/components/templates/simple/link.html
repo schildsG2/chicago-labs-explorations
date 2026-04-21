@@ -47,7 +47,7 @@
     }
 
     .elv-link:focus-visible {
-      outline: 2px solid #5746b2; /* P100 - primary purple */
+      outline: 2px solid var(--text-primary); /* P100 - primary purple */
       outline-offset: 2px;
       border-radius: 8px; /* 8px for sm/md, override for xs below */
     }
@@ -64,15 +64,15 @@
 
     /* Subtle variant (gray) */
     .elv-link--subtle {
-      color: #6f6d78; /* neutral-70 / N70 */
+      color: var(--text-neutral-70); /* neutral-70 / N70 */
     }
 
     .elv-link--subtle:hover {
-      color: #201f23; /* text-default */
+      color: var(--text-default); /* text-default */
     }
 
     .elv-link--subtle:visited {
-      color: #6f6d78;
+      color: var(--text-neutral-70);
     }
 
     /* Size variants */
@@ -103,7 +103,7 @@
     /* Disabled state */
     .elv-link:disabled,
     .elv-link--disabled {
-      color: #b0afb6; /* N40 */
+      color: var(--border-medium); /* N40 */
       cursor: not-allowed;
       pointer-events: none;
     }
