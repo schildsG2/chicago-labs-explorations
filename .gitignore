@@ -38,3 +38,4 @@ yarn-error.log*
 # Other
 .env
 .env.local
+claude-design-assets/
