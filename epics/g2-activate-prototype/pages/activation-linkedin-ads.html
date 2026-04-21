@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LinkedIn Ads Activation — G2 Activate</title>
+  <link rel="stylesheet" href="../../../shared/tokens/elevate.css">
+  <link rel="stylesheet" href="../../../shared/components/elevate.css">
+  <link rel="stylesheet" href="../../../shared/icons/icons.css">
+  <style>
+    body { margin: 0; font-family: var(--font-sans); }
+
+    /* MyG2 Global Header */
+    .myg2-header {
+      background: white;
+      height: 60px;
+      border-bottom: 0.5px solid var(--border-medium);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+    }
+    .myg2-header-left {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .myg2-header-right {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+    .myg2-logo {
+      width: 36px;
+      height: 36px;
+      background: var(--bg-rorange);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: bold;
+      font-size: 18px;
+    }
+    .help-icon, .user-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+    .help-icon {
+      border: 1px solid var(--border-light);
+      color: var(--text-subtle);
+    }
+    .user-avatar {
+      background: var(--bg-primary);
+      color: white;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    /* Breadcrumbs */
+    .breadcrumbs {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      margin-bottom: 6px;
+    }
+    .breadcrumb-link {
+      color: var(--text-nonessential);
+      text-decoration: none;
+      font-size: 12px;
+      line-height: 16px;
+      transition: color 150ms ease;
+    }
+    .breadcrumb-link:hover {
+      color: var(--text-default);
+    }
+    .breadcrumb-link.current {
+      color: var(--text-default);
+    }
+    .breadcrumb-separator {
+      width: 16px;
+      height: 16px;
+      color: var(--text-nonessential);
+    }
+
+    /* Page Header */
+    .page-header {
+      background: white;
+      border-bottom: 0.5px solid var(--border-medium);
+      padding: 24px 24px 0;
+    }
+    .page-title-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 8px;
+    }
+    .page-title {
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--text-default);
+      line-height: 36px;
+    }
+    .info-icon {
+      width: 24px;
+      height: 24px;
+      color: var(--text-subtle);
+      cursor: help;
+    }
+    .status-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 2px 8px;
+      border-radius: 8px;
+      background: var(--bg-neutral-10);
+      border: 0.5px solid var(--border-light);
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-subtle);
+    }
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--bg-success);
+    }
+    .manage-plan-link {
+      color: var(--text-link);
+      text-decoration: underline;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    /* Primary Tabs */
+    .primary-tabs {
+      display: flex;
+      border-bottom: 0.5px solid var(--border-medium);
+    }
+    .primary-tab {
+      padding: 0 24px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-subtle);
+      text-decoration: none;
+      border-bottom: 2px solid transparent;
+      transition: all 150ms ease;
+      cursor: pointer;
+    }
+    .primary-tab:hover {
+      color: var(--text-default);
+    }
+    .primary-tab.active {
+      color: var(--text-primary);
+      border-bottom-color: var(--bg-primary);
+    }
+
+    /* Secondary Tabs */
+    .secondary-tabs {
+      display: flex;
+      border-bottom: 0.5px solid var(--border-medium);
+      margin-top: 16px;
+    }
+    .secondary-tab {
+      padding: 0 24px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-subtle);
+      text-decoration: none;
+      border-bottom: 2px solid transparent;
+      transition: all 150ms ease;
+      cursor: pointer;
+    }
+    .secondary-tab:hover {
+      color: var(--text-default);
+    }
+    .secondary-tab.active {
+      color: var(--text-primary);
+      border-bottom-color: var(--bg-primary);
+    }
+
+    /* Content Area */
+    .content-area {
+      background: var(--bg-neutral-5);
+      padding: 24px;
+      min-height: calc(100vh - 60px - 140px);
+    }
+
+    /* Section Header */
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 4px;
+    }
+    .section-title {
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--text-default);
+      line-height: 36px;
+    }
+    .section-link {
+      color: var(--text-primary);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .section-description {
+      font-size: 14px;
+      color: var(--text-subtle);
+      line-height: 20px;
+      margin-bottom: 24px;
+    }
+
+    /* Main Card */
+    .main-card {
+      background: white;
+      border: 0.5px solid var(--border-light);
+      border-radius: 12px;
+      padding: 17px;
+      margin-bottom: 24px;
+    }
+    .main-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+    .main-card-title {
+      font-size: 21px;
+      font-weight: 800;
+      color: var(--text-default);
+      line-height: 28px;
+    }
+    .ready-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 2px 8px;
+      border-radius: 8px;
+      background: var(--bg-success-20);
+      border: 0.5px solid var(--bg-success);
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-success);
+    }
+    .ready-icon {
+      width: 16px;
+      height: 16px;
+    }
+
+    /* Metric Cards Row */
+    .metrics-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+    .metric-card {
+      background: white;
+      border: 0.5px solid var(--border-light);
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: 0px 0px 1px 0px rgba(32,31,35,0.32), 0px 4px 4px 0px rgba(32,31,35,0.04);
+    }
+    .metric-card.recommended {
+      background: var(--bg-primary-20);
+      border-color: var(--border-primary);
+    }
+    .metric-card-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+    .metric-icon {
+      width: 24px;
+      height: 24px;
+      color: var(--text-default);
+    }
+    .metric-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-default);
+      line-height: 24px;
+    }
+    .metric-value {
+      font-size: 38px;
+      font-weight: 800;
+      color: var(--text-default);
+      line-height: 48px;
+      padding: 8px 0;
+    }
+    .metric-subtitle {
+      font-size: 21px;
+      font-weight: 400;
+      color: var(--text-nonessential);
+      line-height: 28px;
+    }
+    .metric-details {
+      display: flex;
+      gap: 8px;
+      font-size: 12px;
+      color: var(--text-default);
+      line-height: 16px;
+    }
+    .metric-details .separator {
+      color: var(--text-disabled);
+    }
+    .metric-action-link {
+      color: var(--text-primary);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    /* Full Width Card */
+    .full-width-card {
+      background: white;
+      border: 0.5px solid var(--border-light);
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: 0px 0px 1px 0px rgba(32,31,35,0.32), 0px 4px 4px 0px rgba(32,31,35,0.04);
+    }
+    .full-width-card .metric-description {
+      font-size: 12px;
+      color: var(--text-default);
+      line-height: 16px;
+      margin-top: 4px;
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .metrics-row {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- MyG2 Global Header -->
+<header class="myg2-header">
+  <div class="myg2-header-left">
+    <svg width="24" height="24" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" style="color: var(--text-default); cursor: pointer;">
+      <path d="M12.5 5L7.5 10L12.5 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <div class="myg2-logo">G2</div>
+    <span style="font-size: 16px; font-weight: 600; margin-left: 4px;">MyG2</span>
+  </div>
+  <div class="myg2-header-right">
+    <div class="help-icon">?</div>
+    <div class="user-avatar">HC</div>
+  </div>
+</header>
+
+<!-- Page Content -->
+<div elv>
+
+  <!-- Page Header -->
+  <div class="page-header">
+    <!-- Breadcrumbs -->
+    <nav class="breadcrumbs">
+      <a href="#" class="breadcrumb-link">Home</a>
+      <svg class="breadcrumb-separator" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M7 15L12 10L7 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <a href="#" class="breadcrumb-link">Buyer Activity</a>
+      <svg class="breadcrumb-separator" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M7 15L12 10L7 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span class="breadcrumb-link current">G2 Activate</span>
+    </nav>
+
+    <!-- Page Title -->
+    <div class="page-title-row">
+      <h1 class="page-title">G2 Activate</h1>
+      <svg class="info-icon" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="1.5"/>
+        <path d="M10 7V10M10 13H10.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+    </div>
+
+    <!-- Status Row -->
+    <div class="status-row">
+      <div class="status-badge">
+        <span class="status-dot"></span>
+        <span>Active</span>
+      </div>
+      <a href="../pages/manage-plan-active.html" class="manage-plan-link">Manage Plan</a>
+    </div>
+
+    <!-- Primary Tabs -->
+    <nav class="primary-tabs">
+      <a href="prospects-available.html" class="primary-tab">Prospects</a>
+      <a href="activation-linkedin-ads.html" class="primary-tab active">Activation</a>
+    </nav>
+  </div>
+
+  <!-- Content Area -->
+  <div class="content-area">
+
+    <!-- Secondary Tabs -->
+    <nav class="secondary-tabs">
+      <a href="activation-emails.html" class="secondary-tab">Emails</a>
+      <a href="activation-linkedin-ads.html" class="secondary-tab active">LinkedIn Ads</a>
+    </nav>
+
+    <!-- Section Header -->
+    <div style="margin-top: 24px;">
+      <div class="section-header">
+        <h2 class="section-title">LinkedIn Ads Activation</h2>
+        <a href="#" class="section-link">
+          Open in Campaign Manager
+          <svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M5 10H15M15 10L10 5M15 10L10 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+      <p class="section-description">Leverage unlocked prospects to build and grow your LinkedIn matched audience.</p>
+    </div>
+
+    <!-- Main Card -->
+    <div class="main-card">
+      <div class="main-card-header">
+        <h3 class="main-card-title">G2 Activate - Acme Corp</h3>
+        <div class="ready-badge">
+          <svg class="ready-icon" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="10" cy="10" r="8" fill="currentColor" opacity="0.2"/>
+            <path d="M6 10L9 13L14 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span>Ready</span>
+        </div>
+      </div>
+
+      <!-- Metrics Row -->
+      <div class="metrics-row">
+
+        <!-- Recommended Action Card -->
+        <div class="metric-card recommended">
+          <div class="metric-card-header">
+            <svg class="metric-icon" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10 2L12.5 7H18L13.5 10.5L15 16L10 12.5L5 16L6.5 10.5L2 7H7.5L10 2Z" fill="currentColor" opacity="0.2"/>
+              <path d="M10 2L12.5 7H18L13.5 10.5L15 16L10 12.5L5 16L6.5 10.5L2 7H7.5L10 2Z" stroke="currentColor" stroke-width="1.5"/>
+            </svg>
+            <span class="metric-title">Recommended Action</span>
+          </div>
+          <div style="padding: 8px 0;">
+            <div style="font-size: 28px; font-weight: 800; line-height: 36px; color: var(--text-default);">
+              Add ad creatives
+            </div>
+          </div>
+          <a href="#" class="metric-action-link">
+            Go to Campaign Manager
+            <svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M5 10H15M15 10L10 5M15 10L10 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+
+        <!-- Matched Contacts Card -->
+        <div class="metric-card">
+          <div class="metric-card-header">
+            <svg class="metric-icon" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="10" cy="7" r="3" stroke="currentColor" stroke-width="1.5"/>
+              <path d="M5 15C5 12.5 7 11 10 11C13 11 15 12.5 15 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+            <span class="metric-title">Matched Contacts</span>
+            <svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" style="color: var(--text-subtle);">
+              <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="1.5"/>
+              <path d="M10 7V10M10 13H10.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div style="display: flex; align-items: baseline; gap: 4px;">
+            <span class="metric-value">374</span>
+            <span class="metric-subtitle">/300</span>
+          </div>
+          <div class="metric-details">
+            <span>680 contacts unlocked</span>
+            <span class="separator">|</span>
+            <span>180 matched 1 day ago</span>
+          </div>
+        </div>
+
+        <!-- Unlocked Companies Card -->
+        <div class="metric-card">
+          <div class="metric-card-header">
+            <svg class="metric-icon" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3 9L10 3L17 9V16C17 16.5 16.5 17 16 17H4C3.5 17 3 16.5 3 16V9Z" stroke="currentColor" stroke-width="1.5"/>
+              <path d="M8 17V11H12V17" stroke="currentColor" stroke-width="1.5"/>
+            </svg>
+            <span class="metric-title">Unlocked Companies</span>
+          </div>
+          <span class="metric-value">84</span>
+        </div>
+
+      </div>
+
+      <!-- Full Width Card -->
+      <div class="full-width-card">
+        <div class="metric-card-header">
+          <svg class="metric-icon" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="6" cy="10" r="2" stroke="currentColor" stroke-width="1.5"/>
+            <circle cx="10" cy="10" r="2" stroke="currentColor" stroke-width="1.5"/>
+            <circle cx="14" cy="10" r="2" stroke="currentColor" stroke-width="1.5"/>
+          </svg>
+          <span class="metric-title">Est. Targetable Audience Reach</span>
+          <svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" style="color: var(--text-subtle);">
+            <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M10 7V10M10 13H10.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <span class="metric-value">4,800</span>
+        <p class="metric-description">
+          Includes 680 direct email matches and employees at your 84 matched companies, deduplicated by LinkedIn.
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+</body>
+</html>
