@@ -40,6 +40,14 @@ cp shared/icons/*.svg "$DEST/assets/icons/"
 # Copy pictograms
 cp shared/components/templates/simple/assets/pictogram-*.svg "$DEST/assets/pictograms/"
 
+# Copy G2 logo (if exists)
+if [ -f "shared/assets/logos/g2-logo-rorange.svg" ]; then
+  cp shared/assets/logos/g2-logo-rorange.svg "$DEST/assets/logos/"
+  echo "  ✅ G2 logo copied"
+else
+  echo "  ⚠️  G2 logo not found at shared/assets/logos/g2-logo-rorange.svg"
+fi
+
 # Create fonts README (Figtree is from Google Fonts)
 cat > "$DEST/assets/fonts/README.md" << 'EOF'
 # Figtree Font
@@ -69,29 +77,10 @@ Google Fonts: https://fonts.google.com/specimen/Figtree
 ```
 EOF
 
-# Logo placeholder (needs to be sourced)
-cat > "$DEST/assets/logos/README.md" << 'EOF'
-# G2 Logo
-
-The G2 logo should be added here as `g2-logo-rorange.svg`.
-
-## Specifications
-- **Format**: SVG
-- **Size**: 56×56px
-- **Color**: Rorange (#ff492c)
-- **Filename**: `g2-logo-rorange.svg` (or similar)
-
-## Source
-Check with G2 brand team or extract from:
-- G2.com header
-- UE Elevate repository: `/path/to/ue/app/assets/images/`
-- G2 brand guidelines package
-
-## Usage
-```html
-<img src="g2-logo-rorange.svg" width="56" height="56" alt="G2">
-```
-EOF
+# Copy logo README
+if [ -f "shared/assets/logos/README.md" ]; then
+  cp shared/assets/logos/README.md "$DEST/assets/logos/"
+fi
 
 # 4. Create main README
 cat > "$DEST/README.md" << 'EOF'
@@ -302,12 +291,7 @@ echo "  - Design system: DESIGN.md + elevate.css"
 echo "  - Components: 28 templates (forms, simple, moderate)"
 echo "  - Icons: 130 SVG icons"
 echo "  - Pictograms: 4 avatar pictograms"
-echo ""
-echo "⚠️  ACTION NEEDED:"
-echo "  1. Add G2 logo to: $DEST/assets/logos/"
-echo "     - Filename: g2-logo-rorange.svg"
-echo "     - Size: 56×56px"
-echo "     - See README in that folder for source options"
+echo "  - Logos: G2 logo (rorange variant)"
 echo ""
 echo "📤 Ready to upload to Claude Design!"
 echo "   Drag the entire '$DEST/' folder or compress to .zip"
