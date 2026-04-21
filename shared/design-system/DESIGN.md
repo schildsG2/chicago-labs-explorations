@@ -614,3 +614,57 @@ If an AI-enhanced section cannot load or provide an answer, it should fail grace
 - Use Rorange (`#ff492c`) for sentiment, data visualisation, or eyebrow text — it is a brand colour only.
 - Exceed 3 font sizes on a single screen view. Use weight and colour to create hierarchy before introducing a new size.
 - Render the G2 logo as plain text in navigation.
+
+---
+
+## Agent Prompt Guide
+
+**For AI agents generating Elevate UI:**
+
+### Component Usage Patterns
+
+**Common compositions:**
+- **Login/signup pages**: Use Text Input, Password Input (with toggle), Checkbox (remember me), Primary Button
+- **User profiles**: Use Avatar, Text Input, Textarea, Select, Button Group for save/cancel
+- **Product displays**: Use Product Avatar, Product Chip, Star Rating, Status Badge, Content Card
+- **Data tables**: Use Table with Pagination, Status Badge, Link, Icon Button for actions
+- **Settings pages**: Use Toggle, Radio Button, Select, Tab navigation, Content Card containers
+- **Forms**: Use Label + Helper Text for all inputs, show Error states with descriptive messages, group related fields in Content Cards
+
+**Component selection guidelines:**
+- **Buttons**: Default to Primary Button (purple). Use Brand Button (rorange) only for marketing CTAs or brand-forward actions
+- **Text emphasis**: Use text-default for body, text-subtle for secondary info, text-nonessential for tertiary/helper text
+- **Cards**: Content Card for content display, Inset Card for nested/summary content
+- **Navigation**: Breadcrumbs for hierarchy, Tab for view switching, Link for cross-references
+- **Feedback**: Status Badge for states, Notification Badge for counts, Tooltip for help text
+- **Loading**: Spin Loader for async operations, Progress Bar for determinate progress
+
+**Layout principles:**
+- Start with vertical spacing (space-4 = 16px between sections)
+- Use Content Cards to group related UI rather than bare dividers
+- On mobile, stack components vertically with generous spacing
+- Buttons should be full-width on mobile (width: 100%), fixed-width on desktop
+
+**Interaction states:**
+- Always include hover states (background changes to indicate interactivity)
+- Focus states are CRITICAL: purple outline for form inputs, purple ring shadow for buttons
+- Disabled states should reduce opacity AND change cursor to not-allowed
+- Error states should show red border (#eb2000) plus descriptive error message below
+
+**Accessibility requirements:**
+- All interactive elements: minimum 40px height (desktop), 48px (mobile)
+- All form inputs: must have associated label (using for/id) or aria-label
+- Error messages: must use aria-invalid="true" and aria-describedby pointing to error text
+- Focus indicators: must be visible (3px outline or 4px shadow)
+- Color alone insufficient: use icons or text to convey meaning
+
+### Reference Components By Name
+
+When generating UI, reference components as:
+- "Primary Button" or "Secondary Button"
+- "Text Input" or "Password Input with toggle"
+- "Content Card" or "Inset Card"
+- "Status Badge" or "Notification Badge"
+- "Tab navigation" or "Breadcrumb navigation"
+
+All component specs are in the Components section above. All CSS tokens are prefixed with `--palette-`, `--bg-`, `--text-`, or `--border-`.
