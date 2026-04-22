@@ -204,12 +204,20 @@
       transition: all 150ms ease;
       cursor: pointer;
     }
+    .primary-tab:link,
+    .primary-tab:visited {
+      color: var(--text-subtle);
+    }
     .primary-tab:hover {
       color: var(--text-default);
     }
     .primary-tab.active {
       color: var(--text-primary);
       border-bottom-color: var(--bg-primary);
+    }
+    .primary-tab.active:link,
+    .primary-tab.active:visited {
+      color: var(--text-primary);
     }
 
     /* Secondary Tabs */
@@ -231,12 +239,20 @@
       transition: all 150ms ease;
       cursor: pointer;
     }
+    .secondary-tab:link,
+    .secondary-tab:visited {
+      color: var(--text-subtle);
+    }
     .secondary-tab:hover {
       color: var(--text-default);
     }
     .secondary-tab.active {
       color: var(--text-primary);
       border-bottom-color: var(--bg-primary);
+    }
+    .secondary-tab.active:link,
+    .secondary-tab.active:visited {
+      color: var(--text-primary);
     }
 
     /* Content Area */
