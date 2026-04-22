@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>G2 Activate Email Templates — Chicago Labs</title>
+  <link rel="stylesheet" href="../../shared/tokens/elevate.css">
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Figtree, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg-neutral-0);
+      color: var(--text-default);
+    }
+
+    .header {
+      background: var(--bg-neutral-0);
+      border-bottom: 1px solid var(--border-neutral-default);
+      padding: 24px 32px;
+    }
+
+    .header h1 {
+      margin: 0 0 4px 0;
+      font-size: 24px;
+      font-weight: 600;
+      color: var(--text-default);
+    }
+
+    .header p {
+      margin: 0;
+      font-size: 14px;
+      color: var(--text-secondary);
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 32px;
+    }
+
+    .intro {
+      margin-bottom: 32px;
+      padding: 20px;
+      background: var(--bg-neutral-1);
+      border-radius: 8px;
+      border: 1px solid var(--border-neutral-default);
+    }
+
+    .intro h2 {
+      margin: 0 0 8px 0;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-default);
+    }
+
+    .intro p {
+      margin: 0;
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    .options-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(520px, 1fr));
+      gap: 24px;
+      margin-bottom: 32px;
+    }
+
+    .option-card {
+      background: var(--bg-neutral-0);
+      border: 1px solid var(--border-neutral-default);
+      border-radius: 8px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .option-card h3 {
+      margin: 0 0 8px 0;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-default);
+    }
+
+    .option-card p {
+      margin: 0 0 16px 0;
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    .preview-frame {
+      flex: 1;
+      border: 1px solid var(--border-neutral-default);
+      border-radius: 4px;
+      background: #F2F2F2;
+      min-height: 600px;
+      overflow: hidden;
+    }
+
+    .preview-frame iframe {
+      width: 100%;
+      height: 600px;
+      border: none;
+      display: block;
+    }
+
+    .actions {
+      margin-top: 12px;
+      display: flex;
+      gap: 8px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      padding: 8px 16px;
+      font-size: 14px;
+      font-weight: 500;
+      border-radius: 6px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      border: none;
+      font-family: inherit;
+    }
+
+    .btn--primary {
+      background: var(--purple-500);
+      color: #ffffff;
+    }
+
+    .btn--primary:hover {
+      background: var(--purple-600);
+    }
+
+    .btn--secondary {
+      background: var(--bg-neutral-0);
+      color: var(--text-default);
+      border: 1px solid var(--border-neutral-default);
+    }
+
+    .btn--secondary:hover {
+      background: var(--bg-neutral-1);
+    }
+
+    .production-badge {
+      display: inline-block;
+      padding: 4px 8px;
+      background: var(--purple-100);
+      color: var(--purple-700);
+      font-size: 12px;
+      font-weight: 600;
+      border-radius: 4px;
+      margin-left: 8px;
+    }
+
+    .files-section {
+      margin-top: 48px;
+      padding: 20px;
+      background: var(--bg-neutral-1);
+      border-radius: 8px;
+      border: 1px solid var(--border-neutral-default);
+    }
+
+    .files-section h2 {
+      margin: 0 0 16px 0;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-default);
+    }
+
+    .files-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .files-list li {
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border-neutral-default);
+      font-size: 14px;
+    }
+
+    .files-list li:last-child {
+      border-bottom: none;
+    }
+
+    .files-list a {
+      color: var(--purple-500);
+      text-decoration: none;
+    }
+
+    .files-list a:hover {
+      text-decoration: underline;
+    }
+
+    .files-list code {
+      color: var(--text-secondary);
+      font-size: 13px;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>G2 Activate Email Templates</h1>
+    <p>Weekly prospect digest email design explorations</p>
+  </div>
+
+  <div class="container">
+    <div class="intro">
+      <h2>About This Epic</h2>
+      <p>These email templates explore different visual treatments for the G2 Activate weekly digest. Each option presents the same core content (prospect count, company size breakdown, top locations, CTA) with varying emphasis on the metrics display. All variants are optimized for email client compatibility using table-based layouts and inline styles.</p>
+    </div>
+
+    <div class="options-grid">
+      <!-- Option 1 -->
+      <div class="option-card">
+        <h3>Option 1: Subtle Background Boxes</h3>
+        <p>Light gray rounded boxes with inline numbers and labels. Most compact, subtle emphasis on metrics.</p>
+        <div class="preview-frame">
+          <iframe src="explorations/g2-activate-digest-preview-option1.html" title="Option 1 Preview"></iframe>
+        </div>
+        <div class="actions">
+          <a href="explorations/g2-activate-digest-preview-option1.html" target="_blank" class="btn btn--primary">Open Full</a>
+        </div>
+      </div>
+
+      <!-- Option 2 -->
+      <div class="option-card">
+        <h3>Option 2: Purple Accent Numbers</h3>
+        <p>Same gray boxes as Option 1, with purple accent on numbers. Stronger visual hierarchy and brand color reinforcement.</p>
+        <div class="preview-frame">
+          <iframe src="explorations/g2-activate-digest-preview-option2.html" title="Option 2 Preview"></iframe>
+        </div>
+        <div class="actions">
+          <a href="explorations/g2-activate-digest-preview-option2.html" target="_blank" class="btn btn--primary">Open Full</a>
+        </div>
+      </div>
+
+      <!-- Option 3 -->
+      <div class="option-card">
+        <h3>Option 3: Bordered Boxes</h3>
+        <p>White background with borders and purple numbers. More defined separation with a cleaner, less "boxy" feel.</p>
+        <div class="preview-frame">
+          <iframe src="explorations/g2-activate-digest-preview-option3.html" title="Option 3 Preview"></iframe>
+        </div>
+        <div class="actions">
+          <a href="explorations/g2-activate-digest-preview-option3.html" target="_blank" class="btn btn--primary">Open Full</a>
+        </div>
+      </div>
+
+      <!-- Option 4 (Production) -->
+      <div class="option-card">
+        <h3>Option 4: Vertical Stack Layout <span class="production-badge">PRODUCTION</span></h3>
+        <p>Purple numbers (24px) stacked above labels. Stronger visual emphasis with larger metrics and cleaner vertical hierarchy.</p>
+        <div class="preview-frame">
+          <iframe src="explorations/g2-activate-digest-preview-option4.html" title="Option 4 Preview"></iframe>
+        </div>
+        <div class="actions">
+          <a href="explorations/g2-activate-digest-preview-option4.html" target="_blank" class="btn btn--primary">Open Full</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Additional Files -->
+    <div class="files-section">
+      <h2>Production Files</h2>
+      <ul class="files-list">
+        <li>
+          <a href="explorations/g2-activate-digest.html" target="_blank"><code>g2-activate-digest.html</code></a> — Production template with ERB variables
+        </li>
+        <li>
+          <a href="explorations/g2-activate-digest-preview.html" target="_blank"><code>g2-activate-digest-preview.html</code></a> — Latest preview iteration
+        </li>
+        <li>
+          <a href="ENGINEER_NOTES.md" target="_blank"><code>ENGINEER_NOTES.md</code></a> — Implementation details and variable mapping
+        </li>
+        <li>
+          <a href="metrics-styling-options.md" target="_blank"><code>metrics-styling-options.md</code></a> — Visual treatment comparison notes
+        </li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>
