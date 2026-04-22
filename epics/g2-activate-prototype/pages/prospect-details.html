@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prospect Details — G2 Activate</title>
+  <link rel="stylesheet" href="../../../shared/tokens/elevate.css">
+  <link rel="stylesheet" href="../../../shared/components/elevate.css">
+  <link rel="stylesheet" href="../../../shared/icons/icons.css">
+  <style>
+    body { margin: 0; font-family: var(--font-sans); }
+
+    /* MyG2 Global Header */
+    .myg2-header {
+      background: white;
+      height: 60px;
+      border-bottom: 0.5px solid var(--border-medium);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+    }
+    .myg2-header-left {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .back-arrow {
+      width: 24px;
+      height: 24px;
+      cursor: pointer;
+      color: var(--text-default);
+      flex-shrink: 0;
+    }
+    .myg2-header-right {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+    .myg2-logo {
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .myg2-logo img {
+      width: 36px;
+      height: 36px;
+      display: block;
+    }
+    .help-icon, .user-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+    .help-icon {
+      border: 1px solid var(--border-light);
+      color: var(--text-subtle);
+    }
+    .user-avatar {
+      background: var(--bg-primary);
+      color: white;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    /* Content Area */
+    .content-area {
+      background: var(--bg-neutral-5);
+      padding: 28px 28px 48px;
+      min-height: calc(100vh - 60px);
+    }
+
+    /* Back Button */
+    .back-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      color: var(--text-default);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 20px;
+      margin-bottom: 28px;
+      transition: color 150ms ease;
+    }
+    .back-button:hover {
+      color: var(--text-primary);
+    }
+    .back-button svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    /* Page Header */
+    .page-header {
+      margin-bottom: 28px;
+    }
+    .page-title {
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--text-default);
+      line-height: 36px;
+      margin: 0;
+    }
+
+    /* Two Column Layout */
+    .details-layout {
+      display: grid;
+      grid-template-columns: 1fr 360px;
+      gap: 20px;
+      align-items: start;
+    }
+
+    /* Company Info Card */
+    .company-info-card {
+      background: white;
+      border: 0.5px solid var(--border-light);
+      border-radius: 12px;
+      padding: 28px;
+      box-shadow: 0px 0px 1px 0px rgba(32,31,35,0.32), 0px 4px 4px 0px rgba(32,31,35,0.04);
+    }
+    .info-section {
+      margin-bottom: 32px;
+    }
+    .info-section:last-child {
+      margin-bottom: 0;
+    }
+    .info-section-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-default);
+      line-height: 24px;
+      margin-bottom: 12px;
+    }
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px 24px;
+    }
+    .info-item-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-nonessential);
+      line-height: 16px;
+      margin-bottom: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+    }
+    .info-item-value {
+      font-size: 16px;
+      font-weight: 400;
+      color: var(--text-default);
+      line-height: 24px;
+    }
+
+    /* Activity Badge */
+    .activity-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 8px;
+      border-radius: 8px;
+      background: var(--bg-neutral-10);
+      border: 0.5px solid var(--border-light);
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-default);
+    }
+    .activity-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--bg-success);
+    }
+
+    /* Contacts Section */
+    .contacts-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .contact-card {
+      background: var(--bg-neutral-5);
+      border: 0.5px solid var(--border-light);
+      border-radius: 8px;
+      padding: 16px;
+    }
+    .contact-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 8px;
+    }
+    .contact-info {
+      flex: 1;
+    }
+    .contact-name {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-default);
+      line-height: 24px;
+      margin-bottom: 2px;
+    }
+    .contact-title {
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--text-subtle);
+      line-height: 20px;
+    }
+    .contact-email {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      color: var(--text-default);
+      line-height: 20px;
+    }
+    .copy-button {
+      background: transparent;
+      border: none;
+      color: var(--text-primary);
+      cursor: pointer;
+      padding: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: color 150ms ease;
+    }
+    .copy-button:hover {
+      color: var(--text-primary-dark);
+    }
+    .copy-button svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    /* Tech Stack Section - Locked State */
+    .tech-stack-locked {
+      position: relative;
+      background: var(--bg-neutral-5);
+      border: 0.5px solid var(--border-light);
+      border-radius: 8px;
+      padding: 28px;
+      text-align: center;
+    }
+    .tech-stack-locked::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.95) 100%);
+      border-radius: 8px;
+      pointer-events: none;
+    }
+    .lock-icon {
+      width: 40px;
+      height: 40px;
+      color: var(--text-subtle);
+      margin: 0 auto 16px;
+      position: relative;
+      z-index: 1;
+    }
+    .tech-stack-locked-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-default);
+      line-height: 24px;
+      margin-bottom: 8px;
+      position: relative;
+      z-index: 1;
+    }
+    .tech-stack-locked-desc {
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--text-subtle);
+      line-height: 20px;
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 1;
+    }
+    .unlock-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      background: var(--bg-primary);
+      color: white;
+      border: none;
+      border-radius: 24px;
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 20px;
+      cursor: pointer;
+      transition: background 150ms ease;
+      position: relative;
+      z-index: 1;
+    }
+    .unlock-button:hover {
+      background: var(--bg-primary-dark);
+    }
+    .credit-cost {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 2px 8px;
+      background: rgba(255,255,255,0.2);
+      border-radius: 12px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    /* Tech Stack Section - Unlocked State */
+    .tech-stack-unlocked {
+      display: none;
+    }
+    .tech-stack-unlocked.visible {
+      display: block;
+    }
+    .tech-stack-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+    .tech-item {
+      background: var(--bg-neutral-5);
+      border: 0.5px solid var(--border-light);
+      border-radius: 8px;
+      padding: 12px;
+    }
+    .tech-category {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-nonessential);
+      line-height: 16px;
+      margin-bottom: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+    }
+    .tech-name {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-default);
+      line-height: 20px;
+    }
+
+    /* Sidebar */
+    .details-sidebar {
+      position: sticky;
+      top: 28px;
+    }
+
+    /* Summary Card */
+    .summary-card {
+      background: white;
+      border: 0.5px solid var(--border-light);
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0px 0px 1px 0px rgba(32,31,35,0.32), 0px 4px 4px 0px rgba(32,31,35,0.04);
+    }
+    .summary-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-subtle);
+      line-height: 20px;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+    }
+    .summary-items {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .summary-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .summary-item-label {
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--text-subtle);
+      line-height: 20px;
+    }
+    .summary-item-value {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-default);
+      line-height: 20px;
+    }
+    .summary-divider {
+      height: 1px;
+      background: var(--border-light);
+      margin: 12px 0;
+    }
+
+    /* Success Toast */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: white;
+      border: 0.5px solid var(--border-light);
+      border-radius: 8px;
+      padding: 16px 20px;
+      box-shadow: 0px 8px 32px 0px rgba(32,31,35,0.12);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      z-index: 1000;
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 300ms ease;
+    }
+    .toast.visible {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    .toast-icon {
+      width: 24px;
+      height: 24px;
+      color: var(--bg-success);
+    }
+    .toast-message {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-default);
+      line-height: 20px;
+    }
+
+    /* Hidden state */
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+<!-- MyG2 Global Header -->
+<header class="myg2-header">
+  <div class="myg2-header-left">
+    <svg class="back-arrow" width="24" height="24" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M6.875 10.75L11.0625 14.9375L10 16L4 10L10 4L11.0625 5.0625L6.875 9.25H16V10.75H6.875Z" fill="currentColor"/>
+    </svg>
+    <div class="myg2-logo">
+      <img src="../../../shared/assets/logos/g2-logo-rorange.svg" alt="G2 Logo" />
+    </div>
+    <span style="font-size: 16px; font-weight: 600; margin-left: 4px;">MyG2</span>
+  </div>
+  <div class="myg2-header-right">
+    <div class="help-icon">?</div>
+    <div class="user-avatar">HC</div>
+  </div>
+</header>
+
+<!-- Content Area -->
+<div elv class="content-area">
+
+  <!-- Back Button -->
+  <a href="prospects-available.html" class="back-button">
+    <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M6.875 10.75L11.0625 14.9375L10 16L4 10L10 4L11.0625 5.0625L6.875 9.25H16V10.75H6.875Z" fill="currentColor"/>
+    </svg>
+    Back to Available Prospects
+  </a>
+
+  <!-- Page Header -->
+  <div class="page-header">
+    <h1 class="page-title" id="companyName">Loading...</h1>
+  </div>
+
+  <!-- Two Column Layout -->
+  <div class="details-layout">
+
+    <!-- Main Content: Company Info Card -->
+    <div class="company-info-card">
+
+      <!-- Company Overview Section -->
+      <div class="info-section">
+        <h2 class="info-section-title">Company Overview</h2>
+        <div class="info-grid">
+          <div>
+            <div class="info-item-label">Activity Level</div>
+            <div class="info-item-value">
+              <span class="activity-badge">
+                <span class="activity-dot"></span>
+                <span id="activityLevel">High</span>
+              </span>
+            </div>
+          </div>
+          <div>
+            <div class="info-item-label">Employees</div>
+            <div class="info-item-value" id="employees">—</div>
+          </div>
+          <div>
+            <div class="info-item-label">Location</div>
+            <div class="info-item-value" id="location">—</div>
+          </div>
+          <div>
+            <div class="info-item-label">Revenue</div>
+            <div class="info-item-value" id="revenue">—</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Key Contacts Section -->
+      <div class="info-section">
+        <h2 class="info-section-title">Key Contacts</h2>
+        <div class="contacts-list" id="contactsList">
+          <!-- Contacts will be inserted here by JavaScript -->
+        </div>
+      </div>
+
+      <!-- Technology Stack Section -->
+      <div class="info-section">
+        <h2 class="info-section-title">Technology Stack</h2>
+
+        <!-- Locked State -->
+        <div class="tech-stack-locked" id="techStackLocked">
+          <svg class="lock-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17 11H7C5.89543 11 5 11.8954 5 13V19C5 20.1046 5.89543 21 7 21H17C18.1046 21 19 20.1046 19 19V13C19 11.8954 18.1046 11 17 11Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M7 11V7C7 5.67392 7.52678 4.40215 8.46447 3.46447C9.40215 2.52678 10.6739 2 12 2C13.3261 2 14.5979 2.52678 15.5355 3.46447C16.4732 4.40215 17 5.67392 17 7V11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <div class="tech-stack-locked-title">Technology Stack Locked</div>
+          <div class="tech-stack-locked-desc">Unlock to see the full technology stack this company is using</div>
+          <button class="unlock-button" id="unlockButton">
+            <span>Unlock Technology Stack</span>
+            <span class="credit-cost">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="6" cy="6" r="5" stroke="currentColor" stroke-width="1.5"/>
+                <path d="M6 4V8M8 6H4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+              10 credits
+            </span>
+          </button>
+        </div>
+
+        <!-- Unlocked State (hidden by default) -->
+        <div class="tech-stack-unlocked" id="techStackUnlocked">
+          <div class="tech-stack-grid" id="techStackGrid">
+            <!-- Tech stack items will be inserted here by JavaScript -->
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Sidebar: Summary Card -->
+    <aside class="details-sidebar">
+      <div class="summary-card">
+        <div class="summary-title">Summary</div>
+        <div class="summary-items">
+          <div class="summary-item">
+            <span class="summary-item-label">Activity Level</span>
+            <span class="summary-item-value" id="summaryActivity">High</span>
+          </div>
+          <div class="summary-item">
+            <span class="summary-item-label">Contacts Available</span>
+            <span class="summary-item-value" id="summaryContacts">—</span>
+          </div>
+          <div class="summary-item">
+            <span class="summary-item-label">Tech Stack</span>
+            <span class="summary-item-value" id="summaryTechStack">Locked</span>
+          </div>
+        </div>
+        <div class="summary-divider"></div>
+        <div class="summary-items">
+          <div class="summary-item">
+            <span class="summary-item-label">Your Credits</span>
+            <span class="summary-item-value" data-credits>150</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+  </div>
+
+</div>
+
+<!-- Success Toast -->
+<div class="toast" id="successToast">
+  <svg class="toast-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+    <path d="M8 12L11 15L16 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+  <span class="toast-message" id="toastMessage">Email copied!</span>
+</div>
+
+<!-- State Management -->
+<script src="../prototype-state.js"></script>
+
+<!-- Page Logic -->
+<script>
+(function() {
+  // Mock data for companies with enhanced details
+  const MOCK_COMPANIES = {
+    'predictive-001': {
+      id: 'predictive-001',
+      name: 'Predictive',
+      activityLevel: 'High',
+      employees: '750 – 1,000',
+      location: 'Port Saint Lucie, FL',
+      revenue: '$21,400,000',
+      contacts: [
+        {
+          name: 'Sarah Mitchell',
+          title: 'VP of Sales',
+          email: 'sarah.mitchell@predictive.com'
+        },
+        {
+          name: 'James Chen',
+          title: 'Director of Marketing',
+          email: 'james.chen@predictive.com'
+        },
+        {
+          name: 'Emily Rodriguez',
+          title: 'Head of Business Development',
+          email: 'emily.rodriguez@predictive.com'
+        }
+      ],
+      techStack: [
+        { category: 'CRM', name: 'Salesforce' },
+        { category: 'Marketing Automation', name: 'HubSpot' },
+        { category: 'Analytics', name: 'Google Analytics' },
+        { category: 'Email', name: 'Gmail' },
+        { category: 'Communication', name: 'Slack' },
+        { category: 'Project Management', name: 'Asana' }
+      ],
+      unlockCost: 10
+    },
+    'insightwave-002': {
+      id: 'insightwave-002',
+      name: 'InsightWave',
+      activityLevel: 'High',
+      employees: '750 – 1,000',
+      location: 'Port Saint Lucie, FL',
+      revenue: '$17,560,000',
+      contacts: [
+        {
+          name: 'Michael Thompson',
+          title: 'Chief Revenue Officer',
+          email: 'michael.thompson@insightwave.com'
+        },
+        {
+          name: 'Lisa Park',
+          title: 'VP of Marketing',
+          email: 'lisa.park@insightwave.com'
+        }
+      ],
+      techStack: [
+        { category: 'CRM', name: 'HubSpot CRM' },
+        { category: 'Marketing Automation', name: 'Marketo' },
+        { category: 'Analytics', name: 'Mixpanel' },
+        { category: 'Email', name: 'Outlook' }
+      ],
+      unlockCost: 10
+    },
+    'algostream-003': {
+      id: 'algostream-003',
+      name: 'AlgoStream',
+      activityLevel: 'High',
+      employees: '750 – 1,000',
+      location: 'Port Saint Lucie, FL',
+      revenue: '$15,240,000',
+      contacts: [
+        {
+          name: 'David Kim',
+          title: 'VP of Sales',
+          email: 'david.kim@algostream.com'
+        },
+        {
+          name: 'Rachel Foster',
+          title: 'Marketing Director',
+          email: 'rachel.foster@algostream.com'
+        },
+        {
+          name: 'Tom Brady',
+          title: 'Head of Partnerships',
+          email: 'tom.brady@algostream.com'
+        }
+      ],
+      techStack: [
+        { category: 'CRM', name: 'Pipedrive' },
+        { category: 'Marketing Automation', name: 'ActiveCampaign' },
+        { category: 'Analytics', name: 'Amplitude' },
+        { category: 'Email', name: 'Gmail' },
+        { category: 'Communication', name: 'Microsoft Teams' }
+      ],
+      unlockCost: 10
+    },
+    'datavision-004': {
+      id: 'datavision-004',
+      name: 'DataVision',
+      activityLevel: 'High',
+      employees: '750 – 1,000',
+      location: 'Port Saint Lucie, FL',
+      revenue: '$15,240,000',
+      contacts: [
+        {
+          name: 'Amanda Wright',
+          title: 'VP of Sales',
+          email: 'amanda.wright@datavision.com'
+        },
+        {
+          name: 'Chris Anderson',
+          title: 'Marketing Manager',
+          email: 'chris.anderson@datavision.com'
+        },
+        {
+          name: 'Jessica Lee',
+          title: 'Business Development Lead',
+          email: 'jessica.lee@datavision.com'
+        }
+      ],
+      techStack: [
+        { category: 'CRM', name: 'Zoho CRM' },
+        { category: 'Marketing Automation', name: 'Mailchimp' },
+        { category: 'Analytics', name: 'Tableau' },
+        { category: 'Email', name: 'Gmail' }
+      ],
+      unlockCost: 10
+    },
+    'metricpulse-005': {
+      id: 'metricpulse-005',
+      name: 'MetricPulse',
+      activityLevel: 'High',
+      employees: '750 – 1,000',
+      location: 'Port Saint Lucie, FL',
+      revenue: '$17,560,000',
+      contacts: [
+        {
+          name: 'Robert Johnson',
+          title: 'Chief Sales Officer',
+          email: 'robert.johnson@metricpulse.com'
+        },
+        {
+          name: 'Diana Martinez',
+          title: 'VP of Marketing',
+          email: 'diana.martinez@metricpulse.com'
+        },
+        {
+          name: 'Kevin Brown',
+          title: 'Director of Partnerships',
+          email: 'kevin.brown@metricpulse.com'
+        }
+      ],
+      techStack: [
+        { category: 'CRM', name: 'Salesforce' },
+        { category: 'Marketing Automation', name: 'Pardot' },
+        { category: 'Analytics', name: 'Adobe Analytics' },
+        { category: 'Email', name: 'Outlook' },
+        { category: 'Communication', name: 'Zoom' }
+      ],
+      unlockCost: 10
+    }
+  };
+
+  // Get company ID from URL parameter
+  const urlParams = new URLSearchParams(window.location.search);
+  const companyId = urlParams.get('id');
+
+  if (!companyId || !MOCK_COMPANIES[companyId]) {
+    // If no valid company ID, redirect back to prospects
+    window.location.href = 'prospects-available.html';
+    return;
+  }
+
+  const company = MOCK_COMPANIES[companyId];
+  const state = G2ActivateState.get();
+
+  // Check if tech stack is already unlocked
+  const techStackUnlocked = state.unlockedTechStacks && state.unlockedTechStacks.includes(companyId);
+
+  // Populate company details
+  document.getElementById('companyName').textContent = company.name;
+  document.getElementById('activityLevel').textContent = company.activityLevel;
+  document.getElementById('summaryActivity').textContent = company.activityLevel;
+  document.getElementById('employees').textContent = company.employees;
+  document.getElementById('location').textContent = company.location;
+  document.getElementById('revenue').textContent = company.revenue;
+  document.getElementById('summaryContacts').textContent = company.contacts.length;
+
+  // Populate contacts
+  const contactsList = document.getElementById('contactsList');
+  company.contacts.forEach(contact => {
+    const contactCard = document.createElement('div');
+    contactCard.className = 'contact-card';
+    contactCard.innerHTML = `
+      <div class="contact-header">
+        <div class="contact-info">
+          <div class="contact-name">${contact.name}</div>
+          <div class="contact-title">${contact.title}</div>
+        </div>
+      </div>
+      <div class="contact-email">
+        <span>${contact.email}</span>
+        <button class="copy-button" data-email="${contact.email}" title="Copy email">
+          <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M5.5 5.5V3.5C5.5 2.94772 5.94772 2.5 6.5 2.5H12.5C13.0523 2.5 13.5 2.94772 13.5 3.5V9.5C13.5 10.0523 13.0523 10.5 12.5 10.5H10.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <rect x="2.5" y="5.5" width="8" height="8" rx="1" stroke="currentColor" stroke-width="1.5"/>
+          </svg>
+        </button>
+      </div>
+    `;
+    contactsList.appendChild(contactCard);
+  });
+
+  // Handle copy email buttons
+  document.querySelectorAll('.copy-button').forEach(button => {
+    button.addEventListener('click', function() {
+      const email = this.getAttribute('data-email');
+      navigator.clipboard.writeText(email).then(() => {
+        showToast('Email copied!');
+      });
+    });
+  });
+
+  // Handle tech stack unlock/display
+  if (techStackUnlocked) {
+    // Show unlocked state
+    document.getElementById('techStackLocked').style.display = 'none';
+    document.getElementById('techStackUnlocked').classList.add('visible');
+    document.getElementById('summaryTechStack').textContent = 'Unlocked';
+
+    // Populate tech stack
+    const techStackGrid = document.getElementById('techStackGrid');
+    company.techStack.forEach(tech => {
+      const techItem = document.createElement('div');
+      techItem.className = 'tech-item';
+      techItem.innerHTML = `
+        <div class="tech-category">${tech.category}</div>
+        <div class="tech-name">${tech.name}</div>
+      `;
+      techStackGrid.appendChild(techItem);
+    });
+  } else {
+    // Locked state - handle unlock button
+    document.getElementById('unlockButton').addEventListener('click', function() {
+      const currentState = G2ActivateState.get();
+
+      // Check if enough credits
+      if (currentState.credits < company.unlockCost) {
+        alert('Insufficient credits. Please add more credits to unlock.');
+        return;
+      }
+
+      // Deduct credits
+      currentState.credits -= company.unlockCost;
+
+      // Initialize unlockedTechStacks array if it doesn't exist
+      if (!currentState.unlockedTechStacks) {
+        currentState.unlockedTechStacks = [];
+      }
+
+      // Add company to unlocked tech stacks
+      currentState.unlockedTechStacks.push(companyId);
+
+      // Save state
+      G2ActivateState.save(currentState);
+
+      // Update UI
+      document.getElementById('techStackLocked').style.display = 'none';
+      document.getElementById('techStackUnlocked').classList.add('visible');
+      document.getElementById('summaryTechStack').textContent = 'Unlocked';
+
+      // Populate tech stack
+      const techStackGrid = document.getElementById('techStackGrid');
+      company.techStack.forEach(tech => {
+        const techItem = document.createElement('div');
+        techItem.className = 'tech-item';
+        techItem.innerHTML = `
+          <div class="tech-category">${tech.category}</div>
+          <div class="tech-name">${tech.name}</div>
+        `;
+        techStackGrid.appendChild(techItem);
+      });
+
+      // Update credit display
+      G2ActivateState.updateCreditDisplay();
+
+      // Show success toast
+      showToast(`Technology Stack unlocked! ${company.unlockCost} credits used.`);
+    });
+  }
+
+  // Toast notification helper
+  function showToast(message) {
+    const toast = document.getElementById('successToast');
+    const toastMessage = document.getElementById('toastMessage');
+    toastMessage.textContent = message;
+    toast.classList.add('visible');
+
+    setTimeout(() => {
+      toast.classList.remove('visible');
+    }, 3000);
+  }
+
+})();
+</script>
+
+</body>
+</html>

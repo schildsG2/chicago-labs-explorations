@@ -494,6 +494,16 @@
       background: var(--bg-neutral-10);
       color: var(--text-subtle);
     }
+    .company-link {
+      color: var(--text-primary);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 150ms ease;
+    }
+    .company-link:hover {
+      color: var(--text-primary-dark);
+      text-decoration: underline;
+    }
 
     /* Empty State */
     .empty-state {
@@ -750,7 +760,7 @@ function renderTable() {
               />
             </td>
             <td class="credits-cell">${company.unlockCost}</td>
-            <td>${company.name}</td>
+            <td><a href="prospect-details.html?id=${company.id}" class="company-link">${company.name}</a></td>
             <td>
               <span class="intent-badge intent-badge--${company.activityLevel.toLowerCase()}">
                 ${company.activityLevel}

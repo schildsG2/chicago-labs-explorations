@@ -395,13 +395,41 @@ G2ActivateState.reset();
 
 - `pages/activation-linkedin-ads.html` — LinkedIn Ads activation page (reference implementation)
 
-### Pending Pages
+### Roadmap (Prioritized by User Flow)
 
-- [ ] `pages/activation-emails.html`
-- [ ] `pages/prospects-available.html` (unlock workflow)
-- [ ] `pages/prospects-unlocked.html`
-- [ ] `pages/manage-plan-active.html`
-- [ ] `pages/purchase-credits.html`
+**✅ Completed:**
+- [x] State management system (`prototype-state.js`)
+- [x] Page templates (`template-activation.html`, `template-prospects.html`)
+- [x] `prospects-available.html` — Table with filters, selection-based bulk unlock
+
+**🎯 Phase 1: Core Unlock Flow (Critical Path)**
+1. [ ] **`prospect-details.html`** — Company details page with two-stage unlock
+   - **Why first**: Natural next step after unlocking from table
+   - **Scope**: Company info card, contacts section (3 cards), tech stack section with unlock button
+   - **Interactions**: Back button, tech stack unlock (10 credits), copy email buttons
+
+2. [ ] **`prospects-unlocked.html`** — View all unlocked companies
+   - **Why second**: Users need to see what they've already unlocked
+   - **Scope**: Table or card view of unlocked companies, link to details page
+   - **Interactions**: Search/filter, view details, export options
+
+**📊 Phase 2: Credit Management**
+3. [ ] **`manage-plan-active.html`** — Subscription and credit details
+   - **Scope**: Plan info, credit balance with history, renewal date, usage stats
+   - **Interactions**: View plan details, link to purchase credits
+
+4. [ ] **`purchase-credits.html`** — Buy additional credits
+   - **Scope**: Credit packages, pricing, checkout simulation
+   - **Interactions**: Select package, mock purchase flow
+
+**🚀 Phase 3: Activation Features**
+5. [ ] **`activation-emails.html`** — Email campaign creation
+   - **Scope**: Select unlocked contacts, generate email campaigns
+   - **Interactions**: Contact selection, AI email generation (simulated)
+
+6. [ ] **`activation-linkedin-ads.html`** — Enhance existing page
+   - **Current**: Basic metrics and status
+   - **Enhancement**: Add audience sync status, campaign creation flow
 
 ---
 
@@ -411,6 +439,67 @@ G2ActivateState.reset();
 - **Credits not updating?** Ensure element has `data-credits` attribute
 - **Navigation broken?** Check file paths in `href` attributes
 - **Need new mock data?** Edit `INITIAL_STATE` in `prototype-state.js`
+
+---
+
+## Prospect Details Page Flow
+
+### Navigation
+- Accessed from Available Prospects table via company name link
+- URL format: `prospect-details.html?id=company-id`
+- Back button returns to Available Prospects
+
+### Page States
+
+**State 1: Initial Unlock (Contacts Visible)**
+- Company info card (size, revenue, demographics)
+- Contacts section with 3 contact cards
+- Tech stack section **locked** with "Unlock for 10 credits" button
+
+**State 2: Fully Unlocked (Tech Stack Revealed)**
+- Same company info and contacts
+- Tech stack section shows products by category
+- Categories: CRM, Sales Intelligence, BI & Analytics, Sales Engagement, Marketing Automation, Data Integration
+
+### Credit Flow
+1. **First unlock** (from table): 10 credits → company + contacts
+2. **Second unlock** (tech stack button): 10 credits → tech stack data
+3. **Total**: 20 credits to fully unlock a company
+
+### Data Structure
+
+Company object needs to include:
+```javascript
+{
+  id: 'company-id',
+  name: 'Company Name',
+  description: '...',
+  size: '750 – 1,000',
+  revenue: '$21,400,000',
+  location: 'City, State',
+  industry: 'Industry Name',
+  contactsUnlocked: true,  // Set when company is first unlocked
+  techStackUnlocked: false, // Set when tech stack is unlocked
+  contacts: [
+    {
+      name: 'John Doe',
+      email: 'john.doe@company.com',
+      title: 'VP of Sales',
+      department: 'Sales',
+      seniority: 'VP-level'
+    }
+    // ... more contacts
+  ],
+  techStack: {
+    'CRM': [
+      { name: 'Salesforce', verified: '2025-12-15' },
+      { name: 'HubSpot', verified: '2025-11-20' }
+    ],
+    'Sales Intelligence': [...],
+    // ... more categories
+  }
+}
+```
 
 ---
 
