@@ -36,51 +36,51 @@ const G2ActivateState = (function() {
         id: 'predictive-001',
         name: 'Predictive',
         activityLevel: 'High',
-        employees: '750 – 1,000',
+        employees: '875',
         location: 'Port Saint Lucie, FL',
         revenue: '$21,400,000',
         contacts: 3,
-        unlockCost: 10
+        unlockCost: 50
       },
       {
         id: 'insightwave-002',
         name: 'InsightWave',
         activityLevel: 'High',
-        employees: '750 – 1,000',
+        employees: '875',
         location: 'Port Saint Lucie, FL',
         revenue: '$17,560,000',
         contacts: 2,
-        unlockCost: 10
+        unlockCost: 50
       },
       {
         id: 'algostream-003',
         name: 'AlgoStream',
         activityLevel: 'High',
-        employees: '750 – 1,000',
+        employees: '875',
         location: 'Port Saint Lucie, FL',
         revenue: '$15,240,000',
         contacts: 3,
-        unlockCost: 10
+        unlockCost: 50
       },
       {
         id: 'datavision-004',
         name: 'DataVision',
         activityLevel: 'High',
-        employees: '750 – 1,000',
+        employees: '875',
         location: 'Port Saint Lucie, FL',
         revenue: '$15,240,000',
         contacts: 3,
-        unlockCost: 10
+        unlockCost: 50
       },
       {
         id: 'metricpulse-005',
         name: 'MetricPulse',
         activityLevel: 'High',
-        employees: '750 – 1,000',
+        employees: '875',
         location: 'Port Saint Lucie, FL',
         revenue: '$17,560,000',
         contacts: 3,
-        unlockCost: 10
+        unlockCost: 50
       }
     ]
   };
@@ -126,7 +126,7 @@ const G2ActivateState = (function() {
   /**
    * Unlock a company
    */
-  function unlockCompany(companyId, cost = 10) {
+  function unlockCompany(companyId, cost = 50) {
     const state = get();
 
     // Check if enough credits
