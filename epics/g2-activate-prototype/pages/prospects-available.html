@@ -323,6 +323,9 @@
       color: var(--text-nonessential);
       cursor: pointer;
     }
+    .filter-select {
+      padding-right: 32px;
+    }
     .filter-input {
       font-weight: 400;
     }
@@ -333,6 +336,7 @@
     }
     .filter-range .filter-input {
       flex: 1;
+      min-width: 0;
     }
 
     /* Card Content */
@@ -675,7 +679,7 @@
         <!-- Sticky Header -->
         <div class="sticky-header">
           <div class="sticky-credits">
-            <span>My credits: <span data-credits>150</span></span>
+            <span>Credits: <span data-credits>150</span></span>
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
               <circle cx="10" cy="10" r="8" fill="#5746B2" opacity="0.2"/>
               <path d="M10 6L11.5 9.5L15 10L11.5 10.5L10 14L8.5 10.5L5 10L8.5 9.5L10 6Z" fill="#5746B2"/>
