@@ -40,12 +40,19 @@ cp shared/icons/*.svg "$DEST/assets/icons/"
 # Copy pictograms
 cp shared/components/templates/simple/assets/pictogram-*.svg "$DEST/assets/pictograms/"
 
-# Copy G2 logo (if exists)
-if [ -f "shared/assets/logos/g2-logo-rorange.svg" ]; then
-  cp shared/assets/logos/g2-logo-rorange.svg "$DEST/assets/logos/"
-  echo "  ✅ G2 logo copied"
+# Copy G2 logos (all variants)
+LOGO_COUNT=0
+for logo in shared/assets/logos/g2-*.svg; do
+  if [ -f "$logo" ]; then
+    cp "$logo" "$DEST/assets/logos/"
+    LOGO_COUNT=$((LOGO_COUNT + 1))
+  fi
+done
+
+if [ $LOGO_COUNT -gt 0 ]; then
+  echo "  ✅ $LOGO_COUNT G2 logo variant(s) copied"
 else
-  echo "  ⚠️  G2 logo not found at shared/assets/logos/g2-logo-rorange.svg"
+  echo "  ⚠️  No G2 logos found in shared/assets/logos/"
 fi
 
 # Create fonts README (Figtree is from Google Fonts)
@@ -100,9 +107,9 @@ Complete design system package for uploading to Claude Design (Anthropic).
 - **moderate/** (6) - button-group, cards, pagination, tabs, etc.
 
 ### Assets
-- **icons/** (130) - Complete UI icon library (SVG)
+- **icons/** (172) - Complete UI icon library (130 contextual + 42 functional)
 - **pictograms/** (4) - Anonymous avatar pictograms
-- **logos/** - G2 logo (needs to be added - see README)
+- **logos/** - G2 logos (4 variants: rorange, black, white, icon)
 - **fonts/** - Figtree font reference (Google Fonts)
 
 ## How to Upload to Claude Design
@@ -128,7 +135,7 @@ After processing this package, Claude Design will:
 - ✅ Understand Elevate color palette (purple, rorange, neutrals)
 - ✅ Apply Figtree typography automatically
 - ✅ Know all 28 component patterns
-- ✅ Reference 130 UI icons by name
+- ✅ Reference 172 UI icons by name (contextual + functional)
 - ✅ Follow spacing (4px grid), borders (0.5px), shadows, states
 - ✅ Generate accessible UI (WCAG-compliant focus states, ARIA)
 
@@ -281,6 +288,8 @@ cat > "$DEST/examples/component-showcase.html" << 'EOF'
 EOF
 
 # 6. Summary
+ICON_COUNT=$(ls "$DEST/assets/icons/"*.svg 2>/dev/null | wc -l | tr -d ' ')
+
 echo ""
 echo "✅ Claude Design package created successfully!"
 echo ""
@@ -289,9 +298,9 @@ echo ""
 echo "Contents:"
 echo "  - Design system: DESIGN.md + elevate.css"
 echo "  - Components: 28 templates (forms, simple, moderate)"
-echo "  - Icons: 130 SVG icons"
+echo "  - Icons: $ICON_COUNT SVG icons"
 echo "  - Pictograms: 4 avatar pictograms"
-echo "  - Logos: G2 logo (rorange variant)"
+echo "  - Logos: $LOGO_COUNT G2 logo variant(s)"
 echo ""
 echo "📤 Ready to upload to Claude Design!"
 echo "   Drag the entire '$DEST/' folder or compress to .zip"

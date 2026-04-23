@@ -37,50 +37,75 @@ const G2ActivateState = (function() {
         name: 'Predictive',
         activityLevel: 'High',
         employees: '875',
+        employeeCount: 875,
         location: 'Port Saint Lucie, FL',
         revenue: '$21,400,000',
         contacts: 3,
-        unlockCost: 50
+        unlockCost: 50,
+        industry: 'Software Publishers',
+        departments: ['sales', 'marketing', 'engineering'],
+        managementLevels: ['vp', 'director', 'manager'],
+        jobFunctions: ['business-dev', 'demand-gen', 'software-eng']
       },
       {
         id: 'insightwave-002',
         name: 'InsightWave',
         activityLevel: 'High',
-        employees: '875',
-        location: 'Port Saint Lucie, FL',
+        employees: '642',
+        employeeCount: 642,
+        location: 'Austin, TX',
         revenue: '$17,560,000',
         contacts: 2,
-        unlockCost: 50
+        unlockCost: 50,
+        industry: 'Data Analytics',
+        departments: ['product', 'engineering', 'cs'],
+        managementLevels: ['c-level', 'vp', 'director'],
+        jobFunctions: ['product-mgmt', 'software-eng', 'customer-support']
       },
       {
         id: 'algostream-003',
         name: 'AlgoStream',
         activityLevel: 'High',
-        employees: '875',
-        location: 'Port Saint Lucie, FL',
+        employees: '1250',
+        employeeCount: 1250,
+        location: 'San Francisco, CA',
         revenue: '$15,240,000',
         contacts: 3,
-        unlockCost: 50
+        unlockCost: 50,
+        industry: 'Software Publishers',
+        departments: ['engineering', 'operations', 'finance'],
+        managementLevels: ['director', 'manager', 'individual'],
+        jobFunctions: ['software-eng', 'data-analytics', 'account-exec']
       },
       {
         id: 'datavision-004',
         name: 'DataVision',
-        activityLevel: 'High',
-        employees: '875',
-        location: 'Port Saint Lucie, FL',
+        activityLevel: 'Medium',
+        employees: '450',
+        employeeCount: 450,
+        location: 'Boston, MA',
         revenue: '$15,240,000',
         contacts: 3,
-        unlockCost: 50
+        unlockCost: 50,
+        industry: 'Business Intelligence',
+        departments: ['sales', 'marketing', 'product'],
+        managementLevels: ['vp', 'manager', 'individual'],
+        jobFunctions: ['business-dev', 'demand-gen', 'product-mgmt']
       },
       {
         id: 'metricpulse-005',
         name: 'MetricPulse',
-        activityLevel: 'High',
-        employees: '875',
-        location: 'Port Saint Lucie, FL',
+        activityLevel: 'Medium',
+        employees: '2100',
+        employeeCount: 2100,
+        location: 'New York, NY',
         revenue: '$17,560,000',
         contacts: 3,
-        unlockCost: 50
+        unlockCost: 50,
+        industry: 'Software Publishers',
+        departments: ['marketing', 'sales', 'hr'],
+        managementLevels: ['c-level', 'vp', 'director'],
+        jobFunctions: ['demand-gen', 'account-exec', 'business-dev']
       }
     ]
   };
