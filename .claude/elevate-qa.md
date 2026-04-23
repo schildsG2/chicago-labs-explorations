@@ -53,7 +53,7 @@ Run a comprehensive compliance check against the Elevate design system. The user
 - [ ] Shadows are subtle, diffused, max 12% opacity
 
 ### 8. Prohibited Patterns
-- [ ] NO emojis used as icons (use actual SVG icons from `/shared/icons/`)
+- [ ] NO emojis used as icons (use actual SVG icons from `/shared/elevate-lite/icons/`)
 - [ ] NO custom utilities where Elevate classes exist
 - [ ] NO interactivity on non-interactive elements (e.g., hover states on `<div>`)
 - [ ] NO invented design patterns not in DESIGN.md or Lookbook
@@ -91,7 +91,7 @@ Run a comprehensive compliance check against the Elevate design system. The user
 
 #### Warnings
 - [ ] Custom padding value `style="padding: 13px"` (line XX) — use elv-p-{n}
-- [ ] Emoji used as icon (line XX) — use SVG from /shared/icons/
+- [ ] Emoji used as icon (line XX) — use SVG from /shared/elevate-lite/icons/
 
 #### Suggestions
 - Consider using `btn btn--secondary btn--md` instead of custom button styling (line XX)
@@ -107,10 +107,10 @@ Run a comprehensive compliance check against the Elevate design system. The user
 
 ## Key Resources
 
-- **DESIGN.md**: `/Users/schilds/projects/chicago-labs-explorations/shared/design-system/DESIGN.md`
-- **Tokens**: `/Users/schilds/projects/chicago-labs-explorations/shared/tokens/elevate.css`
+- **DESIGN.md**: `/Users/schilds/projects/chicago-labs-explorations/shared/elevate-lite/design-system/DESIGN.md`
+- **Tokens**: `/Users/schilds/projects/chicago-labs-explorations/shared/elevate-lite/tokens/elevate.css`
 - **Lookbook**: `https://www.g2.test/elevate/lookbook` (visual reference)
-- **Templates**: `/Users/schilds/projects/chicago-labs-explorations/shared/components/templates/`
+- **Templates**: `/Users/schilds/projects/chicago-labs-explorations/shared/elevate-lite/components/templates/`
 
 ## Example Usage
 

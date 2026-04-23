@@ -42,8 +42,8 @@ chicago-labs-explorations/
 
 **Navigation:**
 - Each epic has its own `CLAUDE.md` for epic-specific context
-- `/shared/design-system/DESIGN.md` is the authoritative Elevate specification
-- Component templates in `/shared/components/templates/`
+- `/shared/elevate-lite/design-system/DESIGN.md` is the authoritative Elevate specification
+- Component templates in `/shared/elevate-lite/components/templates/`
 
 ---
 
@@ -53,7 +53,7 @@ chicago-labs-explorations/
 
 ### Primary Resources (in priority order):
 
-1. **Specifications**: [`/shared/design-system/DESIGN.md`](./shared/design-system/DESIGN.md)
+1. **Specifications**: [`/shared/elevate-lite/design-system/DESIGN.md`](./shared/elevate-lite/design-system/DESIGN.md)
    - Authoritative source for all component specs
    - Exact colors, spacing, typography, states
    - Read this BEFORE building any UI
@@ -63,12 +63,12 @@ chicago-labs-explorations/
    - See interactions and variants
    - Production ViewComponents
 
-3. **HTML Templates**: [`/shared/components/templates/`](./shared/components/templates/)
+3. **HTML Templates**: [`/shared/elevate-lite/components/templates/`](./shared/elevate-lite/components/templates/)
    - Copy-paste ready HTML
    - Lightweight static templates
    - Already aligned with DESIGN.md specs
 
-4. **Design Tokens**: [`/shared/tokens/elevate.css`](./shared/tokens/elevate.css)
+4. **Design Tokens**: [`/shared/elevate-lite/tokens/elevate.css`](./shared/elevate-lite/tokens/elevate.css)
    - CSS custom properties
    - Colors, spacing, typography, shadows
    - Auto-updated (symlinked to UE production)
@@ -76,9 +76,9 @@ chicago-labs-explorations/
 ### Workflow for UI Generation:
 
 ```
-1. Read /shared/design-system/DESIGN.md section for component
+1. Read /shared/elevate-lite/design-system/DESIGN.md section for component
 2. Extract exact specifications (colors, padding, states)
-3. Check if HTML template exists in /shared/components/templates/
+3. Check if HTML template exists in /shared/elevate-lite/components/templates/
 4. If exists: use it. If not: build from DESIGN.md specs
 5. Reference Lookbook for visual confirmation
 ```
@@ -145,7 +145,7 @@ chicago-labs-explorations/
 ### Building New Component Templates
 
 1. **Read DESIGN.md section** for component specifications
-2. **Copy `_template.html`** from `/shared/components/templates/`
+2. **Copy `_template.html`** from `/shared/elevate-lite/components/templates/`
 3. **Build minimal template**: examples + code snippets (~100 lines max)
 4. **Link to DESIGN.md** for authoritative specs
 5. **Link to Lookbook** for visual reference
@@ -239,7 +239,7 @@ Planning and progress docs live in `/shared/.internal/`:
 
 ## Questions or Issues?
 
-- **Design system questions**: Check `/shared/design-system/DESIGN.md`
+- **Design system questions**: Check `/shared/elevate-lite/design-system/DESIGN.md`
 - **Component questions**: Check Elevate Lookbook
 - **Project structure questions**: This file (CLAUDE.md)
 - **Epic-specific questions**: Check epic's CLAUDE.md
@@ -250,7 +250,7 @@ Planning and progress docs live in `/shared/.internal/`:
 
 When working in this repo:
 1. ✅ **Read DESIGN.md** before generating any UI
-2. ✅ **Use existing templates** from `/shared/components/templates/`
+2. ✅ **Use existing templates** from `/shared/elevate-lite/components/templates/`
 3. ✅ **Follow Elevate specs** exactly (colors, spacing, components)
 4. ✅ **Check epic CLAUDE.md** for epic-specific context
 5. ❌ **Never invent** design patterns, colors, or spacing values

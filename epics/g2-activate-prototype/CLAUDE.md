@@ -323,7 +323,7 @@ g2-activate-prototype/
 ## Design References
 
 **Primary:**
-- `/shared/design-system/DESIGN.md` — Authoritative Elevate specs
+- `/shared/elevate-lite/design-system/DESIGN.md` — Authoritative Elevate specs
 - [Elevate Lookbook](https://www.g2.test/elevate/lookbook) — Visual component reference
 
 **Figma:**
@@ -370,8 +370,8 @@ A: Check `G2ActivateState.get().availableCompanies` exists. Verify `prototype-st
 
 **Q: Styling looks wrong?**  
 A: Verify all CSS files loaded:
-- `../../../shared/tokens/elevate.css`
-- `../../../shared/components/elevate.css`
+- `../../../shared/elevate-lite/tokens/elevate.css`
+- `../../../shared/elevate-lite/components/elevate.css`
 - Material Symbols font (for combobox icons)
 
 ---

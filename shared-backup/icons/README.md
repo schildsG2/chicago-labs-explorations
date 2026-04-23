@@ -52,14 +52,14 @@ Complete library of informational, contextual, and system icons:
 - **Technology**: ai, ai-search, android, apple, apps, cloud, monitor, etc.
 - **General**: calendar, clock, flag, heart (filled/outline), star (all variants), trash, save, share, copy, etc.
 
-For complete icon inventory, see: `/shared/icons/`
+For complete icon inventory, see: `/shared/elevate-lite/icons/`
 
 ## Usage
 
 ### 1. Include the icons.css stylesheet
 
 ```html
-<link rel="stylesheet" href="./shared/icons/icons.css">
+<link rel="stylesheet" href="./shared/elevate-lite/icons/icons.css">
 ```
 
 ### 2. Inline the SVG with icon classes

@@ -195,7 +195,7 @@
 
 ## 📚 Reference
 
-- **Elevate Spec**: `/shared/design-system/DESIGN.md`
+- **Elevate Spec**: `/shared/elevate-lite/design-system/DESIGN.md`
 - **Focus States**: Box-shadow for buttons, outline for inputs
 - **Spacing Grid**: All values must be multiples of 4px
 - **Border Width**: 1px for ghost borders, never 0.5px

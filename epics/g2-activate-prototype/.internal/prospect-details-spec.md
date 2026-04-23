@@ -1083,10 +1083,10 @@ company.techStack.unlockedDate = new Date().toISOString();
 ## 9. File Dependencies
 
 **Required Files:**
-- `../../../shared/tokens/elevate.css` — Design tokens
-- `../../../shared/components/elevate.css` — Component styles
-- `../../../shared/icons/icons.css` — Icon library
-- `../../../shared/assets/logos/g2-logo-rorange.svg` — G2 logo
+- `../../../shared/elevate-lite/tokens/elevate.css` — Design tokens
+- `../../../shared/elevate-lite/components/elevate.css` — Component styles
+- `../../../shared/elevate-lite/icons/icons.css` — Icon library
+- `../../../shared/elevate-lite/assets/logos/g2-logo-rorange.svg` — G2 logo
 - `../prototype-state.js` — State management (enhanced)
 - `./prospect-details.js` — Page controller (new)
 

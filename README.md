@@ -35,14 +35,14 @@ All explorations use the **UE Elevate design system** for 1:1 fidelity with prod
 **Starting a new exploration?**
 1. Copy [`/shared/exploration-starter.html`](./shared/exploration-starter.html)
 2. Browse the [Elevate Lookbook](https://www.g2.test/elevate/lookbook) for components
-3. Copy HTML from [`/shared/components/templates/`](./shared/components/templates/)
+3. Copy HTML from [`/shared/elevate-lite/components/templates/`](./shared/elevate-lite/components/templates/)
 
 **Resources:**
-- **Design System Specs**: [`/shared/design-system/DESIGN.md`](./shared/design-system/DESIGN.md) (authoritative specifications)
+- **Design System Specs**: [`/shared/elevate-lite/design-system/DESIGN.md`](./shared/elevate-lite/design-system/DESIGN.md) (authoritative specifications)
 - **Elevate Lookbook**: https://www.g2.test/elevate/lookbook (visual reference)
-- **HTML Templates**: [`/shared/components/templates/`](./shared/components/templates/) (copy-paste ready)
-- **Design Tokens**: [`/shared/tokens/elevate.css`](./shared/tokens/elevate.css)
-- **Icons**: [`/shared/icons/`](./shared/icons/)
+- **HTML Templates**: [`/shared/elevate-lite/components/templates/`](./shared/elevate-lite/components/templates/) (copy-paste ready)
+- **Design Tokens**: [`/shared/elevate-lite/tokens/elevate.css`](./shared/elevate-lite/tokens/elevate.css)
+- **Icons**: [`/shared/elevate-lite/icons/`](./shared/elevate-lite/icons/)
 
 DESIGN.md has exact specifications. Lookbook has visual examples. Templates provide HTML.
 

@@ -9,8 +9,8 @@ Static HTML templates for UE Elevate components. **For full documentation, see t
 Include Elevate CSS in your HTML:
 
 ```html
-<link rel="stylesheet" href="../../shared/tokens/elevate.css">
-<link rel="stylesheet" href="../../shared/components/elevate.css">
+<link rel="stylesheet" href="../../shared/elevate-lite/tokens/elevate.css">
+<link rel="stylesheet" href="../../shared/elevate-lite/components/elevate.css">
 ```
 
 Wrap content in a container with the `elv` attribute:
@@ -115,7 +115,7 @@ Templates are organized by complexity:
 
 ## Token Reference
 
-All design tokens are in `/shared/tokens/elevate.css`. Use CSS custom properties:
+All design tokens are in `/shared/elevate-lite/tokens/elevate.css`. Use CSS custom properties:
 
 - **Colors:** `var(--palette-purple-100)`, `var(--text-default)`, `var(--bg-primary)`
 - **Spacing:** `var(--space-4)`, `var(--space-8)`
@@ -128,7 +128,7 @@ All design tokens are in `/shared/tokens/elevate.css`. Use CSS custom properties
 ## Need More?
 
 - **Full component docs:** [Elevate Lookbook](https://www.g2.test/elevate/lookbook)
-- **HTML templates:** [`/shared/components/templates/`](./templates/)
-- **Icon library:** [`/shared/icons/README.md`](../icons/README.md)
-- **Design tokens:** [`/shared/tokens/elevate.css`](../tokens/elevate.css)
+- **HTML templates:** [`/shared/elevate-lite/components/templates/`](./templates/)
+- **Icon library:** [`/shared/elevate-lite/icons/README.md`](../icons/README.md)
+- **Design tokens:** [`/shared/elevate-lite/tokens/elevate.css`](../tokens/elevate.css)
 

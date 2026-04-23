@@ -95,13 +95,13 @@ Per DESIGN.md:
 
 ```html
 <!-- Navigation header -->
-<img src="/shared/assets/logos/g2-logo-rorange.svg" 
+<img src="/shared/elevate-lite/assets/logos/g2-logo-rorange.svg" 
      width="56" 
      height="56" 
      alt="G2">
 
 <!-- Dark background -->
-<img src="/shared/assets/logos/g2-logo-white.svg" 
+<img src="/shared/elevate-lite/assets/logos/g2-logo-white.svg" 
      width="56" 
      height="56" 
      alt="G2">
@@ -111,7 +111,7 @@ Per DESIGN.md:
 
 ```css
 .logo {
-  background-image: url('/shared/assets/logos/g2-logo-rorange.svg');
+  background-image: url('/shared/elevate-lite/assets/logos/g2-logo-rorange.svg');
   background-size: 56px 56px;
   background-repeat: no-repeat;
   width: 56px;
@@ -155,8 +155,8 @@ Logo is automatically included in `claude-design-assets/assets/logos/` when runn
 
 ## Related Documentation
 
-- **Design System**: `/shared/design-system/DESIGN.md` (logo usage requirements)
-- **Icons**: `/shared/icons/README.md` (UI icon library)
+- **Design System**: `/shared/elevate-lite/design-system/DESIGN.md` (logo usage requirements)
+- **Icons**: `/shared/elevate-lite/icons/README.md` (UI icon library)
 - **Roadmap**: `/shared/.internal/ELEVATE_ROADMAP.md` (Phase 2.3 — Logos & Brand Assets)
 
 ---

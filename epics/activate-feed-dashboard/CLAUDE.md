@@ -62,6 +62,6 @@ Iterate toward the optimal feed presentation that:
 
 ## Resources
 
-- [Elevate Design System](../../../shared/design-system/DESIGN.md)
-- [Elevate Component Templates](../../../shared/components/templates/)
+- [Elevate Design System](../../../shared/elevate-lite/design-system/DESIGN.md)
+- [Elevate Component Templates](../../../shared/elevate-lite/components/templates/)
 - [G2 Activate (Live)](https://www.g2.com/activate) — reference for current implementation

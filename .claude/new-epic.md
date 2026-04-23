@@ -45,9 +45,9 @@ Build the epic's gallery page using this template structure (adapt from `/epics/
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{Display Title} — Design Explorations</title>
-  <link rel="stylesheet" href="../../shared/tokens/elevate.css">
-  <link rel="stylesheet" href="../../shared/components/elevate.css">
-  <link rel="stylesheet" href="../../shared/icons/icons.css">
+  <link rel="stylesheet" href="../../shared/elevate-lite/tokens/elevate.css">
+  <link rel="stylesheet" href="../../shared/elevate-lite/components/elevate.css">
+  <link rel="stylesheet" href="../../shared/elevate-lite/icons/icons.css">
   <style>
     body { margin: 0; }
 

@@ -52,9 +52,9 @@ You:
 
 The starter template has relative paths for CSS/JS that assume it's in an epic's explorations folder:
 ```html
-<link rel="stylesheet" href="../../shared/tokens/elevate.css">
-<link rel="stylesheet" href="../../shared/components/elevate.css">
-<link rel="stylesheet" href="../../shared/icons/icons.css">
+<link rel="stylesheet" href="../../shared/elevate-lite/tokens/elevate.css">
+<link rel="stylesheet" href="../../shared/elevate-lite/components/elevate.css">
+<link rel="stylesheet" href="../../shared/elevate-lite/icons/icons.css">
 ```
 
 These paths are CORRECT for explorations in `epics/{epic}/explorations/` — do NOT modify them.

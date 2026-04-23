@@ -147,5 +147,5 @@ All variants share the same core content:
 ## Questions or Issues?
 
 - **Email template questions**: Check `ENGINEER_NOTES.md`
-- **Design system alignment**: Reference `/shared/design-system/DESIGN.md`
+- **Design system alignment**: Reference `/shared/elevate-lite/design-system/DESIGN.md`
 - **Visual comparisons**: Browse gallery at `index.html`

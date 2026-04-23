@@ -3,9 +3,9 @@
 ## Elevate CSS Sync Strategy
 
 **Context:**
-The `shared/components/elevate.css` file was originally a symlink to the UE production Elevate CSS:
+The `shared/elevate-lite/components/elevate.css` file was originally a symlink to the UE production Elevate CSS:
 ```
-shared/components/elevate.css → /Users/schilds/projects/ue/engines/elevate/public/elevate-assets/application.css
+shared/elevate-lite/components/elevate.css → /Users/schilds/projects/ue/engines/elevate/public/elevate-assets/application.css
 ```
 
 **Current State:**

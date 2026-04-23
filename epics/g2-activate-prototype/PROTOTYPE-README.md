@@ -120,9 +120,9 @@ window.addEventListener('g2ActivateStateChange', (event) => {
 <html>
 <head>
   <title>[Page Name] — G2 Activate</title>
-  <link rel="stylesheet" href="../../../shared/tokens/elevate.css">
-  <link rel="stylesheet" href="../../../shared/components/elevate.css">
-  <link rel="stylesheet" href="../../../shared/icons/icons.css">
+  <link rel="stylesheet" href="../../../shared/elevate-lite/tokens/elevate.css">
+  <link rel="stylesheet" href="../../../shared/elevate-lite/components/elevate.css">
+  <link rel="stylesheet" href="../../../shared/elevate-lite/icons/icons.css">
   <style>
     /* Base styles (provided) */
     /* PAGE-SPECIFIC STYLES (add yours here) */
