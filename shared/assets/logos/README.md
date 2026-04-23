@@ -6,22 +6,36 @@ Official G2 brand assets for use in prototypes and explorations.
 
 ## Current Assets
 
-### G2 Logo
-- ✅ **g2-logo-rorange.svg** (56×56px)
+### G2 Logo Variants
+- ✅ **g2-logo-rorange.svg**
   - Primary brand color (#ff492c rorange)
-  - Usage: Main navigation, headers, primary brand contexts
+  - Usage: Main navigation, headers, primary brand contexts on light backgrounds
   - Specification: DESIGN.md requires SVG at 56×56px
+
+- ✅ **g2-logo-black.svg** (NEW - April 22, 2026)
+  - Monochrome/black variant
+  - Usage: Print, grayscale contexts, monochrome interfaces
+
+- ✅ **g2-logo-white.svg** (NEW - April 22, 2026)
+  - White variant (#FFF fill)
+  - Usage: Dark backgrounds, inverted color schemes, footers
+
+- ✅ **g2-icon-dark-outline.svg** (NEW - April 22, 2026)
+  - Small icon-only variant (20×20px) with dark outline
+  - Usage: Compact layouts, favicons, small UI elements
 
 ---
 
-## Needed Assets (Roadmap)
+## Additional Assets (Optional Roadmap)
 
 ### Logo Variants
-- [ ] **g2-logo-white.svg** — Inverted/dark background usage
-- [ ] **g2-logo-black.svg** — Monochrome variant
+- [x] **g2-logo-white.svg** — Inverted/dark background usage ✅
+- [x] **g2-logo-black.svg** — Monochrome variant ✅
+- [x] **g2-icon-dark-outline.svg** — Small icon variant ✅
 - [ ] **g2-logo-full-color.svg** — Multi-color version (if exists)
 - [ ] **g2-wordmark-rorange.svg** — Wordmark only (no icon)
-- [ ] **g2-icon-rorange.svg** — Icon only (no wordmark)
+- [ ] **g2-wordmark-white.svg** — White wordmark
+- [ ] **g2-wordmark-black.svg** — Black wordmark
 
 ### Size Variants
 - [ ] **Large** (e.g., 112×112px) — Hero sections, landing pages

@@ -4,9 +4,14 @@ SVG icons copied from the UE Elevate design system for use in static HTML protot
 
 ## Icon Library
 
-**Total: 172 icons** (130 contextual + 42 functional UI)
+**Total: 293 icons** — Complete UE Elevate library + extended set
 
-### Functional UI Icons (NEW - April 21, 2026)
+### Complete Coverage
+
+✅ **All 178 UE Elevate UI icons** (April 22, 2026)  
+✅ **115 additional icons** (pictograms, functional, custom)
+
+### Functional UI Icons
 
 Essential icons for buttons, controls, and interactive elements:
 
@@ -31,17 +36,21 @@ Essential icons for buttons, controls, and interactive elements:
 - Settings: `settings`
 - Visibility: `visibility`, `visibility-off`
 
-### Contextual Icons (130)
+### Contextual & System Icons (250+)
 
-Complete library of informational and contextual icons:
-- Analytics & Data: `analytics`, `bar-chart`, `bubble-chart`, `data-usage`, etc.
-- Business: `business`, `company`, `handshake`, `briefcase`, etc.
-- Communication: `chat`, `bell`, `mail`, etc.
-- Content: `file`, `clipboard`, `bookmark`, `image`, etc.
-- E-commerce: `shopping-cart`, `credit-card`, `dollar-symbol`, etc.
-- User: `account-circle`, `group`, `person`, etc.
-- Technology: `ai`, `android`, `apple`, `cloud`, etc.
-- General: `calendar`, `clock`, `flag`, `heart`, `star`, etc.
+Complete library of informational, contextual, and system icons:
+- **Analytics & Data**: analytics, bar-chart, bubble-chart, candlestick-chart, query-stats, stacked-line-chart, trend-up, etc.
+- **Business**: business, company, handshake, briefcase, suitcase, pricing, sell, service, etc.
+- **Communication**: chat, bell, mail, message, message-reply, phone-call, phone-iphone, mic, etc.
+- **Content**: file, file-open, file-save, pdf, csv, clipboard, bookmark, image, media, play variants, etc.
+- **E-commerce**: shopping-cart (all variants), credit-card (all variants), payments, dollar-symbol, etc.
+- **People/Users**: account-circle, person, person-add, people, people-group, group, etc.
+- **Social**: social-facebook, social-google, social-linkedin, social-twitter-x
+- **System**: lock, settings, filter (all variants), loading, monitoring, gears, keyboard, etc.
+- **Feedback**: help-circle, exclamation-circle, warning, thumb-up, thumb-down, etc.
+- **Navigation**: home, link, pop-out, expand-content, collapse-content, etc.
+- **Technology**: ai, ai-search, android, apple, apps, cloud, monitor, etc.
+- **General**: calendar, clock, flag, heart (filled/outline), star (all variants), trash, save, share, copy, etc.
 
 For complete icon inventory, see: `/shared/icons/`
 
