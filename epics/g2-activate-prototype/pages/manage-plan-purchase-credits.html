@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Purchase Credits — G2 Activate</title>
+  <link rel="stylesheet" href="../../../shared/elevate-lite/tokens/elevate.css">
+  <link rel="stylesheet" href="../../../shared/elevate-lite/components/elevate.css">
+  <link rel="stylesheet" href="../../../shared/elevate-lite/icons/icons.css">
+  <style>
+    body { margin: 0; font-family: var(--font-sans); }
+
+    /* MyG2 Global Header */
+    .myg2-header {
+      background: white;
+      height: 60px;
+      border-bottom: 0.5px solid var(--border-medium);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+    }
+    .myg2-header-left {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .back-arrow {
+      width: 24px;
+      height: 24px;
+      cursor: pointer;
+      color: var(--text-default);
+      flex-shrink: 0;
+    }
+    .myg2-header-right {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+    .myg2-logo {
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .myg2-logo img {
+      width: 36px;
+      height: 36px;
+      display: block;
+    }
+    .help-icon, .user-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+    .help-icon {
+      border: 1px solid var(--border-light);
+      color: var(--text-subtle);
+    }
+    .user-avatar {
+      background: var(--bg-primary);
+      color: white;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    /* Breadcrumbs */
+    .breadcrumbs {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      margin-bottom: 6px;
+    }
+    .breadcrumb-link {
+      color: var(--text-nonessential);
+      text-decoration: none;
+      font-size: 12px;
+      line-height: 16px;
+      transition: color 150ms ease;
+    }
+    .breadcrumb-link:hover {
+      color: var(--text-default);
+    }
+    .breadcrumb-link.current {
+      color: var(--text-default);
+    }
+    .breadcrumb-separator {
+      width: 16px;
+      height: 16px;
+      color: var(--text-nonessential);
+    }
+
+    /* Page Header */
+    .page-header {
+      padding: 24px 0;
+    }
+    .page-title-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .page-title {
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--text-default);
+      line-height: 36px;
+      margin: 0;
+    }
+
+    /* Content Area */
+    .content-area {
+      background: var(--bg-neutral-5);
+      padding: 0 28px 28px;
+      min-height: calc(100vh - 60px);
+    }
+
+    /* Plan Status Bar */
+    .plan-status-bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+    .status-credits {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-default);
+      line-height: 24px;
+    }
+
+    /* Cards Layout */
+    .two-col-layout {
+      display: flex;
+      gap: 24px;
+      align-items: flex-start;
+    }
+    .col-main {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .col-sidebar {
+      width: 400px;
+      flex-shrink: 0;
+      position: sticky;
+      top: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .content-card {
+      background: white;
+      border: 0.5px solid var(--border-light);
+      border-radius: 12px;
+      box-shadow: 0px 0px 1px 0px rgba(32,31,35,0.32), 0px 4px 4px 0px rgba(32,31,35,0.04);
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Stat Card styles */
+    .stat-card-body {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .stat-header-block {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .stat-title {
+      font-size: 21px;
+      font-weight: 700;
+      color: var(--text-default);
+      margin: 0;
+      line-height: 28px;
+      width: 100%;
+    }
+
+    .stat-subtitle {
+      font-size: 14px;
+      line-height: 20px;
+      margin: 0;
+    }
+
+    .stat-subtitle strong {
+      font-weight: 600;
+      color: var(--text-default);
+    }
+    
+    .stat-subtitle span {
+      font-weight: 400;
+      color: var(--text-subtle);
+    }
+
+    .input-section {
+      display: flex;
+      gap: 24px;
+    }
+    
+    .input-col {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .spacer-col {
+      flex: 1;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .elv-input-label {
+      display: block;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-default);
+      margin-bottom: 4px;
+    }
+
+    .elv-text-input {
+      position: relative;
+      width: 100%;
+      max-width: 100%;
+    }
+
+    .elv-text-input__field {
+      width: 100%;
+      height: 40px;
+      padding: 0 8px;
+      box-sizing: border-box;
+      background: var(--bg-neutral-5);
+      border: 0.5px solid var(--border-medium);
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 24px;
+      color: var(--text-default);
+      transition: background 150ms cubic-bezier(0.4, 0, 0.2, 1), outline 150ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .elv-text-input__field:hover:not(:disabled):not(:read-only) {
+      background: var(--bg-neutral-10);
+    }
+
+    .elv-text-input__field:focus {
+      outline: 3px solid var(--palette-purple-40);
+      outline-offset: 1px;
+    }
+
+    .elv-text-input--lg .elv-text-input__field {
+      height: 48px;
+    }
+
+    .helper-text {
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--text-subtle);
+      margin-top: 4px;
+      line-height: 20px;
+    }
+
+    /* Payment Method Card */
+    .pm-header {
+      padding: 24px;
+      border-bottom: 0.5px solid var(--border-medium);
+      min-height: 76px;
+      box-sizing: border-box;
+      display: flex;
+      align-items: center;
+    }
+
+    .pm-header-title {
+      font-size: 21px;
+      font-weight: 700;
+      color: var(--text-default);
+      margin: 0;
+      line-height: 28px;
+    }
+
+    .pm-body {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .pm-sublabel {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-nonessential);
+      margin: 0;
+      line-height: 24px;
+    }
+
+    .card-info-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .visa-badge {
+      width: 35px;
+      height: 24px;
+      background: #1a1f71;
+      border-radius: 4px;
+      color: white;
+      font-size: 10px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .card-text {
+      font-size: 16px;
+      line-height: 24px;
+    }
+    
+    .card-text strong {
+      font-weight: 600;
+      color: var(--text-default);
+    }
+    
+    .card-text span {
+      font-weight: 400;
+      color: var(--text-default);
+    }
+
+    .manage-link-wrapper {
+      margin-top: 4px;
+    }
+
+    .text-link {
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--text-link);
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    /* Cost Summary Card */
+    .summary-header {
+      padding: 24px 24px 8px 24px;
+    }
+
+    .summary-title {
+      font-size: 21px;
+      font-weight: 700;
+      color: var(--text-default);
+      margin: 0;
+      line-height: 28px;
+    }
+
+    .summary-body {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    
+    .line-items-container {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .line-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .line-item-label, .line-item-value {
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--text-subtle);
+      margin: 0;
+      line-height: 24px;
+    }
+
+    .hr {
+      height: 0.5px;
+      background: var(--border-light);
+      width: 100%;
+    }
+
+    .total-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .total-label, .total-value {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text-default);
+      margin: 0;
+      line-height: 24px;
+    }
+
+    /* Buttons */
+    .btn {
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      border: none;
+      box-sizing: border-box;
+      font-family: inherit;
+    }
+
+    .btn--primary {
+      background: var(--bg-primary);
+      color: white;
+    }
+
+    .btn--primary:hover {
+      background: #45388f; /* P120 */
+    }
+
+    .btn--primary:focus {
+      box-shadow: 0px 0px 0px 0.5px white, 0px 0px 0px 3px rgb(195, 189, 229);
+      outline: none;
+    }
+
+    .btn--lg {
+      min-height: 48px;
+      padding: 12px 16px;
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 20px;
+      border-radius: 100px;
+      width: 100%;
+    }
+
+    .cancel-link-container {
+      text-align: left;
+      margin-top: 16px;
+    }
+
+    .cancel-link {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-subtle);
+      text-decoration: none;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<!-- MyG2 Global Header -->
+<header class="myg2-header">
+  <div class="myg2-header-left">
+    <svg class="back-arrow" width="24" height="24" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M6.875 10.75L11.0625 14.9375L10 16L4 10L10 4L11.0625 5.0625L6.875 9.25H16V10.75H6.875Z" fill="currentColor"/>
+    </svg>
+    <div class="myg2-logo">
+      <img src="../../../shared/elevate-lite/assets/logos/g2-logo-rorange.svg" alt="G2 Logo" />
+    </div>
+    <span style="font-size: 16px; font-weight: 600; margin-left: 4px;">MyG2</span>
+  </div>
+  <div class="myg2-header-right">
+    <div class="help-icon">?</div>
+    <div class="user-avatar">HC</div>
+  </div>
+</header>
+
+<!-- Page Content -->
+<div elv>
+
+  <!-- Content Area -->
+  <div class="content-area">
+
+    <!-- Page Header -->
+    <div class="page-header">
+      <!-- Breadcrumbs -->
+      <nav class="breadcrumbs">
+        <a href="#" class="breadcrumb-link">Home</a>
+        <svg class="breadcrumb-separator" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M7 15L12 10L7 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <a href="#" class="breadcrumb-link">Buyer Activity</a>
+        <svg class="breadcrumb-separator" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M7 15L12 10L7 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <a href="prospects-available.html" class="breadcrumb-link">G2 Activate</a>
+        <svg class="breadcrumb-separator" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M7 15L12 10L7 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <a href="manage-plan-inactive.html" class="breadcrumb-link">Manage Plan</a>
+        <svg class="breadcrumb-separator" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M7 15L12 10L7 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="breadcrumb-link current">Purchase Credits</span>
+      </nav>
+
+      <!-- Page Title -->
+      <div class="page-title-row">
+        <h1 class="page-title">Purchase Credits</h1>
+      </div>
+    </div>
+
+    <!-- Plan Status Bar -->
+    <div class="plan-status-bar">
+      <div class="status-credits">
+        <span>My credits: <span data-credits>0</span></span>
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M10 2C11.111 2 12.1491 2.20841 13.1143 2.625C14.0795 3.04167 14.9271 3.61458 15.6562 4.34375C16.3854 5.07292 16.9583 5.92046 17.375 6.88574C17.7916 7.85094 18 8.88899 18 10C18 11.0972 17.7917 12.1323 17.375 13.1045C16.9583 14.0766 16.3853 14.9272 15.6562 15.6562C14.9271 16.3854 14.0795 16.9583 13.1143 17.375C12.1491 17.7916 11.111 18 10 18C8.90278 18 7.86773 17.7917 6.89551 17.375C5.9234 16.9583 5.07285 16.3853 4.34375 15.6562C3.61465 14.9272 3.04166 14.0766 2.625 13.1045C2.20833 12.1323 2 11.0972 2 10C2 8.88899 2.20841 7.85094 2.625 6.88574C3.04167 5.92046 3.61458 5.07292 4.34375 4.34375C5.07285 3.61465 5.9234 3.04166 6.89551 2.625C7.86773 2.20833 8.90278 2 10 2ZM8.79199 8.5H5L8.08301 10.708L6.91699 14.5L10 12.1455L13.083 14.5L11.917 10.708L15 8.5H11.208L10 4.5L8.79199 8.5Z" fill="#5746B2"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- 2-Column Layout -->
+    <div class="two-col-layout">
+      
+      <!-- LEFT COLUMN -->
+      <div class="col-main">
+        
+        <!-- Stat Card (Credit Info + Input) -->
+        <div class="content-card">
+          <div class="stat-card-body">
+            <div class="stat-header-block">
+              <h2 class="stat-title">Supplement your monthly allotment anytime</h2>
+              <p class="stat-subtitle">
+                <strong>You have <span id="current-credits-text">0</span> credits.</strong>
+                <span>Your next 5,000 credits will be added on <span id="renew-date-text">March 26, 2026</span>.</span>
+              </p>
+            </div>
+            
+            <div class="input-section">
+              <div class="input-col">
+                <label class="elv-input-label" for="credit-amount">How many credits?</label>
+                <div class="elv-text-input elv-text-input--lg">
+                  <input
+                    type="text"
+                    id="credit-amount"
+                    class="elv-text-input__field"
+                    value="10,000"
+                    aria-label="Credit amount"
+                  />
+                </div>
+                <div class="helper-text">Minimum 100, maximum 50,000 credits</div>
+              </div>
+              <div class="spacer-col"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Payment Method Form Card -->
+        <div class="content-card">
+          <div class="pm-header">
+            <h2 class="pm-header-title">Payment Method</h2>
+          </div>
+          <div class="pm-body">
+            <p class="pm-sublabel">Current Payment Method</p>
+            <div class="card-info-row">
+              <div class="visa-badge">VISA</div>
+              <div class="card-text"><strong>Visa</strong><span> ending in 1234</span></div>
+            </div>
+            <div class="manage-link-wrapper">
+              <a href="#" class="text-link">Manage payment methods</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- RIGHT COLUMN (Sidebar) -->
+      <div class="col-sidebar">
+        
+        <!-- Cost Summary Card -->
+        <div class="content-card">
+          <div class="summary-header">
+            <h2 class="summary-title">Cost Summary</h2>
+          </div>
+          <div class="summary-body">
+            <div class="line-items-container">
+              <div class="line-item">
+                <p class="line-item-label">Price per credit</p>
+                <p class="line-item-value">$0.10</p>
+              </div>
+              <div class="line-item">
+                <p class="line-item-label">Credits to purchase</p>
+                <p class="line-item-value" id="summary-credits">10,000</p>
+              </div>
+            </div>
+            
+            <div class="hr"></div>
+            
+            <div class="total-row">
+              <p class="total-label">Total</p>
+              <p class="total-value" id="summary-total">$1,000.00</p>
+            </div>
+            
+            <button id="purchase-btn" class="btn btn--primary btn--lg">Purchase credits</button>
+          </div>
+        </div>
+
+        <div class="cancel-link-container">
+          <a href="manage-plan-inactive.html" class="cancel-link">Cancel</a>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<script src="../prototype-state.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // 1. Init state & display credits
+    if (typeof G2ActivateState !== 'undefined') {
+      G2ActivateState.updateCreditDisplay();
+      
+      const state = G2ActivateState.get();
+      
+      // Update text with current credits
+      const currentCreditsText = document.getElementById('current-credits-text');
+      if (currentCreditsText) {
+        currentCreditsText.textContent = state.credits.toLocaleString();
+      }
+      
+      // Format renewDate from "2026-05-15" to "Month Day, Year"
+      const renewDateText = document.getElementById('renew-date-text');
+      if (renewDateText && state.plan && state.plan.renewDate) {
+        const dateParts = state.plan.renewDate.split('-');
+        if (dateParts.length === 3) {
+          const dateObj = new Date(parseInt(dateParts[0]), parseInt(dateParts[1]) - 1, parseInt(dateParts[2]));
+          const formattedDate = dateObj.toLocaleDateString('en-US', {
+            month: 'long',
+            day: 'numeric',
+            year: 'numeric'
+          });
+          renewDateText.textContent = formattedDate;
+        }
+      }
+    }
+    
+    // 2. Handle input changes and cost calculations
+    const creditInput = document.getElementById('credit-amount');
+    const summaryCredits = document.getElementById('summary-credits');
+    const summaryTotal = document.getElementById('summary-total');
+    
+    const updateCalculations = () => {
+      // Parse numeric value
+      let rawValue = creditInput.value.replace(/,/g, '').replace(/[^\d]/g, '');
+      let numValue = parseInt(rawValue, 10);
+      
+      if (isNaN(numValue)) numValue = 0;
+      
+      // Clamp between 100 and 50000 for calculations
+      let clampedValue = numValue;
+      if (clampedValue < 100 && rawValue !== '') clampedValue = 100;
+      if (rawValue === '') clampedValue = 0; // If empty, calculate as 0
+      if (clampedValue > 50000) clampedValue = 50000;
+      
+      // Calculate total (credits * 0.10)
+      const total = clampedValue * 0.10;
+      
+      // Update sidebar
+      summaryCredits.textContent = clampedValue.toLocaleString();
+      
+      // Format total as currency
+      summaryTotal.textContent = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD'
+      }).format(total);
+    };
+    
+    // Listen for input to update real-time
+    creditInput.addEventListener('input', updateCalculations);
+    
+    // Format input with commas on blur
+    creditInput.addEventListener('blur', () => {
+      let rawValue = creditInput.value.replace(/,/g, '').replace(/[^\d]/g, '');
+      let numValue = parseInt(rawValue, 10);
+      
+      if (isNaN(numValue)) numValue = 100;
+      
+      // Clamp for input field display
+      if (numValue < 100) numValue = 100;
+      if (numValue > 50000) numValue = 50000;
+      
+      creditInput.value = numValue.toLocaleString();
+      updateCalculations();
+    });
+    
+    // 3. Purchase button click
+    const purchaseBtn = document.getElementById('purchase-btn');
+    if (purchaseBtn) {
+      purchaseBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        
+        let rawValue = creditInput.value.replace(/,/g, '').replace(/[^\d]/g, '');
+        let numValue = parseInt(rawValue, 10);
+        
+        if (isNaN(numValue) || numValue < 100 || numValue > 50000) {
+          alert('Please enter a valid amount between 100 and 50,000.');
+          return;
+        }
+        
+        // Update state
+        if (typeof G2ActivateState !== 'undefined') {
+          G2ActivateState.addCredits(numValue);
+        }
+        
+        // Confirmation alert
+        alert(`Purchase complete! ${numValue.toLocaleString()} credits have been added to your account.`);
+        
+        // Redirect to prospects-available
+        window.location.href = 'prospects-available.html';
+      });
+    }
+  });
+</script>
+
+</body>
+</html>

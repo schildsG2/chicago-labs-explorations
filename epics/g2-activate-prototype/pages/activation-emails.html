@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LinkedIn Ads Activation — G2 Activate</title>
+  <title>Emails Activation — G2 Activate</title>
   <link rel="stylesheet" href="../../../shared/elevate-lite/tokens/elevate.css">
   <link rel="stylesheet" href="../../../shared/elevate-lite/components/elevate.css">
   <link rel="stylesheet" href="../../../shared/elevate-lite/icons/icons.css">
@@ -262,64 +262,293 @@
       min-height: calc(100vh - 60px - 140px);
     }
 
-    /* Section Header */
-    .section-header {
+    /* ==================== */
+    /* PAGE-SPECIFIC STYLES */
+    /* ==================== */
+
+    /* Two-Column Layout */
+    .emails-layout {
       display: flex;
-      justify-content: space-between;
+      gap: 24px;
       align-items: flex-start;
-      margin-bottom: 4px;
-    }
-    .section-title {
-      font-size: 28px;
-      font-weight: 800;
-      color: var(--text-default);
-      line-height: 36px;
-    }
-    .section-link {
-      color: var(--text-primary);
-      text-decoration: none;
-      font-size: 14px;
-      font-weight: 600;
-      display: flex;
-      align-items: center;
-      gap: 4px;
-    }
-    .section-description {
-      font-size: 14px;
-      color: var(--text-subtle);
-      line-height: 20px;
-      margin-bottom: 24px;
+      margin-top: 24px;
     }
 
-    /* Null State Card */
-    .null-state-card {
+    /* Left Column: Generation Settings */
+    .settings-column {
+      width: 400px;
+      flex-shrink: 0;
+    }
+    .settings-card {
       background: white;
       border: 0.5px solid var(--border-light);
       border-radius: 12px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 12px;
-      padding: 72px 24px;
-      text-align: center;
+      box-shadow: 0px 0px 1px 0px rgba(32,31,35,0.32), 0px 4px 4px 0px rgba(32,31,35,0.04);
+      overflow: hidden;
     }
-    .null-state-content {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-      max-width: 483px;
+    .settings-card-header {
+      padding: 24px 24px 12px;
     }
-    .null-state-title {
+    .settings-card-title {
       font-size: 21px;
       font-weight: 700;
       color: var(--text-default);
       line-height: 28px;
     }
-    .null-state-description {
+    .settings-card-body {
+      padding: 12px 24px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .dropdown-row {
+      display: flex;
+      gap: 12px;
+    }
+    .form-field {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .form-label {
       font-size: 14px;
+      font-weight: 600;
+      color: var(--text-default);
+      line-height: 20px;
+    }
+    .form-select {
+      background: var(--bg-neutral-5);
+      border: 0.5px solid var(--border-medium);
+      border-radius: 8px;
+      height: 32px;
+      padding: 0 8px;
+      font-family: inherit;
+      font-size: 14px;
+      color: var(--text-default);
+      line-height: 20px;
+      appearance: none;
+      background-image: url("../../../shared/elevate-lite/icons/ui-icon-chevron-down.svg");
+      background-repeat: no-repeat;
+      background-position: right 8px center;
+      background-size: 16px;
+      padding-right: 28px;
+      cursor: pointer;
+    }
+    .form-select:focus {
+      outline: none;
+      border-color: #5746b2;
+      border-width: 2px;
+    }
+    .textarea-wrapper {
+      position: relative;
+    }
+    .form-textarea {
+      background: var(--bg-neutral-5);
+      border: 0.5px solid var(--border-medium);
+      border-radius: 8px;
+      padding: 8px;
+      font-family: inherit;
+      font-size: 14px;
+      color: var(--text-default);
+      line-height: 20px;
+      width: 100%;
+      height: 128px;
+      resize: vertical;
+      box-sizing: border-box;
+    }
+    .form-textarea::placeholder {
+      color: var(--text-nonessential);
+    }
+    .form-textarea:focus {
+      outline: none;
+      border-color: #5746b2;
+      border-width: 2px;
+    }
+    .auto-generate-btn {
+      position: absolute;
+      top: 0;
+      right: 0;
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 600;
+      color: #5746b2;
+      line-height: 20px;
+      padding: 0;
+    }
+    .auto-generate-btn:hover {
+      color: #45388f;
+    }
+    .auto-generate-btn img {
+      width: 16px;
+      height: 16px;
+    }
+
+    /* Right Column: Generated Emails */
+    .emails-column {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+    }
+    .emails-card {
+      background: white;
+      border: 0.5px solid var(--border-light);
+      border-radius: 12px;
+      box-shadow: 0px 0px 1px 0px rgba(32,31,35,0.32), 0px 4px 4px 0px rgba(32,31,35,0.04);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .emails-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px 24px 12px;
+    }
+    .emails-card-title-row {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .emails-card-title {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--text-default);
+      line-height: 36px;
+    }
+    .emails-card-count {
+      font-size: 21px;
       font-weight: 400;
       color: var(--text-nonessential);
+      line-height: 28px;
+    }
+    .emails-card-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    /* Search Input */
+    .search-input-wrapper {
+      display: flex;
+      align-items: center;
+      background: var(--bg-neutral-5);
+      border: 0.5px solid var(--border-medium);
+      border-radius: 16px;
+      height: 32px;
+      padding-left: 12px;
+      padding-right: 8px;
+      width: 212px;
+    }
+    .search-input-wrapper img {
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+      opacity: 0.5;
+    }
+    .search-input {
+      border: none;
+      background: none;
+      font-family: inherit;
+      font-size: 14px;
+      color: var(--text-default);
       line-height: 20px;
+      padding: 0 2px;
+      flex: 1;
+      min-width: 0;
+      outline: none;
+    }
+    .search-input::placeholder {
+      color: var(--text-nonessential);
+    }
+
+    /* AI Generate Button */
+    .ai-generate-btn {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      height: 32px;
+      padding: 0 8px;
+      border: 1px solid #5746b2;
+      border-radius: 20px;
+      background: linear-gradient(-15deg, rgba(87,70,178,0.14) 14%, rgba(255,73,44,0.14) 88%), white;
+      cursor: pointer;
+      font-family: inherit;
+      white-space: nowrap;
+    }
+    .ai-generate-btn:hover {
+      box-shadow: 0 2px 8px rgba(32,31,35,0.12);
+    }
+    .ai-generate-btn .ai-sparkle {
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+    }
+    .ai-generate-btn span {
+      font-size: 14px;
+      font-weight: 600;
+      color: #5746b2;
+      line-height: 20px;
+      padding: 0 4px;
+    }
+
+    /* Empty State */
+    .emails-empty-state {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      padding: 60px 24px;
+      border-top: 0.5px solid var(--border-light);
+    }
+    .empty-state-pictogram {
+      width: 100px;
+      height: 100px;
+      border-radius: 50px;
+      background: #dedaf1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .empty-state-pictogram img {
+      width: 60px;
+      height: 60px;
+    }
+    .empty-state-text {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+    }
+    .empty-state-title {
+      font-size: 21px;
+      font-weight: 700;
+      color: var(--text-default);
+      line-height: 28px;
+    }
+    .empty-state-description {
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--text-subtle);
+      line-height: 20px;
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .emails-layout {
+        flex-direction: column;
+      }
+      .settings-column {
+        width: 100%;
+      }
     }
   </style>
 </head>
@@ -347,7 +576,6 @@
 
   <!-- Page Header -->
   <div class="page-header">
-    <!-- Breadcrumbs -->
     <nav class="breadcrumbs">
       <a href="#" class="breadcrumb-link">Home</a>
       <svg class="breadcrumb-separator" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -360,7 +588,6 @@
       <span class="breadcrumb-link current">G2 Activate</span>
     </nav>
 
-    <!-- Page Title -->
     <div class="page-title-row">
       <h1 class="page-title">G2 Activate</h1>
       <div class="tooltip-wrapper">
@@ -374,7 +601,6 @@
       </div>
     </div>
 
-    <!-- Status Row with Credits -->
     <div class="status-row">
       <div class="credits-display">
         <span>My credits: <span class="credits-value" data-credits>150</span></span>
@@ -383,10 +609,9 @@
         </svg>
       </div>
       <div class="status-divider"></div>
-      <a href="../pages/manage-plan-active.html" class="manage-plan-link">Manage Plan</a>
+      <a href="manage-plan-active.html" class="manage-plan-link">Manage Plan</a>
     </div>
 
-    <!-- Primary Tabs -->
     <nav class="primary-tabs">
       <a href="prospects-available.html" class="primary-tab">Prospects</a>
       <a href="activation-linkedin-ads.html" class="primary-tab active">Activation</a>
@@ -396,36 +621,88 @@
   <!-- Content Area -->
   <div class="content-area">
 
-    <!-- Secondary Tabs -->
     <nav class="secondary-tabs">
-      <a href="activation-emails.html" class="secondary-tab">Emails</a>
-      <a href="activation-linkedin-ads.html" class="secondary-tab active">LinkedIn Ads</a>
+      <a href="activation-emails.html" class="secondary-tab active">Emails</a>
+      <a href="activation-linkedin-ads.html" class="secondary-tab">LinkedIn Ads</a>
     </nav>
 
-    <!-- Section Header -->
-    <div style="margin-top: 24px;">
-      <div class="section-header">
-        <h2 class="section-title">LinkedIn Ads Activation</h2>
-        <a href="#" class="section-link">
-          Open in Campaign Manager
-          <svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M5 10H15M15 10L10 5M15 10L10 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </a>
-      </div>
-      <p class="section-description">Leverage unlocked prospects to build and grow your LinkedIn matched audience.</p>
-    </div>
+    <div class="emails-layout">
 
-    <!-- Null State: Connect LinkedIn Ads -->
-    <div class="null-state-card">
-      <div class="null-state-content">
-        <h3 class="null-state-title">Connect LinkedIn Ads</h3>
-        <p class="null-state-description">Connect your LinkedIn Ads account to start syncing audiences automatically.</p>
+      <!-- Left Column: Generation Settings -->
+      <div class="settings-column">
+        <div class="settings-card">
+          <div class="settings-card-header">
+            <h3 class="settings-card-title">Generation Settings</h3>
+          </div>
+          <div class="settings-card-body">
+            <div class="dropdown-row">
+              <div class="form-field">
+                <label class="form-label" for="tone-select">Tone</label>
+                <select class="form-select" id="tone-select">
+                  <option value="friendly" selected>Friendly</option>
+                  <option value="professional">Professional</option>
+                  <option value="casual">Casual</option>
+                  <option value="formal">Formal</option>
+                </select>
+              </div>
+              <div class="form-field">
+                <label class="form-label" for="length-select">Email body length</label>
+                <select class="form-select" id="length-select">
+                  <option value="120" selected>≤120 words</option>
+                  <option value="80">≤80 words</option>
+                  <option value="200">≤200 words</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-field">
+              <div class="textarea-wrapper">
+                <label class="form-label" for="reference-material">Reference Material</label>
+                <button class="auto-generate-btn" type="button">
+                  <img src="../../../shared/elevate-lite/icons/ui-icon-ai.svg" alt="" />
+                  Auto-generate
+                </button>
+              </div>
+              <textarea class="form-textarea" id="reference-material" placeholder="Describe clear goals, topics, and instructions in full sentences."></textarea>
+            </div>
+          </div>
+        </div>
       </div>
-      <button class="btn btn--primary btn--md" onclick="alert('LinkedIn Ads connection flow would open here.')">
-        <img src="../../../shared/elevate-lite/icons/ui-icon-link.svg" alt="" style="width: 20px; height: 20px; filter: brightness(0) invert(1);" />
-        <span>Connect LinkedIn Ads</span>
-      </button>
+
+      <!-- Right Column: Generated Emails -->
+      <div class="emails-column">
+        <div class="emails-card">
+          <div class="emails-card-header">
+            <div class="emails-card-title-row">
+              <h2 class="emails-card-title">All Generated Emails</h2>
+              <span class="emails-card-count">(4)</span>
+            </div>
+            <div class="emails-card-actions">
+              <div class="search-input-wrapper">
+                <img src="../../../shared/elevate-lite/icons/ui-icon-search.svg" alt="" />
+                <input type="text" class="search-input" placeholder="Search" />
+              </div>
+              <a href="activation-generate-emails.html" class="ai-generate-btn">
+                <img class="ai-sparkle" src="../../../shared/elevate-lite/icons/ui-icon-ai.svg" alt="" />
+                <span>Generate Email(s)</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="emails-empty-state">
+            <div class="empty-state-pictogram">
+              <img src="../../../shared/elevate-lite/icons/ui-icon-email.svg" alt="" />
+            </div>
+            <div class="empty-state-text">
+              <p class="empty-state-title">Your Gmail is not connected.</p>
+              <p class="empty-state-description">Once connected, you'll be able to send generated emails instantly from here.</p>
+            </div>
+            <button class="btn btn--primary btn--md">
+              <span>Get started</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
     </div>
 
   </div>

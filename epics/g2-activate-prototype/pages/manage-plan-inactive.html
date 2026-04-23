@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manage Plan — G2 Activate</title>
+  <link rel="stylesheet" href="../../../shared/elevate-lite/tokens/elevate.css">
+  <link rel="stylesheet" href="../../../shared/elevate-lite/components/elevate.css">
+  <link rel="stylesheet" href="../../../shared/elevate-lite/icons/icons.css">
+  <style>
+    body { margin: 0; font-family: var(--font-sans); }
+
+    /* MyG2 Global Header */
+    .myg2-header {
+      background: white;
+      height: 60px;
+      border-bottom: 0.5px solid var(--border-medium);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+    }
+    .myg2-header-left {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .back-arrow {
+      width: 24px;
+      height: 24px;
+      cursor: pointer;
+      color: var(--text-default);
+      flex-shrink: 0;
+    }
+    .myg2-header-right {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+    .myg2-logo {
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .myg2-logo img {
+      width: 36px;
+      height: 36px;
+      display: block;
+    }
+    .help-icon, .user-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+    .help-icon {
+      border: 1px solid var(--border-light);
+      color: var(--text-subtle);
+    }
+    .user-avatar {
+      background: var(--bg-primary);
+      color: white;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    /* Breadcrumbs */
+    .breadcrumbs {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      margin-bottom: 6px;
+    }
+    .breadcrumb-link {
+      color: var(--text-nonessential);
+      text-decoration: none;
+      font-size: 12px;
+      line-height: 16px;
+      transition: color 150ms ease;
+    }
+    .breadcrumb-link:hover {
+      color: var(--text-default);
+    }
+    .breadcrumb-link.current {
+      color: var(--text-default);
+    }
+    .breadcrumb-separator {
+      width: 16px;
+      height: 16px;
+      color: var(--text-nonessential);
+    }
+
+    /* Page Header */
+    .page-header {
+      padding: 24px 0;
+    }
+    .page-title-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .page-title {
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--text-default);
+      line-height: 36px;
+      margin: 0;
+    }
+
+    /* Content Area */
+    .content-area {
+      background: var(--bg-neutral-5);
+      padding: 0 28px 28px;
+      min-height: calc(100vh - 60px);
+    }
+
+    /* Plan Status Bar */
+    .plan-status-bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+    .status-credits {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-default);
+      line-height: 24px;
+    }
+    .status-separator {
+      color: #dfdfe2;
+      font-size: 12px;
+    }
+    .status-renewal {
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--text-nonessential);
+    }
+    .status-manage-link {
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--text-link);
+      text-decoration: underline;
+      cursor: pointer;
+    }
+
+    /* Cards Layout */
+    .cards-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .content-card {
+      background: white;
+      border: 0.5px solid var(--border-light);
+      border-radius: 12px;
+      box-shadow: 0px 0px 1px 0px rgba(32,31,35,0.32), 0px 4px 4px 0px rgba(32,31,35,0.04);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card-header {
+      padding: 24px;
+      border-bottom: 0.5px solid var(--border-medium);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .card-header-title-group {
+      display: flex;
+      align-items: baseline;
+      gap: 4px;
+    }
+
+    .card-title {
+      font-size: 21px;
+      font-weight: 700;
+      color: var(--text-default);
+      margin: 0;
+      line-height: 28px;
+    }
+
+    .card-subtitle {
+      font-size: 21px;
+      font-weight: 400;
+      color: var(--text-nonessential);
+      margin: 0;
+      line-height: 28px;
+    }
+
+    .status-badge {
+      background: #f2f2f3;
+      border: 0.5px solid #dfdfe2;
+      border-radius: 8px;
+      padding: 4px 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .status-badge-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #eb2000;
+    }
+
+    .status-badge-label {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-subtle);
+      line-height: 20px;
+    }
+
+    .card-body {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .card-body--left {
+      gap: 16px;
+    }
+
+    .card-body--right {
+      gap: 24px;
+    }
+
+    .plan-name {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-nonessential);
+      margin: 0;
+      line-height: 24px;
+    }
+
+    .plan-price-row {
+      display: flex;
+      align-items: baseline;
+      gap: 4px;
+    }
+
+    .plan-price {
+      font-size: 38px;
+      font-weight: 700;
+      color: var(--text-default);
+      line-height: 48px;
+      margin: 0;
+    }
+
+    .plan-price-period {
+      font-size: 21px;
+      font-weight: 400;
+      color: var(--text-nonessential);
+      margin: 0;
+    }
+
+    .plan-description {
+      font-size: 21px;
+      font-weight: 400;
+      color: var(--text-nonessential);
+      margin: 0;
+      line-height: 28px;
+    }
+
+    .plan-features {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .checklist-label {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-default);
+      margin: 0;
+      line-height: 24px;
+    }
+
+    .checklist {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .checklist-item {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .checklist-icon {
+      flex-shrink: 0;
+    }
+
+    .checklist-text {
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--text-subtle);
+      line-height: 20px;
+    }
+
+    .btn {
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      border: none;
+      box-sizing: border-box;
+    }
+
+    .btn--primary {
+      background: var(--bg-primary);
+      color: white;
+    }
+
+    .btn--primary:hover {
+      background: #45388f; /* P120 */
+    }
+
+    .btn--primary:focus {
+      box-shadow: 0px 0px 0px 0.5px white, 0px 0px 0px 3px rgb(195, 189, 229);
+      outline: none;
+    }
+
+    .btn--md {
+      padding: 8px 12px;
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 20px;
+      border-radius: 100px;
+      min-height: 40px;
+    }
+    
+    .card-action {
+      margin-top: 0;
+    }
+  </style>
+</head>
+<body>
+
+<!-- MyG2 Global Header -->
+<header class="myg2-header">
+  <div class="myg2-header-left">
+    <svg class="back-arrow" width="24" height="24" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M6.875 10.75L11.0625 14.9375L10 16L4 10L10 4L11.0625 5.0625L6.875 9.25H16V10.75H6.875Z" fill="currentColor"/>
+    </svg>
+    <div class="myg2-logo">
+      <img src="../../../shared/elevate-lite/assets/logos/g2-logo-rorange.svg" alt="G2 Logo" />
+    </div>
+    <span style="font-size: 16px; font-weight: 600; margin-left: 4px;">MyG2</span>
+  </div>
+  <div class="myg2-header-right">
+    <div class="help-icon">?</div>
+    <div class="user-avatar">HC</div>
+  </div>
+</header>
+
+<!-- Page Content -->
+<div elv>
+
+  <!-- Content Area -->
+  <div class="content-area">
+
+    <!-- Page Header -->
+    <div class="page-header">
+      <!-- Breadcrumbs -->
+      <nav class="breadcrumbs">
+        <a href="#" class="breadcrumb-link">Home</a>
+        <svg class="breadcrumb-separator" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M7 15L12 10L7 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <a href="#" class="breadcrumb-link">Buyer Activity</a>
+        <svg class="breadcrumb-separator" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M7 15L12 10L7 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <a href="prospects-available.html" class="breadcrumb-link">G2 Activate</a>
+        <svg class="breadcrumb-separator" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M7 15L12 10L7 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="breadcrumb-link current">Manage Plan</span>
+      </nav>
+
+      <!-- Page Title -->
+      <div class="page-title-row">
+        <h1 class="page-title">Manage Plan</h1>
+      </div>
+    </div>
+
+    <!-- Plan Status Bar -->
+    <div class="plan-status-bar">
+      <div class="status-credits">
+        <span>My credits: <span data-credits>0</span></span>
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M10 2C11.111 2 12.1491 2.20841 13.1143 2.625C14.0795 3.04167 14.9271 3.61458 15.6562 4.34375C16.3854 5.07292 16.9583 5.92046 17.375 6.88574C17.7916 7.85094 18 8.88899 18 10C18 11.0972 17.7917 12.1323 17.375 13.1045C16.9583 14.0766 16.3853 14.9272 15.6562 15.6562C14.9271 16.3854 14.0795 16.9583 13.1143 17.375C12.1491 17.7916 11.111 18 10 18C8.90278 18 7.86773 17.7917 6.89551 17.375C5.9234 16.9583 5.07285 16.3853 4.34375 15.6562C3.61465 14.9272 3.04166 14.0766 2.625 13.1045C2.20833 12.1323 2 11.0972 2 10C2 8.88899 2.20841 7.85094 2.625 6.88574C3.04167 5.92046 3.61458 5.07292 4.34375 4.34375C5.07285 3.61465 5.9234 3.04166 6.89551 2.625C7.86773 2.20833 8.90278 2 10 2ZM8.79199 8.5H5L8.08301 10.708L6.91699 14.5L10 12.1455L13.083 14.5L11.917 10.708L15 8.5H11.208L10 4.5L8.79199 8.5Z" fill="#5746B2"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Cards Layout -->
+    <div class="cards-layout">
+      
+      <!-- Left Card: Subscription -->
+      <div class="content-card">
+        <div class="card-header">
+          <div class="card-header-title-group">
+            <h2 class="card-title">Subscription</h2>
+            <span class="card-subtitle">(best value)</span>
+          </div>
+          <div class="status-badge">
+            <div class="status-badge-dot"></div>
+            <span class="status-badge-label">Inactive</span>
+          </div>
+        </div>
+        <div class="card-body card-body--left">
+          <h3 class="plan-name">G2 Activate Pro</h3>
+          <div class="plan-price-row">
+            <span class="plan-price">$499</span>
+            <span class="plan-price-period">/month</span>
+          </div>
+          <div class="plan-features">
+            <h4 class="checklist-label">What you'll get:</h4>
+            <ul class="checklist">
+              <li class="checklist-item">
+                <svg class="checklist-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="10" cy="10" r="8" fill="#1fa896"/>
+                  <path d="M7 10.5L9 12.5L13 8" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span class="checklist-text">5,000 credits per month</span>
+              </li>
+              <li class="checklist-item">
+                <svg class="checklist-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="10" cy="10" r="8" fill="#1fa896"/>
+                  <path d="M7 10.5L9 12.5L13 8" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span class="checklist-text">Access to Intent Data from G2</span>
+              </li>
+              <li class="checklist-item">
+                <svg class="checklist-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="10" cy="10" r="8" fill="#1fa896"/>
+                  <path d="M7 10.5L9 12.5L13 8" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span class="checklist-text">Identify in-market buyers</span>
+              </li>
+              <li class="checklist-item">
+                <svg class="checklist-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="10" cy="10" r="8" fill="#1fa896"/>
+                  <path d="M7 10.5L9 12.5L13 8" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span class="checklist-text">Cancel anytime</span>
+              </li>
+            </ul>
+          </div>
+          <div class="card-action">
+            <button id="subscribe-btn" class="btn btn--primary btn--md">Subscribe now</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Card: Pay as you go -->
+      <div class="content-card">
+        <div class="card-header">
+          <div class="card-header-title-group">
+            <h2 class="card-title">Pay as you go</h2>
+          </div>
+        </div>
+        <div class="card-body card-body--right">
+          <p class="plan-description">Buy credits whenever you want</p>
+          <div class="plan-features">
+            <h4 class="checklist-label">What you'll get:</h4>
+            <ul class="checklist">
+              <li class="checklist-item">
+                <svg class="checklist-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="10" cy="10" r="8" fill="#1fa896"/>
+                  <path d="M7 10.5L9 12.5L13 8" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span class="checklist-text">Your choice from our bulk credit options</span>
+              </li>
+              <li class="checklist-item">
+                <svg class="checklist-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="10" cy="10" r="8" fill="#1fa896"/>
+                  <path d="M7 10.5L9 12.5L13 8" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span class="checklist-text">No monthly commitment</span>
+              </li>
+            </ul>
+          </div>
+          <div class="card-action">
+            <button id="buy-credits-btn" class="btn btn--primary btn--md">Buy credits</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<script src="../prototype-state.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // 1. Get state
+    const state = G2ActivateState.get();
+    
+    // 2. Format and display renewal date
+    if (state.plan && state.plan.renewDate) {
+      const dateObj = new Date(state.plan.renewDate);
+      const formattedDate = dateObj.toLocaleDateString('en-US', { 
+        month: 'short', 
+        day: 'numeric', 
+        timeZone: 'UTC' 
+      });
+      const renewalDisplay = document.getElementById('renewal-date-display');
+      if (renewalDisplay) {
+        renewalDisplay.textContent = formattedDate;
+      }
+    }
+    
+    // 3. Subscribe now button — navigate to subscription checkout
+    const subscribeBtn = document.getElementById('subscribe-btn');
+    if (subscribeBtn) {
+      subscribeBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        window.location.href = 'manage-plan-subscribe.html';
+      });
+    }
+    
+    // 4. Buy credits button
+    const buyCreditsBtn = document.getElementById('buy-credits-btn');
+    if (buyCreditsBtn) {
+      buyCreditsBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        // Link to the purchase credits page
+        window.location.href = 'manage-plan-purchase-credits.html';
+      });
+    }
+  });
+</script>
+
+</body>
+</html>
