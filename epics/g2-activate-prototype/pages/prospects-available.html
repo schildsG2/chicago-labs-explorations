@@ -644,6 +644,11 @@
       background: var(--bg-primary);
       color: white;
     }
+    a.btn--primary,
+    a.btn--primary:link,
+    a.btn--primary:visited {
+      color: white;
+    }
     .btn--primary:hover:not(:disabled) {
       background: #6b59c3;
     }
@@ -670,10 +675,10 @@
       border-top: 0.5px solid var(--border-medium);
     }
     .prospects-table th {
-      background: white;
+      background: var(--bg-neutral-5);
       padding: 14px 24px;
       text-align: left;
-      font-size: 16px;
+      font-size: 14px;
       font-weight: 600;
       color: var(--text-default);
       line-height: 20px;
@@ -691,9 +696,9 @@
     }
     .prospects-table td {
       padding: 14px 24px;
-      font-size: 16px;
+      font-size: 14px;
       color: var(--text-default);
-      line-height: 24px;
+      line-height: 20px;
       border-bottom: 0.5px solid var(--border-light);
     }
     .prospects-table td:first-child {
@@ -842,7 +847,7 @@
     <!-- Primary Tabs -->
     <nav class="primary-tabs">
       <a href="prospects-available.html" class="primary-tab active">Prospects</a>
-      <a href="activation-linkedin-ads.html" class="primary-tab">Activation</a>
+      <a href="activation-emails.html" class="primary-tab">Activation</a>
     </nav>
   </div>
 
