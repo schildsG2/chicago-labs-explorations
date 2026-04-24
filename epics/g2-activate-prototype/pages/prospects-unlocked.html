@@ -775,7 +775,7 @@
         '<td><span class="intent-badge ' + getIntentBadgeClass(company.activityLevel) + '">' + company.activityLevel + '</span></td>' +
         '<td>' + company.employees + '</td>' +
         '<td>' + company.location + '</td>' +
-        '<td>' + company.contacts + '</td>' +
+        '<td style="text-align: right;">' + company.contacts + '</td>' +
         '<td class="details-cell"><a href="prospect-details.html?id=' + company.id + '" class="btn btn--text btn--sm" style="color: #5746b2;">Details <svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M13.125 10.75H4V9.25H13.125L8.9375 5.0625L10 4L16 10L10 16L8.9375 14.9375L13.125 10.75Z"/></svg></a></td>' +
       '</tr>';
     }).join('');
@@ -787,7 +787,7 @@
         '<th>Intent Level</th>' +
         '<th>Company Size</th>' +
         '<th>Headquarters Location</th>' +
-        '<th>Contacts</th>' +
+        '<th style="text-align: right;">Contacts</th>' +
         '<th class="details-cell"></th>' +
       '</tr></thead>' +
       '<tbody>' + rows + '</tbody>' +
