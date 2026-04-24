@@ -10,7 +10,6 @@
   <style>
     body { margin: 0; font-family: var(--font-sans); }
 
-    /* MyG2 Global Header */
     .myg2-header {
       background: white;
       height: 60px;
@@ -69,7 +68,6 @@
       font-weight: 600;
     }
 
-    /* Breadcrumbs */
     .breadcrumbs {
       display: flex;
       align-items: center;
@@ -92,13 +90,12 @@
       color: var(--text-default);
     }
     .breadcrumb-separator {
-          width: 20px;
-          height: 20px;
-          flex-shrink: 0;
-          color: var(--text-nonessential);
-        }
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+      color: var(--text-nonessential);
+    }
 
-    /* Page Header */
     .page-header {
       padding: 24px 0;
     }
@@ -115,14 +112,12 @@
       margin: 0;
     }
 
-    /* Content Area */
     .content-area {
       background: var(--bg-neutral-5);
       padding: 0 24px 24px;
       min-height: calc(100vh - 60px);
     }
 
-    /* Plan Status Bar */
     .plan-status-bar {
       display: flex;
       align-items: center;
@@ -150,7 +145,6 @@
       white-space: nowrap;
     }
 
-    /* Cards Layout */
     .two-col-layout {
       display: flex;
       gap: 24px;
@@ -182,7 +176,6 @@
       flex-direction: column;
     }
 
-    /* Stat Card styles */
     .stat-card-body {
       padding: 24px;
       display: flex;
@@ -202,7 +195,6 @@
       color: var(--text-default);
       margin: 0;
       line-height: 28px;
-      width: 100%;
     }
 
     .stat-subtitle {
@@ -215,27 +207,10 @@
       font-weight: 600;
       color: var(--text-default);
     }
-    
+
     .stat-subtitle span {
       font-weight: 400;
       color: var(--text-subtle);
-    }
-
-    .input-section {
-      display: flex;
-      gap: 24px;
-    }
-    
-    .input-col {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-    }
-    
-    .spacer-col {
-      flex: 1;
-      opacity: 0;
-      pointer-events: none;
     }
 
     .elv-input-label {
@@ -243,9 +218,90 @@
       font-size: 16px;
       font-weight: 600;
       color: var(--text-default);
-      margin-bottom: 4px;
+      margin-bottom: 12px;
     }
 
+    /* Credit tier card grid */
+    .tier-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .tier-card {
+      position: relative;
+      background: white;
+      border: 1.5px solid var(--border-light);
+      border-radius: 12px;
+      padding: 20px;
+      cursor: pointer;
+      transition: border-color 150ms ease, box-shadow 150ms ease, background 150ms ease;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .tier-card:hover {
+      border-color: var(--border-medium);
+      background: var(--bg-neutral-5);
+    }
+
+    .tier-card.selected {
+      border-color: var(--bg-primary);
+      box-shadow: 0 0 0 1px var(--bg-primary);
+      background: #f2f0f9;
+    }
+
+    .tier-card.selected:hover {
+      background: #ebe9f6;
+    }
+
+    .tier-card input[type="radio"] {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .tier-card:focus-within {
+      outline: 3px solid var(--palette-purple-40);
+      outline-offset: 1px;
+    }
+
+    .tier-credits {
+      font-size: 21px;
+      font-weight: 700;
+      color: var(--text-default);
+      line-height: 28px;
+      margin: 0;
+    }
+
+    .tier-price {
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--text-subtle);
+      line-height: 20px;
+      margin: 0;
+    }
+
+    .tier-badge {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: #ebe9f6;
+      color: var(--bg-primary);
+      font-size: 12px;
+      font-weight: 600;
+      line-height: 16px;
+      padding: 2px 8px;
+      border-radius: 8px;
+    }
+
+    .tier-card.selected .tier-badge {
+      background: var(--bg-primary);
+      color: white;
+    }
+
+    /* Text input (for payment form) */
     .elv-text-input {
       position: relative;
       width: 100%;
@@ -264,7 +320,7 @@
       font-weight: 400;
       line-height: 24px;
       color: var(--text-default);
-      transition: background 150ms cubic-bezier(0.4, 0, 0.2, 1), outline 150ms cubic-bezier(0.4, 0, 0.2, 1);
+      transition: background 150ms ease, outline 150ms ease;
     }
 
     .elv-text-input__field:hover:not(:disabled):not(:read-only) {
@@ -302,7 +358,7 @@
 
     .elv-choice {
       display: flex;
-      align-items: flex-start;
+      align-items: center;
       gap: 8px;
       position: relative;
       cursor: pointer;
@@ -321,12 +377,12 @@
       width: 20px;
       height: 20px;
       background: var(--bg-neutral-0);
-      border: 1px solid var(--border-medium);
+      border: 1.5px solid var(--border-medium);
       border-radius: 4px;
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
+      transition: all 150ms ease;
       position: relative;
     }
     .elv-choice__box::after {
@@ -354,7 +410,7 @@
       outline: 3px solid var(--palette-purple-40);
       outline-offset: 1px;
     }
-    .elv-choice--checkbox:hover .elv-choice__input:not(:checked):not(:disabled):not(:indeterminate) + .elv-choice__box {
+    .elv-choice--checkbox:hover .elv-choice__input:not(:checked):not(:disabled) + .elv-choice__box {
       background: var(--bg-primary-20);
     }
     .elv-choice__label {
@@ -373,15 +429,6 @@
       gap: 16px;
     }
 
-    .helper-text {
-      font-size: 14px;
-      font-weight: 400;
-      color: var(--text-subtle);
-      margin-top: 4px;
-      line-height: 20px;
-    }
-
-    /* Payment Method Card */
     .pm-header {
       padding: 24px;
       border-bottom: 0.5px solid var(--border-medium);
@@ -438,12 +485,12 @@
       font-size: 16px;
       line-height: 24px;
     }
-    
+
     .card-text strong {
       font-weight: 600;
       color: var(--text-default);
     }
-    
+
     .card-text span {
       font-weight: 400;
       color: var(--text-default);
@@ -461,7 +508,6 @@
       cursor: pointer;
     }
 
-    /* Cost Summary Card */
     .summary-header {
       padding: 24px 24px 8px 24px;
     }
@@ -480,7 +526,7 @@
       flex-direction: column;
       gap: 24px;
     }
-    
+
     .line-items-container {
       display: flex;
       flex-direction: column;
@@ -521,7 +567,6 @@
       line-height: 24px;
     }
 
-    /* Buttons */
     .btn {
       cursor: pointer;
       display: inline-flex;
@@ -539,7 +584,7 @@
     }
 
     .btn--primary:hover {
-      background: #45388f; /* P120 */
+      background: #45388f;
     }
 
     .btn--primary:focus {
@@ -568,7 +613,6 @@
 </head>
 <body>
 
-<!-- MyG2 Global Header -->
 <header class="myg2-header">
   <div class="myg2-header-left">
     <svg class="back-arrow" width="24" height="24" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -585,15 +629,10 @@
   </div>
 </header>
 
-<!-- Page Content -->
 <div elv>
-
-  <!-- Content Area -->
   <div class="content-area">
 
-    <!-- Page Header -->
     <div class="page-header">
-      <!-- Breadcrumbs -->
       <nav class="breadcrumbs">
         <a href="#" class="breadcrumb-link">Home</a>
         <svg class="breadcrumb-separator" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -613,14 +652,11 @@
         </svg>
         <span class="breadcrumb-link current">Purchase Credits</span>
       </nav>
-
-      <!-- Page Title -->
       <div class="page-title-row">
         <h1 class="page-title">Purchase Credits</h1>
       </div>
     </div>
 
-    <!-- Plan Status Bar -->
     <div class="plan-status-bar">
       <div class="status-credits">
         <span>My credits: <span data-credits>0</span></span>
@@ -632,34 +668,32 @@
       <span id="renewal-text" class="renewal-text" style="display: none;"></span>
     </div>
 
-    <!-- 2-Column Layout -->
     <div class="two-col-layout">
-      
-      <!-- LEFT COLUMN -->
+
       <div class="col-main">
-        
-        <!-- Stat Card (Credit Info + Input) -->
+
         <div class="content-card">
           <div class="stat-card-body">
-            <div class="stat-header-block">
-              <h2 class="stat-title">Supplement your monthly allotment anytime</h2>
-            </div>
-            
-            <div class="input-section">
-              <div class="input-col">
-                <label class="elv-input-label" for="credit-amount">How many credits?</label>
-                <div class="elv-text-input elv-text-input--lg">
-                  <input
-                    type="text"
-                    id="credit-amount"
-                    class="elv-text-input__field"
-                    value="10,000"
-                    aria-label="Credit amount"
-                  />
-                </div>
-                <div class="helper-text">Minimum 100, maximum 50,000 credits</div>
+            <div>
+              <h2 class="stat-title" style="margin-bottom: 12px;">How many credits?</h2>
+              <div class="tier-grid">
+                <label class="tier-card" data-value="1000">
+                  <input type="radio" name="credit-amount" value="1000" />
+                  <p class="tier-credits">1,000</p>
+                  <p class="tier-price">$100.00</p>
+                </label>
+                <label class="tier-card selected" data-value="2000">
+                  <input type="radio" name="credit-amount" value="2000" checked />
+                  <span class="tier-badge">Popular</span>
+                  <p class="tier-credits">2,000</p>
+                  <p class="tier-price">$200.00</p>
+                </label>
+                <label class="tier-card" data-value="4000">
+                  <input type="radio" name="credit-amount" value="4000" />
+                  <p class="tier-credits">4,000</p>
+                  <p class="tier-price">$400.00</p>
+                </label>
               </div>
-              <div class="spacer-col"></div>
             </div>
           </div>
         </div>
@@ -728,10 +762,8 @@
 
       </div>
 
-      <!-- RIGHT COLUMN (Sidebar) -->
       <div class="col-sidebar">
-        
-        <!-- Cost Summary Card -->
+
         <div class="content-card">
           <div class="summary-header">
             <h2 class="summary-title">Cost Summary</h2>
@@ -744,23 +776,23 @@
               </div>
               <div class="line-item">
                 <p class="line-item-label">Credits to purchase</p>
-                <p class="line-item-value" id="summary-credits">10,000</p>
+                <p class="line-item-value" id="summary-credits">2,000</p>
               </div>
             </div>
-            
+
             <div class="hr"></div>
-            
+
             <div class="total-row">
               <p class="total-label">Total</p>
-              <p class="total-value" id="summary-total">$1,000.00</p>
+              <p class="total-value" id="summary-total">$200.00</p>
             </div>
-            
+
             <button id="purchase-btn" class="btn btn--primary btn--lg btn--full-width">Purchase credits</button>
           </div>
         </div>
 
-            <div class="cancel-link-container">
-              <button class="btn btn--text-neutral btn--md" onclick="window.location.href='manage-plan-inactive.html'">Cancel</button>
+        <div class="cancel-link-container">
+          <button class="btn btn--text-neutral btn--md" onclick="window.location.href='manage-plan-inactive.html'">Cancel</button>
         </div>
 
       </div>
@@ -768,7 +800,6 @@
     </div>
 
   </div>
-
 </div>
 
 <script src="../prototype-state.js"></script>
@@ -796,16 +827,14 @@
 
     if (typeof G2ActivateState !== 'undefined') {
       G2ActivateState.updateCreditDisplay();
-      
-      const state = G2ActivateState.get();
-      
-      // Update text with current credits
-      const currentCreditsText = document.getElementById('current-credits-text');
+
+      var state = G2ActivateState.get();
+
+      var currentCreditsText = document.getElementById('current-credits-text');
       if (currentCreditsText) {
         currentCreditsText.textContent = state.credits.toLocaleString();
       }
-      
-      // Format renewDate from "2026-05-15" to "Month Day, Year"
+
       if (state.plan && state.plan.status === 'active' && state.plan.renewDate) {
         var d = new Date(state.plan.renewDate + 'T00:00:00');
         var div = document.getElementById('renewal-divider');
@@ -817,79 +846,48 @@
         }
       }
     }
-    
-    // 2. Handle input changes and cost calculations
-    const creditInput = document.getElementById('credit-amount');
-    const summaryCredits = document.getElementById('summary-credits');
-    const summaryTotal = document.getElementById('summary-total');
-    
-    const updateCalculations = () => {
-      // Parse numeric value
-      let rawValue = creditInput.value.replace(/,/g, '').replace(/[^\d]/g, '');
-      let numValue = parseInt(rawValue, 10);
-      
-      if (isNaN(numValue)) numValue = 0;
-      
-      // Clamp between 100 and 50000 for calculations
-      let clampedValue = numValue;
-      if (clampedValue < 100 && rawValue !== '') clampedValue = 100;
-      if (rawValue === '') clampedValue = 0; // If empty, calculate as 0
-      if (clampedValue > 50000) clampedValue = 50000;
-      
-      // Calculate total (credits * 0.10)
-      const total = clampedValue * 0.10;
-      
-      // Update sidebar
-      summaryCredits.textContent = clampedValue.toLocaleString();
-      
-      // Format total as currency
-      summaryTotal.textContent = new Intl.NumberFormat('en-US', {
-        style: 'currency',
-        currency: 'USD'
-      }).format(total);
-    };
-    
-    // Listen for input to update real-time
-    creditInput.addEventListener('input', updateCalculations);
-    
-    // Format input with commas on blur
-    creditInput.addEventListener('blur', () => {
-      let rawValue = creditInput.value.replace(/,/g, '').replace(/[^\d]/g, '');
-      let numValue = parseInt(rawValue, 10);
-      
-      if (isNaN(numValue)) numValue = 100;
-      
-      // Clamp for input field display
-      if (numValue < 100) numValue = 100;
-      if (numValue > 50000) numValue = 50000;
-      
-      creditInput.value = numValue.toLocaleString();
-      updateCalculations();
+
+    var tierCards = document.querySelectorAll('.tier-card');
+    var summaryCredits = document.getElementById('summary-credits');
+    var summaryTotal = document.getElementById('summary-total');
+
+    function updateFromSelection() {
+      var selected = document.querySelector('input[name="credit-amount"]:checked');
+      if (!selected) return;
+      var numValue = parseInt(selected.value, 10);
+      var total = numValue * 0.10;
+      summaryCredits.textContent = numValue.toLocaleString();
+      summaryTotal.textContent = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(total);
+
+      tierCards.forEach(function(card) {
+        card.classList.toggle('selected', card.querySelector('input').checked);
+      });
+    }
+
+    tierCards.forEach(function(card) {
+      card.addEventListener('click', function() {
+        var radio = card.querySelector('input[type="radio"]');
+        radio.checked = true;
+        updateFromSelection();
+      });
     });
-    
-    // 3. Purchase button click
-    const purchaseBtn = document.getElementById('purchase-btn');
+
+    updateFromSelection();
+
+    var purchaseBtn = document.getElementById('purchase-btn');
     if (purchaseBtn) {
-      purchaseBtn.addEventListener('click', (e) => {
+      purchaseBtn.addEventListener('click', function(e) {
         e.preventDefault();
-        
-        let rawValue = creditInput.value.replace(/,/g, '').replace(/[^\d]/g, '');
-        let numValue = parseInt(rawValue, 10);
-        
-        if (isNaN(numValue) || numValue < 100 || numValue > 50000) {
-          alert('Please enter a valid amount between 100 and 50,000.');
+        var selected = document.querySelector('input[name="credit-amount"]:checked');
+        if (!selected) {
+          alert('Please select a credit amount.');
           return;
         }
-        
-        // Update state
+        var numValue = parseInt(selected.value, 10);
         if (typeof G2ActivateState !== 'undefined') {
           G2ActivateState.addCredits(numValue);
         }
-        
-        // Confirmation alert
-        alert(`Purchase complete! ${numValue.toLocaleString()} credits have been added to your account.`);
-        
-        // Redirect to prospects-available
+        alert('Purchase complete! ' + numValue.toLocaleString() + ' credits have been added to your account.');
         window.location.href = 'prospects-available.html';
       });
     }

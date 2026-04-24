@@ -215,27 +215,10 @@
       font-weight: 600;
       color: var(--text-default);
     }
-    
+
     .stat-subtitle span {
       font-weight: 400;
       color: var(--text-subtle);
-    }
-
-    .input-section {
-      display: flex;
-      gap: 24px;
-    }
-    
-    .input-col {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-    }
-    
-    .spacer-col {
-      flex: 1;
-      opacity: 0;
-      pointer-events: none;
     }
 
     .elv-input-label {
@@ -243,9 +226,112 @@
       font-size: 16px;
       font-weight: 600;
       color: var(--text-default);
-      margin-bottom: 4px;
+      margin-bottom: 8px;
     }
 
+    /* Radio button group */
+    .radio-group {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .elv-choice {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      position: relative;
+      cursor: pointer;
+      margin-bottom: 0;
+    }
+    .elv-choice__input {
+      position: absolute;
+      opacity: 0;
+      width: 20px;
+      height: 20px;
+      margin: 0;
+      cursor: pointer;
+    }
+    .elv-choice__box {
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+      background: var(--bg-neutral-0);
+      border: 1.5px solid var(--border-medium);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+    }
+    .elv-choice__box::after {
+      content: '';
+      display: none;
+    }
+
+    /* Radio: circle shape + filled dot */
+    .elv-choice--radio .elv-choice__box {
+      border-radius: 50%;
+    }
+    .elv-choice--radio .elv-choice__box::after {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: white;
+    }
+    .elv-choice__input:checked + .elv-choice__box {
+      background: var(--bg-primary);
+      border-color: var(--bg-primary);
+    }
+    .elv-choice__input:checked + .elv-choice__box::after {
+      display: block;
+    }
+    .elv-choice__input:focus + .elv-choice__box {
+      outline: 3px solid var(--palette-purple-40);
+      outline-offset: 1px;
+    }
+    .elv-choice--radio:hover .elv-choice__input:not(:checked) + .elv-choice__box {
+      border-color: var(--bg-primary);
+    }
+
+    /* Checkbox (for payment method form) */
+    .elv-choice--checkbox .elv-choice__box {
+      border-radius: 4px;
+    }
+    .elv-choice--checkbox .elv-choice__box::after {
+      width: 12px;
+      height: 12px;
+      background-image: url("data:image/svg+xml,%3Csvg width='12' height='12' viewBox='0 0 12 12' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 3L4.5 8.5L2 6' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: center;
+      border-radius: 0;
+    }
+    .elv-choice--checkbox .elv-choice__input:checked + .elv-choice__box {
+      background: var(--text-primary);
+      border-color: var(--text-primary);
+      border-width: 2px;
+    }
+    .elv-choice--checkbox:hover .elv-choice__input:not(:checked):not(:disabled) + .elv-choice__box {
+      background: var(--bg-primary-20);
+    }
+
+    .elv-choice__label {
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 20px;
+      color: var(--text-default);
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .elv-choice__description {
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 20px;
+      color: var(--text-subtle);
+    }
+
+    /* Text input (for payment form) */
     .elv-text-input {
       position: relative;
       width: 100%;
@@ -300,85 +386,11 @@
       pointer-events: none;
     }
 
-    .elv-choice {
-      display: flex;
-      align-items: flex-start;
-      gap: 8px;
-      position: relative;
-      cursor: pointer;
-      margin-bottom: 0;
-    }
-    .elv-choice__input {
-      position: absolute;
-      opacity: 0;
-      width: 20px;
-      height: 20px;
-      margin: 0;
-      cursor: pointer;
-    }
-    .elv-choice__box {
-      flex-shrink: 0;
-      width: 20px;
-      height: 20px;
-      background: var(--bg-neutral-0);
-      border: 1px solid var(--border-medium);
-      border-radius: 4px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
-      position: relative;
-    }
-    .elv-choice__box::after {
-      content: '';
-      display: none;
-    }
-    .elv-choice--checkbox .elv-choice__box::after {
-      width: 12px;
-      height: 12px;
-      background-image: url("data:image/svg+xml,%3Csvg width='12' height='12' viewBox='0 0 12 12' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 3L4.5 8.5L2 6' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: center;
-    }
-    .elv-choice__input:checked + .elv-choice__box {
-      background: var(--text-primary);
-      border-color: var(--text-primary);
-    }
-    .elv-choice--checkbox .elv-choice__input:checked + .elv-choice__box {
-      border-width: 2px;
-    }
-    .elv-choice__input:checked + .elv-choice__box::after {
-      display: block;
-    }
-    .elv-choice__input:focus + .elv-choice__box {
-      outline: 3px solid var(--palette-purple-40);
-      outline-offset: 1px;
-    }
-    .elv-choice--checkbox:hover .elv-choice__input:not(:checked):not(:disabled):not(:indeterminate) + .elv-choice__box {
-      background: var(--bg-primary-20);
-    }
-    .elv-choice__label {
-      font-size: 16px;
-      font-weight: 600;
-      line-height: 20px;
-      color: var(--text-default);
-      cursor: pointer;
-      user-select: none;
-    }
-
     .cta-dock {
       display: flex;
       flex-direction: row;
       align-items: center;
       gap: 16px;
-    }
-
-    .helper-text {
-      font-size: 14px;
-      font-weight: 400;
-      color: var(--text-subtle);
-      margin-top: 4px;
-      line-height: 20px;
     }
 
     /* Payment Method Card */
@@ -438,12 +450,12 @@
       font-size: 16px;
       line-height: 24px;
     }
-    
+
     .card-text strong {
       font-weight: 600;
       color: var(--text-default);
     }
-    
+
     .card-text span {
       font-weight: 400;
       color: var(--text-default);
@@ -480,7 +492,7 @@
       flex-direction: column;
       gap: 24px;
     }
-    
+
     .line-items-container {
       display: flex;
       flex-direction: column;
@@ -539,7 +551,7 @@
     }
 
     .btn--primary:hover {
-      background: #45388f; /* P120 */
+      background: #45388f;
     }
 
     .btn--primary:focus {
@@ -634,32 +646,56 @@
 
     <!-- 2-Column Layout -->
     <div class="two-col-layout">
-      
+
       <!-- LEFT COLUMN -->
       <div class="col-main">
-        
-        <!-- Stat Card (Credit Info + Input) -->
+
+        <!-- Stat Card (Credit Info + Radio Selection) -->
         <div class="content-card">
           <div class="stat-card-body">
             <div class="stat-header-block">
               <h2 class="stat-title">Supplement your monthly allotment anytime</h2>
             </div>
-            
-            <div class="input-section">
-              <div class="input-col">
-                <label class="elv-input-label" for="credit-amount">How many credits?</label>
-                <div class="elv-text-input elv-text-input--lg">
-                  <input
-                    type="text"
-                    id="credit-amount"
-                    class="elv-text-input__field"
-                    value="10,000"
-                    aria-label="Credit amount"
-                  />
-                </div>
-                <div class="helper-text">Minimum 100, maximum 50,000 credits</div>
+
+            <div>
+              <label class="elv-input-label">How many credits?</label>
+              <div class="radio-group">
+                <label class="elv-choice elv-choice--radio">
+                  <input type="radio" name="credit-amount" class="elv-choice__input" value="100" />
+                  <span class="elv-choice__box"></span>
+                  <span class="elv-choice__label">100 credits <span class="elv-choice__description">— $10.00</span></span>
+                </label>
+                <label class="elv-choice elv-choice--radio">
+                  <input type="radio" name="credit-amount" class="elv-choice__input" value="500" />
+                  <span class="elv-choice__box"></span>
+                  <span class="elv-choice__label">500 credits <span class="elv-choice__description">— $50.00</span></span>
+                </label>
+                <label class="elv-choice elv-choice--radio">
+                  <input type="radio" name="credit-amount" class="elv-choice__input" value="1000" />
+                  <span class="elv-choice__box"></span>
+                  <span class="elv-choice__label">1,000 credits <span class="elv-choice__description">— $100.00</span></span>
+                </label>
+                <label class="elv-choice elv-choice--radio">
+                  <input type="radio" name="credit-amount" class="elv-choice__input" value="5000" />
+                  <span class="elv-choice__box"></span>
+                  <span class="elv-choice__label">5,000 credits <span class="elv-choice__description">— $500.00</span></span>
+                </label>
+                <label class="elv-choice elv-choice--radio">
+                  <input type="radio" name="credit-amount" class="elv-choice__input" value="10000" checked />
+                  <span class="elv-choice__box"></span>
+                  <span class="elv-choice__label">10,000 credits <span class="elv-choice__description">— $1,000.00</span></span>
+                </label>
+                <label class="elv-choice elv-choice--radio">
+                  <input type="radio" name="credit-amount" class="elv-choice__input" value="25000" />
+                  <span class="elv-choice__box"></span>
+                  <span class="elv-choice__label">25,000 credits <span class="elv-choice__description">— $2,500.00</span></span>
+                </label>
+                <label class="elv-choice elv-choice--radio">
+                  <input type="radio" name="credit-amount" class="elv-choice__input" value="50000" />
+                  <span class="elv-choice__box"></span>
+                  <span class="elv-choice__label">50,000 credits <span class="elv-choice__description">— $5,000.00</span></span>
+                </label>
               </div>
-              <div class="spacer-col"></div>
             </div>
           </div>
         </div>
@@ -730,7 +766,7 @@
 
       <!-- RIGHT COLUMN (Sidebar) -->
       <div class="col-sidebar">
-        
+
         <!-- Cost Summary Card -->
         <div class="content-card">
           <div class="summary-header">
@@ -747,14 +783,14 @@
                 <p class="line-item-value" id="summary-credits">10,000</p>
               </div>
             </div>
-            
+
             <div class="hr"></div>
-            
+
             <div class="total-row">
               <p class="total-label">Total</p>
               <p class="total-value" id="summary-total">$1,000.00</p>
             </div>
-            
+
             <button id="purchase-btn" class="btn btn--primary btn--lg btn--full-width">Purchase credits</button>
           </div>
         </div>
@@ -796,16 +832,14 @@
 
     if (typeof G2ActivateState !== 'undefined') {
       G2ActivateState.updateCreditDisplay();
-      
+
       const state = G2ActivateState.get();
-      
-      // Update text with current credits
+
       const currentCreditsText = document.getElementById('current-credits-text');
       if (currentCreditsText) {
         currentCreditsText.textContent = state.credits.toLocaleString();
       }
-      
-      // Format renewDate from "2026-05-15" to "Month Day, Year"
+
       if (state.plan && state.plan.status === 'active' && state.plan.renewDate) {
         var d = new Date(state.plan.renewDate + 'T00:00:00');
         var div = document.getElementById('renewal-divider');
@@ -817,79 +851,39 @@
         }
       }
     }
-    
-    // 2. Handle input changes and cost calculations
-    const creditInput = document.getElementById('credit-amount');
+
+    // Radio selection → update cost summary
+    const radios = document.querySelectorAll('input[name="credit-amount"]');
     const summaryCredits = document.getElementById('summary-credits');
     const summaryTotal = document.getElementById('summary-total');
-    
-    const updateCalculations = () => {
-      // Parse numeric value
-      let rawValue = creditInput.value.replace(/,/g, '').replace(/[^\d]/g, '');
-      let numValue = parseInt(rawValue, 10);
-      
-      if (isNaN(numValue)) numValue = 0;
-      
-      // Clamp between 100 and 50000 for calculations
-      let clampedValue = numValue;
-      if (clampedValue < 100 && rawValue !== '') clampedValue = 100;
-      if (rawValue === '') clampedValue = 0; // If empty, calculate as 0
-      if (clampedValue > 50000) clampedValue = 50000;
-      
-      // Calculate total (credits * 0.10)
-      const total = clampedValue * 0.10;
-      
-      // Update sidebar
-      summaryCredits.textContent = clampedValue.toLocaleString();
-      
-      // Format total as currency
-      summaryTotal.textContent = new Intl.NumberFormat('en-US', {
-        style: 'currency',
-        currency: 'USD'
-      }).format(total);
-    };
-    
-    // Listen for input to update real-time
-    creditInput.addEventListener('input', updateCalculations);
-    
-    // Format input with commas on blur
-    creditInput.addEventListener('blur', () => {
-      let rawValue = creditInput.value.replace(/,/g, '').replace(/[^\d]/g, '');
-      let numValue = parseInt(rawValue, 10);
-      
-      if (isNaN(numValue)) numValue = 100;
-      
-      // Clamp for input field display
-      if (numValue < 100) numValue = 100;
-      if (numValue > 50000) numValue = 50000;
-      
-      creditInput.value = numValue.toLocaleString();
-      updateCalculations();
-    });
-    
-    // 3. Purchase button click
+
+    function updateFromRadio() {
+      const selected = document.querySelector('input[name="credit-amount"]:checked');
+      if (!selected) return;
+      const numValue = parseInt(selected.value, 10);
+      const total = numValue * 0.10;
+      summaryCredits.textContent = numValue.toLocaleString();
+      summaryTotal.textContent = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(total);
+    }
+
+    radios.forEach(r => r.addEventListener('change', updateFromRadio));
+    updateFromRadio();
+
+    // Purchase button
     const purchaseBtn = document.getElementById('purchase-btn');
     if (purchaseBtn) {
       purchaseBtn.addEventListener('click', (e) => {
         e.preventDefault();
-        
-        let rawValue = creditInput.value.replace(/,/g, '').replace(/[^\d]/g, '');
-        let numValue = parseInt(rawValue, 10);
-        
-        if (isNaN(numValue) || numValue < 100 || numValue > 50000) {
-          alert('Please enter a valid amount between 100 and 50,000.');
+        const selected = document.querySelector('input[name="credit-amount"]:checked');
+        if (!selected) {
+          alert('Please select a credit amount.');
           return;
         }
-        
-        // Update state
+        const numValue = parseInt(selected.value, 10);
         if (typeof G2ActivateState !== 'undefined') {
           G2ActivateState.addCredits(numValue);
         }
-        
-        // Confirmation alert
         alert(`Purchase complete! ${numValue.toLocaleString()} credits have been added to your account.`);
-        
-        // Redirect to prospects-available
         window.location.href = 'prospects-available.html';
       });
     }
