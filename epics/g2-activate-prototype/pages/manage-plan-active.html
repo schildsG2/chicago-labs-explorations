@@ -76,13 +76,15 @@
       gap: 2px;
       margin-bottom: 6px;
     }
-    .breadcrumb-link {
-      color: var(--text-nonessential);
-      text-decoration: none;
-      font-size: 12px;
-      line-height: 16px;
-      transition: color 150ms ease;
-    }
+    .breadcrumb-link,
+        .breadcrumb-link:link,
+        .breadcrumb-link:visited {
+          color: var(--text-nonessential);
+          text-decoration: none;
+          font-size: 12px;
+          line-height: 16px;
+          transition: color 150ms ease;
+        }
     .breadcrumb-link:hover {
       color: var(--text-default);
     }
@@ -90,10 +92,11 @@
       color: var(--text-default);
     }
     .breadcrumb-separator {
-      width: 16px;
-      height: 16px;
-      color: var(--text-nonessential);
-    }
+          width: 20px;
+          height: 20px;
+          flex-shrink: 0;
+          color: var(--text-nonessential);
+        }
 
     /* Page Header */
     .page-header {
@@ -430,16 +433,16 @@
     <div class="page-header">
       <nav class="breadcrumbs">
         <a href="#" class="breadcrumb-link">Home</a>
-        <svg class="breadcrumb-separator" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M7 15L12 10L7 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <svg class="breadcrumb-separator" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+          <path d="M10.875 10L6.9375 6.0625L8 5L13 10L8 15L6.9375 13.9375L10.875 10Z" fill="currentColor"/>
         </svg>
         <a href="#" class="breadcrumb-link">Buyer Activity</a>
-        <svg class="breadcrumb-separator" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M7 15L12 10L7 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <svg class="breadcrumb-separator" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+          <path d="M10.875 10L6.9375 6.0625L8 5L13 10L8 15L6.9375 13.9375L10.875 10Z" fill="currentColor"/>
         </svg>
         <a href="prospects-available.html" class="breadcrumb-link">G2 Activate</a>
-        <svg class="breadcrumb-separator" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M7 15L12 10L7 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <svg class="breadcrumb-separator" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+          <path d="M10.875 10L6.9375 6.0625L8 5L13 10L8 15L6.9375 13.9375L10.875 10Z" fill="currentColor"/>
         </svg>
         <span class="breadcrumb-link current">Manage Plan</span>
       </nav>
