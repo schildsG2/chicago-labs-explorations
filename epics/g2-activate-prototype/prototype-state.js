@@ -284,6 +284,7 @@ const G2ActivateState = (function() {
     if (e.shiftKey && e.key === 'R') {
       if (confirm('Reset demo data? This will clear all unlocked companies and reset credits to 150.')) {
         reset();
+        window.location.href = 'prospects-available.html';
       }
     }
   });
