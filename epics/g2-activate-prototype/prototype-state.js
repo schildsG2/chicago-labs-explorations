@@ -25,7 +25,7 @@ const G2ActivateState = (function() {
     credits: 150,
     plan: {
       type: 'G2 Activate Pro',
-      status: 'active',
+      status: 'inactive',
       price: 499,
       monthlyCredits: 5000,
       renewDate: '2026-05-15'
