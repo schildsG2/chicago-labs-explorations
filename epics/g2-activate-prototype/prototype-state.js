@@ -144,6 +144,7 @@ const G2ActivateState = (function() {
    */
   function reset() {
     localStorage.removeItem(STORAGE_KEY);
+    localStorage.removeItem('g2ActivatePaymentMethodSaved');
     init();
     window.location.reload();
   }

@@ -262,8 +262,101 @@
       outline-offset: 1px;
     }
 
+    .elv-text-input__field[readonly] {
+      cursor: default;
+      pointer-events: none;
+      outline: none;
+    }
+
     .elv-text-input--lg .elv-text-input__field {
       height: 48px;
+    }
+
+    .form-row {
+      display: flex;
+      gap: 24px;
+    }
+    .form-col {
+      flex: 1;
+      min-width: 0;
+    }
+    .form-col-hidden {
+      flex: 1;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .elv-choice {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      position: relative;
+      cursor: pointer;
+      margin-bottom: 0;
+    }
+    .elv-choice__input {
+      position: absolute;
+      opacity: 0;
+      width: 20px;
+      height: 20px;
+      margin: 0;
+      cursor: pointer;
+    }
+    .elv-choice__box {
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+      background: var(--bg-neutral-0);
+      border: 1px solid var(--border-medium);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+    }
+    .elv-choice__box::after {
+      content: '';
+      display: none;
+    }
+    .elv-choice--checkbox .elv-choice__box::after {
+      width: 12px;
+      height: 12px;
+      background-image: url("data:image/svg+xml,%3Csvg width='12' height='12' viewBox='0 0 12 12' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 3L4.5 8.5L2 6' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+    .elv-choice__input:checked + .elv-choice__box {
+      background: var(--text-primary);
+      border-color: var(--text-primary);
+    }
+    .elv-choice--checkbox .elv-choice__input:checked + .elv-choice__box {
+      border-width: 2px;
+    }
+    .elv-choice__input:checked + .elv-choice__box::after {
+      display: block;
+    }
+    .elv-choice__input:focus + .elv-choice__box {
+      outline: 3px solid var(--palette-purple-40);
+      outline-offset: 1px;
+    }
+    .elv-choice--checkbox:hover .elv-choice__input:not(:checked):not(:disabled):not(:indeterminate) + .elv-choice__box {
+      background: var(--bg-primary-20);
+    }
+    .elv-choice__label {
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 20px;
+      color: var(--text-default);
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .cta-dock {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 16px;
     }
 
     .helper-text {
@@ -296,7 +389,7 @@
       padding: 24px;
       display: flex;
       flex-direction: column;
-      gap: 4px;
+      gap: 16px;
     }
 
     .pm-sublabel {
@@ -447,20 +540,15 @@
       font-weight: 600;
       line-height: 20px;
       border-radius: 100px;
+    }
+
+    .btn--full-width {
       width: 100%;
     }
 
     .cancel-link-container {
-      text-align: left;
+      text-align: center;
       margin-top: 16px;
-    }
-
-    .cancel-link {
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--text-subtle);
-      text-decoration: none;
-      cursor: pointer;
     }
   </style>
 </head>
@@ -564,8 +652,53 @@
           </div>
         </div>
 
-        <!-- Payment Method Form Card -->
-        <div class="content-card">
+        <div id="pm-form-card" class="content-card" style="display: none;">
+          <div class="pm-header">
+            <h2 class="pm-header-title">Payment Method</h2>
+          </div>
+          <div class="pm-body">
+            <div class="form-group">
+              <label class="elv-input-label" for="card-number">Card Number</label>
+              <div class="elv-text-input elv-text-input--lg">
+                <input type="text" id="card-number" class="elv-text-input__field" value="4242 4242 4242 1234" readonly tabindex="-1" aria-label="Card Number" />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-col">
+                <label class="elv-input-label" for="card-cvv">CVV</label>
+                <div class="elv-text-input elv-text-input--lg">
+                  <input type="text" id="card-cvv" class="elv-text-input__field" value="•••" readonly tabindex="-1" aria-label="CVV" />
+                </div>
+              </div>
+              <div class="form-col">
+                <label class="elv-input-label" for="card-exp">Expiration Date</label>
+                <div class="elv-text-input elv-text-input--lg">
+                  <input type="text" id="card-exp" class="elv-text-input__field" value="10/2029" readonly tabindex="-1" aria-label="Expiration Date" />
+                </div>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-col">
+                <label class="elv-input-label" for="billing-zip">Billing ZIP Code</label>
+                <div class="elv-text-input elv-text-input--lg">
+                  <input type="text" id="billing-zip" class="elv-text-input__field" value="60601" readonly tabindex="-1" aria-label="Billing ZIP Code" />
+                </div>
+              </div>
+              <div class="form-col-hidden"></div>
+            </div>
+            <label class="elv-choice elv-choice--checkbox">
+              <input type="checkbox" class="elv-choice__input" checked disabled />
+              <span class="elv-choice__box"></span>
+              <span class="elv-choice__label">Set as default payment</span>
+            </label>
+            <div class="cta-dock">
+              <button id="save-pm-btn" class="btn btn--primary btn--lg">Save</button>
+              <a href="#" class="text-link">Manage payment methods</a>
+            </div>
+          </div>
+        </div>
+
+        <div id="pm-saved-card" class="content-card" style="display: none;">
           <div class="pm-header">
             <h2 class="pm-header-title">Payment Method</h2>
           </div>
@@ -610,12 +743,12 @@
               <p class="total-value" id="summary-total">$1,000.00</p>
             </div>
             
-            <button id="purchase-btn" class="btn btn--primary btn--lg">Purchase credits</button>
+            <button id="purchase-btn" class="btn btn--primary btn--lg btn--full-width">Purchase credits</button>
           </div>
         </div>
 
-        <div class="cancel-link-container">
-          <a href="manage-plan-inactive.html" class="cancel-link">Cancel</a>
+            <div class="cancel-link-container">
+              <button class="btn btn--text-neutral btn--md" onclick="window.location.href='manage-plan-inactive.html'">Cancel</button>
         </div>
 
       </div>
@@ -629,7 +762,26 @@
 <script src="../prototype-state.js"></script>
 <script>
   document.addEventListener('DOMContentLoaded', () => {
-    // 1. Init state & display credits
+    var pmFormCard = document.getElementById('pm-form-card');
+    var pmSavedCard = document.getElementById('pm-saved-card');
+    var PM_KEY = 'g2ActivatePaymentMethodSaved';
+
+    if (localStorage.getItem(PM_KEY) === 'true') {
+      pmSavedCard.style.display = '';
+    } else {
+      pmFormCard.style.display = '';
+    }
+
+    var savePmBtn = document.getElementById('save-pm-btn');
+    if (savePmBtn) {
+      savePmBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        localStorage.setItem(PM_KEY, 'true');
+        pmFormCard.style.display = 'none';
+        pmSavedCard.style.display = '';
+      });
+    }
+
     if (typeof G2ActivateState !== 'undefined') {
       G2ActivateState.updateCreditDisplay();
       
