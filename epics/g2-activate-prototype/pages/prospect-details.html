@@ -716,43 +716,10 @@
         </button>
       </div>
 
-      <!-- Locked State: blurred content behind -->
+      <!-- Locked State: blurred content (populated by JS) -->
       <div class="tech-stack-locked" id="techStackLocked">
-        <div class="tech-stack-grid">
-          <div>
-            <div class="category-card">
-              <div class="category-header"><span class="category-name">CRM</span><span class="category-count">(2)</span></div>
-              <div class="product-row"><div class="product-details product-details-blurred"><div class="product-icon-sm"></div><span class="product-name-text">Salesforce Sales Cloud</span></div><div class="product-verified"><span class="product-verified-text">Verified Dec 2025</span></div></div>
-              <div class="product-row"><div class="product-details product-details-blurred"><div class="product-icon-sm"></div><span class="product-name-text">HubSpot CRM</span></div><div class="product-verified"><span class="product-verified-text">Verified Dec 2025</span></div></div>
-            </div>
-            <div class="category-card">
-              <div class="category-header"><span class="category-name">Sales Intelligence</span><span class="category-count">(2)</span></div>
-              <div class="product-row"><div class="product-details product-details-blurred"><div class="product-icon-sm"></div><span class="product-name-text">Gong</span></div><div class="product-verified"><span class="product-verified-text">Verified Dec 2025</span></div></div>
-              <div class="product-row"><div class="product-details product-details-blurred"><div class="product-icon-sm"></div><span class="product-name-text">Chorus</span></div><div class="product-verified"><span class="product-verified-text">Verified Dec 2025</span></div></div>
-            </div>
-            <div class="category-card">
-              <div class="category-header"><span class="category-name">BI &amp; Analytics</span><span class="category-count">(2)</span></div>
-              <div class="product-row"><div class="product-details product-details-blurred"><div class="product-icon-sm"></div><span class="product-name-text">Tableau</span></div><div class="product-verified"><span class="product-verified-text">Verified Dec 2025</span></div></div>
-              <div class="product-row"><div class="product-details product-details-blurred"><div class="product-icon-sm"></div><span class="product-name-text">Looker</span></div><div class="product-verified"><span class="product-verified-text">Verified Dec 2025</span></div></div>
-            </div>
-          </div>
-          <div>
-            <div class="category-card">
-              <div class="category-header"><span class="category-name">Sales Engagement</span><span class="category-count">(2)</span></div>
-              <div class="product-row"><div class="product-details product-details-blurred"><div class="product-icon-sm"></div><span class="product-name-text">Outreach</span></div><div class="product-verified"><span class="product-verified-text">Verified Dec 2025</span></div></div>
-              <div class="product-row"><div class="product-details product-details-blurred"><div class="product-icon-sm"></div><span class="product-name-text">SalesLoft</span></div><div class="product-verified"><span class="product-verified-text">Verified Dec 2025</span></div></div>
-            </div>
-            <div class="category-card">
-              <div class="category-header"><span class="category-name">Marketing Automation</span><span class="category-count">(1)</span></div>
-              <div class="product-row"><div class="product-details product-details-blurred"><div class="product-icon-sm"></div><span class="product-name-text">Marketo Engage</span></div><div class="product-verified"><span class="product-verified-text">Verified Dec 2025</span></div></div>
-            </div>
-            <div class="category-card">
-              <div class="category-header"><span class="category-name">Data Integration</span><span class="category-count">(5)</span></div>
-              <div class="product-row"><div class="product-details product-details-blurred"><div class="product-icon-sm"></div><span class="product-name-text">Snowflake</span></div><div class="product-verified"><span class="product-verified-text">Verified Dec 2025</span></div></div>
-              <div class="product-row"><div class="product-details product-details-blurred"><div class="product-icon-sm"></div><span class="product-name-text">Fivetran</span></div><div class="product-verified"><span class="product-verified-text">Verified Dec 2025</span></div></div>
-              <div class="product-row"><div class="product-details product-details-blurred"><div class="product-icon-sm"></div><span class="product-name-text">Domo</span></div><div class="product-verified"><span class="product-verified-text">Verified Dec 2025</span></div></div>
-            </div>
-          </div>
+        <div class="tech-stack-grid" id="techStackGridLocked">
+          <!-- Populated by JS with blurred product names -->
         </div>
       </div>
 
@@ -783,70 +750,6 @@
 <!-- Page Logic -->
 <script>
 (function() {
-  // Placeholder data for ONE company — we'll create variations once layout is finalized
-  const PLACEHOLDER_DATA = {
-    'predictive-001': {
-      name: 'Nutrien',
-      website: 'https://nutrien.com',
-      activityLevel: 'High',
-      activityScore: 99,
-      activityMonth: 'Mar 2026',
-      industry: 'Agriculture',
-      employees: '25.9k',
-      revenue: '$27B',
-      location: 'Saskatoon, Canada',
-      description: 'Nutrien is a retail supplier of agricultural products and services in North and South America, and a global wholesale producer and marketer of all three major agricultural nutrients — nitrogen, phosphate, and potash. The company provides crop inputs, services, and solutions to help growers increase food production sustainably. Nutrien operates through a network of over 2,000 retail locations, serving agricultural markets with innovative digital tools and agronomic expertise.',
-      productsViewed: [
-        { name: 'Demandbase One', icon: '📈' },
-        { name: '6sense Revenue Marketing', icon: '✨' }
-      ],
-      contacts: [
-        { name: 'Lilly Piel', title: 'Chief Operating Officer', email: 'l.piel@nutrien.com', department: 'Operations', seniority: 'C-Level', avatarColor: '#7C7FF2' },
-        { name: 'John Doe', title: 'Officer & Deputy Chief Executive Officer', email: 'j.doe@nutrien.com', department: 'Operations', seniority: 'VP', avatarColor: '#4A9FF5' },
-        { name: 'Jane Smith', title: 'Chief Executive Officer & Founder', email: 'j.smith@nutrien.com', department: '', seniority: '', avatarColor: '#FF8374' }
-      ],
-      techStack: {
-        totalProducts: 16,
-        verifiedDate: 'Dec 2025',
-        categories: {
-          'CRM': [
-            { name: 'Salesforce Sales Cloud', verifiedDate: 'Dec 2025' },
-            { name: 'HubSpot CRM', verifiedDate: 'Dec 2025' }
-          ],
-          'Sales Intelligence': [
-            { name: 'Gong', verifiedDate: 'Dec 2025' },
-            { name: 'Chorus', verifiedDate: 'Dec 2025' }
-          ],
-          'BI & Analytics': [
-            { name: 'Tableau', verifiedDate: 'Dec 2025' },
-            { name: 'Looker', verifiedDate: 'Dec 2025' }
-          ],
-          'Sales Engagement': [
-            { name: 'Outreach', verifiedDate: 'Dec 2025' },
-            { name: 'SalesLoft', verifiedDate: 'Dec 2025' }
-          ],
-          'Marketing Automation': [
-            { name: 'Marketo Engage', verifiedDate: 'Dec 2025' }
-          ],
-          'Data Integration': [
-            { name: 'Snowflake', verifiedDate: 'Dec 2025' },
-            { name: 'Fivetran', verifiedDate: 'Dec 2025' },
-            { name: 'Domo', verifiedDate: 'Dec 2025' },
-            { name: 'Zapier', verifiedDate: 'Dec 2025' },
-            { name: 'Celigo', verifiedDate: 'Dec 2025' }
-          ]
-        }
-      }
-    }
-  };
-
-  // Re-use same placeholder for all company IDs
-  Object.keys(PLACEHOLDER_DATA).forEach(() => {});
-  const FALLBACK_IDS = ['insightwave-002', 'algostream-003', 'datavision-004', 'metricpulse-005'];
-  FALLBACK_IDS.forEach(id => {
-    PLACEHOLDER_DATA[id] = { ...PLACEHOLDER_DATA['predictive-001'] };
-  });
-
   // Get company ID from URL
   const urlParams = new URLSearchParams(window.location.search);
   const companyId = urlParams.get('id');
@@ -856,14 +759,7 @@
     return;
   }
 
-  // Try to get real company name from state, fall back to placeholder
-  const stateCompany = findCompanyInState(companyId);
-  const placeholderCompany = PLACEHOLDER_DATA[companyId] || PLACEHOLDER_DATA['predictive-001'];
-  const company = {
-    ...placeholderCompany,
-    activityLevel: stateCompany ? stateCompany.activityLevel : placeholderCompany.activityLevel,
-  };
-
+  // Find company in state
   function findCompanyInState(id) {
     const state = G2ActivateState.get();
     const fromUnlocked = state.unlockedCompanies.find(c => c.id === id);
@@ -871,6 +767,150 @@
     const fromAvailable = state.availableCompanies.find(c => c.id === id);
     return fromAvailable || null;
   }
+
+  const stateCompany = findCompanyInState(companyId);
+
+  if (!stateCompany) {
+    window.location.href = 'prospects-available.html';
+    return;
+  }
+
+  // Generate contacts based on company size and departments (max 3)
+  function generateContacts(company) {
+    const firstNames = ['Sarah', 'Michael', 'Jennifer', 'David', 'Emily', 'James', 'Lisa', 'Robert', 'Maria', 'John'];
+    const lastNames = ['Chen', 'Johnson', 'Williams', 'Brown', 'Martinez', 'Garcia', 'Miller', 'Davis', 'Rodriguez', 'Wilson'];
+    const titles = {
+      'c-level': ['Chief Executive Officer', 'Chief Operating Officer', 'Chief Marketing Officer', 'Chief Revenue Officer'],
+      'vp': ['VP of Sales', 'VP of Marketing', 'VP of Business Development', 'VP of Customer Success'],
+      'director': ['Director of Sales', 'Director of Marketing', 'Director of Operations', 'Director of Product'],
+      'manager': ['Sales Manager', 'Marketing Manager', 'Account Manager', 'Product Manager']
+    };
+    const avatarColors = ['#7C7FF2', '#4A9FF5', '#FF8374', '#50C9A3', '#FFA94D', '#9B59B6', '#E74C3C', '#3498DB'];
+
+    const contacts = [];
+    // Always show exactly 3 contacts, never more
+    const numContacts = 3;
+
+    for (let i = 0; i < numContacts; i++) {
+      const firstName = firstNames[Math.floor(Math.random() * firstNames.length)];
+      const lastName = lastNames[Math.floor(Math.random() * lastNames.length)];
+      const seniority = company.managementLevels?.[i % company.managementLevels.length] || 'vp';
+      const titleOptions = titles[seniority] || titles['vp'];
+      const title = titleOptions[Math.floor(Math.random() * titleOptions.length)];
+      const department = company.departments?.[i % company.departments.length] || 'sales';
+      const email = `${firstName.toLowerCase()}.${lastName.toLowerCase()}@${company.domain}`;
+
+      contacts.push({
+        name: `${firstName} ${lastName}`,
+        title: title,
+        email: email,
+        department: department.charAt(0).toUpperCase() + department.slice(1),
+        seniority: seniority.toUpperCase().replace('-', ' '),
+        avatarColor: avatarColors[i % avatarColors.length]
+      });
+    }
+
+    return contacts;
+  }
+
+  // Generate products viewed based on industry
+  function generateProductsViewed(company) {
+    const products = {
+      'Software Publishers': [
+        { name: 'Demandbase One', icon: '📈' },
+        { name: '6sense Revenue Marketing', icon: '✨' }
+      ],
+      'Financial Services': [
+        { name: 'Salesforce Financial Services', icon: '💰' },
+        { name: 'ZoomInfo', icon: '🔍' }
+      ],
+      'Healthcare Technology': [
+        { name: 'Salesforce Health Cloud', icon: '⚕️' },
+        { name: 'Epic', icon: '🏥' }
+      ],
+      'default': [
+        { name: 'Salesforce', icon: '☁️' },
+        { name: 'HubSpot', icon: '🎯' }
+      ]
+    };
+
+    return products[company.industry] || products['default'];
+  }
+
+  // Generate tech stack based on industry
+  function generateTechStack(company) {
+    const industryStacks = {
+      'Software Publishers': {
+        'CRM': [
+          { name: 'Salesforce Sales Cloud', verifiedDate: 'Dec 2025' },
+          { name: 'HubSpot CRM', verifiedDate: 'Nov 2025' }
+        ],
+        'Sales Engagement': [
+          { name: 'Outreach', verifiedDate: 'Dec 2025' },
+          { name: 'SalesLoft', verifiedDate: 'Nov 2025' }
+        ],
+        'Marketing Automation': [
+          { name: 'Marketo Engage', verifiedDate: 'Dec 2025' },
+          { name: 'HubSpot Marketing Hub', verifiedDate: 'Nov 2025' }
+        ],
+        'BI & Analytics': [
+          { name: 'Tableau', verifiedDate: 'Dec 2025' },
+          { name: 'Looker', verifiedDate: 'Oct 2025' }
+        ]
+      },
+      'Financial Services': {
+        'CRM': [
+          { name: 'Salesforce Financial Services Cloud', verifiedDate: 'Dec 2025' }
+        ],
+        'Analytics': [
+          { name: 'Tableau', verifiedDate: 'Dec 2025' },
+          { name: 'Power BI', verifiedDate: 'Nov 2025' }
+        ],
+        'Compliance': [
+          { name: 'OneTrust', verifiedDate: 'Dec 2025' }
+        ]
+      },
+      'default': {
+        'CRM': [
+          { name: 'Salesforce Sales Cloud', verifiedDate: 'Dec 2025' },
+          { name: 'HubSpot CRM', verifiedDate: 'Nov 2025' }
+        ],
+        'Sales Intelligence': [
+          { name: 'ZoomInfo', verifiedDate: 'Dec 2025' },
+          { name: 'LinkedIn Sales Navigator', verifiedDate: 'Nov 2025' }
+        ],
+        'Marketing Automation': [
+          { name: 'Marketo Engage', verifiedDate: 'Dec 2025' }
+        ]
+      }
+    };
+
+    const categories = industryStacks[company.industry] || industryStacks['default'];
+    const totalProducts = Object.values(categories).reduce((sum, products) => sum + products.length, 0);
+
+    return {
+      totalProducts: totalProducts,
+      verifiedDate: 'Dec 2025',
+      categories: categories
+    };
+  }
+
+  // Build complete company object with generated data
+  const company = {
+    name: stateCompany.name,
+    website: `https://${stateCompany.domain}`,
+    activityLevel: stateCompany.activityLevel,
+    activityScore: stateCompany.activityScore || 85,
+    activityMonth: 'Apr 2026',
+    industry: stateCompany.industry,
+    employees: stateCompany.employees,
+    revenue: stateCompany.revenue,
+    location: stateCompany.location,
+    description: stateCompany.description,
+    productsViewed: generateProductsViewed(stateCompany),
+    contacts: generateContacts(stateCompany),
+    techStack: generateTechStack(stateCompany)
+  };
 
   // Check if tech stack already unlocked
   const state = G2ActivateState.get();
@@ -907,8 +947,8 @@
   document.getElementById('companyRevenue').textContent = company.revenue;
   document.getElementById('companyLocation').textContent = company.location;
 
-  // Contacts count
-  document.getElementById('contactsCount').textContent = `(${company.contacts.length})`;
+  // Contacts count (always 3)
+  document.getElementById('contactsCount').textContent = `(3)`;
 
   // Render contacts as 3-column row
   const contactsRow = document.getElementById('contactsRow');
@@ -949,9 +989,46 @@
   // Tech stack count
   document.getElementById('techStackCount').textContent = `(${company.techStack.totalProducts})`;
 
+  // Populate locked tech stack (with blur)
+  populateLockedTechStack();
+
   // Handle tech stack state
   if (isTechStackUnlocked) {
     showUnlockedTechStack();
+  }
+
+  function populateLockedTechStack() {
+    const gridLocked = document.getElementById('techStackGridLocked');
+    const categories = company.techStack.categories;
+    const entries = Object.entries(categories);
+    const midpoint = Math.ceil(entries.length / 2);
+    const leftEntries = entries.slice(0, midpoint);
+    const rightEntries = entries.slice(midpoint);
+
+    function renderColumnLocked(columnEntries) {
+      return columnEntries.map(([category, products]) => `
+        <div class="category-card">
+          <div class="category-header">
+            <span class="category-name">${category}</span>
+            <span class="category-count">(${products.length})</span>
+          </div>
+          ${products.map(product => `
+            <div class="product-row">
+              <div class="product-details product-details-blurred">
+                <div class="product-icon-sm"></div>
+                <span class="product-name-text">${product.name}</span>
+              </div>
+              <span class="product-verified-text">Verified ${product.verifiedDate}</span>
+            </div>
+          `).join('')}
+        </div>
+      `).join('');
+    }
+
+    gridLocked.innerHTML = `
+      <div>${renderColumnLocked(leftEntries)}</div>
+      <div>${renderColumnLocked(rightEntries)}</div>
+    `;
   }
 
   // Unlock button

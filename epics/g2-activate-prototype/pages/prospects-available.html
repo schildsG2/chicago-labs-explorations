@@ -543,7 +543,6 @@
       border: 0.5px solid var(--border-light);
       border-radius: 12px;
       box-shadow: 0px 0px 1px 0px rgba(32,31,35,0.32), 0px 4px 4px 0px rgba(32,31,35,0.04);
-      overflow: hidden;
     }
     .content-header {
       display: flex;
@@ -778,6 +777,86 @@
       color: var(--text-subtle);
       line-height: 20px;
       margin-bottom: 20px;
+    }
+
+    /* Pagination (Elevate component) */
+    .pagination-wrapper {
+      display: flex;
+      justify-content: center;
+      padding: 24px;
+      border-top: 0.5px solid var(--border-light);
+    }
+
+    .elv-pagination {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .elv-pagination__btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 32px;
+      height: 32px;
+      padding: 8px 12px;
+      background: transparent;
+      border: 1px solid transparent;
+      border-radius: 8px;
+      font-family: var(--font-sans);
+      font-size: 14px;
+      line-height: 20px;
+      font-weight: 400;
+      color: var(--text-subtle);
+      text-decoration: none;
+      cursor: pointer;
+      transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1), border-color 150ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .elv-pagination__btn:hover:not(:disabled):not(.elv-pagination__btn--current) {
+      background: var(--bg-primary-20);
+      border-color: var(--border-focus);
+    }
+
+    .elv-pagination__btn:focus {
+      outline: 3px solid var(--palette-purple-40);
+      outline-offset: 2px;
+    }
+
+    .elv-pagination__btn:disabled {
+      cursor: not-allowed;
+      background: var(--bg-neutral-10);
+      color: var(--text-disabled);
+    }
+
+    .elv-pagination__btn--current {
+      background: var(--bg-primary-20);
+      border-color: var(--border-focus);
+      color: var(--text-subtle);
+      cursor: default;
+    }
+
+    .elv-pagination__btn--nav {
+      gap: 4px;
+      background: var(--bg-neutral-10);
+      border-color: var(--border-neutral);
+    }
+
+    .elv-pagination__btn--nav .material-symbols-outlined {
+      font-size: 20px;
+    }
+
+    .elv-pagination__ellipsis {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 32px;
+      height: 32px;
+      padding: 8px 12px;
+      color: var(--text-nonessential);
+      font-size: 14px;
+      font-weight: 600;
+      user-select: none;
     }
 
   </style>
@@ -1125,6 +1204,10 @@
 // Selection state
 let selectedCompanies = new Set();
 
+// Pagination state
+let currentPage = 1;
+const ROWS_PER_PAGE = 20;
+
 // Get current filter values
 function getFilterValues() {
   const filters = {
@@ -1237,12 +1320,17 @@ function filterCompanies(companies) {
 }
 
 // Render table
-function renderTable() {
+function renderTable(resetPage = true) {
   const state = G2ActivateState.get();
   const allCompanies = state.availableCompanies;
   const companies = filterCompanies(allCompanies);
   const container = document.getElementById('tableContainer');
   const countEl = document.getElementById('companyCount');
+
+  // Reset to page 1 when filters change
+  if (resetPage) {
+    currentPage = 1;
+  }
 
   // Update count
   countEl.textContent = `(${companies.length})`;
@@ -1267,6 +1355,12 @@ function renderTable() {
     `;
     return;
   }
+
+  // Calculate pagination
+  const totalPages = Math.ceil(companies.length / ROWS_PER_PAGE);
+  const startIndex = (currentPage - 1) * ROWS_PER_PAGE;
+  const endIndex = startIndex + ROWS_PER_PAGE;
+  const paginatedCompanies = companies.slice(startIndex, endIndex);
 
   // Render table
   const tableHtml = `
@@ -1293,7 +1387,7 @@ function renderTable() {
         </tr>
       </thead>
       <tbody>
-        ${companies.map(company => `
+        ${paginatedCompanies.map(company => `
           <tr>
             <td>
               <input
@@ -1301,6 +1395,7 @@ function renderTable() {
                 class="table-checkbox company-checkbox"
                 data-company-id="${company.id}"
                 data-cost="${company.unlockCost}"
+                ${selectedCompanies.has(company.id) ? 'checked' : ''}
               />
             </td>
             <td class="credits-cell">${company.unlockCost}</td>
@@ -1313,17 +1408,76 @@ function renderTable() {
             <td>${company.employees}</td>
             <td>${company.industry || 'Software Publishers'}</td>
             <td>${company.location}</td>
-            <td class="contacts-cell">${company.contacts}</td>
+            <td class="contacts-cell">${Math.min(company.contacts, 3)}</td>
           </tr>
         `).join('')}
       </tbody>
     </table>
   `;
 
-  container.innerHTML = tableHtml;
+  // Generate page numbers with truncation (Elevate pattern)
+  function generatePageNumbers(current, total) {
+    const pages = [];
+
+    // Always show first page
+    pages.push(1);
+
+    // Show ellipsis if there's a gap
+    if (current > 3) {
+      pages.push('...');
+    }
+
+    // Show pages around current (current - 1, current, current + 1)
+    for (let i = Math.max(2, current - 1); i <= Math.min(total - 1, current + 1); i++) {
+      pages.push(i);
+    }
+
+    // Show ellipsis if there's a gap
+    if (current < total - 2) {
+      pages.push('...');
+    }
+
+    // Always show last page
+    if (total > 1) {
+      pages.push(total);
+    }
+
+    return pages;
+  }
+
+  // Pagination controls (Elevate component)
+  const paginationHtml = totalPages > 1 ? `
+    <div class="pagination-wrapper">
+      <nav class="elv-pagination" role="navigation" aria-label="Pagination">
+        <button class="elv-pagination__btn elv-pagination__btn--nav" data-action="prev" aria-label="Previous page" ${currentPage === 1 ? 'disabled' : ''}>
+          <span class="material-symbols-outlined">chevron_left</span>
+        </button>
+        ${generatePageNumbers(currentPage, totalPages).map(page => {
+          if (page === '...') {
+            return `<span class="elv-pagination__ellipsis" aria-hidden="true">…</span>`;
+          } else {
+            const isCurrent = page === currentPage;
+            return `<button class="elv-pagination__btn ${isCurrent ? 'elv-pagination__btn--current' : ''}"
+                            data-page="${page}"
+                            aria-label="${isCurrent ? 'Page' : 'Go to page'} ${page}"
+                            ${isCurrent ? 'aria-current="page"' : ''}>
+                      ${page}
+                    </button>`;
+          }
+        }).join('')}
+        <button class="elv-pagination__btn elv-pagination__btn--nav" data-action="next" aria-label="Next page" ${currentPage === totalPages ? 'disabled' : ''}>
+          <span class="material-symbols-outlined">chevron_right</span>
+        </button>
+      </nav>
+    </div>
+  ` : '';
+
+  container.innerHTML = tableHtml + paginationHtml;
 
   // Attach event listeners
   attachCheckboxListeners();
+  attachPaginationListeners();
+  updateSelectAllState();
 }
 
 // Attach checkbox event listeners
@@ -1331,17 +1485,26 @@ function attachCheckboxListeners() {
   const selectAll = document.getElementById('selectAll');
   const checkboxes = document.querySelectorAll('.company-checkbox');
 
-  // Select all handler
-  selectAll.addEventListener('change', (e) => {
-    const isChecked = e.target.checked;
-    checkboxes.forEach(cb => {
-      cb.checked = isChecked;
-      if (isChecked) {
-        selectedCompanies.add(cb.dataset.companyId);
-      } else {
+  // Select all handler (Gmail-style: selects visible page only, shows indeterminate)
+  selectAll.addEventListener('click', (e) => {
+    // Check if currently all visible are selected
+    const allVisibleSelected = Array.from(checkboxes).every(cb => cb.checked);
+
+    if (allVisibleSelected) {
+      // Deselect all visible
+      checkboxes.forEach(cb => {
+        cb.checked = false;
         selectedCompanies.delete(cb.dataset.companyId);
-      }
-    });
+      });
+    } else {
+      // Select all visible (indeterminate state)
+      checkboxes.forEach(cb => {
+        cb.checked = true;
+        selectedCompanies.add(cb.dataset.companyId);
+      });
+    }
+
+    updateSelectAllState();
     updateStickyHeader();
   });
 
@@ -1352,16 +1515,59 @@ function attachCheckboxListeners() {
         selectedCompanies.add(e.target.dataset.companyId);
       } else {
         selectedCompanies.delete(e.target.dataset.companyId);
-        selectAll.checked = false;
       }
 
-      // Update "select all" if all are checked
-      if (selectedCompanies.size === checkboxes.length) {
-        selectAll.checked = true;
-      }
-
+      updateSelectAllState();
       updateStickyHeader();
     });
+  });
+}
+
+// Update select all checkbox state (Gmail-style indeterminate)
+function updateSelectAllState() {
+  const selectAll = document.getElementById('selectAll');
+  const checkboxes = document.querySelectorAll('.company-checkbox');
+
+  if (checkboxes.length === 0) return;
+
+  const checkedCount = Array.from(checkboxes).filter(cb => cb.checked).length;
+
+  if (checkedCount === 0) {
+    // None selected
+    selectAll.checked = false;
+    selectAll.indeterminate = false;
+  } else if (checkedCount === checkboxes.length) {
+    // All visible selected - show indeterminate (Gmail pattern)
+    selectAll.checked = false;
+    selectAll.indeterminate = true;
+  } else {
+    // Some selected
+    selectAll.checked = false;
+    selectAll.indeterminate = true;
+  }
+}
+
+// Attach pagination listeners
+function attachPaginationListeners() {
+  const paginationNav = document.querySelector('.elv-pagination');
+  if (!paginationNav) return;
+
+  paginationNav.addEventListener('click', (e) => {
+    const btn = e.target.closest('button');
+    if (!btn || btn.disabled) return;
+
+    if (btn.dataset.action === 'prev') {
+      if (currentPage > 1) {
+        currentPage--;
+        renderTable(false);
+      }
+    } else if (btn.dataset.action === 'next') {
+      currentPage++;
+      renderTable(false);
+    } else if (btn.dataset.page) {
+      currentPage = parseInt(btn.dataset.page, 10);
+      renderTable(false);
+    }
   });
 }
 
@@ -1376,11 +1582,15 @@ function updateStickyHeader() {
     buttonEl.textContent = 'Unlock Selected (0)';
     buttonEl.disabled = true;
   } else {
-    // Calculate total credits needed
-    const checkboxes = document.querySelectorAll('.company-checkbox:checked');
+    // Calculate total credits from all selected companies (across all pages)
+    const state = G2ActivateState.get();
     let totalCredits = 0;
-    checkboxes.forEach(cb => {
-      totalCredits += parseInt(cb.dataset.cost);
+
+    selectedCompanies.forEach(companyId => {
+      const company = state.availableCompanies.find(c => c.id === companyId);
+      if (company) {
+        totalCredits += company.unlockCost;
+      }
     });
 
     totalEl.textContent = `Total: ${totalCredits} credits`;
@@ -1393,16 +1603,18 @@ function updateStickyHeader() {
 // Handle unlock
 function handleUnlock() {
   const state = G2ActivateState.get();
-  const checkboxes = document.querySelectorAll('.company-checkbox:checked');
 
-  if (checkboxes.length === 0) return;
+  if (selectedCompanies.size === 0) return;
 
-  // Calculate total cost
+  // Calculate total cost from all selected companies (across all pages)
   let totalCost = 0;
-  const companyIds = [];
-  checkboxes.forEach(cb => {
-    totalCost += parseInt(cb.dataset.cost);
-    companyIds.push(cb.dataset.companyId);
+  const companyIds = Array.from(selectedCompanies);
+
+  companyIds.forEach(companyId => {
+    const company = state.availableCompanies.find(c => c.id === companyId);
+    if (company) {
+      totalCost += company.unlockCost;
+    }
   });
 
   // Check if enough credits
@@ -1416,7 +1628,9 @@ function handleUnlock() {
   let failedCompanies = [];
 
   companyIds.forEach(companyId => {
-    const result = G2ActivateState.unlockCompany(companyId, 10);
+    const company = state.availableCompanies.find(c => c.id === companyId);
+    const cost = company ? company.unlockCost : 50;
+    const result = G2ActivateState.unlockCompany(companyId, cost);
     if (result.success) {
       successCount++;
     } else {
