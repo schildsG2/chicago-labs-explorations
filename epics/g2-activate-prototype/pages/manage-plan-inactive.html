@@ -352,6 +352,295 @@
     .card-action {
       margin-top: 0;
     }
+
+    /* ── Subscription Calculator ── */
+    .calc-section {
+      margin-top: 24px;
+    }
+
+    .calc-card {
+      background: white;
+      border: 0.5px solid var(--border-light);
+      border-radius: 12px;
+      box-shadow: 0px 0px 1px 0px rgba(32,31,35,0.32), 0px 4px 4px 0px rgba(32,31,35,0.04);
+      padding: 24px;
+    }
+
+    .calc-title {
+      font-size: 21px;
+      font-weight: 700;
+      color: var(--text-default);
+      margin: 0 0 4px 0;
+      line-height: 28px;
+    }
+
+    .calc-layout {
+      display: flex;
+      gap: 32px;
+      align-items: flex-start;
+    }
+
+    .calc-slider-side {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .calc-rec-side {
+      width: 340px;
+      flex-shrink: 0;
+    }
+
+    /* Step indicator */
+    .calc-step {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+
+    .calc-step-label {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-default);
+      margin: 16px 0 6px 0;
+      line-height: 24px;
+    }
+
+    /* Slider track */
+    .calc-slider-wrap {
+      position: relative;
+      width: 100%;
+      height: 40px;
+      cursor: pointer;
+    }
+
+    .calc-slider-track {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      height: 40px;
+      transform: translateY(-50%);
+      background: var(--bg-neutral-10);
+      border-radius: 10px;
+      overflow: hidden;
+      outline: 0px solid transparent;
+      outline-offset: 2px;
+      transition: outline-color 150ms cubic-bezier(0.4, 0, 0.2, 1), outline-width 150ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .calc-slider-wrap:focus-within .calc-slider-track {
+      outline-color: var(--palette-purple-40);
+      outline-width: 3px;
+    }
+
+    .calc-slider-fill {
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      background: var(--bg-primary);
+      border-radius: 10px 0 0 10px;
+      transition: width 60ms ease-out;
+    }
+
+    .calc-slider-fill::after {
+      content: '';
+      position: absolute;
+      right: 4px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 2px;
+      height: 20px;
+      background: rgba(255,255,255,0.35);
+      border-radius: 1px;
+    }
+
+    .calc-slider-input {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      opacity: 0;
+      cursor: pointer;
+      z-index: 2;
+      -webkit-appearance: none;
+    }
+
+    .calc-slider-wrap:focus-within .calc-slider-track {
+      outline-color: var(--palette-purple-40);
+    }
+
+    .calc-slider-value {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-default);
+      white-space: nowrap;
+      pointer-events: none;
+      z-index: 1;
+      transition: left 60ms ease-out, color 60ms ease-out;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .calc-slider-value--inside {
+      color: white;
+    }
+
+    .calc-slider-bounds {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 8px;
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--text-nonessential);
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Threshold marker */
+    .calc-threshold {
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 1px;
+      height: 24px;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .calc-threshold-line {
+      width: 1px;
+      height: 100%;
+      background: rgba(0,0,0,0.15);
+    }
+
+    .calc-threshold-label {
+      position: absolute;
+      top: calc(100% + 4px);
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--text-nonessential);
+      white-space: nowrap;
+    }
+
+    /* Recommendation card */
+    .calc-rec-card {
+      border-radius: 16px;
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      transition: background 300ms ease, border-color 300ms ease;
+      min-height: 220px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .calc-rec-card--bulk {
+      background: var(--bg-neutral-5);
+      border: 1.5px solid var(--border-light);
+    }
+
+    .calc-rec-card--subscription {
+      background: var(--palette-purple-10);
+      border: 1.5px solid var(--palette-purple-40);
+    }
+
+    .calc-rec-eyebrow {
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin: 0;
+      line-height: 16px;
+      transition: color 300ms ease;
+    }
+
+    .calc-rec-card--bulk .calc-rec-eyebrow {
+      color: var(--text-nonessential);
+    }
+
+    .calc-rec-card--subscription .calc-rec-eyebrow {
+      color: var(--text-primary);
+    }
+
+    .calc-rec-plan-group {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .calc-rec-plan-name {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--text-default);
+      margin: 0;
+      line-height: 36px;
+    }
+
+    .calc-rec-price-row {
+      display: flex;
+      align-items: baseline;
+      gap: 4px;
+    }
+
+    .calc-rec-price {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--text-default);
+      margin: 0;
+      line-height: 36px;
+    }
+
+    .calc-rec-price-unit {
+      font-size: 16px;
+      font-weight: 400;
+      color: var(--text-nonessential);
+      margin: 0;
+    }
+
+    .calc-rec-features {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .calc-rec-feature {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--text-subtle);
+      line-height: 18px;
+    }
+
+    .calc-rec-feature-icon {
+      flex-shrink: 0;
+      width: 16px;
+      height: 16px;
+    }
+
+    .calc-rec-cta {
+      margin-top: auto;
+    }
+
+    .calc-rec-cta .btn {
+      width: 100%;
+    }
+
+
   </style>
 </head>
 <body>
@@ -450,6 +739,13 @@
                   <circle cx="10" cy="10" r="8" fill="#1fa896"/>
                   <path d="M7 10.5L9 12.5L13 8" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
+                <span class="checklist-text">Supplement with pay-as-you-go credits</span>
+              </li>
+              <li class="checklist-item">
+                <svg class="checklist-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="10" cy="10" r="8" fill="#1fa896"/>
+                  <path d="M7 10.5L9 12.5L13 8" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
                 <span class="checklist-text">Access to Intent Data from G2</span>
               </li>
               <li class="checklist-item">
@@ -482,7 +778,7 @@
           </div>
         </div>
         <div class="card-body card-body--right">
-          <p class="plan-description">Buy credits whenever you want</p>
+          <p class="plan-description">Choose from 1k, 2k, or 4k credit packs.</p>
           <div class="plan-features">
             <h4 class="checklist-label">What you'll get:</h4>
             <ul class="checklist">
@@ -492,6 +788,20 @@
                   <path d="M7 10.5L9 12.5L13 8" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
                 <span class="checklist-text">Your choice from our bulk credit options</span>
+              </li>
+              <li class="checklist-item">
+                <svg class="checklist-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="10" cy="10" r="8" fill="#1fa896"/>
+                  <path d="M7 10.5L9 12.5L13 8" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span class="checklist-text">Access to Intent Data from G2</span>
+              </li>
+              <li class="checklist-item">
+                <svg class="checklist-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="10" cy="10" r="8" fill="#1fa896"/>
+                  <path d="M7 10.5L9 12.5L13 8" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span class="checklist-text">Identify in-market buyers</span>
               </li>
               <li class="checklist-item">
                 <svg class="checklist-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -508,6 +818,76 @@
         </div>
       </div>
 
+    </div>
+
+    <!-- Subscription Calculator -->
+    <div class="calc-section">
+      <div class="calc-card">
+        <div class="calc-layout">
+
+          <div class="calc-slider-side">
+            <h2 class="calc-title">Not sure which option is right for you?</h2>
+            <h3 class="calc-step-label">About how many credits/month will you use?</h3>
+            <div class="calc-slider-wrap" id="calc-slider-wrap">
+              <div class="calc-slider-track">
+                <div class="calc-slider-fill" id="calc-fill"></div>
+              </div>
+              <div class="calc-threshold" id="calc-threshold" style="left: 50%;">
+                <div class="calc-threshold-line"></div>
+              </div>
+              <span class="calc-slider-value" id="calc-value-label">250 credits</span>
+              <input
+                type="range"
+                class="calc-slider-input"
+                id="calc-slider"
+                min="0"
+                max="1000"
+                step="10"
+                value="250"
+                aria-label="Estimated credits per month"
+                aria-valuetext="250 credits"
+              />
+            </div>
+            <div class="calc-slider-bounds">
+              <span>0</span>
+              <span>1,000+</span>
+            </div>
+          </div>
+
+          <!-- Right: Recommendation Card -->
+          <div class="calc-rec-side">
+            <div class="calc-rec-card calc-rec-card--bulk" id="calc-rec-card">
+              <p class="calc-rec-eyebrow" id="calc-rec-eyebrow">Recommended</p>
+              <div class="calc-rec-plan-group">
+                <h3 class="calc-rec-plan-name" id="calc-rec-name">Bulk Purchase</h3>
+                <div class="calc-rec-price-row" style="display: none;">
+                <span class="calc-rec-price" id="calc-rec-price">$499</span>
+                <span class="calc-rec-price-unit" id="calc-rec-unit">/month</span>
+                </div>
+              </div>
+
+              <ul class="calc-rec-features" id="calc-rec-features">
+                <li class="calc-rec-feature">
+                  <svg class="calc-rec-feature-icon" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8" fill="#1fa896"/><path d="M7 10.5L9 12.5L13 8" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  No monthly commitment
+                </li>
+                <li class="calc-rec-feature">
+                  <svg class="calc-rec-feature-icon" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8" fill="#1fa896"/><path d="M7 10.5L9 12.5L13 8" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  Pay only for what you use
+                </li>
+                <li class="calc-rec-feature">
+                  <svg class="calc-rec-feature-icon" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8" fill="#1fa896"/><path d="M7 10.5L9 12.5L13 8" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  Credits never expire
+                </li>
+              </ul>
+              <div class="calc-rec-cta">
+                <button id="calc-rec-btn" class="btn btn--primary btn--md">Add credits</button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
     </div>
 
   </div>
@@ -543,14 +923,117 @@
       });
     }
     
-    // 4. Buy credits button
     const buyCreditsBtn = document.getElementById('buy-credits-btn');
     if (buyCreditsBtn) {
       buyCreditsBtn.addEventListener('click', (e) => {
         e.preventDefault();
-        // Link to the purchase credits page
         window.location.href = 'manage-plan-purchase-credits-03.html';
       });
+    }
+
+    // ── Subscription Calculator ──
+    const slider = document.getElementById('calc-slider');
+    const fill = document.getElementById('calc-fill');
+    const valueLabel = document.getElementById('calc-value-label');
+    const recCard = document.getElementById('calc-rec-card');
+    const recEyebrow = document.getElementById('calc-rec-eyebrow');
+    const recName = document.getElementById('calc-rec-name');
+    const recPrice = document.getElementById('calc-rec-price');
+    const recUnit = document.getElementById('calc-rec-unit');
+
+    const recFeatures = document.getElementById('calc-rec-features');
+    const recBtn = document.getElementById('calc-rec-btn');
+
+
+    const THRESHOLD = 500;
+
+    const bulkFeatures = `
+      <li class="calc-rec-feature">
+        <svg class="calc-rec-feature-icon" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8" fill="#1fa896"/><path d="M7 10.5L9 12.5L13 8" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Your choice from our bulk credit options
+      </li>
+      <li class="calc-rec-feature">
+        <svg class="calc-rec-feature-icon" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8" fill="#1fa896"/><path d="M7 10.5L9 12.5L13 8" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Access to Intent Data from G2
+      </li>
+      <li class="calc-rec-feature">
+        <svg class="calc-rec-feature-icon" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8" fill="#1fa896"/><path d="M7 10.5L9 12.5L13 8" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Identify in-market buyers
+      </li>
+      <li class="calc-rec-feature">
+        <svg class="calc-rec-feature-icon" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8" fill="#1fa896"/><path d="M7 10.5L9 12.5L13 8" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        No monthly commitment
+      </li>`;
+
+    const subFeatures = `
+      <li class="calc-rec-feature">
+        <svg class="calc-rec-feature-icon" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8" fill="#1fa896"/><path d="M7 10.5L9 12.5L13 8" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        5,000 credits per month
+      </li>
+      <li class="calc-rec-feature">
+        <svg class="calc-rec-feature-icon" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8" fill="#1fa896"/><path d="M7 10.5L9 12.5L13 8" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Supplement with pay-as-you-go credits
+      </li>
+      <li class="calc-rec-feature">
+        <svg class="calc-rec-feature-icon" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8" fill="#1fa896"/><path d="M7 10.5L9 12.5L13 8" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Access to Intent Data from G2
+      </li>
+      <li class="calc-rec-feature">
+        <svg class="calc-rec-feature-icon" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8" fill="#1fa896"/><path d="M7 10.5L9 12.5L13 8" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Identify in-market buyers
+      </li>
+      <li class="calc-rec-feature">
+        <svg class="calc-rec-feature-icon" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8" fill="#1fa896"/><path d="M7 10.5L9 12.5L13 8" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Cancel anytime
+      </li>`;
+
+    function updateCalc() {
+      const val = parseInt(slider.value, 10);
+      const pct = val / 1000;
+
+      fill.style.width = (pct * 100) + '%';
+      slider.setAttribute('aria-valuetext', val + ' credits');
+
+      const trackEl = document.getElementById('calc-slider-wrap');
+      const trackWidth = trackEl.offsetWidth;
+      const labelText = val.toLocaleString() + ' credits';
+      valueLabel.textContent = labelText;
+
+      const fillPx = pct * trackWidth;
+      const labelWidth = valueLabel.offsetWidth;
+      const GAP = 12;
+
+      if (fillPx > labelWidth + GAP + 16) {
+        valueLabel.style.left = (fillPx - labelWidth - GAP) + 'px';
+        valueLabel.classList.add('calc-slider-value--inside');
+      } else {
+        valueLabel.style.left = (fillPx + GAP) + 'px';
+        valueLabel.classList.remove('calc-slider-value--inside');
+      }
+
+      const isSub = val > THRESHOLD;
+
+      recCard.className = 'calc-rec-card ' + (isSub ? 'calc-rec-card--subscription' : 'calc-rec-card--bulk');
+      recEyebrow.textContent = 'Recommended';
+      recName.textContent = isSub ? 'G2 Activate Pro' : 'Bulk Purchase';
+      recPrice.parentElement.style.display = isSub ? '' : 'none';
+      recPrice.textContent = '$499';
+      recUnit.textContent = '/month';
+
+      recFeatures.innerHTML = isSub ? subFeatures : bulkFeatures;
+
+      recBtn.textContent = isSub ? 'Subscribe now' : 'Add credits';
+      recBtn.onclick = function(e) {
+        e.preventDefault();
+        window.location.href = isSub ? 'manage-plan-subscribe.html' : 'manage-plan-purchase-credits-03.html';
+      };
+
+
+    }
+
+    if (slider) {
+      slider.addEventListener('input', updateCalc);
+      updateCalc();
     }
   });
 </script>
