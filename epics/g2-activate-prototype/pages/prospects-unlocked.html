@@ -591,6 +591,86 @@
       font-size: 16px;
       color: var(--text-subtle);
     }
+
+    /* Pagination (Elevate component) */
+    .pagination-wrapper {
+      display: flex;
+      justify-content: center;
+      padding: 24px;
+      border-top: 0.5px solid var(--border-light);
+    }
+
+    .elv-pagination {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .elv-pagination__btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 32px;
+      height: 32px;
+      padding: 8px 12px;
+      background: transparent;
+      border: 1px solid transparent;
+      border-radius: 8px;
+      font-family: var(--font-sans);
+      font-size: 14px;
+      line-height: 20px;
+      font-weight: 400;
+      color: var(--text-subtle);
+      text-decoration: none;
+      cursor: pointer;
+      transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1), border-color 150ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .elv-pagination__btn:hover:not(:disabled):not(.elv-pagination__btn--current) {
+      background: var(--bg-primary-20);
+      border-color: var(--border-focus);
+    }
+
+    .elv-pagination__btn:focus {
+      outline: 3px solid var(--palette-purple-40);
+      outline-offset: 2px;
+    }
+
+    .elv-pagination__btn:disabled {
+      cursor: not-allowed;
+      background: var(--bg-neutral-10);
+      color: var(--text-disabled);
+    }
+
+    .elv-pagination__btn--current {
+      background: var(--bg-primary-20);
+      border-color: var(--border-focus);
+      color: var(--text-subtle);
+      cursor: default;
+    }
+
+    .elv-pagination__btn--nav {
+      gap: 4px;
+      background: var(--bg-neutral-10);
+      border-color: var(--border-neutral);
+    }
+
+    .elv-pagination__btn--nav .material-symbols-outlined {
+      font-size: 20px;
+    }
+
+    .elv-pagination__ellipsis {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 32px;
+      height: 32px;
+      padding: 8px 12px;
+      color: var(--text-nonessential);
+      font-size: 14px;
+      font-weight: 600;
+      user-select: none;
+    }
   </style>
 </head>
 <body>
@@ -733,18 +813,51 @@
   const searchWrapper = document.getElementById('searchWrapper');
   const searchClear = document.getElementById('searchClear');
   const companyCount = document.getElementById('companyCount');
-  
+
+  let currentPage = 1;
+  const ROWS_PER_PAGE = 20;
+
+  // Format Date Helper
+  function formatDate(isoString) {
+    if (!isoString) return 'N/A';
+    var date = new Date(isoString);
+    return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+  }
+
+  // Get badge class based on level
+  function getIntentBadgeClass(level) {
+    var l = (level || '').toLowerCase();
+    if (l === 'high') return 'intent-badge--high';
+    if (l === 'medium') return 'intent-badge--medium';
+    return 'intent-badge--low';
+  }
+
+  // Generate page numbers with truncation (Elevate pattern)
+  function generatePageNumbers(current, total) {
+    const pages = [];
+    pages.push(1);
+    if (current > 3) pages.push('...');
+    for (let i = Math.max(2, current - 1); i <= Math.min(total - 1, current + 1); i++) {
+      pages.push(i);
+    }
+    if (current < total - 2) pages.push('...');
+    if (total > 1) pages.push(total);
+    return pages;
+  }
+
   // Render function
-  function renderView() {
+  function renderView(resetPage) {
+    if (resetPage !== false) currentPage = 1;
+
     const allUnlocked = G2ActivateState.getUnlockedCompanies();
-    
+
     // Empty state (no companies unlocked at all)
     if (allUnlocked.length === 0) {
       companyCount.textContent = '(0)';
       container.innerHTML = `
         <div class="empty-state-container">
           <div class="empty-state-icon-circle">
-            <img src="../../../shared/elevate-lite/icons/ui-icon-unlock.svg" alt="Lock icon" width="60" height="60">
+            <img src="../references-icons/pictogram-magnify.svg" alt="" width="60" height="60">
           </div>
           <h3 class="empty-state-title">No unlocked prospects found.</h3>
           <p class="empty-state-description">Unlock prospects on through Available Prospects with credits.</p>
@@ -755,7 +868,7 @@
     }
 
     const query = (searchInput.value || '').toLowerCase().trim();
-    
+
     // Filter based on search query
     const filteredCompanies = allUnlocked.filter(c => {
       const name = (c.name || '').toLowerCase();
@@ -772,23 +885,15 @@
       return;
     }
 
-    // Format Date Helper
-    function formatDate(isoString) {
-      if (!isoString) return 'N/A';
-      var date = new Date(isoString);
-      return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
-    }
-
-    // Get badge class based on level
-    function getIntentBadgeClass(level) {
-      var l = (level || '').toLowerCase();
-      if (l === 'high') return 'intent-badge--high';
-      if (l === 'medium') return 'intent-badge--medium';
-      return 'intent-badge--low';
-    }
+    // Calculate pagination
+    const totalPages = Math.ceil(filteredCompanies.length / ROWS_PER_PAGE);
+    if (currentPage > totalPages) currentPage = totalPages;
+    const startIndex = (currentPage - 1) * ROWS_PER_PAGE;
+    const endIndex = startIndex + ROWS_PER_PAGE;
+    const paginatedCompanies = filteredCompanies.slice(startIndex, endIndex);
 
     // Render Table
-    var rows = filteredCompanies.map(function(company) {
+    var rows = paginatedCompanies.map(function(company) {
       var viewed = G2ActivateState.isViewed(company.id);
       var rowClass = viewed ? '' : ' class="unviewed"';
       var dot = viewed ? '' : '<span class="unviewed-dot"></span>';
@@ -803,7 +908,7 @@
       '</tr>';
     }).join('');
 
-    container.innerHTML = '<table class="prospects-table">' +
+    var tableHtml = '<table class="prospects-table">' +
       '<thead><tr>' +
         '<th class="unlock-date-cell">Unlock Date</th>' +
         '<th>Company</th>' +
@@ -815,6 +920,60 @@
       '</tr></thead>' +
       '<tbody>' + rows + '</tbody>' +
     '</table>';
+
+    // Pagination controls (Elevate component)
+    var paginationHtml = '';
+    if (totalPages > 1) {
+      paginationHtml = '<div class="pagination-wrapper">' +
+        '<nav class="elv-pagination" role="navigation" aria-label="Pagination">' +
+          '<button class="elv-pagination__btn elv-pagination__btn--nav" data-action="prev" aria-label="Previous page"' + (currentPage === 1 ? ' disabled' : '') + '>' +
+            '<span class="material-symbols-outlined">chevron_left</span>' +
+          '</button>' +
+          generatePageNumbers(currentPage, totalPages).map(function(page) {
+            if (page === '...') {
+              return '<span class="elv-pagination__ellipsis" aria-hidden="true">…</span>';
+            }
+            var isCurrent = page === currentPage;
+            return '<button class="elv-pagination__btn' + (isCurrent ? ' elv-pagination__btn--current' : '') + '"' +
+              ' data-page="' + page + '"' +
+              ' aria-label="' + (isCurrent ? 'Page' : 'Go to page') + ' ' + page + '"' +
+              (isCurrent ? ' aria-current="page"' : '') + '>' +
+              page +
+            '</button>';
+          }).join('') +
+          '<button class="elv-pagination__btn elv-pagination__btn--nav" data-action="next" aria-label="Next page"' + (currentPage === totalPages ? ' disabled' : '') + '>' +
+            '<span class="material-symbols-outlined">chevron_right</span>' +
+          '</button>' +
+        '</nav>' +
+      '</div>';
+    }
+
+    container.innerHTML = tableHtml + paginationHtml;
+    attachPaginationListeners();
+  }
+
+  // Pagination event listeners
+  function attachPaginationListeners() {
+    const paginationNav = document.querySelector('.elv-pagination');
+    if (!paginationNav) return;
+
+    paginationNav.addEventListener('click', function(e) {
+      const btn = e.target.closest('button');
+      if (!btn || btn.disabled) return;
+
+      if (btn.dataset.action === 'prev') {
+        if (currentPage > 1) {
+          currentPage--;
+          renderView(false);
+        }
+      } else if (btn.dataset.action === 'next') {
+        currentPage++;
+        renderView(false);
+      } else if (btn.dataset.page) {
+        currentPage = parseInt(btn.dataset.page, 10);
+        renderView(false);
+      }
+    });
   }
 
   // Initial render

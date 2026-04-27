@@ -240,11 +240,11 @@
     }
 
     .plan-name {
-      font-size: 16px;
-      font-weight: 600;
-      color: var(--text-nonessential);
+      font-size: 38px;
+      font-weight: 700;
+      color: var(--text-default);
       margin: 0;
-      line-height: 24px;
+      line-height: 48px;
     }
 
     .plan-price-row {
@@ -254,15 +254,15 @@
     }
 
     .plan-price {
-      font-size: 38px;
-      font-weight: 700;
+      font-size: 16px;
+      font-weight: 600;
       color: var(--text-default);
-      line-height: 48px;
+      line-height: 24px;
       margin: 0;
     }
 
     .plan-price-period {
-      font-size: 21px;
+      font-size: 16px;
       font-weight: 400;
       color: var(--text-nonessential);
       margin: 0;
@@ -593,11 +593,11 @@
     }
 
     .calc-rec-price {
-      font-size: 28px;
-      font-weight: 700;
+      font-size: 16px;
+      font-weight: 600;
       color: var(--text-default);
       margin: 0;
-      line-height: 36px;
+      line-height: 24px;
     }
 
     .calc-rec-price-unit {
@@ -711,7 +711,6 @@
         <div class="card-header">
           <div class="card-header-title-group">
             <h2 class="card-title">Subscription</h2>
-            <span class="card-subtitle">(best value)</span>
           </div>
           <div class="status-badge">
             <div class="status-badge-dot"></div>
@@ -719,10 +718,12 @@
           </div>
         </div>
         <div class="card-body card-body--left">
-          <h3 class="plan-name">G2 Activate Pro</h3>
-          <div class="plan-price-row" style="margin-top: -8px;">
-            <span class="plan-price">$499</span>
-            <span class="plan-price-period">/month</span>
+          <div>
+            <h3 class="plan-name">G2 Activate Pro</h3>
+            <div class="plan-price-row">
+              <span class="plan-price">$499</span>
+              <span class="plan-price-period">/month</span>
+            </div>
           </div>
           <div class="plan-features">
             <h4 class="checklist-label">What you'll get:</h4>
@@ -778,8 +779,12 @@
           </div>
         </div>
         <div class="card-body card-body--right">
-          <div class="plan-price-row">
-            <span class="plan-price">Bulk Purchase</span>
+          <div>
+            <h3 class="plan-name">Credit Packs</h3>
+            <div class="plan-price-row">
+              <span class="plan-price">$0.10</span>
+              <span class="plan-price-period">/credit</span>
+            </div>
           </div>
           <div class="plan-features">
             <h4 class="checklist-label">What you'll get:</h4>
@@ -861,10 +866,10 @@
             <div class="calc-rec-card calc-rec-card--bulk" id="calc-rec-card">
               <p class="calc-rec-eyebrow" id="calc-rec-eyebrow">Recommended</p>
               <div class="calc-rec-plan-group">
-                <h3 class="calc-rec-plan-name" id="calc-rec-name">Bulk Purchase</h3>
-                <div class="calc-rec-price-row" style="display: none;">
-                <span class="calc-rec-price" id="calc-rec-price">$499</span>
-                <span class="calc-rec-price-unit" id="calc-rec-unit">/month</span>
+                <h3 class="calc-rec-plan-name" id="calc-rec-name">Credit Packs</h3>
+                <div class="calc-rec-price-row">
+                  <span class="calc-rec-price" id="calc-rec-price">$0.10</span>
+                  <span class="calc-rec-price-unit" id="calc-rec-unit">/credit</span>
                 </div>
               </div>
 
@@ -1017,10 +1022,9 @@
 
       recCard.className = 'calc-rec-card ' + (isSub ? 'calc-rec-card--subscription' : 'calc-rec-card--bulk');
       recEyebrow.textContent = 'Recommended';
-      recName.textContent = isSub ? 'G2 Activate Pro' : 'Bulk Purchase';
-      recPrice.parentElement.style.display = isSub ? '' : 'none';
-      recPrice.textContent = '$499';
-      recUnit.textContent = '/month';
+      recName.textContent = isSub ? 'G2 Activate Pro' : 'Credit Packs';
+      recPrice.textContent = isSub ? '$499' : '$0.10';
+      recUnit.textContent = isSub ? '/month' : '/credit';
 
       recFeatures.innerHTML = isSub ? subFeatures : bulkFeatures;
 

@@ -976,21 +976,38 @@
 
     /* Empty State */
     .empty-state {
-      padding: 48px 24px;
+      padding: 60px 24px;
       text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+    .empty-state-pictogram {
+      width: 100px;
+      height: 100px;
+      border-radius: 50px;
+      background: #dedaf1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .empty-state-pictogram img {
+      width: 60px;
+      height: 60px;
     }
     .empty-state-title {
       font-size: 21px;
       font-weight: 800;
       color: var(--text-default);
       line-height: 28px;
-      margin-bottom: 8px;
+      margin: 0;
     }
     .empty-state-description {
       font-size: 14px;
       color: var(--text-subtle);
       line-height: 20px;
-      margin-bottom: 20px;
+      margin: 0 0 12px 0;
     }
 
     /* Pagination (Elevate component) */
@@ -1580,6 +1597,9 @@ function renderTable(resetPage = true) {
 
     container.innerHTML = `
       <div class="empty-state">
+        <div class="empty-state-pictogram">
+          <img src="../references-icons/pictogram-magnify.svg" alt="" width="60" height="60">
+        </div>
         <h3 class="empty-state-title">${hasFilters ? 'No Matching Prospects' : 'No Available Prospects'}</h3>
         <p class="empty-state-description">
           ${hasFilters ? 'Try adjusting your filters to see more results.' : 'All prospects have been unlocked. Check the Unlocked tab to view your companies.'}
