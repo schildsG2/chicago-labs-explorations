@@ -435,6 +435,29 @@
       background: var(--bg-neutral-5);
     }
 
+    /* Unviewed row: semi-bold all text except intent badge */
+    .prospects-table tr.unviewed td {
+      font-weight: 600;
+    }
+    .prospects-table tr.unviewed .intent-badge {
+      font-weight: 600;
+    }
+
+    /* Green unviewed indicator dot */
+    .unviewed-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #1FA896;
+      display: inline-block;
+      margin-right: 8px;
+      flex-shrink: 0;
+    }
+    .unlock-date-inner {
+      display: flex;
+      align-items: center;
+    }
+
     /* Unlock Date column (far left) */
     .prospects-table th.unlock-date-cell,
     .prospects-table td.unlock-date-cell {
@@ -474,16 +497,10 @@
       color: var(--text-subtle);
     }
 
-    /* Company Link */
-    .company-link {
-      color: var(--text-primary);
-      text-decoration: none;
+    /* Company Name */
+    .company-name {
       font-weight: 600;
-      transition: color 150ms ease;
-    }
-    .company-link:hover {
-      color: var(--text-primary-dark);
-      text-decoration: underline;
+      color: var(--text-default);
     }
 
 
@@ -772,13 +789,16 @@
 
     // Render Table
     var rows = filteredCompanies.map(function(company) {
-      return '<tr>' +
-        '<td class="unlock-date-cell">' + formatDate(company.unlockedDate) + '</td>' +
-        '<td><a href="prospect-details.html?id=' + company.id + '" class="company-link">' + company.name + '</a></td>' +
+      var viewed = G2ActivateState.isViewed(company.id);
+      var rowClass = viewed ? '' : ' class="unviewed"';
+      var dot = viewed ? '' : '<span class="unviewed-dot"></span>';
+      return '<tr' + rowClass + '>' +
+        '<td class="unlock-date-cell"><div class="unlock-date-inner">' + dot + formatDate(company.unlockedDate) + '</div></td>' +
+        '<td><span class="company-name">' + company.name + '</span></td>' +
         '<td><span class="intent-badge ' + getIntentBadgeClass(company.activityLevel) + '">' + company.activityLevel + '</span></td>' +
         '<td>' + company.employees + '</td>' +
         '<td>' + company.location + '</td>' +
-        '<td style="text-align: right;">' + company.contacts + '</td>' +
+        '<td style="text-align: right;">' + Math.min(company.contacts, 3) + '</td>' +
         '<td class="details-cell"><a href="prospect-details.html?id=' + company.id + '" class="btn btn--text btn--sm" style="color: #5746b2;">Details <svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M13.125 10.75H4V9.25H13.125L8.9375 5.0625L10 4L16 10L10 16L8.9375 14.9375L13.125 10.75Z"/></svg></a></td>' +
       '</tr>';
     }).join('');

@@ -653,6 +653,26 @@ const G2ActivateState = (function() {
   }
 
   /**
+   * Mark a company as viewed
+   */
+  function markViewed(companyId) {
+    const state = get();
+    if (!state.viewedCompanies) state.viewedCompanies = [];
+    if (!state.viewedCompanies.includes(companyId)) {
+      state.viewedCompanies.push(companyId);
+      save(state);
+    }
+  }
+
+  /**
+   * Check if a company has been viewed
+   */
+  function isViewed(companyId) {
+    const state = get();
+    return (state.viewedCompanies || []).includes(companyId);
+  }
+
+  /**
    * Update credit balance display across UI
    */
   function updateCreditDisplay() {
@@ -688,7 +708,9 @@ const G2ActivateState = (function() {
     getAvailableCompanies,
     getUnlockedCompanies,
     getPlan,
-    updateCreditDisplay
+    updateCreditDisplay,
+    markViewed,
+    isViewed
   };
 })();
 
