@@ -518,6 +518,40 @@
       display: block;
     }
 
+    /* Top-Right Unlock Toast */
+    .toast-unlock {
+      position: fixed;
+      top: 24px;
+      right: 24px;
+      background: #d0f6f1;
+      border: 0.5px solid var(--border-light);
+      border-radius: 8px;
+      padding: 16px;
+      box-shadow: 0px 8px 32px 0px rgba(32,31,35,0.12);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      z-index: 1000;
+      transform: translateY(-100px);
+      opacity: 0;
+      transition: all 300ms ease;
+    }
+    .toast-unlock.visible {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    .toast-unlock .toast-icon {
+      width: 24px;
+      height: 24px;
+      color: #0f5249;
+    }
+    .toast-unlock .toast-message {
+      font-size: 14px;
+      font-weight: 600;
+      color: #0f5249;
+      line-height: 20px;
+    }
+
     /* Success Toast */
     .toast {
       position: fixed;
@@ -735,6 +769,15 @@
 
 </div><!-- end page-content -->
 
+<!-- Unlock Toast (Top Right) -->
+<div class="toast-unlock" id="unlockToast">
+  <svg class="toast-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+    <path d="M8 12L11 15L16 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+  <span class="toast-message" id="unlockToastMessage">Company successfully unlocked</span>
+</div>
+
 <!-- Success Toast -->
 <div class="toast" id="successToast">
   <svg class="toast-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -774,6 +817,8 @@
     window.location.href = 'prospects-available.html';
     return;
   }
+
+  G2ActivateState.markViewed(companyId);
 
   // Generate contacts based on company size and departments (max 3)
   function generateContacts(company) {
@@ -1104,6 +1149,19 @@
       showToast('Email copied!');
     }
   });
+
+  // Check for unlock toast
+  const unlockToastData = sessionStorage.getItem('unlockToast');
+  if (unlockToastData) {
+    try {
+      const data = JSON.parse(unlockToastData);
+      const toast = document.getElementById('unlockToast');
+      document.getElementById('unlockToastMessage').textContent = `${data.name} successfully unlocked`;
+      toast.classList.add('visible');
+      setTimeout(() => toast.classList.remove('visible'), 4000);
+      sessionStorage.removeItem('unlockToast');
+    } catch(e) {}
+  }
 
   // Toast
   function showToast(message) {
