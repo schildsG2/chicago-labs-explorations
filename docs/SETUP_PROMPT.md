@@ -269,4 +269,4 @@ Once your workspace is created, see `SETUP_GUIDE.md` in your new workspace for d
 
 ---
 
-**Questions?** Ask in #design-systems or reach out to Sam.
+**Questions?** Reach out to Sam.
