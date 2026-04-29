@@ -11,7 +11,7 @@ Set up a new squad exploration workspace for me, similar to Chicago Labs but per
 
 This should create a complete HTML prototyping workspace with:
 - Personalized portal page (index.html) with my squad name
-- Elevate Lite design system (as git submodule from https://github.com/g2/elevate-lite)
+- Elevate Lite design system (as git submodule from https://github.com/schildsG2/elevate-lite)
 - Placeholder epic structures for my squad's themes
 - Research directory for competitive analysis
 - /new-epic and /new-exploration skills installed locally
@@ -97,7 +97,7 @@ If I chose to initialize git:
 ```bash
 cd {installation-path}
 git init
-git submodule add https://github.com/g2/elevate-lite.git shared/elevate-lite
+git submodule add https://github.com/schildsG2/elevate-lite.git shared/elevate-lite
 git add .
 git commit -m "Initial setup: {Squad Name} explorations workspace"
 ```

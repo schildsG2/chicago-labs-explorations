@@ -147,7 +147,7 @@ git init
 ### 4.3 Add Elevate Lite Submodule
 ```bash
 cd {INSTALL_PATH}
-git submodule add https://github.com/g2/elevate-lite.git shared/elevate-lite
+git submodule add https://github.com/schildsG2/elevate-lite.git shared/elevate-lite
 ```
 
 **Note:** If the user didn't want git, skip the submodule and suggest they clone elevate-lite manually, OR offer to just clone it directly (not as submodule).
@@ -600,7 +600,7 @@ Before reporting completion, verify:
 - Offer to resume if they run the skill again
 
 **Elevate Lite submodule fails:**
-- Offer to clone it directly: `git clone https://github.com/g2/elevate-lite.git shared/elevate-lite`
+- Offer to clone it directly: `git clone https://github.com/schildsG2/elevate-lite.git shared/elevate-lite`
 
 **Path already exists:**
 - Confirm before overwriting
