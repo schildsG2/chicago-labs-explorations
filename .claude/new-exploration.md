@@ -2,51 +2,90 @@
 description: Start a new numbered exploration in the current epic
 ---
 
-You are helping the user start a new design exploration following the Chicago Labs conventions.
+You are helping the user start a new design exploration in their squad explorations repository.
 
 ## Your Task
 
-1. **Determine the epic directory**
-   - The user will provide an epic name (e.g., "search-results", "bulk-purchase")
-   - Epic path: `/Users/schilds/projects/chicago-labs-explorations/epics/{epic-name}/explorations/`
+### Step 0: Find Repository Root
 
-2. **Find the next exploration number**
-   - List all `##-*.html` files in the explorations directory
-   - Find the highest number (e.g., if `01-base.html` and `02-refined.html` exist, next is `03`)
-   - If no numbered explorations exist, start with `01`
+Before starting, determine the repository root:
+```bash
+REPO_ROOT=$(git rev-parse --show-toplevel 2>/dev/null)
+```
 
-3. **Get the exploration name**
-   - Ask the user for a descriptive kebab-case name (e.g., "pricing-tiers", "null-state")
-   - The final filename will be: `{number}-{name}.html` (e.g., `03-pricing-tiers.html`)
+If this fails (not a git repo), inform the user they must run this from within their explorations repository.
 
-4. **Copy the starter template**
-   - Copy `/Users/schilds/projects/chicago-labs-explorations/shared/exploration-starter.html`
-   - To: `epics/{epic-name}/explorations/{number}-{name}.html`
-   - Update the `<title>` tag to match the exploration name (title case)
+All file paths below use `{repo-root}` as the base.
 
-5. **Update the epic's index.html**
-   - Read `epics/{epic-name}/index.html`
-   - Add a new entry to the explorations gallery linking to the new file
-   - Follow the existing pattern in the index (usually a card or list item with thumbnail)
-   - If no index.html exists, skip this step and inform the user
+### Step 1: Determine the Epic Directory
 
-6. **Report completion**
-   - Show the user the full path to the new exploration
-   - Suggest opening it in their browser or editor
+- The user will provide an epic name (e.g., "search-results", "bulk-purchase")
+- Epic path: `{repo-root}/epics/{epic-name}/explorations/`
+- Verify the epic exists at `{repo-root}/epics/{epic-name}/`. If not, inform the user and suggest running `/new-epic` first.
+
+### Step 2: Create Explorations Directory (if needed)
+
+If `{repo-root}/epics/{epic-name}/explorations/` doesn't exist, create it automatically.
+
+### Step 3: Find the Next Exploration Number
+
+- List all `##-*.html` files in the explorations directory
+- Find the highest number (e.g., if `01-base.html` and `02-refined.html` exist, next is `03`)
+- If no numbered explorations exist, start with `01`
+
+### Step 4: Get the Exploration Name
+
+- Ask the user for a descriptive kebab-case name (e.g., "pricing-tiers", "null-state")
+- The final filename will be: `{number}-{name}.html` (e.g., `03-pricing-tiers.html`)
+- Validate that the filename doesn't already exist (edge case: if it does, increment the number)
+
+### Step 5: Copy the Starter Template
+
+- Copy `{repo-root}/shared/exploration-starter.html`
+- To: `{repo-root}/epics/{epic-name}/explorations/{number}-{name}.html`
+- Update the `<title>` tag to match the exploration name (title case, e.g., "Pricing Tiers")
+
+### Step 6: Update the Epic's index.html
+
+- Read `{repo-root}/epics/{epic-name}/index.html`
+- Find the exploration count element (usually: `Explorations <span>(N)</span>`)
+- Increment the count
+- Add a new entry to the explorations gallery linking to the new file
+- Follow the existing pattern in the index (usually a card or list item)
+- If no index.html exists, skip this step and inform the user
+
+### Step 7: Offer to Open the File
+
+Ask the user:
+**"Exploration created! Would you like to:"**
+1. Open in browser (`open {repo-root}/epics/{epic-name}/explorations/{number}-{name}.html`)
+2. Continue working (do nothing)
+
+If they choose 1, open the file.
+
+### Step 8: Report Completion
+
+Show the user:
+- Full path to the new exploration
+- Updated exploration count in epic
+- Reminder that they can view the epic gallery at `{repo-root}/epics/{epic-name}/index.html`
 
 ## Example Interaction
 
 User: `/new-exploration search-results`
 
 You:
-1. List explorations in epics/search-results/explorations/
-2. Find next number is `03`
-3. Ask: "What should this exploration be called? (kebab-case, e.g., 'advanced-filters')"
-4. User responds: "query-refinement"
-5. Copy template → `epics/search-results/explorations/03-query-refinement.html`
-6. Update title to "Query Refinement"
-7. Add entry to `epics/search-results/index.html`
-8. Report: "Created exploration at epics/search-results/explorations/03-query-refinement.html"
+1. Detect repo root: `/Users/jane/projects/buyer-intent-explorations`
+2. Verify epic exists at `epics/search-results/` ✓
+3. Create explorations/ directory if needed
+4. List explorations → find next number is `03`
+5. Ask: "What should this exploration be called? (kebab-case, e.g., 'advanced-filters')"
+6. User responds: "query-refinement"
+7. Copy template → `epics/search-results/explorations/03-query-refinement.html`
+8. Update title to "Query Refinement"
+9. Add entry to `epics/search-results/index.html` and increment count
+10. Ask if they want to open the file
+11. Report: "✅ Created exploration 03-query-refinement.html (3 total explorations in this epic)"
 
 ## Path Adjustments in Starter Template
 
@@ -68,6 +107,8 @@ These paths are CORRECT for explorations in `epics/{epic}/explorations/` — do 
 
 ## Important
 
-- Always use the EXACT starter template path: `/Users/schilds/projects/chicago-labs-explorations/shared/exploration-starter.html`
+- Always use the starter template from: `{repo-root}/shared/exploration-starter.html`
 - Never invent exploration names — always ask the user
 - Keep numbering sequential and zero-padded (01, 02, not 1, 2)
+- Auto-create the explorations/ directory if it doesn't exist (don't error out)
+- Always update the exploration count in the epic's index.html

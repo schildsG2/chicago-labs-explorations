@@ -2,11 +2,22 @@
 description: Scaffold a new epic with complete directory structure and index page
 ---
 
-You are helping the user create a new epic in the Chicago Labs Explorations repository.
+You are helping the user create a new epic in their squad explorations repository.
 
 ## Your Task
 
 Create a complete epic scaffold including directory structure, index.html gallery page, optional CLAUDE.md, and update the root portal page.
+
+## Step 0: Find Repository Root
+
+Before starting, determine the repository root:
+```bash
+REPO_ROOT=$(git rev-parse --show-toplevel 2>/dev/null)
+```
+
+If this fails (not a git repo), inform the user they must run this from within their explorations repository.
+
+All file paths below use `{repo-root}` as the base — replace with the detected value.
 
 ## Step-by-Step Process
 
@@ -25,16 +36,23 @@ Ask the user for the following (with examples):
 - **CLAUDE.md content** (epic-specific context, problem space, references)
 - **Initial date** (defaults to today's date in format "2026-04-22")
 
-### 2. Create Directory Structure
+### 2. Validate Epic Doesn't Exist
+
+Check if `{repo-root}/epics/{epic-name}/` already exists. If it does, inform the user and ask if they want to:
+- Choose a different name
+- Overwrite (dangerous — confirm twice)
+- Cancel
+
+### 3. Create Directory Structure
 
 ```
-epics/{epic-name}/
+{repo-root}/epics/{epic-name}/
 ├── explorations/        ← Empty directory for explorations
 ├── index.html           ← Epic gallery page
 └── CLAUDE.md            ← (optional) Epic-specific context
 ```
 
-### 3. Create index.html
+### 4. Create index.html
 
 Build the epic's gallery page using this template structure (adapt from `/epics/search-results/index.html`):
 
@@ -167,7 +185,7 @@ Build the epic's gallery page using this template structure (adapt from `/epics/
 </html>
 ```
 
-### 4. Create CLAUDE.md (Optional)
+### 5. Create CLAUDE.md (Optional)
 
 If the user wants epic-specific context, create `CLAUDE.md` with this template:
 
@@ -206,9 +224,9 @@ Follow Elevate design system specifications:
 - [Question 2]
 ```
 
-### 5. Update Root index.html
+### 6. Update Root index.html
 
-Add a new epic card to `/Users/schilds/projects/chicago-labs-explorations/index.html` in the `#epicGrid` section.
+Add a new epic card to `{repo-root}/index.html` in the `#epicGrid` section (or wherever epic cards are displayed).
 
 **Card template:**
 
@@ -264,30 +282,42 @@ Or let them provide a custom icon path from Elevate.
 **Placement:**
 Insert the new card alphabetically or at the end of the epic grid before the empty state div.
 
-### 6. Update Epic Count
+### 7. Update Epic Count
 
-Find the epic count badge in the root index.html:
+Find the epic count badge in the root index.html (if it exists):
 ```html
 <span class="elv-text-lg elv-font-normal elv-text-subtle" id="epicCount">(9)</span>
 ```
 
 Increment the number to reflect the new epic.
 
+## Step 8: Offer Next Actions
+
+After creation, ask the user:
+
+**"Epic created successfully! Would you like to:"**
+1. Open the epic gallery in browser (`open {repo-root}/epics/{epic-name}/index.html`)
+2. Create your first exploration now (`/new-exploration {epic-name}`)
+3. Continue working (do nothing)
+
+If they choose 1, open the file in their default browser.
+If they choose 2, immediately invoke `/new-exploration {epic-name}`.
+
 ## Verification
 
 After creation, verify:
-1. ✅ Directory structure created
-2. ✅ index.html is valid HTML with correct paths
+1. ✅ Directory structure created at `{repo-root}/epics/{epic-name}/`
+2. ✅ index.html is valid HTML with correct relative paths
 3. ✅ CLAUDE.md created (if requested)
 4. ✅ Root index.html updated with new card
-5. ✅ Epic count incremented
+5. ✅ Epic count incremented (if count element exists)
 
 ## Report to User
 
 ```markdown
 ## ✅ Epic Created: {Display Title}
 
-**Location:** `epics/{epic-name}/`
+**Location:** `{repo-root}/epics/{epic-name}/`
 
 **Files created:**
 - `epics/{epic-name}/explorations/` (directory)
@@ -299,9 +329,7 @@ After creation, verify:
 - Updated epic count to {new count}
 
 **Next steps:**
-- Create your first exploration: `/new-exploration {epic-name}`
-- Or manually add explorations to `epics/{epic-name}/explorations/`
-- View the epic gallery: `open epics/{epic-name}/index.html`
+Choose an option above to open the gallery or create your first exploration.
 ```
 
 ## Icon SVG Library
