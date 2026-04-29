@@ -22,11 +22,13 @@ This should create a complete HTML prototyping workspace with:
 ### Step 1: Ask me for information one question at a time
 
 1. **Squad name** (e.g., "Buyer Intent", "Agent Marketplace")
-2. **Directory name** (suggest: {squad-kebab}-explorations)
-3. **Installation location** (default: ~/projects/)
-4. **Squad tag** for filtering epics (default: {squad-kebab})
+2. **Directory name** — Suggest `{squad-kebab}-explorations`, ask "Use this? (yes/no)"
+3. **Installation location** — Suggest `~/projects/{dir-name}`, ask "Use this? (yes/no)"
+4. **Squad tag** — Suggest `{squad-kebab}`, ask "Use this? (yes/no)"
 5. **2-3 main themes/epics** I'll be exploring (e.g., "Pricing Optimization, Purchase Flow, Insights")
 6. **Initialize as git repository?** (yes/no)
+
+**Important:** For questions with suggestions, always ask for explicit yes/no confirmation rather than assuming "press enter" will work.
 
 ### Step 2: Show me a summary and confirm
 
@@ -216,14 +218,17 @@ What is your squad name? (e.g., "Buyer Intent", "Agent Marketplace")
 
 You: Buyer Intent
 
-Claude: Perfect! What should the directory be called? 
-I suggest: buyer-intent-explorations
+Claude: I suggest naming the directory `buyer-intent-explorations`. Use this name? (yes/no)
 
-You: [press enter to accept]
+You: yes
 
-Claude: Where should this be created? (default: ~/projects/)
+Claude: I'll create this at `~/projects/buyer-intent-explorations`. Use this location? (yes/no)
 
-You: [press enter for default]
+You: yes
+
+Claude: For filtering epics, I suggest using the tag `buyer-intent`. Use this? (yes/no)
+
+You: yes
 
 ... [continues with remaining questions] ...
 

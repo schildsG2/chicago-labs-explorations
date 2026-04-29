@@ -46,29 +46,30 @@ Ask the user for the following information **one question at a time** (don't ove
 - `SQUAD_KEBAB` (kebab-case, e.g., "buyer-intent")
 
 ### 2.2 Directory Name
-**Ask:** "What should the directory be called?"
+**Ask:** "I suggest naming the directory `{SQUAD_KEBAB}-explorations`. Use this name? (yes/no)"
 
-**Suggest:** `{SQUAD_KEBAB}-explorations`
-
-**Example:** "buyer-intent-explorations"
+**If yes:** Use `{SQUAD_KEBAB}-explorations`
+**If no:** Ask "What should the directory be called?"
 
 **Store as:** `DIR_NAME`
 
 ### 2.3 Installation Location
-**Ask:** "Where should this be created?"
+**Ask:** "I'll create this at `~/projects/{DIR_NAME}`. Use this location? (yes/no)"
 
-**Default:** `~/projects/{DIR_NAME}`
+**If yes:** Use `~/projects/{DIR_NAME}`
+**If no:** Ask "Where should this be created? (full path)"
 
 **Validation:** Check if path exists. If yes, confirm overwrite.
 
 **Store as:** `INSTALL_PATH`
 
 ### 2.4 Squad Tag
-**Ask:** "What tag should we use for filtering epics in this workspace? (kebab-case, e.g., 'buyer-intent', 'search-discovery')"
+**Ask:** "For filtering epics, I suggest using the tag `{SQUAD_KEBAB}`. Use this? (yes/no)"
 
-**Default:** `{SQUAD_KEBAB}`
+**Explanation (before asking):** "This tag will be used to categorize and filter epic cards on your homepage."
 
-**Explanation:** "This tag will be used to categorize and filter epic cards on your homepage."
+**If yes:** Use `{SQUAD_KEBAB}`
+**If no:** Ask "What tag should we use? (kebab-case, e.g., 'buyer-intent')"
 
 **Store as:** `SQUAD_TAG`
 
@@ -81,14 +82,13 @@ Ask the user for the following information **one question at a time** (don't ove
 
 **Store as:** `EPIC_THEMES` (array of 2-3 strings)
 
-### 2.6 Repository Type (Optional)
-**Ask:** "Do you want to initialize this as a git repository?"
+### 2.6 Repository Type
+**Ask:** "Initialize this as a git repository? (yes/no)"
 
-**Options:**
-1. Yes, create a new git repo
-2. No, just create the file structure
+**Explanation (if unclear):** "Git will let you track changes and add Elevate Lite as a submodule. Recommended: yes"
 
-**Default:** Yes
+**If yes:** Set `INIT_GIT = true`
+**If no:** Set `INIT_GIT = false` (will clone Elevate Lite directly instead of submodule)
 
 **Store as:** `INIT_GIT` (boolean)
 
