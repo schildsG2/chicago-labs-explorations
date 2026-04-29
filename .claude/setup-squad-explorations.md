@@ -46,30 +46,30 @@ Ask the user for the following information **one question at a time** (don't ove
 - `SQUAD_KEBAB` (kebab-case, e.g., "buyer-intent")
 
 ### 2.2 Directory Name
-**Ask:** "I suggest naming the directory `{SQUAD_KEBAB}-explorations`. Use this name? (yes/no)"
+**Ask:** "Directory name? (I suggest: `{SQUAD_KEBAB}-explorations` — type 'yes' to use this, or type your own)"
 
-**If yes:** Use `{SQUAD_KEBAB}-explorations`
-**If no:** Ask "What should the directory be called?"
+**If user responds 'yes':** Use `{SQUAD_KEBAB}-explorations`
+**If user responds with anything else:** Use their response as `DIR_NAME`
 
 **Store as:** `DIR_NAME`
 
 ### 2.3 Installation Location
-**Ask:** "I'll create this at `~/projects/{DIR_NAME}`. Use this location? (yes/no)"
+**Ask:** "Installation location? (I suggest: `~/projects/{DIR_NAME}` — type 'yes' to use this, or type your own path)"
 
-**If yes:** Use `~/projects/{DIR_NAME}`
-**If no:** Ask "Where should this be created? (full path)"
+**If user responds 'yes':** Use `~/projects/{DIR_NAME}`
+**If user responds with anything else:** Use their response as the path
 
 **Validation:** Check if path exists. If yes, confirm overwrite.
 
 **Store as:** `INSTALL_PATH`
 
 ### 2.4 Squad Tag
-**Ask:** "For filtering epics, I suggest using the tag `{SQUAD_KEBAB}`. Use this? (yes/no)"
-
 **Explanation (before asking):** "This tag will be used to categorize and filter epic cards on your homepage."
 
-**If yes:** Use `{SQUAD_KEBAB}`
-**If no:** Ask "What tag should we use? (kebab-case, e.g., 'buyer-intent')"
+**Ask:** "Squad tag? (I suggest: `{SQUAD_KEBAB}` — type 'yes' to use this, or type your own in kebab-case)"
+
+**If user responds 'yes':** Use `{SQUAD_KEBAB}`
+**If user responds with anything else:** Use their response as the tag
 
 **Store as:** `SQUAD_TAG`
 

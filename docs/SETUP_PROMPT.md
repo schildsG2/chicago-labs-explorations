@@ -22,13 +22,13 @@ This should create a complete HTML prototyping workspace with:
 ### Step 1: Ask me for information one question at a time
 
 1. **Squad name** (e.g., "Buyer Intent", "Agent Marketplace")
-2. **Directory name** — Suggest `{squad-kebab}-explorations`, ask "Use this? (yes/no)"
-3. **Installation location** — Suggest `~/projects/{dir-name}`, ask "Use this? (yes/no)"
-4. **Squad tag** — Suggest `{squad-kebab}`, ask "Use this? (yes/no)"
+2. **Directory name** — "I suggest: `{squad-kebab}-explorations` — type 'yes' to use this, or type your own"
+3. **Installation location** — "I suggest: `~/projects/{dir-name}` — type 'yes' to use this, or type your own path"
+4. **Squad tag** — "I suggest: `{squad-kebab}` — type 'yes' to use this, or type your own"
 5. **2-3 main themes/epics** I'll be exploring (e.g., "Pricing Optimization, Purchase Flow, Insights")
 6. **Initialize as git repository?** (yes/no)
 
-**Important:** For questions with suggestions, always ask for explicit yes/no confirmation rather than assuming "press enter" will work.
+**Important:** For questions with suggestions, make it clear users can either type 'yes' to accept or type their own value directly.
 
 ### Step 2: Show me a summary and confirm
 
@@ -218,19 +218,27 @@ What is your squad name? (e.g., "Buyer Intent", "Agent Marketplace")
 
 You: Buyer Intent
 
-Claude: I suggest naming the directory `buyer-intent-explorations`. Use this name? (yes/no)
+Claude: Directory name? (I suggest: buyer-intent-explorations — type 'yes' to use this, or type your own)
 
 You: yes
 
-Claude: I'll create this at `~/projects/buyer-intent-explorations`. Use this location? (yes/no)
+Claude: Installation location? (I suggest: ~/projects/buyer-intent-explorations — type 'yes' to use this, or type your own path)
 
 You: yes
 
-Claude: For filtering epics, I suggest using the tag `buyer-intent`. Use this? (yes/no)
+Claude: Squad tag? (I suggest: buyer-intent — type 'yes' to use this, or type your own)
 
 You: yes
 
-... [continues with remaining questions] ...
+Claude: What are 2-3 main themes or product areas your squad will be exploring?
+
+You: Pricing Optimization, Purchase Flow, Company Insights
+
+Claude: Initialize as git repository? (yes/no)
+
+You: yes
+
+... [Claude shows summary and confirms] ...
 
 Claude: Here's what I'll create:
 - Squad: Buyer Intent
