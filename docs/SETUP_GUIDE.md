@@ -185,15 +185,17 @@ git submodule update --remote shared/elevate-lite
 
 ### Push to GitHub
 ```bash
-git remote add origin https://github.com/g2/your-squad-explorations.git
+git remote add origin <your-repo-url>
 git push -u origin main
 ```
+
+Replace `<your-repo-url>` with your actual GitHub repository URL.
 
 ### Share with Your Squad
 Other designers can clone and start creating explorations immediately:
 ```bash
-git clone --recurse-submodules https://github.com/g2/your-squad-explorations.git
-cd your-squad-explorations
+git clone --recurse-submodules <your-repo-url>
+cd <workspace-directory>
 /new-exploration {epic-name}
 ```
 
