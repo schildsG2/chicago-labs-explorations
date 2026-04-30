@@ -29,8 +29,14 @@ Ask the user for the following (with examples):
 - **Epic name** (kebab-case, e.g., "search-results", "bulk-purchase")
 - **Display title** (title case, e.g., "Search Results", "Bulk Purchase")
 - **Description** (1-2 sentences, e.g., "Search UX improvements for ai.g2.com. Query conveyance, result counts, null states, and accessibility.")
-- **Tag** (choose from existing: "g2-activate", "agent-marketplace", "design-system", or create new)
+- **Tag** (read existing tags from `{repo-root}/index.html` filter chips, or create new theme tag matching the epic name)
 - **Icon color scheme** (background + icon color in hex, e.g., "#f2f0f9" + "#5746b2")
+
+**How to determine tag:**
+1. Read `{repo-root}/index.html` and find existing filter chips (look for `data-tag` attributes)
+2. Show user the existing tags and ask which one this epic belongs to
+3. If creating a new theme/project area, suggest using the epic's kebab-case name as the tag
+4. Add a filter chip to index.html for new tags
 
 **Optional:**
 - **CLAUDE.md content** (epic-specific context, problem space, references)
