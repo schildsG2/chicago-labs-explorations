@@ -24,9 +24,9 @@ This should create a complete HTML prototyping workspace with:
 1. **Squad name** (e.g., "Buyer Intent", "Agent Marketplace")
 2. **Directory name** — "I suggest: `{squad-kebab}-explorations` — type 'yes' to use this, or type your own"
 3. **Installation location** — "I suggest: `~/projects/{dir-name}` — type 'yes' to use this, or type your own path"
-4. **Squad tag** — "I suggest: `{squad-kebab}` — type 'yes' to use this, or type your own"
-5. **2-3 main themes/epics** I'll be exploring (e.g., "Pricing Optimization, Purchase Flow, Insights")
-6. **Initialize as git repository?** (yes/no)
+4. **2-3 main themes/epics** I'll be exploring (e.g., "Pricing Optimization, Purchase Flow, Insights")
+   - Note: Each theme will become both an epic AND a filter tag on the homepage
+5. **Initialize as git repository?** (yes/no)
 
 **Important:** For questions with suggestions, make it clear users can either type 'yes' to accept or type their own value directly.
 
@@ -226,11 +226,8 @@ Claude: Installation location? (I suggest: ~/projects/buyer-intent-explorations 
 
 You: yes
 
-Claude: Squad tag? (I suggest: buyer-intent — type 'yes' to use this, or type your own)
-
-You: yes
-
 Claude: What are 2-3 main themes or product areas your squad will be exploring?
+(Each theme will become both an epic and a filter tag)
 
 You: Pricing Optimization, Purchase Flow, Company Insights
 
