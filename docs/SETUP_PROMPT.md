@@ -4,6 +4,20 @@
 
 ---
 
+## Prerequisites
+
+Before running the setup, ensure you have:
+
+✅ **Git installed** — Check with: `git --version`  
+✅ **Claude Code** — Desktop app, CLI, or web version  
+✅ **GitHub access** — Can clone public repos (no auth needed)  
+
+**If git is missing:**
+- Mac: `brew install git` or download from [git-scm.com](https://git-scm.com)
+- Windows: Download from [git-scm.com](https://git-scm.com)
+
+---
+
 ## The Prompt
 
 ```markdown
@@ -18,6 +32,17 @@ This should create a complete HTML prototyping workspace with:
 - Squad-specific CLAUDE.md documentation
 
 **Please follow this process:**
+
+### Step 0: Verify git is installed
+
+Check that git is available:
+```bash
+git --version
+```
+
+If git is not found, stop and tell me to install it first:
+- Mac: `brew install git` or download from git-scm.com
+- Windows/Linux: Download from git-scm.com
 
 ### Step 1: Ask me for information one question at a time
 

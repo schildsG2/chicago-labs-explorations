@@ -10,6 +10,23 @@ Guide the user through an interactive setup wizard that creates a complete, pers
 
 ---
 
+## Step 0: Verify Prerequisites
+
+Before starting setup, check that git is installed:
+
+```bash
+git --version
+```
+
+If git is not found:
+- **Mac:** Suggest `brew install git` or download from git-scm.com
+- **Windows:** Suggest downloading from git-scm.com
+- **Linux:** Suggest `sudo apt install git` or equivalent
+
+If git is missing, stop and inform the user they need to install it first.
+
+---
+
 ## Step 1: Welcome & Context
 
 Greet the user warmly and explain what this setup will create:
