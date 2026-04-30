@@ -126,490 +126,194 @@ If user says no, ask what they'd like to change.
 
 ---
 
-## Step 4: Create Directory Structure
+## Step 4: Clone Template Repository
 
-Execute the following:
-
-### 4.1 Create Base Directories
-```bash
-mkdir -p {INSTALL_PATH}/epics
-mkdir -p {INSTALL_PATH}/research/spikes
-mkdir -p {INSTALL_PATH}/shared
-mkdir -p {INSTALL_PATH}/.claude
 ```
 
-### 4.2 Initialize Git (if requested)
+---
+
+## Step 5: Personalize Template Files
+
+Use find/replace across all files in `{INSTALL_PATH}`:
+
+**Replace these placeholders:**
+- `{{SQUAD_NAME}}` → e.g., "Buyer Intent"
+- `{{SQUAD_KEBAB}}` → e.g., "buyer-intent"
+- `{{DIR_NAME}}` → e.g., "buyer-intent-explorations"
+- `{{DATE}}` → Today in ISO (e.g., "2026-04-29")
+- `{{DATE_FORMATTED}}` → Human-readable (e.g., "Apr 29, 2026")
+
+**Files that contain placeholders:**
+- `index.html`
+- `CLAUDE.md`
+- `research/spikes/README.md`
+- `epics/example-epic/index.html`
+
+---
+
+## Step 6: Create Epics from Themes
+
+The template has `epics/example-epic/`. Transform it for each user theme:
+
+### 6.1 First Theme (Rename Example)
+
 ```bash
-cd {INSTALL_PATH}
-git init
+mv epics/example-epic epics/{theme-1-kebab}
 ```
 
-### 4.3 Add Elevate Lite Submodule
+Replace in `epics/{theme-1-kebab}/index.html`:
+- `{{EPIC_TITLE}}` → "Pricing Optimization"
+- `{{EPIC_KEBAB}}` → "pricing-optimization"
+- `{{EPIC_DESCRIPTION}}` → "Exploring pricing models and optimization strategies"
+
+### 6.2 Additional Themes (Copy + Personalize)
+
+For theme 2:
 ```bash
-cd {INSTALL_PATH}
+cp -r epics/{theme-1-kebab} epics/{theme-2-kebab}
+```
+
+Replace in `epics/{theme-2-kebab}/index.html`:
+- Update title, kebab, description for theme 2
+
+Repeat for theme 3 if provided.
+
+---
+
+## Step 7: Update Main index.html
+
+### 7.1 Add Filter Chips
+
+Find the filter chips section and add one chip per theme (after "All"):
+
+```html
+<!-- After the "All" chip, add: -->
+<div class="filter-chip ..." data-tag="pricing-optimization">Pricing Optimization</div>
+<div class="filter-chip ..." data-tag="purchase-flow">Purchase Flow</div>
+```
+
+### 7.2 Replace Example Epic Card
+
+The template has ONE example epic card. Duplicate it for each theme:
+
+**For each theme:**
+1. Copy the epic card HTML block
+2. Update:
+   - `href` → `./epics/{theme-kebab}/index.html`
+   - `data-tags` → `{theme-kebab}`
+   - `data-name` → `{Theme Title}`
+   - Card title → `{Theme Title}`
+   - Card description → Theme description
+   - Icon background color (cycle through defaults or let user choose)
+
+**Icon color defaults:**
+- Theme 1: Purple (#f2f0f9 bg, #5746b2 icon)
+- Theme 2: Orange (#fff5f2 bg, #ff492c icon)
+- Theme 3: Neutral (#f5f5f6 bg, #201f23 icon)
+
+### 7.3 Update Epic Count
+
+Change `<span id="epicCount">(1)</span>` to `({N})` where N = number of themes.
+
+---
+
+## Step 8: Add Elevate Lite
+
+Remove the placeholder file:
+```bash
+rm shared/elevate-lite-PLACEHOLDER.md
+```
+
+If `INIT_GIT = true`:
+```bash
 git submodule add https://github.com/schildsG2/elevate-lite.git shared/elevate-lite
 ```
 
-**Note:** If the user didn't want git, skip the submodule and suggest they clone elevate-lite manually, OR offer to just clone it directly (not as submodule).
-
----
-
-## Step 5: Create Index.html
-
-Build the main portal page using this template structure:
-
-**Key customizations:**
-- Replace "Chicago Labs" with "{SQUAD_NAME} Explorations"
-- Update header description to reference the squad
-- Create placeholder epic cards for each theme in `EPIC_THEMES`
-- Use `SQUAD_TAG` for all epic cards
-- Set appropriate icon colors (offer to let user customize or use defaults)
-
-**Base template:**
-```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{SQUAD_NAME} Explorations</title>
-  <link rel="stylesheet" href="./shared/elevate-lite/tokens/elevate.css">
-  <link rel="stylesheet" href="./shared/elevate-lite/components/elevate.css">
-  <link rel="stylesheet" href="./shared/elevate-lite/icons/icons.css">
-  <style>
-    /* Copy styles from Chicago Labs index.html */
-  </style>
-</head>
-<body>
-  <div elv class="elv-bg-neutral-5 elv-min-h-screen">
-    
-    <!-- Header -->
-    <header class="elv-bg-neutral-0 elv-border-b elv-border-light" style="border-bottom-width: 0.5px;">
-      <div class="elv-max-w-7xl elv-w-full md:elv-w-5/6 elv-mx-auto elv-pt-12 elv-pb-8 elv-px-3">
-        <h1 class="elv-text-4xl elv-font-extrabold elv-text-default elv-mb-3 elv-leading-tight">
-          {SQUAD_NAME} Explorations
-        </h1>
-        <p class="elv-text-base elv-text-subtle elv-max-w-2xl elv-leading-relaxed">
-          Rapid HTML prototypes and design explorations for the {SQUAD_NAME} squad at G2. 
-          Built with the Elevate design system for high-fidelity concept validation.
-        </p>
-      </div>
-    </header>
-
-    <!-- Epic Cards Grid -->
-    <div class="elv-max-w-7xl elv-w-full md:elv-w-5/6 elv-mx-auto elv-py-12 elv-px-3">
-      
-      <div class="elv-mb-4 elv-flex elv-items-center elv-justify-between">
-        <h2 class="elv-text-lg elv-font-bold elv-text-default">
-          Epics <span class="elv-text-lg elv-font-normal elv-text-subtle" id="epicCount">({N})</span>
-        </h2>
-      </div>
-
-      <div id="epicGrid" class="elv-grid elv-grid-cols-1 elv-gap-4 elv-mb-6">
-        
-        <!-- Epic cards will be inserted here -->
-        
-      </div>
-
-      <!-- Footer with link to Elevate Lite -->
-      <footer class="elv-mt-16 elv-pt-6 elv-text-xs elv-text-nonessential elv-border-t elv-border-light">
-        <a href="./shared/elevate-lite/index.html" class="elv-text-nonessential hover:elv-text-primary">
-          Elevate Lite Design System →
-        </a>
-      </footer>
-
-    </div>
-  </div>
-
-  <script>
-    /* Include filtering script from Chicago Labs if needed */
-  </script>
-
-</body>
-</html>
-```
-
-**For each theme in EPIC_THEMES:**
-1. Create an epic card (use template from Chicago Labs)
-2. Use sequential numbering for epic directories
-3. Offer default icon + color combinations or let user choose
-
----
-
-## Step 6: Create Placeholder Epic Structures
-
-For each theme in `EPIC_THEMES`:
-
-### 6.1 Convert Theme to Epic Name
-- Theme: "Pricing Optimization" → Epic name: "pricing-optimization"
-- Create: `{INSTALL_PATH}/epics/pricing-optimization/`
-
-### 6.2 Create Epic Directory Structure
-```
-epics/pricing-optimization/
-├── explorations/
-└── index.html
-```
-
-### 6.3 Create Epic index.html
-- Use template from `/new-epic` skill
-- Customize with theme name
-- Set exploration count to 0
-- Include empty state message
-
-### 6.4 Add Epic Card to Main index.html
-- Insert epic card for this theme
-- Use appropriate icon (ask user or use defaults)
-- Set data-tags attribute to `SQUAD_TAG`
-- Use today's date
-
----
-
-## Step 7: Create Exploration Starter Template
-
-Copy or create `shared/exploration-starter.html`:
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Exploration — {SQUAD_NAME}</title>
-  <link rel="stylesheet" href="../../shared/elevate-lite/tokens/elevate.css">
-  <link rel="stylesheet" href="../../shared/elevate-lite/components/elevate.css">
-  <link rel="stylesheet" href="../../shared/elevate-lite/icons/icons.css">
-  <style>
-    body { margin: 0; }
-  </style>
-</head>
-<body>
-
-<div elv class="elv-p-8">
-  
-  <div class="elv-max-w-7xl elv-mx-auto">
-    <h1 class="elv-text-2xl elv-font-extrabold elv-text-default elv-mb-6">
-      New Exploration
-    </h1>
-    
-    <p class="elv-text-base elv-text-subtle">
-      Replace this content with your exploration. Reference the 
-      <a href="../../shared/elevate-lite/design-system/DESIGN.md" class="elv-text-primary">Elevate design specs</a> 
-      or browse the 
-      <a href="https://www.g2.test/elevate/lookbook" class="elv-text-primary">Lookbook</a>.
-    </p>
-  </div>
-
-</div>
-
-</body>
-</html>
-```
-
----
-
-## Step 8: Install Skills
-
-Copy the optimized `/new-epic` and `/new-exploration` skills to the new workspace:
-
+If `INIT_GIT = false`:
 ```bash
-cp {chicago-labs-path}/.claude/new-epic.md {INSTALL_PATH}/.claude/
-cp {chicago-labs-path}/.claude/new-exploration.md {INSTALL_PATH}/.claude/
-```
-
-**Note:** These skills are already path-agnostic, so they'll work in the new workspace.
-
----
-
-## Step 9: Create CLAUDE.md
-
-Create `{INSTALL_PATH}/CLAUDE.md` with squad-specific context:
-
-```markdown
-# {SQUAD_NAME} Explorations — Agent Context
-
-> Auto-loaded context for any work in this repository.
-
----
-
-## Squad Overview
-
-**{SQUAD_NAME} Explorations** is a unified repository for {SQUAD_NAME} product design explorations and rapid HTML prototypes. This is a design-first workspace for validating concepts before production implementation.
-
-**Purpose:**
-- Rapid HTML prototyping using the Elevate design system
-- Design explorations for new {SQUAD_NAME} features
-- Competitive research and reference material
-- Shared component library for prototyping
-
-**Philosophy:**
-- Design-first: validate UX before building features
-- Elevate-first: maintain 1:1 fidelity with production design system
-- Rapid iteration: HTML prototypes over full implementations
-- Lightweight: simple static HTML, no build tools required
-
----
-
-## Repository Structure
-
-```
-{DIR_NAME}/
-├── index.html              ← Portal to all epics
-├── shared/                 ← Design system, components, tokens
-│   ├── elevate-lite/       ← Elevate design system (git submodule)
-│   └── exploration-starter.html
-├── epics/                  ← Individual feature explorations
-{LIST_EPIC_DIRS}
-└── research/               ← Competitive analysis, spikes
-    └── spikes/
+git clone https://github.com/schildsG2/elevate-lite.git shared/elevate-lite
 ```
 
 ---
 
-## Design System: Elevate First
+## Step 9: Initial Git Commit (if git enabled)
 
-**CRITICAL:** Always use the Elevate design system. Never invent UI patterns.
-
-### Primary Resources:
-
-1. **Specifications**: `./shared/elevate-lite/design-system/DESIGN.md`
-2. **Visual Reference**: [Elevate Lookbook](https://www.g2.test/elevate/lookbook)
-3. **HTML Templates**: `./shared/elevate-lite/components/templates/`
-4. **Design Tokens**: `./shared/elevate-lite/tokens/elevate.css`
-
-### Workflow:
-1. Read DESIGN.md section for component
-2. Extract exact specifications
-3. Check if HTML template exists
-4. Build from specs if template doesn't exist
-5. Reference Lookbook for visual confirmation
-
----
-
-## Exploration Conventions
-
-### Starting a New Exploration
-
-Use the `/new-exploration {epic-name}` skill to create numbered explorations.
-
-### File Naming
-
-- **Explorations**: `##-descriptive-name.html` (e.g., `01-initial-concept.html`)
-- **Components**: `kebab-case.html`
-
-### Code Style
-
-- **Elevate utilities**: Use `elv-` prefix
-- **Component classes**: Use BEM-like pattern
-- **Semantic HTML**: Use proper tags
-- **Accessibility**: Always include ARIA attributes
-
----
-
-## Key Design Principles
-
-Follow Elevate design system principles:
-
-- **Trust-First**: G2's trust layer is first-class UI
-- **Answer-First**: Every screen answers a clear question
-- **Calm Density**: Information-rich but not cluttered
-- **Typography**: Only Figtree, never pure black
-- **Color**: Use semantic tokens
-- **Spacing**: 4px base unit
-- **Shadows**: Subtle, diffused, max 12% opacity
-
----
-
-## Available Skills
-
-- `/new-epic` — Create a new epic with complete scaffolding
-- `/new-exploration {epic-name}` — Start a numbered exploration in an epic
-
----
-
-## Questions?
-
-- **Design system**: Check `./shared/elevate-lite/design-system/DESIGN.md`
-- **Components**: Browse Elevate Lookbook
-- **Project structure**: This file
-
----
-
-**This is a design exploration workspace.** Prioritize rapid iteration and Elevate fidelity.
-```
-
----
-
-## Step 10: Create Research Directory Structure
-
-Create `{INSTALL_PATH}/research/spikes/README.md`:
-
-```markdown
-# Research & Spikes
-
-This directory contains competitive research, design spikes, and reference material for {SQUAD_NAME} explorations.
-
-## Structure
-
-- `/spikes/` — Quick investigative work, proof-of-concepts
-- Add subdirectories as needed for organized research
-
-## Guidelines
-
-- Document competitive analysis with screenshots and notes
-- Link to Figma files or external resources
-- Reference from epic CLAUDE.md files when relevant
-```
-
----
-
-## Step 11: Initial Git Commit (if git enabled)
-
+If `INIT_GIT = true`:
 ```bash
-cd {INSTALL_PATH}
 git add .
 git commit -m "Initial setup: {SQUAD_NAME} explorations workspace
 
-- Created {N} placeholder epics: {LIST_EPICS}
-- Added Elevate Lite design system as submodule
-- Installed /new-epic and /new-exploration skills
-- Set up research directory structure
+- Created {N} epics: {list themes}
+- Added Elevate Lite design system
+- Personalized for {SQUAD_NAME} squad
 
 Generated with /setup-squad-explorations"
 ```
 
 ---
 
-## Step 12: Final Report & Next Steps
+## Step 10: Final Report & Next Steps
 
-Show the user a completion summary:
+Show completion summary:
 
 ```markdown
 ## ✅ Setup Complete!
 
 **Location:** `{INSTALL_PATH}`
 
-**What was created:**
-- ✓ Main portal page (`index.html`)
-- ✓ {N} placeholder epics: {LIST_EPIC_NAMES}
-- ✓ Elevate Lite design system (git submodule)
-- ✓ Research directory (`research/spikes/`)
-- ✓ Skills: `/new-epic`, `/new-exploration`
-- ✓ Squad-specific documentation (`CLAUDE.md`)
-- ✓ Git repository initialized {if applicable}
+**Created:**
+- ✓ Main portal (`index.html`) with {N} epics
+- ✓ Filter chips: All, {theme-1}, {theme-2}, {theme-3}
+- ✓ Epic directories with placeholder explorations
+- ✓ Elevate Lite design system
+- ✓ Research directory
+- ✓ Skills: /new-epic, /new-exploration
+- ✓ {SQUAD_NAME}-specific CLAUDE.md
+{✓ Git repository initialized (if applicable)}
 
 **Next steps:**
 
-1. **Open your workspace:**
-   ```bash
+1. Open your workspace:
    cd {INSTALL_PATH}
    open index.html
-   ```
 
-2. **Create your first exploration:**
-   ```bash
-   /new-exploration {first-epic-name}
-   ```
+2. Create your first exploration:
+   /new-exploration {first-theme-kebab}
 
-3. **Customize:**
-   - Add more epics: `/new-epic`
-   - Update epic descriptions in their index.html files
-   - Add content to research/spikes/
+3. View Elevate specs:
+   open shared/elevate-lite/design-system/DESIGN.md
 
-4. **Git workflow** (if initialized):
-   ```bash
+4. Browse Lookbook:
+   https://www.g2.test/elevate/lookbook
+
+{If git: Push to GitHub when ready:
    git remote add origin <your-repo-url>
-   git push -u origin main
-   ```
-
-**Resources:**
-- Elevate design specs: `shared/elevate-lite/design-system/DESIGN.md`
-- Elevate Lookbook: https://www.g2.test/elevate/lookbook
-- Exploration starter: `shared/exploration-starter.html`
-
----
+   git push -u origin main}
 
 **Happy exploring! 🚀**
 ```
 
 ---
 
-## Step 13: Offer to Open
+## Step 11: Offer to Open
 
-Ask the user:
-
-**"Would you like to open the workspace now?"**
+Ask: "Would you like to open the workspace now?"
 1. Open index.html in browser
-2. Open in VS Code / editor
-3. Continue working here
-
-If option 1: `open {INSTALL_PATH}/index.html`
-If option 2: `code {INSTALL_PATH}` or appropriate editor command
+2. Open in editor (e.g., `code {INSTALL_PATH}`)
+3. Continue
 
 ---
 
-## Important Notes
+## Key Differences from Old Approach
 
-- **Epic icons**: Offer default icon choices or let user customize later
-- **Color schemes**: Use G2 brand colors (purple, rorange) or neutral palettes by default
-- **Elevate Lite**: If submodule fails (not a git repo), clone it directly instead
-- **Error handling**: If any step fails, report clearly and suggest fixes
-- **Customization**: Let users customize epic names, icons, and colors during setup
+**Old (Generate):**
+- ❌ 400+ lines of HTML generation
+- ❌ Error-prone template building
+- ❌ Inconsistent with actual chicago-labs structure
 
----
-
-## Default Icon + Color Combinations
-
-For placeholder epics, use these defaults (or let user choose):
-
-1. **First epic**: Purple background (#f2f0f9) + Purple icon (#5746b2)
-2. **Second epic**: Orange background (#fff5f2) + Orange icon (#ff492c)
-3. **Third epic**: Neutral background (#f5f5f6) + Dark icon (#201f23)
-
-Icons to use:
-- Bar chart (analytics/performance)
-- Shopping cart (purchase flows)
-- Search (discovery/search)
-- Building (dashboard/company data)
-- Document (content/reports)
-
----
-
-## Verification Checklist
-
-Before reporting completion, verify:
-
-- ✅ Directory structure created
-- ✅ Git initialized (if requested)
-- ✅ Elevate Lite submodule added successfully
-- ✅ index.html created with {N} epic cards
-- ✅ Each epic has directory + index.html
-- ✅ exploration-starter.html exists
-- ✅ Skills copied to .claude/
-- ✅ CLAUDE.md created
-- ✅ research/spikes/ structure created
-- ✅ All file paths are correct
-- ✅ Epic count matches number of themes
-
----
-
-## Edge Cases
-
-**User cancels mid-setup:**
-- Ask if they want to clean up partially created files
-- Offer to resume if they run the skill again
-
-**Elevate Lite submodule fails:**
-- Offer to clone it directly: `git clone https://github.com/schildsG2/elevate-lite.git shared/elevate-lite`
-
-**Path already exists:**
-- Confirm before overwriting
-- Offer to choose a different path
-
-**No git available:**
-- Skip git steps
-- Warn that Elevate Lite submodule won't work (offer direct clone)
-
-**User wants more than 3 epics:**
-- Allow it, no hard limit
-- Just create all requested epics
+**New (Clone):**
+- ✅ Clone tested template
+- ✅ Simple find/replace
+- ✅ Guaranteed consistency
+- ✅ Faster (~30 seconds vs 5 minutes)
+- ✅ Easier to maintain (update template, not skill)

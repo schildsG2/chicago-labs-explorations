@@ -40,82 +40,111 @@ Before creating anything, show me:
 
 Ask for confirmation to proceed.
 
-### Step 3: Create the workspace structure
+### Step 3: Clone the template repository
 
+```bash
+git clone https://github.com/schildsG2/squad-explorations-template.git {installation-path}
+cd {installation-path}
+rm -rf .git
+```
+
+If I chose to initialize git, run: `git init`
+
+**Template structure (what gets cloned):**
 ```
 {dir-name}/
-├── index.html                    # Portal page (personalized to my squad)
-├── epics/                        # Epic directories
-│   ├── {theme-1}/
-│   │   ├── index.html            # Epic gallery page
-│   │   └── explorations/         # Empty, ready for explorations
-│   ├── {theme-2}/
-│   └── {theme-3}/
+├── index.html                    # Portal page (with {{PLACEHOLDERS}})
+├── epics/
+│   └── example-epic/             # Will be renamed/duplicated for my themes
+│       ├── index.html            # Epic gallery page
+│       └── explorations/
+│           └── 01-example.html   # Placeholder exploration
 ├── shared/
-│   ├── elevate-lite/             # Git submodule
-│   └── exploration-starter.html  # Template for new explorations
-├── research/
-│   └── spikes/                   # For competitive research
-├── .claude/
-│   ├── new-epic.md               # Skill for creating epics
-│   ├── new-exploration.md        # Skill for creating explorations
-│   └── setup-squad-explorations.md  # This setup wizard
-└── CLAUDE.md                     # Squad-specific agent context
+│   ├── elevate-lite-PLACEHOLDER.md  # (Will be replaced with actual submodule)
+│   └── exploration-starter.html
+├── research/spikes/
+├── .claude/                      # Skills already included!
+│   ├── new-epic.md
+│   ├── new-exploration.md
+│   └── setup-squad-explorations.md
+├── CLAUDE.md                     # (with {{PLACEHOLDERS}})
+└── README.md                     # Template documentation
 ```
 
-### Step 4: Personalize the content
+### Step 4: Personalize all files
 
-**index.html:**
-- Title: "{Squad Name} Explorations"
-- Header: "{Squad Name} Explorations"
-- Description: "Rapid HTML prototypes and design explorations for the {Squad Name} squad at G2..."
-- Epic cards for each theme (with appropriate icons and colors)
-- Epic count badge showing total number of epics
+Use find/replace across all files to replace placeholders:
 
-**For each epic theme:**
-- Create epic directory: `epics/{theme-kebab}/`
-- Create epic index.html with:
-  - Title matching the theme
-  - Empty explorations section
-  - Breadcrumb navigation back to main index
-  - Empty state message explaining how to use /new-exploration
+**Placeholders to replace:**
+- `{{SQUAD_NAME}}` → My squad name (e.g., "Buyer Intent")
+- `{{SQUAD_KEBAB}}` → kebab-case (e.g., "buyer-intent")
+- `{{DIR_NAME}}` → directory name (e.g., "buyer-intent-explorations")
+- `{{DATE}}` → Today's date (e.g., "2026-04-29")
+- `{{DATE_FORMATTED}}` → Formatted date (e.g., "Apr 29, 2026")
 
-**CLAUDE.md:**
-- Personalized to my squad name
-- List of epic directories
-- Squad-specific context in overview
-- Keep all Elevate design system references
+**Files that get personalized:**
+- `index.html` — Squad name in header, filter chips
+- `CLAUDE.md` — Squad context and references
+- `research/spikes/README.md` — Squad name references
 
-**exploration-starter.html:**
-- Generic starter template
-- References to Elevate Lite resources
-- Proper relative paths (../../shared/elevate-lite/...)
+### Step 5: Create epics from themes
 
-### Step 5: Initialize git and add Elevate Lite submodule
+Transform the `example-epic` for each of my themes:
 
-If I chose to initialize git:
+**For first theme:**
 ```bash
-cd {installation-path}
-git init
-git submodule add https://github.com/schildsG2/elevate-lite.git shared/elevate-lite
-git add .
-git commit -m "Initial setup: {Squad Name} explorations workspace"
+mv epics/example-epic epics/{theme-1-kebab}
 ```
 
-If I chose NOT to initialize git:
-- Skip submodule (clone elevate-lite directly instead)
-- Warn me that submodule workflow won't be available
+Replace in `epics/{theme-1-kebab}/index.html`:
+- `{{EPIC_TITLE}}` → "Pricing Optimization"
+- `{{EPIC_KEBAB}}` → "pricing-optimization"  
+- `{{EPIC_DESCRIPTION}}` → Theme description
 
-### Step 6: Install skills
+**For additional themes:** Copy the first epic and personalize:
+```bash
+cp -r epics/{theme-1-kebab} epics/{theme-2-kebab}
+# Update placeholders for theme 2
+cp -r epics/{theme-1-kebab} epics/{theme-3-kebab}
+# Update placeholders for theme 3
+```
 
-Copy the path-agnostic versions of these skills from the Chicago Labs template:
-- /new-epic (creates new epic structures)
-- /new-exploration (creates numbered explorations)
-- /setup-squad-explorations (this setup wizard)
+**Update main index.html:**
+- Add filter chip for each theme
+- Duplicate epic card for each theme (with appropriate icons/colors)
+- Update epic count from `(1)` to `({N})`
 
-These should work from any location in my new workspace.
+### Step 6: Add Elevate Lite design system
 
-### Step 7: Final report
+Remove placeholder:
+```bash
+rm shared/elevate-lite-PLACEHOLDER.md
+```
+
+If git initialized:
+```bash
+git submodule add https://github.com/schildsG2/elevate-lite.git shared/elevate-lite
+```
+
+If no git:
+```bash
+git clone https://github.com/schildsG2/elevate-lite.git shared/elevate-lite
+```
+
+### Step 7: Initial commit (if git enabled)
+
+```bash
+git add .
+git commit -m "Initial setup: {Squad Name} explorations workspace
+
+- Created {N} epics: {list themes}
+- Added Elevate Lite design system
+- Personalized for {Squad Name} squad
+
+Generated with /setup-squad-explorations"
+```
+
+### Step 8: Final report
 
 Show me:
 - ✅ What was created (with file counts)
