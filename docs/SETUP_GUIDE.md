@@ -4,42 +4,49 @@
 
 ---
 
+## Prerequisites
+
+Before starting, ensure you have:
+
+✅ **Git installed** — Check with: `git --version`  
+✅ **Claude Code** — Desktop app, CLI, or web version  
+✅ **GitHub access** — Can clone public repos (no auth needed)
+
+**If git is missing:**
+- Mac: `brew install git` or [download here](https://git-scm.com)
+- Windows/Linux: [Download here](https://git-scm.com)
+
+---
+
 ## For New Users (Setting up a workspace)
 
-### Option 1: Use the Setup Skill (Recommended)
+### Option 1: Copy-Paste Setup Prompt (Easiest)
 
-If you have Claude Code installed:
+**See:** [`SETUP_PROMPT.md`](./SETUP_PROMPT.md) for the full prompt
+
+1. Copy the entire prompt from SETUP_PROMPT.md
+2. Paste into Claude Code
+3. Answer 5 questions (squad name, themes, location, etc.)
+4. Done! Workspace created in ~30 seconds
+
+**What happens:**
+- Clones the [template repository](https://github.com/schildsG2/squad-explorations-template)
+- Personalizes files to your squad
+- Creates epics for your themes
+- Adds Elevate Lite design system
+- Installs `/new-epic` and `/new-exploration` skills
+
+### Option 2: Use the Skill Directly
+
+If you're already in a project with the skill:
 
 ```bash
 cd ~/projects/
-# Then in Claude Code:
+# In Claude Code:
 /setup-squad-explorations
 ```
 
-This will walk you through an interactive setup wizard that creates a complete workspace customized to your squad.
-
-### Option 2: Copy-Paste Setup Prompt
-
-If you don't have the skill installed, copy this prompt into Claude Code:
-
-```markdown
-Set up a new squad exploration workspace for me using the /setup-squad-explorations pattern.
-
-Ask me for:
-- My squad name
-- 2-3 main themes/epics I'll be exploring
-- Where to create the workspace (default: ~/projects/)
-
-Then create:
-- Personalized index.html portal page
-- Placeholder epic structures for my themes
-- Elevate Lite design system (as git submodule)
-- Research directory
-- /new-epic and /new-exploration skills
-- CLAUDE.md with squad-specific context
-
-Follow the setup-squad-explorations skill specifications.
-```
+This runs the same interactive wizard as Option 1.
 
 ---
 
@@ -52,14 +59,18 @@ Follow the setup-squad-explorations skill specifications.
 ```
 
 This will ask you for:
-- Epic name (kebab-case)
-- Display title
-- Description
-- Tag for filtering
+- Epic name (kebab-case, e.g., "pricing-optimization")
+- Display title (e.g., "Pricing Optimization")
+- Description (1-2 sentences)
+- Tag for filtering (reads existing tags from your workspace, or creates new)
 - Icon + color scheme
 - Optional CLAUDE.md content
 
-Then it creates the full epic structure and updates your homepage.
+**Then it:**
+- Creates epic directory structure
+- Updates your homepage with epic card
+- Updates epic count
+- Offers to open the epic or create first exploration
 
 ### Creating a New Exploration
 
@@ -72,12 +83,13 @@ Example:
 /new-exploration pricing-optimization
 ```
 
-This will:
+**This will:**
 - Auto-number your exploration (01, 02, 03...)
 - Ask for an exploration name
 - Copy the starter template
 - Update the epic's index.html
-- Offer to open the file for you
+- Update exploration count
+- Offer to open the file
 
 ---
 
@@ -87,58 +99,73 @@ This will:
 
 ```
 your-squad-explorations/
-├── index.html                 # Your portal page
-├── epics/                     # Your explorations
-│   ├── epic-one/
-│   │   ├── index.html         # Epic gallery
-│   │   └── explorations/      # Numbered explorations
-│   └── epic-two/
+├── index.html                 # Portal page (personalized to your squad)
+├── epics/                     # Your epic themes
+│   ├── pricing-optimization/
+│   │   ├── index.html         # Epic gallery page
+│   │   └── explorations/      # Numbered explorations (01, 02, 03...)
+│   ├── purchase-flow/
+│   └── company-insights/
 ├── shared/
-│   ├── elevate-lite/          # Design system (submodule)
+│   ├── elevate-lite/          # Design system (git submodule)
+│   │   ├── tokens/elevate.css
+│   │   ├── components/
+│   │   └── design-system/DESIGN.md
 │   └── exploration-starter.html
-├── research/spikes/           # Research & references
-├── .claude/                   # Skills
+├── research/spikes/           # Research & competitive analysis
+├── .claude/                   # Skills (already installed!)
 │   ├── new-epic.md
-│   └── new-exploration.md
-└── CLAUDE.md                  # Agent context
+│   ├── new-exploration.md
+│   └── setup-squad-explorations.md
+├── CLAUDE.md                  # Squad-specific agent context
+└── README.md                  # Template documentation
 ```
 
 ### Skills Available
 
-- `/new-epic` — Create a new epic
-- `/new-exploration {epic-name}` — Start a new exploration
-- `/setup-squad-explorations` — Set up a workspace (for helping others)
+All workspaces include these skills:
+
+- `/new-epic` — Create a new epic with full structure
+- `/new-exploration {epic-name}` — Start a numbered exploration
+- `/setup-squad-explorations` — Set up a workspace (for helping teammates)
 
 ---
 
 ## Key Features
 
-### Path-Agnostic
-All skills work from any clone of your workspace. They auto-detect the repository root using git.
+### Template-Based Setup
+Setup clones the [squad-explorations-template](https://github.com/schildsG2/squad-explorations-template) and personalizes it. This ensures:
+- Guaranteed consistency
+- Tested, working code
+- Fast setup (~30 seconds)
+
+### Path-Agnostic Skills
+All skills auto-detect the repository root using git. Works from anywhere in your workspace.
 
 ### Elevate Design System
-The workspace includes Elevate Lite as a git submodule, giving you:
+Includes Elevate Lite as a git submodule:
 - Design tokens (CSS variables)
 - Component templates
 - Complete DESIGN.md specifications
 - Icon library
 
-### Auto-Numbered Explorations
-Explorations are automatically numbered (01, 02, 03...) for chronological tracking.
+### Theme-Based Filtering
+Filter chips on your homepage let you filter epics by theme/project area:
+- "All" shows everything
+- "Pricing Optimization" shows pricing-related epics
+- "Purchase Flow" shows purchase-related epics
 
-### Personalized to Your Squad
-- Squad name in header
-- Custom epic themes
-- Squad-specific CLAUDE.md
+### Auto-Numbered Explorations
+Explorations are automatically numbered (01, 02, 03...) for chronological tracking within each epic.
 
 ---
 
 ## Quick Start Workflow
 
-1. **Set up workspace** (one-time):
-   ```
-   /setup-squad-explorations
-   ```
+1. **Set up workspace** (one-time, ~30 seconds):
+   - Copy prompt from [`SETUP_PROMPT.md`](./SETUP_PROMPT.md)
+   - Paste into Claude Code
+   - Answer questions
 
 2. **Create your first epic**:
    ```
@@ -150,7 +177,7 @@ Explorations are automatically numbered (01, 02, 03...) for chronological tracki
    /new-exploration {epic-name}
    ```
 
-4. **Open and prototype**:
+4. **Build prototypes**:
    - Reference `shared/elevate-lite/design-system/DESIGN.md`
    - Browse [Elevate Lookbook](https://www.g2.test/elevate/lookbook)
    - Use templates from `shared/elevate-lite/components/templates/`
@@ -160,7 +187,7 @@ Explorations are automatically numbered (01, 02, 03...) for chronological tracki
 ## Tips
 
 ### For Design Team Leads
-Share this guide with your squad. The setup wizard makes it easy for anyone to get started.
+Share [`SETUP_PROMPT.md`](./SETUP_PROMPT.md) with your squad. Anyone with Claude Code can set up a workspace in 30 seconds.
 
 ### For Individual Designers
 You can create multiple workspaces for different projects:
@@ -179,33 +206,60 @@ cd ~/projects/your-squad-explorations/
 git submodule update --remote shared/elevate-lite
 ```
 
+This pulls the latest design system updates.
+
 ---
 
 ## Sharing Your Workspace
 
 ### Push to GitHub
+
 ```bash
+cd ~/projects/your-squad-explorations/
 git remote add origin <your-repo-url>
 git push -u origin main
 ```
 
-Replace `<your-repo-url>` with your actual GitHub repository URL.
-
 ### Share with Your Squad
-Other designers can clone and start creating explorations immediately:
+
+Other designers can clone and start immediately:
 ```bash
 git clone --recurse-submodules <your-repo-url>
-cd <workspace-directory>
+cd your-squad-explorations
 /new-exploration {epic-name}
 ```
+
+**Note:** `--recurse-submodules` ensures Elevate Lite is cloned too.
+
+---
+
+## Troubleshooting
+
+### "git: command not found"
+Install git first:
+- Mac: `brew install git` or [git-scm.com](https://git-scm.com)
+- Windows/Linux: [git-scm.com](https://git-scm.com)
+
+### "repository not found" when cloning template
+The template repo is public. Check your network connection or GitHub access.
+
+### Elevate Lite submodule is empty
+Run:
+```bash
+git submodule update --init --recursive
+```
+
+### Skills aren't available
+Skills are in `.claude/` directory. Make sure you're running Claude Code from within your workspace.
 
 ---
 
 ## Questions?
 
-- **Setup issues**: Check that git is available and you have GitHub access
+- **Setup help**: See [`SETUP_PROMPT.md`](./SETUP_PROMPT.md) for the full walkthrough
 - **Elevate questions**: See `shared/elevate-lite/design-system/DESIGN.md`
-- **Skill questions**: Skills are documented in `.claude/new-epic.md` and `.claude/new-exploration.md`
+- **Skill documentation**: See `.claude/new-epic.md` and `.claude/new-exploration.md`
+- **Template repo**: [github.com/schildsG2/squad-explorations-template](https://github.com/schildsG2/squad-explorations-template)
 
 ---
 
