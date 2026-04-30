@@ -128,7 +128,32 @@ If user says no, ask what they'd like to change.
 
 ## Step 4: Clone Template Repository
 
+### 4.1 Create Parent Directory (if needed)
+
+Check if the parent directory exists:
+```bash
+# If INSTALL_PATH is ~/projects/buyer-intent-explorations
+# Extract parent: ~/projects/
+mkdir -p {PARENT_DIR}
 ```
+
+### 4.2 Clone Template
+```bash
+git clone https://github.com/schildsG2/squad-explorations-template.git {INSTALL_PATH}
+cd {INSTALL_PATH}
+rm -rf .git
+```
+
+### 4.3 Initialize Git (if requested)
+
+If user chose `INIT_GIT = true`:
+```bash
+git init
+```
+
+If user chose `INIT_GIT = false`:
+- Skip git init
+- Will clone elevate-lite directly instead of as submodule
 
 ---
 

@@ -42,13 +42,21 @@ Ask for confirmation to proceed.
 
 ### Step 3: Clone the template repository
 
+**First, ensure the parent directory exists:**
+```bash
+# If installation path is ~/projects/buyer-intent-explorations
+# Create ~/projects/ if it doesn't exist
+mkdir -p ~/projects/
+```
+
+**Then clone the template:**
 ```bash
 git clone https://github.com/schildsG2/squad-explorations-template.git {installation-path}
 cd {installation-path}
 rm -rf .git
 ```
 
-If I chose to initialize git, run: `git init`
+**If I chose to initialize git, run:** `git init`
 
 **Template structure (what gets cloned):**
 ```
