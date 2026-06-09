@@ -35,16 +35,26 @@ All explorations use the **UE Elevate design system** for 1:1 fidelity with prod
 **Starting a new exploration?**
 1. Copy [`/shared/exploration-starter.html`](./shared/exploration-starter.html)
 2. Browse the [Elevate Lookbook](https://www.g2.test/elevate/lookbook) for components
-3. Copy HTML from [`/shared/elevate-lite/components/templates/`](./shared/elevate-lite/components/templates/)
+3. Copy HTML from [`/shared/elevate-prototyping-kit/components/templates/`](./shared/elevate-prototyping-kit/components/templates/)
 
 **Resources:**
-- **Design System Specs**: [`/shared/elevate-lite/design-system/DESIGN.md`](./shared/elevate-lite/design-system/DESIGN.md) (authoritative specifications)
+- **Design System Specs**: [`/shared/elevate-prototyping-kit/design-system/DESIGN.md`](./shared/elevate-prototyping-kit/design-system/DESIGN.md) (authoritative specifications)
 - **Elevate Lookbook**: https://www.g2.test/elevate/lookbook (visual reference)
-- **HTML Templates**: [`/shared/elevate-lite/components/templates/`](./shared/elevate-lite/components/templates/) (copy-paste ready)
-- **Design Tokens**: [`/shared/elevate-lite/tokens/elevate.css`](./shared/elevate-lite/tokens/elevate.css)
-- **Icons**: [`/shared/elevate-lite/icons/`](./shared/elevate-lite/icons/)
+- **HTML Templates**: [`/shared/elevate-prototyping-kit/components/templates/`](./shared/elevate-prototyping-kit/components/templates/) (copy-paste ready)
+- **Design Tokens**: [`/shared/elevate-prototyping-kit/tokens/elevate.css`](./shared/elevate-prototyping-kit/tokens/elevate.css)
+- **Icons**: [`/shared/elevate-prototyping-kit/icons/`](./shared/elevate-prototyping-kit/icons/)
 
 DESIGN.md has exact specifications. Lookbook has visual examples. Templates provide HTML.
+
+## Submodule Setup
+
+`shared/elevate-prototyping-kit/` is a git submodule. After cloning:
+
+```bash
+git submodule update --init --recursive
+```
+
+> **Note:** `shared/elevate-lite/` exists as frozen regular files (not a submodule). Old explorations reference it and work without any initialization. New explorations should use `shared/elevate-prototyping-kit/`.
 
 ## Adding a New Epic
 

@@ -4,9 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Chicago Labs — Design Explorations</title>
-  <link rel="stylesheet" href="./shared/elevate-lite/tokens/elevate.css">
-  <link rel="stylesheet" href="./shared/elevate-lite/components/elevate.css">
-  <link rel="stylesheet" href="./shared/elevate-lite/icons/icons.css">
+  <link rel="stylesheet" href="./shared/elevate-prototyping-kit/tokens/elevate.css">
+  <link rel="stylesheet" href="./shared/elevate-prototyping-kit/components/elevate.css">
+  <link rel="stylesheet" href="./shared/elevate-prototyping-kit/icons/icons.css">
   <style>
     body { margin: 0; }
     .hidden { display: none !important; }
@@ -124,7 +124,7 @@
     <!-- Epics Section -->
     <div class="elv-mb-4">
       <h2 class="elv-text-lg elv-font-bold elv-text-default">
-        Epics <span class="elv-text-lg elv-font-normal elv-text-subtle" id="epicCount">(9)</span>
+        Epics <span class="elv-text-lg elv-font-normal elv-text-subtle" id="epicCount">(10)</span>
       </h2>
     </div>
 
@@ -374,6 +374,37 @@
         </div>
         <div class="elv-pt-3">
           <div class="elv-text-xs elv-text-nonessential">Apr 16, 2026</div>
+        </div>
+        <span class="epic-arrow elv-absolute elv-text-sm elv-text-neutral-30 elv-transition-all" style="bottom: 1.5rem; right: 1.5rem;">→</span>
+      </a>
+
+      <!-- Design Exploration Example -->
+      <a href="./epics/design-exploration-example/index.html"
+         class="epic-card elv-block elv-bg-neutral-0 elv-border elv-border-light elv-rounded-md elv-p-6 elv-no-underline elv-transition-all hover:elv-shadow-2 hover:elv-border-medium hover:elv--translate-y-0-5 elv-relative"
+         data-tags="design-system"
+         data-date="2026-05-18"
+         data-name="Design Exploration Example"
+         style="text-decoration: none; display: flex; flex-direction: column; gap: 12px;">
+        <div class="elv-flex elv-items-start elv-justify-between elv-gap-3">
+          <div class="elv-w-9 elv-h-9 elv-rounded-md elv-flex elv-items-center elv-justify-center" style="background: #FFF7ED; color: #EA580C;">
+            <svg class="elv-icon elv-icon-lg elv-icon-fill-current" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9.75 12.2917L7.58333 14.4583L4.33333 11.2083L6.5 9.04167L9.75 12.2917ZM11.2083 10.8333L13.375 8.66667L16.625 11.9167L14.4583 14.0833L11.2083 10.8333ZM7.83333 5.58333L10 3.41667L11.9167 5.33333L9.75 7.5L7.83333 5.58333ZM13.375 2.625L17 6.25L6.25 17H2.625V13.375L13.375 2.625ZM16.0417 7.20833L13.3333 4.5L14.4583 3.375C14.6875 3.14583 14.9653 3.03125 15.2917 3.03125C15.6181 3.03125 15.8958 3.14583 16.125 3.375L17.1667 4.41667C17.3958 4.64583 17.5104 4.92361 17.5104 5.25C17.5104 5.57639 17.3958 5.85417 17.1667 6.08333L16.0417 7.20833Z"/></svg>
+          </div>
+          <div
+            class="tag-chip elv-inline-flex elv-w-fit elv-items-center elv-justify-center elv-ease-in-out elv-duration-150 elv-cursor-pointer elv-bg-neutral-10 elv-text-neutral hover:elv-bg-primary-30 hover:elv-text-primary data-[selected=true]:elv-bg-primary-20 data-[selected=true]:elv-text-primary elv-rounded-xs elv-h-6 elv-p-0.5"
+            data-tag="design-system"
+            data-selected="false"
+            onclick="event.preventDefault(); event.stopPropagation(); window.filterByTag('design-system');">
+            <span class="elv-text-sm elv-font-medium elv-px-0.5 elv-text-inherit elv-cursor-pointer elv-whitespace-nowrap">Design System</span>
+          </div>
+        </div>
+        <div class="elv-text-base elv-font-bold elv-text-default elv-leading-snug">
+          Design Exploration Example
+        </div>
+        <div class="elv-text-xs elv-text-subtle elv-leading-relaxed elv-flex-1">
+          A template epic demonstrating how to structure design explorations. Use this as a starting point for new feature investigations.
+        </div>
+        <div class="elv-pt-3">
+          <div class="elv-text-xs elv-text-nonessential">May 18, 2026</div>
         </div>
         <span class="epic-arrow elv-absolute elv-text-sm elv-text-neutral-30 elv-transition-all" style="bottom: 1.5rem; right: 1.5rem;">→</span>
       </a>
