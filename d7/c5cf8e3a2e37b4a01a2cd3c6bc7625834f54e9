@@ -1,0 +1,42 @@
+shared/.internal/ELEVATE_PROTOTYPING_KIT_MIGRATION.md
+  s_915bbf4833bed3::t_25a5fafb36cd3b 44-49,55-56,58-59,67,193,195,197,199,207-208,374
+  s_915bbf4833bed3::t_ddb7f11cc22798 1-43,50-54,57,60-66,68-192,194,196,198,200-206,209-216,258-285,297-318,324-329,336-373,375-436
+  s_915bbf4833bed3::t_633bf1890efdc9 217-257,286-296,319-323,330-335
+.sisyphus/plans/elevate-prototyping-kit-migration.md
+  s_915bbf4833bed3::t_69e73c3cfd5540 216,218-240,242-249,251-255
+  s_915bbf4833bed3::t_dffab8f97ca490 262
+  s_915bbf4833bed3::t_4814247369a668 1-43,50-54,57,60-66,68-192,194,196,198,200-204,214-215,257-261,263-272,274-277,279-280,282-284,297-303,306-309,311-313,315-316,324-329,336-373,375-436
+  s_915bbf4833bed3::t_7e8678d5a54a48 320-323
+  s_915bbf4833bed3::t_982d1e0c6d100b 304-305,310,314,317-319
+  s_915bbf4833bed3::t_6554b05d6424b1 250
+  s_915bbf4833bed3::t_2b655cb8f0af9f 256
+  s_915bbf4833bed3::t_a0034943cbbe25 330-335
+  s_915bbf4833bed3::t_23b501de095d40 217
+  s_915bbf4833bed3::t_ccb5c2a3542e5d 278
+  s_915bbf4833bed3::t_67e6060a5e14c7 281
+  s_915bbf4833bed3::t_cea4db2a822849 241
+  s_915bbf4833bed3::t_685a2ee22de58d 287-296
+  s_915bbf4833bed3::t_19473b127c202a 205-213
+  s_915bbf4833bed3::t_7b3346efc14f76 44-49,55-56,58-59,67
+  s_915bbf4833bed3::t_4033097c78d032 374
+  s_915bbf4833bed3::t_e0c7ba51de122a 193,195,197,199
+  s_915bbf4833bed3::t_55335b224d99bc 273
+docs/SQUAD_MIGRATION_PROMPT.md
+  s_915bbf4833bed3::t_f9a836021341c4 1-66
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.2",
+  "base_commit_sha": "d7c5cf8e3a2e37b4a01a2cd3c6bc7625834f54e9",
+  "prompts": {},
+  "sessions": {
+    "s_915bbf4833bed3": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "ses_15327b090ffetOzDdSvMVkaIyk",
+        "model": "unknown"
+      },
+      "human_author": "Sam Childs <schilds@g2.com>"
+    }
+  }
+}
