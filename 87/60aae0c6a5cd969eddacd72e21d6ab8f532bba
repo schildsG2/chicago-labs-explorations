@@ -1,0 +1,19 @@
+.gitmodules
+  s_ac7c00f943cd55::t_44ec488d199c4f 1-3
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.2",
+  "base_commit_sha": "8760aae0c6a5cd969eddacd72e21d6ab8f532bba",
+  "prompts": {},
+  "sessions": {
+    "s_ac7c00f943cd55": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "ses_15253c415ffepEj9DTz9aIVvzS",
+        "model": "unknown"
+      },
+      "human_author": "Sam Childs <schilds@g2.com>"
+    }
+  }
+}
