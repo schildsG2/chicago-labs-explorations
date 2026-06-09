@@ -1,0 +1,785 @@
+shared/elevate-lite/icons/ui-icon-upload2.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-credit-card-heart.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-key.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-9
+shared/elevate-lite/icons/ui-icon-diamond.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-13
+shared/elevate-lite/icons/ui-icon-mail.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/components/templates/complex/slide-out-panel.html
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-883
+shared/elevate-lite/assets/logos/myg2-logo-white.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/components/templates/forms/checkbox-radio.html
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-990
+shared/elevate-lite/.internal/FORM_INPUTS_AUDIT.md
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-315
+shared/elevate-lite/components/templates/simple/pagination.html
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-386
+shared/elevate-lite/icons/ui-icon-arrow-renew.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/components/templates/forms/file-upload.html
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-785
+shared/elevate-lite/icons/ui-icon-arrow-undo.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-brain.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-35
+shared/elevate-lite/icons/ui-icon-folder.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-5
+shared/elevate-lite/icons/ui-icon-gift.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-9
+shared/elevate-lite/components/templates/navigation/teams-portal-sidenav.html
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-239
+shared/elevate-lite/icons/ui-icon-atom.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-9
+shared/elevate-lite/icons/ui-icon-click.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-11
+shared/elevate-lite/icons/ui-icon-exclamation-circle-filled.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-info-circle.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-menu.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-qualify.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-9
+shared/elevate-lite/components/templates/epic-card.html
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-233
+shared/elevate-lite/icons/ui-icon-graduate-cap.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-13
+shared/elevate-lite/icons/ui-icon-review-neutral.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-7
+shared/elevate-lite/components/templates/moderate/control-button.html
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-652
+shared/elevate-lite/components/templates/moderate/button-group.html
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-213
+shared/elevate-lite/icons/ui-icon-slack.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-review-circle.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-13
+shared/elevate-lite/icons/ui-icon-chevron-up-down.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/func-icon-building.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-3
+shared/elevate-lite/icons/ui-icon-g2.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/.internal/MY_G2_NAVIGATION_AUDIT.md
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-1739
+shared/elevate-lite/icons/ui-icon-sell.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-search.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-suitcase.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-visibility.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/.internal/OVERLAY_SHARED_UTILITIES_AUDIT.md
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-588
+shared/elevate-lite/icons/ui-icon-swap.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-8
+"shared/elevate-lite/icons/ui-icon-star outline.svg"
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-peak.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-8
+shared/elevate-lite/components/templates/simple/rating-distribution-bar.html
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-699
+shared/elevate-lite/icons/ui-icon-peak-2.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-28
+shared/elevate-lite/icons/ui-icon-ticket.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-4
+shared/elevate-lite/icons/ui-icon-vision.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-20
+shared/elevate-lite/tokens/elevate.css
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-306
+shared/elevate-lite/.internal/ELEVATE_ROADMAP.md
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-482
+shared/elevate-lite/components/templates/moderate/inset-card.html
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-392
+shared/elevate-lite/icons/ui-icon-checkbox-checked.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-star-power-up.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-bookmark-filled.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-filter-off.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-ai.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/line-chart.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/.internal/COMPONENT_PROGRESS.md
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-333
+shared/elevate-lite/icons/ui-icon-add-circle-filled.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-file.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-account-circle.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-camera.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-14
+shared/elevate-lite/icons/ui-icon-play-circle.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-heart-filled.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-price-tag.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-12
+shared/elevate-lite/icons/ui-icon-star.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-4
+shared/elevate-lite/icons/ui-icon-chat.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-10
+shared/elevate-lite/design-system/CLAUDE.md
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-3
+shared/elevate-lite/design-system/DESIGN.md
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-671
+shared/elevate-lite/icons/marketing.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-8
+shared/elevate-lite/README.md
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-47
+shared/elevate-lite/icons/layers.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-laptop.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-9
+shared/elevate-lite/components/templates/README.md
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-36
+shared/elevate-lite/icons/ui-icon-chevron-g2-up-wide.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-paintbrush.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-13
+shared/elevate-lite/icons/ui-icon-edit.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/components/templates/simple/star-rating.html
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-464
+shared/elevate-lite/components/templates/forms/select.html
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-745
+shared/elevate-lite/icons/ui-icon-fundraising.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-9
+shared/elevate-lite/icons/ui-icon-review.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-17
+shared/elevate-lite/icons/ui-icon-caret-down.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-scalability.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-9
+shared/elevate-lite/icons/ui-icon-arrow-redo.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/components/templates/forms/date-picker.html
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-770
+shared/elevate-lite/icons/ui-icon-changelog.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-3
+shared/elevate-lite/icons/ui-icon-globe.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-20
+shared/elevate-lite/icons/ui-icon-anonymous-avatar-purple.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-22
+shared/elevate-lite/icons/ui-icon-file-open.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-bar-trend-graph.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-3
+shared/elevate-lite/icons/ui-icon-controls.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/components/templates/simple/breadcrumbs.html
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-339
+shared/elevate-lite/icons/ui-icon-bar-chart.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-fast-clock.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-love.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-7
+shared/elevate-lite/components/templates/simple/status-badge.html
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-294
+shared/elevate-lite/icons/ui-icon-sentiment-neutral.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/components/templates/navigation/vendor-admin-shell.html
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-1191
+shared/elevate-lite/icons/ui-icon-magnify.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-8
+shared/elevate-lite/icons/ui-icon-phone-call.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-rounded-triangle-right.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-lightbulb.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-3
+shared/elevate-lite/icons/ui-icon-pdf.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-8
+shared/elevate-lite/icons/ui-icon-social-twitter-x.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-contract.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-14
+shared/elevate-lite/icons/ui-icon-social-google.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/components/templates/simple/spin-loader.html
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-346
+shared/elevate-lite/icons/ui-icon-phone-iphone.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-copy.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-cancel-circle-filled.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-csv.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-8
+shared/elevate-lite/icons/ui-icon-scalebility.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-5
+shared/elevate-lite/components/templates/simple/avatar.html
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-474
+shared/elevate-lite/icons/ui-icon-knowledge-learn.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-14
+shared/elevate-lite/icons/ui-icon-payments.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-close-x.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-signal-high.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/components/templates/simple/product-details.html
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-453
+shared/elevate-lite/icons/ui-icon-laser.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-13
+shared/elevate-lite/icons/ui-icon-support-mono.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-9
+shared/elevate-lite/assets/logos/README.md
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-165
+shared/elevate-lite/icons/ui-icon-minus.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-chevron-g2-down.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-profile.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-11
+shared/elevate-lite/icons/icons.css
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-56
+shared/elevate-lite/icons/ui-icon-exclamation-circle.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-success.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-bomb.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-11
+shared/elevate-lite/icons/ui-icon-caret-up.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-box.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-14
+shared/elevate-lite/icons/ui-icon-calendar.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-14
+shared/elevate-lite/.internal/G2_NAVIGATION_AUDIT.md
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-2804
+shared/elevate-lite/icons/ui-icon-chevron-up.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/components/templates/complex/modal.html
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-990
+shared/elevate-lite/icons/ui-icon-filter.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/.internal/COMBOBOX_AUDIT.md
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-396
+shared/elevate-lite/.internal/MODAL_AUDIT.md
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-889
+shared/elevate-lite/components/templates/navigation/g2-topbar.html
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-687
+shared/elevate-lite/components/templates/simple/assets/pictogram-anonymous-avatar-rorange.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-22
+shared/elevate-lite/icons/ui-icon-message.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-reviews.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-13
+shared/elevate-lite/icons/ui-icon-arrow.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-8
+shared/elevate-lite/icons/ui-icon-check-circle.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-clock.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/components/ELEVATE_COMPONENTS.md
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-134
+shared/elevate-lite/icons/ui-icon-chevron-g2-right.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-dark-mode.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-no-signal.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-3
+shared/elevate-lite/icons/ui-icon-flag.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-knowledge-neutral.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-anonymous-avatar-rorange.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-22
+shared/elevate-lite/icons/README.md
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-109
+shared/elevate-lite/components/templates/moderate/content-card.html
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-388
+shared/elevate-lite/icons/ui-icon-doc-edit.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-7
+shared/elevate-lite/icons/ui-icon-monitor.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/components/templates/simple/tab.html
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-488
+shared/elevate-lite/icons/ui-icon-barchart.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-11
+shared/elevate-lite/icons/ui-icon-shopping-cart.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-candlestick-chart.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-drag-handle.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-home.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-11
+shared/elevate-lite/icons/ui-icon-ai-stars.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-16
+shared/elevate-lite/icons/ui-icon-chevron-right.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-magnify-circle.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-7
+shared/elevate-lite/.internal/AUDIT_LEARNINGS.md
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-509
+shared/elevate-lite/icons/ui-icon-chart.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-16
+shared/elevate-lite/icons/ui-icon-funnel.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-8
+shared/elevate-lite/icons/ui-icon-stacked-line-chart.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-check-stamp.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-data-usage.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/assets/logos/example-product-logo.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-25
+shared/elevate-lite/.internal/SLIDE_OUT_PANEL_AUDIT.md
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-587
+shared/elevate-lite/icons/ui-icon-compass.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-13
+shared/elevate-lite/icons/ui-icon-hammer.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-13
+shared/elevate-lite/components/templates/moderate/icon-button.html
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-545
+shared/elevate-lite/icons/ui-icon-download.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-9
+shared/elevate-lite/icons/ui-icon-gears.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-intent.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-19
+shared/elevate-lite/icons/ui-icon-book.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-20
+shared/elevate-lite/icons/ui-icon-play-button.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-ai-search.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-5
+shared/elevate-lite/icons/chevron-thin.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-arrow-right.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-pin-filled.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-3
+shared/elevate-lite/icons/ui-icon-star-stack.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-image.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-bell.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-star-circle.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-3
+shared/elevate-lite/icons/ui-icon-microsope.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-17
+shared/elevate-lite/icons/ui-icon-trash.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-thumbs-up.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-9
+shared/elevate-lite/icons/ui-icon-help-circle.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-caret-right.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/assets/logos/g2-logo-white.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-star-half.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-business.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-32
+shared/elevate-lite/icons/ui-icon-trend-up.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-3
+shared/elevate-lite/icons/ui-icon-upload-file.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-4
+shared/elevate-lite/icons/ui-icon-warning.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-whats-new.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-9
+shared/elevate-lite/icons/func-icon-people-group.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-3
+shared/elevate-lite/icons/ui-icon-knowledge.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-23
+shared/elevate-lite/icons/ui-icon-arrow-down.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-location.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-6
+shared/elevate-lite/icons/ui-icon-megaphone.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-27
+shared/elevate-lite/icons/ui-icon-microphone.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-16
+shared/elevate-lite/icons/ui-icon-scale.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-11
+shared/elevate-lite/icons/ui-icon-arrow-up.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-credit-card-add.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-filter-list.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/components/templates/simple/assets/pictogram-anonymous-avatar-purple.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-22
+shared/elevate-lite/icons/ui-icon-chevron-g2-up.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-person-add.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-3
+shared/elevate-lite/icons/ui-icon-query-stats.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/index.html
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-12
+shared/elevate-lite/icons/ui-icon-cloud-offline.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-6
+shared/elevate-lite/icons/ui-icon-coffee.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-14
+shared/elevate-lite/components/templates/forms/search-input.html
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-340
+shared/elevate-lite/icons/ui-icon-playbook.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-19
+shared/elevate-lite/icons/ui-icon-chevron-down.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-signal-low.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-badge.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-9
+shared/elevate-lite/icons/profile.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-unlock.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-9
+shared/elevate-lite/icons/ui-icon-upload.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-question.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-9
+shared/elevate-lite/icons/ui-icon-wavy-line.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-3
+shared/elevate-lite/components/templates/simple/chip.html
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-370
+shared/elevate-lite/components/elevate.css
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-13187
+shared/elevate-lite/components/templates/forms/textarea.html
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-697
+shared/elevate-lite/components/templates/research-row.html
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-215
+shared/elevate-lite/components/templates/simple/tooltip.html
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-551
+shared/elevate-lite/icons/ui-icon-apple.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-chevron-g2-left.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/bar-chart-head.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-bullhorn-circle.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-13
+shared/elevate-lite/icons/ui-icon-curved-arrow.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-3
+shared/elevate-lite/icons/ui-icon-check.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-dollar-symbol.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-shield.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-7
+shared/elevate-lite/icons/ui-icon-clipboard.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-13
+shared/elevate-lite/icons/ui-icon-caret-up-down.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/new-tab.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-keyboard.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-3
+shared/elevate-lite/icons/ui-icon-analytics.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-medal.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-15
+shared/elevate-lite/icons/ui-icon-mic.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-check-circle-filled.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/.internal/SESSION_NOTES.md
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-63
+shared/elevate-lite/icons/ui-icon-newspaper.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-15
+shared/elevate-lite/icons/ui-icon-directions.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-10
+shared/elevate-lite/icons/ui-icon-data-search.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-person.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-puzzle.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-17
+shared/elevate-lite/components/templates/complex/table.html
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-781
+shared/elevate-lite/icons/ui-icon-save.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/assets/logos/g2-icon-brand.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-11
+shared/elevate-lite/icons/ui-icon-shopping-cart-add.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/assets/logos/g2-logo-black.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-anonymous-avatar-teal.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-22
+shared/elevate-lite/icons/ui-icon-coupon.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-14
+shared/elevate-lite/icons/ui-icon-settings.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-play-circle-filled.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-filter-list_off.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-heart-pair-neutral.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-microscope.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-17
+shared/elevate-lite/icons/ui-icon-media.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-key2.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-16
+shared/elevate-lite/icons/ui-icon-notification.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-10
+shared/elevate-lite/components/templates/moderate/index-nav.html
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-507
+shared/elevate-lite/icons/ui-icon-close.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-binders.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-22
+shared/elevate-lite/components/templates/simple/assets/pictogram-anonymous-avatar-teal.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-22
+shared/elevate-lite/icons/ui-icon-grid.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-11
+shared/elevate-lite/icons/ui-icon-bid-landscape.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-magnet.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-13
+shared/elevate-lite/icons/func-icon-star-rating-half.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-11
+shared/elevate-lite/icons/ui-icon-monitoring.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-people-group.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-pop-out.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-money.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-11
+shared/elevate-lite/icons/ui-icon-shopping-cart-checkout.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-report.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-13
+shared/elevate-lite/icons/ui-icon-stopwatch.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-17
+shared/elevate-lite/components/templates/simple/notification-badge.html
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-402
+shared/elevate-lite/icons/ui-icon-speaker.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-256
+shared/elevate-lite/icons/ui-icon-trending-arrow.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-4
+shared/elevate-lite/icons/ui-icon-Variant143.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-lock.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-target.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-11
+shared/elevate-lite/icons/ui-icon-content.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-13
+shared/elevate-lite/components/templates/simple/accordion.html
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-614
+shared/elevate-lite/components/templates/_template.html
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-63
+shared/elevate-lite/icons/ui-icon-education.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-social-linkedin.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-support.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-27
+shared/elevate-lite/icons/ui-icon-checkbox-indeterminate.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/assets/logos/g2-logo-rorange.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-21
+shared/elevate-lite/icons/ui-icon-trophy.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-11
+shared/elevate-lite/icons/func-icon-person.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-3
+shared/elevate-lite/icons/ui-icon-key-slim.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-3
+shared/elevate-lite/icons/ui-icon-android.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-heart.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-performance.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-29
+shared/elevate-lite/icons/ui-icon-plus.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/user.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-party-popper.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-11
+shared/elevate-lite/components/templates/simple/assets/pictogram-anonymous-avatar-blue.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-22
+shared/elevate-lite/icons/ui-icon-leads-inbox.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-9
+shared/elevate-lite/components/templates/simple/product-chip.html
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-427
+shared/elevate-lite/icons/ui-icon-chevron-left.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-pencil.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-9
+shared/elevate-lite/icons/ui-icon-more.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-share.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-anonymous-avatar-blue.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-22
+shared/elevate-lite/components/templates/simple/link.html
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-324
+shared/elevate-lite/icons/index.html
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-690
+shared/elevate-lite/components/templates/forms/toggle.html
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-659
+shared/elevate-lite/icons/ui-icon-thumb-up.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-credit-card.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-file-save.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-tooltip-tail.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-3
+shared/elevate-lite/icons/ui-icon-cancel-circle.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-landscape.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-31
+shared/elevate-lite/icons/analytics-chart.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-collapse-content.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-bubble-chart.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-expand-content.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/components/templates/navigation/buyer-profile-sidenav.html
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-490
+shared/elevate-lite/components/templates/section-heading.html
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-113
+shared/elevate-lite/components/templates/simple/progress-bar.html
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-343
+shared/elevate-lite/icons/func-icon-new-release.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-3
+shared/elevate-lite/icons/ui-icon-circle.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/chat-box.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-caret-left.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-service.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-signal-mid.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/components/templates/simple/product-avatar.html
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-473
+shared/elevate-lite/icons/ui-icon-click-neutral.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-page.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-9
+shared/elevate-lite/icons/ui-icon-vision-neutral.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-16
+shared/elevate-lite/icons/ui-icon-pin.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-3
+shared/elevate-lite/icons/ui-icon-visibility-off.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-social-facebook.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-message-reply.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-radar.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-12
+shared/elevate-lite/icons/ui-icon-add-circle.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-company.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-3
+shared/elevate-lite/icons/home-new.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-category.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-3
+shared/elevate-lite/icons/ui-icon-handshake.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-20
+shared/elevate-lite/icons/ui-icon-popover-tail.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-9
+shared/elevate-lite/icons/ui-icon-rounded-triangle-left.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-unlock-time.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-10
+shared/elevate-lite/icons/ui-icon-ruler.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-13
+shared/elevate-lite/icons/ui-icon-bar-chart-4-bars.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-arrow-left.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/func-icon-star-rating-none.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-3
+shared/elevate-lite/components/templates/search-input.html
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-132
+shared/elevate-lite/icons/ui-icon-cta.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-9
+shared/elevate-lite/icons/puzzle.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-bookmark.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-more-vertical.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/func-icon-star-rating-full.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-3
+shared/elevate-lite/icons/ui-icon-apps.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-timer-black.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-5
+shared/elevate-lite/icons/ui-icon-whats-new-green.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-9
+shared/elevate-lite/assets/logos/g2-icon-dark-outline.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-3
+shared/elevate-lite/icons/ui-icon-help-circle-filled.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-grid-neutral.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-people.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-3
+shared/elevate-lite/icons/ui-icon-sentiment.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-23
+shared/elevate-lite/components/elevate-demo.html
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-6742
+shared/elevate-lite/components/templates/forms/text-input.html
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-719
+shared/elevate-lite/icons/ui-icon-loading.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-pricing.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-setup.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-11
+shared/elevate-lite/icons/ui-icon-email.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-7
+shared/elevate-lite/icons/ui-icon-info-circle-filled.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-thumb-down.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/components/templates/forms/combobox.html
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-1405
+shared/elevate-lite/icons/ui-icon-timer.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-10
+shared/elevate-lite/icons/ui-icon-link.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-movement.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1-23
+shared/elevate-lite/icons/ui-icon-unlock-right.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+shared/elevate-lite/icons/ui-icon-group.svg
+  s_ac7c00f943cd55::t_96df8c6a92bb23 1
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.2",
+  "base_commit_sha": "1e276ebb511c78f3b197f7783387c8c02573e54d",
+  "prompts": {},
+  "sessions": {
+    "s_ac7c00f943cd55": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "ses_15253c415ffepEj9DTz9aIVvzS",
+        "model": "unknown"
+      },
+      "human_author": "Sam Childs <schilds@g2.com>"
+    }
+  }
+}
