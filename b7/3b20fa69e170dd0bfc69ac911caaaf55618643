@@ -1,0 +1,38 @@
+CLAUDE.md
+  s_ac7c00f943cd55::t_4c5d926ec489cd 45-46,54-66,69,79,84,92,94,161,255,266
+AGENTS.md
+  s_ac7c00f943cd55::t_6a0ca56bd72d46 12,17,19,25,27-28,31,34-36,89-90
+  s_ad438f26818915::t_bf527785e5fdfa 1-11,13-16,18,20-24,26,29-30,32-33,37-88
+index.html
+  s_ac7c00f943cd55::t_1ab09509141f56 7-9
+  s_ad438f26818915::t_c2a5cbb1bdc627 127,381-407
+shared/exploration-starter.html
+  s_ac7c00f943cd55::t_2908b33327caf3 9-11
+  s_ac7c00f943cd55::t_9c7127132217ab 24
+README.md
+  s_ac7c00f943cd55::t_d4b7164e73941c 38,41,43-45,49-57
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.2",
+  "base_commit_sha": "b73b20fa69e170dd0bfc69ac911caaaf55618643",
+  "prompts": {},
+  "sessions": {
+    "s_ac7c00f943cd55": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "ses_15253c415ffepEj9DTz9aIVvzS",
+        "model": "unknown"
+      },
+      "human_author": "Sam Childs <schilds@g2.com>"
+    },
+    "s_ad438f26818915": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "ses_16c799d18ffegs4tRATkK4D9Gr",
+        "model": "unknown"
+      },
+      "human_author": "Sam Childs <schilds@g2.com>"
+    }
+  }
+}
