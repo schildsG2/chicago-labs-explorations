@@ -1,0 +1,29 @@
+shared/elevate-lite/FROZEN.md
+  s_45f6ea8c7da575::t_166c3ac5fbc072 1-12
+index.html
+  s_39fe02c01cd4e3::t_ec1575dfd77b73 555
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.11",
+  "base_commit_sha": "840407a3654bfdc0de913ffa238f4077ca04fe03",
+  "prompts": {},
+  "sessions": {
+    "s_39fe02c01cd4e3": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "ses_109883057ffezg5FdmeK7e1k2v",
+        "model": "unknown"
+      },
+      "human_author": "Sam Childs <schilds@g2.com>"
+    },
+    "s_45f6ea8c7da575": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_10997a60fffeL9PkuoxJXRPWka",
+        "model": "gpt-5.4-mini"
+      },
+      "human_author": "Sam Childs <schilds@g2.com>"
+    }
+  }
+}
