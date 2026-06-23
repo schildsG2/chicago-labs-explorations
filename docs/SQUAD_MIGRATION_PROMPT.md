@@ -64,3 +64,4 @@ Steps:
 - **Old explorations keep working** — step 6 ensures backward compat for any HTML that still references `shared/elevate-lite/`.
 - **Rollback** — if anything looks wrong, `git revert HEAD` takes you back immediately.
 - **New explorations** — after migration, use `shared/elevate-prototyping-kit/` in all new files.
+- **v2.0.0 changes** — adds an `examples/` gallery with 45 elevate-g2 component pages: browse `shared/elevate-prototyping-kit/examples/index.html`. The `component library` footer link in `index.html` now points to this gallery instead of the old demo page. Components are unchanged — no visual differences.
