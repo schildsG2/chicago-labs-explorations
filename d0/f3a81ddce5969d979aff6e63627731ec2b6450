@@ -1,0 +1,19 @@
+docs/SQUAD_MIGRATION_PROMPT.md
+  s_fcfdc9977b040d::t_2060f55641379d 67
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.11",
+  "base_commit_sha": "d0f3a81ddce5969d979aff6e63627731ec2b6450",
+  "prompts": {},
+  "sessions": {
+    "s_fcfdc9977b040d": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_10987e01dffeF6HbViicQ7oVq7",
+        "model": "gpt-5.4-mini"
+      },
+      "human_author": "Sam Childs <schilds@g2.com>"
+    }
+  }
+}
