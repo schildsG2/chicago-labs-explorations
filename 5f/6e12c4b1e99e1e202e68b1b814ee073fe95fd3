@@ -1,0 +1,24 @@
+.sisyphus/plans/elevate-prototyping-kit-migration.md
+  s_915bbf4833bed3::t_8099f03e2dc47b 329-330,336
+.gitignore
+  s_915bbf4833bed3::t_feca89130d92f6 42-46
+  s_915bbf4833bed3::t_b0e936dd9e025d 47
+research/taaft-uxr-brief.md
+  s_915bbf4833bed3::t_963c0ec76ff2bf 1-242
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.13",
+  "base_commit_sha": "5f6e12c4b1e99e1e202e68b1b814ee073fe95fd3",
+  "prompts": {},
+  "sessions": {
+    "s_915bbf4833bed3": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "ses_15327b090ffetOzDdSvMVkaIyk",
+        "model": "unknown"
+      },
+      "human_author": "Sam Childs <schilds@g2.com>"
+    }
+  }
+}
