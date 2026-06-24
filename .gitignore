@@ -39,3 +39,9 @@ yarn-error.log*
 .env
 .env.local
 claude-design-assets/
+
+# Tool artifacts
+.tool-versions
+.codex/
+.playwright-mcp/
+.sisyphus/

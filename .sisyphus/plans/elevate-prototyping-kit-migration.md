@@ -326,14 +326,14 @@ Usage: `./sync.sh` (latest) or `./sync.sh 1.3.0` (pinned version)
 
 **Goal**: Existing squad repo users can migrate with a single copy-paste prompt.
 
-- [ ] **4.1** Write a Claude Code migration prompt (documented below)
-- [ ] **4.2** Test the prompt:
+- [x] **4.1** Write a Claude Code migration prompt (documented below)
+- [x] **4.2** Test the prompt:
   - Clone `squad-explorations-template` into `/tmp/test-migration-squad/`
   - Simulate a post-setup state: run `git submodule add https://github.com/schildsG2/elevate-lite.git shared/elevate-lite` to mimic a squad that already set up with elevate-lite
   - Apply the migration prompt
   - Verify: `ls shared/elevate-prototyping-kit/tokens/elevate.css` exists, `grep -r 'elevate-lite' *.html **/*.html` returns zero matches in HTML link hrefs, open any HTML file in browser with no 404s
   - Clean up: `rm -rf /tmp/test-migration-squad/`
-- [ ] **4.3** Share with team
+- [x] **4.3** Share with team
 
 #### Draft migration prompt
 
