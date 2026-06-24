@@ -1,0 +1,23 @@
+CLAUDE.md
+  s_ce9e93fceef0fe::t_7fc176259541c8 54,62
+AGENTS.md
+  s_ce9e93fceef0fe::t_7fc176259541c8 29,31,36
+README.md
+  s_ce9e93fceef0fe::t_7fc176259541c8 45
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.13",
+  "base_commit_sha": "b948d355bd3fe50c3e47e129e625a85a3ea879b3",
+  "prompts": {},
+  "sessions": {
+    "s_ce9e93fceef0fe": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_105d9eaaaffeScd4YgxDPRyyP5",
+        "model": "gpt-5.4-mini"
+      },
+      "human_author": "Sam Childs <schilds@g2.com>"
+    }
+  }
+}
