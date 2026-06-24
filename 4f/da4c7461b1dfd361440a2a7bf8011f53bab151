@@ -1,0 +1,23 @@
+index.html
+  s_37ec33e74e4c7e::t_5e8fe1d5595c38 13,20-21,37,42,74,143,174,205,236,267,298,329,360,391,567,598-600,678-681,694-697
+  s_37ec33e74e4c7e::t_6d8e434ad02eaa 9
+shared/exploration-starter.html
+  s_37ec33e74e4c7e::t_6d8e434ad02eaa 11
+  s_37ec33e74e4c7e::t_5e8fe1d5595c38 30-31
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.13",
+  "base_commit_sha": "4fda4c7461b1dfd361440a2a7bf8011f53bab151",
+  "prompts": {},
+  "sessions": {
+    "s_37ec33e74e4c7e": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_105fb56a5ffeDqyPK4NvcLT4g2",
+        "model": "gpt-5.4"
+      },
+      "human_author": "Sam Childs <schilds@g2.com>"
+    }
+  }
+}
