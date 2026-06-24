@@ -1,0 +1,19 @@
+docs/SQUAD_MIGRATION_PROMPT.md
+  s_915bbf4833bed3::t_7b94883165784e 1,3,5,14,32-40,49-50,57-61,65,70-76,79,82
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.13",
+  "base_commit_sha": "87c848b495fac27ab6077d9af2e7379687394b65",
+  "prompts": {},
+  "sessions": {
+    "s_915bbf4833bed3": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "ses_15327b090ffetOzDdSvMVkaIyk",
+        "model": "unknown"
+      },
+      "human_author": "Sam Childs <schilds@g2.com>"
+    }
+  }
+}
