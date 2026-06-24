@@ -42,6 +42,7 @@ All explorations use the **UE Elevate design system** for 1:1 fidelity with prod
 - **Elevate Lookbook**: https://www.g2.test/elevate/lookbook (visual reference)
 - **HTML Templates**: [`/shared/elevate-prototyping-kit/components/templates/`](./shared/elevate-prototyping-kit/components/templates/) (copy-paste ready)
 - **Design Tokens**: [`/shared/elevate-prototyping-kit/tokens/elevate.css`](./shared/elevate-prototyping-kit/tokens/elevate.css)
+- **Utilities**: [`/shared/elevate-prototyping-kit/utilities.css`](./shared/elevate-prototyping-kit/utilities.css)
 - **Icons**: [`/shared/elevate-prototyping-kit/icons/`](./shared/elevate-prototyping-kit/icons/)
 
 DESIGN.md has exact specifications. Lookbook has visual examples. Templates provide HTML.

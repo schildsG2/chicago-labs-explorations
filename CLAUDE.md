@@ -51,7 +51,7 @@ chicago-labs-explorations/
 
 **CRITICAL:** Always use the Elevate design system. Never invent UI patterns.
 
-### CSS Architecture (3 files, always)
+### CSS Architecture (4 files, always)
 
 New explorations load CSS from `shared/elevate-prototyping-kit/` (the active git submodule):
 
@@ -59,6 +59,7 @@ New explorations load CSS from `shared/elevate-prototyping-kit/` (the active git
 <!-- From epics/{name}/explorations/ -->
 <link rel="stylesheet" href="../../shared/elevate-prototyping-kit/tokens/elevate.css">
 <link rel="stylesheet" href="../../shared/elevate-prototyping-kit/components/elevate.css">
+<link rel="stylesheet" href="../../shared/elevate-prototyping-kit/utilities.css">
 <link rel="stylesheet" href="../../shared/elevate-prototyping-kit/icons/icons.css">
 ```
 

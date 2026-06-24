@@ -26,13 +26,14 @@ If `shared/elevate-prototyping-kit/` is empty, that's why.
 
 > **Note:** `shared/elevate-lite/` also exists, but as **frozen regular files** (not a submodule). Old explorations under `epics/*/` reference it and work without any submodule initialization. Do not edit files there.
 
-## CSS Architecture (3 files, always)
+## CSS Architecture (4 files, always)
 
-New explorations load these three CSS files via relative paths from `shared/elevate-prototyping-kit/`:
+New explorations load these four CSS files via relative paths from `shared/elevate-prototyping-kit/`:
 
 ```html
 <link rel="stylesheet" href="../../shared/elevate-prototyping-kit/tokens/elevate.css">
 <link rel="stylesheet" href="../../shared/elevate-prototyping-kit/components/elevate.css">
+<link rel="stylesheet" href="../../shared/elevate-prototyping-kit/utilities.css">
 <link rel="stylesheet" href="../../shared/elevate-prototyping-kit/icons/icons.css">
 ```
 
