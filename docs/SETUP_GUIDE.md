@@ -33,7 +33,7 @@ Before starting, ensure you have:
 - Clones the [template repository](https://github.com/schildsG2/squad-explorations-template)
 - Personalizes files to your squad
 - Creates epics for your themes
-- Adds Elevate Lite design system
+- Adds Elevate Prototyping Kit design system
 - Installs `/new-epic` and `/new-exploration` skills
 
 ### Option 2: Use the Skill Directly
@@ -107,7 +107,7 @@ your-squad-explorations/
 │   ├── purchase-flow/
 │   └── company-insights/
 ├── shared/
-│   ├── elevate-lite/          # Design system (git submodule)
+│   ├── elevate-prototyping-kit/          # Design system (git submodule)
 │   │   ├── tokens/elevate.css
 │   │   ├── components/
 │   │   └── design-system/DESIGN.md
@@ -143,7 +143,7 @@ Setup clones the [squad-explorations-template](https://github.com/schildsG2/squa
 All skills auto-detect the repository root using git. Works from anywhere in your workspace.
 
 ### Elevate Design System
-Includes Elevate Lite as a git submodule:
+Includes Elevate Prototyping Kit as a git submodule:
 - Design tokens (CSS variables)
 - Component templates
 - Complete DESIGN.md specifications
@@ -178,9 +178,9 @@ Explorations are automatically numbered (01, 02, 03...) for chronological tracki
    ```
 
 4. **Build prototypes**:
-   - Reference `shared/elevate-lite/design-system/DESIGN.md`
+- Reference `shared/elevate-prototyping-kit/design-system/DESIGN.md`
    - Browse [Elevate Lookbook](https://www.g2.test/elevate/lookbook)
-   - Use templates from `shared/elevate-lite/components/templates/`
+- Use templates from `shared/elevate-prototyping-kit/components/templates/`
 
 ---
 
@@ -198,12 +198,12 @@ You can create multiple workspaces for different projects:
 └── onboarding-explorations/
 ```
 
-Each workspace is independent but uses the same Elevate Lite design system.
+Each workspace is independent but uses the same Elevate Prototyping Kit design system.
 
-### Keeping Elevate Lite Updated
+### Keeping Elevate Prototyping Kit Updated
 ```bash
 cd ~/projects/your-squad-explorations/
-git submodule update --remote shared/elevate-lite
+git submodule update --remote shared/elevate-prototyping-kit
 ```
 
 This pulls the latest design system updates.
@@ -229,7 +229,7 @@ cd your-squad-explorations
 /new-exploration {epic-name}
 ```
 
-**Note:** `--recurse-submodules` ensures Elevate Lite is cloned too.
+**Note:** `--recurse-submodules` ensures Elevate Prototyping Kit is cloned too.
 
 ---
 
@@ -243,7 +243,7 @@ Install git first:
 ### "repository not found" when cloning template
 The template repo is public. Check your network connection or GitHub access.
 
-### Elevate Lite submodule is empty
+### Elevate Prototyping Kit submodule is empty
 Run:
 ```bash
 git submodule update --init --recursive
@@ -257,7 +257,7 @@ Skills are in `.claude/` directory. Make sure you're running Claude Code from wi
 ## Questions?
 
 - **Setup help**: See [`SETUP_PROMPT.md`](./SETUP_PROMPT.md) for the full walkthrough
-- **Elevate questions**: See `shared/elevate-lite/design-system/DESIGN.md`
+- **Elevate questions**: See `shared/elevate-prototyping-kit/design-system/DESIGN.md`
 - **Skill documentation**: See `.claude/new-epic.md` and `.claude/new-exploration.md`
 - **Template repo**: [github.com/schildsG2/squad-explorations-template](https://github.com/schildsG2/squad-explorations-template)
 

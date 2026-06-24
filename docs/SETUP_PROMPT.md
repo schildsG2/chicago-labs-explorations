@@ -25,7 +25,7 @@ Set up a new squad exploration workspace for me, similar to Chicago Labs but per
 
 This should create a complete HTML prototyping workspace with:
 - Personalized portal page (index.html) with my squad name
-- Elevate Lite design system (as git submodule from https://github.com/schildsG2/elevate-lite)
+- Elevate Prototyping Kit design system (as git submodule from https://github.com/schildsG2/elevate-prototyping-kit)
 - Placeholder epic structures for my squad's themes
 - Research directory for competitive analysis
 - /new-epic and /new-exploration skills installed locally
@@ -93,7 +93,7 @@ rm -rf .git
 │       └── explorations/
 │           └── 01-example.html   # Placeholder exploration
 ├── shared/
-│   ├── elevate-lite-PLACEHOLDER.md  # (Will be replaced with actual submodule)
+│   ├── elevate-prototyping-kit-PLACEHOLDER.md  # (Will be replaced with actual submodule)
 │   └── exploration-starter.html
 ├── research/spikes/
 ├── .claude/                      # Skills already included!
@@ -147,21 +147,21 @@ cp -r epics/{theme-1-kebab} epics/{theme-3-kebab}
 - Duplicate epic card for each theme (with appropriate icons/colors)
 - Update epic count from `(1)` to `({N})`
 
-### Step 6: Add Elevate Lite design system
+### Step 6: Add Elevate Prototyping Kit design system
 
 Remove placeholder:
 ```bash
-rm shared/elevate-lite-PLACEHOLDER.md
+rm shared/elevate-prototyping-kit-PLACEHOLDER.md
 ```
 
 If git initialized:
 ```bash
-git submodule add https://github.com/schildsG2/elevate-lite.git shared/elevate-lite
+git submodule add https://github.com/schildsG2/elevate-prototyping-kit.git shared/elevate-prototyping-kit
 ```
 
 If no git:
 ```bash
-git clone https://github.com/schildsG2/elevate-lite.git shared/elevate-lite
+git clone https://github.com/schildsG2/elevate-prototyping-kit.git shared/elevate-prototyping-kit
 ```
 
 ### Step 7: Initial commit (if git enabled)
@@ -171,7 +171,7 @@ git add .
 git commit -m "Initial setup: {Squad Name} explorations workspace
 
 - Created {N} epics: {list themes}
-- Added Elevate Lite design system
+- Added Elevate Prototyping Kit design system
 - Personalized for {Squad Name} squad
 
 Generated with /setup-squad-explorations"
@@ -209,14 +209,14 @@ Show me:
 - No pure black (#000000), use text-default (#201f23)
 
 **All file paths must be correct:**
-- Explorations reference: `../../shared/elevate-lite/...`
-- Epic index references: `../../shared/elevate-lite/...`
-- Main index references: `./shared/elevate-lite/...`
+- Explorations reference: `../../shared/elevate-prototyping-kit/...`
+- Epic index references: `../../shared/elevate-prototyping-kit/...`
+- Main index references: `./shared/elevate-prototyping-kit/...`
 
 **Error handling:**
 - If path already exists, ask before overwriting
 - If git is not available, warn and skip git steps
-- If submodule fails, offer to clone elevate-lite directly
+- If submodule fails, offer to clone elevate-prototyping-kit directly
 
 ### Verification checklist (before final report):
 
@@ -228,7 +228,7 @@ Show me:
 - ✅ CLAUDE.md personalized to squad
 - ✅ research/spikes/ structure created
 - ✅ Git initialized (if requested)
-- ✅ Elevate Lite added as submodule or cloned
+- ✅ Elevate Prototyping Kit added as submodule or cloned
 - ✅ Epic count badge matches actual epic count
 
 ---
@@ -237,7 +237,7 @@ After setup is complete, I should be able to:
 1. Open index.html and see my personalized portal
 2. Run `/new-epic` to create new epics
 3. Run `/new-exploration {epic-name}` to start prototyping
-4. Reference Elevate design specs at `shared/elevate-lite/design-system/DESIGN.md`
+4. Reference Elevate design specs at `shared/elevate-prototyping-kit/design-system/DESIGN.md`
 
 Let's get started! 🚀
 ```
@@ -319,7 +319,7 @@ Claude: [creates everything]
 ## Troubleshooting
 
 **If git submodule fails:**
-Claude will offer to clone Elevate Lite directly instead.
+Claude will offer to clone Elevate Prototyping Kit directly instead.
 
 **If the path already exists:**
 Claude will ask if you want to choose a different location or overwrite.
@@ -336,7 +336,7 @@ Once your workspace is created, see `SETUP_GUIDE.md` in your new workspace for d
 **Quick reference:**
 - Create epic: `/new-epic`
 - Create exploration: `/new-exploration {epic-name}`
-- View design specs: `shared/elevate-lite/design-system/DESIGN.md`
+- View design specs: `shared/elevate-prototyping-kit/design-system/DESIGN.md`
 - Browse components: https://www.g2.test/elevate/lookbook
 
 ---
