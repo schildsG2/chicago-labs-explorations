@@ -1,0 +1,69 @@
+index.html
+  s_ba529ffe2ecf37::t_4f9810881b3a64 112-117
+  s_ba529ffe2ecf37::t_38a7f7166140fa 388-389,391-393,396-397,401,403-404,408,411,414
+  s_ba529ffe2ecf37::t_6d4e90de960d37 552,554-578
+  s_ba529ffe2ecf37::t_89fb84ad2ae2b4 429
+  s_ba529ffe2ecf37::t_344f88a9db97b6 553
+research/spikes/advisor-router-wizard-options.html
+  s_b156398a006e6e::t_7a8818ffd7e8b4 1-398
+epics/ppl-form-flow/index.html
+  s_ba529ffe2ecf37::t_e60156671e5aea 125
+  s_ba529ffe2ecf37::t_30761a84979bb8 46-51
+  s_ba529ffe2ecf37::t_858aa6678be84a 102-120
+  s_ba529ffe2ecf37::t_7a2df7c82eb7e8 1-45,52-101,121-124,126-130,132-164
+  s_ba529ffe2ecf37::t_3591923126c4ad 131
+epics/ppl-form-flow/base/index.html
+  s_ba529ffe2ecf37::t_165519cea51019 1-3,91-92,97,291
+  s_5a8fcb2f532d44::t_89c6e60e02361d 95
+  s_2f703ca43be6e3::t_af358b2c3b19de 33-34
+  s_2f703ca43be6e3::t_356e4eda77e308 94
+  s_2f703ca43be6e3::t_aa2a953f1f7555 182
+  s_2f703ca43be6e3::t_02520c58b34f32 10,12-32,35-89,93,96,98-181,183-239,241-290,292
+  s_5a8fcb2f532d44::t_8bfede09fb8e4b 4-9,11,90
+  s_2f703ca43be6e3::t_15545589d00596 240
+epics/ppl-form-flow/CLAUDE.md
+  s_ba529ffe2ecf37::t_00f87814f75ab5 17
+  s_ba529ffe2ecf37::t_5d55ee2865df6d 1-14,22-23,25-36
+  s_ba529ffe2ecf37::t_67378e1220ad65 15-16,18-21
+  s_ba529ffe2ecf37::t_8daa3210da10cf 24
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.0",
+  "base_commit_sha": "d2b732652c011887ca71c2ab350d09d623382377",
+  "prompts": {},
+  "sessions": {
+    "s_2f703ca43be6e3": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "ses_f9bf907edffeimq1S89DruzbIT",
+        "model": "unknown"
+      },
+      "human_author": "Sam Childs <schilds@g2.com>"
+    },
+    "s_5a8fcb2f532d44": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "ses_f9c07cfddffeoRxn4cSHNkeYzJ",
+        "model": "unknown"
+      },
+      "human_author": "Sam Childs <schilds@g2.com>"
+    },
+    "s_b156398a006e6e": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_f9c536697ffejnnKJhS9L0AjU2",
+        "model": "gpt-5.4-mini"
+      },
+      "human_author": "Sam Childs <schilds@g2.com>"
+    },
+    "s_ba529ffe2ecf37": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "ses_f9c5e7dbaffesVHiwWGQB1KeiI",
+        "model": "unknown"
+      },
+      "human_author": "Sam Childs <schilds@g2.com>"
+    }
+  }
+}
