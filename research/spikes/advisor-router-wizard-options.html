@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Advisor Router Wizard — Options Report</title>
+  <link rel="stylesheet" href="../../shared/elevate-prototyping-kit/tokens/elevate.css">
+  <link rel="stylesheet" href="../../shared/elevate-prototyping-kit/components/elevate.css">
+  <link rel="stylesheet" href="../../shared/elevate-prototyping-kit/utilities.css">
+  <link rel="stylesheet" href="../../shared/elevate-prototyping-kit/icons/icons.css">
+  <style>
+    body {
+      margin: 0;
+      background: var(--elv-bg-neutral-0);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page {
+      min-height: 100vh;
+    }
+
+    .spike-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border: 1px solid var(--elv-border-light);
+      background: var(--elv-bg-neutral-5);
+      border-radius: 9999px;
+      padding: 4px 10px;
+      font-size: 12px;
+      line-height: 16px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    .report-card {
+      border-top: 1px solid var(--elv-border-light);
+      padding-top: 24px;
+      margin-top: 24px;
+    }
+
+    .callout {
+      border-left: 4px solid var(--elv-border-light);
+      background: var(--elv-bg-neutral-5);
+      padding: 16px 20px;
+      border-radius: 8px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0 24px;
+    }
+
+    th, td {
+      border: 1px solid var(--elv-border-light);
+      padding: 12px 14px;
+      text-align: left;
+      vertical-align: top;
+      font-size: 14px;
+      line-height: 20px;
+    }
+
+    thead th {
+      background: var(--elv-bg-neutral-5);
+      font-weight: 700;
+    }
+
+    code {
+      background: var(--elv-bg-neutral-10);
+      border-radius: 4px;
+      padding: 1px 6px;
+      font-size: 0.95em;
+      white-space: break-spaces;
+    }
+
+    ul, ol {
+      margin: 12px 0 20px 24px;
+      padding: 0;
+    }
+
+    li {
+      margin: 6px 0;
+    }
+
+    .section-note {
+      margin-top: 8px;
+    }
+
+    .subtle-rule {
+      height: 1px;
+      background: var(--elv-border-light);
+      border: 0;
+      margin: 24px 0;
+    }
+  </style>
+</head>
+<body>
+  <div elv class="page elv-bg-neutral-0">
+    <div class="elv-max-w-screen-xl elv-mx-auto elv-p-8 elv-text-default">
+      <div class="elv-text-sm elv-text-subtle">
+        <a href="../../index.html">← Back to Chicago Labs</a>
+      </div>
+
+      <div class="elv-mt-4 elv-flex elv-flex-col elv-gap-3">
+        <div class="spike-badge">Spike</div>
+        <div>
+          <h1 class="elv-text-4xl elv-font-extrabold elv-text-default">Advisor Router Wizard — Options Report</h1>
+          <div class="elv-text-sm elv-text-subtle elv-mt-2">Sep 02, 2026</div>
+        </div>
+      </div>
+
+      <section class="report-card">
+        <h2 class="elv-text-2xl elv-font-bold elv-text-default">1. Executive Summary</h2>
+        <p class="elv-text-base elv-text-default">
+          We're deciding how to build a 3-4 step wizard for the advisor router CTA on public alternatives pages, replacing the current 2-step fetch+inject flow. Five existing codebase patterns are viable models; none is a perfect fit as-is since the polished patterns are vendor-admin-only and the public-safe patterns are unpolished. <strong>Recommendation: build on Option C (Buyer Intent Audiences' Turbo Frame pattern), borrowing the <code>StepIndicatorComponent</code> and <code>ModalFooterComponent</code> from Option B (Self-Serve Events).</strong> This gets Turbo-native, accessible, auth-free step orchestration with a real progress indicator, without rebuilding the 901-LOC Stimulus wizard skeleton from scratch.
+        </p>
+      </section>
+
+      <section class="report-card">
+        <h2 class="elv-text-2xl elv-font-bold elv-text-default">2. Options Matrix</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Option</th>
+              <th>Effort</th>
+              <th>Polish</th>
+              <th>Auth Work</th>
+              <th>Extensibility</th>
+              <th>Accessibility</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>A. Extend Current Advisor Router</td>
+              <td>Low-Med</td>
+              <td>Low</td>
+              <td>None</td>
+              <td>Low</td>
+              <td>Low</td>
+            </tr>
+            <tr>
+              <td>B. Self-Serve Events (Turbo Streams + Stimulus)</td>
+              <td>Medium</td>
+              <td>High</td>
+              <td>Med (rebuild public)</td>
+              <td>High</td>
+              <td>High</td>
+            </tr>
+            <tr>
+              <td>C. Buyer Intent Audiences (Turbo Frames + Hidden Fields)</td>
+              <td>Low-Med</td>
+              <td>Med</td>
+              <td>Med (rebuild public)</td>
+              <td>Med</td>
+              <td>Med</td>
+            </tr>
+            <tr>
+              <td>D. G2 Audiences (Turbo Streams + Session Store)</td>
+              <td>Low-Med</td>
+              <td>Med</td>
+              <td>Med (rebuild public)</td>
+              <td>Med</td>
+              <td>Low-Med</td>
+            </tr>
+            <tr>
+              <td>E. Form Stepper (Client-Side DOM Toggle)</td>
+              <td>Very Low</td>
+              <td>Low-Med</td>
+              <td>None</td>
+              <td>Low</td>
+              <td>Low</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="elv-text-base elv-text-default">
+          Note on "Auth Work": all patterns except A and E are currently vendor-admin-gated, but in every case the orchestration pattern itself is auth-agnostic — the work is building a new public controller, not stripping auth logic out of a shared one.
+        </p>
+      </section>
+
+      <section class="report-card">
+        <h2 class="elv-text-2xl elv-font-bold elv-text-default">3. Option Details</h2>
+        <p class="elv-text-base elv-text-default"><strong>A. Extend Current Advisor Router</strong> — the existing 143-LOC Stimulus controller with fetch+innerHTML injection, already live on the target pages with zero auth work. Tradeoff: quality ceiling is low — manual event rebinding, no focus management, no progress indicator, gets fragile past 2-3 steps. Best for a fast MVP where polish doesn't matter.</p>
+        <p class="elv-text-base elv-text-default"><strong>B. Self-Serve Events Pattern</strong> — Elevate Modal + Turbo Streams atomically updating five DOM targets (header, step indicator, content, footer, hidden ID) per step, with a form object doing per-step validation. Tradeoff: production-grade polish and reusable <code>StepIndicatorComponent</code>/<code>ModalFooterComponent</code>, but it's vendor-admin-coupled and the heaviest to adapt (~450 LOC of new/adapted code). Best for a wizard you expect to keep growing and want done right the first time.</p>
+        <p class="elv-text-base elv-text-default"><strong>C. Buyer Intent Audiences Pattern</strong> — a single Turbo Frame that server-renders the next step partial on each submit, with state carried as hidden JSON fields. No custom Stimulus needed. Tradeoff: simplest true multi-step server-driven pattern with progressive enhancement, but ships with no step indicator, no draft save, and hidden-field state gets messy if the flow branches. Best for a clean, moderate-complexity 3-step flow.</p>
+        <p class="elv-text-base elv-text-default"><strong>D. G2 Audiences Pattern</strong> — same Turbo Stream/frame idea as C, but wizard state lives in a <code>FlowSession</code> server-side session object instead of hidden fields. Tradeoff: state survives page refresh, cleaner state encapsulation, but still vendor-coupled, no step indicator, and currently prototype-stage (mock data). Best if refresh-survival matters more than polish.</p>
+        <p class="elv-text-base elv-text-default"><strong>E. Form Stepper Pattern</strong> — all steps pre-rendered in the DOM, a generic 189-LOC Stimulus controller toggles visibility with client-side validation only. Tradeoff: fastest possible build, zero server round-trips between steps, but no server-side validation until final submit, no refresh survival, and all step content (including any conditional/sensitive options) ships on initial load. Best for the absolute fastest path with lightweight, non-sensitive fields.</p>
+      </section>
+
+      <section class="report-card">
+        <h2 class="elv-text-2xl elv-font-bold elv-text-default">4. Recommendation</h2>
+        <p class="elv-text-base elv-text-default"><strong>Start with Option C (Buyer Intent Audiences pattern), enhanced with B's <code>StepIndicatorComponent</code> and <code>ModalFooterComponent</code>.</strong></p>
+        <p class="elv-text-base elv-text-default">Why not the others outright:</p>
+        <ul class="elv-text-base elv-text-default">
+          <li><strong>A</strong> doesn't scale cleanly to 3-4 steps with the polish a lead-gen flow needs — innerHTML injection and manual rebinding is the wrong foundation to build on for extensibility.</li>
+          <li><strong>B</strong> is the most polished and extensible, but committing to it means porting ~450 LOC (public controller + form object + step components + adapted Stimulus skeleton) for a first pass. That's the right target to grow into, not the right size for the first cut.</li>
+          <li><strong>D</strong> adds session-store complexity (size limits, survives-refresh guarantee) the advisor router doesn't clearly need — a popover flow abandoned mid-way is fine to restart.</li>
+          <li><strong>E</strong> is fastest but has the wrong tradeoffs for a lead-gen form: no server validation between steps and all steps visible in the initial DOM (inspectable) is a weak fit for a flow collecting contact info.</li>
+        </ul>
+        <p class="elv-text-base elv-text-default">C fits best because: it's already a proven public-controller-shaped pattern (Turbo Frame + hidden-field state, no session dependency), matches the 3-4 step / linear flow described (contact preference → contact info → use case/company → confirmation) without needing branching logic, and is a small enough lift (~150-200 LOC total) to ship quickly. Layering in B's step indicator and footer components closes C's two biggest gaps — visible progress and consistent Previous/Next affordances — without importing B's full validation/draft-save machinery, which this flow doesn't need (no drafts, no vendor session to persist to).</p>
+        <p class="elv-text-base elv-text-default">This also sets up a clean upgrade path: if the flow later needs branching or draft-save, migrating from Turbo Frame + hidden fields to full Turbo Stream multi-target updates (B) is a natural next step, not a rewrite.</p>
+      </section>
+
+      <section class="report-card">
+        <h2 class="elv-text-2xl elv-font-bold elv-text-default">5. Suggested Approach</h2>
+        <p class="elv-text-base elv-text-default"><strong>Start here:</strong></p>
+        <ol class="elv-text-base elv-text-default">
+          <li><strong>Controller shape:</strong> Model <code>AdvisorRouter</code>'s new controller directly on <code>BuyerIntentAudiencesController</code> — <code>params[:step]</code> + <code>params[:direction]</code>, switch on step number, <code>turbo_stream.replace</code> targeting a single frame (e.g. <code>advisor_router_wizard</code>). Keep it inheriting from <code>ApplicationController</code> (like the current <code>SoftwareAdviceAdvisorRouterController</code>), not <code>VendorAdmin::ApplicationController</code>.</li>
+          <li><strong>Form object:</strong> Port the shape of <code>AudienceForm.from_params</code> — deserialize hidden-field state each request — into a new <code>AdvisorRouterForm</code> covering contact preference, name/contact, use case/company.</li>
+          <li><strong>Step indicator:</strong> Reuse <code>StepIndicatorComponent</code> (90 LOC) as-is — takes <code>current_step</code>, renders circles/connectors with completed/active/pending states. Drop it into the modal header.</li>
+          <li><strong>Footer:</strong> Reuse <code>ModalFooterComponent</code> (54 LOC) for Previous/Next, wiring its actions to the new controller's step params instead of the Self-Serve Events Stimulus actions.</li>
+          <li><strong>Modal wrapper:</strong> Use <code>Modal::Component</code> (already used by Buyer Intent Audiences) rather than hand-rolling modal markup.</li>
+          <li><strong>Step partials:</strong> Write 4 step partials (contact preference, name/contact, use case/company, confirmation) following the Buyer Intent Audiences step-partial structure.</li>
+          <li><strong>Validation errors:</strong> Reuse <code>ErrorSummaryComponent</code> from Option B for accessible (<code>role="alert"</code>) per-step validation feedback.</li>
+        </ol>
+
+        <p class="elv-text-base elv-text-default"><strong>Files to reference directly:</strong></p>
+        <ul class="elv-text-base elv-text-default">
+          <li><code>BuyerIntentAudiencesController</code> — controller/step-switch skeleton</li>
+          <li><code>AudienceForm</code> — hidden-field state serialization pattern</li>
+          <li><code>StepIndicatorComponent</code>, <code>ModalFooterComponent</code>, <code>ErrorSummaryComponent</code> — reuse verbatim</li>
+          <li><code>advisor_router_controller.js</code> / <code>AdvisorRouter::PickerComponent</code> — current CTA trigger and modal-open logic to preserve (only the fetch+innerHTML injection gets replaced by the Turbo Frame)</li>
+          <li><code>Modal::Component</code> — modal wrapper</li>
+        </ul>
+      </section>
+
+      <section class="report-card">
+        <h2 class="elv-text-2xl elv-font-bold elv-text-default">6. Appendix: Software Advice Wizard Deep Dive</h2>
+        <p class="elv-text-base elv-text-default section-note"><em>Supplementary research — not a competing recommendation. This section documents the lead-acquisition wizard powering softwareadvice.com's "How much will Product cost?" modal, for pattern reference against the Options B/E recommendation above.</em></p>
+
+        <h3 class="elv-text-lg elv-font-bold elv-text-default">6.1 SA Wizard UX Pattern Inventory</h3>
+        <p class="elv-text-base elv-text-default">The SA pricing wizard (<code>lead-acquisition-service</code> repo, React/Next.js) is a 5-step progressive disclosure flow:</p>
+        <table>
+          <thead>
+            <tr>
+              <th>Step</th>
+              <th>Question</th>
+              <th>Input Type</th>
+              <th>Auto-Advance?</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1. Size</td>
+              <td>"How many are in your organization?"</td>
+              <td>Radio buttons</td>
+              <td>Yes — clicking advances instantly, no button</td>
+            </tr>
+            <tr>
+              <td>2. Industry</td>
+              <td>"What is your specialty?"</td>
+              <td>Dropdown + explicit Next button</td>
+              <td>No</td>
+            </tr>
+            <tr>
+              <td>3. Features</td>
+              <td>"Select features you need"</td>
+              <td>Multi-select checkboxes</td>
+              <td>No</td>
+            </tr>
+            <tr>
+              <td>4. Contact</td>
+              <td>Name, email, phone</td>
+              <td>Form fields</td>
+              <td>No</td>
+            </tr>
+            <tr>
+              <td>5. Schedule</td>
+              <td>Call scheduling</td>
+              <td>Calendar/time picker</td>
+              <td>No</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="elv-text-base elv-text-default">Notable UX details:</p>
+        <ul class="elv-text-base elv-text-default">
+          <li>Auto-advance on single-select (Step 1) eliminates a click and creates momentum going into the flow.</li>
+          <li>A "STEP 2 OF 5" counter (<code>FormStepCounter</code> component) manages expectations up front.</li>
+          <li>Authenticated users skip contact info entirely — Step 4 auto-fills from session and can be bypassed.</li>
+          <li>Back is always available; forward-skipping is never allowed, which guarantees data completeness at submission.</li>
+          <li>Orchestration is deliberately simple: <code>useState(formStep)</code> + <code>goToNextStep()</code>, an incrementor, paired with a <code>deepestFormStep</code> tracker so validation errors never surface on steps the user hasn't reached yet.</li>
+        </ul>
+
+        <h3 class="elv-text-lg elv-font-bold elv-text-default">6.2 SA Technical Architecture (For Reference Only)</h3>
+        <p class="elv-text-base elv-text-default">This is React/Next.js code — zero lines are reusable in G2's Rails+Stimulus stack. The value here is pattern-only, not code:</p>
+        <ul class="elv-text-base elv-text-default">
+          <li><strong>LAS (<code>lead-acquisition-service</code>)</strong>: a standalone Next.js app at <code>lead-acquisition-service.capterra.com</code>, embedded via iframe on SA pages. Each step is an independent React component receiving <code>formData</code>, <code>goToNextStep</code>, and <code>setFormData</code> as props; data accumulates in parent state via <code>setFormData({...formData, industry: selected})</code>. Deployed separately from the host page.</li>
+          <li><strong>bx-forms (<code>bx-monorepo</code>)</strong>: a separate package exposing a <code>mountModalForm()</code> widget API for non-React hosts. Internally uses a <code>useMultiStepForm</code> hook (step index + cumulative <code>formData</code> + <code>nextStep</code>/<code>prevStep</code>/<code>reset</code>). Bundles React 19, Nimbus v3 UI, Zod, and react-hook-form. Brand injection happens via a factory: <code>createBrandedModalForm(brandConfig)</code>.</li>
+        </ul>
+
+        <h3 class="elv-text-lg elv-font-bold elv-text-default">6.3 Could We Embed the bx-forms Widget on G2?</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Factor</th>
+              <th>Widget Embed (bx-forms)</th>
+              <th>Native Rails+Stimulus (Recommended Options B/E)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Bundle size</td>
+              <td>~200KB+ (React 19 + Nimbus + Zod + react-hook-form)</td>
+              <td>~5KB (Stimulus controller)</td>
+            </tr>
+            <tr>
+              <td>Styling</td>
+              <td>Nimbus v3 — foreign to Elevate</td>
+              <td>Elevate-native, visually consistent</td>
+            </tr>
+            <tr>
+              <td>Submission pipeline</td>
+              <td>Requires gateway endpoint → Eloqua</td>
+              <td>Direct to G2's lead pipeline</td>
+            </tr>
+            <tr>
+              <td>Analytics</td>
+              <td>GDM analytics SDK (not Amplitude/Ahoy)</td>
+              <td>G2's existing event tracking</td>
+            </tr>
+            <tr>
+              <td>Customization</td>
+              <td>Limited to existing props/config</td>
+              <td>Full control over every step</td>
+            </tr>
+            <tr>
+              <td>Maintenance</td>
+              <td>Tied to GDM release cadence</td>
+              <td>G2 team owns fully</td>
+            </tr>
+            <tr>
+              <td>Time to ship</td>
+              <td>Days (if gateway exists)</td>
+              <td>1-2 sprints</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="elv-text-base elv-text-default"><strong>Verdict: don't embed.</strong> The widget bundles an entire React runtime plus a foreign design system (Nimbus, not Elevate), and its submission pipeline targets Eloqua rather than G2's lead infrastructure. The only scenario where embedding earns its keep is a throwaway POC to validate the flow concept before investing in a native build — not a production path.</p>
+
+        <h3 class="elv-text-lg elv-font-bold elv-text-default">6.4 Recommended Step Sequence for G2 Advisor Router</h3>
+        <p class="elv-text-base elv-text-default">Adapting SA's flow to G2's context:</p>
+        <table>
+          <thead>
+            <tr>
+              <th>Step</th>
+              <th>Question</th>
+              <th>Input Type</th>
+              <th>Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1. Contact Preference</td>
+              <td>"How would you like to get advice?"</td>
+              <td>Radio buttons, auto-advance</td>
+              <td>Mirrors current advisor router step; keeps existing entry point</td>
+            </tr>
+            <tr>
+              <td>2. Company Size</td>
+              <td>"How large is your team?"</td>
+              <td>Radio buttons, auto-advance</td>
+              <td>SA's most successful step; lowest-friction qualifier</td>
+            </tr>
+            <tr>
+              <td>3. Use Case</td>
+              <td>"What are you looking for?"</td>
+              <td>3-5 checkboxes from category features</td>
+              <td>Replaces SA's "Industry" — G2 already knows the category from the page context</td>
+            </tr>
+            <tr>
+              <td>4. Contact Info</td>
+              <td>Name + email or phone (based on Step 1 preference)</td>
+              <td>Form fields</td>
+              <td>Conditional on Step 1 choice; lighter than SA's full form</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="elv-text-base elv-text-default">SA's Step 5 (call scheduling) can be deferred to a post-submission flow. G2 should show value immediately after Step 4 — either a personalized shortlist or a confirmation ("An advisor will contact you within X hours") — rather than adding a scheduling step to the core wizard.</p>
+
+        <h3 class="elv-text-lg elv-font-bold elv-text-default">6.5 SA Patterns Worth Stealing</h3>
+        <p class="elv-text-base elv-text-default">Regardless of which option (A-E) we build on, these are worth adopting directly:</p>
+        <ul class="elv-text-base elv-text-default">
+          <li><strong>Auto-advance on single-select steps</strong> — no "Next" button when there's only one choice to make.</li>
+          <li><strong>"(Optional)" label on skippable steps</strong> — set explicitly in the step counter copy, not just implied by leaving a field blank.</li>
+          <li><strong>Step counter with back button</strong> — SA's <code>FormStepCounter</code> shows "STEP N OF M" with a back arrow; G2's <code>StepIndicatorComponent</code> from Option B does the same job and should be used as-is.</li>
+          <li><strong>Qualifying-questions-before-contact-info ordering</strong> — sunk-cost sequencing that reduces drop-off on the fields that matter most (name/phone/email).</li>
+          <li><strong>Authenticated shortcut</strong> — SA uses <code>useAuthUser()</code> to skip or pre-fill contact info for logged-in users; worth replicating wherever G2 has an identified/logged-in buyer session, even in this otherwise-anonymous flow.</li>
+          <li><strong><code>deepestFormStep</code> tracker</strong> — don't show validation errors on steps the user hasn't reached yet; only validate steps they've actually visited. This is a small but important refinement on top of whatever step-tracking Option C's controller ends up doing — worth building in from the start rather than retrofitting.</li>
+        </ul>
+      </section>
+    </div>
+  </div>
+</body>
+</html>
