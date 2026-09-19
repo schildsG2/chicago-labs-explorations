@@ -1,0 +1,20 @@
+epics/ppl-scrollytelling/explorations/01-variant-one.html
+  s_929db48df34031::t_b1435747e87eb0 97
+  s_929db48df34031::t_ee9482da2f1150 348
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "3598cfa360eb580857705f7a1ca2b2adf35393ed",
+  "prompts": {},
+  "sessions": {
+    "s_929db48df34031": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "df87af79-9645-485a-b32b-d28231ddf403",
+        "model": "claude-sonnet-5"
+      },
+      "human_author": "Sam Childs <schilds@g2.com>"
+    }
+  }
+}
