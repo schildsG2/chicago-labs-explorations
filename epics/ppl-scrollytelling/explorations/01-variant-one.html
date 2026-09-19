@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Variant One — PPL Scrollytelling</title>
+
+  <!-- Elevate Design System -->
+  <link rel="stylesheet" href="../../../shared/elevate-prototyping-kit/tokens/elevate.css">
+  <link rel="stylesheet" href="../../../shared/elevate-prototyping-kit/components/elevate.css">
+  <link rel="stylesheet" href="../../../shared/elevate-prototyping-kit/utilities.css">
+  <link rel="stylesheet" href="../../../shared/elevate-prototyping-kit/icons/icons.css">
+
+  <style>
+    body { margin: 0; }
+
+    /* One eyebrow standard (brand guidance §2) — reused for every label in this page */
+    .eyebrow {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin: 0 0 8px;
+    }
+    .eyebrow--on-light { color: var(--text-nonessential); }
+    .eyebrow--on-tint { color: var(--text-subtle); }
+
+    /* Sticky chapter nav — mechanic borrowed from the K-pop piece, styled plainly (brand guidance §2) */
+    .chapter-nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: var(--bg-neutral-0);
+      border-bottom: 1px solid var(--border-light);
+    }
+    .step-dots { display: flex; gap: 20px; }
+    .step-dot {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-nonessential);
+    }
+    .step-dot__circle {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      border: 1.5px solid var(--border-medium);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-subtle);
+      transition: background-color 150ms ease, border-color 150ms ease, color 150ms ease;
+      flex-shrink: 0;
+    }
+    .step-dot.is-active { color: var(--text-default); }
+    .step-dot.is-active .step-dot__circle {
+      background: var(--bg-primary);
+      border-color: var(--bg-primary);
+      color: #fff;
+    }
+    .step-dot__label { display: none; white-space: nowrap; }
+    @media (min-width: 700px) {
+      .step-dot__label { display: inline; }
+    }
+    .nav-left { min-width: 0; }
+    .nav-left a { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .nav-sample-badge { white-space: nowrap; flex-shrink: 0; }
+    @media (max-width: 560px) {
+      .nav-sample-badge { display: none; }
+    }
+
+    /* Scroll-triggered reveal — has a function (progressive disclosure), not decoration.
+       Applied per-item with a small stagger (transition-delay set inline) so a row of
+       cards cascades in rather than springing together all at once. */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px) scale(0.98);
+      transition: opacity 600ms cubic-bezier(0.22, 1, 0.36, 1), transform 600ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    /* Section tone shift (brand-safe: background-color only, no gradient) */
+    .tone-tint { background: var(--bg-primary-10); }
+
+    /* Taller rows — each beat gets room to breathe and to let its own
+       internal animations play out as you scroll, instead of firing all at once. */
+    .beat { padding-top: 120px; padding-bottom: 120px; }
+    .beat-lead { margin-bottom: 56px; }
+    .row-stack { display: flex; flex-direction: column; gap: 40px; }
+
+    .quote-label {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-nonessential);
+      margin: 0;
+    }
+
+    /* Match-confidence meter — a shape, not a bare percentage (techniques spike §4).
+       The ring itself fills in on reveal via a CSS custom property, not JS. */
+    .match-meter {
+      position: relative;
+      width: 112px;
+      height: 112px;
+      flex-shrink: 0;
+    }
+    .match-meter svg { width: 100%; height: 100%; }
+    .match-meter__track { stroke: #dfdfe2; }
+    .match-meter__fill {
+      stroke: #5746b2;
+      stroke-dasharray: 326.7;
+      stroke-dashoffset: 326.7;
+      transition: stroke-dashoffset 1100ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .reveal.is-visible .match-meter__fill {
+      stroke-dashoffset: var(--target-offset, 326.7);
+    }
+    .match-meter__value {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      line-height: 1.1;
+    }
+    .match-meter__pct {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--text-default);
+    }
+    .match-meter__unit {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-nonessential);
+    }
+
+    /* Compact match indicator for the runner-up products — deliberately smaller
+       and quieter than the hero meter above (contrast/hierarchy, brand guidance §2) */
+    .match-bar-row { display: flex; align-items: center; gap: 12px; margin-top: 12px; }
+    .match-bar-row .elv-progress-bar { max-width: 160px; }
+    .match-bar-row .elv-progress-bar__fill { width: 0%; transition: width 900ms cubic-bezier(0.22, 1, 0.36, 1); }
+    .reveal.is-visible .match-bar-row .elv-progress-bar__fill { width: var(--target-width, 0%); }
+    .match-bar-pct { font-size: 13px; font-weight: 700; color: var(--text-default); white-space: nowrap; }
+
+    .snippet-card {
+      font-size: 14px;
+      line-height: 20px;
+      color: var(--text-default);
+      font-style: italic;
+    }
+    .snippet-attr {
+      display: block;
+      margin-top: 6px;
+      font-size: 12px;
+      font-style: normal;
+      color: var(--text-nonessential);
+    }
+
+    .why-line {
+      font-size: 14px;
+      line-height: 20px;
+      color: var(--text-default);
+      margin: 12px 0 0;
+      max-width: 420px;
+    }
+
+    /* --------------------------------------------------------------------
+       The following component styles (content-card, inset-card, star-rating,
+       product-avatar, product-details, progress-bar) are copied verbatim
+       from their template files in shared/elevate-prototyping-kit/components/templates/
+       — those templates are self-contained and are NOT part of the shared
+       components/elevate.css bundle, so they must be pasted alongside the
+       markup that uses them.
+       -------------------------------------------------------------------- */
+
+    /* Content Card (components/templates/moderate/content-card.html) */
+    .elv-content-card {
+      background: var(--bg-neutral-0);
+      border-radius: var(--radius-md);
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      max-width: 400px;
+    }
+    .elv-content-card--bordered { border: 1px solid var(--border-light); }
+    .elv-content-card--elevated { box-shadow: 0 4px 16px 0 rgba(32, 31, 35, 0.10); }
+    .elv-content-card--lg { border-radius: var(--radius-lg); }
+    .elv-content-card__header {
+      padding: 24px 24px 8px 24px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .elv-content-card__header-content { flex: 1; min-width: 0; }
+    .elv-content-card__title {
+      font-size: 21px;
+      line-height: 28px;
+      font-weight: 700;
+      color: var(--text-default);
+      margin: 0;
+    }
+    .elv-content-card__subtitle {
+      font-size: 14px;
+      line-height: 20px;
+      color: var(--text-subtle);
+      margin: 4px 0 0 0;
+    }
+    .elv-content-card__body { padding: 12px 24px 24px 24px; flex: 1; }
+    .elv-content-card__footer {
+      padding: 8px 24px 24px 24px;
+      border-top: 1px solid var(--border-light);
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    /* Inset Card (components/templates/moderate/inset-card.html) */
+    .elv-inset-card {
+      display: flex;
+      background: var(--bg-neutral-5);
+      border-radius: var(--radius-sm);
+      padding: 16px;
+      border: 1px solid var(--border-light);
+    }
+    .elv-inset-card--bordered { background: var(--bg-neutral-0); border: 1px solid var(--border-light); }
+
+    /* Star Rating (components/templates/simple/star-rating.html) */
+    .elv-star-rating { display: flex; flex-direction: row; flex-wrap: nowrap; align-items: center; }
+    .elv-star-rating__stars { display: flex; gap: 0; }
+    .elv-star-rating__star { flex-shrink: 0; }
+    .elv-star-rating__star--sm { width: 16px; height: 16px; }
+    .elv-star-rating__star--md { width: 20px; height: 20px; }
+    .elv-star-rating__star--lg { width: 24px; height: 24px; }
+    .elv-star-rating__text { padding-left: 4px; display: inline-flex; justify-content: center; align-items: center; color: var(--text-subtle); }
+    .elv-star-rating__value { font-weight: 300; }
+    .elv-star-rating__value--sm { font-size: 12px; line-height: 16px; }
+    .elv-star-rating__value--md { font-size: 14px; line-height: 20px; }
+    .elv-star-rating__count { font-weight: 300; margin-left: 2px; }
+
+    /* Product Avatar (components/templates/simple/product-avatar.html) */
+    .elv-product-avatar {
+      display: flex;
+      flex-shrink: 0;
+      justify-content: center;
+      align-items: center;
+      border: 1px solid var(--border-light);
+      background: var(--bg-neutral-0);
+      overflow: hidden;
+    }
+    .elv-product-avatar--md { width: 80px; height: 80px; border-radius: 4px; }
+    .elv-product-avatar--sm { width: 64px; height: 64px; border-radius: 4px; }
+    .elv-product-avatar__placeholder {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      padding: 25%;
+    }
+    .elv-product-avatar__placeholder img { width: 100%; height: 100%; object-fit: contain; opacity: 0.3; }
+
+    /* Product Details (components/templates/simple/product-details.html) */
+    .elv-product-details { display: flex; align-items: center; min-width: 0; gap: 12px; }
+    .elv-product-details--sm { gap: 8px; }
+    .elv-product-details__content { display: flex; flex-direction: column; min-width: 0; }
+    .elv-product-details__title {
+      font-weight: 600;
+      color: var(--text-default);
+      margin: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      font-size: 16px;
+      line-height: 24px;
+    }
+    .elv-product-details--sm .elv-product-details__title { font-size: 14px; line-height: 20px; }
+    .elv-product-details__seller { color: var(--text-subtle); margin: 0; font-size: 14px; line-height: 20px; }
+
+    /* Progress Bar (components/templates/simple/progress-bar.html) */
+    .elv-progress-bar { width: 100%; display: flex; flex-direction: column; gap: 4px; }
+    .elv-progress-bar__track { width: 100%; overflow: hidden; border-radius: 9999px; background: var(--bg-neutral-10); }
+    .elv-progress-bar__track--sm { height: 8px; }
+    .elv-progress-bar__fill { height: 100%; border-radius: 9999px; }
+    .elv-progress-bar__fill--primary { background: var(--text-primary); }
+  </style>
+</head>
+<body>
+
+<div elv class="elv-bg-neutral-0">
+
+  <!-- Chapter nav -->
+  <div class="chapter-nav">
+    <div class="elv-max-w-screen-xl elv-mx-auto elv-px-6 elv-flex elv-items-center elv-justify-between" style="height: 56px;">
+      <div class="elv-flex elv-items-center elv-gap-3 nav-left">
+        <a href="../index.html" class="elv-text-sm elv-text-nonessential">&larr; PPL Scrollytelling</a>
+        <span class="elv-status-badge elv-status-badge--neutral nav-sample-badge">Sample data</span>
+      </div>
+      <div class="step-dots">
+        <div class="step-dot" data-step="1">
+          <span class="step-dot__circle">1</span>
+          <span class="step-dot__label">What you told us</span>
+        </div>
+        <div class="step-dot" data-step="2">
+          <span class="step-dot__circle">2</span>
+          <span class="step-dot__label">How we weighed it</span>
+        </div>
+        <div class="step-dot" data-step="3">
+          <span class="step-dot__circle">3</span>
+          <span class="step-dot__label">Your top matches</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hero -->
+  <header class="elv-max-w-screen-xl elv-mx-auto elv-px-6" style="padding-top: 96px; padding-bottom: 80px;">
+    <p class="eyebrow eyebrow--on-light">Your recommendation</p>
+    <h1 class="elv-text-4xl elv-font-extrabold elv-text-default elv-mb-3" style="max-width: 620px;">
+      You answered 11 questions. Here's what they add up to.
+    </h1>
+    <p class="elv-text-base elv-text-subtle" style="max-width: 480px;">
+      Scroll to see how we got there.
+    </p>
+  </header>
+
+  <!-- Step 1 — What you told us -->
+  <section data-step-section="1" class="elv-max-w-screen-xl elv-mx-auto elv-px-6 beat">
+    <div class="beat-lead">
+      <p class="eyebrow eyebrow--on-light">① What you told us</p>
+      <h2 class="elv-text-2xl elv-font-bold elv-text-default">Here's what you told us.</h2>
+    </div>
+
+    <div class="row-stack">
+      <div class="elv-grid elv-grid-cols-1 md:elv-grid-cols-2 elv-gap-4">
+        <div class="elv-content-card elv-content-card--bordered reveal" style="transition-delay: 0ms;">
+          <div class="elv-content-card__header">
+            <div class="elv-content-card__header-content">
+              <p class="quote-label">Why you're shopping</p>
+            </div>
+          </div>
+          <div class="elv-content-card__body">
+            <p class="elv-text-base elv-text-default">
+              "Our current tool doesn't scale with our patient volume, and we're spending too much time on manual scheduling."
+            </p>
+          </div>
+        </div>
+
+        <div class="elv-content-card elv-content-card--bordered reveal" style="transition-delay: 120ms;">
+          <div class="elv-content-card__header">
+            <div class="elv-content-card__header-content">
+              <p class="quote-label">What you need</p>
+            </div>
+          </div>
+          <div class="elv-content-card__body">
+            <p class="elv-text-base elv-text-default">
+              "Automated scheduling, HIPAA-compliant messaging, and reporting dashboards."
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="elv-flex elv-flex-wrap elv-gap-2 reveal" style="transition-delay: 240ms;">
+        <span class="elv-status-badge elv-status-badge--neutral">51–100 employees</span>
+        <span class="elv-status-badge elv-status-badge--neutral">Healthcare</span>
+        <span class="elv-status-badge elv-status-badge--neutral">Cloud</span>
+        <span class="elv-status-badge elv-status-badge--neutral">Immediate</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Step 2 — How we weighed it -->
+  <section data-step-section="2" class="tone-tint">
+    <div class="elv-max-w-screen-xl elv-mx-auto elv-px-6 beat">
+      <div class="beat-lead">
+        <p class="eyebrow eyebrow--on-tint">② How we weighed it</p>
+        <h2 class="elv-text-2xl elv-font-bold elv-text-default">Here's how we weighed it.</h2>
+      </div>
+
+      <div class="reveal" style="max-width: 640px;">
+        <p class="elv-text-lg elv-text-default elv-mb-3" style="line-height: 32px;">
+          Because you need things to work together, we weighted
+          <strong class="elv-text-primary">EHR integration</strong> heavily.
+        </p>
+        <p class="elv-text-base elv-text-subtle">
+          An immediate timeframe and a defined budget narrowed the rest.
+        </p>
+      </div>
+
+      <div class="row-stack elv-mt-12" style="max-width: 640px;">
+        <div class="elv-content-card elv-content-card--bordered reveal" style="transition-delay: 0ms;">
+          <div class="elv-content-card__body">
+            <p class="elv-text-base elv-text-default" style="margin: 0;">
+              <strong>EHR integration</strong> — you selected more than one must-have area, not just one.
+            </p>
+          </div>
+        </div>
+        <div class="elv-content-card elv-content-card--bordered reveal" style="transition-delay: 140ms;">
+          <div class="elv-content-card__body">
+            <p class="elv-text-base elv-text-default" style="margin: 0;">
+              <strong>Immediate timeframe</strong> — you're ready to move now, not "just researching."
+            </p>
+          </div>
+        </div>
+        <div class="elv-content-card elv-content-card--bordered reveal" style="transition-delay: 280ms;">
+          <div class="elv-content-card__body">
+            <p class="elv-text-base elv-text-default" style="margin: 0;">
+              <strong>Budget fit</strong> — your stated range covers this recommendation's starting price.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Step 3 — Your top matches -->
+  <section data-step-section="3" class="elv-max-w-screen-xl elv-mx-auto elv-px-6 beat">
+    <div class="beat-lead">
+      <p class="eyebrow eyebrow--on-light">③ Your top matches</p>
+      <h2 class="elv-text-2xl elv-font-bold elv-text-default elv-mb-2">Three options, ranked by fit.</h2>
+      <p class="elv-text-base elv-text-subtle" style="max-width: 480px;">
+        Here's the short version — the full picture is one demo away.
+      </p>
+    </div>
+
+    <div class="row-stack">
+
+      <!-- Top pick -->
+      <div class="elv-content-card elv-content-card--elevated reveal" style="max-width: 640px;">
+        <div class="elv-content-card__header">
+          <div class="elv-content-card__header-content">
+            <h3 class="elv-content-card__title">Carepoint Scheduler</h3>
+            <p class="elv-content-card__subtitle">Healthcare scheduling software</p>
+          </div>
+        </div>
+
+        <div class="elv-content-card__body">
+          <div class="elv-star-rating elv-mb-3">
+            <div class="elv-star-rating__stars">
+              <svg class="elv-star-rating__star elv-star-rating__star--md" viewBox="0 0 24 24" fill="none"><path d="M12 2.5L14.9 9.1L22 9.9L16.7 14.6L18.3 21.5L12 17.8L5.7 21.5L7.3 14.6L2 9.9L9.1 9.1L12 2.5Z" fill="#FF492C"/></svg>
+              <svg class="elv-star-rating__star elv-star-rating__star--md" viewBox="0 0 24 24" fill="none"><path d="M12 2.5L14.9 9.1L22 9.9L16.7 14.6L18.3 21.5L12 17.8L5.7 21.5L7.3 14.6L2 9.9L9.1 9.1L12 2.5Z" fill="#FF492C"/></svg>
+              <svg class="elv-star-rating__star elv-star-rating__star--md" viewBox="0 0 24 24" fill="none"><path d="M12 2.5L14.9 9.1L22 9.9L16.7 14.6L18.3 21.5L12 17.8L5.7 21.5L7.3 14.6L2 9.9L9.1 9.1L12 2.5Z" fill="#FF492C"/></svg>
+              <svg class="elv-star-rating__star elv-star-rating__star--md" viewBox="0 0 24 24" fill="none"><path d="M12 2.5L14.9 9.1L22 9.9L16.7 14.6L18.3 21.5L12 17.8L5.7 21.5L7.3 14.6L2 9.9L9.1 9.1L12 2.5Z" fill="#FF492C"/></svg>
+              <svg class="elv-star-rating__star elv-star-rating__star--md" viewBox="0 0 24 24" fill="none"><path d="M12 2.5L14.9 9.1L22 9.9L16.7 14.6L18.3 21.5L12 17.8L5.7 21.5L7.3 14.6L2 9.9L9.1 9.1L12 2.5Z" fill="#DFDFE2"/></svg>
+            </div>
+            <span class="elv-star-rating__text">
+              <span class="elv-star-rating__value elv-star-rating__value--md">4.6 out of 5</span>
+              <span class="elv-star-rating__count elv-star-rating__value--md">(312)</span>
+            </span>
+          </div>
+
+          <p class="elv-text-sm elv-text-subtle elv-mb-6">
+            Starting at $18,000/year · Cloud · Free demo available
+          </p>
+
+          <div class="elv-flex elv-items-center elv-gap-4 elv-mb-6" style="flex-wrap: wrap;">
+            <div class="match-meter" style="--target-offset: 29.4;">
+              <svg viewBox="0 0 120 120">
+                <circle class="match-meter__track" cx="60" cy="60" r="52" stroke-width="12" fill="none"/>
+                <circle class="match-meter__fill" cx="60" cy="60" r="52" stroke-width="12" fill="none" stroke-linecap="round" transform="rotate(-90 60 60)"/>
+              </svg>
+              <div class="match-meter__value">
+                <span class="match-meter__pct count-up" data-target="91">0%</span>
+                <span class="match-meter__unit">match</span>
+              </div>
+            </div>
+            <p class="elv-text-sm elv-text-default" style="max-width: 340px;">
+              Strong match — driven mostly by EHR integration and your timeline.
+            </p>
+          </div>
+
+          <div class="elv-inset-card elv-inset-card--bordered elv-mb-6">
+            <p class="snippet-card">"Cut our scheduling time in half."<span class="snippet-attr">— G2 review</span></p>
+          </div>
+          <div class="elv-inset-card elv-inset-card--bordered elv-mb-2">
+            <p class="snippet-card">"Support team actually knows healthcare."<span class="snippet-attr">— G2 review</span></p>
+          </div>
+        </div>
+
+        <div class="elv-content-card__footer">
+          <button type="button" class="btn btn--secondary btn--md">Talk to an advisor instead</button>
+          <button type="button" class="btn btn--primary btn--md">Get a demo</button>
+        </div>
+      </div>
+
+      <!-- Runners-up -->
+      <div class="reveal" style="max-width: 640px; transition-delay: 100ms;">
+        <p class="eyebrow eyebrow--on-light" style="margin-top: 8px;">Also worth a look</p>
+      </div>
+
+      <div class="elv-content-card elv-content-card--bordered reveal" style="max-width: 640px; transition-delay: 160ms;">
+        <div class="elv-content-card__body">
+          <div class="elv-product-details elv-product-details--sm elv-mb-2">
+            <div class="elv-product-avatar elv-product-avatar--sm">
+              <div class="elv-product-avatar__placeholder">
+                <img src="../../../shared/elevate-prototyping-kit/icons/product-placeholder.png" alt="">
+              </div>
+            </div>
+            <div class="elv-product-details__content">
+              <div class="elv-product-details__title">SwiftDesk Health</div>
+              <p class="elv-product-details__seller">4.3 out of 5 (188) · $9,200/year</p>
+            </div>
+          </div>
+          <p class="why-line">
+            Comfortably under your budget — but only connects to two of the EHR systems on your list.
+          </p>
+          <div class="match-bar-row" style="--target-width: 78%;">
+            <div class="elv-progress-bar">
+              <div class="elv-progress-bar__track elv-progress-bar__track--sm">
+                <div class="elv-progress-bar__fill elv-progress-bar__fill--primary"></div>
+              </div>
+            </div>
+            <span class="match-bar-pct"><span class="count-up" data-target="78">0</span>% match</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="elv-content-card elv-content-card--bordered reveal" style="max-width: 640px; transition-delay: 220ms;">
+        <div class="elv-content-card__body">
+          <div class="elv-product-details elv-product-details--sm elv-mb-2">
+            <div class="elv-product-avatar elv-product-avatar--sm">
+              <div class="elv-product-avatar__placeholder">
+                <img src="../../../shared/elevate-prototyping-kit/icons/product-placeholder.png" alt="">
+              </div>
+            </div>
+            <div class="elv-product-details__content">
+              <div class="elv-product-details__title">Meridian Care OS</div>
+              <p class="elv-product-details__seller">4.7 out of 5 (95) · $24,500/year</p>
+            </div>
+          </div>
+          <p class="why-line">
+            Deploys the fastest of the three — priced above the range you gave us, though.
+          </p>
+          <div class="match-bar-row" style="--target-width: 74%;">
+            <div class="elv-progress-bar">
+              <div class="elv-progress-bar__track elv-progress-bar__track--sm">
+                <div class="elv-progress-bar__fill elv-progress-bar__fill--primary"></div>
+              </div>
+            </div>
+            <span class="match-bar-pct"><span class="count-up" data-target="74">0</span>% match</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="elv-max-w-screen-xl elv-mx-auto elv-px-6 elv-text-xs elv-text-nonessential" style="padding-bottom: 48px;">
+    Sample data for this exploration — no scoring engine exists yet, see the
+    <a href="../docs/handoffs/advisor-wizard-recommendations-scrollytelling-handoff.md" class="elv-text-nonessential" style="text-decoration: underline;">content handoff</a>.
+    <br>
+    <a href="../index.html" class="elv-text-nonessential hover:elv-text-primary" style="text-decoration: underline;">&larr; Back to PPL Scrollytelling</a>
+  </footer>
+
+</div>
+
+<script>
+  // Progressive reveal — each element gets its function: appear once as it enters view.
+  // Ring meters and progress bars fill in via CSS (triggered by the same .is-visible
+  // class), the numeric labels below are animated here since text can't be CSS-transitioned.
+  function animateCountUp(el) {
+    var target = parseInt(el.getAttribute('data-target'), 10) || 0;
+    var suffix = el.className.indexOf('match-meter__pct') !== -1 ? '%' : '';
+    var start = performance.now();
+    var duration = 1000;
+    function tick(now) {
+      var progress = Math.min((now - start) / duration, 1);
+      var eased = 1 - Math.pow(1 - progress, 3);
+      el.textContent = Math.round(target * eased) + suffix;
+      if (progress < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+
+  var revealObserver = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        entry.target.querySelectorAll('.count-up').forEach(animateCountUp);
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(function (el) { revealObserver.observe(el); });
+
+  // Chapter-nav scroll spy — highlights the step whose section is centered in view.
+  var stepDots = document.querySelectorAll('.step-dot');
+  var stepObserver = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        var step = entry.target.getAttribute('data-step-section');
+        stepDots.forEach(function (dot) {
+          dot.classList.toggle('is-active', dot.getAttribute('data-step') === step);
+        });
+      }
+    });
+  }, { rootMargin: '-45% 0px -45% 0px', threshold: 0 });
+  document.querySelectorAll('[data-step-section]').forEach(function (el) { stepObserver.observe(el); });
+</script>
+
+</body>
+</html>

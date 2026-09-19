@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Variant Two — PPL Scrollytelling</title>
+
+  <!-- Elevate Design System -->
+  <link rel="stylesheet" href="../../../shared/elevate-prototyping-kit/tokens/elevate.css">
+  <link rel="stylesheet" href="../../../shared/elevate-prototyping-kit/components/elevate.css">
+  <link rel="stylesheet" href="../../../shared/elevate-prototyping-kit/utilities.css">
+  <link rel="stylesheet" href="../../../shared/elevate-prototyping-kit/icons/icons.css">
+
+  <style>
+    body { margin: 0; }
+
+    /* One eyebrow standard (brand guidance §2) */
+    .eyebrow {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin: 0 0 8px;
+      color: var(--text-nonessential);
+    }
+
+    /* Continuous, page-wide animation #1: a scroll-progress bar that fills
+       the entire time you scroll — the "throughout" motion, not a one-shot reveal. */
+    .scroll-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      width: 0%;
+      background: var(--bg-primary);
+      z-index: 40;
+    }
+
+    .top-bar {
+      position: sticky;
+      top: 3px;
+      z-index: 30;
+      background: var(--bg-neutral-0);
+      border-bottom: 1px solid var(--border-light);
+      height: 48px;
+      display: flex;
+      align-items: center;
+    }
+    .top-bar a { white-space: nowrap; }
+
+    /* Shared content column — capped width, own class (not a guessed utility name) */
+    .content-col {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .section-shell { position: relative; }
+
+    .hero-note {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      color: var(--text-subtle);
+      background: var(--bg-neutral-5);
+      border: 1px solid var(--border-light);
+      border-radius: 9999px;
+      padding: 6px 16px;
+      margin-top: 20px;
+    }
+
+    /* Stats strip — quick evidence up top for each solution, before the detail.
+       Each stat gets a deliberate, high-contrast reveal (not a faint fade):
+       it pops up from below with a scale change AND the number's color jumps
+       from muted gray to full bold color — two cues, not one, so it reads as
+       intentional. Numeric values additionally count up from 0. */
+    .stat-strip {
+      display: flex;
+      gap: 64px;
+      flex-wrap: wrap;
+      margin: 40px 0 8px;
+    }
+    .stat {
+      opacity: 0;
+      transform: translateY(28px) scale(0.82);
+      transition: opacity 650ms cubic-bezier(0.22, 1, 0.36, 1), transform 650ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .stat.is-visible {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+    .stat__value {
+      font-size: 30px;
+      font-weight: 800;
+      color: var(--text-nonessential);
+      line-height: 1.15;
+      transition: color 650ms ease;
+    }
+    .stat.is-visible .stat__value { color: var(--text-default); }
+    .stat.stat--accent.is-visible .stat__value { color: var(--text-primary); }
+    .stat__label {
+      font-size: 13px;
+      color: var(--text-subtle);
+      margin-top: 4px;
+      max-width: 160px;
+    }
+
+    /* Solution layout: a sticky product panel beside a taller scrolling
+       feature column — the classic sticky-scrollytelling split. */
+    .solution-grid {
+      display: flex;
+      align-items: flex-start;
+      gap: 64px;
+    }
+    .sticky-panel {
+      flex: 0 0 300px;
+      position: sticky;
+      top: 68px;
+    }
+    .feature-col {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 96px;
+      padding-top: 32px;
+      padding-bottom: 32px;
+    }
+    @media (max-width: 860px) {
+      .solution-grid { flex-direction: column; }
+      .sticky-panel { position: static; flex: 1 1 auto; width: 100%; }
+      .feature-col { gap: 56px; }
+    }
+
+    /* Continuous, per-row animation: each feature row's opacity/position is
+       recalculated on every scroll frame based on its distance from the
+       viewport center — motion happens the whole time you scroll through
+       the row, not just once when it first appears. */
+    .feature-row { opacity: 0.25; transform: translateY(18px); will-change: opacity, transform; }
+
+    .feature-row__icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--bg-neutral-5);
+      border: 1px solid var(--border-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: var(--text-primary);
+    }
+    .feature-row__need {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-nonessential);
+      margin: 0 0 6px;
+    }
+    .feature-row__feature {
+      font-size: 19px;
+      line-height: 28px;
+      color: var(--text-default);
+      margin: 0;
+      max-width: 460px;
+    }
+    .feature-row--gap .feature-row__icon { color: var(--text-warning); border-color: var(--border-warning); background: var(--bg-warning-20); }
+
+    .snippet-card {
+      font-size: 15px;
+      line-height: 22px;
+      color: var(--text-default);
+      font-style: italic;
+      margin: 0;
+    }
+    .snippet-attr {
+      display: block;
+      margin-top: 6px;
+      font-size: 12px;
+      font-style: normal;
+      color: var(--text-nonessential);
+    }
+
+    .tone-tint { background: var(--bg-primary-10); }
+
+    /* --------------------------------------------------------------------
+       Component styles copied verbatim from their self-contained template
+       files (see feedback_self_contained_component_templates memory) —
+       content-card, inset-card, star-rating, product-avatar are NOT in the
+       shared components/elevate.css bundle.
+       -------------------------------------------------------------------- */
+    .elv-content-card {
+      background: var(--bg-neutral-0);
+      border-radius: var(--radius-md);
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+    }
+    .elv-content-card--bordered { border: 1px solid var(--border-light); }
+    .elv-content-card--elevated { box-shadow: 0 4px 16px 0 rgba(32, 31, 35, 0.10); }
+    .elv-content-card__body { padding: 24px; flex: 1; }
+    .elv-content-card__footer {
+      padding: 0 24px 24px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .elv-inset-card {
+      display: flex;
+      background: var(--bg-neutral-5);
+      border-radius: var(--radius-sm);
+      padding: 16px;
+      border: 1px solid var(--border-light);
+      max-width: 480px;
+    }
+    .elv-inset-card--bordered { background: var(--bg-neutral-0); border: 1px solid var(--border-light); }
+
+    .elv-star-rating { display: flex; flex-direction: row; flex-wrap: nowrap; align-items: center; }
+    .elv-star-rating__stars { display: flex; gap: 0; }
+    .elv-star-rating__star { flex-shrink: 0; width: 16px; height: 16px; }
+    .elv-star-rating__text { padding-left: 4px; display: inline-flex; align-items: center; color: var(--text-subtle); }
+    .elv-star-rating__value { font-weight: 300; font-size: 12px; line-height: 16px; }
+    .elv-star-rating__count { font-weight: 300; margin-left: 2px; }
+
+    .elv-product-avatar {
+      display: flex;
+      flex-shrink: 0;
+      justify-content: center;
+      align-items: center;
+      border: 1px solid var(--border-light);
+      background: var(--bg-neutral-0);
+      overflow: hidden;
+      width: 64px;
+      height: 64px;
+      border-radius: 4px;
+    }
+    .elv-product-avatar__placeholder { display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; padding: 25%; }
+    .elv-product-avatar__placeholder img { width: 100%; height: 100%; object-fit: contain; opacity: 0.3; }
+  </style>
+</head>
+<body>
+
+<div elv class="elv-bg-neutral-0">
+
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <div class="top-bar">
+    <div class="content-col elv-flex elv-items-center elv-justify-between">
+      <a href="../index.html" class="elv-text-sm elv-text-nonessential">&larr; PPL Scrollytelling</a>
+      <span class="elv-status-badge elv-status-badge--neutral">Sample data</span>
+    </div>
+  </div>
+
+  <!-- Hero -->
+  <header class="section-shell">
+    <div class="content-col" style="padding-top: 72px; padding-bottom: 64px;">
+      <p class="eyebrow">The deep dive</p>
+      <h1 class="elv-text-4xl elv-font-extrabold elv-text-default elv-mb-3" style="max-width: 620px;">
+        Three solutions. Here's exactly how each one fits.
+      </h1>
+      <p class="elv-text-base elv-text-subtle" style="max-width: 480px; margin: 0;">
+        Less recap, more receipts — scroll for the feature-by-feature match.
+      </p>
+      <div class="hero-note">
+        Based on what you told us: 51–100 employees · Healthcare · Cloud · ready immediately
+      </div>
+    </div>
+  </header>
+
+  <!-- Solution 1 — Carepoint Scheduler -->
+  <section class="section-shell">
+    <div class="content-col" style="padding-top: 112px; padding-bottom: 112px;">
+      <p class="eyebrow">Solution 1 of 3</p>
+      <h2 class="elv-text-2xl elv-font-bold elv-text-default elv-mb-0">Carepoint Scheduler</h2>
+
+      <div class="stat-strip">
+        <div class="stat stat--accent" style="transition-delay: 0ms;"><div class="stat__value" data-count-target="94" data-count-suffix="%">94%</div><div class="stat__label">would recommend</div></div>
+        <div class="stat stat--accent" style="transition-delay: 140ms;"><div class="stat__value" data-count-target="40" data-count-suffix="+">40+</div><div class="stat__label">EHR integrations</div></div>
+        <div class="stat stat--accent" style="transition-delay: 280ms;"><div class="stat__value">2 wks</div><div class="stat__label">median setup time</div></div>
+      </div>
+
+      <div class="solution-grid" style="margin-top: 56px;">
+        <div class="sticky-panel">
+          <div class="elv-content-card elv-content-card--elevated">
+            <div class="elv-content-card__body">
+              <span class="elv-status-badge elv-status-badge--new elv-mb-3">Best overall fit</span>
+              <div class="elv-flex elv-items-center elv-gap-3 elv-mb-3">
+                <div class="elv-product-avatar">
+                  <div class="elv-product-avatar__placeholder">
+                    <img src="../../../shared/elevate-prototyping-kit/icons/product-placeholder.png" alt="">
+                  </div>
+                </div>
+                <div>
+                  <p class="elv-text-base elv-font-bold elv-text-default" style="margin: 0;">Carepoint Scheduler</p>
+                  <p class="elv-text-xs elv-text-subtle" style="margin: 2px 0 0;">Healthcare scheduling software</p>
+                </div>
+              </div>
+              <div class="elv-star-rating elv-mb-3">
+                <div class="elv-star-rating__stars">
+                  <svg class="elv-star-rating__star" viewBox="0 0 24 24" fill="none"><path d="M12 2.5L14.9 9.1L22 9.9L16.7 14.6L18.3 21.5L12 17.8L5.7 21.5L7.3 14.6L2 9.9L9.1 9.1L12 2.5Z" fill="#FF492C"/></svg>
+                  <svg class="elv-star-rating__star" viewBox="0 0 24 24" fill="none"><path d="M12 2.5L14.9 9.1L22 9.9L16.7 14.6L18.3 21.5L12 17.8L5.7 21.5L7.3 14.6L2 9.9L9.1 9.1L12 2.5Z" fill="#FF492C"/></svg>
+                  <svg class="elv-star-rating__star" viewBox="0 0 24 24" fill="none"><path d="M12 2.5L14.9 9.1L22 9.9L16.7 14.6L18.3 21.5L12 17.8L5.7 21.5L7.3 14.6L2 9.9L9.1 9.1L12 2.5Z" fill="#FF492C"/></svg>
+                  <svg class="elv-star-rating__star" viewBox="0 0 24 24" fill="none"><path d="M12 2.5L14.9 9.1L22 9.9L16.7 14.6L18.3 21.5L12 17.8L5.7 21.5L7.3 14.6L2 9.9L9.1 9.1L12 2.5Z" fill="#FF492C"/></svg>
+                  <svg class="elv-star-rating__star" viewBox="0 0 24 24" fill="none"><path d="M12 2.5L14.9 9.1L22 9.9L16.7 14.6L18.3 21.5L12 17.8L5.7 21.5L7.3 14.6L2 9.9L9.1 9.1L12 2.5Z" fill="#DFDFE2"/></svg>
+                </div>
+                <span class="elv-star-rating__text">
+                  <span class="elv-star-rating__value">4.6</span>
+                  <span class="elv-star-rating__count">(312)</span>
+                </span>
+              </div>
+              <p class="elv-text-sm elv-text-subtle" style="margin: 0 0 4px;">$18,000/year · Cloud</p>
+              <p class="elv-text-sm elv-font-bold elv-text-primary" style="margin: 0;">91% match</p>
+            </div>
+            <div class="elv-content-card__footer">
+              <button type="button" class="btn btn--primary btn--md">Get a demo</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="feature-col">
+          <div class="feature-row elv-flex elv-items-start elv-gap-4">
+            <div class="feature-row__icon">
+              <svg class="elv-icon elv-icon-md elv-icon-fill-current" viewBox="0 0 20 20" fill="none"><path d="M9 14H6C4.89333 14 3.95 13.6095 3.17 12.8286C2.39 12.0477 2 11.1033 2 9.99529C2 8.88732 2.39 7.94444 3.17 7.16667C3.95 6.38889 4.89333 6 6 6H9V7.5H6C5.30556 7.5 4.71528 7.74306 4.22917 8.22917C3.74306 8.71528 3.5 9.30556 3.5 10C3.5 10.6944 3.74306 11.2847 4.22917 11.7708C4.71528 12.2569 5.30556 12.5 6 12.5H9V14ZM7 10.75V9.25H13V10.75H7ZM11 14V12.5H14C14.6944 12.5 15.2847 12.2569 15.7708 11.7708C16.2569 11.2847 16.5 10.6944 16.5 10C16.5 9.30556 16.2569 8.71528 15.7708 8.22917C15.2847 7.74306 14.6944 7.5 14 7.5H11V6H14C15.1067 6 16.05 6.39046 16.83 7.17138C17.61 7.95229 18 8.89674 18 10.0047C18 11.1127 17.61 12.0556 16.83 12.8333C16.05 13.6111 15.1067 14 14 14H11Z" fill="currentColor"/></svg>
+            </div>
+            <div>
+              <p class="feature-row__need">You need things to work together</p>
+              <p class="feature-row__feature">Two-way sync with Epic, Cerner, and 40+ other EHRs.</p>
+            </div>
+          </div>
+
+          <div class="feature-row elv-flex elv-items-start elv-gap-4">
+            <div class="feature-row__icon">
+              <svg class="elv-icon elv-icon-md elv-icon-fill-current" viewBox="0 0 20 20" fill="none"><path d="M12.7489 16C11.083 16 9.66667 15.4167 8.5 14.25C7.33333 13.0833 6.75 11.667 6.75 10.0011C6.75 8.34758 7.33333 6.93403 8.5 5.76042C9.66667 4.58681 11.083 4 12.7489 4C14.4024 4 15.816 4.58681 16.9896 5.76042C18.1632 6.93403 18.75 8.34758 18.75 10.0011C18.75 11.667 18.1632 13.0833 16.9896 14.25C15.816 15.4167 14.4024 16 12.7489 16ZM14.4583 12.7917L15.5208 11.7292L13.4982 9.70237V7H12V10.3176L14.4583 12.7917ZM2.5 7.5V6H5.5V7.5H2.5ZM1.5 10.75V9.25H5.5V10.75H1.5ZM2.5 14V12.5H5.5V14H2.5Z" fill="currentColor"/></svg>
+            </div>
+            <div>
+              <p class="feature-row__need">Manual scheduling is eating your week</p>
+              <p class="feature-row__feature">Auto-fills open slots from provider availability and patient history.</p>
+            </div>
+          </div>
+
+          <div class="feature-row">
+            <div class="elv-inset-card elv-inset-card--bordered">
+              <p class="snippet-card">"Their EHR sync just works — we stopped double-entering data on day one."<span class="snippet-attr">— G2 review, Practice Manager</span></p>
+            </div>
+          </div>
+
+          <div class="feature-row elv-flex elv-items-start elv-gap-4">
+            <div class="feature-row__icon">
+              <svg class="elv-icon elv-icon-md elv-icon-fill-current" viewBox="0 0 20 20" fill="none"><path d="M5.4941 18C5.08137 18 4.72917 17.8531 4.4375 17.5594C4.14583 17.2656 4 16.9125 4 16.5V8.5C4 8.0875 4.14687 7.73438 4.44062 7.44063C4.73437 7.14688 5.0875 7 5.5 7H6V5C6 3.89333 6.39046 2.95 7.17138 2.17C7.95229 1.39 8.89674 1 10.0047 1C11.1127 1 12.0556 1.39 12.8333 2.17C13.6111 2.95 14 3.89333 14 5V7H14.5C14.9125 7 15.2656 7.14688 15.5594 7.44063C15.8531 7.73438 16 8.0875 16 8.5V16.5C16 16.9125 15.853 17.2656 15.5591 17.5594C15.2652 17.8531 14.9119 18 14.4992 18H5.4941ZM10.0044 14C10.4181 14 10.7708 13.8527 11.0625 13.5581C11.3542 13.2635 11.5 12.9093 11.5 12.4956C11.5 12.0819 11.3527 11.7292 11.0581 11.4375C10.7635 11.1458 10.4093 11 9.99558 11C9.58186 11 9.22917 11.1473 8.9375 11.4419C8.64583 11.7365 8.5 12.0907 8.5 12.5044C8.5 12.9181 8.64731 13.2708 8.94192 13.5625C9.23654 13.8542 9.59071 14 10.0044 14ZM7.5 7H12.5V5C12.5 4.30556 12.2569 3.71528 11.7708 3.22917C11.2847 2.74306 10.6944 2.5 10 2.5C9.30556 2.5 8.71528 2.74306 8.22917 3.22917C7.74306 3.71528 7.5 4.30556 7.5 5V7Z" fill="currentColor"/></svg>
+            </div>
+            <div>
+              <p class="feature-row__need">Messaging has to be HIPAA-compliant</p>
+              <p class="feature-row__feature">Encrypted patient messaging built to HIPAA technical safeguards.</p>
+            </div>
+          </div>
+
+          <div class="feature-row elv-flex elv-items-start elv-gap-4">
+            <div class="feature-row__icon">
+              <svg class="elv-icon elv-icon-md elv-icon-fill-current" viewBox="0 0 20 20" fill="none"><path d="M4.5 17C4.0875 17 3.73437 16.8531 3.44062 16.5594C3.14687 16.2656 3 15.9125 3 15.5V3H4.5V15.5H17V17H4.5ZM5.5 14.5V7.5H8.5V14.5H5.5ZM9.5 14.5V4H12.5V14.5H9.5ZM13.5 14.5V10.5H16.5V14.5H13.5Z" fill="currentColor"/></svg>
+            </div>
+            <div>
+              <p class="feature-row__need">You asked for reporting dashboards</p>
+              <p class="feature-row__feature">Real-time no-show and utilization dashboards, exportable to CSV.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Solution 2 — SwiftDesk Health -->
+  <section class="section-shell tone-tint">
+    <div class="content-col" style="padding-top: 112px; padding-bottom: 112px;">
+      <p class="eyebrow">Solution 2 of 3</p>
+      <h2 class="elv-text-2xl elv-font-bold elv-text-default elv-mb-0">SwiftDesk Health</h2>
+
+      <div class="stat-strip">
+        <div class="stat" style="transition-delay: 0ms;"><div class="stat__value" data-count-target="89" data-count-suffix="%">89%</div><div class="stat__label">would recommend</div></div>
+        <div class="stat" style="transition-delay: 140ms;"><div class="stat__value">$0</div><div class="stat__label">implementation fee</div></div>
+        <div class="stat" style="transition-delay: 280ms;"><div class="stat__value">12k+</div><div class="stat__label">appointments/mo, avg. customer</div></div>
+      </div>
+
+      <div class="solution-grid" style="margin-top: 56px;">
+        <div class="sticky-panel">
+          <div class="elv-content-card elv-content-card--bordered">
+            <div class="elv-content-card__body">
+              <div class="elv-flex elv-items-center elv-gap-3 elv-mb-3">
+                <div class="elv-product-avatar">
+                  <div class="elv-product-avatar__placeholder">
+                    <img src="../../../shared/elevate-prototyping-kit/icons/product-placeholder.png" alt="">
+                  </div>
+                </div>
+                <div>
+                  <p class="elv-text-base elv-font-bold elv-text-default" style="margin: 0;">SwiftDesk Health</p>
+                  <p class="elv-text-xs elv-text-subtle" style="margin: 2px 0 0;">Healthcare scheduling software</p>
+                </div>
+              </div>
+              <div class="elv-star-rating elv-mb-3">
+                <div class="elv-star-rating__stars">
+                  <svg class="elv-star-rating__star" viewBox="0 0 24 24" fill="none"><path d="M12 2.5L14.9 9.1L22 9.9L16.7 14.6L18.3 21.5L12 17.8L5.7 21.5L7.3 14.6L2 9.9L9.1 9.1L12 2.5Z" fill="#FF492C"/></svg>
+                  <svg class="elv-star-rating__star" viewBox="0 0 24 24" fill="none"><path d="M12 2.5L14.9 9.1L22 9.9L16.7 14.6L18.3 21.5L12 17.8L5.7 21.5L7.3 14.6L2 9.9L9.1 9.1L12 2.5Z" fill="#FF492C"/></svg>
+                  <svg class="elv-star-rating__star" viewBox="0 0 24 24" fill="none"><path d="M12 2.5L14.9 9.1L22 9.9L16.7 14.6L18.3 21.5L12 17.8L5.7 21.5L7.3 14.6L2 9.9L9.1 9.1L12 2.5Z" fill="#FF492C"/></svg>
+                  <svg class="elv-star-rating__star" viewBox="0 0 24 24" fill="none"><path d="M12 2.5L14.9 9.1L22 9.9L16.7 14.6L18.3 21.5L12 17.8L5.7 21.5L7.3 14.6L2 9.9L9.1 9.1L12 2.5Z" fill="#FF492C"/></svg>
+                  <svg class="elv-star-rating__star" viewBox="0 0 24 24" fill="none"><path d="M12 2.5L14.9 9.1L22 9.9L16.7 14.6L18.3 21.5L12 17.8L5.7 21.5L7.3 14.6L2 9.9L9.1 9.1L12 2.5Z" fill="#DFDFE2"/></svg>
+                </div>
+                <span class="elv-star-rating__text">
+                  <span class="elv-star-rating__value">4.3</span>
+                  <span class="elv-star-rating__count">(188)</span>
+                </span>
+              </div>
+              <p class="elv-text-sm elv-text-subtle" style="margin: 0 0 4px;">$9,200/year · Cloud</p>
+              <p class="elv-text-sm elv-font-bold elv-text-default" style="margin: 0;">78% match</p>
+            </div>
+            <div class="elv-content-card__footer">
+              <a href="#" class="elv-text-sm elv-font-semibold elv-text-primary">See full profile &rarr;</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="feature-col">
+          <div class="feature-row elv-flex elv-items-start elv-gap-4">
+            <div class="feature-row__icon">
+              <svg class="elv-icon elv-icon-md elv-icon-fill-current" viewBox="0 0 20 20" fill="none"><path d="M9.25001 17V15.3333C8.54167 15.1806 7.93403 14.8611 7.42709 14.375C6.92014 13.8889 6.56251 13.2847 6.35417 12.5625L7.89584 11.9375C8.00695 12.4375 8.2882 12.8854 8.73959 13.2812C9.19098 13.6771 9.65973 13.875 10.1458 13.875C10.6875 13.875 11.1319 13.7361 11.4792 13.4583C11.8264 13.1806 12 12.8194 12 12.375C12 11.9583 11.8438 11.6111 11.5313 11.3333C11.2188 11.0556 10.6667 10.7778 9.87501 10.5C8.79167 10.1111 8.00001 9.68403 7.50001 9.21875C7.00001 8.75347 6.75001 8.15278 6.75001 7.41667C6.75001 6.72222 6.9757 6.125 7.42709 5.625C7.87848 5.125 8.48612 4.79861 9.25001 4.64583V3H10.75V4.64583C11.75 4.8125 12.4201 5.19444 12.7604 5.79167C13.1007 6.38889 13.2778 6.70139 13.2917 6.72917L11.8333 7.33333C11.7222 6.97222 11.5 6.67361 11.1667 6.4375C10.8333 6.20139 10.4653 6.08333 10.0625 6.08333C9.57639 6.08333 9.17362 6.20833 8.85417 6.45833C8.53473 6.70833 8.37501 7.01389 8.37501 7.375C8.37501 7.73611 8.54862 8.04514 8.89584 8.30208C9.24306 8.55903 9.88889 8.84722 10.8333 9.16667C11.8056 9.48611 12.5139 9.90278 12.9583 10.4167C13.4028 10.9306 13.625 11.5833 13.625 12.375C13.625 13.1667 13.3681 13.8333 12.8542 14.375C12.3403 14.9167 11.6389 15.2569 10.75 15.3958V17H9.25001Z" fill="currentColor"/></svg>
+            </div>
+            <div>
+              <p class="feature-row__need">You need this to fit your budget</p>
+              <p class="feature-row__feature">Flat annual pricing with no per-provider fees — $9,200/year total.</p>
+            </div>
+          </div>
+
+          <div class="feature-row elv-flex elv-items-start elv-gap-4">
+            <div class="feature-row__icon">
+              <svg class="elv-icon elv-icon-md elv-icon-fill-current" viewBox="0 0 20 20" fill="none"><path d="M8.9375 13L13.8958 8.0625L12.8333 7L8.9375 10.875L7.16667 9.125L6.10417 10.1875L8.9375 13ZM10 18C8.90278 18 7.86806 17.7917 6.89583 17.375C5.92361 16.9583 5.07292 16.3854 4.34375 15.6562C3.61458 14.9271 3.04167 14.0764 2.625 13.1042C2.20833 12.1319 2 11.0972 2 10C2 8.88889 2.20833 7.85069 2.625 6.88542C3.04167 5.92014 3.61458 5.07292 4.34375 4.34375C5.07292 3.61458 5.92361 3.04167 6.89583 2.625C7.86806 2.20833 8.90278 2 10 2C11.1111 2 12.1493 2.20833 13.1146 2.625C14.0799 3.04167 14.9271 3.61458 15.6562 4.34375C16.3854 5.07292 16.9583 5.92014 17.375 6.88542C17.7917 7.85069 18 8.88889 18 10C18 11.0972 17.7917 12.1319 17.375 13.1042C16.9583 14.0764 16.3854 14.9271 15.6562 15.6562C14.9271 16.3854 14.0799 16.9583 13.1146 17.375C12.1493 17.7917 11.1111 18 10 18Z" fill="currentColor"/></svg>
+            </div>
+            <div>
+              <p class="feature-row__need">You want it cloud-based</p>
+              <p class="feature-row__feature">Fully hosted — no local server or IT setup required.</p>
+            </div>
+          </div>
+
+          <div class="feature-row">
+            <div class="elv-inset-card elv-inset-card--bordered">
+              <p class="snippet-card">"Setup took an afternoon, not a quarter."<span class="snippet-attr">— G2 review, Office Administrator</span></p>
+            </div>
+          </div>
+
+          <div class="feature-row feature-row--gap elv-flex elv-items-start elv-gap-4">
+            <div class="feature-row__icon">
+              <svg class="elv-icon elv-icon-md elv-icon-fill-current" viewBox="0 0 20 20" fill="none"><path d="M9.25 14H10.75V9H9.25V14ZM9.9956 7.5C10.2069 7.5 10.3854 7.42855 10.5312 7.28565C10.6771 7.14273 10.75 6.96565 10.75 6.7544C10.75 6.54313 10.6785 6.36458 10.5356 6.21875C10.3927 6.07292 10.2156 6 10.0044 6C9.79313 6 9.61458 6.07145 9.46875 6.21435C9.32292 6.35727 9.25 6.53435 9.25 6.7456C9.25 6.95687 9.32145 7.13542 9.46435 7.28125C9.60727 7.42708 9.78435 7.5 9.9956 7.5ZM10.0058 18C8.9047 18 7.86806 17.7917 6.89583 17.375C5.92361 16.9583 5.07292 16.3854 4.34375 15.6562C3.61458 14.9271 3.04167 14.0767 2.625 13.105C2.20833 12.1334 2 11.0952 2 9.99046C2 8.88571 2.20833 7.85069 2.625 6.88542C3.04167 5.92014 3.61458 5.07292 4.34375 4.34375C5.07292 3.61458 5.92332 3.04167 6.89496 2.625C7.86661 2.20833 8.90481 2 10.0095 2C11.1143 2 12.1493 2.20833 13.1146 2.625C14.0799 3.04167 14.9271 3.61458 15.6562 4.34375C16.3854 5.07292 16.9583 5.92169 17.375 6.89008C17.7917 7.85849 18 8.89321 18 9.99425C18 11.0953 17.7917 12.1319 17.375 13.1042C16.9583 14.0764 16.3854 14.9271 15.6562 15.6562C14.9271 16.3854 14.0783 16.9583 13.1099 17.375C12.1415 17.7917 11.1068 18 10.0058 18ZM10 16.5C11.8056 16.5 13.3403 15.8681 14.6042 14.6042C15.8681 13.3403 16.5 11.8056 16.5 10C16.5 8.19444 15.8681 6.65972 14.6042 5.39583C13.3403 4.13194 11.8056 3.5 10 3.5C8.19444 3.5 6.65972 4.13194 5.39583 5.39583C4.13194 6.65972 3.5 8.19444 3.5 10C3.5 11.8056 4.13194 13.3403 5.39583 14.6042C6.65972 15.8681 8.19444 16.5 10 16.5Z" fill="currentColor"/></svg>
+            </div>
+            <div>
+              <p class="feature-row__need elv-flex elv-items-center elv-gap-2">
+                You need multiple EHR integrations
+                <span class="elv-status-badge elv-status-badge--warning" style="text-transform: none; letter-spacing: normal; font-weight: 600;">Heads up</span>
+              </p>
+              <p class="feature-row__feature">Connects to Epic and Athenahealth today — Cerner support is on their roadmap, not live yet.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Solution 3 — Meridian Care OS -->
+  <section class="section-shell">
+    <div class="content-col" style="padding-top: 112px; padding-bottom: 112px;">
+      <p class="eyebrow">Solution 3 of 3</p>
+      <h2 class="elv-text-2xl elv-font-bold elv-text-default elv-mb-0">Meridian Care OS</h2>
+
+      <div class="stat-strip">
+        <div class="stat" style="transition-delay: 0ms;"><div class="stat__value" data-count-target="97" data-count-suffix="%">97%</div><div class="stat__label">would recommend</div></div>
+        <div class="stat" style="transition-delay: 140ms;"><div class="stat__value">&lt;1 wk</div><div class="stat__label">to deploy</div></div>
+        <div class="stat" style="transition-delay: 280ms;"><div class="stat__value">24/7</div><div class="stat__label">live support</div></div>
+      </div>
+
+      <div class="solution-grid" style="margin-top: 56px;">
+        <div class="sticky-panel">
+          <div class="elv-content-card elv-content-card--bordered">
+            <div class="elv-content-card__body">
+              <div class="elv-flex elv-items-center elv-gap-3 elv-mb-3">
+                <div class="elv-product-avatar">
+                  <div class="elv-product-avatar__placeholder">
+                    <img src="../../../shared/elevate-prototyping-kit/icons/product-placeholder.png" alt="">
+                  </div>
+                </div>
+                <div>
+                  <p class="elv-text-base elv-font-bold elv-text-default" style="margin: 0;">Meridian Care OS</p>
+                  <p class="elv-text-xs elv-text-subtle" style="margin: 2px 0 0;">Healthcare scheduling software</p>
+                </div>
+              </div>
+              <div class="elv-star-rating elv-mb-3">
+                <div class="elv-star-rating__stars">
+                  <svg class="elv-star-rating__star" viewBox="0 0 24 24" fill="none"><path d="M12 2.5L14.9 9.1L22 9.9L16.7 14.6L18.3 21.5L12 17.8L5.7 21.5L7.3 14.6L2 9.9L9.1 9.1L12 2.5Z" fill="#FF492C"/></svg>
+                  <svg class="elv-star-rating__star" viewBox="0 0 24 24" fill="none"><path d="M12 2.5L14.9 9.1L22 9.9L16.7 14.6L18.3 21.5L12 17.8L5.7 21.5L7.3 14.6L2 9.9L9.1 9.1L12 2.5Z" fill="#FF492C"/></svg>
+                  <svg class="elv-star-rating__star" viewBox="0 0 24 24" fill="none"><path d="M12 2.5L14.9 9.1L22 9.9L16.7 14.6L18.3 21.5L12 17.8L5.7 21.5L7.3 14.6L2 9.9L9.1 9.1L12 2.5Z" fill="#FF492C"/></svg>
+                  <svg class="elv-star-rating__star" viewBox="0 0 24 24" fill="none"><path d="M12 2.5L14.9 9.1L22 9.9L16.7 14.6L18.3 21.5L12 17.8L5.7 21.5L7.3 14.6L2 9.9L9.1 9.1L12 2.5Z" fill="#FF492C"/></svg>
+                  <svg class="elv-star-rating__star" viewBox="0 0 24 24" fill="none"><g clip-path="url(#clip-mer)"><path d="M6.13672 20.4L7.69531 13.75L2.5 9.27499L9.32812 8.67499L12 2.39999L14.6719 8.69999L21.5 9.27499L16.3047 13.75L17.8633 20.4L12 16.875L6.13672 20.4Z" fill="#DFDFE2"/><path d="M6.13672 20.4L7.69531 13.75L2.5 9.27499L9.32812 8.67499L12 2.39999V16.875L6.13672 20.4Z" fill="#FF492C"/></g><defs><clipPath id="clip-mer"><rect width="24" height="24" fill="white"/></clipPath></defs></svg>
+                </div>
+                <span class="elv-star-rating__text">
+                  <span class="elv-star-rating__value">4.7</span>
+                  <span class="elv-star-rating__count">(95)</span>
+                </span>
+              </div>
+              <p class="elv-text-sm elv-text-subtle" style="margin: 0 0 4px;">$24,500/year · Cloud</p>
+              <p class="elv-text-sm elv-font-bold elv-text-default" style="margin: 0;">74% match</p>
+            </div>
+            <div class="elv-content-card__footer">
+              <a href="#" class="elv-text-sm elv-font-semibold elv-text-primary">See full profile &rarr;</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="feature-col">
+          <div class="feature-row elv-flex elv-items-start elv-gap-4">
+            <div class="feature-row__icon">
+              <svg class="elv-icon elv-icon-md elv-icon-fill-current" viewBox="0 0 20 20" fill="none"><path d="M12.7489 16C11.083 16 9.66667 15.4167 8.5 14.25C7.33333 13.0833 6.75 11.667 6.75 10.0011C6.75 8.34758 7.33333 6.93403 8.5 5.76042C9.66667 4.58681 11.083 4 12.7489 4C14.4024 4 15.816 4.58681 16.9896 5.76042C18.1632 6.93403 18.75 8.34758 18.75 10.0011C18.75 11.667 18.1632 13.0833 16.9896 14.25C15.816 15.4167 14.4024 16 12.7489 16ZM14.4583 12.7917L15.5208 11.7292L13.4982 9.70237V7H12V10.3176L14.4583 12.7917ZM2.5 7.5V6H5.5V7.5H2.5ZM1.5 10.75V9.25H5.5V10.75H1.5ZM2.5 14V12.5H5.5V14H2.5Z" fill="currentColor"/></svg>
+            </div>
+            <div>
+              <p class="feature-row__need">You're ready to move now, not just researching</p>
+              <p class="feature-row__feature">Fully configured and live in under a week, including data migration.</p>
+            </div>
+          </div>
+
+          <div class="feature-row elv-flex elv-items-start elv-gap-4">
+            <div class="feature-row__icon">
+              <svg class="elv-icon elv-icon-md elv-icon-fill-current" viewBox="0 0 20 20" fill="none"><path d="M9 14H6C4.89333 14 3.95 13.6095 3.17 12.8286C2.39 12.0477 2 11.1033 2 9.99529C2 8.88732 2.39 7.94444 3.17 7.16667C3.95 6.38889 4.89333 6 6 6H9V7.5H6C5.30556 7.5 4.71528 7.74306 4.22917 8.22917C3.74306 8.71528 3.5 9.30556 3.5 10C3.5 10.6944 3.74306 11.2847 4.22917 11.7708C4.71528 12.2569 5.30556 12.5 6 12.5H9V14ZM7 10.75V9.25H13V10.75H7ZM11 14V12.5H14C14.6944 12.5 15.2847 12.2569 15.7708 11.7708C16.2569 11.2847 16.5 10.6944 16.5 10C16.5 9.30556 16.2569 8.71528 15.7708 8.22917C15.2847 7.74306 14.6944 7.5 14 7.5H11V6H14C15.1067 6 16.05 6.39046 16.83 7.17138C17.61 7.95229 18 8.89674 18 10.0047C18 11.1127 17.61 12.0556 16.83 12.8333C16.05 13.6111 15.1067 14 14 14H11Z" fill="currentColor"/></svg>
+            </div>
+            <div>
+              <p class="feature-row__need">You need things to work together</p>
+              <p class="feature-row__feature">Native connectors for Epic and Cerner — Athenahealth via an API add-on.</p>
+            </div>
+          </div>
+
+          <div class="feature-row">
+            <div class="elv-inset-card elv-inset-card--bordered">
+              <p class="snippet-card">"We were live before our old vendor even called us back."<span class="snippet-attr">— G2 review, Clinic Director</span></p>
+            </div>
+          </div>
+
+          <div class="feature-row elv-flex elv-items-start elv-gap-4">
+            <div class="feature-row__icon">
+              <svg class="elv-icon elv-icon-md elv-icon-fill-current" viewBox="0 0 20 20" fill="none"><path d="M5.4941 18C5.08137 18 4.72917 17.8531 4.4375 17.5594C4.14583 17.2656 4 16.9125 4 16.5V8.5C4 8.0875 4.14687 7.73438 4.44062 7.44063C4.73437 7.14688 5.0875 7 5.5 7H6V5C6 3.89333 6.39046 2.95 7.17138 2.17C7.95229 1.39 8.89674 1 10.0047 1C11.1127 1 12.0556 1.39 12.8333 2.17C13.6111 2.95 14 3.89333 14 5V7H14.5C14.9125 7 15.2656 7.14688 15.5594 7.44063C15.8531 7.73438 16 8.0875 16 8.5V16.5C16 16.9125 15.853 17.2656 15.5591 17.5594C15.2652 17.8531 14.9119 18 14.4992 18H5.4941ZM10.0044 14C10.4181 14 10.7708 13.8527 11.0625 13.5581C11.3542 13.2635 11.5 12.9093 11.5 12.4956C11.5 12.0819 11.3527 11.7292 11.0581 11.4375C10.7635 11.1458 10.4093 11 9.99558 11C9.58186 11 9.22917 11.1473 8.9375 11.4419C8.64583 11.7365 8.5 12.0907 8.5 12.5044C8.5 12.9181 8.64731 13.2708 8.94192 13.5625C9.23654 13.8542 9.59071 14 10.0044 14ZM7.5 7H12.5V5C12.5 4.30556 12.2569 3.71528 11.7708 3.22917C11.2847 2.74306 10.6944 2.5 10 2.5C9.30556 2.5 8.71528 2.74306 8.22917 3.22917C7.74306 3.71528 7.5 4.30556 7.5 5V7Z" fill="currentColor"/></svg>
+            </div>
+            <div>
+              <p class="feature-row__need">Messaging has to be HIPAA-compliant</p>
+              <p class="feature-row__feature">End-to-end encrypted messaging, SOC 2 Type II audited.</p>
+            </div>
+          </div>
+
+          <div class="feature-row elv-flex elv-items-start elv-gap-4">
+            <div class="feature-row__icon">
+              <svg class="elv-icon elv-icon-md elv-icon-fill-current" viewBox="0 0 20 20" fill="none"><path d="M4.5 17C4.0875 17 3.73437 16.8531 3.44062 16.5594C3.14687 16.2656 3 15.9125 3 15.5V3H4.5V15.5H17V17H4.5ZM5.5 14.5V7.5H8.5V14.5H5.5ZM9.5 14.5V4H12.5V14.5H9.5ZM13.5 14.5V10.5H16.5V14.5H13.5Z" fill="currentColor"/></svg>
+            </div>
+            <div>
+              <p class="feature-row__need">You asked for reporting dashboards</p>
+              <p class="feature-row__feature">Custom report builder with scheduled email exports.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Closing -->
+  <section class="content-col" style="padding-top: 64px; padding-bottom: 80px; text-align: center;">
+    <h2 class="elv-text-2xl elv-font-bold elv-text-default elv-mb-3">Whichever way you lean.</h2>
+    <p class="elv-text-base elv-text-subtle elv-mb-6" style="max-width: 560px; margin: 0 auto 24px;">
+      Carepoint covers the most ground. SwiftDesk costs less. Meridian deploys the fastest. Either way, the details above are real — not just a match score.
+    </p>
+    <div class="elv-flex elv-gap-3" style="flex-wrap: wrap; justify-content: center;">
+      <button type="button" class="btn btn--primary btn--md">Get a demo of Carepoint</button>
+      <button type="button" class="btn btn--secondary btn--md">Talk to an advisor instead</button>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="content-col elv-text-xs elv-text-nonessential" style="padding-bottom: 48px;">
+    Sample data for this exploration — no scoring engine exists yet, see the
+    <a href="../docs/handoffs/advisor-wizard-recommendations-scrollytelling-handoff.md" class="elv-text-nonessential" style="text-decoration: underline;">content handoff</a>.
+    <br>
+    <a href="../index.html" class="elv-text-nonessential hover:elv-text-primary" style="text-decoration: underline;">&larr; Back to PPL Scrollytelling</a>
+  </footer>
+
+</div>
+
+<script>
+  var ticking = false;
+  var featureRows = Array.prototype.slice.call(document.querySelectorAll('.feature-row'));
+  var progressEl = document.getElementById('scrollProgress');
+
+  // Stats: a deliberate one-shot reveal (pop up + color jump), not the
+  // continuous faint fade the feature rows use — plus a 0-to-target count-up
+  // on any numeric stat, so the animation is unmistakable, not subtle.
+  function animateCountUp(el) {
+    var target = parseInt(el.getAttribute('data-count-target'), 10);
+    var suffix = el.getAttribute('data-count-suffix') || '';
+    var start = performance.now();
+    var duration = 900;
+    function tick(now) {
+      var progress = Math.min((now - start) / duration, 1);
+      var eased = 1 - Math.pow(1 - progress, 3);
+      el.textContent = Math.round(target * eased) + suffix;
+      if (progress < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+
+  var statObserver = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        var valueEl = entry.target.querySelector('[data-count-target]');
+        if (valueEl) animateCountUp(valueEl);
+        statObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.4 });
+  document.querySelectorAll('.stat').forEach(function (el) { statObserver.observe(el); });
+
+  function update() {
+    var scrollY = window.scrollY;
+    var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    var vh = window.innerHeight;
+
+    // Continuous animation #1: fill the top progress bar with scroll position.
+    progressEl.style.width = (docHeight > 0 ? (scrollY / docHeight) * 100 : 0) + '%';
+
+    // Continuous animation #2: fade/settle each feature row based on distance
+    // from viewport center — recalculated every frame you scroll, not once.
+    featureRows.forEach(function (row) {
+      var rect = row.getBoundingClientRect();
+      var center = rect.top + rect.height / 2;
+      var dist = Math.abs(center - vh / 2);
+      var norm = Math.min(dist / (vh * 0.55), 1);
+      row.style.opacity = String(1 - norm * 0.75);
+      row.style.transform = 'translateY(' + (norm * 18) + 'px)';
+    });
+
+    ticking = false;
+  }
+
+  function onScroll() {
+    if (!ticking) {
+      requestAnimationFrame(update);
+      ticking = true;
+    }
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll);
+  update();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scrollytelling Techniques — Delighters Without Video or 3D</title>
+  <link rel="stylesheet" href="../../shared/elevate-prototyping-kit/tokens/elevate.css">
+  <link rel="stylesheet" href="../../shared/elevate-prototyping-kit/components/elevate.css">
+  <link rel="stylesheet" href="../../shared/elevate-prototyping-kit/utilities.css">
+  <link rel="stylesheet" href="../../shared/elevate-prototyping-kit/icons/icons.css">
+  <style>
+    body {
+      margin: 0;
+      background: var(--elv-bg-neutral-0);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page {
+      min-height: 100vh;
+    }
+
+    .spike-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border: 1px solid var(--elv-border-light);
+      background: var(--elv-bg-neutral-5);
+      border-radius: 9999px;
+      padding: 4px 10px;
+      font-size: 12px;
+      line-height: 16px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    .report-card {
+      border-top: 1px solid var(--elv-border-light);
+      padding-top: 24px;
+      margin-top: 24px;
+    }
+
+    .callout {
+      border-left: 4px solid var(--elv-border-light);
+      background: var(--elv-bg-neutral-5);
+      padding: 16px 20px;
+      border-radius: 8px;
+    }
+
+    .callout--purple {
+      border-left-color: #5746b2;
+      background: #f2f0f9;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0 24px;
+    }
+
+    th, td {
+      border: 1px solid var(--elv-border-light);
+      padding: 12px 14px;
+      text-align: left;
+      vertical-align: top;
+      font-size: 14px;
+      line-height: 20px;
+    }
+
+    thead th {
+      background: var(--elv-bg-neutral-5);
+      font-weight: 700;
+    }
+
+    code {
+      background: var(--elv-bg-neutral-10);
+      border-radius: 4px;
+      padding: 1px 6px;
+      font-size: 0.95em;
+      white-space: break-spaces;
+    }
+
+    ul, ol {
+      margin: 12px 0 20px 24px;
+      padding: 0;
+    }
+
+    li {
+      margin: 6px 0;
+    }
+
+    .site-card {
+      border: 1px solid var(--elv-border-light);
+      border-radius: 8px;
+      padding: 20px 24px;
+      margin: 16px 0 24px;
+    }
+
+    .site-card h3 a {
+      text-decoration: underline;
+    }
+
+    .subtle-rule {
+      height: 1px;
+      background: var(--elv-border-light);
+      border: 0;
+      margin: 24px 0;
+    }
+  </style>
+</head>
+<body>
+  <div elv class="page elv-bg-neutral-0">
+    <div class="elv-max-w-screen-xl elv-mx-auto elv-p-8 elv-text-default">
+      <div class="elv-text-sm elv-text-subtle">
+        <a href="../../index.html">← Back to Chicago Labs</a>
+        &nbsp;·&nbsp;
+        <a href="../../epics/ppl-scrollytelling/index.html">PPL Scrollytelling epic</a>
+      </div>
+
+      <div class="elv-mt-4 elv-flex elv-flex-col elv-gap-3">
+        <div class="spike-badge">Spike</div>
+        <div>
+          <h1 class="elv-text-4xl elv-font-extrabold elv-text-default">Scrollytelling Techniques — Delighters Without Video or 3D</h1>
+          <div class="elv-text-sm elv-text-subtle elv-mt-2">Sep 18, 2026</div>
+        </div>
+      </div>
+
+      <section class="report-card">
+        <h2 class="elv-text-2xl elv-font-bold elv-text-default">1. Executive Summary</h2>
+        <p class="elv-text-base elv-text-default">
+          Sourced from a 7-technique breakdown of visual scrollytelling (video transcript, §2) plus a direct audit of
+          four live scrollytelling pieces (§3): three agency/portfolio sites —
+          <a href="https://www.mariajoaoabrantes.work/">mariajoaoabrantes.work</a>,
+          <a href="https://illoca.unseen.co/">illoca.unseen.co</a>, and <a href="https://goats.com.pl/">goats.com.pl</a>
+          — plus one recent, widely-shared editorial piece added specifically for its public reach:
+          <a href="https://pudding.cool/2026/05/kpop-generations/">The Pudding's "Growing Up With K-Pop"</a> (May 2026).
+        </p>
+        <p class="elv-text-base elv-text-default elv-mt-3">
+          <strong>Our constraint: no video, no 3D assets.</strong> The content we're actually telling a story with —
+          wizard answers and product data (see the
+          <a href="../../epics/ppl-scrollytelling/docs/handoffs/advisor-wizard-recommendations-scrollytelling-handoff.md">content handoff</a>)
+          — is text and structured data, not footage. Two of the three example sites (illoca, goats) lean heavily on
+          custom photography/illustration we don't have and won't fabricate. That rules out visual metaphor via
+          photography, but doesn't rule out the underlying techniques.
+        </p>
+        <div class="callout callout--purple elv-mt-4">
+          <strong>Recommendation:</strong> lean hardest on three of the seven techniques — <strong>typography as a
+          visual element</strong>, <strong>purposeful scroll-driven animation</strong> (progressive reveal, not
+          scroll-jacking), and <strong>data visualization as narrative</strong> (a match/confidence meter, not a raw
+          number) — backed by strict <strong>contrast/hierarchy</strong> and <strong>white space</strong> discipline.
+          <strong>Visual metaphor</strong> is still achievable, just through icon/diagram/card composition instead of
+          photography or footage. See §4 for the concrete toolkit.
+        </div>
+      </section>
+
+      <section class="report-card">
+        <h2 class="elv-text-2xl elv-font-bold elv-text-default">2. The 7 techniques (source: video transcript)</h2>
+        <p class="elv-text-base elv-text-default">
+          A YouTube breakdown (<a href="https://www.youtube.com/watch?v=U0COL050HlU">youtube.com/watch?v=U0COL050HlU</a>)
+          names seven techniques that separate content that <em>uses</em> visuals from content that merely <em>has</em>
+          them. Distilled here with an honest read on whether each is usable given our no-video/no-3D constraint.
+        </p>
+        <table>
+          <thead>
+            <tr>
+              <th style="width: 18%;">Technique</th>
+              <th style="width: 42%;">What it means</th>
+              <th style="width: 40%;">Usable here?</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Visual flow</strong></td>
+              <td>Where the eye goes is a design choice — alignment, white space, and animation should tell the reader "now this," not leave them to find the entry point themselves.</td>
+              <td>Yes — fully achievable with layout, spacing, and scroll order. No special assets needed.</td>
+            </tr>
+            <tr>
+              <td><strong>Contrast &amp; hierarchy</strong></td>
+              <td>If everything is bold, nothing is. Differences in size/color/weight create a reading path; a page with no contrast has nowhere for the eye to land.</td>
+              <td>Yes — this is a discipline, not an asset. Directly enforced by Elevate's type scale and semantic color tokens.</td>
+            </tr>
+            <tr>
+              <td><strong>White space</strong></td>
+              <td>Breathing room, not empty space. Prevents the "too much competing for attention" reaction that makes a reader bail.</td>
+              <td>Yes — same as above, a layout discipline.</td>
+            </tr>
+            <tr>
+              <td><strong>Purposeful animation</strong></td>
+              <td>Every animation needs a function — guide the eye, reveal information progressively, or reinforce the message. Otherwise, cut it.</td>
+              <td>Yes — scroll-triggered progressive reveal (fade/slide-in tied to scroll position) needs no video or 3D, just CSS/JS tied to scroll or <code>IntersectionObserver</code>.</td>
+            </tr>
+            <tr>
+              <td><strong>Visual metaphor</strong></td>
+              <td>Show, don't tell — a plant sprouting for "growth," interlocking pieces for "connection." The image carries the concept faster than the stat does.</td>
+              <td><strong>Partial.</strong> No photography or 3D to stage a metaphor in. Achievable instead through iconography, simple diagrams, or card composition (see §4).</td>
+            </tr>
+            <tr>
+              <td><strong>Typography as a visual element</strong></td>
+              <td>Type isn't just a readability decision — variable weight, strategic sizing, and progressive reveal on scroll make text something the reader <em>experiences</em>, not just reads.</td>
+              <td>Yes — our strongest lever. The content is fundamentally text (wizard answers, product copy), so this is where most of the "delight" budget should go.</td>
+            </tr>
+            <tr>
+              <td><strong>Data visualization</strong></td>
+              <td>Raw numbers have no inherent shape — a chart should answer a question, not just display information. Reveal progressively rather than dumping a full chart at once.</td>
+              <td>Yes — central to this epic. Ratings, pricing, and (eventually) a match/confidence value are exactly the kind of numbers that need a shape.</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="report-card">
+        <h2 class="elv-text-2xl elv-font-bold elv-text-default">3. Site audit — what each example actually does</h2>
+        <p class="elv-text-base elv-text-default">
+          Notes from directly scrolling each site, not secondhand description. These are creative/portfolio sites —
+          treat as a pattern library to borrow mechanics from, not a visual style to copy wholesale.
+        </p>
+        <p class="elv-text-base elv-text-default elv-mt-3">
+          Also see the standalone "recent + trending" entry below (<a href="#kpop-example">3.4</a>) — a live editorial
+          piece rather than an agency portfolio, included because it's the kind of thing that's actually in public
+          consciousness right now, not just design-award-circle inspiration.
+        </p>
+
+        <div class="site-card">
+          <h3 class="elv-text-lg elv-font-bold"><a href="https://www.mariajoaoabrantes.work/">mariajoaoabrantes.work</a></h3>
+          <ul>
+            <li>Oversized display type <em>is</em> the primary visual on the hero — no photo or video, the headline alone carries the page.</li>
+            <li>Sentence-style case-study headline with one clause set in the brand's lavender accent color, carrying the outcome metric inline: <em>"...— cutting participant sourcing effort by <span style="color:#5746b2; font-weight:700;">84%</span>."</em> The stat is embedded in a sentence, not boxed in a separate stat card.</li>
+            <li>Uppercase, em-dash-separated tag rows under each case study (e.g. "RESEARCH OPS — PRODUCT DESIGN — ACCESSIBILITY") as lightweight metadata/context chips.</li>
+            <li>Horizontally scrollable category filter bar near the top for jumping between case studies.</li>
+            <li>Device-mockup frames (browser chrome, phone frames) contain every UI screenshot — instantly reads as "real product," not a floating image.</li>
+            <li>A persistent floating side badge and a sticky bottom-corner nav pill provide wayfinding without a fixed header eating vertical space.</li>
+          </ul>
+        </div>
+
+        <div class="site-card">
+          <h3 class="elv-text-lg elv-font-bold"><a href="https://illoca.unseen.co/">illoca.unseen.co</a></h3>
+          <ul>
+            <li>A sketchbook/graph-paper background texture persists across the whole page — reinforces the "architectural drafting" metaphor at the chrome level, not just in imagery.</li>
+            <li>Hand-drawn marker annotations (underlines, arrows, a circled numeral) are overlaid directly on set display type — turns plain typography into an annotated diagram.</li>
+            <li>A duotone illustration <strong>crossfades between two rendering states</strong> (a photorealistic-feeling scene → a line-sketch of the same scene) as the reader scrolls — a scroll-scrubbed transform used to narrate a before/after or process step without any video.</li>
+            <li>Numbered step badges in a hand-drawn circle ("①") pair with each section headline, making a multi-step narrative sequence explicit.</li>
+            <li>The nav bar stays pinned through full-bleed image sections rather than disappearing.</li>
+          </ul>
+        </div>
+
+        <div class="site-card">
+          <h3 class="elv-text-lg elv-font-bold"><a href="https://goats.com.pl/">goats.com.pl</a></h3>
+          <ul>
+            <li>The hero headline reveals word-by-word/clause-by-clause via opacity tied directly to scroll position, with the first clause locked in brand pink while the rest is still fading in — a pure typographic scroll effect, no imagery required.</li>
+            <li>A section headline ("WHAT WE DO") is staged literally inside a stock photo — a person holding up a newspaper whose front page <em>is</em> the headline. A visual metaphor achieved through photo composition + text, not motion or 3D.</li>
+            <li>Case studies sit in a horizontal scroll-snap card carousel nested inside the page's normal vertical scroll.</li>
+            <li>Full-bleed color/tone inversion between sections (light → near-black) works as a scene-break device, signaling a shift in topic without a visible divider.</li>
+            <li>A floating circular menu button and a fixed social-icon rail provide persistent chrome that doesn't compete with content.</li>
+          </ul>
+        </div>
+
+        <hr class="subtle-rule">
+
+        <div class="site-card" id="kpop-example">
+          <div class="spike-badge elv-mb-3">Recent · trending, not just design-circle inspiration</div>
+          <h3 class="elv-text-lg elv-font-bold">3.4 <a href="https://pudding.cool/2026/05/kpop-generations/">The Pudding — "Growing Up With K-Pop"</a></h3>
+          <p class="elv-text-sm elv-text-subtle elv-mt-2" style="margin-top: 4px;">Published May 2026. Two real friends narrate their friendship across five K-pop "generations."</p>
+          <div class="callout elv-mt-3" style="border-left-color:#c2410c; background:#fff7ed;">
+            <strong>Aesthetic note — off-brand, don't copy the look:</strong> the visual language here (glossy
+            chrome/bubble-letter chapter titles, shifting pastel sunset gradients, cutesy illustrated avatars,
+            hand-drawn-sticker styling) is firmly outside Elevate and outside what fits our product. This entry is
+            here for the <strong>mechanics</strong> below, not the visual style — none of it should inform color,
+            type treatment, or illustration choices in our explorations.
+          </div>
+          <ul class="elv-mt-3">
+            <li><strong>Sticky chapter-nav doubling as a progress tracker</strong> — a persistent top bar with one icon per "generation" (chapter), the active one highlighted, so the reader always knows where they are in a multi-part narrative. Directly reusable as a lightweight, Elevate-styled step indicator instead of hand-drawn icons.</li>
+            <li><strong>Attributed quote/speech-bubble cards</strong> — each narrator gets an avatar + name tag + a card holding her side of the story, letting two "voices" interleave without needing photos or video of real people. Maps cleanly onto rendering a buyer's own wizard answers as an attributed card ("you told us...") distinct from the system's response.</li>
+            <li><strong>Stylized media-reference card standing in for real video</strong> — a "sticker"-style card (thumbnail + play icon + title) references a song/video without actually embedding playable media. This is the direct workaround for our no-video constraint: a card that <em>represents</em> a rich-media reference (e.g. a product screenshot or demo) rather than the real thing.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="report-card">
+        <h2 class="elv-text-2xl elv-font-bold elv-text-default">4. Toolkit for this epic — typography, data-vis, cards</h2>
+        <p class="elv-text-base elv-text-default">
+          Mapping the achievable techniques onto the actual narrative this epic has to tell: a buyer's wizard answers
+          → how they were weighted → a recommended product (see the
+          <a href="../../epics/ppl-scrollytelling/docs/handoffs/advisor-wizard-recommendations-scrollytelling-handoff.md">content handoff</a>
+          for the real data fields and per-product attributes available).
+        </p>
+        <table>
+          <thead>
+            <tr>
+              <th style="width: 30%;">Technique</th>
+              <th style="width: 70%;">Where it fits</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Personalization sentence w/ inline highlighted keyword</td>
+              <td>Replace the flat "Based on your criteria: chip · chip · chip" pattern (handoff §5) with a sentence that highlights one clause, mirroring mariajoaoabrantes.work — e.g. <em>"Because you need things to work together, we weighted <strong style="color:#5746b2;">integration support</strong> heavily."</em></td>
+            </tr>
+            <tr>
+              <td>Scroll-scrubbed progressive reveal</td>
+              <td>Reveal each narrative beat (what you told us → how we weighed it → your top match) one at a time as the reader scrolls, instead of rendering the full page at once. IntersectionObserver-driven fade/slide, not scroll-jacking.</td>
+            </tr>
+            <tr>
+              <td>Numbered step badges</td>
+              <td>Borrow illoca's hand-drawn-circle numeral pattern (rendered in Elevate style, not literally hand-drawn) to make the 3-beat sequence explicit and scannable.</td>
+            </tr>
+            <tr>
+              <td>Data-vis as narrative, not dashboard</td>
+              <td>Render a per-product match/confidence value as a single meter, arc, or ring tied to a plain-language callout ("strong match because...") rather than a raw percentage in a table. Since no scoring engine exists yet (handoff §3), design the visualization to read correctly with a placeholder value.</td>
+            </tr>
+            <tr>
+              <td>Card-based product reveal</td>
+              <td>With no video/3D, product identity/rating/pricing/pros-cons render as Elevate cards (<code>Elevate::ProductDetails::Component</code>, <code>Elevate::StarRating::Component</code> — handoff §4) revealed one at a time via scroll, rather than stacked all at once like the superseded compare-page layout.</td>
+            </tr>
+            <tr>
+              <td>Section tone inversion</td>
+              <td>A background shift (neutral → purple-tinted, or light → dark) between "your answers" and "your recommendation" sections signals the pivot from input to payoff, echoing goats.com.pl's light/dark scene breaks.</td>
+            </tr>
+            <tr>
+              <td>Sticky/pinned summary rail</td>
+              <td>A persistent sidebar summarizing "what we know about you so far" that fills in as the reader scrolls — the same sticky-visual mechanic all three sites use, just built from text/cards instead of an image.</td>
+            </tr>
+            <tr>
+              <td>Sticky chapter-nav / progress tracker</td>
+              <td>Borrow the mechanic (not the look) from §3.4's "Growing Up With K-Pop" — a persistent top bar with one icon per narrative beat, active one highlighted, rendered in plain Elevate style (no bubble letters, no illustrated icons).</td>
+            </tr>
+            <tr>
+              <td>Attributed quote card</td>
+              <td>Render each wizard answer back to the buyer as an attributed card ("you told us...") distinct from the system's response card, echoing §3.4's two-narrator speech-bubble pattern — using Elevate card styling, not avatars/illustration.</td>
+            </tr>
+            <tr>
+              <td>Stylized media-reference card</td>
+              <td>Where the handoff (§4) mentions screenshots or a demo, use a "sticker"-style reference card (thumbnail + label) rather than an embedded player — the same workaround §3.4 uses to reference a song without embedding real video.</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="report-card">
+        <h2 class="elv-text-2xl elv-font-bold elv-text-default">5. Explicitly out of scope / open questions</h2>
+        <ul>
+          <li><strong>No video, no 3D-rendered assets, no custom photography-based visual metaphors</strong> — both illoca and goats lean on custom photography/illustration budgets we don't have and shouldn't fabricate.</li>
+          <li><strong>No scroll-jacking</strong> — hijacked scroll speed/physics contradicts the video's core rule ("every animation needs a function") and Elevate's motion-should-be-subtle stance. Standard scroll-triggered reveal only.</li>
+          <li><strong>Open:</strong> is there any icon/illustration budget for visual metaphor, or is typography + data-vis + cards the entire toolkit for this epic?</li>
+          <li><strong>Open:</strong> confidence/match scoring doesn't exist yet (handoff §3) — explorations should design the data-vis to work with a placeholder value, and flag "how confidence is computed" back as a dependency rather than solving it here.</li>
+        </ul>
+      </section>
+
+      <section class="report-card">
+        <h2 class="elv-text-2xl elv-font-bold elv-text-default">6. References</h2>
+        <ul>
+          <li>Video: <a href="https://www.youtube.com/watch?v=U0COL050HlU">7 Visual Scrollytelling Tips — youtube.com/watch?v=U0COL050HlU</a></li>
+          <li>Example: <a href="https://www.mariajoaoabrantes.work/">mariajoaoabrantes.work</a></li>
+          <li>Example: <a href="https://illoca.unseen.co/">illoca.unseen.co</a></li>
+          <li>Example: <a href="https://goats.com.pl/">goats.com.pl</a></li>
+          <li>Example (recent/trending, aesthetic off-brand): <a href="https://pudding.cool/2026/05/kpop-generations/">The Pudding — "Growing Up With K-Pop"</a></li>
+          <li>Content handoff: <a href="../../epics/ppl-scrollytelling/docs/handoffs/advisor-wizard-recommendations-scrollytelling-handoff.md">Advisor Wizard → Recommendations</a></li>
+          <li>Related epic: <a href="../../epics/ppl-scrollytelling/index.html">PPL Scrollytelling</a></li>
+        </ul>
+      </section>
+    </div>
+  </div>
+</body>
+</html>

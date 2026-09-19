@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Staying On-Brand in Scrollytelling — G2 Brand Guidance</title>
+  <link rel="stylesheet" href="../../shared/elevate-prototyping-kit/tokens/elevate.css">
+  <link rel="stylesheet" href="../../shared/elevate-prototyping-kit/components/elevate.css">
+  <link rel="stylesheet" href="../../shared/elevate-prototyping-kit/utilities.css">
+  <link rel="stylesheet" href="../../shared/elevate-prototyping-kit/icons/icons.css">
+  <style>
+    body {
+      margin: 0;
+      background: var(--elv-bg-neutral-0);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: underline;
+    }
+
+    .page {
+      min-height: 100vh;
+    }
+
+    .spike-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border: 1px solid var(--elv-border-light);
+      background: var(--elv-bg-neutral-5);
+      border-radius: 9999px;
+      padding: 4px 10px;
+      font-size: 12px;
+      line-height: 16px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    .report-card {
+      border-top: 1px solid var(--elv-border-light);
+      padding-top: 24px;
+      margin-top: 24px;
+    }
+
+    .callout {
+      border-left: 4px solid var(--elv-border-light);
+      background: var(--elv-bg-neutral-5);
+      padding: 16px 20px;
+      border-radius: 8px;
+    }
+
+    .callout--purple {
+      border-left-color: #5746b2;
+      background: #f2f0f9;
+    }
+
+    .callout--amber {
+      border-left-color: #c2410c;
+      background: #fff7ed;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0 24px;
+    }
+
+    th, td {
+      border: 1px solid var(--elv-border-light);
+      padding: 12px 14px;
+      text-align: left;
+      vertical-align: top;
+      font-size: 14px;
+      line-height: 20px;
+    }
+
+    thead th {
+      background: var(--elv-bg-neutral-5);
+      font-weight: 700;
+    }
+
+    code {
+      background: var(--elv-bg-neutral-10);
+      border-radius: 4px;
+      padding: 1px 6px;
+      font-size: 0.95em;
+      white-space: break-spaces;
+    }
+
+    ul, ol {
+      margin: 12px 0 20px 24px;
+      padding: 0;
+    }
+
+    li {
+      margin: 6px 0;
+    }
+
+    .swatch {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      border-radius: 3px;
+      margin-right: 6px;
+      vertical-align: -1px;
+    }
+  </style>
+</head>
+<body>
+  <div elv class="page elv-bg-neutral-0">
+    <div class="elv-max-w-screen-xl elv-mx-auto elv-p-8 elv-text-default">
+      <div class="elv-text-sm elv-text-subtle">
+        <a href="../../index.html">← Back to Chicago Labs</a>
+        &nbsp;·&nbsp;
+        <a href="../../epics/ppl-scrollytelling/index.html">PPL Scrollytelling epic</a>
+      </div>
+
+      <div class="elv-mt-4 elv-flex elv-flex-col elv-gap-3">
+        <div class="spike-badge">Brand Guidance</div>
+        <div>
+          <h1 class="elv-text-4xl elv-font-extrabold elv-text-default">Staying On-Brand in Scrollytelling</h1>
+          <div class="elv-text-sm elv-text-subtle elv-mt-2">Sep 18, 2026 — consulted the <code>g2-brand-creator</code> skill for guidance, not a rendered artifact</div>
+        </div>
+      </div>
+
+      <section class="report-card">
+        <h2 class="elv-text-2xl elv-font-bold elv-text-default">1. Executive Summary</h2>
+        <p class="elv-text-base elv-text-default">
+          This is guidance, distilled from G2's brand-creator skill (color/type tokens, voice rules, and a documented
+          list of web anti-patterns), on how to stay recognizably G2 while building the
+          <a href="../../epics/ppl-scrollytelling/index.html">PPL Scrollytelling</a> epic — and applied specifically
+          to scrollytelling's own techniques (scroll-triggered reveal, sticky visuals, section transitions, card
+          composition) rather than restated generically.
+        </p>
+        <div class="callout callout--amber elv-mt-4">
+          <strong>One tension to flag up front:</strong> the brand-creator skill is tuned for marketing collateral
+          (landing pages, decks, PDFs) and its token set differs from Elevate — most notably it specifies body/heading
+          text as pure black <code>#111</code>, while Elevate (already governing every prototype in this repo, per
+          the root <a href="../../CLAUDE.md">CLAUDE.md</a>) specifies <code>text-default</code>
+          <span class="swatch" style="background:#201f23;"></span><code>#201f23</code> and explicitly forbids pure
+          black. <strong>This epic is a product UI experience built on Elevate, not a marketing page — Elevate's
+          token wins.</strong> Everywhere else (voice, motion restraint, anti-patterns, color hierarchy), the two
+          systems agree and the guidance below applies directly.
+        </div>
+      </section>
+
+      <section class="report-card">
+        <h2 class="elv-text-2xl elv-font-bold elv-text-default">2. Color &amp; type — rules translated for scrollytelling</h2>
+        <table>
+          <thead>
+            <tr>
+              <th style="width: 32%;">Brand rule (source)</th>
+              <th style="width: 68%;">Applied to a scrollytelling beat</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Default palette is 3–4 colors max: <span class="swatch" style="background:#ff492c;"></span>Rorange, <span class="swatch" style="background:#5746b2;"></span>Purple, <span class="swatch" style="background:#ffc800;"></span>Yellow, white — don't reach for the full brand palette in one deliverable.</td>
+              <td>Don't let every scroll section introduce a new accent color. Purple stays the primary "action/emphasis" color (this already matches Elevate's own "purple for primary CTAs" rule) — Rorange is reserved for true brand-identity moments, never for data or sentiment (also already an Elevate rule — the two systems agree here).</td>
+            </tr>
+            <tr>
+              <td>Figtree only, no exceptions, no fallbacks — applies to every element including charts and data tables.</td>
+              <td>Already Elevate's rule. Extend it explicitly to any custom chart/meter built for the match-confidence visualization (techniques spike §4) — no default system-ui fallback creeping in on a canvas/SVG chart.</td>
+            </tr>
+            <tr>
+              <td>Text color is black <code>#111</code> on light backgrounds (brand-creator token).</td>
+              <td><strong>Superseded here by Elevate's <code>text-default</code> <code>#201f23</code></strong> — see §1. Don't "fix" copy toward pure black if a future brand audit flags it; this product surface intentionally follows Elevate.</td>
+            </tr>
+            <tr>
+              <td>No gradient or animated backgrounds. No dot/grid/noise-pattern backgrounds. No glassmorphism / <code>backdrop-filter: blur()</code>. No CSS/SVG blurred-blob shapes.</td>
+              <td>This directly confirms and sharpens what the earlier <a href="./scrollytelling-techniques-spike.html">techniques spike</a> already flagged as off-brand: illoca's sketchbook/graph-paper texture, goats' and the Pudding piece's gradient backgrounds. Now with an explicit source: <strong>no persistent background texture or gradient of any kind</strong>, animated or not.</td>
+            </tr>
+            <tr>
+              <td>All buttons are pills (<code>border-radius: 100px</code>). Primary button = Purple. Rorange buttons only on dark/navy/purple backgrounds.</td>
+              <td>Applies to any CTA embedded in a scroll beat — e.g. the "still want to talk to a human?" escape hatch the content handoff (§6) already calls out as a ready-made component. Keep it a purple pill on a light section; only go Rorange if that CTA sits on a dark/purple full-bleed section.</td>
+            </tr>
+            <tr>
+              <td>One eyebrow standard: 14px/700/uppercase/0.12em letter-spacing, color matches the heading (never a brand color as eyebrow text). No eyebrows unless present in source copy — don't invent decorative labels.</td>
+              <td>If a chapter/step label is added to a scroll section (the "numbered step badge" or "sticky chapter-nav" mechanics from the techniques spike), style it as this one eyebrow standard — not a new ad hoc treatment per exploration, and not colored Rorange/purple text.</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="report-card">
+        <h2 class="elv-text-2xl elv-font-bold elv-text-default">3. Voice &amp; copy — rules translated for scrollytelling</h2>
+        <table>
+          <thead>
+            <tr>
+              <th style="width: 32%;">Brand voice rule</th>
+              <th style="width: 68%;">Applied to a scrollytelling beat</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>The customer is the hero; G2 is the sidekick with the goods.</td>
+              <td>The buyer's own wizard answers should read as the protagonist of the narrative ("you told us...") — not the recommendation engine narrating <em>at</em> them. This is the brand-voice justification for the "attributed quote card" mechanic already in the techniques spike's toolkit (§4), not just a UX nicety.</td>
+            </tr>
+            <tr>
+              <td>Data storytelling: pair every claim with proof; turn numbers into meaning, don't just drop them.</td>
+              <td>The match/confidence meter (techniques spike §4) must always pair with the "why" sentence — never show a bare percentage. This is now a voice rule as much as a data-vis one.</td>
+            </tr>
+            <tr>
+              <td>Rhythm: short sentences next to longer ones; fragments are fine.</td>
+              <td>Directly usable in the "personalization sentence with one highlighted clause" pattern already recommended (e.g. <em>"Because you need things to work together, we weighted <strong style="color:#5746b2;">integration support</strong> heavily."</em>) — keep it one beat, not a paragraph.</td>
+            </tr>
+            <tr>
+              <td>Avoid buzzwords: leverage, unlock, seamlessly, robust, elevate, streamline, best-in-class, cutting-edge, game-changing, etc.</td>
+              <td>Watch for these specifically in auto-drafted "why we recommended this" copy — "seamlessly integrates" and "robust reporting" are exactly the phrasing this kind of generated personalization copy reaches for by default.</td>
+            </tr>
+            <tr>
+              <td>Strip "feels very Claude" AI phrasing tics: em-dash-and-restate rhythm, rule-of-three padding ("faster, smarter, more efficient"), hedging throat-clears, hollow openers/closers.</td>
+              <td>This epic's copy will likely be AI-drafted — treat this as a mandatory pass on any generated narrative beat, not optional polish. Read every beat aloud before it ships.</td>
+            </tr>
+            <tr>
+              <td>Be authoritative, not hedging ("may," "might," "could help").</td>
+              <td>The recommendation narrative should make a clear claim — <em>"Because you need X, we recommend Y"</em> — not <em>"this might be a good fit for you."</em> Ties directly to the content handoff's note that confidence scoring doesn't exist yet: the copy should still commit to a clear voice even while the underlying number is a placeholder.</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="report-card">
+        <h2 class="elv-text-2xl elv-font-bold elv-text-default">4. Motion &amp; composition — on-brand vs. off-brand, specifically for us</h2>
+        <div class="callout callout--purple">
+          <strong>On-brand:</strong> scroll-triggered reveal that has a function — content appearing, a value updating,
+          a step advancing. This matches both the earlier techniques spike's "every animation needs a function" rule
+          and the brand skill's own line: animation on <em>background decoration</em> is banned, animation as
+          <em>content delivery</em> is not addressed by that rule and stays governed by the earlier spike's standard.
+        </div>
+        <ul class="elv-mt-4">
+          <li><strong>Off-brand, confirmed:</strong> animated or gradient backgrounds, blurred blob shapes, glassmorphism/backdrop-blur, dot/grid/noise-pattern backgrounds — this directly rules out several of the very techniques admired in the earlier site audit (illoca's texture, goats'/Pudding's gradients) at the CSS level, not just as a style preference.</li>
+          <li><strong>Cards:</strong> hairline outline only (<code>box-shadow: 0 0 0 1px #e8e8e8</code>), no heavy drop shadows, no colored left-border accent stripes, no decorative <code>&lt;hr&gt;</code> or colored divider bars inside a card. Applies directly to the "card-based product reveal" and "attributed quote card" mechanics — build them as flat hairline cards, not the drop-shadow "sticker" look borrowed from the Pudding example (which was already flagged off-brand aesthetically in the techniques spike).</li>
+          <li><strong>Section transitions:</strong> use background-color changes and vertical padding, not a literal divider line. Validates the "section tone inversion" toolkit entry (light → purple-tinted, or light → dark) — just without a rule/hr marking the seam.</li>
+          <li><strong>Icons:</strong> black or white only, no colored background container/box around them. Relevant if step/chapter badges use an icon instead of a plain numeral.</li>
+        </ul>
+      </section>
+
+      <section class="report-card">
+        <h2 class="elv-text-2xl elv-font-bold elv-text-default">5. Easy to violate in a scrollytelling context specifically</h2>
+        <ul>
+          <li><strong>Overusing Rorange for "match found!" moments.</strong> A recommendation reveal is an emotionally charged beat, and Rorange is a natural instinct for "this is the moment" — but Rorange is brand-identity only, never a data-positive or sentiment color. Use Purple or Elevate's semantic tokens for that emphasis instead.</li>
+          <li><strong>Motion that reads as "AI slop."</strong> Stacking too many animated reveals back-to-back turns a story into a tech demo. Test every animated beat against: would removing it lose information? If not, cut it.</li>
+          <li><strong>Breaking calm density with too many stacked beats.</strong> The brand skill's own copy-density rule ("2–3 sentences max" per slide) translates directly: no single scroll beat should carry more than ~2–3 sentences.</li>
+          <li><strong>Buzzword creep in generated "why we recommended this" copy</strong> — see §3's buzzword list. Easiest to catch by reading each beat aloud before shipping it.</li>
+          <li><strong>Inventing a new eyebrow/label style per exploration.</strong> Multiple explorations will be built over time (§ Variant One is just the first) — each one reaching for its own chapter-label treatment instead of the one eyebrow standard (§2) will drift the epic visually inconsistent with itself, let alone with G2.</li>
+        </ul>
+      </section>
+
+      <section class="report-card">
+        <h2 class="elv-text-2xl elv-font-bold elv-text-default">6. References</h2>
+        <ul>
+          <li>Consulted: the <code>g2-brand-creator</code> skill — <code>assets/brand_tokens.json</code>, <code>references/brand-voice.md</code>, <code>references/web-creation.md</code> (anti-pattern table)</li>
+          <li>Related: <a href="./scrollytelling-techniques-spike.html">Scrollytelling Techniques — Delighters Without Video or 3D</a></li>
+          <li>Related: <a href="../../epics/ppl-scrollytelling/docs/handoffs/advisor-wizard-recommendations-scrollytelling-handoff.md">Content handoff — Advisor Wizard → Recommendations</a></li>
+          <li>Related epic: <a href="../../epics/ppl-scrollytelling/index.html">PPL Scrollytelling</a></li>
+          <li>Repo design system authority: <a href="../../CLAUDE.md">Chicago Labs Explorations CLAUDE.md</a> (Elevate-first — wins over marketing-brand tokens for this product surface)</li>
+        </ul>
+      </section>
+    </div>
+  </div>
+</body>
+</html>
