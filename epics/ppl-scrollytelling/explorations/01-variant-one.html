@@ -12,6 +12,8 @@
   <link rel="stylesheet" href="../../../shared/elevate-prototyping-kit/icons/icons.css">
 
   <style>
+    /* mb-8px does not exist in utilities.css (only mb-3/4/6/12/16) - small helper for the 8px gaps that class was meant to give */
+    .mb-8px { margin-bottom: 8px; }
     body { margin: 0; }
 
     /* One eyebrow standard (brand guidance §2) — reused for every label in this page */
@@ -306,7 +308,7 @@
     <div class="elv-max-w-screen-xl elv-mx-auto elv-px-6 elv-flex elv-items-center elv-justify-between" style="height: 56px;">
       <div class="elv-flex elv-items-center elv-gap-3 nav-left">
         <a href="../index.html" class="elv-text-sm elv-text-nonessential">&larr; PPL Scrollytelling</a>
-        <span class="elv-status-badge elv-status-badge--neutral nav-sample-badge">Sample data</span>
+        <span class="elv-status-badge nav-sample-badge">Sample data</span>
       </div>
       <div class="step-dots">
         <div class="step-dot" data-step="1">
@@ -373,10 +375,10 @@
       </div>
 
       <div class="elv-flex elv-flex-wrap elv-gap-2 reveal" style="transition-delay: 240ms;">
-        <span class="elv-status-badge elv-status-badge--neutral">51–100 employees</span>
-        <span class="elv-status-badge elv-status-badge--neutral">Healthcare</span>
-        <span class="elv-status-badge elv-status-badge--neutral">Cloud</span>
-        <span class="elv-status-badge elv-status-badge--neutral">Immediate</span>
+        <span class="elv-status-badge">51–100 employees</span>
+        <span class="elv-status-badge">Healthcare</span>
+        <span class="elv-status-badge">Cloud</span>
+        <span class="elv-status-badge">Immediate</span>
       </div>
     </div>
   </section>
@@ -399,7 +401,7 @@
         </p>
       </div>
 
-      <div class="row-stack elv-mt-12" style="max-width: 640px;">
+      <div class="row-stack" style="max-width: 640px; margin-top: 48px;">
         <div class="elv-content-card elv-content-card--bordered reveal" style="transition-delay: 0ms;">
           <div class="elv-content-card__body">
             <p class="elv-text-base elv-text-default" style="margin: 0;">
@@ -429,7 +431,7 @@
   <section data-step-section="3" class="elv-max-w-screen-xl elv-mx-auto elv-px-6 beat">
     <div class="beat-lead">
       <p class="eyebrow eyebrow--on-light">③ Your top matches</p>
-      <h2 class="elv-text-2xl elv-font-bold elv-text-default elv-mb-2">Three options, ranked by fit.</h2>
+      <h2 class="elv-text-2xl elv-font-bold elv-text-default mb-8px">Three options, ranked by fit.</h2>
       <p class="elv-text-base elv-text-subtle" style="max-width: 480px;">
         Here's the short version — the full picture is one demo away.
       </p>
@@ -484,7 +486,7 @@
           <div class="elv-inset-card elv-inset-card--bordered elv-mb-6">
             <p class="snippet-card">"Cut our scheduling time in half."<span class="snippet-attr">— G2 review</span></p>
           </div>
-          <div class="elv-inset-card elv-inset-card--bordered elv-mb-2">
+          <div class="elv-inset-card elv-inset-card--bordered mb-8px">
             <p class="snippet-card">"Support team actually knows healthcare."<span class="snippet-attr">— G2 review</span></p>
           </div>
         </div>
@@ -502,7 +504,7 @@
 
       <div class="elv-content-card elv-content-card--bordered reveal" style="max-width: 640px; transition-delay: 160ms;">
         <div class="elv-content-card__body">
-          <div class="elv-product-details elv-product-details--sm elv-mb-2">
+          <div class="elv-product-details elv-product-details--sm mb-8px">
             <div class="elv-product-avatar elv-product-avatar--sm">
               <div class="elv-product-avatar__placeholder">
                 <img src="../../../shared/elevate-prototyping-kit/icons/product-placeholder.png" alt="">
@@ -529,7 +531,7 @@
 
       <div class="elv-content-card elv-content-card--bordered reveal" style="max-width: 640px; transition-delay: 220ms;">
         <div class="elv-content-card__body">
-          <div class="elv-product-details elv-product-details--sm elv-mb-2">
+          <div class="elv-product-details elv-product-details--sm mb-8px">
             <div class="elv-product-avatar elv-product-avatar--sm">
               <div class="elv-product-avatar__placeholder">
                 <img src="../../../shared/elevate-prototyping-kit/icons/product-placeholder.png" alt="">

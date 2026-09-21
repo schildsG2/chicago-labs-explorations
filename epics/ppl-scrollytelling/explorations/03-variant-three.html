@@ -12,6 +12,8 @@
   <link rel="stylesheet" href="../../../shared/elevate-prototyping-kit/icons/icons.css">
 
   <style>
+    /* mb-8px does not exist in utilities.css (only mb-3/4/6/12/16) - small helper for the 8px gaps that class was meant to give */
+    .mb-8px { margin-bottom: 8px; }
     body { margin: 0; }
 
     .eyebrow {
@@ -329,7 +331,7 @@
     <div class="elv-max-w-screen-xl elv-mx-auto elv-px-6 elv-flex elv-items-center elv-justify-between" style="height: 56px;">
       <div class="elv-flex elv-items-center elv-gap-3 nav-left">
         <a href="../index.html" class="elv-text-sm elv-text-nonessential">&larr; PPL Scrollytelling</a>
-        <span class="elv-status-badge elv-status-badge--neutral nav-sample-badge">Sample data</span>
+        <span class="elv-status-badge nav-sample-badge">Sample data</span>
       </div>
       <div class="step-dots">
         <div class="step-dot" data-step="1">
@@ -429,18 +431,18 @@
       </div>
 
       <div class="reveal" style="transition-delay: 320ms;">
-        <p class="quote-label elv-mb-2">Your company</p>
+        <p class="quote-label mb-8px">Your company</p>
         <div class="elv-flex elv-flex-wrap elv-gap-2">
-          <span class="elv-status-badge elv-status-badge--neutral">51–100 employees</span>
-          <span class="elv-status-badge elv-status-badge--neutral">Healthcare</span>
-          <span class="elv-status-badge elv-status-badge--neutral">Cloud</span>
-          <span class="elv-status-badge elv-status-badge--neutral">Immediate</span>
-          <span class="elv-status-badge elv-status-badge--neutral">$10,000–$25,000/year</span>
+          <span class="elv-status-badge">51–100 employees</span>
+          <span class="elv-status-badge">Healthcare</span>
+          <span class="elv-status-badge">Cloud</span>
+          <span class="elv-status-badge">Immediate</span>
+          <span class="elv-status-badge">$10,000–$25,000/year</span>
         </div>
       </div>
 
       <div class="reveal" style="transition-delay: 380ms;">
-        <p class="quote-label elv-mb-2">What you said mattered most</p>
+        <p class="quote-label mb-8px">What you said mattered most</p>
         <div class="elv-flex elv-flex-wrap elv-gap-2">
           <span class="elv-status-badge elv-status-badge--new">Integrations with other tools</span>
           <span class="elv-status-badge elv-status-badge--new">Reporting &amp; analytics</span>
@@ -486,7 +488,7 @@
   <section data-step-section="3" class="elv-max-w-screen-xl elv-mx-auto elv-px-6 beat">
     <div class="beat-lead">
       <p class="eyebrow eyebrow--on-light">③ Your top matches</p>
-      <h2 class="elv-text-2xl elv-font-bold elv-text-default elv-mb-2">Three options, backed by evidence.</h2>
+      <h2 class="elv-text-2xl elv-font-bold elv-text-default mb-8px">Three options, backed by evidence.</h2>
       <p class="elv-text-base elv-text-subtle" style="max-width: 560px;">
         These are the strongest fit for what you told us mattered — integrations,
         reporting, and security &amp; compliance.
@@ -529,15 +531,15 @@
           <div class="elv-flex elv-flex-wrap elv-gap-6 elv-mb-6">
             <div>
               <div class="elv-text-xl elv-font-extrabold elv-text-default"><span class="count-up" data-target="94">0</span>%</div>
-              <div class="elv-text-2xs elv-text-nonessential elv-uppercase">would recommend</div>
+              <div class="elv-text-xs elv-text-nonessential elv-uppercase">would recommend</div>
             </div>
             <div>
               <div class="elv-text-xl elv-font-extrabold elv-text-default">40+</div>
-              <div class="elv-text-2xs elv-text-nonessential elv-uppercase">EHR integrations</div>
+              <div class="elv-text-xs elv-text-nonessential elv-uppercase">EHR integrations</div>
             </div>
             <div>
               <div class="elv-text-xl elv-font-extrabold elv-text-default">2 wks</div>
-              <div class="elv-text-2xs elv-text-nonessential elv-uppercase">median setup</div>
+              <div class="elv-text-xs elv-text-nonessential elv-uppercase">median setup</div>
             </div>
             <div>
               <div class="match-est">Est. match: 91%<br>(no scoring engine yet)</div>
@@ -563,9 +565,9 @@
             <span class="elv-status-badge elv-status-badge--new">EHR Integrations 4.8★</span>
             <span class="elv-status-badge elv-status-badge--new">HIPAA-Compliant Messaging 4.7★</span>
             <span class="elv-status-badge elv-status-badge--new">Reporting Dashboards 4.6★</span>
-            <span class="elv-status-badge elv-status-badge--neutral">Automated Scheduling 4.5★</span>
-            <span class="elv-status-badge elv-status-badge--neutral">Patient Reminders 4.3★</span>
-            <span class="elv-status-badge elv-status-badge--neutral">Mobile App 4.1★</span>
+            <span class="elv-status-badge">Automated Scheduling 4.5★</span>
+            <span class="elv-status-badge">Patient Reminders 4.3★</span>
+            <span class="elv-status-badge">Mobile App 4.1★</span>
           </div>
 
           <div class="quote-grid elv-mb-6">
@@ -642,15 +644,15 @@
           <div class="elv-flex elv-flex-wrap elv-gap-6 elv-mb-6">
             <div>
               <div class="elv-text-xl elv-font-extrabold elv-text-default"><span class="count-up" data-target="89">0</span>%</div>
-              <div class="elv-text-2xs elv-text-nonessential elv-uppercase">would recommend</div>
+              <div class="elv-text-xs elv-text-nonessential elv-uppercase">would recommend</div>
             </div>
             <div>
               <div class="elv-text-xl elv-font-extrabold elv-text-default">$0</div>
-              <div class="elv-text-2xs elv-text-nonessential elv-uppercase">implementation fee</div>
+              <div class="elv-text-xs elv-text-nonessential elv-uppercase">implementation fee</div>
             </div>
             <div>
               <div class="elv-text-xl elv-font-extrabold elv-text-default">12k+</div>
-              <div class="elv-text-2xs elv-text-nonessential elv-uppercase">active clinics</div>
+              <div class="elv-text-xs elv-text-nonessential elv-uppercase">active clinics</div>
             </div>
             <div>
               <div class="match-est">Est. match: 78%<br>(no scoring engine yet)</div>
@@ -671,10 +673,10 @@
           <div class="feature-chip-row elv-mb-6">
             <span class="elv-status-badge elv-status-badge--new">HIPAA-Compliant Messaging 4.4★</span>
             <span class="elv-status-badge elv-status-badge--new">Reporting Dashboards 4.0★</span>
-            <span class="elv-status-badge elv-status-badge--neutral">Automated Scheduling 4.5★</span>
-            <span class="elv-status-badge elv-status-badge--neutral">Mobile App 4.2★</span>
-            <span class="elv-status-badge elv-status-badge--neutral">Patient Reminders 4.1★</span>
-            <span class="elv-status-badge elv-status-badge--neutral">EHR Integrations 3.4★</span>
+            <span class="elv-status-badge">Automated Scheduling 4.5★</span>
+            <span class="elv-status-badge">Mobile App 4.2★</span>
+            <span class="elv-status-badge">Patient Reminders 4.1★</span>
+            <span class="elv-status-badge">EHR Integrations 3.4★</span>
           </div>
 
           <div class="quote-grid elv-mb-6">
@@ -687,7 +689,7 @@
             </div>
             <div class="elv-inset-card elv-inset-card--bordered">
               <div class="quote-card">
-                <span class="elv-status-badge elv-status-badge--neutral" style="align-self: flex-start;">General feedback</span>
+                <span class="elv-status-badge" style="align-self: flex-start;">General feedback</span>
                 <p class="quote-card__text">"It's the cheapest option that still checked our must-haves — we just accepted we'd outgrow the integrations eventually."</p>
                 <p class="quote-card__attr">Office Administrator · Small Business Healthcare · 4/5 — "Good value, if you don't need deep EHR ties"</p>
               </div>
@@ -743,15 +745,15 @@
           <div class="elv-flex elv-flex-wrap elv-gap-6 elv-mb-6">
             <div>
               <div class="elv-text-xl elv-font-extrabold elv-text-default"><span class="count-up" data-target="97">0</span>%</div>
-              <div class="elv-text-2xs elv-text-nonessential elv-uppercase">would recommend</div>
+              <div class="elv-text-xs elv-text-nonessential elv-uppercase">would recommend</div>
             </div>
             <div>
               <div class="elv-text-xl elv-font-extrabold elv-text-default">&lt;1 wk</div>
-              <div class="elv-text-2xs elv-text-nonessential elv-uppercase">implementation</div>
+              <div class="elv-text-xs elv-text-nonessential elv-uppercase">implementation</div>
             </div>
             <div>
               <div class="elv-text-xl elv-font-extrabold elv-text-default">24/7</div>
-              <div class="elv-text-2xs elv-text-nonessential elv-uppercase">support</div>
+              <div class="elv-text-xs elv-text-nonessential elv-uppercase">support</div>
             </div>
             <div>
               <div class="match-est">Est. match: 74%<br>(no scoring engine yet)</div>
@@ -773,8 +775,8 @@
             <span class="elv-status-badge elv-status-badge--new">Reporting Dashboards 4.8★</span>
             <span class="elv-status-badge elv-status-badge--new">HIPAA-Compliant Messaging 4.9★</span>
             <span class="elv-status-badge elv-status-badge--new">EHR Integrations 4.5★</span>
-            <span class="elv-status-badge elv-status-badge--neutral">Automated Scheduling 4.6★</span>
-            <span class="elv-status-badge elv-status-badge--neutral">Mobile App 4.4★</span>
+            <span class="elv-status-badge">Automated Scheduling 4.6★</span>
+            <span class="elv-status-badge">Mobile App 4.4★</span>
           </div>
 
           <div class="quote-grid elv-mb-6">
@@ -787,7 +789,7 @@
             </div>
             <div class="elv-inset-card elv-inset-card--bordered">
               <div class="quote-card">
-                <span class="elv-status-badge elv-status-badge--neutral" style="align-self: flex-start;">General feedback</span>
+                <span class="elv-status-badge" style="align-self: flex-start;">General feedback</span>
                 <p class="quote-card__text">"Implementation was under a week, which our old vendor said was impossible."</p>
                 <p class="quote-card__attr">IT Director · Enterprise Healthcare · 4.5/5 — "Fastest go-live we've had with clinical software"</p>
               </div>
@@ -817,7 +819,7 @@
         <h2 class="elv-text-2xl elv-font-bold elv-text-default">Why this fits, and what to do next.</h2>
       </div>
 
-      <div class="reveal elv-mb-10" style="max-width: 640px;">
+      <div class="reveal" style="max-width: 640px; margin-bottom: 40px;">
         <p class="elv-text-lg elv-text-default" style="line-height: 30px; margin: 0;">
           You flagged integrations, reporting, and compliance as non-negotiable — not
           hypothetically, but as the reason your current tool doesn't work anymore.
