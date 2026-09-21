@@ -1,0 +1,30 @@
+epics/ppl-scrollytelling/explorations/03-variant-three.html
+  s_3d9bf07c60c2a8::t_2a7fd4a8608c9f 16,434,445,491
+  s_3d9bf07c60c2a8::t_d2f7a4f6376c6a 334,436-440,568-570,676-679,692,778-779,792,822
+  s_3d9bf07c60c2a8::t_586e02308fea59 15,534,538,542,647,651,655,748,752,756
+epics/ppl-scrollytelling/explorations/02-variant-two.html
+  s_3d9bf07c60c2a8::t_d2f7a4f6376c6a 255,279,380,473
+epics/ppl-scrollytelling/index.html
+  s_3d9bf07c60c2a8::t_586e02308fea59 108,119,130
+  s_3d9bf07c60c2a8::t_f014c6601c0ab9 97
+epics/ppl-scrollytelling/explorations/01-variant-one.html
+  s_3d9bf07c60c2a8::t_2a7fd4a8608c9f 16,434,489,507,534
+  s_3d9bf07c60c2a8::t_586e02308fea59 15
+  s_3d9bf07c60c2a8::t_d2f7a4f6376c6a 311,378-381,404
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "83e4e00706f0f840aa596af0cec19b9f546cfba3",
+  "prompts": {},
+  "sessions": {
+    "s_3d9bf07c60c2a8": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "20a6d0bc-89ed-40e3-af46-cc0f05673987",
+        "model": "claude-sonnet-5"
+      },
+      "human_author": "Sam Childs <schilds@g2.com>"
+    }
+  }
+}
