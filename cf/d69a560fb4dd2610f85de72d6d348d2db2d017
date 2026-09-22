@@ -1,0 +1,20 @@
+epics/ppl-scrollytelling/explorations/04-variant-four.html
+  s_23bb0155e56b16::t_72a8f4bc7e6eba 614
+  s_23bb0155e56b16::t_0077c72a293306 338-340
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "cfd69a560fb4dd2610f85de72d6d348d2db2d017",
+  "prompts": {},
+  "sessions": {
+    "s_23bb0155e56b16": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "801d5fdc-64b3-40f4-8aed-28d12421082a",
+        "model": "claude-sonnet-5"
+      },
+      "human_author": "Sam Childs <schilds@g2.com>"
+    }
+  }
+}
