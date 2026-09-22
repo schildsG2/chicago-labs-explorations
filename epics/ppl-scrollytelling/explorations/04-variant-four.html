@@ -335,6 +335,9 @@
     .beat-numeral--on-dark { color: var(--bg-primary-120); }
     @media (max-width: 640px) {
       .beat-numeral { font-size: 84px; margin-bottom: -18px; }
+      /* elv-text-4xl (67px) wraps the hero headline into too many short
+         lines on narrow screens — drop to elv-text-3xl's size instead. */
+      .hero-title { font-size: var(--text-3xl); }
     }
 
     /* Narrator-aside — a short, isolated connective sentence between beats.
@@ -608,7 +611,7 @@
   <!-- Hero -->
   <header class="elv-max-w-screen-xl elv-mx-auto elv-px-6" style="padding-top: 96px; padding-bottom: 64px;">
     <p class="eyebrow eyebrow--on-light">Your recommendation</p>
-    <h1 class="elv-text-4xl elv-font-extrabold elv-text-default elv-mb-3" style="max-width: 880px;">
+    <h1 class="hero-title elv-text-4xl elv-font-extrabold elv-text-default elv-mb-3" style="max-width: 880px;">
       Here's who's <span class="elv-text-primary">delivering</span> what you need.
     </h1>
     <p class="elv-text-base elv-text-subtle" style="max-width: 520px;">
