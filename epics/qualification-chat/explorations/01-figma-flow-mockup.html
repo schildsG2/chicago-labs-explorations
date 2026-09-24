@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qualification Chat Figma Flow Mockup</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&display=swap');
+        :root {
+            --elv-color-rorange-100: #ff492c; --elv-color-purple-100: #5746b2; --elv-color-purple-40: #c3bde5; --elv-color-purple-20: #ebe9f6; --elv-color-faint-purple: #f2f0f9; --elv-color-neutral-100: #201f23; --elv-color-neutral-80: #4c4b53; --elv-color-neutral-70: #6f6d78; --elv-color-neutral-20: #dfdfe2; --elv-color-neutral-10: #f2f2f3; --elv-color-neutral-5: #fafafa; --elv-color-neutral-0: #ffffff; --elv-color-blue-100: #0073f5; --elv-color-green-100: #00875a; --elv-color-green-20: #d0f6f1; --elv-color-green-160: #0f5249; --elv-color-rorange-20: #fff6f5;
+            --elv-font-family-sans: 'Figtree', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; --elv-font-size-h2: 20px; --elv-font-size-h3: 18px; --elv-font-size-body: 16px; --elv-font-size-sm: 14px; --elv-font-size-xs: 12px; --elv-font-weight-regular: 400; --elv-font-weight-medium: 500; --elv-font-weight-semibold: 600; --elv-font-weight-bold: 700;
+            --elv-space-1: 4px; --elv-space-2: 8px; --elv-space-3: 12px; --elv-space-4: 16px; --elv-space-5: 24px; --elv-space-6: 32px;
+            --elv-border-radius-sm: 4px; --elv-border-radius-md: 8px; --elv-border-radius-lg: 16px; --elv-border-radius-pill: 9999px; --elv-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05); --elv-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1); --elv-focus-shadow: 0 0 0 2px var(--elv-color-neutral-0), 0 0 0 4px var(--elv-color-purple-40);
+            --transition-fast: 150ms ease-in-out;
+            --elv-bg-primary: var(--elv-color-purple-100); --elv-bg-primary-20: var(--elv-color-purple-20); --elv-bg-neutral-0: var(--elv-color-neutral-0); --elv-bg-neutral-5: var(--elv-color-neutral-5); --elv-text-default: var(--elv-color-neutral-100); --elv-text-subtle: var(--elv-color-neutral-80); --elv-text-nonessential: var(--elv-color-neutral-70); --elv-text-primary: var(--elv-color-purple-100); --elv-border-light: var(--elv-color-neutral-20); --elv-border-medium: #b0afb6;
+        }
+        *, *::before, *::after { box-sizing: border-box; }
+        @media (prefers-reduced-motion: reduce) { * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; } }
+        
+        body { font-family: var(--elv-font-family-sans); background-color: var(--elv-color-neutral-0); color: var(--elv-color-neutral-80); margin: 0; }
+        .page-wrapper { display: flex; flex-direction: column; height: 100vh; height: 100dvh; }
+        h2, h3 { font-family: var(--elv-font-family-sans); font-weight: var(--elv-font-weight-bold); color: var(--elv-color-neutral-100); margin-top: 0; margin-bottom: var(--elv-space-1); font-size: var(--elv-font-size-h2); }
+        h3 { font-size: var(--elv-font-size-h3); }
+        p { max-width: 65ch; margin-top: 0; line-height: 1.5; font-size: var(--elv-font-size-body); }
+        h2[tabindex="-1"]:focus { outline: none; }
+
+        #prototype-toolbar { position: fixed; top: var(--elv-space-3); right: var(--elv-space-3); left: auto; transform: none; z-index: 100; width: max-content; max-width: calc(100% - (var(--elv-space-3) * 2)); background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(8px); border: 1px solid var(--elv-color-neutral-20); border-radius: var(--elv-border-radius-md); box-shadow: var(--elv-shadow-md); }
+        #prototype-toolbar summary { cursor: pointer; padding: var(--elv-space-2) var(--elv-space-3); font-weight: var(--elv-font-weight-medium); color: var(--elv-color-neutral-100); }
+        #prototype-toolbar summary:focus { outline: none; } #prototype-toolbar:focus-within, #prototype-toolbar[open] { border-color: var(--elv-color-purple-40); }
+        #prototype-toolbar-content { padding: var(--elv-space-3); padding-top: 0; display: flex; flex-wrap: wrap; align-items: center; gap: var(--elv-space-2); }
+        .toolbar-divider { width: 1px; height: 16px; background-color: var(--elv-color-neutral-20); margin-inline: var(--elv-space-1); }
+        @media (max-width: 388px) { #prototype-toolbar { top: 56px; right: 12px; left: auto; transform: none; } #prototype-toolbar:not([open]) { max-width: fit-content; } #prototype-toolbar:not([open]) #prototype-toolbar-content { display: none; } }
+        @media (min-width: 389px) { #prototype-toolbar[open=true] { max-width: calc(100% - 24px); } }
+
+        .chat-container { flex-grow: 1; min-height: 0; display: flex; flex-direction: column; overflow: hidden; background-color: var(--elv-bg-neutral-0); }
+        .chat-container__header { padding: var(--elv-space-3) var(--elv-space-4); border-bottom: 1px solid var(--elv-border-light); }
+        .chat-container__body { flex: 1 1 auto; min-height: 0; overflow-y: auto; padding: var(--elv-space-5); display: flex; flex-direction: column; }
+        
+        .hidden { display: none !important; }
+        .visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+        
+        .header-top { display: flex; align-items: center; justify-content: space-between; gap: var(--elv-space-4); max-width: 800px; margin-inline: auto; width: 100%; }
+        .header-identity { font-family: var(--elv-font-family-sans); font-weight: var(--elv-font-weight-bold); font-size: var(--elv-font-size-h2); color: var(--elv-color-rorange-100); }
+        
+        .progress-display { flex-grow: 1; display: flex; align-items: center; gap: var(--elv-space-2); }
+        .progress-label { font-size: var(--elv-font-size-sm); font-weight: var(--elv-font-weight-medium); color: var(--elv-text-default); }
+        .progress-track { flex-grow: 1; height: 6px; background-color: var(--elv-color-neutral-20); border-radius: var(--elv-border-radius-pill); overflow: hidden; }
+        .progress-bar { height: 100%; width: 0%; background-color: var(--elv-bg-primary); border-radius: var(--elv-border-radius-pill); transition: width var(--transition-fast); }
+
+        #chat-log { display: flex; flex-direction: column; gap: var(--elv-space-4); padding: 0 var(--elv-space-4); max-width: 800px; margin: 0 auto; width: 100%; }
+        #step-controls { flex-shrink: 0; padding: var(--elv-space-4) var(--elv-space-5); }
+        #step-controls:empty { display: none; padding: 0; }
+
+        .chat-message { display: flex; gap: var(--elv-space-3); max-width: 90%; animation: slide-in 300ms ease-out; }
+        @keyframes slide-in { from { opacity: 0; transform: translateY(10px); } }
+        .chat-message.user { align-self: flex-end; flex-direction: row-reverse; }
+        .message-avatar { flex-shrink: 0; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: var(--elv-font-size-sm); font-weight: var(--elv-font-weight-bold); background-color: var(--elv-color-neutral-10); color: var(--elv-color-neutral-80); border: 1px solid var(--elv-color-neutral-20); }
+        .message-avatar.g2-bot { background-color: var(--elv-color-rorange-100); color: var(--elv-color-neutral-0); border: none; }
+        .message-bubble { display: flex; flex-direction: column; gap: var(--elv-space-2); }
+        .message-content { padding: var(--elv-space-3) var(--elv-space-4); border-radius: var(--elv-border-radius-lg); background-color: var(--elv-bg-neutral-5); border: none; color: var(--elv-text-default); font-size: var(--elv-font-size-body); line-height: 1.5; }
+        .chat-message.user .message-content { background-color: var(--elv-color-purple-100); color: var(--elv-color-neutral-0); border: none; }
+        .message-content > *:first-child { margin-top: 0; } .message-content > *:last-child { margin-bottom: 0; }
+
+        .btn { display: inline-flex; align-items: center; justify-content: center; gap: var(--elv-space-2); cursor: pointer; border-radius: var(--elv-border-radius-pill); font-family: var(--elv-font-family-sans); font-weight: var(--elv-font-weight-semibold); text-decoration: none; transition: all var(--transition-fast); }
+        .btn:focus-visible { box-shadow: var(--elv-focus-shadow); outline: none; }
+        .btn--primary { border: none; background-color: var(--elv-bg-primary); color: var(--elv-bg-neutral-0); }
+        .btn--secondary { border: 1px solid var(--elv-border-light); background-color: var(--elv-bg-neutral-5); color: var(--elv-text-primary); }
+        .btn--tertiary { border: none; background-color: transparent; color: var(--elv-text-primary); }
+        .btn--text { border: none; background-color: transparent; color: var(--elv-text-primary); padding: 0; font-size: var(--elv-font-size-body); }
+        .btn--md { padding: var(--elv-space-3) var(--elv-space-4); font-size: var(--elv-font-size-body); }
+        .btn--sm { padding: var(--elv-space-1) var(--elv-space-3); font-size: var(--elv-font-size-sm); line-height: 1.25rem; border-radius: var(--elv-border-radius-pill); }
+        
+        .input-panel { background-color: var(--elv-color-faint-purple); border-radius: var(--elv-border-radius-lg); padding: var(--elv-space-4); max-width: 800px; margin: 0 auto; width: 100%; }
+        .input-panel-header { margin-bottom: var(--elv-space-3); }
+        .input-panel-header > *:first-child { margin-top: 0; } .input-panel-header > *:last-child { margin-bottom: 0; }
+        .form-actions { display: flex; justify-content: space-between; align-items: center; margin-top: var(--elv-space-4); }
+
+        .native-choice-group { display: flex; flex-direction: column; border: 1px solid var(--elv-border-light); border-radius: var(--elv-border-radius-lg); background-color: var(--elv-bg-neutral-0); overflow: hidden; padding: 0; margin: 0; }
+        .action-stack { display: flex; flex-direction: column; gap: var(--elv-space-2); }
+        .native-choice-label { display: flex; align-items: center; gap: var(--elv-space-3); padding: var(--elv-space-3) var(--elv-space-4); cursor: pointer; transition: background-color var(--transition-fast); border-bottom: 1px solid var(--elv-border-light); }
+        .native-choice-label:last-of-type { border-bottom: none; }
+        .native-choice-label:hover { background-color: var(--elv-bg-neutral-5); }
+        .native-choice-label:has(:checked) { background-color: var(--elv-color-purple-20); }
+        .native-choice-label input { flex-shrink: 0; width: 20px; height: 20px; accent-color: var(--elv-color-purple-100); }
+        .native-choice-text { flex-grow: 1; font-weight: var(--elv-font-weight-medium); color: var(--elv-text-default); }
+        
+        .contact-form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--elv-space-3); }
+        .contact-form-grid .text-field { grid-column: 1 / -1; }
+        .contact-form-grid .text-field[data-field-name="name"], .contact-form-grid .text-field[data-field-name="company"] { grid-column: span 1; }
+        @media (max-width: 500px) { .contact-form-grid .text-field[data-field-name="name"], .contact-form-grid .text-field[data-field-name="company"] { grid-column: 1 / -1; } }
+
+        .text-field { display: flex; flex-direction: column; gap: var(--elv-space-1); }
+        .text-field__label { font-weight: var(--elv-font-weight-semibold); font-size: var(--elv-font-size-sm); color: var(--elv-text-default); }
+        .text-field__input { height: 44px; width: 100%; border-radius: var(--elv-border-radius-md); padding-inline: var(--elv-space-3); font-size: var(--elv-font-size-body); border: 1px solid var(--elv-border-medium); background-color: var(--elv-bg-neutral-0); }
+        .text-field__input:focus { outline: 3px solid var(--elv-color-purple-40); outline-offset: 1px; border-color: var(--elv-color-purple-100); }
+        .native-choice-label:has(:focus-visible) { box-shadow: inset 0 0 0 2px var(--elv-color-purple-100); background-color: var(--elv-bg-neutral-5); }
+
+        .inset-card { border-radius: var(--elv-border-radius-lg); border: 0.5px solid var(--elv-border-light); background-color: var(--elv-bg-neutral-0); padding: var(--elv-space-4); }
+        .review-row { display: flex; align-items: center; justify-content: space-between; padding: var(--elv-space-3) var(--elv-space-4); border-bottom: 1px solid var(--elv-border-light); }
+        .review-row:last-child { border-bottom: none; }
+        .review-label { color: var(--elv-color-neutral-70); } .review-value { font-weight: var(--elv-font-weight-medium); text-align: right; }
+        .review-edit { border: none; background: transparent; color: var(--elv-color-purple-100); font-weight: var(--elv-font-weight-bold); font-size: var(--elv-font-size-sm); cursor: pointer; text-decoration: none; }
+        
+        .product-results-grid { display: grid; grid-template-columns: 1fr; gap: var(--elv-space-4); width: 100%; }
+        .product-card { gap: var(--elv-space-3); padding: var(--elv-space-4); margin-bottom: 0; background-color: var(--elv-bg-neutral-5); width: 100%; min-width: 0; }
+        .product-card__header { display: flex; gap: var(--elv-space-3); align-items: flex-start; justify-content: space-between; }
+        .product-card__identity { display: flex; gap: var(--elv-space-3); align-items: center; min-width: 0; }
+        .product-avatar { flex-shrink: 0; width: 48px; height: 48px; border-radius: var(--elv-border-radius-md); display: grid; place-items: center; background-color: var(--elv-bg-neutral-0); border: 1px solid var(--elv-border-light); font-size: 1.25rem; font-weight: bold; }
+        .product-card__title { min-width: 0; } .product-card__title h3 { margin: 0 0 2px; }
+        .best-match-label { display: inline-flex; align-items: center; gap: var(--elv-space-2); padding: var(--elv-space-1) var(--elv-space-2); border-radius: var(--elv-border-radius-sm); background-color: var(--elv-color-purple-20); color: var(--elv-color-purple-100); font-size: var(--elv-font-size-xs); font-weight: bold; }
+        .elv-star-wrapper { display: flex; align-items: center; gap: var(--elv-space-1); } .elv-stars { display: inline-block; flex-shrink: 0; background-repeat: no-repeat; background-size: contain; width: 100px; height: 20px; }
+        .elv-stars-4 { background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='24' fill='none'%3E%3Cpath fill='%23ff492c' d='m14.7 8.7 6.9.575-5.25 4.475 1.575 6.65L12 16.875 6.075 20.4l1.575-6.65L2.4 9.275l6.9-.6L12 2.4zm24 0 6.9.575-5.25 4.475 1.575 6.65L36 16.875 30.075 20.4l1.575-6.65-5.25-4.475 6.9-.6L36 2.4zm24 0 6.9.575-5.25 4.475 1.575 6.65L60 16.875 54.075 20.4l1.575-6.65-5.25-4.475 6.9-.6L60 2.4zm24 0 6.9.575-5.25 4.475 1.575 6.65L84 16.875 78.075 20.4l1.575-6.65-5.25-4.475 6.9-.6L84 2.4z'/%3E%3Cpath fill='%23dfdfe2' d='m110.7 8.7 6.9.575-5.25 4.475 1.575 6.65L108 16.875l-5.925 3.525 1.575-6.65-5.25-4.475 6.9-.6L108 2.4z'/%3E%3C/svg%3E"); }
+        .pros-cons-row { display: flex; flex-wrap: wrap; gap: var(--elv-space-3); margin-top: var(--elv-space-3); }
+        .pros-cons-chip { display: inline-flex; align-items: center; gap: 4px; height: 24px; padding-inline: var(--elv-space-2); border-radius: var(--elv-border-radius-md); font-size: var(--elv-font-size-sm); }
+        .pros-cons-chip__label { font-weight: var(--elv-font-weight-semibold); color: var(--elv-text-default); }
+        .pros-cons-chip__count { font-weight: var(--elv-font-weight-medium); color: var(--elv-text-default); }
+    </style>
+</head>
+<body>
+    <div class="page-wrapper">
+        <details id="prototype-toolbar">
+            <summary>Prototype Controls</summary>
+            <div id="prototype-toolbar-content">
+                <button class="btn btn--tertiary btn--sm" onclick="machine.previewState('intro')">Intro</button>
+                <div class="toolbar-divider"></div>
+                <button class="btn btn--tertiary btn--sm" onclick="machine.previewState('timeframe')">Timeframe</button>
+                <button class="btn btn--tertiary btn--sm" onclick="machine.previewState('needs')">Needs</button>
+                <button class="btn btn--tertiary btn--sm" onclick="machine.previewState('contact')">Contact</button>
+                <button class="btn btn--tertiary btn--sm" onclick="machine.previewState('budget')">Budget</button>
+                <div class="toolbar-divider"></div>
+                <button class="btn btn--tertiary btn--sm" onclick="machine.previewState('review')">Review</button>
+                <button class="btn btn--tertiary btn--sm" onclick="machine.previewState('results')">Results</button>
+                <button class="btn btn--tertiary btn--sm" onclick="machine.previewState('handoff')">Handoff</button>
+                <div class="toolbar-divider"></div>
+                <button class="btn btn--secondary btn--sm" onclick="machine.transition('reset')">Reset</button>
+            </div>
+        </details>
+
+        <div class="chat-container">
+            <header class="chat-container__header">
+                <div class="header-top">
+                    <div class="header-identity">
+                        <svg width="58" height="30" viewBox="0 0 93 48" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="G2 AI"><path fill="#FF492C" d="M24 48c13.255 0 24-10.745 24-24S37.255 0 24 0 0 10.745 0 24s10.745 24 24 24ZM85.897 0a7.496 7.496 0 0 1-7.092 7.092 7.496 7.496 0 0 1 7.092 7.092 7.496 7.496 0 0 1 7.092-7.092A7.496 7.496 0 0 1 85.897 0ZM89.235 15.227h-6.466v20.91h6.466v-20.91ZM64.517 37.754c1.272 0 2.498-.194 3.65-.555v-7.222a5.736 5.736 0 1 1-3.65-10.161 5.729 5.729 0 0 1 5.728 5.736v10.832l6.057 3.49 6.467-3.733-6.05-3.493v-7.096c0-6.74-5.463-12.202-12.202-12.202s-12.202 5.463-12.202 12.202 5.463 12.202 12.202 12.202Z"/><path fill="#fff" d="M16.407 24c0 4.321 3.516 7.837 7.837 7.837 1.95 0 3.733-.717 5.106-1.9l2.97 5.147a13.651 13.651 0 0 1-8.076 2.63c-7.574 0-13.714-6.14-13.714-13.714 0-7.574 6.14-13.714 13.714-13.714.918 0 1.815.09 2.683.263l-2.683 5.614c-4.321 0-7.837 3.516-7.837 7.837Z"/><path fill="#fff" d="M34.388 18.385h-4.1c.112-.644.508-1.003 1.314-1.411l.755-.384c1.35-.694 2.068-1.474 2.068-2.75 0-.804-.31-1.436-.93-1.894-.606-.458-1.349-.68-2.203-.68-.681 0-1.3.173-1.87.532-.557.347-.978.792-1.238 1.35l1.189 1.188c.458-.928 1.127-1.387 2.005-1.387.743 0 1.202.384 1.202.917 0 .446-.223.817-1.078 1.25l-.482.236c-1.053.532-1.784 1.139-2.205 1.832-.42.681-.631 1.56-.631 2.613v.285h6.204v-1.697ZM33.84 22.04h-6.787l-3.394 5.878h6.787l3.394 5.878 3.393-5.878-3.393-5.877Z"/></svg>
+                    </div>
+                    <div id="progress-display" class="progress-display">
+                        <span id="progress-label" class="progress-label">0% Confidence</span>
+                        <div class="progress-track"><div id="progress-bar" class="progress-bar"></div></div>
+                    </div>
+                </div>
+            </header>
+            <main id="main-content" class="chat-container__body">
+                <div id="chat-log" role="log" aria-live="polite" aria-relevant="additions text"></div>
+            </main>
+            <div id="step-controls"></div>
+        </div>
+    </div>
+
+    <script>
+        const mainContent = document.getElementById('main-content');
+        const chatLog = document.getElementById('chat-log');
+        const stepControls = document.getElementById('step-controls');
+        const progressLabel = document.getElementById('progress-label');
+        const progressBar = document.getElementById('progress-bar');
+        
+        const questions = [
+            { key: 'intro', text: "Let's find the right software for you. I'll ask a few quick questions to understand your needs.", actions: [{ label: "Let's get started", transitionTo: 'timeframe' }] },
+            { key: 'timeframe', text: '<h2>First, what\'s your timeframe for choosing a solution?</h2>', choices: ['Immediately', 'Within 30 days', '1-3 months', '3-6 months', 'Just exploring / no firm timeline'], isMulti: false, previous: 'intro' },
+            { key: 'needs', text: '<h2>What are you hoping to solve?</h2><p>Select all that apply.</p>', choices: ['Pipeline visibility', 'Workflow automation', 'Reporting & forecasting', 'Integrations', 'Team collaboration'], isMulti: true, hasOther: true, previous: 'timeframe' },
+            { key: 'contact', text: '<h2>Last step, who should we send the results to?</h2>', isContactForm: true, previous: 'needs' },
+            { key: 'budget', text: '<h2>What is your estimated annual budget?</h2>', choices: ['Under $5,000', '$5,000-$25,000', '$25,000-$100,000', '$100,000+', 'Not sure yet'], isMulti: false, previous: 'contact' },
+        ];
+
+        const machine = {
+            initial: 'intro', state: 'intro', context: { answers: {}, editTarget: null, returnAfterEdit: false },
+            flow: ['timeframe', 'needs', 'contact', 'budget', 'review'],
+            states: {
+                intro: { on: { timeframe: 'timeframe' } },
+                timeframe: { on: { needs: 'needs', back: 'intro' } },
+                needs: { on: { contact: 'contact', back: 'timeframe' } },
+                contact: { on: { budget: 'budget', back: 'needs' } },
+                budget: { on: { review: 'review', back: 'contact' } },
+                review: { on: { results: 'results', edit: (ctx) => ctx.editTarget, back: 'budget' } },
+                results: { on: { handoff: 'handoff', back: 'review' } },
+                handoff: { on: { reset: 'intro', back: 'results' } },
+            },
+            reset(renderInitial = true) {
+                this.state = this.initial;
+                this.context = { answers: {}, editTarget: null, returnAfterEdit: false };
+                chatLog.replaceChildren();
+                stepControls.replaceChildren();
+                if (renderInitial) this.render();
+            },
+            previewState(newState) {
+                if (!this.states[newState] && newState !== 'intro') return;
+                chatLog.replaceChildren();
+                stepControls.replaceChildren();
+                this.state = newState;
+                this.render();
+            },
+            transition(newState, contextUpdate = {}, forceRender = false) {
+                if (newState === 'reset') return this.reset();
+                const currentStateConfig = this.states[this.state];
+                let nextState = this.states[newState] ? newState : (currentStateConfig?.on?.[newState] || this.state);
+                if (typeof currentStateConfig?.on?.[newState] === 'function') nextState = currentStateConfig.on[newState](this.context);
+
+                const stateChanged = this.state !== nextState || forceRender;
+                this.state = nextState;
+                Object.assign(this.context, contextUpdate);
+                if (stateChanged) this.render();
+            },
+            render() {
+                stepControls.innerHTML = '';
+                this.updateProgress();
+                const renderMethod = `render_${this.state}`;
+                this[renderMethod] ? this[renderMethod]() : this.render_chatStep();
+                setTimeout(() => mainContent.scrollTop = mainContent.scrollHeight, 50);
+            },
+            updateProgress() {
+                const qualificationSteps = ['timeframe', 'needs', 'contact', 'budget'];
+                const completedCount = qualificationSteps.filter(key => this.context.answers[key] && this.context.answers[key] !== 'Skipped').length;
+                const totalSteps = qualificationSteps.length;
+                let percent = (completedCount / totalSteps) * 100;
+                
+                if (this.state === 'review') percent = 100;
+                if (['results', 'handoff'].includes(this.state)) {
+                    progressLabel.textContent = 'Your Results';
+                    progressBar.style.width = '100%';
+                    progressBar.style.backgroundColor = 'var(--elv-color-green-100)';
+                } else {
+                    progressLabel.textContent = `${Math.round(percent)}% Confidence`;
+                    progressBar.style.width = `${percent}%`;
+                    progressBar.style.backgroundColor = 'var(--elv-bg-primary)';
+                }
+            },
+            render_chatStep() {
+                const question = questions.find(q => this.state === q.key);
+                if (!question) return;
+
+                if (question.isContactForm) {
+                    this.render_contact_form(question);
+                } else if (question.choices) {
+                    this.appendMessage({ author: 'bot', content: '', controls: question });
+                } else { // Intro step — keep its action inline in the chat flow instead of the fixed bottom bar
+                    this.appendMessage({ author: 'bot', content: question.text, controls: question, inline: true });
+                }
+            },
+            render_contact_form(question) {
+                const form = document.createElement('form');
+                form.className = 'input-panel';
+                form.noValidate = true;
+                const saved = this.context.answers.contact || {};
+                form.innerHTML = `
+                    <div class="input-panel-header">${question.text}</div>
+                    <div class="contact-form-grid">
+                        <div class="text-field" data-field-name="email">
+                            <label for="contact-email" class="text-field__label">Work Email</label>
+                            <input type="email" id="contact-email" name="email" class="text-field__input" required autocomplete="email" value="${saved.email || ''}">
+                        </div>
+                        <div class="text-field" data-field-name="name">
+                            <label for="contact-name" class="text-field__label">Full Name</label>
+                            <input type="text" id="contact-name" name="name" class="text-field__input" required autocomplete="name" value="${saved.name || ''}">
+                        </div>
+                        <div class="text-field" data-field-name="company">
+                            <label for="contact-company" class="text-field__label">Company</label>
+                            <input type="text" id="contact-company" name="company" class="text-field__input" required autocomplete="organization" value="${saved.company || ''}">
+                        </div>
+                        <div class="text-field" data-field-name="phone">
+                            <label for="contact-phone" class="text-field__label">Phone (Optional)</label>
+                            <input type="tel" id="contact-phone" name="phone" class="text-field__input" autocomplete="tel" inputmode="tel" value="${saved.phone || ''}">
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn btn--text" data-action="back">Back</button>
+                        <button type="submit" class="btn btn--primary btn--md">Next</button>
+                    </div>
+                `;
+                stepControls.replaceChildren(form);
+                form.querySelector('[data-action="back"]').addEventListener('click', () => this.transition('back'));
+                form.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    const formData = new FormData(form);
+                    const contactData = Object.fromEntries(formData.entries());
+                    
+                    let allValid = true;
+                    form.querySelectorAll('[required]').forEach(input => {
+                        if (!input.value.trim()) {
+                            allValid = false;
+                            input.focus(); 
+                        }
+                    });
+
+                    if (allValid) {
+                        this.handleAnswer('contact', contactData, 'Contact details provided');
+                    }
+                });
+            },
+            render_review() { this.appendMessage({ author: 'bot', content: '', controls: { isReview: true } }); },
+            render_results() { this.appendMessage({ author: 'bot', content: `<h2>Here are your top candidates</h2><p>Based on your answers, we suggest these strong contenders.</p>`, controls: { isResults: true }, inline: true }); },
+            render_handoff() { this.appendMessage({ author: 'bot', content: `<h2>What's next?</h2><p>Your matches are saved. Continue on your own, or I can connect you with a G2 software advisor.</p>`, controls: { isHandoff: true } }); },
+            appendMessage({ author, content, controls, inline }) {
+                const messageId = 'msg-' + Date.now();
+                const message = document.createElement('div');
+                message.className = `chat-message ${author}`;
+                if (author === 'user') {
+                    message.innerHTML = `<div class="message-avatar">You</div><div class="message-bubble"><div class="message-content"></div></div>`;
+                    message.querySelector('.message-content').textContent = content;
+                    chatLog.appendChild(message);
+                } else {
+                    if (content) {
+                        message.innerHTML = `<div class="message-avatar g2-bot">G2</div><div class="message-bubble"><div class="message-content" id="${messageId}">${content}</div></div>`;
+                        chatLog.appendChild(message);
+                    }
+                    stepControls.innerHTML = '';
+                    if (controls) {
+                        if (inline) {
+                            const bubble = message.querySelector('.message-bubble');
+                            if (bubble) this.buildControls(bubble, controls, true);
+                        } else {
+                            this.buildControls(stepControls, controls);
+                        }
+                    }
+                    const heading = message.querySelector('h2');
+                    if(heading) { heading.tabIndex = -1; setTimeout(() => heading.focus(), 100); }
+                }
+                setTimeout(() => mainContent.scrollTop = mainContent.scrollHeight, 50);
+            },
+            buildControls(container, question, append = false) {
+                let node;
+                if (question.choices) {
+                    node = this.createChoiceActions(question);
+                } else if (question.actions) {
+                    node = document.createElement('div');
+                    node.className = 'input-panel';
+                    node.innerHTML = this.createButtonActions(question.actions);
+                }
+                else if (question.isReview) {
+                    node = document.createElement('div');
+                    node.className = 'input-panel';
+                    node.innerHTML = `<div class="input-panel-header"><h2>Check your answers</h2><p>Make sure everything looks right before we find your matches.</p></div><div class="inset-card" style="margin-bottom: 16px; padding: 0;">${this.generateReviewRows()}</div><div class="form-actions"><button class="btn btn--text" data-action="back">Back</button><button class="btn btn--primary btn--md" onclick="machine.transition('results')">Show My Matches</button></div>`;
+                    node.querySelector('[data-action="back"]').addEventListener('click', () => this.transition('back'));
+                }
+                else if (question.isResults) {
+                    node = document.createElement('div');
+                    node.className = 'product-results-grid';
+                    node.innerHTML = this.generateResultCards();
+                }
+                else if (question.isHandoff) {
+                    node = this.generateHandoffChoices();
+                }
+                if (!node) return;
+                if (append) container.append(node); else container.replaceChildren(node);
+            },
+            createChoiceActions(q) {
+                const isMulti = q.isMulti;
+                const form = document.createElement('form');
+                form.className = 'input-panel';
+                form.dataset.key = q.key;
+                const savedValue = this.context.answers[q.key];
+
+                let choicesHtml = q.choices.map((c, i) => {
+                    const id = `${q.key}-${i}`;
+                    const type = isMulti ? 'checkbox' : 'radio';
+                    const isChecked = isMulti ? (savedValue && savedValue.includes(c)) : savedValue === c;
+                    return `
+                        <label for="${id}" class="native-choice-label">
+                            <input type="${type}" id="${id}" name="${q.key}" value="${c}" ${isChecked ? 'checked' : ''}>
+                            <span class="native-choice-text">${c}</span>
+                        </label>`;
+                }).join('');
+
+                if (q.hasOther) {
+                    const otherValue = (savedValue && savedValue.find(v => !q.choices.includes(v))) || '';
+                    choicesHtml += `<div class="text-field" style="padding: var(--elv-space-3) var(--elv-space-4); border-top: 1px solid var(--elv-border-light);"><label class="visually-hidden" for="needs-other">Other need</label><input id="needs-other" type="text" class="text-field__input" name="needs-other" placeholder="Other (please specify)" value="${otherValue}"></div>`;
+                }
+
+                form.innerHTML = `
+                    <div class="input-panel-header">${q.text}</div>
+                    <fieldset class="native-choice-group">
+                        <legend class="visually-hidden">${q.key} options</legend>
+                        ${choicesHtml}
+                    </fieldset>
+                    <div class="form-actions">
+                         <button type="button" class="btn btn--text" data-action="back">Back</button>
+                         <button type="submit" class="btn btn--primary btn--md">${isMulti ? 'Next' : 'Continue'}</button>
+                    </div>
+                `;
+
+                form.querySelector('[data-action="back"]').addEventListener('click', () => this.transition('back'));
+                
+                form.addEventListener('submit', e => {
+                    e.preventDefault();
+                    if (isMulti) {
+                        const selected = Array.from(form.querySelectorAll(`input[name="${q.key}"]:checked`)).map(cb => cb.value);
+                        const other = form.querySelector('[name="needs-other"]')?.value;
+                        if (other) selected.push(other);
+                        if (selected.length) {
+                            this.handleAnswer(q.key, selected, `${selected.length} need(s) selected`);
+                        } else {
+                            form.querySelector('input')?.focus();
+                        }
+                    } else {
+                        const selected = form.querySelector(`input[name="${q.key}"]:checked`);
+                        if (selected) {
+                            this.handleAnswer(q.key, selected.value);
+                        } else {
+                            form.querySelector('input')?.focus();
+                        }
+                    }
+                });
+                
+                return form;
+            },
+            createButtonActions(actions) {
+                return `<div class="action-stack">${actions.map(action => `<button class="btn btn--primary btn--md" style="width: 100%;" onclick="machine.transition('${action.transitionTo}')">${action.label}</button>`).join('')}</div>`;
+            },
+            generateReviewRows() {
+                const labels = { timeframe: 'Timeframe', needs: 'Needs', contact: 'Contact', budget: 'Budget' };
+                return Object.keys(labels).map(key => {
+                    const value = this.context.answers[key];
+                    if (!value) return '';
+                    let displayValue;
+                    if (key === 'contact') {
+                        displayValue = `${value.name}, ${value.email}, ${value.company}`;
+                    } else {
+                        displayValue = Array.isArray(value) ? value.join(', ') : value;
+                    }
+                    return `<div class="review-row"><div><div class="review-label">${labels[key]}</div><div class="review-value">${displayValue}</div></div><div class="review-actions"><button class="review-edit" onclick="event.preventDefault(); machine.editAnswer('${key}')">Edit</button></div></div>`;
+                }).join('');
+            },
+            editAnswer(keyToEdit) { 
+                const targetState = keyToEdit;
+                if (questions.find(q => targetState === q.key)) {
+                    this.transition(targetState, { returnAfterEdit: true, editTarget: keyToEdit });
+                }
+            },
+            generateResultCards() {
+                 const results = [
+                     { isBestMatch: true, name: 'Salesforce Sales Cloud', avatar: 'SF', rating: 4.3, reviews: 15000, fitReason: 'Scales well for growing teams and has an extensive integration marketplace, making it a strong fit for organizations planning to grow their tech stack alongside their team.', pros: [{ label: 'Integrations', count: 4210 }, { label: 'Customization', count: 3190 }], cons: [{ label: 'Complex setup', count: 980 }] },
+                    { name: 'HubSpot Sales Hub', avatar: 'HS', rating: 4.4, reviews: 9500, fitReason: 'A strong fit for teams that value an approachable interface and connected workflows across marketing and sales.', pros: [{ label: 'Ease of use', count: 3860 }, { label: 'Collaboration', count: 2445 }], cons: [{ label: 'Pricing at scale', count: 610 }] },
+                    { name: 'Zoho CRM', avatar: 'ZC', rating: 4.0, reviews: 5000, fitReason: 'A configurable option at a competitive price point with a broad business suite for teams still finalizing their budget.', pros: [{ label: 'Affordability', count: 1750 }, { label: 'Feature breadth', count: 1120 }], cons: [{ label: 'Learning curve', count: 540 }] }
+                 ];
+                return results.map(p => this.createProductCard(p)).join('') + `<div style="display:flex; flex-wrap:wrap; gap: 8px; margin-top: 16px;"><button class="btn btn--secondary btn--md">Compare all 3</button><button class="btn btn--tertiary btn--md" onclick="machine.transition('review', {}, true)">Refine matches</button><button class="btn btn--primary btn--md" onclick="machine.transition('handoff')">Choose next step</button></div>`;
+            },
+            createProductCard(p) {
+                const starClass = 'elv-stars-4';
+                const thumbUp = '<svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill="var(--elv-color-green-160)" d="M14.4444 16.2222H6V7.33333L11.3333 2L11.9259 2.40741C12.1481 2.5679 12.3117 2.7716 12.4167 3.01852C12.5216 3.26543 12.5432 3.51852 12.4815 3.77778L11.7778 7.33333H16.6667C17.037 7.33333 17.3519 7.46296 17.6111 7.72222C17.8704 7.98148 18 8.2963 18 8.66667V9.72222C18 9.82099 17.9907 9.91049 17.9722 9.99074C17.9537 10.071 17.9259 10.1543 17.8889 10.2407L15.6852 15.4074C15.5741 15.6543 15.4074 15.8519 15.1852 16C14.963 16.1481 14.716 16.2222 14.4444 16.2222ZM4.66667 7.33333V16.2222H2V7.33333H4.66667Z"/></svg>';
+                const thumbDown = '<svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill="var(--elv-color-rorange-100)" d="M5.55556 4H14V12.8889L8.66667 18.2222L8.07407 17.8148C7.85185 17.6543 7.68827 17.4506 7.58333 17.2037C7.47839 16.9568 7.45679 16.7037 7.51852 16.4444L8.22222 12.8889H3.33333C2.96296 12.8889 2.64815 12.7593 2.38889 12.5C2.12963 12.2407 2 11.9259 2 11.5556V10.5C2 10.4012 2.00926 10.3117 2.02778 10.2315C2.0463 10.1512 2.07407 10.0679 2.11111 9.98148L4.31481 4.81481C4.41358 4.5679 4.57716 4.37037 4.80556 4.22222C5.03395 4.07407 5.28395 4 5.55556 4ZM15.3333 12.8889V4H18V12.8889H15.3333Z"/></svg>';
+                const prosConsChip = (icon, bg, item) => `<span class="pros-cons-chip" style="background-color: ${bg};">${icon}<span class="pros-cons-chip__label">${item.label}</span><span class="pros-cons-chip__count">(${new Intl.NumberFormat().format(item.count)})</span></span>`;
+                return `<div class="inset-card product-card">${p.isBestMatch ? '<div class="best-match-label"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 1.3L9.7 5.1 14 5.7 11 8.6l.7 4.3L8 10.9 4.3 12.9l.7-4.3L2 5.7l4.3-.6L8 1.3z" fill="#5746B2" stroke="#5746B2" stroke-width="1.5"/></svg>Best Match</div>' : ''}<div class="product-card__header"><div class="product-card__identity"><div class="product-avatar">${p.avatar}</div><div class="product-card__title"><h3>${p.name}</h3><div class="elv-star-wrapper"><div class="elv-stars ${starClass}" role="img" aria-label="${p.rating} out of 5 stars"></div><span class="elv-label elv-font-size-sm">${p.rating}/5 (${new Intl.NumberFormat().format(p.reviews)})</span></div></div></div><button class="btn btn--secondary btn--sm">Learn more</button></div><p class="elv-text-sm" style="margin-top: 12px;">${p.fitReason}</p><div class="pros-cons-row">${p.pros.map(item => prosConsChip(thumbUp, 'var(--elv-color-green-20)', item)).join('')}${p.cons.map(item => prosConsChip(thumbDown, 'var(--elv-color-rorange-20)', item)).join('')}</div></div>`;
+            },
+            generateHandoffChoices() { 
+                const form = document.createElement('form');
+                form.className = 'input-panel';
+                form.innerHTML = `
+                    <div class="input-panel-header"><h2>What\'s next?</h2><p>Your matches are saved. Continue on your own, or let us help.</p></div>
+                    <fieldset class="native-choice-group">
+                        <legend class="visually-hidden">Handoff options</legend>
+                        <label for="handoff-vendor" class="native-choice-label">
+                            <input type="radio" id="handoff-vendor" name="handoff" value="vendor">
+                            <span class="native-choice-text">Talk with a vendor</span>
+                        </label>
+                        <label for="handoff-human" class="native-choice-label">
+                            <input type="radio" id="handoff-human" name="handoff" value="human">
+                            <span class="native-choice-text">Talk to a Human Advisor</span>
+                        </label>
+                        <label for="handoff-agent" class="native-choice-label">
+                            <input type="radio" id="handoff-agent" name="handoff" value="agent">
+                            <span class="native-choice-text">Continue with AI Agent</span>
+                        </label>
+                    </fieldset>
+                     <div class="form-actions">
+                         <button type="button" class="btn btn--text" data-action="back">Back</button>
+                         <button type="submit" class="btn btn--primary btn--md">Submit</button>
+                    </div>
+                `;
+                form.querySelector('[data-action="back"]').addEventListener('click', () => this.transition('back'));
+                form.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    const selectedRadio = form.querySelector('input[name="handoff"]:checked');
+                    if (!selectedRadio) {
+                        form.querySelector('input[name="handoff"]').focus();
+                        return;
+                    }
+
+                    const choiceValue = selectedRadio.value;
+                    const choiceText = selectedRadio.closest('.native-choice-label').querySelector('.native-choice-text').textContent;
+
+                    this.appendMessage({ author: 'user', content: choiceText });
+
+                    const botMessageMap = {
+                        vendor: "Great! The next step will be choosing vendor(s) and a meeting time.",
+                        human: "You got it. A G2 software advisor will be in touch shortly.",
+                        agent: "I'm ready for your next question. How else can I help?"
+                    };
+                    const botResponse = botMessageMap[choiceValue];
+
+                    setTimeout(() => {
+                       this.appendMessage({ author: 'bot', content: botResponse });
+                       stepControls.innerHTML = '';
+                    }, 300);
+                });
+                return form;
+            },
+            handleAnswer(key, value, userMessage) {
+                const displayContent = userMessage || (Array.isArray(value) ? value.join(', ') : value);
+                this.appendMessage({ author: 'user', content: displayContent });
+                this.context.answers[key] = value;
+                
+                if (this.context.returnAfterEdit) {
+                    this.context.returnAfterEdit = false;
+                    this.context.editTarget = null;
+                    this.transition('review', {}, true);
+                } else {
+                    const currentQuestion = questions.find(q => q.key === this.state);
+                    const nextStateKey = this.states[this.state]?.on[key] || this.states[this.state]?.on[Object.keys(this.states[this.state].on)[0]];
+                    if (nextStateKey) this.transition(nextStateKey);
+                }
+            }
+        };
+        
+        document.addEventListener('DOMContentLoaded', () => { const urlParams = new URLSearchParams(window.location.search); const initialState = urlParams.get('state') || machine.initial; machine.reset(false); machine.previewState(initialState); });
+    </script>
+</body>
+</html>

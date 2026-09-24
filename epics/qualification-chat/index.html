@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Qualification Chat — Design Explorations</title>
+  <link rel="stylesheet" href="../../shared/elevate-prototyping-kit/tokens/elevate.css">
+  <link rel="stylesheet" href="../../shared/elevate-prototyping-kit/components/elevate.css">
+  <link rel="stylesheet" href="../../shared/elevate-prototyping-kit/utilities.css">
+  <link rel="stylesheet" href="../../shared/elevate-prototyping-kit/icons/icons.css">
+  <style>
+    body { margin: 0; }
+
+    /* Breadcrumbs */
+    .elv-breadcrumbs {
+      display: inline-flex;
+      align-items: center;
+      gap: 2px;
+    }
+    .elv-breadcrumb-item {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+    }
+    .elv-breadcrumb-link {
+      color: #4c4b53;
+      text-decoration: none;
+      font-size: 12px;
+      line-height: 16px;
+      transition: color 150ms ease;
+    }
+    .elv-breadcrumb-link:hover {
+      color: #201f23;
+    }
+    .elv-breadcrumb-link--current {
+      color: #84838a;
+      pointer-events: none;
+    }
+    .elv-breadcrumb-separator {
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+      fill: #6f6d78;
+    }
+
+    /* Exploration card hover */
+    .exploration-card:hover .card-arrow {
+      color: var(--text-primary);
+      transform: translateX(3px);
+    }
+
+    /* Responsive grid */
+    @media (min-width: 750px) {
+      .exploration-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+      }
+    }
+    @media (min-width: 1000px) {
+      .exploration-grid {
+        grid-template-columns: repeat(3, 1fr) !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div elv class="elv-bg-neutral-5 elv-min-h-screen">
+
+  <!-- Header -->
+  <header class="elv-bg-neutral-0 elv-border-b elv-border-light" style="border-bottom-width: 0.5px;">
+    <div class="elv-max-w-7xl elv-w-full md:elv-w-5/6 elv-mx-auto elv-pt-12 elv-pb-8 elv-px-3">
+      <nav aria-label="Breadcrumb" class="elv-mb-3">
+        <ol class="elv-breadcrumbs" role="list">
+          <li class="elv-breadcrumb-item">
+            <a href="../../index.html" class="elv-breadcrumb-link">Chicago Labs</a>
+            <svg class="elv-breadcrumb-separator" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10.875 10L6.9375 6.0625L8 5L13 10L8 15L6.9375 13.9375L10.875 10Z"/>
+            </svg>
+          </li>
+          <li class="elv-breadcrumb-item">
+            <span class="elv-breadcrumb-link elv-breadcrumb-link--current" aria-current="page">Qualification Chat</span>
+          </li>
+        </ol>
+      </nav>
+      <h1 class="elv-text-4xl elv-font-extrabold elv-text-default elv-mb-3 elv-leading-tight">
+        Qualification <span style="color: #5746b2;">Chat</span>
+      </h1>
+      <p class="elv-text-base elv-text-subtle elv-max-w-xl elv-leading-relaxed">
+        A conversational alternative to the PPL qualifying wizard — G2 chats the buyer through timeframe, needs, contact, and budget, then hands off to matches and a vendor/advisor/agent choice.
+      </p>
+    </div>
+  </header>
+
+  <div class="elv-max-w-7xl elv-w-full md:elv-w-5/6 elv-mx-auto elv-py-12 elv-px-3">
+
+    <!-- Related Explorations -->
+    <div class="elv-mb-6">
+      <h3 class="elv-text-xs elv-font-bold elv-uppercase elv-tracking-wide elv-text-nonessential elv-mb-2">
+        Related Explorations
+      </h3>
+      <a href="../ppl-form-flow/index.html"
+         class="elv-block elv-bg-neutral-0 elv-border elv-border-light elv-rounded-md elv-px-5 elv-py-4 elv-no-underline elv-transition-all hover:elv-shadow-2 hover:elv-border-medium elv-mb-2"
+         style="text-decoration: none;">
+        <div class="elv-flex elv-items-center elv-gap-4">
+          <span class="elv-text-sm elv-font-semibold elv-text-subtle elv-whitespace-nowrap">Epic</span>
+          <span class="elv-text-sm elv-font-semibold elv-text-default elv-flex-1">PPL Form Flow — the same qualifying questions as a step-by-step wizard</span>
+        </div>
+      </a>
+      <a href="../ppl-scrollytelling/index.html"
+         class="elv-block elv-bg-neutral-0 elv-border elv-border-light elv-rounded-md elv-px-5 elv-py-4 elv-no-underline elv-transition-all hover:elv-shadow-2 hover:elv-border-medium"
+         style="text-decoration: none;">
+        <div class="elv-flex elv-items-center elv-gap-4">
+          <span class="elv-text-sm elv-font-semibold elv-text-subtle elv-whitespace-nowrap">Epic</span>
+          <span class="elv-text-sm elv-font-semibold elv-text-default elv-flex-1">PPL Scrollytelling — a narrative, scroll-driven take on the same moment</span>
+        </div>
+      </a>
+    </div>
+
+    <!-- Explorations -->
+    <div class="elv-mb-4">
+      <h2 class="elv-text-xs elv-font-bold elv-uppercase elv-tracking-wide elv-text-nonessential">
+        Explorations: Chat-Driven Qualification
+      </h2>
+    </div>
+
+    <div class="exploration-grid elv-grid elv-grid-cols-1 elv-gap-4 elv-mb-12">
+      <a href="./explorations/01-figma-flow-mockup.html"
+         class="exploration-card elv-block elv-bg-neutral-0 elv-border elv-border-light elv-rounded-md elv-p-6 elv-no-underline elv-transition-all hover:elv-shadow-2 hover:elv-border-medium hover:elv--translate-y-0-5 elv-relative"
+         style="text-decoration: none; display: flex; flex-direction: column; gap: 12px;">
+        <div class="elv-text-2xs elv-font-bold elv-uppercase elv-tracking-wide elv-text-nonessential">Exploration 01</div>
+        <div class="elv-text-base elv-font-bold elv-text-default elv-leading-snug">
+          Figma Flow Mockup
+        </div>
+        <div class="elv-text-xs elv-text-subtle elv-leading-relaxed elv-flex-1">
+          Imported Figma export of the full chat flow: intro, timeframe, needs, contact, budget, review with inline edit, matched results, and handoff choice. Includes a state-jump toolbar for reviewing any step directly.
+        </div>
+
+        <span class="card-arrow elv-absolute elv-text-sm elv-text-neutral-30 elv-transition-all" style="bottom: 1.5rem; right: 1.5rem;">→</span>
+      </a>
+    </div>
+
+    <!-- Footer -->
+    <footer class="elv-mt-16 elv-pt-6 elv-text-xs elv-text-nonessential">
+      <a href="../../index.html" class="elv-text-nonessential hover:elv-text-primary">← Back to Chicago Labs</a>
+    </footer>
+
+  </div>
+
+</div>
+
+</body>
+</html>
