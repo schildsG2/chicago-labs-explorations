@@ -15,6 +15,8 @@
     /* Chip filter styling */
     .filter-chip {
       transition: all 0.15s ease-in-out;
+      white-space: nowrap;
+      flex-shrink: 0;
     }
     .filter-chip[data-selected="true"] {
       background: var(--bg-primary-20);
@@ -50,7 +52,7 @@
 
   <!-- Header -->
   <header class="elv-bg-neutral-0 elv-border-b elv-border-light" style="border-bottom-width: 0.5px;">
-    <div class="elv-max-w-7xl elv-w-full md:elv-w-5/6 elv-mx-auto elv-pt-12 elv-pb-8">
+    <div class="elv-max-w-7xl elv-w-full md:elv-w-5/6 elv-mx-auto elv-pt-12 elv-pb-8 elv-px-6">
       <div class="elv-inline-flex elv-items-center elv-gap-2 elv-px-3 elv-py-1 elv-rounded-full elv-mb-3" style="background: #EEF2FF;">
         <span class="elv-text-xs elv-font-bold elv-uppercase elv-tracking-wide" style="color: #4F46E5;">
           Chicago Labs
@@ -65,7 +67,7 @@
     </div>
   </header>
 
-  <div class="elv-max-w-7xl elv-w-full md:elv-w-5/6 elv-mx-auto elv-py-12">
+  <div class="elv-max-w-7xl elv-w-full md:elv-w-5/6 elv-mx-auto elv-py-12 elv-px-6">
 
     <!-- Controls -->
     <div class="elv-flex elv-items-center elv-gap-3 elv-mb-12 elv-flex-wrap">
@@ -84,7 +86,7 @@
       </div>
 
       <!-- Filter Chips (Elevate chip pattern) -->
-      <div class="elv-flex elv-gap-2">
+      <div class="elv-flex elv-gap-2 elv-flex-wrap">
         <div
           class="filter-chip elv-inline-flex elv-w-fit elv-items-center elv-justify-center elv-ease-in-out elv-duration-150 elv-cursor-pointer elv-bg-neutral-10 elv-text-neutral elv-rounded-sm elv-h-9 elv-px-4 elv-py-2 elv-text-sm elv-font-medium"
           data-tag="all"
