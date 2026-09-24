@@ -1,0 +1,19 @@
+index.html
+  s_efa4117dea948e::t_ec9e0b324dd633 13
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "b561ced005a023d9f25f97c29adfe091852a3080",
+  "prompts": {},
+  "sessions": {
+    "s_efa4117dea948e": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "d3b75656-43e3-47c1-8a66-7d0a0e1ff871",
+        "model": "claude-sonnet-5"
+      },
+      "human_author": "Sam Childs <schilds@g2.com>"
+    }
+  }
+}
