@@ -1,0 +1,20 @@
+index.html
+  s_efa4117dea948e::t_e42138af655dd8 15-27,29-30,33-34,37-53
+  s_efa4117dea948e::t_842141970ee173 115-117,120-124,127-131,134-138,141-145,148-149,152,155
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "b733cc746367e1ff1ae992664a680dc6c73540ff",
+  "prompts": {},
+  "sessions": {
+    "s_efa4117dea948e": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "d3b75656-43e3-47c1-8a66-7d0a0e1ff871",
+        "model": "claude-sonnet-5"
+      },
+      "human_author": "Sam Childs <schilds@g2.com>"
+    }
+  }
+}
