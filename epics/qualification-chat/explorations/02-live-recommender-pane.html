@@ -1,0 +1,828 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>G2 Product Qualification Flow</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&display=swap');
+        :root {
+            --elv-color-rorange-100: #ff492c; --elv-color-purple-100: #5746b2; --elv-color-purple-40: #c3bde5; --elv-color-purple-20: #ebe9f6; --elv-color-faint-purple: #f2f0f9; --elv-color-neutral-100: #201f23; --elv-color-neutral-80: #4c4b53; --elv-color-neutral-70: #6f6d78; --elv-color-neutral-20: #dfdfe2; --elv-color-neutral-10: #f2f2f3; --elv-color-neutral-5: #fafafa; --elv-color-neutral-0: #ffffff; --elv-color-blue-100: #0073f5; --elv-color-green-100: #00875a; --elv-color-green-20: #d0f6f1; --elv-color-green-160: #0f5249; --elv-color-rorange-20: #fff6f5;
+            --elv-font-family-sans: 'Figtree', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; --elv-font-size-h2: 20px; --elv-font-size-h3: 18px; --elv-font-size-body: 16px; --elv-font-size-sm: 14px; --elv-font-size-xs: 12px; --elv-font-weight-regular: 400; --elv-font-weight-medium: 500; --elv-font-weight-semibold: 600; --elv-font-weight-bold: 700;
+            --elv-space-1: 4px; --elv-space-2: 8px; --elv-space-3: 12px; --elv-space-4: 16px; --elv-space-5: 24px; --elv-space-6: 32px;
+            --elv-border-radius-sm: 4px; --elv-border-radius-md: 8px; --elv-border-radius-lg: 16px; --elv-border-radius-pill: 9999px; --elv-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05); --elv-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1); --elv-focus-shadow: 0 0 0 2px var(--elv-color-neutral-0), 0 0 0 4px var(--elv-color-purple-40);
+            --transition-fast: 150ms ease-in-out;
+            --elv-bg-primary: var(--elv-color-purple-100); --elv-bg-primary-20: var(--elv-color-purple-20); --elv-bg-neutral-0: var(--elv-color-neutral-0); --elv-bg-neutral-5: var(--elv-color-neutral-5); --elv-text-default: var(--elv-color-neutral-100); --elv-text-subtle: var(--elv-color-neutral-80); --elv-text-nonessential: var(--elv-color-neutral-70); --elv-text-primary: var(--elv-color-purple-100); --elv-border-light: var(--elv-color-neutral-20); --elv-border-medium: #b0afb6;
+        }
+        *, *::before, *::after { box-sizing: border-box; }
+        @media (prefers-reduced-motion: reduce) { * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; } }
+        
+        html, body { height: 100%; }
+        body { font-family: var(--elv-font-family-sans); background-color: var(--elv-color-neutral-5); color: var(--elv-color-neutral-80); margin: 0; overflow: hidden; }
+        .page-wrapper { display: flex; flex-direction: column; height: 100vh; height: 100dvh; }
+        
+        .main-container {
+            display: grid;
+            grid-template-columns: 1fr 420px;
+            gap: 0;
+            width: 100%;
+            height: 100vh;
+            height: 100dvh;
+            min-height: 0;
+            background-color: var(--elv-color-neutral-0);
+            border: none;
+            border-radius: 0;
+            box-shadow: none;
+            overflow: hidden;
+        }
+
+        @media (max-width: 768px) {
+            .main-container {
+                grid-template-columns: 1fr;
+            }
+            .recommender-pane {
+                border-left: none;
+                border-top: 1px solid var(--elv-border-light);
+            }
+        }
+
+        .conversation-pane { display: flex; flex-direction: column; min-height: 0; overflow: hidden; background-color: var(--elv-color-neutral-0); }
+        .chat-header { padding: var(--elv-space-3) var(--elv-space-4); border-bottom: 1px solid var(--elv-border-light); }
+        .chat-header h1 { margin: 0; color: var(--elv-text-default); font-size: var(--elv-font-size-h2); }
+        .chat-log { flex: 1 1 auto; min-height: 0; overflow-y: auto; padding: var(--elv-space-5); display: flex; flex-direction: column; gap: var(--elv-space-4); }
+        .chat-controls { flex-shrink: 0; padding: var(--elv-space-4) var(--elv-space-5); border-top: 1px solid var(--elv-border-light); }
+        .chat-controls:empty { display: none; padding: 0; }
+
+        .choice-group, .form-grid { max-width: 800px; margin: 0 auto; }
+        .choice-group { display: grid; gap: var(--elv-space-2); }
+        .choice-btn, .text-input, .form-grid .btn { width: 100%; }
+        .choice-btn, .text-input { min-height: 46px; padding: var(--elv-space-3) var(--elv-space-4); border: 1px solid var(--elv-border-medium); border-radius: var(--elv-border-radius-md); background: var(--elv-bg-neutral-0); color: var(--elv-text-default); font: inherit; }
+        .choice-btn { cursor: pointer; text-align: left; font-weight: var(--elv-font-weight-medium); transition: all var(--transition-fast); }
+        .choice-btn:hover, .choice-btn[data-selected="true"] { border-color: var(--elv-color-purple-100); background: var(--elv-color-purple-20); color: var(--elv-color-purple-100); }
+        .choice-btn:focus-visible, .text-input:focus-visible { outline: none; box-shadow: var(--elv-focus-shadow); }
+        .text-input { box-shadow: inset 0 1px 2px rgba(32,31,35,.06); }
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--elv-space-3); }
+        .form-grid > .full-width { grid-column: 1 / -1; }
+        @media (max-width: 560px) { .form-grid { grid-template-columns: 1fr; } .form-grid > .full-width { grid-column: auto; } }
+        .message { max-width: 90%; padding: var(--elv-space-3) var(--elv-space-4); border-radius: var(--elv-border-radius-lg); line-height: 1.5; font-size: var(--elv-font-size-body); }
+        .message.bot { align-self: flex-start; background: var(--elv-color-neutral-10); color: var(--elv-text-default); }
+        .message.user { align-self: flex-end; background: var(--elv-color-purple-100); color: var(--elv-color-neutral-0); }
+        .message.user, .message.bot { animation: slide-in 300ms ease-out; }
+        .header-top { display: flex; align-items: center; justify-content: space-between; gap: var(--elv-space-4); }
+        .header-identity { flex-shrink: 0; }
+        .header-identity svg { display: block; }
+        .progress-display { display: flex; flex-direction: column; align-items: flex-start; gap: var(--elv-space-2); min-width: 180px; }
+        .progress-label { white-space: nowrap; font-size: var(--elv-font-size-sm); font-weight: var(--elv-font-weight-semibold); color: var(--elv-text-default); }
+        .progress-track { position: relative; width: 100%; height: 6px; background: linear-gradient(90deg, var(--elv-color-rorange-100), var(--elv-color-purple-100)); border-radius: var(--elv-border-radius-pill); overflow: hidden; }
+        .progress-bar { position: absolute; top: 0; right: 0; height: 100%; width: 100%; background-color: var(--elv-color-neutral-20); border-radius: 0 var(--elv-border-radius-pill) var(--elv-border-radius-pill) 0; transition: width var(--transition-fast); }
+        @media (max-width: 520px) { .progress-display { min-width: 0; } .progress-label { font-size: var(--elv-font-size-xs); } }
+
+        .header-top { display: flex; align-items: center; justify-content: space-between; gap: var(--elv-space-4); }
+        .header-identity { font-family: var(--elv-font-family-sans); font-weight: var(--elv-font-weight-bold); font-size: var(--elv-font-size-h2); color: var(--elv-color-rorange-100); }
+        
+        .progress-display { flex-grow: 1; display: flex; flex-direction: column; align-items: flex-start; gap: var(--elv-space-2); }
+        .progress-label { font-size: var(--elv-font-size-sm); font-weight: var(--elv-font-weight-semibold); color: var(--elv-text-default); }
+        .progress-track { position: relative; width: 100%; height: 6px; background: linear-gradient(90deg, var(--elv-color-rorange-100), var(--elv-color-purple-100)); border-radius: var(--elv-border-radius-pill); overflow: hidden; }
+        .progress-bar { position: absolute; top: 0; right: 0; height: 100%; width: 100%; background-color: var(--elv-color-neutral-20); border-radius: 0 var(--elv-border-radius-pill) var(--elv-border-radius-pill) 0; transition: width var(--transition-fast); }
+
+        .chat-message { display: flex; gap: var(--elv-space-3); max-width: 90%; animation: slide-in 300ms ease-out; }
+        @keyframes slide-in { from { opacity: 0; transform: translateY(10px); } }
+        .chat-message.user { align-self: flex-end; flex-direction: row-reverse; }
+        .message-avatar { flex-shrink: 0; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: var(--elv-font-size-sm); font-weight: var(--elv-font-weight-bold); background-color: var(--elv-color-neutral-10); color: var(--elv-color-neutral-80); border: 1px solid var(--elv-color-neutral-20); }
+        .message-avatar.g2-bot { background-color: var(--elv-color-rorange-100); color: var(--elv-color-neutral-0); border: none; }
+        .message-bubble { padding: var(--elv-space-3) var(--elv-space-4); border-radius: var(--elv-border-radius-lg); background-color: var(--elv-bg-neutral-5); border: none; color: var(--elv-text-default); font-size: var(--elv-font-size-body); line-height: 1.5; }
+        .chat-message.user .message-bubble { background-color: var(--elv-color-purple-100); color: var(--elv-color-neutral-0); border: none; }
+        .message-bubble > *:first-child { margin-top: 0; } .message-bubble > *:last-child { margin-bottom: 0; }
+        
+        .recommender-pane { background-color: var(--elv-color-neutral-5); border-left: 1px solid var(--elv-border-light); padding: var(--elv-space-5); display: flex; flex-direction: column; overflow-y: auto; }
+        .recommender-header h2 { font-size: var(--elv-font-size-h2); font-weight: var(--elv-font-weight-bold); color: var(--elv-text-default); margin: 0 0 var(--elv-space-1) 0; }
+        .confidence-indicator { font-weight: var(--elv-font-weight-medium); font-size: var(--elv-font-size-sm); }
+
+        .report-card { display: flex; align-items: center; gap: var(--elv-space-3); background-color: var(--elv-bg-neutral-0); border: 1px solid var(--elv-border-light); border-radius: var(--elv-border-radius-lg); padding: var(--elv-space-3) var(--elv-space-4); margin-top: var(--elv-space-4); }
+        .report-card__icon { flex-shrink: 0; width: 40px; height: 40px; border-radius: var(--elv-border-radius-md); background-color: var(--elv-color-purple-20); color: var(--elv-color-purple-100); display: grid; place-items: center; }
+        .report-card__body { flex: 1; min-width: 0; }
+        .report-card__title { font-weight: var(--elv-font-weight-bold); font-size: var(--elv-font-size-body); color: var(--elv-text-default); }
+        .report-card__meta { font-weight: var(--elv-font-weight-medium); font-size: var(--elv-font-size-xs); color: var(--elv-text-nonessential); margin-top: 2px; }
+        .icon-btn { display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--elv-border-medium); background-color: var(--elv-bg-neutral-0); color: var(--elv-text-default); cursor: pointer; flex-shrink: 0; transition: background-color var(--transition-fast), border-color var(--transition-fast); }
+        .icon-btn:hover { background-color: var(--elv-bg-neutral-5); border-color: var(--elv-color-neutral-80); }
+        .icon-btn:focus-visible { outline: none; box-shadow: var(--elv-focus-shadow); }
+
+        .inline-link-chip { display: inline-flex; align-items: center; gap: 4px; padding: 0px 8px 0px 4px; background-color: var(--elv-color-neutral-10); border: 1px solid var(--elv-border-light); border-radius: var(--elv-border-radius-sm); color: var(--elv-text-primary); font-weight: var(--elv-font-weight-semibold); cursor: pointer; vertical-align: middle; }
+        .inline-link-chip:hover { background-color: var(--elv-color-neutral-20); border-color: var(--elv-color-purple-100); text-decoration: underline; }
+        .inline-link-chip svg { flex-shrink: 0; }
+
+        .product-list { display: grid; gap: var(--elv-space-4); padding-top: var(--elv-space-4); }
+
+        .product-card { gap: var(--elv-space-3); padding: var(--elv-space-4); background-color: var(--elv-color-neutral-0); width: 100%; border-radius: var(--elv-border-radius-lg); border: 1px solid var(--elv-border-light); box-shadow: var(--elv-shadow-sm); transition: all 150ms ease-out; }
+        .product-card:hover { border-color: var(--elv-color-purple-40); box-shadow: var(--elv-shadow-md); }
+        .product-card.blurred { filter: blur(4px); opacity: 0.5; pointer-events: none; }
+        .product-card--enter { opacity: 0; transform: translateY(12px) scale(0.98); }
+
+        /* Confidence border escalation: neutral (default) -> elevated (solid purple) -> glow (gradient + halo), matching Figma reference node 85-34931 */
+        .product-card--elevated, .product-card--elevated:hover { border-color: var(--elv-color-purple-100); }
+        .product-card--glow, .product-card--glow:hover {
+            border: 2px solid transparent;
+            background:
+                linear-gradient(var(--elv-bg-neutral-0), var(--elv-bg-neutral-0)) padding-box,
+                linear-gradient(90deg, var(--elv-color-blue-100), var(--elv-color-purple-100), var(--elv-color-rorange-100)) border-box;
+            box-shadow: 0 0 28px 4px rgba(87, 70, 178, 0.35), 0 0 14px 2px rgba(255, 73, 44, 0.25);
+        }
+        .product-card--glow { position: relative; }
+        .product-card--glow::after {
+            content: '';
+            position: absolute;
+            top: -7px;
+            right: -7px;
+            width: 16px;
+            height: 16px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath fill='%23ff492c' d='M10 0c.6 3.8 1.6 6.4 3 7.8 1.4 1.4 4 2.4 7 3-3 .6-5.6 1.6-7 3-1.4 1.4-2.4 4-3 7-.6-3-1.6-5.6-3-7-1.4-1.4-4-2.4-7-3 3-.6 5.6-1.6 7-3 1.4-1.4 2.4-3.2 3-7.8Z'/%3E%3C/svg%3E");
+            background-size: contain;
+            background-repeat: no-repeat;
+            pointer-events: none;
+        }
+        .product-card__header { display: flex; gap: var(--elv-space-3); align-items: flex-start; justify-content: space-between; }
+        .product-card__identity { display: flex; gap: var(--elv-space-3); align-items: center; min-width: 0; }
+        .product-avatar { flex-shrink: 0; width: 48px; height: 48px; border-radius: var(--elv-border-radius-md); display: grid; place-items: center; background-color: var(--elv-bg-neutral-0); border: 1px solid var(--elv-border-light); font-size: 1.25rem; font-weight: bold; }
+        .product-card__title { min-width: 0; } .product-card__title h3 { font-size: var(--elv-font-size-h3); font-weight: var(--elv-font-weight-semibold); margin: 0 0 2px; color: var(--elv-text-default); }
+        .best-match-label { display: inline-flex; align-items: center; gap: var(--elv-space-2); padding: var(--elv-space-1) var(--elv-space-2); border-radius: var(--elv-border-radius-sm); background-color: var(--elv-color-purple-20); color: var(--elv-color-purple-100); font-size: var(--elv-font-size-xs); font-weight: bold; }
+        .elv-star-wrapper { display: flex; align-items: center; gap: var(--elv-space-1); color: var(--elv-text-subtle); }
+        .elv-stars { display: inline-block; flex-shrink: 0; background-repeat: no-repeat; background-size: contain; width: 80px; height: 16px; }
+        .elv-stars-4-5 { background-image: url("data:image/svg+xml,%3Csvg width='88' height='16' viewBox='0 0 88 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M8 1.33333L9.63636 4.63636L13.3333 5.18182L10.6667 7.72727L11.2727 11.4242L8 9.77273L4.72727 11.4242L5.33333 7.72727L2.66667 5.18182L6.36364 4.63636L8 1.33333Z' fill='%23FF492C'/%3E%3Cpath d='M25.3333 1.33333L27 4.63636L30.6667 5.18182L28 7.72727L28.6061 11.4242L25.3333 9.77273L22.0606 11.4242L22.6667 7.72727L20 5.18182L23.697 4.63636L25.3333 1.33333Z' fill='%23FF492C'/%3E%3Cpath d='M42.6667 1.33333L44.303 4.63636L48 5.18182L45.3333 7.72727L45.9394 11.4242L42.6667 9.77273L39.3939 11.4242L40 7.72727L37.3333 5.18182L41.0303 4.63636L42.6667 1.33333Z' fill='%23FF492C'/%3E%3Cpath d='M60 1.33333L61.6364 4.63636L65.3333 5.18182L62.6667 7.72727L63.2727 11.4242L60 9.77273L56.7273 11.4242L57.3333 7.72727L54.6667 5.18182L58.3636 4.63636L60 1.33333Z' fill='%23FF492C'/%3E%3Cpath d='M77.3333 1.33333L79 4.63636L82.6667 5.18182L80 7.72727L80.6061 11.4242L77.3333 9.77273L74.0606 11.4242L74.6667 7.72727L72 5.18182L75.697 4.63636L77.3333 1.33333Z' fill='%23DFDFE2'/%3E%3Cpath d='M77.3333 1.33333L79 4.63636L82.6667 5.18182L80 7.72727L80.6061 11.4242L77.3333 9.77273V1.33333Z' fill='%23FF492C'/%3E%3C/svg%3E"); }
+        .elv-stars-4 { background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='24' fill='none'%3E%3Cpath fill='%23ff492c' d='m14.7 8.7 6.9.575-5.25 4.475 1.575 6.65L12 16.875 6.075 20.4l1.575-6.65L2.4 9.275l6.9-.6L12 2.4zm24 0 6.9.575-5.25 4.475 1.575 6.65L36 16.875 30.075 20.4l1.575-6.65-5.25-4.475 6.9-.6L36 2.4zm24 0 6.9.575-5.25 4.475 1.575 6.65L60 16.875 54.075 20.4l1.575-6.65-5.25-4.475 6.9-.6L60 2.4zm24 0 6.9.575-5.25 4.475 1.575 6.65L84 16.875 78.075 20.4l1.575-6.65-5.25-4.475 6.9-.6L84 2.4z'/%3E%3Cpath fill='%23dfdfe2' d='m110.7 8.7 6.9.575-5.25 4.475 1.575 6.65L108 16.875l-5.925 3.525 1.575-6.65-5.25-4.475 6.9-.6L108 2.4z'/%3E%3C/svg%3E"); }
+        .pros-cons-row { display: flex; flex-wrap: wrap; gap: var(--elv-space-2); margin-top: var(--elv-space-3); }
+        .pros-cons-chip { display: inline-flex; align-items: center; gap: 4px; height: 24px; padding-inline: var(--elv-space-2); border-radius: var(--elv-border-radius-md); font-size: var(--elv-font-size-sm); }
+        .pros-cons-chip__label { font-weight: var(--elv-font-weight-semibold); color: var(--elv-text-default); }
+        .pros-cons-chip__count { font-weight: var(--elv-font-weight-medium); color: var(--elv-text-default); }
+        .match-confidence { margin-top: var(--elv-space-3); color: var(--elv-text-default); font-size: var(--elv-font-size-sm); }
+        .confidence-bar { height: 7px; margin-top: var(--elv-space-2); border-radius: var(--elv-border-radius-pill); background: var(--elv-color-neutral-20); overflow: hidden; }
+        .confidence-bar-inner { height: 100%; border-radius: inherit; transition: width 350ms ease; }
+        .product-fit { margin: var(--elv-space-3) 0 0; color: var(--elv-text-subtle); font-size: var(--elv-font-size-sm); line-height: 1.4; }
+        .product-meta { display: flex; flex-wrap: wrap; align-items: center; gap: var(--elv-space-2); margin-top: var(--elv-space-3); color: var(--elv-text-subtle); font-size: var(--elv-font-size-sm); }
+        .product-details { margin-top: var(--elv-space-3); color: var(--elv-text-subtle); font-size: var(--elv-font-size-sm); }
+        .product-details summary { cursor: pointer; color: var(--elv-text-primary); font-weight: var(--elv-font-weight-semibold); }
+        .product-details p { margin: var(--elv-space-2) 0; }
+        .product-card__actions { display: flex; gap: var(--elv-space-2); margin-top: var(--elv-space-4); }
+        .product-card__actions .btn { flex: 1; }
+
+        .btn { display: inline-flex; align-items: center; justify-content: center; gap: var(--elv-space-2); cursor: pointer; border-radius: var(--elv-border-radius-pill); font-family: var(--elv-font-family-sans); font-weight: var(--elv-font-weight-semibold); text-decoration: none; transition: all var(--transition-fast); }
+        .btn:focus-visible { box-shadow: var(--elv-focus-shadow); outline: none; }
+        .btn--primary { border: none; background-color: var(--elv-bg-primary); color: var(--elv-bg-neutral-0); }
+        .btn--primary:hover { background-color: #45359a; }
+        .btn--secondary { border: 1px solid var(--elv-border-medium); background-color: var(--elv-bg-neutral-0); color: var(--elv-text-default); }
+        .btn--secondary:hover { background-color: var(--elv-bg-neutral-5); border-color: var(--elv-color-neutral-80); }
+        .btn--tertiary { border: none; background-color: transparent; color: var(--elv-text-primary); }
+        .btn--text { border: none; background-color: transparent; color: var(--elv-text-primary); padding: 0; font-size: var(--elv-font-size-body); }
+        .btn--md { padding: var(--elv-space-3) var(--elv-space-4); font-size: var(--elv-font-size-body); }
+        .btn--sm { padding: var(--elv-space-1) var(--elv-space-3); font-size: var(--elv-font-size-sm); line-height: 1.25rem; }
+
+        .input-panel { background-color: var(--elv-color-faint-purple); border-radius: var(--elv-border-radius-lg); padding: var(--elv-space-4); }
+        .input-panel h2 { font-size: var(--elv-font-size-h2); font-weight: var(--elv-font-weight-bold); color: var(--elv-text-default); margin: 0 0 var(--elv-space-2) 0; }
+        .form-actions { display: flex; justify-content: space-between; align-items: center; margin-top: var(--elv-space-4); }
+
+        .native-choice-group { display: flex; flex-direction: column; border: 1px solid var(--elv-border-light); border-radius: var(--elv-border-radius-lg); background-color: var(--elv-bg-neutral-0); overflow: hidden; padding: 0; margin: 0; }
+        .native-choice-label { display: flex; align-items: center; gap: var(--elv-space-3); padding: var(--elv-space-3) var(--elv-space-4); cursor: pointer; transition: background-color var(--transition-fast); border-bottom: 1px solid var(--elv-border-light); }
+        .native-choice-label:last-of-type { border-bottom: none; }
+        .native-choice-label:hover { background-color: var(--elv-bg-neutral-5); }
+        .native-choice-label:has(:checked) { background-color: var(--elv-color-purple-20); }
+        .native-choice-label:has(:focus-visible) { box-shadow: inset 0 0 0 2px var(--elv-color-purple-100); background-color: var(--elv-bg-neutral-5); }
+        .native-choice-label input { flex-shrink: 0; width: 20px; height: 20px; accent-color: var(--elv-color-purple-100); }
+        .native-choice-text { flex-grow: 1; font-weight: var(--elv-font-weight-medium); color: var(--elv-text-default); }
+        
+        .contact-form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--elv-space-3); }
+        .contact-form-grid .text-field { grid-column: 1 / -1; }
+        .contact-form-grid .text-field[data-field-name="name"], .contact-form-grid .text-field[data-field-name="company"] { grid-column: span 1; }
+        @media (max-width: 500px) { .contact-form-grid .text-field[data-field-name="name"], .contact-form-grid .text-field[data-field-name="company"] { grid-column: 1 / -1; } }
+
+        .text-field { display: flex; flex-direction: column; gap: var(--elv-space-1); }
+        .text-field__label { font-weight: var(--elv-font-weight-semibold); font-size: var(--elv-font-size-sm); color: var(--elv-text-default); }
+        .text-field__input { height: 44px; width: 100%; border-radius: var(--elv-border-radius-md); padding-inline: var(--elv-space-3); font-size: var(--elv-font-size-body); border: 1px solid var(--elv-border-medium); background-color: var(--elv-bg-neutral-0); }
+        .text-field__input:focus { outline: 3px solid var(--elv-color-purple-40); outline-offset: 1px; border-color: var(--elv-color-purple-100); }
+        
+        .history-chips { display: flex; flex-wrap: wrap; gap: var(--elv-space-2); margin-top: var(--elv-space-4); padding-top: var(--elv-space-4); border-top: 1px solid var(--elv-border-light);}
+        .chip { background: var(--elv-color-neutral-20); color: var(--elv-text-subtle); padding: var(--elv-space-1) var(--elv-space-2); border-radius: var(--elv-border-radius-pill); font-size: var(--elv-font-size-sm); font-weight: var(--elv-font-weight-medium); }
+
+        #reset-btn { position: fixed; bottom: 1rem; right: 1rem; z-index: 100; }
+    </style>
+</head>
+<body>
+
+    <div class="main-container">
+        <div class="conversation-pane">
+            <div class="chat-log" id="chat-log"></div>
+            <div class="chat-controls" id="chat-controls"></div>
+        </div>
+
+        <div class="recommender-pane" id="recommender-pane">
+            <div class="recommender-header">
+                <h2>Your Recommendations</h2>
+                <div class="progress-display" aria-live="polite">
+                    <div class="progress-track" role="progressbar" aria-label="Recommendation confidence" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                        <div id="progress-bar" class="progress-bar"></div>
+                    </div>
+                    <span id="confidence-level-text" class="progress-label">Low Confidence (0%)</span>
+                </div>
+            </div>
+            <div class="report-card">
+                <div class="report-card__icon" aria-hidden="true">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M7 15H13V13.5H7V15ZM7 12H13V10.5H7V12ZM5.4941 18C5.08137 18 4.72917 17.8531 4.4375 17.5594C4.14583 17.2656 4 16.9125 4 16.5V3.5C4 3.0875 4.14687 2.73438 4.44062 2.44063C4.73437 2.14688 5.0875 2 5.5 2H12L16 6V16.5C16 16.9125 15.853 17.2656 15.5591 17.5594C15.2652 17.8531 14.9119 18 14.4992 18H5.4941ZM11 7H14.5L11 3.5V7Z"/></svg>
+                </div>
+                <div class="report-card__body">
+                    <div class="report-card__title">HR Software Report</div>
+                    <div class="report-card__meta" id="report-updated-at">Last updated just now</div>
+                </div>
+                <button class="icon-btn report-card__download" type="button" aria-label="Download HR Software Report">
+                    <svg width="18" height="18" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="currentColor" d="M9.25 4V13.125L5.0625 8.9375L4 10L10 16L16 10L14.9375 8.9375L10.75 13.125V4H9.25Z"/></svg>
+                </button>
+            </div>
+            <div class="product-list" id="product-list"></div>
+        </div>
+    </div>
+    
+    <button class="btn btn--secondary btn--sm" id="reset-btn">Reset</button>
+
+    <script>
+        // --- DOM Elements ---
+        const chatLog = document.getElementById('chat-log');
+        const chatControls = document.getElementById('chat-controls');
+        const productList = document.getElementById('product-list');
+        const confidenceText = document.getElementById('confidence-level-text');
+        const resetBtn = document.getElementById('reset-btn');
+
+        // --- State Management ---
+        let state = {
+            currentStep: 0,
+            answers: {},
+        };
+        let lastReportUpdate = Date.now();
+
+        // --- Constants ---
+        const QUALIFICATION_STAGES = [
+            { id: 'timeframe', question: 'What is your timeframe for choosing a solution?', type: 'choice', options: ['Right now', '30 days', '1-3 months', '3-6 months', 'Just exploring'] },
+            { id: 'needs', question: 'What are you hoping to solve?', type: 'multi-choice', options: ['Pipeline visibility', 'Replace CRM', 'Integrations', 'Team collaboration'] },
+            { id: 'contact', question: 'How can we get in touch?', type: 'form', fields: ['Name', 'Company', 'Email', 'Phone'] },
+            { id: 'budget', question: 'What is your estimated annual budget?', type: 'choice', options: ['Under $5,000', '$5,000-$25,000', '$25,000-$100,000', '$100,000+'] },
+        ];
+        
+        const FOLLOW_UP_QUESTIONS = [
+             { id: 'teamSize', question: 'How large is your team?', type: 'choice', options: ['1-10', '11-50', '51-200', '201+'] },
+            { id: 'currentSystem', question: 'What are you currently using?', type: 'text' },
+            { id: 'integrations', question: 'Any must-have integrations?', type: 'text' },
+            { id: 'reporting', question: 'What are your reporting needs?', type: 'choice', options: ['Basic dashboards', 'Custom reports', 'Advanced analytics'] },
+            { id: 'workflow', question: 'How complex are your workflows?', type: 'choice', options: ['Simple', 'Moderate', 'Complex'] },
+            { id: 'implementation', question: 'How much help will you need with implementation?', type: 'choice', options: ['None, we can self-serve', 'Some guidance', 'Full-service implementation'] },
+            { id: 'users', question: 'How many users will need access?', type: 'choice', options: ['1-5', '6-20', '21-100', '100+'] },
+            { id: 'decision', question: 'What does your decision-making process look like?', type: 'text' },
+            { id: 'security', question: 'Are there any specific security or compliance requirements?', type: 'text' },
+            { id: 'success', question: 'How will you measure success with this new software?', type: 'text' },
+        ];
+        
+        const ALL_QUESTIONS = [...QUALIFICATION_STAGES, ...FOLLOW_UP_QUESTIONS];
+
+        const PRODUCTS = [
+            { name: 'Salesforce', avatar: 'SF', rating: '4.3', reviews: '15,000+', price: '$25', baseConfidence: 70, fit: 'Best for complex pipelines and large teams.', pros: ['Deep customization', 'Extensive integrations'], cons: ['More involved setup'] },
+            { name: 'HubSpot', avatar: 'HS', rating: '4.4', reviews: '9,500+', price: '$45', baseConfidence: 65, fit: 'A balanced choice for connected teams and approachable workflows.', pros: ['Easy to adopt', 'Strong collaboration'], cons: ['Advanced features cost more'] },
+            { name: 'Zoho CRM', avatar: 'ZC', rating: '4.0', reviews: '5,000+', price: '$14', baseConfidence: 60, fit: 'A flexible option when budget and breadth matter.', pros: ['Affordable', 'Broad business suite'], cons: ['Interface takes time to learn'] },
+            { name: 'Pipedrive', avatar: 'PD', rating: '4.2', reviews: '3,200+', price: '$21', baseConfidence: 55, fit: 'A focused sales workspace for teams that want momentum.', pros: ['Simple pipeline view', 'Quick setup'], cons: ['Fewer enterprise controls'] },
+            { name: 'Freshworks', avatar: 'FW', rating: '4.1', reviews: '2,800+', price: '$19', baseConfidence: 50, fit: 'A practical fit for smaller teams building repeatable processes.', pros: ['Fast to launch', 'Good value'], cons: ['Smaller ecosystem'] },
+        ];
+
+        // --- Core Functions ---
+
+        /**
+         * Main render function, controls the flow of the conversation.
+         */
+        function render() {
+            chatControls.innerHTML = '';
+            updateRecommender();
+
+            if (state.currentStep >= ALL_QUESTIONS.length) {
+                addMessage('bot', 'Thank you! We have enough information to provide your initial recommendations.');
+                return;
+            }
+
+            const step = ALL_QUESTIONS[state.currentStep];
+            addMessage('bot', step.question);
+
+            switch(step.type) {
+                case 'choice':
+                    renderChoices(step);
+                    break;
+                case 'multi-choice':
+                    renderMultiChoices(step);
+                    break;
+                case 'form':
+                    renderForm(step);
+                    break;
+                case 'text':
+                    renderTextInput(step);
+                    break;
+            }
+        }
+
+        /**
+         * Adds a message to the chat log.
+         * @param {string} author - The author of the message ('bot' or 'user').
+         * @param {string} content - The content of the message.
+         */
+        function addMessage(author, content) {
+            const messageEl = document.createElement('div');
+            messageEl.className = `message ${author}`;
+            messageEl.innerHTML = content;
+            chatLog.appendChild(messageEl);
+            scrollChatToBottom();
+        }
+
+        function scrollChatToBottom() {
+            const scroll = () => chatLog.scrollTo({ top: chatLog.scrollHeight, behavior: 'smooth' });
+            requestAnimationFrame(() => {
+                scroll();
+                requestAnimationFrame(scroll);
+            });
+        }
+
+        /**
+         * Renders a list of choices as buttons.
+         * @param {object} step - The current question step.
+         */
+        function renderChoices(step) {
+            const container = document.createElement('div');
+            container.className = 'choice-group';
+            step.options.forEach(option => {
+                const button = document.createElement('button');
+                button.className = 'choice-btn';
+                button.textContent = option;
+                button.onclick = () => handleAnswer(step.id, option);
+                container.appendChild(button);
+            });
+            
+            if (step.id === 'timeframe') {
+                const separator = document.createElement('div');
+                separator.textContent = 'or';
+                separator.style.textAlign = 'center';
+                separator.style.margin = '0.5rem 0';
+                container.appendChild(separator);
+
+                const otherInput = document.createElement('input');
+                otherInput.type = 'text';
+                otherInput.placeholder = 'Other timeframe? (optional)';
+                otherInput.className = 'text-input';
+                otherInput.onkeydown = (e) => {
+                    if (e.key === 'Enter' && otherInput.value.trim() !== '') {
+                        handleAnswer(step.id, otherInput.value);
+                    }
+                };
+                container.appendChild(otherInput);
+            }
+
+            chatControls.appendChild(container);
+        }
+        
+        /**
+         * Renders a list of choices as buttons for multiple selection.
+         * @param {object} step - The current question step.
+         */
+        function renderMultiChoices(step) {
+            const container = document.createElement('div');
+            container.className = 'choice-group';
+            step.options.forEach(option => {
+                const button = document.createElement('button');
+                button.className = 'choice-btn';
+                button.textContent = option;
+                button.dataset.selected = 'false';
+                button.onclick = (e) => {
+                    const isSelected = e.target.dataset.selected === 'true';
+                    e.target.dataset.selected = !isSelected;
+                };
+                container.appendChild(button);
+            });
+
+            const submitBtn = document.createElement('button');
+            submitBtn.textContent = 'Continue';
+            submitBtn.className = 'btn btn--primary btn--md';
+            submitBtn.style.marginTop = '1rem';
+            submitBtn.onclick = () => {
+                const selected = Array.from(container.querySelectorAll('[data-selected="true"]')).map(b => b.textContent);
+                if (selected.length > 0) {
+                    handleAnswer(step.id, selected);
+                }
+            }
+            container.appendChild(submitBtn);
+
+            chatControls.appendChild(container);
+        }
+
+        /**
+         * Renders a form with multiple text fields.
+         * @param {object} step - The current question step.
+         */
+        function renderForm(step) {
+            const form = document.createElement('div');
+            form.className = 'form-grid';
+            
+            step.fields.forEach(field => {
+                const fieldId = `field-${field}`;
+                const isOptional = field.toLowerCase() === 'phone';
+
+                const label = document.createElement('label');
+                label.htmlFor = fieldId;
+                label.textContent = field;
+                label.style.display = 'block';
+                label.style.marginBottom = '0.25rem';
+                label.style.fontSize = '0.875rem';
+                label.style.fontWeight = 'var(--elv-font-weight-semibold)';
+
+                if (isOptional) {
+                    const optionalSpan = document.createElement('span');
+                    optionalSpan.textContent = ' (Optional)';
+                    optionalSpan.style.fontWeight = 'normal';
+                    optionalSpan.style.color = 'var(--c-text-subtle)';
+                    label.appendChild(optionalSpan);
+                }
+
+                const input = document.createElement('input');
+                input.type = field === 'Email' ? 'email' : (field === 'Phone' ? 'tel' : 'text');
+                input.id = fieldId;
+                input.className = 'text-input';
+                if (!isOptional) {
+                    input.required = true;
+                }
+
+                const wrapper = document.createElement('div');
+                if (step.fields.length > 2 && (field === 'Email' || field === 'Phone')) {
+                    wrapper.className = 'full-width';
+                }
+
+                wrapper.appendChild(label);
+                wrapper.appendChild(input);
+                form.appendChild(wrapper);
+            });
+
+            const submitBtn = document.createElement('button');
+            submitBtn.textContent = 'Submit';
+            submitBtn.className = 'btn btn--primary btn--md full-width';
+            submitBtn.style.marginTop = '1rem';
+            submitBtn.onclick = () => {
+                const values = {};
+                let allValid = true;
+                step.fields.forEach(f => {
+                    const input = document.getElementById(`field-${f}`);
+                    if (input.required && !input.value.trim()) {
+                        allValid = false;
+                        input.style.borderColor = 'var(--c-confidence-low)';
+                    } else {
+                        input.style.borderColor = 'var(--c-border)';
+                    }
+                    values[f.toLowerCase()] = input.value;
+                });
+
+                if (allValid) {
+                    handleAnswer(step.id, values);
+                }
+            };
+            form.appendChild(submitBtn);
+            chatControls.appendChild(form);
+        }
+
+        /**
+         * Renders a single text input field.
+         * @param {object} step - The current question step.
+         */
+        function renderTextInput(step) {
+            const container = document.createElement('div');
+            container.className = 'choice-group';
+
+            const input = document.createElement('input');
+            input.type = 'text';
+            input.placeholder = 'Type your answer...';
+            input.className = 'text-input';
+
+            const submit = () => {
+                if (input.value.trim() !== '') handleAnswer(step.id, input.value);
+            };
+            input.onkeydown = (e) => {
+                if (e.key === 'Enter') submit();
+            };
+
+            const submitBtn = document.createElement('button');
+            submitBtn.type = 'button';
+            submitBtn.textContent = 'Continue';
+            submitBtn.className = 'btn btn--primary btn--md';
+            submitBtn.onclick = submit;
+
+            container.appendChild(input);
+            container.appendChild(submitBtn);
+            chatControls.appendChild(container);
+            input.focus();
+        }
+
+        /**
+         * Handles the user's answer and transitions to the next step.
+         * @param {string} id - The id of the current question.
+         * @param {string|string[]|object} value - The user's answer.
+         */
+        function handleAnswer(id, value) {
+            addMessage('user', formatAnswerForDisplay(value));
+            state.answers[id] = value;
+            state.currentStep++;
+            render();
+        }
+
+        /**
+         * Formats an answer for display in the chat log.
+         * @param {string|string[]|object} value - The user's answer.
+         * @returns {string} - The formatted answer.
+         */
+        function formatAnswerForDisplay(value) {
+            if (Array.isArray(value)) {
+                return value.join(', ');
+            } else if (typeof value === 'object' && value !== null) {
+                return Object.entries(value).map(([key, val]) => `${key}: ${val}`).join(', ');
+            } else {
+                return value;
+            }
+        }
+
+        // --- Recommender Functions ---
+
+        /**
+         * Updates the recommender pane.
+         */
+        function updateRecommender() {
+            updateConfidence();
+            updateProductList();
+            updateHistory();
+        }
+
+        /**
+         * Updates the confidence level display.
+         */
+        function updateConfidence() {
+            const answeredCount = Object.keys(state.answers).length;
+            const qualificationStagesCount = QUALIFICATION_STAGES.length;
+            const isQualified = answeredCount >= qualificationStagesCount;
+            const followUpAnsweredCount = Math.max(0, answeredCount - qualificationStagesCount);
+
+            let confidence = 0;
+            let confidenceLabel = 'Low Confidence';
+            let confidenceColor = 'var(--c-confidence-low)';
+
+            if (isQualified) {
+                const baseConfidence = 42;
+                const followUpWeight = (100 - baseConfidence) / FOLLOW_UP_QUESTIONS.length;
+                confidence = baseConfidence + (followUpAnsweredCount * followUpWeight);
+
+                if (confidence >= 85) {
+                    confidenceLabel = 'High Confidence';
+                    confidenceColor = 'var(--c-confidence-high)';
+                } else if (confidence >= 42) {
+                    confidenceLabel = 'Medium Confidence';
+                    confidenceColor = 'var(--c-confidence-medium)';
+                }
+            } else {
+                confidence = (answeredCount / qualificationStagesCount) * 41;
+            }
+            
+            confidenceText.textContent = `${confidenceLabel} (${Math.round(confidence)}%)`;
+            confidenceText.style.color = confidenceColor;
+            const progressBar = document.getElementById('progress-bar');
+            if (progressBar) {
+                // progress-bar is a right-anchored mask over the track's fixed gradient — it
+                // shrinks as confidence rises, revealing more of the gradient from left to right.
+                progressBar.style.width = `${100 - confidence}%`;
+                progressBar.setAttribute('aria-valuenow', Math.round(confidence));
+            }
+
+            lastReportUpdate = Date.now();
+            updateReportMeta();
+        }
+
+        /**
+         * Formats a past timestamp as "just now" / "N seconds ago" / "N minutes ago".
+         */
+        function formatRelativeTime(fromMs) {
+            const diffSeconds = Math.max(0, Math.floor((Date.now() - fromMs) / 1000));
+            if (diffSeconds < 5) return 'just now';
+            if (diffSeconds < 60) return `${diffSeconds} second${diffSeconds === 1 ? '' : 's'} ago`;
+            const diffMinutes = Math.floor(diffSeconds / 60);
+            return `${diffMinutes} minute${diffMinutes === 1 ? '' : 's'} ago`;
+        }
+
+        /**
+         * Refreshes the "Last updated" label on the report card. Called whenever the
+         * confidence recalculates, and on a timer so it keeps advancing on its own.
+         */
+        function updateReportMeta() {
+            const el = document.getElementById('report-updated-at');
+            if (el) el.textContent = `Last updated ${formatRelativeTime(lastReportUpdate)}`;
+        }
+
+        setInterval(updateReportMeta, 1000);
+
+        /**
+         * Updates the product list in the recommender pane.
+         */
+        function updateProductList() {
+            const answeredCount = Object.keys(state.answers).length;
+            const qualificationStagesCount = QUALIFICATION_STAGES.length;
+            const isQualified = answeredCount >= qualificationStagesCount;
+            const followUpAnsweredCount = Math.max(0, answeredCount - qualificationStagesCount);
+
+            let confidence = 0;
+            let confidenceColor = 'var(--c-confidence-low)';
+
+            if (isQualified) {
+                const baseConfidence = 42;
+                const followUpWeight = (100 - baseConfidence) / FOLLOW_UP_QUESTIONS.length;
+                confidence = baseConfidence + (followUpAnsweredCount * followUpWeight);
+
+                if (confidence >= 85) {
+                    confidenceColor = 'var(--c-confidence-high)';
+                } else if (confidence >= 42) {
+                    confidenceColor = 'var(--c-confidence-medium)';
+                }
+            } else {
+                confidence = (answeredCount / qualificationStagesCount) * 41;
+            }
+
+            const getProductScore = (product, answers) => {
+                let score = product.baseConfidence;
+                if (answers.teamSize) {
+                    if (answers.teamSize === '1-10' && (product.name === 'Pipedrive' || product.name === 'Freshworks')) score += 15;
+                    if (answers.teamSize === '201+' && (product.name === 'Salesforce')) score += 15;
+                }
+                if (answers.budget) {
+                    if (answers.budget === '$100,000+' && product.name === 'Salesforce') score += 20;
+                    if (answers.budget === 'Under $5,000' && product.name === 'Zoho CRM') score += 10;
+                }
+                return score;
+            };
+
+            const scoredProducts = PRODUCTS.map(p => ({ ...p, score: getProductScore(p, state.answers) })).sort((a, b) => b.score - a.score);
+
+            let productsToShow = 5;
+            if (isQualified) {
+                if (followUpAnsweredCount >= 5) {
+                    productsToShow = 3;
+                } else if (followUpAnsweredCount >= 2) {
+                    productsToShow = 4;
+                }
+            }
+
+            const visibleProducts = scoredProducts.slice(0, productsToShow);
+
+            const newEls = [];
+
+            visibleProducts.forEach(p => {
+                const card = document.createElement('div');
+                card.className = 'product-card';
+                card.dataset.animKey = `product-${p.name}`;
+                if (!isQualified) {
+                    card.classList.add('blurred');
+                }
+
+                const productConfidence = p.score + (confidence / 20);
+                if (isQualified) {
+                    if (productConfidence >= 85) card.classList.add('product-card--glow');
+                    else if (productConfidence >= 60) card.classList.add('product-card--elevated');
+                }
+
+                card.innerHTML = `
+                    ${p === visibleProducts[0] && isQualified ? '<div class="best-match-label">★ Best match so far</div>' : ''}
+                    <div class="product-card__header">
+                        <div class="product-card__identity">
+                            <div class="product-avatar" aria-hidden="true">${p.avatar}</div>
+                            <div class="product-card__title">
+                                <h3>${p.name}</h3>
+                                <div class="elv-star-wrapper"><span class="elv-stars elv-stars-4-5" aria-hidden="true"></span><span>${p.rating} (${p.reviews})</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="match-confidence"><strong>${Math.round(productConfidence)}% match confidence</strong><div class="confidence-bar" role="img" aria-label="${Math.round(productConfidence)} percent match confidence"><div class="confidence-bar-inner" style="width: ${Math.min(100, productConfidence)}%; background-color: ${confidenceColor};"></div></div></div>
+                    <p class="product-fit">${p.fit}</p>
+                    <div class="product-meta"><span>From <strong>${p.price}/user/mo</strong></span><span class="chip">${state.answers.needs ? 'Matches your needs' : 'Recommended for you'}</span></div>
+                    <details class="product-details"><summary>Why it may fit</summary><p>${p.fit}</p><div class="pros-cons-row">${p.pros.map(item => `<span class="pros-cons-chip" style="background: var(--elv-color-green-20)">+ ${item}</span>`).join('')}${p.cons.map(item => `<span class="pros-cons-chip" style="background: var(--elv-color-rorange-20)">- ${item}</span>`).join('')}</div></details>
+                    <div class="product-card__actions"><button class="btn btn--primary btn--sm" type="button">Learn more</button><button class="btn btn--secondary btn--sm" type="button">Compare</button></div>
+                `;
+                newEls.push(card);
+            });
+
+            // Blurred placeholders for the rest, so the sidebar height stays constant
+            if (isQualified && productsToShow < PRODUCTS.length) {
+                for (let i = 0; i < PRODUCTS.length - productsToShow; i++) {
+                    const card = document.createElement('div');
+                    card.className = 'product-card blurred';
+                    card.dataset.animKey = `placeholder-${i}`;
+                    card.innerHTML = `<h3>&nbsp;</h3><div class="confidence-bar"><div class="confidence-bar-inner"></div></div>`;
+                    newEls.push(card);
+                }
+            }
+
+            animateProductList(newEls);
+        }
+
+        /**
+         * Swaps the product list to `newEls`, animating the transition: cards that
+         * disappear fade/shrink out in place, cards that are new fade in, and cards
+         * that persist glide from their old position to their new one (FLIP).
+         * @param {HTMLElement[]} newEls - The new set of card elements, in order.
+         */
+        function animateProductList(newEls) {
+            const oldRects = new Map();
+            productList.querySelectorAll('[data-anim-key]').forEach(el => {
+                oldRects.set(el.dataset.animKey, el.getBoundingClientRect());
+            });
+            const newKeys = new Set(newEls.map(el => el.dataset.animKey));
+
+            // Cards leaving: clone them as fixed-position ghosts and fade them out,
+            // since their real elements are about to be removed from the DOM.
+            oldRects.forEach((rect, key) => {
+                if (newKeys.has(key)) return;
+                const oldEl = productList.querySelector(`[data-anim-key="${CSS.escape(key)}"]`);
+                if (!oldEl) return;
+                const ghost = oldEl.cloneNode(true);
+                Object.assign(ghost.style, {
+                    position: 'fixed', top: `${rect.top}px`, left: `${rect.left}px`,
+                    width: `${rect.width}px`, margin: '0', pointerEvents: 'none',
+                    transition: 'opacity 250ms ease, transform 250ms ease', zIndex: '10',
+                });
+                document.body.appendChild(ghost);
+                requestAnimationFrame(() => {
+                    ghost.style.opacity = '0';
+                    ghost.style.transform = 'scale(0.94)';
+                });
+                setTimeout(() => ghost.remove(), 260);
+            });
+
+            productList.innerHTML = '';
+            newEls.forEach(el => productList.appendChild(el));
+
+            newEls.forEach(el => {
+                const key = el.dataset.animKey;
+                const oldRect = oldRects.get(key);
+                if (oldRect) {
+                    // Persisted card: FLIP from its old position to its new one.
+                    const newRect = el.getBoundingClientRect();
+                    const dx = oldRect.left - newRect.left;
+                    const dy = oldRect.top - newRect.top;
+                    if (dx || dy) {
+                        el.style.transition = 'none';
+                        el.style.transform = `translate(${dx}px, ${dy}px)`;
+                        requestAnimationFrame(() => {
+                            el.style.transition = 'transform 300ms ease';
+                            el.style.transform = '';
+                            setTimeout(() => { el.style.transition = ''; }, 320);
+                        });
+                    }
+                } else {
+                    // Brand-new card: fade and slide in.
+                    el.classList.add('product-card--enter');
+                    requestAnimationFrame(() => {
+                        requestAnimationFrame(() => el.classList.remove('product-card--enter'));
+                    });
+                }
+            });
+        }
+
+        /**
+         * Updates the history of answers in the recommender pane.
+         */
+        function updateHistory() {
+            const existingHistory = document.querySelector('.history-chips');
+            if(existingHistory) existingHistory.remove();
+
+            const historyContainer = document.createElement('div');
+            historyContainer.className = 'history-chips';
+            for (const [key, value] of Object.entries(state.answers)) {
+                const chip = document.createElement('div');
+                chip.className = 'chip';
+                chip.textContent = `${key}: ${formatAnswerForDisplay(value)}`;
+                historyContainer.appendChild(chip);
+            }
+            productList.insertAdjacentElement('afterend', historyContainer);
+        }
+        
+        // --- Event Listeners ---
+
+        /**
+         * Starts (or restarts) the conversation from the beginning.
+         */
+        function start() {
+            chatLog.innerHTML = '';
+            chatControls.innerHTML = '';
+            state = { currentStep: 0, answers: {} };
+            addMessage('bot', `We have your <span class="inline-link-chip"><svg width="14" height="14" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="currentColor" d="M7 15H13V13.5H7V15ZM7 12H13V10.5H7V12ZM5.4941 18C5.08137 18 4.72917 17.8531 4.4375 17.5594C4.14583 17.2656 4 16.9125 4 16.5V3.5C4 3.0875 4.14687 2.73438 4.44062 2.44063C4.73437 2.14688 5.0875 2 5.5 2H12L16 6V16.5C16 16.9125 15.853 17.2656 15.5591 17.5594C15.2652 17.8531 14.9119 18 14.4992 18H5.4941ZM11 7H14.5L11 3.5V7Z"/></svg>HR software report</span> ready, but we can tailor the report to your team's needs if you tell us more.`);
+            render();
+        }
+
+        /**
+         * Resets the chat to its initial state.
+         */
+        resetBtn.addEventListener('click', start);
+
+        // --- Initial Render ---
+        start();
+
+    </script>
+</body>
+</html>

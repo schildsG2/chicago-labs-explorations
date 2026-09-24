@@ -114,6 +114,28 @@
         .pros-cons-chip { display: inline-flex; align-items: center; gap: 4px; height: 24px; padding-inline: var(--elv-space-2); border-radius: var(--elv-border-radius-md); font-size: var(--elv-font-size-sm); }
         .pros-cons-chip__label { font-weight: var(--elv-font-weight-semibold); color: var(--elv-text-default); }
         .pros-cons-chip__count { font-weight: var(--elv-font-weight-medium); color: var(--elv-text-default); }
+
+        .vendor-avatar { flex-shrink: 0; width: 32px; height: 32px; border-radius: var(--elv-border-radius-sm); display: grid; place-items: center; background-color: var(--elv-bg-neutral-0); border: 1px solid var(--elv-border-light); font-size: var(--elv-font-size-xs); font-weight: bold; }
+
+        .calendar-card { border: 1px solid var(--elv-border-light); border-radius: var(--elv-border-radius-lg); padding: var(--elv-space-4); background-color: var(--elv-bg-neutral-0); }
+        .calendar-card__nav { display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--elv-space-4); }
+        .calendar-card__month { font-weight: var(--elv-font-weight-bold); font-size: var(--elv-font-size-body); color: var(--elv-text-default); }
+        .calendar-nav-btn { width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--elv-border-light); background-color: var(--elv-bg-neutral-0); color: var(--elv-color-purple-100); display: grid; place-items: center; cursor: pointer; font-size: 18px; line-height: 1; }
+        .calendar-nav-btn:hover { background-color: var(--elv-bg-neutral-5); }
+        .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); }
+        .calendar-grid--weekdays { margin-bottom: var(--elv-space-2); }
+        .calendar-grid--weekdays div { text-align: center; font-size: var(--elv-font-size-xs); font-weight: var(--elv-font-weight-semibold); color: var(--elv-text-nonessential); padding-block: var(--elv-space-2); }
+        .calendar-day { position: relative; width: 36px; height: 36px; margin: 2px auto; border-radius: 50%; border: none; background: transparent; font-size: var(--elv-font-size-sm); font-weight: var(--elv-font-weight-medium); color: var(--elv-text-default); cursor: pointer; display: grid; place-items: center; }
+        .calendar-day:hover { background-color: var(--elv-bg-neutral-5); }
+        .calendar-day--selected { background-color: var(--elv-color-purple-100); color: var(--elv-bg-neutral-0); font-weight: var(--elv-font-weight-bold); }
+        .calendar-day--selected:hover { background-color: var(--elv-color-purple-100); }
+        .calendar-day--today::after { content: ''; position: absolute; bottom: 2px; left: 50%; transform: translateX(-50%); width: 4px; height: 4px; border-radius: 50%; background-color: var(--elv-color-purple-100); }
+        .calendar-day--selected.calendar-day--today::after { background-color: var(--elv-bg-neutral-0); }
+        .calendar-day--empty { background: transparent; cursor: default; }
+        .calendar-day:disabled { color: var(--elv-border-medium); cursor: default; }
+        .calendar-day:disabled:hover { background-color: transparent; }
+        .calendar-nav-btn:disabled { color: var(--elv-border-medium); border-color: var(--elv-border-light); cursor: default; }
+        .calendar-nav-btn:disabled:hover { background-color: transparent; }
     </style>
 </head>
 <body>
@@ -131,6 +153,10 @@
                 <button class="btn btn--tertiary btn--sm" onclick="machine.previewState('review')">Review</button>
                 <button class="btn btn--tertiary btn--sm" onclick="machine.previewState('results')">Results</button>
                 <button class="btn btn--tertiary btn--sm" onclick="machine.previewState('handoff')">Handoff</button>
+                <div class="toolbar-divider"></div>
+                <button class="btn btn--tertiary btn--sm" onclick="machine.previewState('scheduleVendors')">Schedule: Vendors</button>
+                <button class="btn btn--tertiary btn--sm" onclick="machine.previewState('scheduleCalendar')">Schedule: Calendar</button>
+                <button class="btn btn--tertiary btn--sm" onclick="machine.previewState('scheduleConfirm')">Schedule: Confirm</button>
                 <div class="toolbar-divider"></div>
                 <button class="btn btn--secondary btn--sm" onclick="machine.transition('reset')">Reset</button>
             </div>
@@ -182,6 +208,9 @@
                 review: { on: { results: 'results', edit: (ctx) => ctx.editTarget, back: 'budget' } },
                 results: { on: { handoff: 'handoff', back: 'review' } },
                 handoff: { on: { reset: 'intro', back: 'results' } },
+                scheduleVendors: { on: { scheduleCalendar: 'scheduleCalendar', back: 'handoff' } },
+                scheduleCalendar: { on: { scheduleConfirm: 'scheduleConfirm', back: 'scheduleVendors' } },
+                scheduleConfirm: { on: { reset: 'intro', back: 'scheduleCalendar' } },
             },
             reset(renderInitial = true) {
                 this.state = this.initial;
@@ -222,7 +251,7 @@
                 let percent = (completedCount / totalSteps) * 100;
                 
                 if (this.state === 'review') percent = 100;
-                if (['results', 'handoff'].includes(this.state)) {
+                if (['results', 'handoff', 'scheduleVendors', 'scheduleCalendar', 'scheduleConfirm'].includes(this.state)) {
                     progressLabel.textContent = 'Your Results';
                     progressBar.style.width = '100%';
                     progressBar.style.backgroundColor = 'var(--elv-color-green-100)';
@@ -297,6 +326,9 @@
             render_review() { this.appendMessage({ author: 'bot', content: '', controls: { isReview: true } }); },
             render_results() { this.appendMessage({ author: 'bot', content: `<h2>Here are your top candidates</h2><p>Based on your answers, we suggest these strong contenders.</p>`, controls: { isResults: true }, inline: true }); },
             render_handoff() { this.appendMessage({ author: 'bot', content: `<h2>What's next?</h2><p>Your matches are saved. Continue on your own, or I can connect you with a G2 software advisor.</p>`, controls: { isHandoff: true } }); },
+            render_scheduleVendors() { this.appendMessage({ author: 'bot', content: `<h2>Great — let's get this on the calendar.</h2><p>Which vendor(s) would you like to talk to?</p>`, controls: { isScheduleVendors: true } }); },
+            render_scheduleCalendar() { this.appendMessage({ author: 'bot', content: `<h2>Nice choice.</h2><p>Which days are you available for a quick intro call?</p>`, controls: { isScheduleCalendar: true } }); },
+            render_scheduleConfirm() { this.appendMessage({ author: 'bot', content: `<h2>You're all set.</h2><p>We'll reach out to confirm a time and connect you with your selected vendor(s).</p>` }); },
             appendMessage({ author, content, controls, inline }) {
                 const messageId = 'msg-' + Date.now();
                 const message = document.createElement('div');
@@ -346,6 +378,12 @@
                 }
                 else if (question.isHandoff) {
                     node = this.generateHandoffChoices();
+                }
+                else if (question.isScheduleVendors) {
+                    node = this.generateScheduleVendorsPanel();
+                }
+                else if (question.isScheduleCalendar) {
+                    node = this.generateScheduleCalendarPanel();
                 }
                 if (!node) return;
                 if (append) container.append(node); else container.replaceChildren(node);
@@ -487,8 +525,12 @@
 
                     this.appendMessage({ author: 'user', content: choiceText });
 
+                    if (choiceValue === 'vendor') {
+                        setTimeout(() => this.transition('scheduleVendors'), 300);
+                        return;
+                    }
+
                     const botMessageMap = {
-                        vendor: "Great! The next step will be choosing vendor(s) and a meeting time.",
                         human: "You got it. A G2 software advisor will be in touch shortly.",
                         agent: "I'm ready for your next question. How else can I help?"
                     };
@@ -498,6 +540,131 @@
                        this.appendMessage({ author: 'bot', content: botResponse });
                        stepControls.innerHTML = '';
                     }, 300);
+                });
+                return form;
+            },
+            generateScheduleVendorsPanel() {
+                const vendors = [
+                    { name: 'Salesforce Sales Cloud', avatar: 'SF' },
+                    { name: 'HubSpot Sales Hub', avatar: 'HS' },
+                    { name: 'Zoho CRM', avatar: 'ZC' },
+                ];
+                const saved = this.context.answers.scheduleVendors || [];
+                const form = document.createElement('form');
+                form.className = 'input-panel';
+                form.innerHTML = `
+                    <div class="input-panel-header" style="display:flex; align-items:flex-start; justify-content:space-between; gap: 12px;">
+                        <h2 style="margin:0;">What vendors would you like to talk to?</h2>
+                        <span class="elv-text-xs elv-text-nonessential" style="white-space:nowrap; padding-top: 2px;">1/2</span>
+                    </div>
+                    <fieldset class="native-choice-group">
+                        <legend class="visually-hidden">Vendor options</legend>
+                        ${vendors.map((v, i) => `
+                            <label for="schedule-vendor-${i}" class="native-choice-label">
+                                <input type="checkbox" id="schedule-vendor-${i}" name="schedule-vendor" value="${v.name}" ${saved.includes(v.name) ? 'checked' : ''}>
+                                <span class="vendor-avatar">${v.avatar}</span>
+                                <span class="native-choice-text">${v.name}</span>
+                            </label>
+                        `).join('')}
+                    </fieldset>
+                    <div class="form-actions">
+                        <button type="button" class="btn btn--text" data-action="back">Back</button>
+                        <button type="submit" class="btn btn--primary btn--md">Next</button>
+                    </div>
+                `;
+                form.querySelector('[data-action="back"]').addEventListener('click', () => this.transition('back'));
+                form.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    const selected = Array.from(form.querySelectorAll('input[name="schedule-vendor"]:checked')).map(cb => cb.value);
+                    if (!selected.length) {
+                        form.querySelector('input[name="schedule-vendor"]').focus();
+                        return;
+                    }
+                    this.context.answers.scheduleVendors = selected;
+                    this.appendMessage({ author: 'user', content: `${selected.length} vendor${selected.length > 1 ? 's' : ''} selected` });
+                    setTimeout(() => this.transition('scheduleCalendar'), 250);
+                });
+                return form;
+            },
+            generateCalendarDays(year, month, selectedDays) {
+                const firstWeekday = new Date(year, month, 1).getDay();
+                const daysInMonth = new Date(year, month + 1, 0).getDate();
+                const today = new Date();
+                const todayMidnight = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+                const isCurrentMonth = today.getFullYear() === year && today.getMonth() === month;
+                let cells = '';
+                for (let i = 0; i < firstWeekday; i++) cells += '<div class="calendar-day calendar-day--empty"></div>';
+                for (let d = 1; d <= daysInMonth; d++) {
+                    const isToday = isCurrentMonth && today.getDate() === d;
+                    const isSelected = selectedDays.has(d);
+                    const isPast = new Date(year, month, d) < todayMidnight;
+                    cells += `<button type="button" class="calendar-day${isSelected ? ' calendar-day--selected' : ''}${isToday ? ' calendar-day--today' : ''}" data-day="${d}"${isPast ? ' disabled aria-disabled="true"' : ''}>${d}</button>`;
+                }
+                return cells;
+            },
+            generateScheduleCalendarPanel() {
+                const today = new Date();
+                if (!this.context.schedule) {
+                    this.context.schedule = { year: today.getFullYear(), month: today.getMonth(), selectedDays: new Set() };
+                }
+                const ctx = this.context.schedule;
+                const form = document.createElement('form');
+                form.className = 'input-panel';
+                form.innerHTML = `
+                    <div class="input-panel-header" style="display:flex; align-items:flex-start; justify-content:space-between; gap: 12px;">
+                        <h2 style="margin:0;">Which days are you available?</h2>
+                        <span class="elv-text-xs elv-text-nonessential" style="white-space:nowrap; padding-top: 2px;">2/2</span>
+                    </div>
+                    <div class="calendar-card">
+                        <div class="calendar-card__nav">
+                            <button type="button" class="calendar-nav-btn" data-action="prev-month" aria-label="Previous month">&lsaquo;</button>
+                            <div class="calendar-card__month"></div>
+                            <button type="button" class="calendar-nav-btn" data-action="next-month" aria-label="Next month">&rsaquo;</button>
+                        </div>
+                        <div class="calendar-grid calendar-grid--weekdays">
+                            <div>SUN</div><div>MON</div><div>TUE</div><div>WED</div><div>THU</div><div>FRI</div><div>SAT</div>
+                        </div>
+                        <div class="calendar-grid calendar-days"></div>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn btn--text" data-action="back">Back</button>
+                        <button type="submit" class="btn btn--primary btn--md">Submit</button>
+                    </div>
+                `;
+
+                const renderMonth = () => {
+                    form.querySelector('.calendar-card__month').textContent = new Date(ctx.year, ctx.month, 1).toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+                    form.querySelector('.calendar-days').innerHTML = this.generateCalendarDays(ctx.year, ctx.month, ctx.selectedDays);
+                    const isAtCurrentMonth = ctx.year < today.getFullYear() || (ctx.year === today.getFullYear() && ctx.month <= today.getMonth());
+                    form.querySelector('[data-action="prev-month"]').disabled = isAtCurrentMonth;
+                };
+                renderMonth();
+
+                form.querySelector('[data-action="prev-month"]').addEventListener('click', () => {
+                    ctx.month -= 1;
+                    if (ctx.month < 0) { ctx.month = 11; ctx.year -= 1; }
+                    renderMonth();
+                });
+                form.querySelector('[data-action="next-month"]').addEventListener('click', () => {
+                    ctx.month += 1;
+                    if (ctx.month > 11) { ctx.month = 0; ctx.year += 1; }
+                    renderMonth();
+                });
+                form.querySelector('.calendar-days').addEventListener('click', (e) => {
+                    const dayBtn = e.target.closest('.calendar-day');
+                    if (!dayBtn || dayBtn.classList.contains('calendar-day--empty')) return;
+                    const day = Number(dayBtn.dataset.day);
+                    if (ctx.selectedDays.has(day)) ctx.selectedDays.delete(day); else ctx.selectedDays.add(day);
+                    dayBtn.classList.toggle('calendar-day--selected');
+                });
+                form.querySelector('[data-action="back"]').addEventListener('click', () => this.transition('back'));
+                form.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    if (!ctx.selectedDays.size) return;
+                    const monthLabel = new Date(ctx.year, ctx.month, 1).toLocaleDateString('en-US', { month: 'long' });
+                    const days = Array.from(ctx.selectedDays).sort((a, b) => a - b);
+                    this.appendMessage({ author: 'user', content: `Available ${days.map(d => `${monthLabel} ${d}`).join(', ')}` });
+                    setTimeout(() => this.transition('scheduleConfirm'), 250);
                 });
                 return form;
             },
