@@ -1,0 +1,22 @@
+index.html
+  s_efa4117dea948e::t_e6f175fcb7f5b7 18-19
+  s_efa4117dea948e::t_f21f72c79b9e13 70
+  s_efa4117dea948e::t_895e9e3cdcf42c 55
+  s_efa4117dea948e::t_52194cd89c6978 89
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "f96805015021191306c4c29ec660b74d652bc4dd",
+  "prompts": {},
+  "sessions": {
+    "s_efa4117dea948e": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "d3b75656-43e3-47c1-8a66-7d0a0e1ff871",
+        "model": "claude-sonnet-5"
+      },
+      "human_author": "Sam Childs <schilds@g2.com>"
+    }
+  }
+}
