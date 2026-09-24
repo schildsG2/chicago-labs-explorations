@@ -12,19 +12,44 @@
     body { margin: 0; }
     .hidden { display: none !important; }
 
-    /* Chip filter styling */
-    .filter-chip {
-      transition: all 0.15s ease-in-out;
-      white-space: nowrap;
-      flex-shrink: 0;
+    /* Elevate Chip (not yet in the shared bundle — copied from
+       components/templates/simple/chip.html) */
+    .elv-chip {
+      display: inline-flex;
+      width: fit-content;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
+      background: var(--bg-neutral-10);
+      color: var(--text-neutral);
+      border: none;
+      font-family: var(--font-sans);
     }
-    .filter-chip[data-selected="true"] {
+    .elv-chip:hover {
+      background: var(--bg-primary-30);
+      color: var(--text-primary);
+    }
+    .elv-chip[data-selected="true"] {
       background: var(--bg-primary-20);
       color: var(--text-primary);
     }
-    .filter-chip:hover {
-      background: var(--bg-primary-30);
-      color: var(--text-primary);
+    .elv-chip--md {
+      height: 2rem;
+      padding: 0.125rem 0.25rem;
+      border-radius: var(--radius-sm);
+      font-size: var(--text-sm);
+      font-weight: var(--font-semibold);
+    }
+    .elv-chip__label {
+      padding: 0 0.125rem;
+      color: inherit;
+      white-space: nowrap;
+      font-weight: inherit;
+      font-size: inherit;
+    }
+    .filter-chip {
+      flex-shrink: 0;
     }
 
     /* Epic card hover */
@@ -87,43 +112,47 @@
 
       <!-- Filter Chips (Elevate chip pattern) -->
       <div class="elv-flex elv-gap-2 elv-flex-wrap">
-        <div
-          class="filter-chip elv-inline-flex elv-w-fit elv-items-center elv-justify-center elv-ease-in-out elv-duration-150 elv-cursor-pointer elv-bg-neutral-10 elv-text-neutral elv-rounded-sm elv-h-9 elv-px-4 elv-py-2 elv-text-sm elv-font-medium"
+        <button type="button"
+          class="filter-chip elv-chip elv-chip--md"
+          data-kind="single_select"
           data-tag="all"
           data-selected="true">
-          All
-        </div>
-        <div
-          class="filter-chip elv-inline-flex elv-w-fit elv-items-center elv-justify-center elv-ease-in-out elv-duration-150 elv-cursor-pointer elv-bg-neutral-10 elv-text-neutral elv-rounded-sm elv-h-9 elv-px-4 elv-py-2 elv-text-sm elv-font-medium"
+          <span class="elv-chip__label">All</span>
+        </button>
+        <button type="button"
+          class="filter-chip elv-chip elv-chip--md"
+          data-kind="single_select"
           data-tag="g2-activate"
           data-selected="false">
-          G2 Activate
-        </div>
-        <div
-          class="filter-chip elv-inline-flex elv-w-fit elv-items-center elv-justify-center elv-ease-in-out elv-duration-150 elv-cursor-pointer elv-bg-neutral-10 elv-text-neutral elv-rounded-sm elv-h-9 elv-px-4 elv-py-2 elv-text-sm elv-font-medium"
+          <span class="elv-chip__label">G2 Activate</span>
+        </button>
+        <button type="button"
+          class="filter-chip elv-chip elv-chip--md"
+          data-kind="single_select"
           data-tag="agent-marketplace"
           data-selected="false">
-          Agent Marketplace
-        </div>
-        <div
-          class="filter-chip elv-inline-flex elv-w-fit elv-items-center elv-justify-center elv-ease-in-out elv-duration-150 elv-cursor-pointer elv-bg-neutral-10 elv-text-neutral elv-rounded-sm elv-h-9 elv-px-4 elv-py-2 elv-text-sm elv-font-medium"
+          <span class="elv-chip__label">Agent Marketplace</span>
+        </button>
+        <button type="button"
+          class="filter-chip elv-chip elv-chip--md"
+          data-kind="single_select"
           data-tag="design-system"
           data-selected="false">
-          Design System
-        </div>
-        <div
-          class="filter-chip elv-inline-flex elv-w-fit elv-items-center elv-justify-center elv-ease-in-out elv-duration-150 elv-cursor-pointer elv-bg-neutral-10 elv-text-neutral elv-rounded-sm elv-h-9 elv-px-4 elv-py-2 elv-text-sm elv-font-medium"
+          <span class="elv-chip__label">Design System</span>
+        </button>
+        <button type="button"
+          class="filter-chip elv-chip elv-chip--md"
+          data-kind="single_select"
           data-tag="agentic-ppl"
           data-selected="false">
-          Agentic PPL
-        </div>
+          <span class="elv-chip__label">Agentic PPL</span>
+        </button>
       </div>
 
-      <!-- Sort Dropdown (Elevate pattern) -->
+      <!-- Sort Dropdown (Elevate select component) -->
       <select
         id="sortSelect"
-        class="elv-px-3 elv-py-2 elv-border elv-border-medium elv-rounded-sm elv-text-sm elv-bg-neutral-0 elv-cursor-pointer elv-text-default"
-        style="font-family: var(--font-sans); appearance: none; background-image: url('data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2712%27 height=%2712%27 viewBox=%270 0 12 12%27%3E%3Cpath fill=%27%236B7280%27 d=%27M6 8L1 3h10z%27/%3E%3C/svg%3E'); background-repeat: no-repeat; background-position: right 10px center; padding-right: 32px; height: 36px;">
+        class="elv-select elv-select--md">
         <option value="recent">Most Recent</option>
         <option value="oldest">Oldest First</option>
         <option value="name">A-Z</option>
