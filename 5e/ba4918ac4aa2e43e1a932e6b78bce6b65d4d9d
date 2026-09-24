@@ -1,0 +1,67 @@
+epics/qualification-chat/explorations/01-figma-flow-mockup.html
+  s_efa4117dea948e::t_17210b84c715e1 382-387
+  s_efa4117dea948e::t_c64d0310bd9bd6 528-532
+  s_efa4117dea948e::t_719f26bfbb103e 211-213
+  s_efa4117dea948e::t_26ceb4eb4d1592 117-134
+  s_efa4117dea948e::t_cc03dc8b260380 254
+  s_efa4117dea948e::t_8ea5d5317f84ea 329-331
+  s_efa4117dea948e::t_f019195e263b95 593,600-601
+  s_efa4117dea948e::t_e921b0bd2e426c 157-160
+  s_efa4117dea948e::t_4b6f6483867a04 638-639
+  s_efa4117dea948e::t_17d9552831861d 135-138
+  s_efa4117dea948e::t_d04e3b553d98e1 546-592,594-599,602-637,640-670
+epics/qualification-chat/explorations/02-live-recommender-pane.html
+  s_efa4117dea948e::t_9c00da8396b02c 808,810,816-821,824
+  s_efa4117dea948e::t_b16e6f1ddd38cc 101-106,110
+  s_efa4117dea948e::t_892f5f5389f348 232,234-235
+  s_efa4117dea948e::t_bf66fab480e52e 242
+  s_efa4117dea948e::t_0ed8506510d2bd 814
+  s_efa4117dea948e::t_689d13a71eda8d 113-114
+  s_efa4117dea948e::t_45c3875e8dd91b 595-597,599-620
+  s_efa4117dea948e::t_b75671ebb661f2 87
+  s_efa4117dea948e::t_5bde653f58841b 590-592
+  s_efa4117dea948e::t_1c4b06201402d6 78
+  s_efa4117dea948e::t_921b62a692b875 399,402
+  s_efa4117dea948e::t_13a1efc6ed2f56 589
+  s_efa4117dea948e::t_c0a98d12437ed6 75-76
+  s_efa4117dea948e::t_129494139ff678 219-222
+  s_efa4117dea948e::t_85ba2a485441ec 685-688
+  s_efa4117dea948e::t_d1fda247bc7027 223
+  s_efa4117dea948e::t_99721ce97e1fa6 674-675,679,689,707,710,715,717,720-784
+  s_efa4117dea948e::t_d58513f81c77dc 112
+  s_efa4117dea948e::t_34f32548e16398 120
+  s_efa4117dea948e::t_57b738df0676ad 463
+  s_efa4117dea948e::t_cb3479388354a9 86
+  s_efa4117dea948e::t_6f4c78cd7969ba 1-74,79-83,88-100,115-119,144-218,224-225,238-241,243-256,258-398,400-401,403-432,434-462,464-491,495-498,503,505,516-588,593-594,598,621-673,676-678,680-684,690-706,708-709,711-714,716,718-719,785-807,809,811-813,815,822-823,825-828
+  s_efa4117dea948e::t_4b56462aafead8 111
+  s_efa4117dea948e::t_370c1501eeaf47 257
+  s_efa4117dea948e::t_7bffd8b2d8e049 107-109
+  s_efa4117dea948e::t_c975b704daac34 121-143
+  s_efa4117dea948e::t_8836fbec65075c 492-494,499-502,504,506-515
+  s_efa4117dea948e::t_6d51fad3e8cd74 226-231,233,236-237
+  s_efa4117dea948e::t_00fb6174f0f662 433
+  s_efa4117dea948e::t_89d5d9cc7eea50 84-85
+  s_efa4117dea948e::t_d91534d156e100 77
+epics/qualification-chat/explorations/03-buyer-workspace-chat.html
+  s_efa4117dea948e::t_6506a8b349eefc 1-737,739-1476
+  s_efa4117dea948e::t_b0c4fde1696895 738
+epics/qualification-chat/index.html
+  s_efa4117dea948e::t_d5c4fd6823e051 140-153
+  s_efa4117dea948e::t_8036fc876a4476 154-167
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "5eba4918ac4aa2e43e1a932e6b78bce6b65d4d9d",
+  "prompts": {},
+  "sessions": {
+    "s_efa4117dea948e": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "d3b75656-43e3-47c1-8a66-7d0a0e1ff871",
+        "model": "claude-sonnet-5"
+      },
+      "human_author": "Sam Childs <schilds@g2.com>"
+    }
+  }
+}
