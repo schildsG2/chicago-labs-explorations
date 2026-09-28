@@ -1,0 +1,19 @@
+epics/qualification-chat/index.html
+  s_efa4117dea948e::t_e4ff0e3e0e7e9e 102
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "afdfd2e5ef55600a828cac5f5d327b7ec4ec4f26",
+  "prompts": {},
+  "sessions": {
+    "s_efa4117dea948e": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "d3b75656-43e3-47c1-8a66-7d0a0e1ff871",
+        "model": "claude-sonnet-5"
+      },
+      "human_author": "Sam Childs <schilds@g2.com>"
+    }
+  }
+}
