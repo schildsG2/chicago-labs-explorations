@@ -129,6 +129,27 @@
     .section-shell { position: relative; }
 
     .beat { padding-top: 120px; padding-bottom: 120px; }
+
+    /* Hero/intro-style sections only (Greeting, Recommendation headline,
+       Step 1) — a soft floor so these fill more of tall monitors, not a
+       fixed height. Deliberately NOT applied to Step 2's intro header
+       (kept tight to the matches that follow it, per direct feedback) or
+       to the dense, grid-heavy sections (feature chips, review cards,
+       next-steps cards, per-product evidence columns) — forcing those to
+       fill the screen would just add empty whitespace, since their height
+       is already driven by real content. min-height (not height) plus
+       clamp()-based padding scales smoothly with viewport height instead
+       of needing breakpoints, and never forces a section taller than its
+       content wants on a short viewport. */
+    .section-fill {
+      min-height: 100svh;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-top: clamp(64px, 12vh, 160px);
+      padding-bottom: clamp(64px, 12vh, 160px);
+    }
     .beat-lead { margin-bottom: 56px; }
     .row-stack { display: flex; flex-direction: column; gap: 40px; }
 
@@ -151,7 +172,7 @@
       display: flex;
       gap: 48px;
       flex-wrap: wrap;
-      margin-top: 32px;
+      margin-top: 40px;
       opacity: 0;
       transform: translateY(10px);
       transition: opacity 500ms ease, transform 500ms ease;
@@ -247,8 +268,60 @@
       margin: 0 0 10px;
     }
 
-    /* Feature chips — reuse elv-status-badge visually but as a wrapping row */
+    /* Evidence-column headline stat — a distinct proof point not repeated
+       in the Priority/Other Related Features chips below, so it reads as
+       added evidence rather than a preview of the same list. Rendered as a
+       free-floating radial gauge on G2's real 0–10 feature-score scale
+       (confirmed against a live G2 compare page — feature-level ratings
+       are NOT the 5-star scale used for the overall product rating), no
+       card frame around it. */
+    .evidence-headline {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .evidence-headline__gauge { position: relative; width: 80px; height: 80px; flex-shrink: 0; }
+    .evidence-headline__gauge svg { transform: rotate(-90deg); }
+    .evidence-headline__ring-track { fill: none; stroke: var(--border-light); stroke-width: 5; }
+    .evidence-headline__ring-fill {
+      fill: none;
+      stroke: var(--border-primary);
+      stroke-width: 5;
+      stroke-linecap: round;
+      stroke-dasharray: 213.63;
+      stroke-dashoffset: calc(213.63 - (213.63 * var(--pct)));
+    }
+    .evidence-headline__gauge-value {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
+      font-weight: 800;
+      color: var(--text-primary);
+    }
+    .evidence-headline__label {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--text-default);
+      line-height: 22px;
+    }
+    .evidence-headline__meta {
+      display: block;
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--text-nonessential);
+      margin-top: 2px;
+    }
+
+    /* Feature chips — reuse elv-status-badge visually but as a wrapping row.
+       Split into two separate evidence-rows (promoted / secondary) rather
+       than one flat row at uniform weight — see the "Priority Features"
+       and "Other Related Features" evidence-row pairs below. */
     .feature-chip-row { display: flex; flex-wrap: wrap; gap: 8px; }
+    .feature-chip-row--priority .elv-status-badge { font-weight: 700; }
+    .feature-chip-row--secondary { opacity: 0.65; }
 
     /* Elevate's utilities.css only ships elv-grid-cols-1 — no -2/-3 variants
        exist, so md:elv-grid-cols-2 etc. would be silent no-ops. Auto-fit
@@ -268,26 +341,6 @@
        gives these subheads 20px, so tighten it to 8px total here. */
     .field-grid .elv-content-card__header { padding-bottom: 0; }
     .field-grid .elv-content-card__body { padding-top: 8px; }
-
-    /* Pro/con sentiment rows (AggregatedSentimentSnippet-shaped: text + count,
-       not a full quote) — visually distinct from the attributed review
-       quotes below them. */
-    .sentiment-row { display: flex; align-items: center; gap: 10px; }
-    .sentiment-row__icon {
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 12px;
-      font-weight: 700;
-      flex-shrink: 0;
-    }
-    .sentiment-row__icon--pro { background: var(--bg-success-20); color: var(--text-success); }
-    .sentiment-row__icon--con { background: var(--bg-warning-20); color: var(--text-warning); }
-    .sentiment-row__text { font-size: 14px; color: var(--text-default); }
-    .sentiment-row__count { color: var(--text-nonessential); }
 
     .quote-card { display: flex; flex-direction: column; gap: 8px; }
 
@@ -376,27 +429,24 @@
        second half of the dual inline-emphasis system. Hard numbers get bold
        color (elv-text-primary elv-font-semibold, used elsewhere already);
        opinions get this wash instead, so facts and claims read as two
-       distinct registers instead of one catch-all emphasis style. */
+       distinct registers instead of one catch-all emphasis style.
+       A -10 tint plus default text color was too faint on white and
+       disappeared entirely on tone-tint sections (same -10 background) —
+       a -20 tint plus colored, semibold text keeps it legible regardless
+       of the surrounding section's background. */
     .highlight-phrase {
-      background: var(--bg-primary-10);
+      background: var(--bg-primary-20);
+      color: var(--text-primary);
+      font-weight: 600;
       padding: 1px 5px;
       border-radius: 3px;
     }
 
     /* Big pull-quote treatment — dialed up from a small italic aside to a
-       confident, oversized editorial quote: larger/heavier text, a
-       decorative oversized glyph, and a thicker rule instead of a border. */
+       confident, oversized editorial quote: larger/heavier text and a
+       thicker rule instead of a border (no decorative glyph — redundant
+       next to the rule, per direct feedback). */
     .pull-quote { position: relative; padding-left: 20px; border-left: 3px solid var(--border-primary); }
-    .pull-quote__glyph {
-      position: absolute;
-      top: -14px;
-      left: -6px;
-      font-size: 56px;
-      font-weight: 300;
-      color: var(--bg-primary-40);
-      line-height: 1;
-      user-select: none;
-    }
     .pull-quote__text {
       font-size: 19px;
       line-height: 27px;
@@ -415,8 +465,7 @@
     }
     /* Compact variant for the attributed review quotes inside the evidence
        column, where the card is narrower and the tone should stay quieter
-       than the buyer-voice pull-quote in Step 2. */
-    .pull-quote--sm .pull-quote__glyph { font-size: 40px; top: -10px; left: -4px; }
+       than the buyer-voice pull-quotes in Step 1. */
     .pull-quote--sm .pull-quote__text { font-size: 15px; line-height: 21px; }
     .pull-quote--sm .pull-quote__attr { text-transform: none; letter-spacing: normal; font-weight: 400; margin-top: 6px; }
 
@@ -443,6 +492,7 @@
       --border-primary: var(--elv-border-primary);
       --border-light: var(--elv-border-light);
       --bg-primary-10: var(--elv-bg-primary-10);
+      --bg-primary-20: var(--elv-bg-primary-20);
       --bg-primary-30: var(--elv-bg-primary-30);
       --bg-primary-40: var(--elv-bg-primary-40);
     }
@@ -529,6 +579,14 @@
     .elv-product-avatar--md { width: 80px; height: 80px; border-radius: 4px; }
     .elv-product-avatar--lg { width: 104px; height: 104px; padding: 4px; border-radius: 4px; }
     .elv-product-avatar--xl { width: 144px; height: 144px; padding: 8px; border-radius: 8px; }
+    /* Three xl avatars (144px + gaps) overflow a narrow viewport's width
+       even with the logos row's own flex-wrap, since the row of three has
+       no wrap of its own — shrink them instead of letting the page scroll
+       horizontally. Placed after the base rule (not in the earlier
+       max-width:640px block) so it actually wins the cascade. */
+    @media (max-width: 640px) {
+      .elv-product-avatar--xl { width: 96px; height: 96px; padding: 6px; }
+    }
     .elv-product-avatar__placeholder { display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; padding: 25%; }
     .elv-product-avatar__placeholder img { width: 100%; height: 100%; object-fit: contain; opacity: 0.3; }
 
@@ -570,6 +628,96 @@
     .elv-product-details--lg .elv-product-details__rating-text,
     .elv-product-details--xl .elv-product-details__rating-text { font-size: 16px; line-height: 24px; }
     .elv-product-details__rating-count { color: var(--text-subtle); font-weight: 300; }
+
+    /* Screenshot row — simple placeholder thumbnails, click opens a shared
+       lightbox. No real product screenshots exist in this repo yet (only
+       the generic product-placeholder icon), so these are clearly-labeled
+       placeholder frames rather than actual UI captures. */
+    .screenshot-row { display: flex; flex-wrap: wrap; gap: 12px; }
+    .screenshot-thumb {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 220px;
+      height: 130px;
+      background: var(--bg-neutral-5);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: border-color 150ms ease, box-shadow 150ms ease;
+      font-family: inherit;
+      padding: 0;
+    }
+    .screenshot-thumb:hover,
+    .screenshot-thumb:focus-visible {
+      border-color: var(--border-primary);
+      box-shadow: 0 2px 8px rgba(32, 31, 35, 0.10);
+    }
+    .screenshot-thumb__icon { color: var(--text-nonessential); line-height: 0; }
+    .screenshot-thumb__icon svg { width: 34px; height: 34px; }
+    .screenshot-thumb__label { font-size: 12px; font-weight: 600; color: var(--text-subtle); }
+
+    /* Lightbox — Elevate's own .elv-modal component (structure/behavior
+       copied from components/templates/complex/modal.html, like the other
+       self-contained component styles above), sized for a single large
+       placeholder frame rather than form content. */
+    .elv-modal {
+      position: fixed;
+      margin: auto;
+      padding: 0;
+      background: var(--bg-neutral-0);
+      border: none;
+      box-shadow: 0 8px 32px 0 rgba(32, 31, 35, 0.12);
+      border-radius: 16px;
+      max-height: 90vh;
+      overflow: visible;
+    }
+    .elv-modal::backdrop { background: rgba(32, 31, 35, 0.40); }
+    @keyframes fadeInModal {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    .elv-modal[open] { animation: fadeInModal 200ms ease-in-out; }
+    .elv-modal--lg { width: 100%; max-width: 760px; }
+    .elv-modal__inner { display: flex; flex-direction: column; max-height: 90vh; }
+    .elv-modal__header {
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--border-light);
+      background: var(--bg-neutral-5);
+      flex-shrink: 0;
+      border-radius: 16px 16px 0 0;
+    }
+    .elv-modal__header-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; }
+    .elv-modal__title { font-size: 18px; line-height: 24px; font-weight: 700; color: var(--text-default); margin: 0; }
+    .elv-modal__close {
+      flex-shrink: 0;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+      color: var(--text-nonessential);
+      font-size: 20px;
+      line-height: 1;
+      border-radius: 4px;
+    }
+    .elv-modal__close:hover { background: var(--bg-neutral-10); }
+    .elv-modal__body { padding: 24px; overflow-y: auto; flex: 1; }
+    body:has(dialog[open]) { overflow: hidden; }
+
+    .screenshot-lightbox__frame {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      aspect-ratio: 16 / 10;
+      background: var(--bg-neutral-5);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-sm);
+      color: var(--text-nonessential);
+    }
+    .screenshot-lightbox__frame svg { width: 64px; height: 64px; }
+    .screenshot-lightbox__caption { margin: 16px 0 0; font-size: 14px; color: var(--text-subtle); }
   </style>
 </head>
 <body>
@@ -594,30 +742,22 @@
         </div>
         <div class="step-dot" data-step="2">
           <span class="step-dot__circle">2</span>
-          <span class="step-dot__label">The landscape</span>
+          <span class="step-dot__label">Your matches</span>
         </div>
         <div class="step-dot" data-step="3">
           <span class="step-dot__circle">3</span>
-          <span class="step-dot__label">Your matches</span>
-        </div>
-        <div class="step-dot" data-step="4">
-          <span class="step-dot__circle">4</span>
           <span class="step-dot__label">Next steps</span>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Hero -->
-  <header class="elv-max-w-screen-xl elv-mx-auto elv-px-6" style="padding-top: 96px; padding-bottom: 64px;">
-    <p class="eyebrow eyebrow--on-light">Your recommendation</p>
-    <h1 class="hero-title elv-text-4xl elv-font-extrabold elv-text-default elv-mb-3" style="max-width: 880px;">
-      Here's who's <span class="elv-text-primary">delivering</span> what you need.
-    </h1>
-    <p class="elv-text-base elv-text-subtle" style="max-width: 520px;">
-      Three healthcare scheduling platforms, evaluated against the three things you said
-      couldn't slip — not just a <span class="highlight-phrase">match score</span>.
-    </p>
+  <!-- Greeting -->
+  <header class="elv-max-w-screen-xl elv-mx-auto elv-px-6 section-fill">
+    <p class="eyebrow eyebrow--on-light">Welcome back</p>
+    <h2 class="elv-text-2xl font-black elv-text-default" style="max-width: 640px;">
+      Thanks for walking us through your priorities, <span class="elv-text-primary">Monty</span>.
+    </h2>
 
     <div class="stat-strip" id="hero-stats">
       <div>
@@ -635,137 +775,127 @@
     </div>
   </header>
 
-  <!-- Step 1 — Your criteria -->
-  <section data-step-section="1" data-indicator="Your criteria" class="elv-max-w-screen-xl elv-mx-auto elv-px-6 beat">
-    <div class="beat-lead">
-      <div class="beat-numeral">01</div>
-      <p class="eyebrow eyebrow--on-light">Your criteria</p>
-      <h2 class="elv-text-2xl font-black elv-text-default">Here's what you told us.</h2>
-    </div>
-
-    <div class="row-stack">
-      <div class="field-grid">
-        <div class="elv-content-card elv-content-card--bordered reveal" style="transition-delay: 0ms; max-width: none;">
-          <div class="elv-content-card__header">
-            <div class="elv-content-card__header-content">
-              <p class="quote-label">Why you're shopping</p>
-            </div>
-          </div>
-          <div class="elv-content-card__body">
-            <p class="elv-text-base elv-text-default">
-              "Our current tool doesn't scale with our patient volume, and we're spending too much time on manual scheduling."
-            </p>
-          </div>
-        </div>
-
-        <div class="elv-content-card elv-content-card--bordered reveal" style="transition-delay: 120ms; max-width: none;">
-          <div class="elv-content-card__header">
-            <div class="elv-content-card__header-content">
-              <p class="quote-label">What you need</p>
-            </div>
-          </div>
-          <div class="elv-content-card__body">
-            <p class="elv-text-base elv-text-default">
-              "Automated scheduling, HIPAA-compliant messaging, and reporting dashboards."
-            </p>
-          </div>
-        </div>
-
-        <div class="elv-content-card elv-content-card--bordered reveal" style="transition-delay: 240ms; max-width: none;">
-          <div class="elv-content-card__header">
-            <div class="elv-content-card__header-content">
-              <p class="quote-label">What you've already tried</p>
-            </div>
-          </div>
-          <div class="elv-content-card__body">
-            <p class="elv-text-base elv-text-default">
-              "A couple of generic scheduling apps — none had healthcare-specific compliance features."
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <div class="reveal" style="transition-delay: 320ms;">
-        <p class="quote-label mb-8px">Your company</p>
-        <div class="elv-flex elv-flex-wrap elv-gap-2">
-          <span class="elv-status-badge">51–100 employees</span>
-          <span class="elv-status-badge">Healthcare</span>
-          <span class="elv-status-badge">Cloud</span>
-          <span class="elv-status-badge">Immediate</span>
-          <span class="elv-status-badge">$10,000–$25,000/year</span>
-        </div>
-      </div>
-
-      <div class="reveal" style="transition-delay: 380ms;">
-        <p class="quote-label mb-8px">What you said mattered most</p>
-        <div class="elv-flex elv-flex-wrap elv-gap-2">
-          <span class="elv-status-badge elv-status-badge--new">Integrations with other tools</span>
-          <span class="elv-status-badge elv-status-badge--new">Reporting &amp; analytics</span>
-          <span class="elv-status-badge elv-status-badge--new">Security &amp; compliance</span>
-        </div>
-      </div>
-
-      <div class="reveal row-stack" style="max-width: 640px; gap: 20px; transition-delay: 440ms;">
-        <p class="elv-text-base elv-text-default" style="margin: 0;">
-          Since you flagged three priorities instead of one, we weighted platforms that
-          handle all three together — <strong class="elv-text-primary">not just the
-          cheapest single-purpose tool</strong>.
-        </p>
-        <p class="narrator-aside">
-          Three priorities, not one, changed which platforms even made the list.
+  <!-- Recommendation headline -->
+  <div class="elv-max-w-screen-xl elv-mx-auto elv-px-6 section-fill">
+    <div style="display: flex; align-items: center; justify-content: space-between; gap: 40px; flex-wrap: wrap;">
+      <div style="flex: 1 1 420px; min-width: 280px;">
+        <p class="eyebrow eyebrow--on-light">Your recommendations</p>
+        <h1 class="hero-title elv-text-4xl elv-font-extrabold elv-text-default elv-mb-3" style="max-width: 880px;">
+          Here are your <span class="elv-text-primary">closest matches</span>.
+        </h1>
+        <p class="elv-text-base elv-text-subtle" style="max-width: 520px;">
+          Three healthcare scheduling platforms, evaluated against the three things you said
+          couldn't slip — not just a <span class="highlight-phrase">match score</span>.
         </p>
       </div>
+      <div class="elv-flex elv-gap-3" style="flex-shrink: 0;">
+        <div class="elv-product-avatar elv-product-avatar--xl" title="Carepoint Scheduler">
+          <div class="elv-product-avatar__placeholder">
+            <img src="../../../shared/elevate-prototyping-kit/icons/product-placeholder.png" alt="Carepoint Scheduler logo">
+          </div>
+        </div>
+        <div class="elv-product-avatar elv-product-avatar--xl" title="SwiftDesk Health">
+          <div class="elv-product-avatar__placeholder">
+            <img src="../../../shared/elevate-prototyping-kit/icons/product-placeholder.png" alt="SwiftDesk Health logo">
+          </div>
+        </div>
+        <div class="elv-product-avatar elv-product-avatar--xl" title="Meridian Care OS">
+          <div class="elv-product-avatar__placeholder">
+            <img src="../../../shared/elevate-prototyping-kit/icons/product-placeholder.png" alt="Meridian Care OS logo">
+          </div>
+        </div>
+      </div>
     </div>
-  </section>
+  </div>
 
-  <!-- Step 2 — The landscape (full-bleed inversion, using Elevate's own
-       canonical .dark token scope — every elv-* utility below resolves to
-       its dark-theme value automatically). -->
-  <section data-step-section="2" data-indicator="The landscape" class="dark tone-invert">
-    <div class="elv-max-w-screen-xl elv-mx-auto elv-px-6 beat">
+  <!-- Step 1 — Your criteria (full-bleed inversion — moved here from the
+       former Step 2 "landscape" beat per direct feedback: Elevate's own
+       canonical dark-mode token scope (.dark), not a hand-rolled color
+       override. Every elv-* utility used inside this wrapper resolves to
+       its proper dark-theme value automatically). -->
+  <section data-step-section="1" data-indicator="Your criteria" class="dark tone-invert section-fill">
+    <div class="elv-max-w-screen-xl elv-mx-auto elv-px-6">
       <div class="beat-lead">
-        <div class="beat-numeral beat-numeral--on-dark">02</div>
-        <p class="eyebrow" style="color: var(--text-inverted);">The landscape</p>
-        <h2 class="elv-text-2xl font-black elv-text-default">Navigating healthcare scheduling.</h2>
+        <div class="beat-numeral beat-numeral--on-dark">01</div>
+        <p class="eyebrow" style="color: var(--text-inverted);">Your criteria</p>
+        <h2 class="elv-text-2xl font-black elv-text-default">Here's what you told us.</h2>
       </div>
 
-      <div class="reveal row-stack" style="max-width: 640px; gap: 24px;">
-        <p class="elv-text-lg elv-text-default" style="line-height: 32px; margin: 0; font-weight: 500;">
-          Healthcare scheduling tools split hard on one axis: built for a single clinic,
-          or built to survive an audit. <span class="elv-text-primary elv-font-bold">Compliance
-          and integration depth are what separate them</span> — not the scheduling grid
-          itself, which looks similar everywhere.
-        </p>
+      <div class="row-stack">
+        <div class="field-grid">
+          <div class="elv-content-card elv-content-card--bordered reveal" style="transition-delay: 0ms; max-width: none;">
+            <div class="elv-content-card__header">
+              <div class="elv-content-card__header-content">
+                <p class="quote-label">Why you're shopping</p>
+              </div>
+            </div>
+            <div class="elv-content-card__body">
+              <div class="pull-quote">
+                <p class="pull-quote__text">
+                  Our current tool doesn't scale with our patient volume, and we're spending too much time on manual scheduling.
+                </p>
+              </div>
+            </div>
+          </div>
 
-        <div class="pull-quote">
-          <span class="pull-quote__glyph">&#8220;</span>
-          <p class="pull-quote__text">
-            Our current tool doesn't scale with our patient volume, and we're spending too
-            much time on manual scheduling.
-          </p>
-          <p class="pull-quote__attr">— from what you told us</p>
+          <div class="elv-content-card elv-content-card--bordered reveal" style="transition-delay: 120ms; max-width: none;">
+            <div class="elv-content-card__header">
+              <div class="elv-content-card__header-content">
+                <p class="quote-label">What you need</p>
+              </div>
+            </div>
+            <div class="elv-content-card__body">
+              <div class="pull-quote">
+                <p class="pull-quote__text">
+                  Automated scheduling, HIPAA-compliant messaging, and reporting dashboards.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="elv-content-card elv-content-card--bordered reveal" style="transition-delay: 240ms; max-width: none;">
+            <div class="elv-content-card__header">
+              <div class="elv-content-card__header-content">
+                <p class="quote-label">What you've already tried</p>
+              </div>
+            </div>
+            <div class="elv-content-card__body">
+              <div class="pull-quote">
+                <p class="pull-quote__text">
+                  A couple of generic scheduling apps — none had healthcare-specific compliance features.
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <p class="elv-text-base" style="margin: 0; color: var(--text-subtle);">
-          For a buyer moving immediately, on a defined budget, that means ruling out
-          anything that treats HIPAA-compliant messaging or EHR sync as an
-          <span class="highlight-phrase">add-on rather than core</span>.
-        </p>
+        <div class="reveal" style="transition-delay: 320ms;">
+          <p class="quote-label mb-8px">What you said mattered most</p>
+          <div class="elv-flex elv-flex-wrap elv-gap-2">
+            <span class="elv-status-badge elv-status-badge--new">Integrations with other tools</span>
+            <span class="elv-status-badge elv-status-badge--new">Reporting &amp; analytics</span>
+            <span class="elv-status-badge elv-status-badge--new">Security &amp; compliance</span>
+          </div>
+        </div>
 
-        <p class="narrator-aside" style="color: var(--text-nonessential);">
-          That single line is what reframed which three platforms even belong on this list.
-        </p>
+        <div class="reveal" style="max-width: 640px; transition-delay: 380ms;">
+          <p class="elv-text-base elv-text-default" style="margin: 0;">
+            Since you flagged three priorities instead of one, we weighted platforms that
+            handle all three together — <strong class="elv-text-primary">not just the
+            cheapest single-purpose tool</strong>.
+          </p>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Step 3 — Your top matches: sticky product panel + continuously-animated
+  <!-- Step 2 — Your top matches: sticky product panel + continuously-animated
        scrolling evidence column, one product per row (mechanic borrowed from
        Variant Two's sticky-scroll layout). -->
-  <div data-step-section="3">
+  <div data-step-section="2">
 
     <header class="elv-max-w-screen-xl elv-mx-auto elv-px-6" style="padding-top: 120px; padding-bottom: 0;">
-      <div class="beat-numeral">03</div>
+      <div class="beat-numeral">02</div>
       <p class="eyebrow eyebrow--on-light">Your top matches</p>
       <h2 class="elv-text-2xl font-black elv-text-default mb-8px">Three options, backed by evidence.</h2>
       <p class="elv-text-base elv-text-subtle" style="max-width: 560px;">
@@ -776,7 +906,7 @@
 
     <!-- Carepoint Scheduler -->
     <section data-indicator="Carepoint Scheduler" class="section-shell">
-      <div class="elv-max-w-screen-xl elv-mx-auto elv-px-6" style="padding-top: 64px; padding-bottom: 112px;">
+      <div class="elv-max-w-screen-xl elv-mx-auto elv-px-6" style="padding-top: 120px; padding-bottom: 112px;">
         <p class="eyebrow eyebrow--on-light">Match 1 of 3</p>
         <h3 class="elv-text-2xl elv-font-extrabold elv-text-default">Carepoint Scheduler</h3>
 
@@ -826,81 +956,94 @@
               </div>
               <div class="elv-content-card__footer">
                 <button type="button" class="btn btn--primary btn--md">Get a demo</button>
-                <button type="button" class="btn btn--secondary btn--md">Talk to an advisor instead</button>
+                <button type="button" class="btn btn--secondary btn--md">Contact now</button>
               </div>
             </div>
           </div>
 
           <div class="evidence-col">
             <div class="evidence-row">
-              <p class="evidence-row__label">What reviewers say holds up</p>
-              <div class="row-stack" style="gap: 8px;">
-                <div class="sentiment-row">
-                  <span class="sentiment-row__icon sentiment-row__icon--pro">&#10003;</span>
-                  <span class="sentiment-row__text">EHR Integrations <span class="sentiment-row__count">— 134 reviews</span></span>
+              <p class="elv-text-lg elv-text-default" style="line-height: 30px; margin: 0; font-weight: 500; max-width: 560px;">
+                The rare platform that covers all three of your priorities at once:
+                <span class="highlight-phrase">integrations, reporting, and compliance</span>,
+                not a trade-off between them.
+              </p>
+            </div>
+
+            <div class="evidence-row">
+              <div class="evidence-headline">
+                <div class="evidence-headline__gauge">
+                  <svg viewBox="0 0 80 80" width="80" height="80" aria-hidden="true">
+                    <circle class="evidence-headline__ring-track" cx="40" cy="40" r="34"></circle>
+                    <circle class="evidence-headline__ring-fill" cx="40" cy="40" r="34" style="--pct: 0.9;"></circle>
+                  </svg>
+                  <div class="evidence-headline__gauge-value">9.0</div>
                 </div>
-                <div class="sentiment-row">
-                  <span class="sentiment-row__icon sentiment-row__icon--pro">&#10003;</span>
-                  <span class="sentiment-row__text">Reporting Dashboards <span class="sentiment-row__count">— 98 reviews</span></span>
-                </div>
-                <div class="sentiment-row">
-                  <span class="sentiment-row__icon sentiment-row__icon--con">!</span>
-                  <span class="sentiment-row__text">Onboarding Time <span class="sentiment-row__count">— 22 reviews</span></span>
+                <div class="evidence-headline__label">
+                  Real-Time Data Sync
+                  <span class="evidence-headline__meta">Reviewers' top-rated feature here that matches your priority</span>
                 </div>
               </div>
             </div>
 
             <div class="evidence-row">
-              <p class="evidence-row__label">Feature ratings</p>
-              <div class="feature-chip-row">
-                <span class="elv-status-badge elv-status-badge--new">EHR Integrations 4.8★</span>
-                <span class="elv-status-badge elv-status-badge--new">HIPAA-Compliant Messaging 4.7★</span>
-                <span class="elv-status-badge elv-status-badge--new">Reporting Dashboards 4.6★</span>
-                <span class="elv-status-badge">Automated Scheduling 4.5★</span>
-                <span class="elv-status-badge">Patient Reminders 4.3★</span>
-                <span class="elv-status-badge">Mobile App 4.1★</span>
+              <p class="evidence-row__label">Priority Features</p>
+              <div class="feature-chip-row feature-chip-row--priority">
+                <span class="elv-status-badge elv-status-badge--new">EHR Integrations 9.1/10</span>
+                <span class="elv-status-badge elv-status-badge--new">HIPAA-Compliant Messaging 8.9/10</span>
+                <span class="elv-status-badge elv-status-badge--new">Reporting Dashboards 8.7/10</span>
               </div>
             </div>
 
             <div class="evidence-row">
-              <p class="evidence-row__label">In their own words</p>
+              <p class="evidence-row__label">Other Related Features</p>
+              <div class="feature-chip-row feature-chip-row--secondary">
+                <span class="elv-status-badge">Automated Scheduling 8.4/10</span>
+                <span class="elv-status-badge">Patient Reminders 8.0/10</span>
+                <span class="elv-status-badge">Mobile App 7.6/10</span>
+              </div>
+            </div>
+
+            <div class="evidence-row">
+              <p class="evidence-row__label">See it in action</p>
+              <div class="screenshot-row">
+                <button type="button" class="screenshot-thumb" data-title="Carepoint Scheduler — Scheduling dashboard" data-caption="Same-day appointment slots across locations, with EHR sync status shown inline.">
+                  <span class="screenshot-thumb__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2.5" y="4.5" width="19" height="15" rx="2" stroke="currentColor" stroke-width="1.5"/><circle cx="8" cy="10" r="1.4" fill="currentColor"/><path d="M3 17.5L8.3 13C8.9 12.5 9.7 12.5 10.3 13L14 16.2M14 16.2L16.7 13.7C17.2 13.2 18 13.2 18.5 13.7L21 16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                  <span class="screenshot-thumb__label">Dashboard</span>
+                </button>
+                <button type="button" class="screenshot-thumb" data-title="Carepoint Scheduler — EHR sync status" data-caption="Live sync status across 40+ connected EHR systems, with errors surfaced immediately.">
+                  <span class="screenshot-thumb__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2.5" y="4.5" width="19" height="15" rx="2" stroke="currentColor" stroke-width="1.5"/><circle cx="8" cy="10" r="1.4" fill="currentColor"/><path d="M3 17.5L8.3 13C8.9 12.5 9.7 12.5 10.3 13L14 16.2M14 16.2L16.7 13.7C17.2 13.2 18 13.2 18.5 13.7L21 16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                  <span class="screenshot-thumb__label">EHR Sync</span>
+                </button>
+                <button type="button" class="screenshot-thumb" data-title="Carepoint Scheduler — Reporting view" data-caption="Compliance-ready reporting dashboards, exportable for audits.">
+                  <span class="screenshot-thumb__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2.5" y="4.5" width="19" height="15" rx="2" stroke="currentColor" stroke-width="1.5"/><circle cx="8" cy="10" r="1.4" fill="currentColor"/><path d="M3 17.5L8.3 13C8.9 12.5 9.7 12.5 10.3 13L14 16.2M14 16.2L16.7 13.7C17.2 13.2 18 13.2 18.5 13.7L21 16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                  <span class="screenshot-thumb__label">Reporting</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="evidence-row">
+              <p class="evidence-row__label">Related reviews</p>
               <div class="quote-grid">
                 <div class="elv-inset-card elv-inset-card--bordered">
                   <div class="quote-card">
-                    <span class="elv-status-badge elv-status-badge--new" style="align-self: flex-start;">Matches: Integrations</span>
                     <div class="pull-quote pull-quote--sm">
-                      <span class="pull-quote__glyph">&#8220;</span>
                       <p class="pull-quote__text">The EHR sync just works — we stopped double-entering patient data on day one.</p>
-                      <p class="pull-quote__attr">Office Manager · Mid-Market Healthcare (51–100 employees) · 5/5 — "Finally, integrations that don't need a consultant"</p>
+                      <p class="pull-quote__attr">Office Manager · Mid-Market Healthcare (51–100 employees) · 5/5</p>
                     </div>
+                    <span class="elv-status-badge elv-status-badge--new" style="align-self: flex-start;">Matches: Integrations</span>
                   </div>
                 </div>
                 <div class="elv-inset-card elv-inset-card--bordered">
                   <div class="quote-card">
-                    <span class="elv-status-badge elv-status-badge--new" style="align-self: flex-start;">Matches: Reporting &amp; analytics</span>
                     <div class="pull-quote pull-quote--sm">
-                      <span class="pull-quote__glyph">&#8220;</span>
                       <p class="pull-quote__text">Our compliance officer actually trusts the reporting now — it maps straight to our audit checklist.</p>
-                      <p class="pull-quote__attr">Practice Administrator · Mid-Market Healthcare · 4.5/5 — "Reporting we don't have to rebuild in Excel"</p>
+                      <p class="pull-quote__attr">Practice Administrator · Mid-Market Healthcare · 4.5/5</p>
                     </div>
+                    <span class="elv-status-badge elv-status-badge--new" style="align-self: flex-start;">Matches: Reporting &amp; analytics</span>
                   </div>
                 </div>
               </div>
-            </div>
-
-            <div class="evidence-row">
-              <p class="elv-text-base elv-text-default elv-mb-3">
-                With three priorities instead of one, most platforms make you trade off —
-                Carepoint doesn't. Its EHR sync covers 40+ systems
-                (<span class="elv-text-primary elv-font-semibold">4.8★</span> from reviewers),
-                its messaging is HIPAA-compliant by default, and its reporting dashboards are
-                the reason <span class="elv-text-primary elv-font-semibold">94% of reviewers
-                say they'd recommend it</span>.
-              </p>
-              <p class="elv-text-base elv-text-default">
-                At $18,000/year with a free demo, it's <span class="highlight-phrase">the only
-                one of the three with real evidence</span> against everything you flagged.
-              </p>
             </div>
           </div>
         </div>
@@ -957,75 +1100,93 @@
                 <p class="match-est" style="margin: 0;">Est. match: 78%<br>(no scoring engine yet)</p>
               </div>
               <div class="elv-content-card__footer">
-                <a href="#" class="elv-text-sm elv-font-semibold elv-text-primary">See full profile &rarr;</a>
+                <a href="#" class="elv-text-sm elv-font-semibold elv-text-primary">Contact now &rarr;</a>
               </div>
             </div>
           </div>
 
           <div class="evidence-col">
             <div class="evidence-row">
-              <p class="evidence-row__label">What reviewers say holds up</p>
-              <div class="row-stack" style="gap: 8px;">
-                <div class="sentiment-row">
-                  <span class="sentiment-row__icon sentiment-row__icon--pro">&#10003;</span>
-                  <span class="sentiment-row__text">Value for Money <span class="sentiment-row__count">— 71 reviews</span></span>
+              <p class="elv-text-lg elv-text-default" style="line-height: 30px; margin: 0; font-weight: 500; max-width: 560px;">
+                The budget-friendly choice: <span class="highlight-phrase">compliant messaging
+                holds up</span>, but integration depth is the acknowledged tradeoff.
+              </p>
+            </div>
+
+            <div class="evidence-row">
+              <div class="evidence-headline">
+                <div class="evidence-headline__gauge">
+                  <svg viewBox="0 0 80 80" width="80" height="80" aria-hidden="true">
+                    <circle class="evidence-headline__ring-track" cx="40" cy="40" r="34"></circle>
+                    <circle class="evidence-headline__ring-fill" cx="40" cy="40" r="34" style="--pct: 0.87;"></circle>
+                  </svg>
+                  <div class="evidence-headline__gauge-value">8.7</div>
                 </div>
-                <div class="sentiment-row">
-                  <span class="sentiment-row__icon sentiment-row__icon--con">!</span>
-                  <span class="sentiment-row__text">EHR Integration Depth <span class="sentiment-row__count">— 40 reviews</span></span>
+                <div class="evidence-headline__label">
+                  Data Encryption
+                  <span class="evidence-headline__meta">Reviewers' top-rated feature here that matches your priority</span>
                 </div>
               </div>
             </div>
 
             <div class="evidence-row">
-              <p class="evidence-row__label">Feature ratings</p>
-              <div class="feature-chip-row">
-                <span class="elv-status-badge elv-status-badge--new">HIPAA-Compliant Messaging 4.4★</span>
-                <span class="elv-status-badge elv-status-badge--new">Reporting Dashboards 4.0★</span>
-                <span class="elv-status-badge">Automated Scheduling 4.5★</span>
-                <span class="elv-status-badge">Mobile App 4.2★</span>
-                <span class="elv-status-badge">Patient Reminders 4.1★</span>
-                <span class="elv-status-badge">EHR Integrations 3.4★</span>
+              <p class="evidence-row__label">Priority Features</p>
+              <div class="feature-chip-row feature-chip-row--priority">
+                <span class="elv-status-badge elv-status-badge--new">HIPAA-Compliant Messaging 8.6/10</span>
+                <span class="elv-status-badge elv-status-badge--new">Reporting Dashboards 7.8/10</span>
               </div>
             </div>
 
             <div class="evidence-row">
-              <p class="evidence-row__label">In their own words</p>
+              <p class="evidence-row__label">Other Related Features</p>
+              <div class="feature-chip-row feature-chip-row--secondary">
+                <span class="elv-status-badge">Automated Scheduling 8.5/10</span>
+                <span class="elv-status-badge">Mobile App 8.1/10</span>
+                <span class="elv-status-badge">Patient Reminders 7.9/10</span>
+                <span class="elv-status-badge">EHR Integrations 6.8/10</span>
+              </div>
+            </div>
+
+            <div class="evidence-row">
+              <p class="evidence-row__label">See it in action</p>
+              <div class="screenshot-row">
+                <button type="button" class="screenshot-thumb" data-title="SwiftDesk Health — Scheduling dashboard" data-caption="Simple day/week scheduling grid built for small practices getting started fast.">
+                  <span class="screenshot-thumb__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2.5" y="4.5" width="19" height="15" rx="2" stroke="currentColor" stroke-width="1.5"/><circle cx="8" cy="10" r="1.4" fill="currentColor"/><path d="M3 17.5L8.3 13C8.9 12.5 9.7 12.5 10.3 13L14 16.2M14 16.2L16.7 13.7C17.2 13.2 18 13.2 18.5 13.7L21 16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                  <span class="screenshot-thumb__label">Dashboard</span>
+                </button>
+                <button type="button" class="screenshot-thumb" data-title="SwiftDesk Health — Messaging inbox" data-caption="HIPAA-compliant patient messaging inbox, threaded by appointment.">
+                  <span class="screenshot-thumb__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2.5" y="4.5" width="19" height="15" rx="2" stroke="currentColor" stroke-width="1.5"/><circle cx="8" cy="10" r="1.4" fill="currentColor"/><path d="M3 17.5L8.3 13C8.9 12.5 9.7 12.5 10.3 13L14 16.2M14 16.2L16.7 13.7C17.2 13.2 18 13.2 18.5 13.7L21 16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                  <span class="screenshot-thumb__label">Messaging</span>
+                </button>
+                <button type="button" class="screenshot-thumb" data-title="SwiftDesk Health — Mobile app" data-caption="Mobile view for front-desk staff managing same-day changes on the go.">
+                  <span class="screenshot-thumb__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2.5" y="4.5" width="19" height="15" rx="2" stroke="currentColor" stroke-width="1.5"/><circle cx="8" cy="10" r="1.4" fill="currentColor"/><path d="M3 17.5L8.3 13C8.9 12.5 9.7 12.5 10.3 13L14 16.2M14 16.2L16.7 13.7C17.2 13.2 18 13.2 18.5 13.7L21 16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                  <span class="screenshot-thumb__label">Mobile App</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="evidence-row">
+              <p class="evidence-row__label">Related reviews</p>
               <div class="quote-grid">
                 <div class="elv-inset-card elv-inset-card--bordered">
                   <div class="quote-card">
-                    <span class="elv-status-badge elv-status-badge--new" style="align-self: flex-start;">Matches: Security &amp; compliance</span>
                     <div class="pull-quote pull-quote--sm">
-                      <span class="pull-quote__glyph">&#8220;</span>
                       <p class="pull-quote__text">Messaging is HIPAA-compliant out of the box, which is all our compliance team asked for.</p>
-                      <p class="pull-quote__attr">Clinic Director · Small Business Healthcare (11–50 employees) · 4/5 — "Does compliance without the overhead"</p>
+                      <p class="pull-quote__attr">Clinic Director · Small Business Healthcare (11–50 employees) · 4/5</p>
                     </div>
+                    <span class="elv-status-badge elv-status-badge--new" style="align-self: flex-start;">Matches: Security &amp; compliance</span>
                   </div>
                 </div>
                 <div class="elv-inset-card elv-inset-card--bordered">
                   <div class="quote-card">
-                    <span class="elv-status-badge" style="align-self: flex-start;">General feedback</span>
                     <div class="pull-quote pull-quote--sm">
-                      <span class="pull-quote__glyph">&#8220;</span>
                       <p class="pull-quote__text">It's the cheapest option that still checked our must-haves — we just accepted we'd outgrow the integrations eventually.</p>
-                      <p class="pull-quote__attr">Office Administrator · Small Business Healthcare · 4/5 — "Good value, if you don't need deep EHR ties"</p>
+                      <p class="pull-quote__attr">Office Administrator · Small Business Healthcare · 4/5</p>
                     </div>
+                    <span class="elv-status-badge" style="align-self: flex-start;">General feedback</span>
                   </div>
                 </div>
               </div>
-            </div>
-
-            <div class="evidence-row">
-              <p class="elv-text-base elv-text-default elv-mb-3">
-                At $9,200/year, SwiftDesk is <span class="highlight-phrase">the value play</span>
-                — and its HIPAA-compliant messaging
-                (<span class="elv-text-primary elv-font-semibold">4.4★</span> from reviewers)
-                genuinely holds up.
-              </p>
-              <p class="elv-text-base elv-text-default">
-                The honest tradeoff: it only connects to two of the EHR systems on your
-                list today, so it fits best if integration depth can wait.
-              </p>
             </div>
           </div>
         </div>
@@ -1082,75 +1243,92 @@
                 <p class="match-est" style="margin: 0;">Est. match: 74%<br>(no scoring engine yet)</p>
               </div>
               <div class="elv-content-card__footer">
-                <a href="#" class="elv-text-sm elv-font-semibold elv-text-primary">See full profile &rarr;</a>
+                <a href="#" class="elv-text-sm elv-font-semibold elv-text-primary">Contact now &rarr;</a>
               </div>
             </div>
           </div>
 
           <div class="evidence-col">
             <div class="evidence-row">
-              <p class="evidence-row__label">What reviewers say holds up</p>
-              <div class="row-stack" style="gap: 8px;">
-                <div class="sentiment-row">
-                  <span class="sentiment-row__icon sentiment-row__icon--pro">&#10003;</span>
-                  <span class="sentiment-row__text">Implementation Speed <span class="sentiment-row__count">— 33 reviews</span></span>
+              <p class="elv-text-lg elv-text-default" style="line-height: 30px; margin: 0; font-weight: 500; max-width: 560px;">
+                The compliance leader: <span class="highlight-phrase">audit-ready reporting
+                built in from day one</span>, priced above your stated range.
+              </p>
+            </div>
+
+            <div class="evidence-row">
+              <div class="evidence-headline">
+                <div class="evidence-headline__gauge">
+                  <svg viewBox="0 0 80 80" width="80" height="80" aria-hidden="true">
+                    <circle class="evidence-headline__ring-track" cx="40" cy="40" r="34"></circle>
+                    <circle class="evidence-headline__ring-fill" cx="40" cy="40" r="34" style="--pct: 0.94;"></circle>
+                  </svg>
+                  <div class="evidence-headline__gauge-value">9.4</div>
                 </div>
-                <div class="sentiment-row">
-                  <span class="sentiment-row__icon sentiment-row__icon--con">!</span>
-                  <span class="sentiment-row__text">Price <span class="sentiment-row__count">— 19 reviews</span></span>
+                <div class="evidence-headline__label">
+                  Audit Trail Logging
+                  <span class="evidence-headline__meta">Reviewers' top-rated feature here that matches your priority</span>
                 </div>
               </div>
             </div>
 
             <div class="evidence-row">
-              <p class="evidence-row__label">Feature ratings</p>
-              <div class="feature-chip-row">
-                <span class="elv-status-badge elv-status-badge--new">Reporting Dashboards 4.8★</span>
-                <span class="elv-status-badge elv-status-badge--new">HIPAA-Compliant Messaging 4.9★</span>
-                <span class="elv-status-badge elv-status-badge--new">EHR Integrations 4.5★</span>
-                <span class="elv-status-badge">Automated Scheduling 4.6★</span>
-                <span class="elv-status-badge">Mobile App 4.4★</span>
+              <p class="evidence-row__label">Priority Features</p>
+              <div class="feature-chip-row feature-chip-row--priority">
+                <span class="elv-status-badge elv-status-badge--new">Reporting Dashboards 9.2/10</span>
+                <span class="elv-status-badge elv-status-badge--new">HIPAA-Compliant Messaging 9.3/10</span>
+                <span class="elv-status-badge elv-status-badge--new">EHR Integrations 8.7/10</span>
               </div>
             </div>
 
             <div class="evidence-row">
-              <p class="evidence-row__label">In their own words</p>
+              <p class="evidence-row__label">Other Related Features</p>
+              <div class="feature-chip-row feature-chip-row--secondary">
+                <span class="elv-status-badge">Automated Scheduling 8.8/10</span>
+                <span class="elv-status-badge">Mobile App 8.5/10</span>
+              </div>
+            </div>
+
+            <div class="evidence-row">
+              <p class="evidence-row__label">See it in action</p>
+              <div class="screenshot-row">
+                <button type="button" class="screenshot-thumb" data-title="Meridian Care OS — Compliance reports" data-caption="Audit-ready report templates, pre-mapped to common state compliance checklists.">
+                  <span class="screenshot-thumb__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2.5" y="4.5" width="19" height="15" rx="2" stroke="currentColor" stroke-width="1.5"/><circle cx="8" cy="10" r="1.4" fill="currentColor"/><path d="M3 17.5L8.3 13C8.9 12.5 9.7 12.5 10.3 13L14 16.2M14 16.2L16.7 13.7C17.2 13.2 18 13.2 18.5 13.7L21 16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                  <span class="screenshot-thumb__label">Reports</span>
+                </button>
+                <button type="button" class="screenshot-thumb" data-title="Meridian Care OS — Audit trail log" data-caption="Full audit trail of every record change, timestamped and attributable to a user.">
+                  <span class="screenshot-thumb__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2.5" y="4.5" width="19" height="15" rx="2" stroke="currentColor" stroke-width="1.5"/><circle cx="8" cy="10" r="1.4" fill="currentColor"/><path d="M3 17.5L8.3 13C8.9 12.5 9.7 12.5 10.3 13L14 16.2M14 16.2L16.7 13.7C17.2 13.2 18 13.2 18.5 13.7L21 16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                  <span class="screenshot-thumb__label">Audit Trail</span>
+                </button>
+                <button type="button" class="screenshot-thumb" data-title="Meridian Care OS — Dashboard overview" data-caption="Enterprise-wide scheduling overview across locations, with compliance status flagged per clinic.">
+                  <span class="screenshot-thumb__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2.5" y="4.5" width="19" height="15" rx="2" stroke="currentColor" stroke-width="1.5"/><circle cx="8" cy="10" r="1.4" fill="currentColor"/><path d="M3 17.5L8.3 13C8.9 12.5 9.7 12.5 10.3 13L14 16.2M14 16.2L16.7 13.7C17.2 13.2 18 13.2 18.5 13.7L21 16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                  <span class="screenshot-thumb__label">Dashboard</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="evidence-row">
+              <p class="evidence-row__label">Related reviews</p>
               <div class="quote-grid">
                 <div class="elv-inset-card elv-inset-card--bordered">
                   <div class="quote-card">
-                    <span class="elv-status-badge elv-status-badge--new" style="align-self: flex-start;">Matches: Security &amp; compliance</span>
                     <div class="pull-quote pull-quote--sm">
-                      <span class="pull-quote__glyph">&#8220;</span>
                       <p class="pull-quote__text">Every report we need for state audits is already a template — we just export it.</p>
-                      <p class="pull-quote__attr">Compliance Manager · Enterprise Healthcare (100–500 employees) · 5/5 — "Built like compliance was the first requirement, not an afterthought"</p>
+                      <p class="pull-quote__attr">Compliance Manager · Enterprise Healthcare (100–500 employees) · 5/5</p>
                     </div>
+                    <span class="elv-status-badge elv-status-badge--new" style="align-self: flex-start;">Matches: Security &amp; compliance</span>
                   </div>
                 </div>
                 <div class="elv-inset-card elv-inset-card--bordered">
                   <div class="quote-card">
-                    <span class="elv-status-badge" style="align-self: flex-start;">General feedback</span>
                     <div class="pull-quote pull-quote--sm">
-                      <span class="pull-quote__glyph">&#8220;</span>
                       <p class="pull-quote__text">Implementation was under a week, which our old vendor said was impossible.</p>
-                      <p class="pull-quote__attr">IT Director · Enterprise Healthcare · 4.5/5 — "Fastest go-live we've had with clinical software"</p>
+                      <p class="pull-quote__attr">IT Director · Enterprise Healthcare · 4.5/5</p>
                     </div>
+                    <span class="elv-status-badge" style="align-self: flex-start;">General feedback</span>
                   </div>
                 </div>
               </div>
-            </div>
-
-            <div class="evidence-row">
-              <p class="elv-text-base elv-text-default elv-mb-3">
-                Meridian's reporting and compliance tooling are the strongest of the three
-                (<span class="elv-text-primary elv-font-semibold">4.8★</span> on Reporting
-                Dashboards) — reviewers specifically cite audit-ready templates, not just
-                dashboards.
-              </p>
-              <p class="elv-text-base elv-text-default">
-                It's priced above your stated range at $24,500/year, but if compliance
-                reporting is <span class="highlight-phrase">the priority that can't slip</span>,
-                it's the one built around that from the start.
-              </p>
             </div>
           </div>
         </div>
@@ -1159,19 +1337,18 @@
 
   </div>
 
-  <!-- Step 4 — Next steps -->
-  <section data-step-section="4" data-indicator="Next steps" class="tone-tint">
+  <!-- Step 3 — Next steps -->
+  <section data-step-section="3" data-indicator="Next steps" class="tone-tint">
     <div class="elv-max-w-screen-xl elv-mx-auto elv-px-6 beat">
       <div class="beat-lead">
-        <div class="beat-numeral">04</div>
+        <div class="beat-numeral">03</div>
         <p class="eyebrow eyebrow--on-tint">Next steps</p>
         <h2 class="elv-text-2xl font-black elv-text-default">Why this fits, and what to do next.</h2>
       </div>
 
       <div class="reveal row-stack" style="max-width: 640px; gap: 20px; margin-bottom: 40px;">
         <p class="elv-text-lg elv-text-default" style="line-height: 30px; margin: 0;">
-          You flagged integrations, reporting, and compliance as non-negotiable — not
-          hypothetically, but as the reason your current tool doesn't work anymore.
+          You flagged integrations, reporting, and compliance as non-negotiable.
           Carepoint is the only recommendation with reviewer-verified strength in all
           three, which is why <span class="highlight-phrase">the evidence above outweighs
           the match score</span> next to its name.
@@ -1297,7 +1474,7 @@
       </div>
 
       <div class="reveal">
-        <p class="elv-text-sm elv-font-bold elv-text-default elv-mb-3">Want more help with your research?</p>
+        <p class="elv-text-lg elv-font-bold elv-text-default elv-mb-3">Want more help with your research?</p>
         <div class="elv-flex elv-flex-wrap elv-gap-3">
           <button type="button" class="btn btn--secondary btn--md">Contact our team</button>
         </div>
@@ -1316,6 +1493,25 @@
     <br>
     <a href="../index.html" class="elv-text-nonessential hover:elv-text-primary" style="text-decoration: underline;">&larr; Back to PPL Scrollytelling</a>
   </footer>
+
+  <!-- Shared screenshot lightbox — one dialog reused by every screenshot-thumb
+       button across all three products; content is filled in by JS on open. -->
+  <dialog id="screenshot-lightbox" class="elv-modal elv-modal--lg" aria-modal="true" role="dialog">
+    <div class="elv-modal__inner">
+      <div class="elv-modal__header">
+        <div class="elv-modal__header-top">
+          <h2 class="elv-modal__title" id="screenshot-lightbox-title">Screenshot</h2>
+          <button type="button" class="elv-modal__close" aria-label="Close">&times;</button>
+        </div>
+      </div>
+      <div class="elv-modal__body">
+        <div class="screenshot-lightbox__frame">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="2.5" y="4.5" width="19" height="15" rx="2" stroke="currentColor" stroke-width="1.5"/><circle cx="8" cy="10" r="1.4" fill="currentColor"/><path d="M3 17.5L8.3 13C8.9 12.5 9.7 12.5 10.3 13L14 16.2M14 16.2L16.7 13.7C17.2 13.2 18 13.2 18.5 13.7L21 16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <p class="screenshot-lightbox__caption" id="screenshot-lightbox-caption"></p>
+      </div>
+    </div>
+  </dialog>
 
 </div>
 
@@ -1463,6 +1659,32 @@
   }, { passive: true });
   window.addEventListener('resize', updateContinuous);
   updateContinuous();
+
+  // Screenshot lightbox — one shared <dialog>, filled in per-thumbnail from
+  // its data-title/data-caption before opening. Native <dialog> gives ESC-
+  // to-close and ::backdrop for free; only content-fill and open/close are
+  // custom here.
+  (function () {
+    var lightbox = document.getElementById('screenshot-lightbox');
+    if (!lightbox) return;
+    var titleEl = document.getElementById('screenshot-lightbox-title');
+    var captionEl = document.getElementById('screenshot-lightbox-caption');
+
+    document.querySelectorAll('.screenshot-thumb').forEach(function (thumb) {
+      thumb.addEventListener('click', function () {
+        titleEl.textContent = thumb.getAttribute('data-title') || 'Screenshot';
+        captionEl.textContent = thumb.getAttribute('data-caption') || '';
+        lightbox.showModal();
+      });
+    });
+
+    lightbox.querySelector('.elv-modal__close').addEventListener('click', function () {
+      lightbox.close();
+    });
+    lightbox.addEventListener('click', function (event) {
+      if (event.target === lightbox) lightbox.close();
+    });
+  })();
 </script>
 
 </body>
