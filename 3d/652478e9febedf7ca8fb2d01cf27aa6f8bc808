@@ -1,0 +1,41 @@
+epics/ppl-scrollytelling/explorations/04-variant-four.html
+  s_d81602e721aecb::t_2ed32e4cdb03d5 1309-1311,1313-1315,1317-1319
+  s_d81602e721aecb::t_fc47f0b43e9252 1366
+  s_d81602e721aecb::t_7d45ecaf0bc498 1414,1417
+  s_d81602e721aecb::t_9d6dcdd367e4e9 607-611,614-616
+  s_d81602e721aecb::t_2696a2f8dbb1a3 1028-1030,1032-1034,1036-1038
+  s_d81602e721aecb::t_6000e0cbfbf343 1517
+  s_d81602e721aecb::t_fad3ad8d970c1a 1071-1072,1075
+  s_d81602e721aecb::t_93b314efb2c02f 128-141
+  s_d81602e721aecb::t_1ffde2d52eef18 1169-1171,1173-1175,1177-1179
+  s_d81602e721aecb::t_98d1cd1f10565d 818-819,821-822,824-825
+  s_d81602e721aecb::t_1c186026e69bbd 1672-1674,1680,1684-1686,1688-1689
+  s_d81602e721aecb::t_2bc49d790f6ffa 1563
+  s_d81602e721aecb::t_3c1e38340cacbc 612-613,617
+  s_d81602e721aecb::t_f96b8af44bc972 1378,1381
+  s_d81602e721aecb::t_10239313f261a4 1098,1101-1102
+  s_d81602e721aecb::t_3039a780dd2796 1212-1213,1216
+  s_d81602e721aecb::t_5715ce34414ddd 743,745
+  s_d81602e721aecb::t_87cb3c4bef2f21 1450,1453
+  s_d81602e721aecb::t_9bd138d7e57cdd 1239,1242-1243
+  s_d81602e721aecb::t_b1c9a93da1edc6 927-928,931
+  s_d81602e721aecb::t_71224741dd399a 955,958-959
+  s_d81602e721aecb::t_b8dc8298065fa7 658-659,672,679-687
+  s_d81602e721aecb::t_8f1e7c85ba7778 618
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "3d652478e9febedf7ca8fb2d01cf27aa6f8bc808",
+  "prompts": {},
+  "sessions": {
+    "s_d81602e721aecb": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "5fbd6a99-6833-484a-a1fa-8a60572cc608",
+        "model": "claude-sonnet-5"
+      },
+      "human_author": "Sam Childs <schilds@g2.com>"
+    }
+  }
+}
